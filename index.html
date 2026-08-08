@@ -3,14 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hero Academy | منصة تعليمية متكاملة</title>
+    <title>Hero Academy | مساعد الطالب - أدوات تعلم ذكية</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* تعديلات بسيطة لدعم بطاقات المحتوى داخل نفس تصميم الأكاديمية */
+        .assistant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .assistant-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #eef2f6;
+            position: relative;
+            overflow: hidden;
+        }
+        .assistant-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1);
+            border-color: #2563eb;
+        }
+        .assistant-card .card-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .assistant-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #1e293b;
+        }
+        .assistant-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .badge-type {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-top: 15px;
+            color: white;
+        }
+        .badge-free { background: #22c55e; }
+        .badge-preview { background: #eab308; }
+        .badge-paid { background: #ef4444; }
+        .assistant-card .card-action {
+            margin-top: 20px;
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            text-decoration: none;
+            border: 2px solid #2563eb;
+            color: #2563eb;
+            background: transparent;
+        }
+        .assistant-card .card-action:hover {
+            background: #2563eb;
+            color: white;
+        }
+        .assistant-card .card-action.primary-btn {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+        .assistant-card .card-action.primary-btn:hover {
+            background: #1d4ed8;
+            border-color: #1d4ed8;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .content-item {
+            background: #f8faff;
+            padding: 20px;
+            border-radius: 16px;
+            border-right: 4px solid #2563eb;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .content-item .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- ===== البنر الإعلاني العلوي ===== -->
+    <!-- ===== البنر الإعلاني العلوي (نفس الأكاديمية) ===== -->
     <div class="top-banner" id="topBanner">
         <div class="banner-content">
             <span class="banner-text">
@@ -23,7 +120,7 @@
         </div>
     </div>
 
-    <!-- ===== HEADER ===== -->
+    <!-- ===== HEADER (مطابق تماماً للأكاديمية) ===== -->
     <header class="main-header">
         <div class="container">
             <div class="logo-area">
@@ -33,7 +130,7 @@
             <nav class="main-nav">
                 <ul>
                     <li><a href="index.html" class="active"><i class="fas fa-home"></i> الرئيسية</a></li>
-                    <li><a href="courses.html"><i class="fas fa-graduation-cap"></i> الدورات</a></li>
+                    <li><a href="https://hero.kesug.com/Academy/courses.php"><i class="fas fa-graduation-cap"></i> الدورات</a></li>
                     <li><a href="#features"><i class="fas fa-star"></i> المميزات</a></li>
                     <li><a href="#about"><i class="fas fa-info-circle"></i> عن الأكاديمية</a></li>
                     <li><a href="https://hero.kesug.com/Academy/login.php" class="btn-outline"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</a></li>
@@ -44,40 +141,40 @@
         </div>
     </header>
 
-    <!-- ===== HERO SECTION ===== -->
+    <!-- ===== HERO SECTION (تم تعديل النص ليناسب مساعد الطالب) ===== -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">
                     <i class="fas fa-certificate"></i>
-                    منصة تعليمية معتمدة
+                    مساعدك الذكي للدراسة
                 </div>
-                <h1>تعلم <span>بذكاء</span> <br>و<span>تميز</span></h1>
-                <p class="hero-desc">منصة تعليمية متكاملة تقدم دورات أكاديمية، ألعاب تفاعلية، وأدوات مساعدة لتجربة تعلم فريدة من نوعها.</p>
+                <h1>تعلم <span>بذكاء</span> <br>مع <span>مساعد الطالب</span></h1>
+                <p class="hero-desc">أدوات تعليمية متكاملة: خرائط ذهنية، فلاش كاردز، نصائح مذاكرة، حاسبات، جداول، ومحتوى صوتي ومرئي قصير. اكتشف نماذج مجانية وتوجه للأكاديمية للمحتوى الكامل.</p>
                 <div class="hero-buttons">
-                    <a href="https://hero.kesug.com/Academy/courses.php" class="btn-primary btn-large btn-pulse">
-                        <i class="fas fa-play"></i> ابدأ رحلتك التعليمية
+                    <a href="#free-content" class="btn-primary btn-large btn-pulse">
+                        <i class="fas fa-play"></i> استكشف المحتوى المجاني
                     </a>
-                    <a href="#courses" class="btn-secondary btn-large">
-                        <i class="fas fa-eye"></i> استكشف الدورات
+                    <a href="https://hero.kesug.com/Academy/courses.php" class="btn-secondary btn-large">
+                        <i class="fas fa-eye"></i> جميع الدورات
                     </a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat">
-                        <span class="number" data-count="500">0</span>
-                        <span class="label">طالب</span>
-                    </div>
-                    <div class="stat">
-                        <span class="number" data-count="30">0</span>
-                        <span class="label">دورة</span>
-                    </div>
-                    <div class="stat">
                         <span class="number" data-count="15">0</span>
-                        <span class="label">مدرس</span>
+                        <span class="label">أداة مساعدة</span>
                     </div>
                     <div class="stat">
-                        <span class="number" data-count="98">0</span>
-                        <span class="label">% رضا</span>
+                        <span class="number" data-count="50">0</span>
+                        <span class="label">خريطة ذهنية</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number" data-count="200">0</span>
+                        <span class="label">بطاقة فلاش</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number" data-count="100">0</span>
+                        <span class="label">نصيحة مذاكرة</span>
                     </div>
                 </div>
             </div>
@@ -85,16 +182,16 @@
                 <div class="hero-illustration">
                     <img src="assets/images/hero-illustration.svg" alt="التعليم عن بعد" onerror="this.src='assets/images/hero-placeholder.png'">
                     <div class="floating-card card-1">
-                        <i class="fas fa-video"></i>
-                        <span>دروس تفاعلية</span>
+                        <i class="fas fa-brain"></i>
+                        <span>خرائط ذهنية</span>
                     </div>
                     <div class="floating-card card-2">
-                        <i class="fas fa-users"></i>
-                        <span>مجتمع تعليمي</span>
+                        <i class="fas fa-cards"></i>
+                        <span>Flashcards</span>
                     </div>
                     <div class="floating-card card-3">
-                        <i class="fas fa-certificate"></i>
-                        <span>شهادات معتمدة</span>
+                        <i class="fas fa-calendar-check"></i>
+                        <span>جداول مذاكرة</span>
                     </div>
                 </div>
             </div>
@@ -106,120 +203,186 @@
         </div>
     </section>
 
-    <!-- ===== ABOUT SECTION ===== -->
+    <!-- ===== ABOUT (تم تعديله ليعرض أدوات مساعد الطالب) ===== -->
     <section id="about" class="about">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">من نحن</span>
-                <h2 class="section-title">لماذا <span>Hero Academy</span>؟</h2>
-                <p class="section-subtitle">نقدم تجربة تعلم استثنائية تجمع بين المحتوى الأكاديمي والتقنيات التفاعلية</p>
+                <span class="section-tag">أدوات مساعد الطالب</span>
+                <h2 class="section-title">كل ما تحتاجه <span>في مكان واحد</span></h2>
+                <p class="section-subtitle">مزيج مثالي من المحتوى المجاني، النماذج التجريبية، والدورات الكاملة في الأكاديمية</p>
             </div>
             <div class="about-grid">
                 <div class="about-card">
                     <div class="about-icon" style="background: #dbeafe; color: #2563eb;">
-                        <i class="fas fa-graduation-cap"></i>
+                        <i class="fas fa-map"></i>
                     </div>
-                    <h3>دورات أكاديمية</h3>
-                    <p>مناهج دراسية متكاملة لجميع المراحل التعليمية مع محتوى محدث باستمرار</p>
+                    <h3>🧠 خرائط ذهنية</h3>
+                    <p>تلخيص بصري للمفاهيم المعقدة يسهل الحفظ والفهم السريع للمواد الدراسية.</p>
                 </div>
                 <div class="about-card">
                     <div class="about-icon" style="background: #d1fae5; color: #059669;">
-                        <i class="fas fa-gamepad"></i>
+                        <i class="fas fa-id-card"></i>
                     </div>
-                    <h3>ألعاب تعليمية</h3>
-                    <p>تعلم ممتع وفعال من خلال الألعاب التفاعلية المصممة لتعزيز الفهم</p>
+                    <h3>🃏 Flashcards</h3>
+                    <p>بطاقات تفاعلية للمراجعة السريعة، مثالية لحفظ المصطلحات والتعريفات المهمة.</p>
                 </div>
                 <div class="about-card">
                     <div class="about-icon" style="background: #fef3c7; color: #d97706;">
-                        <i class="fas fa-tools"></i>
+                        <i class="fas fa-lightbulb"></i>
                     </div>
-                    <h3>أدوات مساعدة</h3>
-                    <p>أدوات ذكية تساعدك على الفهم والاستيعاب بطرق مبتكرة وسهلة</p>
+                    <h3>📚 نصائح مذاكرة</h3>
+                    <p>إرشادات واستراتيجيات دراسية مجربة لزيادة الإنتاجية وتحسين التركيز.</p>
                 </div>
                 <div class="about-card">
                     <div class="about-icon" style="background: #fce4ec; color: #dc2626;">
-                        <i class="fas fa-users"></i>
+                        <i class="fas fa-calculator"></i>
                     </div>
-                    <h3>مجتمع تعليمي</h3>
-                    <p>تواصل مع المعلمين والطلاب في بيئة تفاعلية تبادل المعرفة والخبرات</p>
+                    <h3>🧮 حاسبات تعليمية</h3>
+                    <p>أدوات حسابية ذكية لحل المسائل الرياضية والعلمية بسرعة ودقة.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon" style="background: #e0e7ff; color: #4338ca;">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>📅 جداول وخطط</h3>
+                    <p>نظم وقتك بذكاء مع جداول مذاكرة أسبوعية وخطط متابعة يومية.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon" style="background: #fce7f3; color: #db2777;">
+                        <i class="fas fa-podcast"></i>
+                    </div>
+                    <h3>🎧 محتوى صوتي & فيديو</h3>
+                    <p>مقتطفات صوتية قصيرة وفيديوهات 4-10 دقائق لتعزيز التعلم السمعي والبصري.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== FEATURES SECTION ===== -->
-    <section id="features" class="features">
+    <!-- ===== FEATURES (نظام الألوان الثلاثي: مجاني / معاينة / مدفوع) ===== -->
+    <section id="features" class="features" style="background: #f8faff;">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">مميزاتنا</span>
-                <h2 class="section-title">ما الذي يميز <span>أكاديميتنا</span>؟</h2>
-                <p class="section-subtitle">نقدم لك تجربة تعلم متكاملة تجمع بين الجودة والتفاعل والمرونة</p>
+                <span class="section-tag">نموذج المحتوى</span>
+                <h2 class="section-title">مجاني <span>· معاينة</span> · مدفوع</h2>
+                <p class="section-subtitle">ابدأ بالأدوات المجانية، واستكشف المعاينات، ثم انتقل للأكاديمية للدورات الكاملة</p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-video"></i>
-                    </div>
-                    <h3>محتوى تفاعلي</h3>
-                    <p>دروس فيديو عالية الجودة، تمارين تفاعلية، واختبارات تقييمية فورية</p>
-                    <div class="feature-hover">
-                        <span>اكتشف المزيد <i class="fas fa-arrow-left"></i></span>
-                    </div>
+            <div class="assistant-grid">
+                <!-- 1. مجاني -->
+                <div class="assistant-card">
+                    <span class="card-icon">🧠</span>
+                    <h3>خريطة مفاهيم البرمجة</h3>
+                    <p>خريطة ذهنية شاملة لأساسيات البرمجة بلغة عربية مبسطة.</p>
+                    <span class="badge-type badge-free">🟢 مجاني</span>
+                    <br>
+                    <a href="#" class="card-action primary-btn" onclick="showFreeContent('🧠 خريطة مفاهيم البرمجة - تم فتح المحتوى المجاني!'); return false;">
+                        <i class="fas fa-play"></i> فتح الآن
+                    </a>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>تعلم في أي وقت</h3>
-                    <p>منصة متجاوبة بالكامل تعمل على جميع الأجهزة، تعلم أينما كنت</p>
-                    <div class="feature-hover">
-                        <span>اكتشف المزيد <i class="fas fa-arrow-left"></i></span>
-                    </div>
+                <!-- 2. مجاني -->
+                <div class="assistant-card">
+                    <span class="card-icon">🃏</span>
+                    <h3>Flashcards أساسيات PHP</h3>
+                    <p>أول 10 بطاقات فلاش لمراجعة أساسيات لغة PHP.</p>
+                    <span class="badge-type badge-free">🟢 مجاني</span>
+                    <br>
+                    <a href="#" class="card-action primary-btn" onclick="showFreeContent('🃏 Flashcards PHP - تم فتح المحتوى المجاني!'); return false;">
+                        <i class="fas fa-play"></i> فتح الآن
+                    </a>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>ذكاء تعليمي</h3>
-                    <p>تقنيات ذكاء اصطناعي تساعد في تخصيص مسار التعلم لكل طالب</p>
-                    <div class="feature-hover">
-                        <span>اكتشف المزيد <i class="fas fa-arrow-left"></i></span>
-                    </div>
+                <!-- 3. معاينة -->
+                <div class="assistant-card">
+                    <span class="card-icon">📚</span>
+                    <h3>نصائح مذاكرة (الجزء الأول)</h3>
+                    <p>معاينة لأهم 5 نصائح لتنظيم وقت المذاكرة من دورة "الإنتاجية الدراسية".</p>
+                    <span class="badge-type badge-preview">🟡 معاينة</span>
+                    <br>
+                    <a href="https://hero.kesug.com/Academy/courses.php" class="card-action">
+                        <i class="fas fa-eye"></i> شاهد الدرس الكامل
+                    </a>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-certificate"></i>
-                    </div>
-                    <h3>شهادات معتمدة</h3>
-                    <p>احصل على شهادات إتمام معتمدة من الأكاديمية تعزز سيرتك الذاتية</p>
-                    <div class="feature-hover">
-                        <span>اكتشف المزيد <i class="fas fa-arrow-left"></i></span>
-                    </div>
+                <!-- 4. معاينة -->
+                <div class="assistant-card">
+                    <span class="card-icon">🎬</span>
+                    <h3>فيديو: مقدمة في الذكاء الاصطناعي</h3>
+                    <p>مقطع فيديو قصير (4 دقائق) يشرح مفاهيم الذكاء الاصطناعي.</p>
+                    <span class="badge-type badge-preview">🟡 معاينة</span>
+                    <br>
+                    <a href="https://hero.kesug.com/Academy/courses.php" class="card-action">
+                        <i class="fas fa-eye"></i> شاهد الدرس الكامل
+                    </a>
+                </div>
+                <!-- 5. مدفوع -->
+                <div class="assistant-card">
+                    <span class="card-icon">🧮</span>
+                    <h3>حاسبة المعادلات المتقدمة</h3>
+                    <p>أداة تفاعلية لحل المعادلات التفاضلية والتكاملية (الدورة الكاملة).</p>
+                    <span class="badge-type badge-paid">🔴 مدفوع</span>
+                    <br>
+                    <a href="https://hero.kesug.com/Academy/courses.php" class="card-action" style="border-color: #ef4444; color: #ef4444;">
+                        <i class="fas fa-shopping-cart"></i> شراء الدورة
+                    </a>
+                </div>
+                <!-- 6. مدفوع -->
+                <div class="assistant-card">
+                    <span class="card-icon">📅</span>
+                    <h3>خطط مذاكرة مخصصة</h3>
+                    <p>خطة دراسية أسبوعية تفاعلية مع تتبع التقدم (متوفرة في الأكاديمية).</p>
+                    <span class="badge-type badge-paid">🔴 مدفوع</span>
+                    <br>
+                    <a href="https://hero.kesug.com/Academy/courses.php" class="card-action" style="border-color: #ef4444; color: #ef4444;">
+                        <i class="fas fa-shopping-cart"></i> شراء الدورة
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== COURSES PREVIEW ===== -->
-    <section id="courses" class="courses-preview">
+    <!-- ===== COURSES PREVIEW (قائمة المحتوى السمعي والمرئي) ===== -->
+    <section id="free-content" class="courses-preview">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">دوراتنا</span>
-                <h2 class="section-title">أشهر <span>الدورات</span></h2>
-                <p class="section-subtitle">اختر من بين مجموعة متنوعة من الدورات الأكاديمية والمهنية</p>
+                <span class="section-tag">استكشف المحتوى</span>
+                <h2 class="section-title">مقتطفات <span>صوتية ومرئية</span></h2>
+                <p class="section-subtitle">محتوى قصير ومنوع لمساعدتك على الفهم السريع (روابط مضمنة)</p>
             </div>
-            <div class="courses-grid" id="featuredCourses">
-                <!-- سيتم تحميل الدورات عبر JavaScript -->
+            <div class="content-grid">
+                <div class="content-item">
+                    <div class="meta">
+                        <span class="badge-type badge-free">🟢 مجاني</span>
+                        <i class="fas fa-headphones" style="color: #2563eb; font-size: 1.5rem;"></i>
+                    </div>
+                    <h4>🔊 بودكاست: أسرار التركيز</h4>
+                    <p>حلقة صوتية قصيرة عن تقنيات تعزيز التركيز أثناء المذاكرة.</p>
+                    <a href="#" onclick="alert('سيتم تشغيل المحتوى الصوتي المجاني'); return false;" style="color: #2563eb; font-weight: 700;">استمع الآن <i class="fas fa-arrow-left"></i></a>
+                </div>
+                <div class="content-item">
+                    <div class="meta">
+                        <span class="badge-type badge-preview">🟡 معاينة</span>
+                        <i class="fas fa-video" style="color: #eab308; font-size: 1.5rem;"></i>
+                    </div>
+                    <h4>🎬 فيديو: شرح قاعدة البيانات</h4>
+                    <p>مقطع فيديو 8 دقائق يشرح أساسيات قواعد البيانات (نموذج تجريبي).</p>
+                    <a href="https://hero.kesug.com/Academy/courses.php" style="color: #eab308; font-weight: 700;">شاهد المعاينة <i class="fas fa-arrow-left"></i></a>
+                </div>
+                <div class="content-item">
+                    <div class="meta">
+                        <span class="badge-type badge-paid">🔴 مدفوع</span>
+                        <i class="fas fa-film" style="color: #ef4444; font-size: 1.5rem;"></i>
+                    </div>
+                    <h4>🎞️ دورة: تحليل البيانات</h4>
+                    <p>سلسلة فيديوهات كاملة (10 ساعات) مع تمارين عملية.</p>
+                    <a href="https://hero.kesug.com/Academy/courses.php" style="color: #ef4444; font-weight: 700;">اشترك في الدورة <i class="fas fa-arrow-left"></i></a>
+                </div>
             </div>
-            <div class="text-center">
-                <a href="courses.html" class="btn-primary btn-large">
-                    <i class="fas fa-th-list"></i> عرض جميع الدورات
+            <div class="text-center" style="margin-top: 40px;">
+                <a href="https://hero.kesug.com/Academy/courses.php" class="btn-primary btn-large">
+                    <i class="fas fa-th-list"></i> عرض جميع الدورات في الأكاديمية
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- ===== TESTIMONIALS ===== -->
+    <!-- ===== TESTIMONIALS (آراء الطلاب - كما هي) ===== -->
     <section class="testimonials">
         <div class="container">
             <div class="section-header">
@@ -229,83 +392,60 @@
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <p>"تجربة تعلم استثنائية! المحتوى ممتاز والألعاب التعليمية جعلت التعلم ممتعاً."</p>
+                    <p>"مساعد الطالب غيّر طريقت في المذاكرة! الخرائط الذهنية والفلاش كاردز سهّلت عليّ الحفظ."</p>
                     <div class="testimonial-author">
                         <img src="assets/images/avatar-1.jpg" alt="طالب" onerror="this.src='assets/images/avatar-placeholder.png'">
-                        <div>
-                            <h4>أحمد محمد</h4>
-                            <span>طالب في الثانوية العامة</span>
-                        </div>
+                        <div><h4>أحمد محمد</h4><span>طالب في الثانوية العامة</span></div>
                     </div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                     </div>
-                    <p>"الدورات شاملة والمواد التعليمية منظمة بشكل رائع. أنصح بها بشدة!"</p>
+                    <p>"الأدوات المجانية رائعة، لكن المعاينات جعلتني أتلهف لشراء الدورات الكاملة في الأكاديمية!"</p>
                     <div class="testimonial-author">
                         <img src="assets/images/avatar-2.jpg" alt="طالب" onerror="this.src='assets/images/avatar-placeholder.png'">
-                        <div>
-                            <h4>سارة علي</h4>
-                            <span>طالبة جامعية</span>
-                        </div>
+                        <div><h4>سارة علي</h4><span>طالبة جامعية</span></div>
                     </div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <p>"منصة رائعة! الأدوات المساعدة سهّلت عليّ فهم المواد الصعبة."</p>
+                    <p>"جداول المذاكرة ونصائح الإنتاجية كانت نقطة التحول في مستواي الدراسي. شكراً Hero Academy."</p>
                     <div class="testimonial-author">
                         <img src="assets/images/avatar-3.jpg" alt="طالب" onerror="this.src='assets/images/avatar-placeholder.png'">
-                        <div>
-                            <h4>خالد الحسن</h4>
-                            <span>مهندس برمجيات</span>
-                        </div>
+                        <div><h4>خالد الحسن</h4><span>مهندس برمجيات</span></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== CTA SECTION ===== -->
+    <!-- ===== CTA SECTION (تحويل إلى الأكاديمية) ===== -->
     <section class="cta">
         <div class="container">
             <div class="cta-content">
-                <h2>جاهز لبدء رحلتك <span>التعليمية</span>؟</h2>
-                <p>انضم إلى آلاف الطلاب واستفد من محتوى متميز وألعاب تفاعلية وأدوات مبتكرة</p>
+                <h2>جهز نفسك <span>للنجاح</span> مع <span>مساعد الطالب</span></h2>
+                <p>استخدم الأدوات المجانية يومياً، واستكشف المعاينات، وعندما تصبح جاهزاً، انطلق إلى الأكاديمية للحصول على الدورات الكاملة والشهادات المعتمدة.</p>
                 <div class="cta-buttons">
                     <a href="https://hero.kesug.com/Academy/courses.php" class="btn-primary btn-large btn-glow">
-                        <i class="fas fa-rocket"></i> ابدأ الآن مجاناً
+                        <i class="fas fa-rocket"></i> ابدأ رحلتك الآن
                     </a>
                     <a href="https://hero.kesug.com/Academy/login.php" class="btn-secondary btn-large">
-                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول للأكاديمية
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ===== البنر الإعلاني السفلي ===== -->
+    <!-- ===== البنر الإعلاني السفلي (مطابق للأكاديمية) ===== -->
     <div class="bottom-banner" id="bottomBanner">
         <div class="banner-content">
-            <div class="banner-icon">
-                <i class="fas fa-graduation-cap"></i>
-            </div>
+            <div class="banner-icon"><i class="fas fa-graduation-cap"></i></div>
             <div class="banner-text">
                 <h4>عرض خاص للطلاب الجدد</h4>
                 <p>احصل على دورة مجانية عند الاشتراك في أي دورة مدفوعة</p>
@@ -317,7 +457,7 @@
         </div>
     </div>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- ===== FOOTER (مطابق تماماً) ===== -->
     <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
@@ -337,7 +477,7 @@
                     <h4>روابط سريعة</h4>
                     <ul>
                         <li><a href="index.html"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
-                        <li><a href="courses.html"><i class="fas fa-chevron-left"></i> الدورات</a></li>
+                        <li><a href="https://hero.kesug.com/Academy/courses.php"><i class="fas fa-chevron-left"></i> الدورات</a></li>
                         <li><a href="#features"><i class="fas fa-chevron-left"></i> المميزات</a></li>
                         <li><a href="#about"><i class="fas fa-chevron-left"></i> عن الأكاديمية</a></li>
                     </ul>
@@ -367,6 +507,51 @@
         </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
+    <!-- ===== JavaScript الخاص بالصفحة ===== -->
+    <script>
+        // إغلاق البنر العلوي
+        function closeTopBanner() {
+            document.getElementById('topBanner').style.display = 'none';
+        }
+        function closeBottomBanner() {
+            document.getElementById('bottomBanner').style.display = 'none';
+        }
+
+        // عرض المحتوى المجاني (محاكاة)
+        function showFreeContent(title) {
+            alert('✅ تم فتح: ' + title + '\n\n(هنا سيتم عرض المحتوى المجاني مباشرة داخل التطبيق)');
+            // يمكنك هنا إضافة كود لفتح مودال أو عرض المحتوى ديناميكياً
+        }
+
+        // تفعيل إحصائيات عدد الزوار (نفس الـ main.js)
+        document.addEventListener('DOMContentLoaded', function() {
+            const counters = document.querySelectorAll('.number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-count'));
+                let current = 0;
+                const increment = Math.ceil(target / 50);
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        if (current > target) current = target;
+                        counter.textContent = current;
+                        setTimeout(updateCounter, 40);
+                    } else {
+                        counter.textContent = target + '+';
+                    }
+                };
+                updateCounter();
+            });
+
+            // تبديل القائمة في الجوال
+            const toggle = document.getElementById('menuToggle');
+            const nav = document.querySelector('.main-nav ul');
+            if (toggle && nav) {
+                toggle.addEventListener('click', function() {
+                    nav.classList.toggle('show');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
