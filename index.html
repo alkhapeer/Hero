@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* تعديلات بسيطة لدعم بطاقات المحتوى داخل نفس تصميم الأكاديمية */
+        /* ===== تعديلات خاصة ببطاقات مساعد الطالب ===== */
         .assistant-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -46,6 +46,7 @@
             font-size: 0.95rem;
             line-height: 1.6;
         }
+        /* ===== شارات المجاني / المعاينة / المدفوع ===== */
         .badge-type {
             display: inline-block;
             padding: 4px 14px;
@@ -58,6 +59,8 @@
         .badge-free { background: #22c55e; }
         .badge-preview { background: #eab308; }
         .badge-paid { background: #ef4444; }
+
+        /* ===== أزرار البطاقات ===== */
         .assistant-card .card-action {
             margin-top: 20px;
             display: inline-block;
@@ -70,6 +73,9 @@
             border: 2px solid #2563eb;
             color: #2563eb;
             background: transparent;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
         }
         .assistant-card .card-action:hover {
             background: #2563eb;
@@ -84,6 +90,8 @@
             background: #1d4ed8;
             border-color: #1d4ed8;
         }
+
+        /* ===== شبكة المحتوى الصوتي والمرئي ===== */
         .content-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -102,6 +110,58 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        /* ===== نافذة منبثقة لتشغيل الفيديو ===== */
+        #videoModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        #videoModal .modal-content {
+            background: #fff;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            padding: 15px;
+            position: relative;
+        }
+        #videoModal .close-btn {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #videoModal .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        #videoModal .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
         }
     </style>
 </head>
@@ -203,7 +263,7 @@
         </div>
     </section>
 
-    <!-- ===== ABOUT (تم تعديله ليعرض أدوات مساعد الطالب) ===== -->
+    <!-- ===== ABOUT (يعرض أدوات مساعد الطالب) ===== -->
     <section id="about" class="about">
         <div class="container">
             <div class="section-header">
@@ -267,69 +327,77 @@
                 <p class="section-subtitle">ابدأ بالأدوات المجانية، واستكشف المعاينات، ثم انتقل للأكاديمية للدورات الكاملة</p>
             </div>
             <div class="assistant-grid">
-                <!-- 1. مجاني -->
+                <!-- ===== بطاقة مجانية (خريطة ذهنية) ===== -->
                 <div class="assistant-card">
                     <span class="card-icon">🧠</span>
                     <h3>خريطة مفاهيم البرمجة</h3>
                     <p>خريطة ذهنية شاملة لأساسيات البرمجة بلغة عربية مبسطة.</p>
                     <span class="badge-type badge-free">🟢 مجاني</span>
                     <br>
-                    <a href="#" class="card-action primary-btn" onclick="showFreeContent('🧠 خريطة مفاهيم البرمجة - تم فتح المحتوى المجاني!'); return false;">
+                    <!-- زر المجاني: يستخدم دالة showFreeContent لعرض المحتوى داخل التطبيق -->
+                    <button class="card-action primary-btn" onclick="showFreeContent('🧠 خريطة مفاهيم البرمجة')">
                         <i class="fas fa-play"></i> فتح الآن
-                    </a>
+                    </button>
                 </div>
-                <!-- 2. مجاني -->
+
+                <!-- ===== بطاقة مجانية (Flashcards) ===== -->
                 <div class="assistant-card">
                     <span class="card-icon">🃏</span>
                     <h3>Flashcards أساسيات PHP</h3>
                     <p>أول 10 بطاقات فلاش لمراجعة أساسيات لغة PHP.</p>
                     <span class="badge-type badge-free">🟢 مجاني</span>
                     <br>
-                    <a href="#" class="card-action primary-btn" onclick="showFreeContent('🃏 Flashcards PHP - تم فتح المحتوى المجاني!'); return false;">
+                    <button class="card-action primary-btn" onclick="showFreeContent('🃏 Flashcards PHP')">
                         <i class="fas fa-play"></i> فتح الآن
-                    </a>
+                    </button>
                 </div>
-                <!-- 3. معاينة -->
+
+                <!-- ===== بطاقة معاينة (نصائح مذاكرة) ===== -->
                 <div class="assistant-card">
                     <span class="card-icon">📚</span>
                     <h3>نصائح مذاكرة (الجزء الأول)</h3>
                     <p>معاينة لأهم 5 نصائح لتنظيم وقت المذاكرة من دورة "الإنتاجية الدراسية".</p>
                     <span class="badge-type badge-preview">🟡 معاينة</span>
                     <br>
-                    <a href="https://hero.kesug.com/Academy/courses.php" class="card-action">
+                    <!-- زر المعاينة: يشغل فيديو يوتيوب معين داخل النافذة المنبثقة -->
+                    <button class="card-action" onclick="playYouTube('VIDEO_ID_PREVIEW_1')">
                         <i class="fas fa-eye"></i> شاهد الدرس الكامل
-                    </a>
+                    </button>
                 </div>
-                <!-- 4. معاينة -->
+
+                <!-- ===== بطاقة معاينة (فيديو ذكاء اصطناعي) ===== -->
                 <div class="assistant-card">
                     <span class="card-icon">🎬</span>
                     <h3>فيديو: مقدمة في الذكاء الاصطناعي</h3>
                     <p>مقطع فيديو قصير (4 دقائق) يشرح مفاهيم الذكاء الاصطناعي.</p>
                     <span class="badge-type badge-preview">🟡 معاينة</span>
                     <br>
-                    <a href="https://hero.kesug.com/Academy/courses.php" class="card-action">
+                    <button class="card-action" onclick="playYouTube('VIDEO_ID_PREVIEW_2')">
                         <i class="fas fa-eye"></i> شاهد الدرس الكامل
-                    </a>
+                    </button>
                 </div>
-                <!-- 5. مدفوع -->
+
+                <!-- ===== بطاقة مدفوع (حاسبة متقدمة) ===== -->
                 <div class="assistant-card">
                     <span class="card-icon">🧮</span>
                     <h3>حاسبة المعادلات المتقدمة</h3>
                     <p>أداة تفاعلية لحل المعادلات التفاضلية والتكاملية (الدورة الكاملة).</p>
                     <span class="badge-type badge-paid">🔴 مدفوع</span>
                     <br>
-                    <a href="https://hero.kesug.com/Academy/courses.php" class="card-action" style="border-color: #ef4444; color: #ef4444;">
+                    <!-- زر مدفوع: يوجه مباشرة إلى الأكاديمية للشراء -->
+                    <a href="https://hero.kesug.com/Academy/courses.php" class="card-action" style="border-color: #ef4444; color: #ef4444; text-decoration: none;">
                         <i class="fas fa-shopping-cart"></i> شراء الدورة
                     </a>
                 </div>
-                <!-- 6. مدفوع -->
+
+                <!-- ===== بطاقة مدفوع (خطط مذاكرة) ===== -->
                 <div class="assistant-card">
                     <span class="card-icon">📅</span>
                     <h3>خطط مذاكرة مخصصة</h3>
                     <p>خطة دراسية أسبوعية تفاعلية مع تتبع التقدم (متوفرة في الأكاديمية).</p>
                     <span class="badge-type badge-paid">🔴 مدفوع</span>
                     <br>
-                    <a href="https://hero.kesug.com/Academy/courses.php" class="card-action" style="border-color: #ef4444; color: #ef4444;">
+                    <a href="https://hero.kesug.com/Academy/courses.php" class="card-action" style="border-color: #ef4444; color: #ef4444; text-decoration: none;">
                         <i class="fas fa-shopping-cart"></i> شراء الدورة
                     </a>
                 </div>
@@ -337,15 +405,16 @@
         </div>
     </section>
 
-    <!-- ===== COURSES PREVIEW (قائمة المحتوى السمعي والمرئي) ===== -->
+    <!-- ===== COURSES PREVIEW (مقتطفات صوتية ومرئية) ===== -->
     <section id="free-content" class="courses-preview">
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">استكشف المحتوى</span>
                 <h2 class="section-title">مقتطفات <span>صوتية ومرئية</span></h2>
-                <p class="section-subtitle">محتوى قصير ومنوع لمساعدتك على الفهم السريع (روابط مضمنة)</p>
+                <p class="section-subtitle">محتوى قصير ومنوع لمساعدتك على الفهم السريع</p>
             </div>
             <div class="content-grid">
+                <!-- ===== محتوى صوتي مجاني ===== -->
                 <div class="content-item">
                     <div class="meta">
                         <span class="badge-type badge-free">🟢 مجاني</span>
@@ -353,8 +422,14 @@
                     </div>
                     <h4>🔊 بودكاست: أسرار التركيز</h4>
                     <p>حلقة صوتية قصيرة عن تقنيات تعزيز التركيز أثناء المذاكرة.</p>
-                    <a href="#" onclick="alert('سيتم تشغيل المحتوى الصوتي المجاني'); return false;" style="color: #2563eb; font-weight: 700;">استمع الآن <i class="fas fa-arrow-left"></i></a>
+                    <!-- مشغل صوت مدمج (قم بتغيير المسار إلى ملف MP3 الفعلي) -->
+                    <audio controls style="width:100%; margin-top: 10px;">
+                        <source src="assets/audio/podcast-focus.mp3" type="audio/mpeg">
+                        متصفحك لا يدعم تشغيل الصوت.
+                    </audio>
                 </div>
+
+                <!-- ===== فيديو معاينة (YouTube) ===== -->
                 <div class="content-item">
                     <div class="meta">
                         <span class="badge-type badge-preview">🟡 معاينة</span>
@@ -362,8 +437,13 @@
                     </div>
                     <h4>🎬 فيديو: شرح قاعدة البيانات</h4>
                     <p>مقطع فيديو 8 دقائق يشرح أساسيات قواعد البيانات (نموذج تجريبي).</p>
-                    <a href="https://hero.kesug.com/Academy/courses.php" style="color: #eab308; font-weight: 700;">شاهد المعاينة <i class="fas fa-arrow-left"></i></a>
+                    <!-- زر يفتح الفيديو في النافذة المنبثقة -->
+                    <button onclick="playYouTube('VIDEO_ID_DATABASE')" style="background: #eab308; color: white; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 700; cursor: pointer;">
+                        <i class="fas fa-play"></i> شاهد المعاينة
+                    </button>
                 </div>
+
+                <!-- ===== محتوى مدفوع (فيديو) ===== -->
                 <div class="content-item">
                     <div class="meta">
                         <span class="badge-type badge-paid">🔴 مدفوع</span>
@@ -371,7 +451,9 @@
                     </div>
                     <h4>🎞️ دورة: تحليل البيانات</h4>
                     <p>سلسلة فيديوهات كاملة (10 ساعات) مع تمارين عملية.</p>
-                    <a href="https://hero.kesug.com/Academy/courses.php" style="color: #ef4444; font-weight: 700;">اشترك في الدورة <i class="fas fa-arrow-left"></i></a>
+                    <a href="https://hero.kesug.com/Academy/courses.php" style="background: #ef4444; color: white; padding: 10px 20px; border-radius: 50px; font-weight: 700; text-decoration: none; display: inline-block;">
+                        <i class="fas fa-shopping-cart"></i> اشترك في الدورة
+                    </a>
                 </div>
             </div>
             <div class="text-center" style="margin-top: 40px;">
@@ -382,7 +464,7 @@
         </div>
     </section>
 
-    <!-- ===== TESTIMONIALS (آراء الطلاب - كما هي) ===== -->
+    <!-- ===== TESTIMONIALS (آراء الطلاب) ===== -->
     <section class="testimonials">
         <div class="container">
             <div class="section-header">
@@ -457,7 +539,7 @@
         </div>
     </div>
 
-    <!-- ===== FOOTER (مطابق تماماً) ===== -->
+    <!-- ===== FOOTER ===== -->
     <footer class="main-footer">
         <div class="container">
             <div class="footer-grid">
@@ -507,9 +589,25 @@
         </div>
     </footer>
 
+    <!-- ===== نافذة منبثقة لتشغيل الفيديو ===== -->
+    <div id="videoModal">
+        <div class="modal-content">
+            <!-- زر إغلاق النافذة -->
+            <button class="close-btn" onclick="closeVideo()">✕</button>
+            <!-- حاوية الفيديو بنسبة عرض 16:9 -->
+            <div class="video-wrapper">
+                <iframe id="youtubeIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
     <!-- ===== JavaScript الخاص بالصفحة ===== -->
     <script>
-        // إغلاق البنر العلوي
+        /**
+         * =====================================================
+         * 1. دوال إغلاق البنرات العلوية والسفلية
+         * =====================================================
+         */
         function closeTopBanner() {
             document.getElementById('topBanner').style.display = 'none';
         }
@@ -517,20 +615,65 @@
             document.getElementById('bottomBanner').style.display = 'none';
         }
 
-        // عرض المحتوى المجاني (محاكاة)
+        /**
+         * =====================================================
+         * 2. دالة عرض المحتوى المجاني (خرائط ذهنية، flashcards، إلخ)
+         *    يمكنك تعديلها لفتح نافذة منبثقة أو عرض المحتوى مباشرة.
+         * =====================================================
+         */
         function showFreeContent(title) {
             alert('✅ تم فتح: ' + title + '\n\n(هنا سيتم عرض المحتوى المجاني مباشرة داخل التطبيق)');
-            // يمكنك هنا إضافة كود لفتح مودال أو عرض المحتوى ديناميكياً
+            // مثال: يمكنك هنا فتح نافذة منبثقة تعرض صورة الخريطة الذهنية أو قائمة الفلاش كاردز.
         }
 
-        // تفعيل إحصائيات عدد الزوار (نفس الـ main.js)
+        /**
+         * =====================================================
+         * 3. دوال تشغيل وإغلاق فيديو YouTube داخل النافذة المنبثقة
+         *    - playYouTube(videoId): تستقبل معرف الفيديو (مثال: 'dQw4w9WgXcQ')
+         *    - closeVideo(): تغلق النافذة وتوقف الفيديو
+         * =====================================================
+         */
+        function playYouTube(videoId) {
+            var modal = document.getElementById('videoModal');
+            var iframe = document.getElementById('youtubeIframe');
+            // تعيين رابط التضمين مع تفعيل التشغيل التلقائي وإخفاء التوصيات
+            iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // منع التمرير خلف النافذة
+        }
+
+        function closeVideo() {
+            var modal = document.getElementById('videoModal');
+            var iframe = document.getElementById('youtubeIframe');
+            iframe.src = ''; // إفراغ المصدر لإيقاف الفيديو تماماً
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // إعادة التمرير
+        }
+
+        /**
+         * =====================================================
+         * 4. إغلاق النافذة عند النقر خارج المحتوى (خلفية داكنة)
+         * =====================================================
+         */
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideo();
+            }
+        });
+
+        /**
+         * =====================================================
+         * 5. تفعيل إحصائيات الأعداد المتحركة (نفس الـ main.js)
+         * =====================================================
+         */
         document.addEventListener('DOMContentLoaded', function() {
-            const counters = document.querySelectorAll('.number');
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-count'));
-                let current = 0;
-                const increment = Math.ceil(target / 50);
-                const updateCounter = () => {
+            // عدادات الأرقام في الـ Hero
+            var counters = document.querySelectorAll('.number');
+            counters.forEach(function(counter) {
+                var target = parseInt(counter.getAttribute('data-count'));
+                var current = 0;
+                var increment = Math.ceil(target / 50);
+                var updateCounter = function() {
                     if (current < target) {
                         current += increment;
                         if (current > target) current = target;
@@ -544,14 +687,22 @@
             });
 
             // تبديل القائمة في الجوال
-            const toggle = document.getElementById('menuToggle');
-            const nav = document.querySelector('.main-nav ul');
+            var toggle = document.getElementById('menuToggle');
+            var nav = document.querySelector('.main-nav ul');
             if (toggle && nav) {
                 toggle.addEventListener('click', function() {
                     nav.classList.toggle('show');
                 });
             }
+
+            // إغلاق النافذة المنبثقة عند الضغط على زر ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeVideo();
+                }
+            });
         });
     </script>
+
 </body>
 </html>
