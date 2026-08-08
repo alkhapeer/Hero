@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنك الأسئلة والأجوبة – الفيزياء للصف الثالث الثانوي</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+            background: #f4f7fc;
+            color: #1e2a3a;
+            line-height: 1.9;
+            padding: 30px 20px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px 50px;
+            border-radius: 18px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.07);
+        }
+        h1 {
+            font-size: 2.4rem;
+            color: #0a2a44;
+            border-right: 6px solid #1e7e34;
+            padding-right: 20px;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+        .subtitle {
+            font-size: 1.1rem;
+            color: #4a5a72;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #e6edf5;
+            padding-bottom: 15px;
+        }
+
+        /* تنبيه الدورات */
+        .cta-banner {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-right: 6px solid #1e7e34;
+            border-radius: 16px;
+            padding: 20px 30px;
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+        }
+        .cta-banner .cta-text {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .cta-banner .cta-text .icon {
+            font-size: 2.2rem;
+        }
+        .cta-banner .cta-text h4 {
+            margin: 0 0 4px 0;
+            color: #0a2a44;
+            font-size: 1.2rem;
+        }
+        .cta-banner .cta-text p {
+            margin: 0;
+            color: #1e3a5f;
+            font-size: 1rem;
+        }
+        .btn-cta {
+            background-color: #1e7e34;
+            color: #fff;
+            padding: 10px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 12px rgba(30, 126, 52, 0.25);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        .btn-cta:hover {
+            background-color: #145a24;
+            transform: translateY(-2px);
+        }
+
+        /* قائمة الأسئلة */
+        .qa-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+        .qa-item {
+            background: #f9fbfd;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        .qa-item:hover {
+            border-color: #1e7e34;
+        }
+        .qa-question {
+            background: #f1f5f9;
+            padding: 14px 22px;
+            font-weight: 600;
+            color: #0a2a44;
+            font-size: 1.05rem;
+            cursor: default;
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+        }
+        .qa-question .q-num {
+            display: inline-block;
+            background: #1e7e34;
+            color: #fff;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            text-align: center;
+            line-height: 28px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .qa-question .q-text {
+            flex: 1;
+        }
+        .qa-answer {
+            padding: 14px 22px 18px 22px;
+            color: #2d3748;
+            font-size: 1.02rem;
+            border-top: 1px dashed #dce3ec;
+        }
+        .qa-answer strong {
+            color: #0a2a44;
+        }
+        .qa-answer .formula {
+            display: inline-block;
+            background: #eef2f7;
+            padding: 0 12px;
+            border-radius: 6px;
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            color: #0a2a44;
+            font-weight: 500;
+            margin: 0 4px;
+        }
+
+        /* ترقيم الصفحات الوهمي */
+        .footer-note {
+            text-align: left;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid #d0d9e6;
+            padding-top: 20px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 20px 15px; }
+            h1 { font-size: 1.8rem; }
+            .cta-banner { flex-direction: column; align-items: stretch; text-align: center; }
+            .cta-banner .cta-text { flex-direction: column; text-align: center; }
+            .qa-question { flex-wrap: wrap; }
+            .qa-question .q-num { width: 24px; height: 24px; line-height: 24px; font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- العنوان -->
+        <h1>📘 بنك الأسئلة والأجوبة – الفيزياء للصف الثالث الثانوي</h1>
+        <div class="subtitle">
+            مراجعة شاملة لأهم أسئلة المنهج مع إجاباتها النموذجية – <strong>الوحدة الأولى: الكهربية التيارية والكهرومغناطيسية</strong>
+        </div>
+
+        <!-- تنبيه لطيف للدورات -->
+        <div class="cta-banner">
+            <div class="cta-text">
+                <span class="icon">📚</span>
+                <div>
+                    <h4>هل تبحث عن المزيد؟</h4>
+                    <p>بنك الأسئلة الكامل والشامل لكل وحدات الكتاب في انتظارك!</p>
+                </div>
+            </div>
+            <a href="https://hero.kesug.com/Academy/courses.php" class="btn-cta" target="_blank">🔍 استكشف بنك الأسئلة الآن</a>
+        </div>
+
+        <!-- الأسئلة والأجوبة -->
+        <div class="qa-list">
+
+            <!-- 1 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">1</span>
+                    <span class="q-text">ما هو المقصود بالتيار الكهربي؟</span>
+                </div>
+                <div class="qa-answer">
+                    هو فيض من الشحنات الكهربية تسري خلال الموصلات المعدنية <span style="color:#1a4b75; font-size:0.9rem;">[16، 22]</span>.
+                </div>
+            </div>
+
+            <!-- 2 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">2</span>
+                    <span class="q-text">عرف شدة التيار الكهربي (I).</span>
+                </div>
+                <div class="qa-answer">
+                    هي كمية الكهربية التي تمر عبر مقطع معين من موصل في زمن قدره ثانية واحدة.
+                </div>
+            </div>
+
+            <!-- 3 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">3</span>
+                    <span class="q-text">ما هي وحدة قياس كمية الكهربية؟</span>
+                </div>
+                <div class="qa-answer">
+                    الكولوم.
+                </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">4</span>
+                    <span class="q-text">ما هو الجهاز المستخدم لقياس شدة التيار الكهربي؟</span>
+                </div>
+                <div class="qa-answer">
+                    الأميتر.
+                </div>
+            </div>
+
+            <!-- 5 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">5</span>
+                    <span class="q-text">عرف فرق الجهد الكهربي بين نقطتين (V).</span>
+                </div>
+                <div class="qa-answer">
+                    هو مقدار الشغل المبذول لنقل كمية من الكهربية مقدارها 1 كولوم بين هاتين النقطتين.
+                </div>
+            </div>
+
+            <!-- 6 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">6</span>
+                    <span class="q-text">ما هو نص قانون أوم؟</span>
+                </div>
+                <div class="qa-answer">
+                    تتناسب شدة التيار المار في موصل تناسباً طردياً مع فرق الجهد بين طرفيه عند ثبوت درجة الحرارة <span style="color:#1a4b75; font-size:0.9rem;">[7، 22]</span>.
+                </div>
+            </div>
+
+            <!-- 7 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">7</span>
+                    <span class="q-text">اكتب الصيغة الرياضية لقانون أوم.</span>
+                </div>
+                <div class="qa-answer">
+                    <span class="formula">V = I · R</span> <span style="color:#1a4b75; font-size:0.9rem;">[7، 22]</span>
+                </div>
+            </div>
+
+            <!-- 8 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">8</span>
+                    <span class="q-text">ما هي العوامل التي تتوقف عليها مقاومة موصل (R)؟</span>
+                </div>
+                <div class="qa-answer">
+                    طول الموصل، مساحة مقطعه، نوع مادته، ودرجة حرارته.
+                </div>
+            </div>
+
+            <!-- 9 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">9</span>
+                    <span class="q-text">عرف المقاومة النوعية (ρₑ).</span>
+                </div>
+                <div class="qa-answer">
+                    هي مقاومة موصل طوله 1 متر ومساحة مقطعه 1 متر مربع عند درجة حرارة معينة <span style="color:#1a4b75; font-size:0.9rem;">[7، 22]</span>.
+                </div>
+            </div>
+
+            <!-- 10 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">10</span>
+                    <span class="q-text">ما هي العلاقة بين المقاومة النوعية والتوصيلية الكهربية؟</span>
+                </div>
+                <div class="qa-answer">
+                    التوصيلية الكهربية هي مقلوب المقاومة النوعية: <span class="formula">σ = 1 / ρₑ</span> <span style="color:#1a4b75; font-size:0.9rem;">[7، 22]</span>.
+                </div>
+            </div>
+
+            <!-- 11 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">11</span>
+                    <span class="q-text">ما الغرض من توصيل المقاومات على التوالي؟</span>
+                </div>
+                <div class="qa-answer">
+                    الحصول على مقاومة كبيرة من مجموعة مقاومات صغيرة.
+                </div>
+            </div>
+
+            <!-- 12 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">12</span>
+                    <span class="q-text">كيف تُحسب المقاومة المكافئة لمجموعة مقاومات متصلة على التوالي؟</span>
+                </div>
+                <div class="qa-answer">
+                    <span class="formula">R' = R₁ + R₂ + R₃</span> <span style="color:#1a4b75; font-size:0.9rem;">[8، 22]</span>
+                </div>
+            </div>
+
+            <!-- 13 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">13</span>
+                    <span class="q-text">ما هي الخاصية الثابتة في جميع المقاومات المتصلة على التوالي؟</span>
+                </div>
+                <div class="qa-answer">
+                    شدة التيار المار فيها.
+                </div>
+            </div>
+
+            <!-- 14 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">14</span>
+                    <span class="q-text">ما الغرض من توصيل المقاومات على التوازي؟</span>
+                </div>
+                <div class="qa-answer">
+                    الحصول على مقاومة صغيرة من مجموعة مقاومات كبيرة.
+                </div>
+            </div>
+
+            <!-- 15 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">15</span>
+                    <span class="q-text">كيف تُحسب المقاومة المكافئة لمجموعة مقاومات متصلة على التوازي؟</span>
+                </div>
+                <div class="qa-answer">
+                    <span class="formula">1/R' = 1/R₁ + 1/R₂ + 1/R₃</span> <span style="color:#1a4b75; font-size:0.9rem;">[10، 23]</span>
+                </div>
+            </div>
+
+            <!-- 16 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">16</span>
+                    <span class="q-text">ما هي الخاصية الثابتة في جميع المقاومات المتصلة على التوازي؟</span>
+                </div>
+                <div class="qa-answer">
+                    فرق الجهد بين طرفيها.
+                </div>
+            </div>
+
+            <!-- 17 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">17</span>
+                    <span class="q-text">عرف القوة الدافعة الكهربية لعمود (emf).</span>
+                </div>
+                <div class="qa-answer">
+                    هي الشغل الكلي المبذول خارج وداخل العمود لنقل كمية من الكهربية قدرها 1 كولوم في الدائرة.
+                </div>
+            </div>
+
+            <!-- 18 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">18</span>
+                    <span class="q-text">اكتب قانون أوم للدائرة المغلقة.</span>
+                </div>
+                <div class="qa-answer">
+                    <span class="formula">I = V<sub>B</sub> / (R + r)</span> حيث r هي المقاومة الداخلية <span style="color:#1a4b75; font-size:0.9rem;">[11، 23]</span>.
+                </div>
+            </div>
+
+            <!-- 19 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">19</span>
+                    <span class="q-text">متى يتساوى فرق الجهد بين قطبي عمود مع قوته الدافعة الكهربية؟</span>
+                </div>
+                <div class="qa-answer">
+                    عندما تكون الدائرة مفتوحة (I = 0).
+                </div>
+            </div>
+
+            <!-- 20 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">20</span>
+                    <span class="q-text">ما هي وحدة قياس القوة الدافعة الكهربية؟</span>
+                </div>
+                <div class="qa-answer">
+                    الفولت.
+                </div>
+            </div>
+
+            <!-- 21 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">21</span>
+                    <span class="q-text">ما هو نص قانون كيرتشوف الأول؟</span>
+                </div>
+                <div class="qa-answer">
+                    مجموع التيارات الكهربية الداخلة عند نقطة في دائرة مغلقة يساوي مجموع التيارات الخارجة منها <span style="color:#1a4b75; font-size:0.9rem;">[16، 23]</span>.
+                </div>
+            </div>
+
+            <!-- 22 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">22</span>
+                    <span class="q-text">على ماذا يعتمد قانون كيرتشوف الأول؟</span>
+                </div>
+                <div class="qa-answer">
+                    قانون حفظ الشحنة الكهربية.
+                </div>
+            </div>
+
+            <!-- 23 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">23</span>
+                    <span class="q-text">ما هو نص قانون كيرتشوف الثاني؟</span>
+                </div>
+                <div class="qa-answer">
+                    المجموع الجبري للقوى المحركة الكهربية في دائرة مغلقة يساوي المجموع الجبري لفروق الجهد في الدائرة <span style="color:#1a4b75; font-size:0.9rem;">[16، 23]</span>.
+                </div>
+            </div>
+
+            <!-- 24 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">24</span>
+                    <span class="q-text">على ماذا يعتمد قانون كيرتشوف الثاني؟</span>
+                </div>
+                <div class="qa-answer">
+                    قانون حفظ الطاقة.
+                </div>
+            </div>
+
+            <!-- 25 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">25</span>
+                    <span class="q-text">لماذا تُستخدم أسلاك سميكة عند قطبي البطارية في دوائر التوازي؟</span>
+                </div>
+                <div class="qa-answer">
+                    لأن شدة التيار الكلي تكون أكبر ما يمكن عند القطبين، والأسلاك السميكة مقاومتها أقل فتتحمل التيار.
+                </div>
+            </div>
+
+            <!-- 26 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">26</span>
+                    <span class="q-text">ما هو شكل خطوط الفيض المغناطيسي لتيار يمر في سلك مستقيم؟</span>
+                </div>
+                <div class="qa-answer">
+                    دوائر متحدة المركز مركزها السلك ومستواها عمودي عليه <span style="color:#1a4b75; font-size:0.9rem;">[29، 49]</span>.
+                </div>
+            </div>
+
+            <!-- 27 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">27</span>
+                    <span class="q-text">اذكر قاعدة لتحديد اتجاه المجال المغناطيسي لسلك مستقيم.</span>
+                </div>
+                <div class="qa-answer">
+                    قاعدة اليد اليمنى لأمبير <span style="color:#1a4b75; font-size:0.9rem;">[29، 49]</span>.
+                </div>
+            </div>
+
+            <!-- 28 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">28</span>
+                    <span class="q-text">اكتب قانون كثافة الفيض (B) عند نقطة تبعد مسافة (d) عن سلك مستقيم.</span>
+                </div>
+                <div class="qa-answer">
+                    <span class="formula">B = μ I / (2π d)</span> <span style="color:#1a4b75; font-size:0.9rem;">[29، 51]</span>
+                </div>
+            </div>
+
+            <!-- 29 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">29</span>
+                    <span class="q-text">ما هي وحدة قياس كثافة الفيض المغناطيسي؟</span>
+                </div>
+                <div class="qa-answer">
+                    التسلا أو وبر/متر مربع <span style="color:#1a4b75; font-size:0.9rem;">[29، 182]</span>.
+                </div>
+            </div>
+
+            <!-- 30 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">30</span>
+                    <span class="q-text">ما العوامل التي تتوقف عليها كثافة الفيض عند مركز ملف دائري؟</span>
+                </div>
+                <div class="qa-answer">
+                    عدد اللفات، شدة التيار، ونصف قطر الملف <span style="color:#1a4b75; font-size:0.9rem;">[31، 49]</span>.
+                </div>
+            </div>
+
+            <!-- 31 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">31</span>
+                    <span class="q-text">اكتب قانون كثافة الفيض لملف دائري.</span>
+                </div>
+                <div class="qa-answer">
+                    <span class="formula">B = μ N I / (2r)</span> <span style="color:#1a4b75; font-size:0.9rem;">[31، 51]</span>
+                </div>
+            </div>
+
+            <!-- 32 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">32</span>
+                    <span class="q-text">اذكر قاعدة لتحديد اتجاه المجال لملف دائري.</span>
+                </div>
+                <div class="qa-answer">
+                    قاعدة البريمة اليمنى لماكسويل <span style="color:#1a4b75; font-size:0.9rem;">[31، 49]</span>.
+                </div>
+            </div>
+
+            <!-- 33 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">33</span>
+                    <span class="q-text">ما العوامل التي تتوقف عليها كثافة الفيض داخل ملف لولبي؟</span>
+                </div>
+                <div class="qa-answer">
+                    شدة التيار، وعدد اللفات في وحدة الأطوال <span style="color:#1a4b75; font-size:0.9rem;">[33، 49]</span>.
+                </div>
+            </div>
+
+            <!-- 34 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">34</span>
+                    <span class="q-text">اكتب قانون كثافة الفيض لملف لولبي.</span>
+                </div>
+                <div class="qa-answer">
+                    <span class="formula">B = μ n I</span> <span style="color:#1a4b75; font-size:0.9rem;">[33، 51]</span>
+                </div>
+            </div>
+
+            <!-- 35 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">35</span>
+                    <span class="q-text">متى تنعدم القوة المغناطيسية المؤثرة على سلك يمر به تيار في مجال مغناطيسي؟</span>
+                </div>
+                <div class="qa-answer">
+                    عندما يكون السلك موازياً لخطوط الفيض <span style="color:#1a4b75; font-size:0.9rem;">[36، 50]</span>.
+                </div>
+            </div>
+
+            <!-- 36 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">36</span>
+                    <span class="q-text">اكتب قانون القوة المغناطيسية المؤثرة على سلك.</span>
+                </div>
+                <div class="qa-answer">
+                    <span class="formula">F = B I L sin θ</span> <span style="color:#1a4b75; font-size:0.9rem;">[36، 51]</span>
+                </div>
+            </div>
+
+            <!-- 37 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">37</span>
+                    <span class="q-text">اذكر قاعدة لتحديد اتجاه القوة المغناطيسية.</span>
+                </div>
+                <div class="qa-answer">
+                    قاعدة اليد اليسرى لفلمنج <span style="color:#1a4b75; font-size:0.9rem;">[35، 51]</span>.
+                </div>
+            </div>
+
+            <!-- 38 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">38</span>
+                    <span class="q-text">عرف عزم الازدواج (τ) المؤثر على ملف.</span>
+                </div>
+                <div class="qa-answer">
+                    هو حاصل ضرب إحدى القوتين في البعد العمودي بينهما، ويساوي <span class="formula">B I A N sin θ</span> <span style="color:#1a4b75; font-size:0.9rem;">[39، 51]</span>.
+                </div>
+            </div>
+
+            <!-- 39 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">39</span>
+                    <span class="q-text">متى يكون عزم الازدواج المؤثر على ملف نهاية عظمى؟</span>
+                </div>
+                <div class="qa-answer">
+                    عندما يكون مستوى الملف موازياً لخطوط الفيض.
+                </div>
+            </div>
+
+            <!-- 40 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">40</span>
+                    <span class="q-text">عرف عزم ثنائي القطب المغناطيسي (m<sub>d</sub>).</span>
+                </div>
+                <div class="qa-answer">
+                    هو كمية متجهة عمودية على مساحة الملف وتساوي <span class="formula">I A N</span> <span style="color:#1a4b75; font-size:0.9rem;">[39، 51]</span>.
+                </div>
+            </div>
+
+            <!-- 41 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">41</span>
+                    <span class="q-text">ما هي الوظيفة الأساسية للجلفانومتر ذو الملف المتحرك؟</span>
+                </div>
+                <div class="qa-answer">
+                    الاستدلال على وجود تيارات ضعيفة جداً وقياس شدتها وتحديد اتجاهها <span style="color:#1a4b75; font-size:0.9rem;">[41، 50]</span>.
+                </div>
+            </div>
+
+            <!-- 42 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">42</span>
+                    <span class="q-text">ما هي فكرة عمل الجلفانومتر؟</span>
+                </div>
+                <div class="qa-answer">
+                    عزم الازدواج المؤثر على ملف يمر به تيار وقابل للحركة في مجال مغناطيسي <span style="color:#1a4b75; font-size:0.9rem;">[41، 50]</span>.
+                </div>
+            </div>
+
+            <!-- 43 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">43</span>
+                    <span class="q-text">لماذا يُصنع قلب الجلفانومتر من الحديد المطاوع؟</span>
+                </div>
+                <div class="qa-answer">
+                    لتركيز وتكثيف خطوط الفيض المغناطيسي <span style="color:#1a4b75; font-size:0.9rem;">[42، 52]</span>.
+                </div>
+            </div>
+
+            <!-- 44 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">44</span>
+                    <span class="q-text">ما هي وظيفة الملفين الزنبركيين في الجلفانومتر؟</span>
+                </div>
+                <div class="qa-answer">
+                    مدخل ومخرج للتيار، وتوليد عزم ليّ، وإعادة المؤشر للصفر <span style="color:#1a4b75; font-size:0.9rem;">[42، 52]</span>.
+                </div>
+            </div>
+
+            <!-- 45 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">45</span>
+                    <span class="q-text">عرف حساسية الجلفانومتر.</span>
+                </div>
+                <div class="qa-answer">
+                    هي زاوية انحراف المؤشر عن وضع الصفر عند مرور تيار شدته الوحدة <span style="color:#1a4b75; font-size:0.9rem;">[42، 50]</span>.
+                </div>
+            </div>
+
+            <!-- 46 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">46</span>
+                    <span class="q-text">كيف يُحول الجلفانومتر إلى أميتر؟</span>
+                </div>
+                <div class="qa-answer">
+                    بتوصيل مقاومة صغيرة جداً على التوازي تسمى مجزئ التيار (R<sub>s</sub>) <span style="color:#1a4b75; font-size:0.9rem;">[42، 50]</span>.
+                </div>
+            </div>
+
+            <!-- 47 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">47</span>
+                    <span class="q-text">ما وظيفة مجزئ التيار؟</span>
+                </div>
+                <div class="qa-answer">
+                    حماية ملف الجلفانومتر، وتقليل الحساسية، وزيادة مدى القياس <span style="color:#1a4b75; font-size:0.9rem;">[43، 50]</span>.
+                </div>
+            </div>
+
+            <!-- 48 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">48</span>
+                    <span class="q-text">اكتب قانون حساب مقاومة مجزئ التيار.</span>
+                </div>
+                <div class="qa-answer">
+                    <span class="formula">R<sub>s</sub> = I<sub>g</sub> R<sub>g</sub> / (I - I<sub>g</sub>)</span> <span style="color:#1a4b75; font-size:0.9rem;">[43، 51]</span>
+                </div>
+            </div>
+
+            <!-- 49 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">49</span>
+                    <span class="q-text">كيف يُحول الجلفانومتر إلى فولتميتر؟</span>
+                </div>
+                <div class="qa-answer">
+                    بتوصيل مقاومة كبيرة جداً على التوالي تسمى مضاعف الجهد (R<sub>m</sub>) <span style="color:#1a4b75; font-size:0.9rem;">[44، 50]</span>.
+                </div>
+            </div>
+
+            <!-- 50 -->
+            <div class="qa-item">
+                <div class="qa-question">
+                    <span class="q-num">50</span>
+                    <span class="q-text">ما وظيفة مضاعف الجهد؟</span>
+                </div>
+                <div class="qa-answer">
+                    زيادة مقاومة الجهاز فلا يسحب تياراً كبيراً، وزيادة مدى قياس فرق الجهد <span style="color:#1a4b75; font-size:0.9rem;">[44، 50]</span>.
+                </div>
+            </div>
+
+        </div> <!-- نهاية qa-list -->
+
+        <!-- تذييل -->
+        <div class="footer-note">
+            📖 تم إعداد هذا البنك وفقاً للمنهج المطور للصف الثالث الثانوي – جميع الحقوق محفوظة للمصادر الرسمية.
+        </div>
+
+    </div> <!-- نهاية container -->
+</body>
+</html>
