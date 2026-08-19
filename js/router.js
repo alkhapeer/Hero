@@ -1,28 +1,25 @@
 // ============================================================
-// Router Module - التنقل بين الأقسام
+// Router Module – التنقل بين الأقسام
 // ============================================================
 
 const Router = (() => {
     let currentPage = 'home';
     let pages = {};
 
-    // تسجيل الصفحات
     function registerPage(name, renderFn) {
         pages[name] = renderFn;
     }
 
-    // التوجيه إلى صفحة
     function navigate(page, params = {}) {
         if (!pages[page]) {
             console.warn(`Page "${page}" not registered`);
             return;
         }
-
         currentPage = page;
         const content = document.getElementById('main-content');
         if (!content) return;
 
-        // عرض الصفحة
+        // مسح المحتوى
         content.innerHTML = '';
         const pageElement = document.createElement('div');
         pageElement.className = 'page active';
@@ -32,10 +29,10 @@ const Router = (() => {
         // استدعاء دالة العرض
         pages[page](pageElement, params);
 
-        // تحديث التنقل السفلي
+        // تحديث شريط التنقل
         updateNav(page);
 
-        // تحديث العنوان
+        // تحديث عنوان الصفحة
         const titles = {
             home: 'Hero Academy | الرئيسية',
             apps: 'التطبيقات',
@@ -46,18 +43,15 @@ const Router = (() => {
         document.title = titles[page] || 'Hero Academy';
     }
 
-    // تحديث شريط التنقل السفلي
     function updateNav(activePage) {
-        const items = document.querySelectorAll('#bottom-nav li');
-        items.forEach(item => {
+        document.querySelectorAll('#bottom-nav li').forEach(item => {
             const page = item.dataset.page;
             item.classList.toggle('active', page === activePage);
         });
     }
 
-    // تهيئة أحداث التنقل
     function init() {
-        // أحداث شريط التنقل السفلي
+        // ربط أحداث التنقل
         document.querySelectorAll('#bottom-nav li').forEach(item => {
             item.addEventListener('click', () => {
                 const page = item.dataset.page;
@@ -65,47 +59,79 @@ const Router = (() => {
             });
         });
 
-        // أحداث المودال
+        // زر تبديل الثيم
+        const themeBtn = document.getElementById('theme-toggle');
+        if (themeBtn) {
+            themeBtn.addEventListener('click', () => {
+                document.body.classList.toggle('dark');
+                const isDark = document.body.classList.contains('dark');
+                themeBtn.textContent = isDark ? '☀️' : '🌙';
+                // حفظ الحالة
+                const settings = Storage.getSettings();
+                settings.theme = isDark ? 'dark' : 'light';
+                Storage.setSettings(settings);
+            });
+        }
+
+        // تهيئة المودال
         const modal = document.getElementById('activation-modal');
         if (modal) {
             const closeBtn = modal.querySelector('.modal-close');
             if (closeBtn) {
-                closeBtn.addEventListener('click', () => UI.hideModal('activation-modal'));
+                closeBtn.addEventListener('click', () => {
+                    modal.style.display = 'none';
+                });
             }
             window.addEventListener('click', (e) => {
-                if (e.target === modal) UI.hideModal('activation-modal');
+                if (e.target === modal) modal.style.display = 'none';
             });
-        }
 
-        // زر التثبيت
-        const installBtn = document.getElementById('install-btn');
-        if (installBtn) {
-            let deferredPrompt;
-            window.addEventListener('beforeinstallprompt', (e) => {
-                e.preventDefault();
-                deferredPrompt = e;
-                installBtn.style.display = 'inline-block';
-            });
-            installBtn.addEventListener('click', () => {
-                if (deferredPrompt) {
-                    deferredPrompt.prompt();
-                    deferredPrompt.userChoice.then(() => {
-                        installBtn.style.display = 'none';
-                    });
+            const submitBtn = document.getElementById('activation-submit-btn');
+            const input = document.getElementById('activation-code-input');
+            const msg = document.getElementById('activation-message');
+
+            submitBtn.addEventListener('click', () => {
+                const code = input.value.trim();
+                const courseId = parseInt(modal.dataset.courseId);
+                if (!courseId) {
+                    msg.textContent = 'معرف الدورة غير موجود.';
+                    return;
+                }
+                if (!code) {
+                    msg.textContent = 'الرجاء إدخال كود التفعيل.';
+                    return;
+                }
+                const result = Activation.activateCourse(courseId, code);
+                if (result.success) {
+                    msg.style.color = '#16a34a';
+                    msg.textContent = result.message;
+                    setTimeout(() => {
+                        modal.style.display = 'none';
+                        // إعادة تحميل الصفحة الحالية (سيتم تحديث المحتوى)
+                        navigate(currentPage);
+                    }, 1500);
                 } else {
-                    alert('يمكنك تثبيت التطبيق من قائمة المتصفح (اختر "تثبيت التطبيق" أو "Add to Home Screen")');
+                    msg.style.color = '#b00020';
+                    msg.textContent = result.message;
                 }
             });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') submitBtn.click();
+            });
         }
 
-        // زر تبديل الثيم
-        document.getElementById('theme-toggle')?.addEventListener('click', UI.toggleTheme);
+        // تهيئة الثيم من الإعدادات
+        const settings = Storage.getSettings();
+        if (settings.theme === 'dark') {
+            document.body.classList.add('dark');
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) themeBtn.textContent = '☀️';
+        }
 
-        // التنقل الافتراضي
-        navigate('home');
+        console.log('Router initialized');
     }
 
-    // واجهة عامة
     return {
         registerPage,
         navigate,
