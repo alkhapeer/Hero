@@ -1,0 +1,80 @@
+/* ============================================================
+   Responsive Design
+   ============================================================ */
+
+@media (max-width: 768px) {
+    #app {
+        padding: 0 12px 75px 12px;
+    }
+
+    .brand-name {
+        font-size: 18px;
+    }
+    .brand-sub {
+        font-size: 12px;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .page-title {
+        font-size: 22px;
+    }
+
+    #bottom-nav li {
+        min-width: 50px;
+        padding: 4px 8px;
+    }
+    #bottom-nav .nav-icon {
+        font-size: 20px;
+    }
+    #bottom-nav .nav-label {
+        font-size: 10px;
+    }
+
+    .modal-content {
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .trial-bar {
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+    }
+
+    #app-header {
+        padding: 10px 14px;
+        margin: 10px 0 15px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .brand-name {
+        font-size: 16px;
+    }
+    .brand-sub {
+        font-size: 10px;
+    }
+    .btn {
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+    .card-header h3 {
+        font-size: 16px;
+    }
+    .card-body .description {
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 769px) {
+    #bottom-nav {
+        display: none; /* إخفاء التنقل السفلي على سطح المكتب */
+    }
+    #app {
+        padding-bottom: 20px;
+    }
+}

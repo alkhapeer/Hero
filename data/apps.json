@@ -1,0 +1,42 @@
+[
+    {
+        "id": "statistics",
+        "title": "الإحصاء",
+        "description": "تطبيق شامل لمراجعة الإحصاء مع تمارين تفاعلية",
+        "icon": "📊",
+        "subject": "الرياضيات",
+        "grade": "الثالث الثانوي",
+        "course_ids": [21],
+        "status": "available"
+    },
+    {
+        "id": "physics-mechanics",
+        "title": "الميكانيكا",
+        "description": "تطبيق تفاعلي لفهم قوانين الحركة والقوى",
+        "icon": "⚡",
+        "subject": "الفيزياء",
+        "grade": "الثاني الثانوي",
+        "course_ids": [22],
+        "status": "available"
+    },
+    {
+        "id": "chemistry-bonds",
+        "title": "الروابط الكيميائية",
+        "description": "شرح مبسط للروابط الأيونية والتساهمية مع نماذج ثلاثية الأبعاد",
+        "icon": "🧪",
+        "subject": "الكيمياء",
+        "grade": "الأول الثانوي",
+        "course_ids": [23],
+        "status": "available"
+    },
+    {
+        "id": "biology-cell",
+        "title": "الخلية ووظائفها",
+        "description": "رحلة داخل الخلية مع رسوم متحركة واختبارات",
+        "icon": "🧬",
+        "subject": "الأحياء",
+        "grade": "الأول الثانوي",
+        "course_ids": [24],
+        "status": "available"
+    }
+]
