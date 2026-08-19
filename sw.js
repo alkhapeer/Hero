@@ -3,33 +3,29 @@ const ASSETS = [
     '/',
     '/index.html',
     '/manifest.webmanifest',
-    '/favicon.svg',
     '/css/style.css',
     '/css/responsive.css',
-    '/js/app.js',
-    '/js/router.js',
     '/js/storage.js',
     '/js/trial.js',
     '/js/activation.js',
-    '/js/ui.js',
-    '/icons/icon-192.png',
-    '/icons/icon-512.png',
-    '/icons/maskable-512.png'
+    '/js/router.js',
+    '/js/app.js'
 ];
 
-// تثبيت Service Worker وتخزين الملفات الأساسية
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(cache => {
-                console.log('Caching assets...');
-                return cache.addAll(ASSETS);
+                // استخدم addAll مع catch لتجنب فشل التثبيت بالكامل
+                return cache.addAll(ASSETS).catch(err => {
+                    console.warn('Some assets failed to cache:', err);
+                    // لا نرمي الخطأ إلى الخارج حتى يكتمل التثبيت
+                });
             })
             .then(() => self.skipWaiting())
     );
 });
 
-// تفعيل Service Worker وتنظيف الكاش القديم
 self.addEventListener('activate', event => {
     event.waitUntil(
         caches.keys().then(keys => {
@@ -41,28 +37,10 @@ self.addEventListener('activate', event => {
     );
 });
 
-// اعتراض الطلبات وتقديم نسخة مخزنة
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
-            .then(response => {
-                if (response) {
-                    return response; // من الكاش
-                }
-                // محاولة جلب من الشبكة وتخزينها
-                return fetch(event.request).then(fetchResponse => {
-                    // تخزين فقط الطلبات الناجحة لنفس المصدر
-                    if (fetchResponse && fetchResponse.status === 200) {
-                        const clone = fetchResponse.clone();
-                        caches.open(CACHE_NAME).then(cache => {
-                            cache.put(event.request, clone);
-                        });
-                    }
-                    return fetchResponse;
-                }).catch(() => {
-                    // في حالة عدم وجود اتصال، يمكن تقديم صفحة Offline
-                    return new Response('غير متصل', { status: 503 });
-                });
-            })
+            .then(response => response || fetch(event.request))
+            .catch(() => new Response('Network error', { status: 503 }))
     );
 });
