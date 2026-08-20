@@ -1,7 +1,6 @@
 /* ------------------ الثوابت والدوال الأساسية ------------------ */
 const ACADEMY = 'https://hero.kesug.com/Academy/';
 const app = document.getElementById('app');
-let deferredInstall = null;
 
 const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m]));
 const btn = (href, text, cls = 'primary') => `<a class="btn ${cls}" href="${esc(href)}"> ${text}</a>`;
@@ -16,18 +15,9 @@ function home() {
         <a class="card" href="${ACADEMY}home.php" target="_blank" rel="noopener"><b>🎓 دوراتي</b><small>ادخل إلى دوراتك وروابطها بعد الاعتماد.</small></a>
         </div></section>`;
 }
-function apps() {
-    app.innerHTML = `<section class="section"><h1>التطبيقات</h1><div class="empty">قسم التطبيقات جاهز لإضافة التطبيقات التعليمية مستقبلًا.</div></section>`;
-}
-function active() {
-    app.innerHTML = `<section class="section"><h1>دوراتي</h1>
-        <div class="notice">يتم الحصول على الدورات المملوكة وروابطها من نظام الأكاديمية.</div>
-        <div class="actions">${btn(`${ACADEMY}home.php`,'فتح دوراتي في الأكاديمية ↗')}</div>
-        <p class="muted">عند اختيار دورة مفعلة من الأكاديمية، يتم توجيهك إلى رابط الدورة المحمية ليتم عرضها داخل هذا التطبيق.</p></section>`;
-}
-function settings() {
-    app.innerHTML = `<section class="section"><h1>الإعدادات</h1><div class="card"><b>Hero Academy</b><p class="muted">نسخة Static — بدون نظام دفع أو تسجيل أو تفعيل داخل الواجهة العامة.</p></div></section>`;
-}
+function apps() { app.innerHTML = `<section class="section"><h1>التطبيقات</h1><div class="empty">قسم التطبيقات جاهز لإضافة التطبيقات التعليمية مستقبلًا.</div></section>`; }
+function active() { app.innerHTML = `<section class="section"><h1>دوراتي</h1><div class="notice">يتم الحصول على الدورات المملوكة وروابطها من نظام الأكاديمية.</div><div class="actions">${btn(`${ACADEMY}home.php`,'فتح دوراتي في الأكاديمية ↗')}</div></section>`; }
+function settings() { app.innerHTML = `<section class="section"><h1>الإعدادات</h1><div class="card"><b>Hero Academy</b><p class="muted">نسخة Static — بدون نظام دفع أو تسجيل أو تفعيل داخل الواجهة العامة.</p></div></section>`; }
 
 /* ------------------ الـ Loader للدورات ------------------ */
 let coursesData = [];
@@ -39,11 +29,11 @@ function renderHomePage() {
     } else {
         coursesData.forEach(course => {
             html += `
-                <div class="card course" onclick="navigateToCourse('${course.id}')" style="cursor:pointer; transition:0.2s;">
+                <div class="card course" onclick="navigateToCourse('${course.id}')" style="cursor:pointer;">
                     <span class="icon">${esc(course.icon)}</span>
                     <h3>${esc(course.title)}</h3>
-                    <p style="color:#687386;line-height:1.6;font-size:14px;">${esc(course.description)}</p>
-                    <span style="color:#2563eb;font-size:14px;margin-top:10px;display:inline-block;">افتح الدورة ➜</span>
+                    <p style="color:#687386;">${esc(course.description)}</p>
+                    <span style="color:#2563eb;">افتح الدورة ➜</span>
                 </div>
             `;
         });
@@ -52,30 +42,36 @@ function renderHomePage() {
     app.innerHTML = html;
 }
 
+/* الدالة المسؤولة عن جلب الدورة وعرضها */
 function loadPageIntoApp(url) {
+    // بناء المسار الكامل بشكل آمن
+    const fullUrl = new URL(url, window.location.origin).href;
+    console.log("🔍 المسار الذي يحاول التطبيق تحميله:", fullUrl); // افحص هذا الرابط في الـ Console
+
     async function load() {
         try {
-            document.querySelectorAll('style[data-loader-src]').forEach(el => el.remove());
-            document.querySelectorAll('link[data-loader-src]').forEach(el => el.remove());
-
-            const response = await fetch(url);
-            if (!response.ok) throw new Error(`فشل تحميل الدورة (HTTP ${response.status})`);
+            const response = await fetch(fullUrl);
+            if (!response.ok) {
+                throw new Error(`فشل التحميل (خطأ HTTP ${response.status}). تأكد من وجود الملف في: ${fullUrl}`);
+            }
             const htmlText = await response.text();
 
+            // تحليل HTML لاستخراج CSS و JS وتنفيذه (تقنية الـ Loader)
             const parser = new DOMParser();
             const doc = parser.parseFromString(htmlText, 'text/html');
 
             app.innerHTML = doc.body.innerHTML;
 
+            // جلب وتنفيذ الـ CSS الخاص بالصفحة
             const styles = doc.head.querySelectorAll('style, link[rel="stylesheet"]');
             styles.forEach(el => {
                 const newEl = document.createElement(el.tagName);
                 Array.from(el.attributes).forEach(attr => newEl.setAttribute(attr.name, attr.value));
-                newEl.setAttribute('data-loader-src', url);
                 if (el.tagName === 'STYLE') newEl.textContent = el.textContent;
                 document.head.appendChild(newEl);
             });
 
+            // جلب وتنفيذ الـ JS الخاص بالصفحة
             const scripts = doc.body.querySelectorAll('script');
             scripts.forEach(oldScript => {
                 const newScript = document.createElement('script');
@@ -83,9 +79,9 @@ function loadPageIntoApp(url) {
                 if (oldScript.textContent) newScript.textContent = oldScript.textContent;
                 document.body.appendChild(newScript);
             });
-            if (window.onCourseLoaded) window.onCourseLoaded();
         } catch (error) {
-            app.innerHTML = `<div class="empty">❌ خطأ: ${error.message}</div>`;
+            console.error("❌ حدث خطأ أثناء تحميل الدورة:", error);
+            app.innerHTML = `<div class="empty" style="padding:40px;">❌ خطأ: ${error.message}</div>`;
         }
     }
     load();
@@ -96,11 +92,12 @@ window.navigateToCourse = function(id) {
     if (course) window.location.hash = `course/${id}`;
 };
 
-/* ------------------ التهيئة والتوجيه ------------------ */
+/* ------------------ التوجيه ------------------ */
 async function initApp() {
     try {
+        // جلب ملف JSON
         const response = await fetch('/courses.json', { cache: 'no-store' });
-        if (!response.ok) throw new Error(`courses.json غير موجود (HTTP ${response.status})`);
+        if (!response.ok) throw new Error('لم يتم العثور على courses.json في جذر التطبيق');
         const json = await response.json();
         coursesData = json.courses || [];
         route(); 
@@ -117,7 +114,7 @@ function route() {
         const id = parseInt(h.split('/')[1]);
         const course = coursesData.find(c => c.id === id);
         if (course) loadPageIntoApp(course.url);
-        else app.innerHTML = `<div class="empty">⚠️ الدورة غير موجودة</div>`;
+        else app.innerHTML = `<div class="empty">⚠️ الدورة غير موجودة في قاعدة البيانات.</div>`;
     }
     else if (h === 'active') active();
     else if (h === 'settings') settings();
@@ -128,27 +125,7 @@ function route() {
 window.addEventListener('hashchange', route);
 document.addEventListener('DOMContentLoaded', initApp);
 
-/* ------------------ معالجة التثبيت (PWA) بدون أخطاء ------------------ */
-// التعديل هنا: إذا لم نجد زرًا مخصصًا، نسمح للشريط بالظهور تلقائياً.
-window.addEventListener('beforeinstallprompt', e => {
-    deferredInstall = e;
-    // البحث عن زر التثبيت المخصص (إن وجد)
-    const btnInstall = document.getElementById('installBtn');
-    if (btnInstall) {
-        e.preventDefault(); // إذا كان الزر موجودًا، نمنع الشريط التلقائي ونستخدم الزر المخصص
-        btnInstall.classList.remove('hidden');
-        btnInstall.onclick = async () => {
-            if (deferredInstall) {
-                deferredInstall.prompt();
-                await deferredInstall.userChoice;
-                deferredInstall = null;
-            }
-        };
-    }
-    // إذا لم يكن الزر موجودًا، لا نستخدم preventDefault()، وسيظهر شريط التثبيت التلقائي، وبذلك يختفي الخطأ!
-});
-
-// تسجيل السيرفر ووركر
+// تسجيل السيرفر ووركر (لن يمنع ظهور الدورة)
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(console.error));
 }
