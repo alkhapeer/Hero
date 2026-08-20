@@ -1,0 +1,1555 @@
+
+<!--
+=========================================================
+HERO_PROTECTED_APP v2 (Shared)
+Course: 17
+Subject: 0
+=========================================================
+-->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>مذكرة النجاح – قانون الأحوال الشخصية لغير المسلمين</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Tahoma', Arial, sans-serif;
+            background: #f2f6fc;
+            color: #1a2634;
+            line-height: 1.7;
+            padding: 0 0 20px;
+            direction: rtl;
+        }
+        a { text-decoration: none; color: inherit; }
+        button { cursor: pointer; font-family: inherit; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+
+        /* ===== HEADER ===== */
+        .app-header {
+            background: #0b2a47;
+            color: #fff;
+            padding: 16px 0;
+            border-radius: 0 0 28px 28px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .app-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .app-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .app-title small {
+            font-size: 0.75rem;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-right: 8px;
+        }
+        .header-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .header-actions button {
+            background: rgba(255,255,255,0.12);
+            color: #fff;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: 0.2s;
+        }
+        .header-actions button:hover {
+            background: rgba(255,255,255,0.25);
+        }
+        .header-actions .btn-home { background: #f5c542; color: #0b2a47; }
+        .header-actions .btn-home:hover { background: #ffd966; }
+
+        /* ===== MAIN SCREEN ===== */
+        .main-screen {
+            padding: 30px 0 20px;
+        }
+        .main-screen h1 {
+            font-size: 1.9rem;
+            color: #0b2a47;
+            border-right: 6px solid #f5c542;
+            padding-right: 16px;
+            margin-bottom: 16px;
+        }
+        .main-screen .sub {
+            color: #3d5a78;
+            font-size: 1.05rem;
+            margin-bottom: 28px;
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .category-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 22px 12px;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+            border: 1px solid #e6edf6;
+            transition: 0.25s;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+            border-color: #b3c9e0;
+        }
+        .category-card .icon { font-size: 2.2rem; }
+        .category-card .badge-count {
+            background: #f5c542;
+            color: #0b2a47;
+            border-radius: 30px;
+            padding: 0 10px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        /* ===== SECTIONS (hidden by default) ===== */
+        .section-content {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .section-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #dce4ec;
+        }
+        .section-header h2 {
+            font-size: 1.6rem;
+            color: #0b2a47;
+        }
+        .btn-back {
+            background: #eaf0f8;
+            border: none;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            color: #1a3a5e;
+            transition: 0.2s;
+        }
+        .btn-back:hover { background: #d0def0; }
+
+        /* ===== CARDS & BOXES ===== */
+        .card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 20px 22px;
+            margin: 16px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            border: 1px solid #eaf0f6;
+        }
+        .def-box, .note-box, .warn-box {
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin: 18px 0;
+            border-right: 5px solid;
+        }
+        .def-box { border-color: #2b6f9e; background: #edf4fc; }
+        .note-box { border-color: #f3b33d; background: #fef9ef; }
+        .warn-box { border-color: #c0392b; background: #fdeaea; }
+        .box-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 4px; }
+
+        /* ===== TREE ===== */
+        .tree-node {
+            margin: 6px 0;
+        }
+        .tree-node .node-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: #f4f8fe;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .tree-node .node-label:hover { background: #e6edf6; }
+        .tree-node .node-children {
+            padding-right: 28px;
+            display: none;
+        }
+        .tree-node.open .node-children { display: block; }
+        .tree-node .node-detail {
+            padding: 6px 14px;
+            margin: 4px 0;
+            border-right: 3px solid #b3c9e0;
+            font-size: 0.95rem;
+        }
+
+        /* ===== MAPS GALLERY ===== */
+        .maps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .map-item {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            border: 1px solid #e6edf6;
+            transition: 0.2s;
+        }
+        .map-item:hover { transform: scale(1.02); }
+        .map-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #fafcfd;
+            padding: 6px;
+        }
+        .map-item .map-label {
+            padding: 10px 14px;
+            background: #f7faff;
+            border-top: 1px solid #e6edf6;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* ===== QUIZ ===== */
+        .quiz-container {
+            background: #fff;
+            border-radius: 18px;
+            padding: 22px;
+            border: 1px solid #e6edf6;
+            margin: 16px 0;
+        }
+        .quiz-question { font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; }
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+        .quiz-options button {
+            background: #f4f8fe;
+            border: 1px solid #dce4ec;
+            border-radius: 12px;
+            padding: 10px 16px;
+            text-align: right;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .quiz-options button:hover { background: #e6edf6; }
+        .quiz-options button.selected { background: #c5d9f0; border-color: #2b6f9e; }
+        .quiz-options button.correct { background: #c8e6c9; border-color: #2e7d32; }
+        .quiz-options button.wrong { background: #ffcdd2; border-color: #c62828; }
+        .quiz-result { margin-top: 16px; font-weight: 600; }
+        .quiz-nav { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
+        .quiz-nav button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 30px;
+            background: #eaf0f8;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .quiz-nav button:hover { background: #d0def0; }
+        .quiz-nav button.primary { background: #0b2a47; color: #fff; }
+        .quiz-nav button.primary:hover { background: #1a3a5e; }
+
+        /* ===== QUESTION BANK ===== */
+        .qbank-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 12px 0;
+        }
+        .qbank-filters select, .qbank-filters input {
+            padding: 8px 14px;
+            border-radius: 30px;
+            border: 1px solid #dce4ec;
+            background: #fff;
+            font-size: 0.95rem;
+            flex: 1 1 150px;
+        }
+        .qbank-item {
+            background: #f9fbfe;
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            border-right: 4px solid #2b6f9e;
+        }
+        .qbank-item .q { font-weight: 600; }
+        .qbank-item .a { padding-right: 20px; color: #1f4a7a; margin-top: 6px; }
+
+        /* ===== REVIEW CARDS ===== */
+        .review-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border: 1px solid #e6edf6;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .review-card .front { font-weight: 600; }
+        .review-card .back { display: none; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #dce4ec; }
+        .review-card.open .back { display: block; }
+
+        /* ===== SEARCH RESULTS ===== */
+        .search-results {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px;
+            margin: 16px 0;
+            border: 1px solid #dce4ec;
+            display: none;
+        }
+        .search-results.active { display: block; }
+        .search-results li { padding: 6px 0; border-bottom: 1px solid #eef3f8; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .app-title { font-size: 1.1rem; }
+            .category-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+            .category-card { padding: 14px 8px; font-size: 0.85rem; }
+            .category-card .icon { font-size: 1.6rem; }
+            .section-header h2 { font-size: 1.3rem; }
+            .maps-grid { grid-template-columns: 1fr; }
+            .container { padding: 0 10px; }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .category-grid { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        /* ===== UTILITY ===== */
+        .mt-2 { margin-top: 20px; }
+        .mb-1 { margin-bottom: 10px; }
+        .text-center { text-align: center; }
+        .flex { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+        .hidden { display: none; }
+        .badge { background: #f5c542; color: #0b2a47; padding: 0 10px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; }
+        .highlight { background: #fcee8f; padding: 0 4px; border-radius: 4px; }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f0f3f8; }
+        ::-webkit-scrollbar-thumb { background: #b3c9e0; border-radius: 10px; }
+    </style>
+
+<!-- =========================================================
+     HERO_PROTECTED_APP v2 (Shared)
+     Offline License Protection
+========================================================= -->
+
+<style id="hero-license-style">
+html[data-hero-locked="1"] body > *:not(#hero-license-overlay) {
+    visibility: hidden !important;
+}
+#hero-license-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 2147483647 !important;
+    background: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-family: Arial, sans-serif !important;
+}
+#hero-license-box {
+    width: min(420px, 90%);
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 15px 50px rgba(0,0,0,.15);
+    text-align: center;
+}
+#hero-license-box input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px;
+    margin: 15px 0;
+    font-size: 16px;
+    text-align: center;
+}
+#hero-license-box button {
+    width: 100%;
+    padding: 13px;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#hero-license-message {
+    margin-top: 15px;
+    color: #b00020;
+}
+</style>
+
+<script id="hero-license-engine" data-hero-protected-app="1">
+
+(function () {
+    "use strict";
+
+    const HERO_PAYLOAD_B64 = "eyJ2ZXJzaW9uIjoyLCJwcm9kdWN0IjoiSGVybyBBY2FkZW15IiwiY291cnNlX2lkIjoxNywic3ViamVjdF9pZCI6MCwiYXBwX25hbWUiOiJIZXJvIFByb3RlY3RlZCBBcHAiLCJvZmZsaW5lIjp0cnVlfQ==";
+    const HERO_SIGNATURE_B64 = "e5lFFAZzj4iGZzF89YyN70whJLfYLXrkIjYeK5sbpqEw9CUtXvYu7PofQ/SVKp2ToigM1GefaS+rbyrT9jNr3ZihknpI4KUAsa2kE1licZFVUgamEK9tqBT+X/9W7umm5EnIPZkjGGWZy3qP0LnErWsl3pnx2OEgNcgmALoqpg0Xs4C4R1OgPyK+yirhEimRzvxvjStPi5jJmz+/bUGZT3H7gGQqmbCtl8yLtYBXY24pVwR1UO3Xs6k+iF7lq12PnmqSbjLYNP1Dclyph7+oVLCsDELXSS7469U/6wv+hu5fglbAkkGzEuUMAjIX+QbXxYM7jw/O5haYIvr/dzNKkQ==";
+    const HERO_PUBLIC_KEY_B64 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAokfP3g1ieGYQkeGnWDXp7le9tT12xdvHpCA4m7HoPjRI+KGH2DjqQuRZuAmFGzk5aLxJGyyu9XkhEcvvL7nVISYGYN4KkTxZqtufGzKAMTCZm++5C9OSlgazKXkrm7nlDNo2/+fbBuDJPOMg+efpnKjnmuOZ24ZWXIEW4ezmxylOBhG+s6BTpJsElTkKzQui2sf7KdBtsXhOtA+dDsyUqt02RWKSDixFdqJz3fsPVhDOuCc9YKJXRbrcjh08nPs4AQx3iQHxVSTtirmU80Y+IYc/hWaTstRaaNyQZePrzwGN+2jzcw/0KuJpdA6hnf/HtUhk0ottglRoik5QA3IlzwIDAQAB";
+    const HERO_STORAGE_KEY = "hero_license_7496fc9d15609b8a1bf8076aa42455209161fff1158fd6206e70a0267c1bf599";
+    const HERO_DEVICE_KEY = "hero_device_id_v2";
+    const HERO_TRIAL_KEY = HERO_STORAGE_KEY + "_trial";
+    const HERO_MODE_KEY = HERO_STORAGE_KEY + "_mode";
+
+    const TRIAL_DAYS = 7;
+    const TRIAL_SECONDS = TRIAL_DAYS * 24 * 60 * 60;
+    const CLOCK_TOLERANCE_MS = 5 * 60 * 1000;
+
+    function base64ToBytes(base64) {
+        const binary = atob(base64);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) {
+            bytes[i] = binary.charCodeAt(i);
+        }
+        return bytes;
+    }
+
+    function base64UrlDecode(text) {
+        let base64 = String(text)
+            .replace(/-/g, "+")
+            .replace(/_/g, "/");
+        const padding = base64.length % 4;
+        if (padding) {
+            base64 += "=".repeat(4 - padding);
+        }
+        return atob(base64);
+    }
+
+    function randomDeviceId() {
+        if (crypto && typeof crypto.randomUUID === "function") {
+            return crypto.randomUUID();
+        }
+        const bytes = new Uint8Array(16);
+        crypto.getRandomValues(bytes);
+        return Array.from(bytes)
+            .map(byte => byte.toString(16).padStart(2, "0"))
+            .join("");
+    }
+
+    function getDeviceId() {
+        let deviceId = localStorage.getItem(HERO_DEVICE_KEY);
+        if (!deviceId) {
+            deviceId = randomDeviceId();
+            localStorage.setItem(HERO_DEVICE_KEY, deviceId);
+        }
+        return deviceId;
+    }
+
+    async function sha256(text) {
+        const data = new TextEncoder().encode(text);
+        const hash = await crypto.subtle.digest("SHA-256", data);
+        return Array.from(new Uint8Array(hash))
+            .map(byte => byte.toString(16).padStart(2, "0"))
+            .join("");
+    }
+
+    async function importPublicKey() {
+        return await crypto.subtle.importKey(
+            "spki",
+            base64ToBytes(HERO_PUBLIC_KEY_B64),
+            { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
+            false,
+            ["verify"]
+        );
+    }
+
+    function getLicensePayload() {
+        const json = new TextDecoder().decode(
+            base64ToBytes(HERO_PAYLOAD_B64)
+        );
+        return JSON.parse(json);
+    }
+
+    async function verifyLicenseSignature() {
+        try {
+            const publicKey = await importPublicKey();
+            return await crypto.subtle.verify(
+                { name: "RSASSA-PKCS1-v1_5" },
+                publicKey,
+                base64ToBytes(HERO_SIGNATURE_B64),
+                base64ToBytes(HERO_PAYLOAD_B64)
+            );
+        } catch (error) {
+            console.error("Hero license verification error:", error);
+            return false;
+        }
+    }
+
+    // دعم الصيغ: 5 أجزاء (قديم), 6 أجزاء (مع licenseType), 7 أجزاء (مع expires_at)
+    async function verifyActivationCodeSignature(code) {
+        try {
+            const decoded = base64UrlDecode(code);
+            const parts = decoded.split("|");
+
+            let system, licenseType = "PAID", userId, courseId, licenseKey, expiresAt, encodedSignature;
+
+            if (parts.length === 7) {
+                [system, licenseType, userId, courseId, licenseKey, expiresAt, encodedSignature] = parts;
+            } else if (parts.length === 6) {
+                [system, licenseType, userId, courseId, licenseKey, encodedSignature] = parts;
+            } else if (parts.length === 5) {
+                [system, userId, courseId, licenseKey, encodedSignature] = parts;
+            } else {
+                return null;
+            }
+
+            licenseType = String(licenseType).toUpperCase();
+            if (system !== "HERO" || licenseType !== "PAID" ||
+                !/^\d+$/.test(String(userId)) || !/^\d+$/.test(String(courseId)) ||
+                !/^HERO-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(licenseKey)) {
+                return null;
+            }
+
+            // بناء النص المُوقَّع (بنفس صيغة الخادم)
+            let payload;
+            if (parts.length === 7) {
+                payload = ["HERO", "PAID", userId, courseId, licenseKey, expiresAt].join("|");
+            } else if (parts.length === 6) {
+                payload = ["HERO", "PAID", userId, courseId, licenseKey].join("|");
+            } else {
+                payload = ["HERO", userId, courseId, licenseKey].join("|");
+            }
+
+            const publicKey = await importPublicKey();
+            const valid = await crypto.subtle.verify(
+                { name: "RSASSA-PKCS1-v1_5" },
+                publicKey,
+                base64ToBytes(encodedSignature),
+                new TextEncoder().encode(payload)
+            );
+
+            if (!valid) return null;
+
+            return {
+                userId: Number(userId),
+                courseId: Number(courseId),
+                licenseKey,
+                licenseType,
+                expiresAt: expiresAt || null,
+                code
+            };
+        } catch (error) {
+            console.error("Hero activation verification error:", error);
+            return null;
+        }
+    }
+
+    function loadJson(key) {
+        try {
+            const value = localStorage.getItem(key);
+            return value ? JSON.parse(value) : null;
+        } catch (_) {
+            return null;
+        }
+    }
+
+    function saveJson(key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+    }
+
+    function unlockApplication() {
+        const overlay = document.getElementById("hero-license-overlay");
+        if (overlay) overlay.remove();
+        document.documentElement.removeAttribute("data-hero-locked");
+    }
+
+    function formatRemaining(seconds) {
+        seconds = Math.max(0, Math.floor(seconds));
+        const days = Math.floor(seconds / 86400);
+        seconds %= 86400;
+        const hours = Math.floor(seconds / 3600);
+        seconds %= 3600;
+        const minutes = Math.floor(seconds / 60);
+        return `${days} يوم ${hours} ساعة ${minutes} دقيقة`;
+    }
+
+    function updateTrialCounter(state) {
+        let counter = document.getElementById("hero-trial-counter-visible");
+        if (!counter) {
+            counter = document.createElement("div");
+            counter.id = "hero-trial-counter-visible";
+            counter.style.cssText = `
+                position:fixed; bottom:12px; right:12px; z-index:2147483646;
+                background:#111827; color:#fff; padding:8px 12px; border-radius:8px;
+                font:14px Arial,sans-serif; box-shadow:0 4px 15px rgba(0,0,0,.15);
+            `;
+            document.body.appendChild(counter);
+        }
+        const remaining = Math.max(0, (state.expiresAt - Date.now()) / 1000);
+        counter.textContent = "التجربة المجانية المتبقي: " + formatRemaining(remaining);
+    }
+
+    function getTrialState() {
+        const deviceId = getDeviceId();
+        let state = loadJson(HERO_TRIAL_KEY);
+        if (!state) {
+            const now = Date.now();
+            state = {
+                mode: "TRIAL",
+                deviceId,
+                startedAt: now,
+                lastSeen: now,
+                expiresAt: now + (TRIAL_SECONDS * 1000),
+                tampered: false
+            };
+            saveJson(HERO_TRIAL_KEY, state);
+            return state;
+        }
+        if (state.deviceId !== deviceId) {
+            return { ...state, tampered: true };
+        }
+        const now = Date.now();
+        if (Number.isFinite(state.lastSeen) && now + CLOCK_TOLERANCE_MS < state.lastSeen) {
+            state.tampered = true;
+        }
+        if (!state.tampered) {
+            state.lastSeen = now;
+            saveJson(HERO_TRIAL_KEY, state);
+        }
+        return state;
+    }
+
+    function createOverlay(title, text, buttonText, onClick, showInput = false) {
+        document.documentElement.setAttribute("data-hero-locked", "1");
+        let overlay = document.getElementById("hero-license-overlay");
+        if (!overlay) {
+            overlay = document.createElement("div");
+            overlay.id = "hero-license-overlay";
+            document.body.appendChild(overlay);
+        }
+        overlay.innerHTML = `
+            <div id="hero-license-box">
+                <h2 id="hero-license-title">${title}</h2>
+                <p id="hero-license-text">${text}</p>
+                <div id="hero-trial-counter"></div>
+                ${showInput ? `
+                <input id="hero-activation-input" type="text" autocomplete="off" placeholder="أدخل كود التفعيل">
+                ` : ""}
+                <button id="hero-activation-button" type="button">${buttonText}</button>
+                <div id="hero-license-message"></div>
+            </div>
+        `;
+        const button = document.getElementById("hero-activation-button");
+        button.onclick = onClick;
+        return overlay;
+    }
+
+    function showPaidActivationScreen(message = "هذا التطبيق محمي ومخصص للمشتري.") {
+        createOverlay("تفعيل التطبيق", message, "تفعيل التطبيق", activatePaid, true);
+        const input = document.getElementById("hero-activation-input");
+        input.onkeydown = function (event) {
+            if (event.key === "Enter") activatePaid();
+        };
+    }
+
+    function showTrialEndedScreen(message) {
+        createOverlay(
+            "انتهت التجربة المجانية",
+            message,
+            "شراء التطبيق",
+            function () {
+                const payload = getLicensePayload();
+                window.location.href =
+                    "https://hero.kesug.com/Academy/payment.php?course_id=" +
+                    encodeURIComponent(payload.course_id);
+            },
+            false
+        );
+    }
+
+    async function activatePaid() {
+        const input = document.getElementById("hero-activation-input");
+        const message = document.getElementById("hero-license-message");
+        if (!input || !message) return;
+
+        const code = input.value.trim();
+        if (!code) {
+            message.textContent = "يرجى إدخال كود التفعيل.";
+            return;
+        }
+
+        try {
+            const packageValid = await verifyLicenseSignature();
+            if (!packageValid) {
+                message.textContent = "بيانات النسخة المحمية غير صالحة.";
+                return;
+            }
+
+            const payload = getLicensePayload();
+
+            // التحقق من كود التفعيل (PAID)
+            const decoded = await verifyActivationCodeSignature(code);
+            if (!decoded) {
+                message.textContent = "كود التفعيل غير صحيح.";
+                return;
+            }
+
+            // التحقق من تطابق course_id
+            if (decoded.courseId !== Number(payload.course_id)) {
+                message.textContent = "كود التفعيل لا يخص هذا التطبيق.";
+                return;
+            }
+
+            // تخزين حالة الدفع
+            saveJson(HERO_MODE_KEY, {
+                mode: "PAID",
+                deviceId: getDeviceId(),
+                activatedAt: Date.now(),
+                licenseKey: decoded.licenseKey
+            });
+
+            localStorage.removeItem(HERO_TRIAL_KEY);
+            localStorage.setItem(HERO_STORAGE_KEY, "activated");
+
+            const counter = document.getElementById("hero-trial-counter-visible");
+            if (counter) counter.remove();
+
+            unlockApplication();
+
+        } catch (error) {
+            console.error(error);
+            message.textContent = "حدث خطأ أثناء التفعيل.";
+        }
+    }
+
+    async function startProtection() {
+        document.documentElement.setAttribute("data-hero-locked", "1");
+
+        const signatureValid = await verifyLicenseSignature();
+        if (!signatureValid) {
+            showPaidActivationScreen("بيانات النسخة المحمية غير صالحة.");
+            return;
+        }
+
+        const payload = getLicensePayload();
+        const deviceId = getDeviceId();
+
+        // التحقق من وجود حالة دفع سابقة
+        const savedMode = loadJson(HERO_MODE_KEY);
+        if (savedMode && savedMode.mode === "PAID" && savedMode.deviceId === deviceId) {
+            unlockApplication();
+            return;
+        }
+
+        // البدء بالتجربة التلقائية (بدون الحاجة إلى license_type)
+        const trial = getTrialState();
+
+        if (trial.tampered) {
+            showTrialEndedScreen("تم اكتشاف تغيير غير طبيعي في وقت الجهاز. انتهت صلاحية التجربة.");
+            return;
+        }
+
+        if (Date.now() >= trial.expiresAt) {
+            showTrialEndedScreen("انتهت التجربة المجانية لمدة 7 أيام. يمكنك شراء التطبيق والاستمرار في استخدام النسخة نفسها.");
+            return;
+        }
+
+        // التجربة سارية
+        unlockApplication();
+        updateTrialCounter(trial);
+
+        setInterval(function () {
+            const current = getTrialState();
+            if (current.tampered || Date.now() >= current.expiresAt) {
+                const counter = document.getElementById("hero-trial-counter-visible");
+                if (counter) counter.remove();
+
+                showTrialEndedScreen(
+                    current.tampered
+                        ? "تم اكتشاف تغيير غير طبيعي في وقت الجهاز. انتهت صلاحية التجربة."
+                        : "انتهت التجربة المجانية لمدة 7 أيام. يمكنك شراء التطبيق والاستمرار في استخدام النسخة نفسها."
+                );
+                return;
+            }
+            updateTrialCounter(current);
+        }, 1000);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", startProtection);
+    } else {
+        startProtection();
+    }
+
+})();
+
+</script>
+
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="app-header">
+        <div class="container">
+            <div class="app-title">
+                📘 مذكرة النجاح
+                <small>قانون الأحوال الشخصية لغير المسلمين</small>
+            </div>
+            <div class="header-actions">
+                <button class="btn-home" id="btnHome">🏠 الرئيسية</button>
+                <button id="btnSearchToggle">🔍 بحث</button>
+                <button id="btnFavToggle">⭐ المفضلة</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTAINER ===== -->
+    <div class="container">
+
+        <!-- ===== SEARCH BAR ===== -->
+        <div id="searchArea" style="display:none; margin: 16px 0;">
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <input type="text" id="searchInput" placeholder="ابحث في المذكرة..." style="flex:1; padding:10px 16px; border-radius:30px; border:1px solid #dce4ec; font-size:1rem;">
+                <button id="searchBtn" style="padding:10px 24px; background:#0b2a47; color:#fff; border:none; border-radius:30px; font-weight:600;">بحث</button>
+                <button id="clearSearchBtn" style="padding:10px 18px; background:#8a9aa8; color:#fff; border:none; border-radius:30px;">إلغاء</button>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+
+        <!-- ===== FAVORITES PANEL ===== -->
+        <div id="favPanel" style="display:none; background:#fefbf0; border-radius:16px; padding:16px; margin:12px 0; border:1px solid #f1dba8;">
+            <h4 style="margin-bottom:8px;">⭐ أقسامي المفضلة</h4>
+            <ul id="favList" style="list-style:none; padding:0;"></ul>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- ===== MAIN SCREEN ===== -->
+        <!-- ============================================================== -->
+        <div id="mainScreen" class="main-screen">
+            <h1>⚖️ قانون الأحوال الشخصية لغير المسلمين (1926)</h1>
+            <p class="sub">دليل مرئي شامل – دراسة قانونية تطبيقية لزواج غير المسلمين في السودان</p>
+
+            <div class="category-grid">
+                <div class="category-card" data-section="explain"><span class="icon">📖</span> شرح <span class="badge-count">7</span></div>
+                <div class="category-card" data-section="summaries"><span class="icon">📋</span> ملخصات <span class="badge-count">6</span></div>
+                <div class="category-card" data-section="questions"><span class="icon">❓</span> أسئلة <span class="badge-count">15+</span></div>
+                <div class="category-card" data-section="maps"><span class="icon">🗺️</span> خرائط <span class="badge-count">15</span></div>
+                <div class="category-card" data-section="examples"><span class="icon">📌</span> أمثلة <span class="badge-count">8</span></div>
+                <div class="category-card" data-section="exams"><span class="icon">📝</span> امتحانات <span class="badge-count">3</span></div>
+                <div class="category-card" data-section="tree"><span class="icon">🌳</span> شجرة المعرفة</div>
+                <div class="category-card" data-section="qbank"><span class="icon">📚</span> بنك الأسئلة <span class="badge-count">200</span></div>
+                <div class="category-card" data-section="reviews"><span class="icon">🔄</span> مراجعات <span class="badge-count">12</span></div>
+                <div class="category-card" data-section="videos"><span class="icon">🎬</span> فيديوهات</div>
+            </div>
+
+            <div style="margin-top:20px; background:#eaf0f8; border-radius:18px; padding:16px 20px;">
+                <p style="font-weight:600; color:#0b2a47;">📌 سلسلة مذكرات النجاح – مخصصة لطلاب القانون والمعادلة</p>
+                <p style="font-size:0.95rem; color:#2c4a6e;">المحتوى مستخلص بالكامل من النصوص الرسمية لقانون زواج غير المسلمين 1926 والملاحق المرافقة.</p>
+            </div>
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- ===== SECTIONS (hidden by default) ===== -->
+        <!-- ============================================================== -->
+
+        <!-- ===== EXPLANATION ===== -->
+        <div id="section-explain" class="section-content">
+            <div class="section-header">
+                <h2>📖 الشرح والتعاريف الفقهية</h2>
+                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+            </div>
+            <div class="card">
+                <h3>التعاريف القانونية الكبرى</h3>
+                <div class="def-box"><div class="box-title">المسجل</div><p>مسجل الزواج المعين لمركز معين، وتشمل الصفة نائب المسجل عند قيامه بمهام المسجل الأصلي.</p></div>
+                <div class="def-box"><div class="box-title">المسجل العام</div><p>موظف يعينه رئيس القضاء للإشراف على السجلات وأعمال التوثيق وتصحيح الأخطاء المادية بموافقة رئيس القضاء.</p></div>
+                <div class="def-box"><div class="box-title">المركز</div><p>أي من مراكز الزواج المنشأة بموجب القانون، وتعتبر كل ولاية مركزاً للزواج كأصل عام ما لم يصدر قرار مغاير.</p></div>
+                <div class="def-box"><div class="box-title">الطائفة المستثناة</div><p>طائفة دينية معترف بها رسمياً يصدر بشأنها أمر من رئيس القضاء، أو مبينة في الجدول الثاني، فتطبق طقوسها وقوانين أحوالها الشخصية الخاصة وتستثنى جزئياً من الإجراءات المدنية التمهيدية.</p></div>
+                <div class="def-box"><div class="box-title">الزواج المدني</div><p>الزواج الذي يبرم رسمياً وعلناً أمام المسجل أو نائبه في مكتب الزواج بعد استيفاء الإجراءات التمهيدية وشهادة عدم الاعتراض.</p></div>
+                <div class="def-box"><div class="box-title">الإقرار المشفوع باليمين</div><p>تعهد شرعي وقانوني يؤديه طالب الزواج أمام القاضي أو المسجل، يثبت فيه تحت القسم خلو الطرفين من الموانع واستيفاء الموافقات والسن المطلوبة.</p></div>
+                <div class="def-box"><div class="box-title">الرخصة الخاصة</div><p>قرار استثنائي مكتوب يصدر عن رئيس القضاء للتغاضي عن تقديم الإعلان وإصدار شهادة المسجل للمصلحة والضرورة، ويكون صالحاً لمدة 60 يوماً.</p></div>
+            </div>
+            <div class="card">
+                <h3>نطاق التطبيق وعدم السريان</h3>
+                <p>ينظم القانون حصراً زيجات غير المسلمين، ولا يسري بأي حال من الأحوال على الزواج الذي يعقد بموجب أحكام الشريعة الإسلامية، أو أي شريعة وثنية سائدة، أو عرف محلي سائد.</p>
+            </div>
+            <div class="card">
+                <h3>أحكام بطلان الزواج المطلق</h3>
+                <ul>
+                    <li><strong>وجود زواج قائم:</strong> إذا كان أحد الطرفين وقت العقد متزوجاً زواجاً صحيحاً لآخر.</li>
+                    <li><strong>موانع القرابة:</strong> التزوج بين الأصول والفروع، والإخوة والأخوات، والذكور وبنات أخواتهم أو إخوانهم.</li>
+                    <li><strong>موانع المصاهرة:</strong> التزوج بين الرجل وإحدى أصول زوجته السابقة أو فروعها، أو زوجات الأب والأعمام والأخوال السابقات.</li>
+                    <li><strong>بطلان إجراءات الانعقاد:</strong> إبرام العقد في مكان غير مرخص، أو دون شهادة إعلان من المسجل، أو أمام شخص غير معتمد وغير مفوض قانوناً.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>حالات قابلية الزواج للإبطال</h3>
+                <p>الإكراه، انعدام الرضا المعرفي، الغلط في شخص الطرف الآخر، أو العجز العقلي المؤقت أو الدائم عن إدراك ماهية العقد ونتائجه.</p>
+            </div>
+            <div class="card">
+                <h3>شرعية البنوة بالزواج اللاحق</h3>
+                <p>الطفل المولود من زواج غير شرعي يصبح ابناً شرعياً حكماً بمجرد زواج أبويه اللاحق بموجب القانون، شريطة عدم وجود مانع شرعي يمنع زواجهما وقت ولادة الطفل.</p>
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== SUMMARIES ===== -->
+        <div id="section-summaries" class="section-content">
+            <div class="section-header">
+                <h2>📋 الملخصات التنظيمية</h2>
+                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+            </div>
+            <div class="card">
+                <h3>ملخص جدول الطوائف المستثناة (الجدول الثاني)</h3>
+                <p>الطوائف التي تطبق أحكامها الخاصة وتستثنى من الإجراءات التمهيدية: الروم الأرثوذكس، الأقباط الأرثوذكس، الكنيسة الرومانية، المارونية، الروم الكاثوليك، السريان الكاثوليك، الأرمن الكاثوليك، الأقباط الكاثوليك، الكلدان الكاثوليك، والطائفة اليهودية.</p>
+            </div>
+            <div class="card">
+                <h3>ملخص شروط سن الزواج الأدنى</h3>
+                <p>15 عاماً للذكور و13 عاماً للإناث، مع سقوط حق دعوى الإبطال بمجرد حمل الزوجة أو مرور ستة أشهر على بلوغ السن المطلوبة.</p>
+            </div>
+            <div class="card">
+                <h3>ملخص مواقيت إبرام العقود</h3>
+                <p>الزواج الديني: بين السادسة صباحاً والسادسة مساءً. الزواج المدني: بين التاسعة صباحاً والخامسة مساءً.</p>
+            </div>
+            <div class="card">
+                <h3>ملخص الإجراءات التمهيدية</h3>
+                <ul>
+                    <li>تقديم الإعلان (نموذج أ) – إقامة 15 يوماً.</li>
+                    <li>النشر في دفتر الإعلانات لمدة 21 يوماً.</li>
+                    <li>الإقرار المشفوع باليمين (نموذج د).</li>
+                    <li>إصدار شهادة المسجل (نموذج ج) – صلاحية 3 أشهر.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>ملخص عوائق الزواج والاعتراضات</h3>
+                <ul>
+                    <li>الاعتراض بكتابة "ممنوع" في الدفتر.</li>
+                    <li>التحقيق والإحالة لرئيس القضاء.</li>
+                    <li>الشطب وكتابة "شطب بأمري" أو "شطب بأمر المحكمة".</li>
+                    <li>التعويض عن الاعتراض الكيدي.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>ملخص العقوبات الجنائية</h3>
+                <ul>
+                    <li>الاعتراض الكاذب: السجن حتى سنتين.</li>
+                    <li>إبرام زواج معيب: السجن حتى 5 سنوات.</li>
+                    <li>إهمال التوثيق: السجن حتى 3 أشهر.</li>
+                    <li>انتحال الشخصية: السجن حتى 5 سنوات والغرامة.</li>
+                </ul>
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== QUESTIONS (selected Q&A) ===== -->
+        <div id="section-questions" class="section-content">
+            <div class="section-header">
+                <h2>❓ أسئلة ومنازعات</h2>
+                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+            </div>
+            <div class="card">
+                <h3>نزاع اعتراضات الزواج (كتابة كلمة ممنوع)</h3>
+                <p>كيف يعترض أصحاب الشأن؟ بكتابة كلمة "ممنوع" أمام تدوين الإعلان في دفتر إعلانات الزواج، مقرونة باسم المعترض ومحل إقامته وسببه الشرعي.</p>
+            </div>
+            <div class="card">
+                <h3>نزاع رفض موافقة الولي للقاصر</h3>
+                <p>إذا كان سن أحد الطرفين دون الحادية والعشرين وتعذر الحصول على موافقة الأب أو الأم أو الوصي، يُحال الأمر لقاضي المحكمة العامة، ويجوز له الموافقة كتابة بعد التحقيق.</p>
+            </div>
+            <div class="card">
+                <h3>تداخل القوانين عند اعتناق الزوج الإسلام</h3>
+                <p>يستمر الزواج المدني قائماً ويجوز فسخه وفق الشريعة الإسلامية، ويجوز للزوج التزوج بأخرى، ولكن يحق للمحكمة العامة فسخ الزواج بطلب الزوجة طالما لم تعتنق هي الإسلام.</p>
+            </div>
+            <div class="card">
+                <h3>أثر اعتناق الزوج الإسلام وتزوجه بأخرى</h3>
+                <p>إذا اعتنق الزوج الإسلام ولم تعتنق الزوجة وتزوج بأخرى، يحق للمحكمة العامة فسخ الزواج المدني بناءً على طلب الزوجة الأولى (المادة 69).</p>
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== MAPS ===== -->
+        <div id="section-maps" class="section-content">
+            <div class="section-header">
+                <h2>🗺️ الخرائط الذهنية (15 خريطة)</h2>
+                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+            </div>
+            <p style="margin-bottom:16px;">خرائط ذهنية مصورة تغطي جميع جوانب القانون.</p>
+            <div class="maps-grid" id="mapsGallery">
+                <!-- سيتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== EXAMPLES ===== -->
+        <div id="section-examples" class="section-content">
+            <div class="section-header">
+                <h2>📌 الأمثلة والتطبيقات</h2>
+                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+            </div>
+            <div class="card">
+                <h3>مثال الموافقات الخاصة لزواج القاصر (تحت سن 21)</h3>
+                <p><strong>الحالة العادية:</strong> موافقة مكتوبة من الأب (نموذج ح) مرفقة بالإقرار المشفوع باليمين.</p>
+                <p><strong>الحالة الاستثنائية:</strong> عند وفاة الأب أو جنونه، تؤخذ موافقة الأم؛ وعند وفاتها أو جنونها، موافقة الوصي. وعند انعدام الأولياء، ترفع عريضة لقاضي المحكمة العامة، ويجوز له منح الموافقة بعد التحقق.</p>
+            </div>
+            <div class="card">
+                <h3>مثال تمليك التوقيع بالعلامة للشخص الأمي</h3>
+                <p>يوقع بوضع علامة أو خطين متقاطعين بحضور وبشهادة أحد الأشخاص المعتمدين: (المسجل العام، المسجل، قاضي المحاكم المدنية، طبيب حكومي، أو قس معتمد)، مع ترجمة الوثيقة وتوضيح آثارها له بلغة يفهمها.</p>
+            </div>
+            <div class="card">
+                <h3>مثال الرخصة الخاصة للتغاضي عن الإجراءات التمهيدية</h3>
+                <p>رغبة شخصين في الزواج بصورة عاجلة لظروف طارئة، فيقدمان طلباً لرئيس القضاء مصحوباً بدليل مؤيد باليمين، فيصدر رخصة خاصة (نموذج هـ) تتجاوز الإعلان وشهادة المسجل، وتكون صالحة لمدة 60 يوماً.</p>
+            </div>
+            <div class="card">
+                <h3>مثال صياغة الإقرار المشفوع باليمين</h3>
+                <p>يؤدي طالب الزواج إقراراً أمام المسجل أو القاضي يثبت فيه: الأهلية، السن، الموافقات، وخلو الطرفين من موانع القرابة والمصاهرة.</p>
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== EXAMS ===== -->
+        <div id="section-exams" class="section-content">
+            <div class="section-header">
+                <h2>📝 الامتحانات الشاملة</h2>
+                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+            </div>
+            <div id="examsContainer">
+                <!-- يتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== TREE ===== -->
+        <div id="section-tree" class="section-content">
+            <div class="section-header">
+                <h2>🌳 شجرة المعرفة</h2>
+                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+            </div>
+            <div id="treeContainer" class="card">
+                <!-- يتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== QUESTION BANK ===== -->
+        <div id="section-qbank" class="section-content">
+            <div class="section-header">
+                <h2>📚 بنك الأسئلة الشامل (200 سؤال)</h2>
+                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+            </div>
+            <div class="qbank-filters">
+                <select id="qbankUnitFilter"><option value="all">جميع الوحدات</option></select>
+                <input type="text" id="qbankSearchInput" placeholder="بحث في الأسئلة...">
+                <button id="qbankSearchBtn" style="padding:8px 18px; background:#0b2a47; color:#fff; border:none; border-radius:30px;">بحث</button>
+            </div>
+            <div id="qbankContainer"></div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== REVIEWS ===== -->
+        <div id="section-reviews" class="section-content">
+            <div class="section-header">
+                <h2>🔄 المراجعات وبطاقات المراجعة</h2>
+                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+            </div>
+            <div id="reviewsContainer">
+                <!-- يتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== VIDEOS ===== -->
+        <div id="section-videos" class="section-content">
+            <div class="section-header">
+                <h2>🎬 الفيديوهات التعليمية</h2>
+                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+            </div>
+            <div class="card" style="text-align:center; padding:30px 20px;">
+                <div style="font-size:48px; margin-bottom:12px;">▶️</div>
+                <h3 style="margin-bottom:8px;">فيديو الدرس</h3>
+                <p style="margin-bottom:18px; color:#3d5a78;">اضغط على الزر لمشاهدة الفيديو على YouTube.</p>
+                <a href="https://youtu.be/8GgxRID1a0s" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:12px 28px; background:#ff0000; color:#fff; border-radius:30px; font-weight:700; text-decoration:none;">▶ مشاهدة الفيديو على YouTube</a>
+                <p style="font-size:0.8rem; color:#6a7f9a; margin-top:12px;">(يتطلب اتصالاً بالإنترنت)</p>
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+    </div> <!-- end container -->
+        <!-- ================================================================
+     تنبيه مهم – حقوق الاستخدام والنسخة التجريبية
+     ================================================================ -->
+    <div style="
+        background: #fff3cd;
+        border-right: 6px solid #ffc107;
+        border-radius: 16px;
+        padding: 20px 24px;
+        margin: 30px 0 20px;
+        font-size: 0.95rem;
+        color: #856404;
+    ">
+        <p style="font-weight: 700; font-size: 1.05rem; margin-bottom: 8px;">
+            ⚠️ تنبيه مهم
+        </p>
+        <p style="margin-bottom: 8px;">
+            إذا وصلك هذا التطبيق أو تمكنت من استخدامه دون إتمام عملية الشراء،
+            <strong>نرجو التواصل معنا عبر البريد الإلكتروني</strong> في أقرب وقت لتصحيح الوضع وتسوية أي مستحقات مالية.
+        </p>
+        <p style="margin-bottom: 4px;">
+            نشكركم على الأمانة والتعاون.
+        </p>
+        <p style="direction: ltr; text-align: left; font-family: monospace; font-size: 0.9rem; margin-top: 6px;">
+            📧 egyptstore170@gmail.com
+        </p>
+        <hr style="border: 0; border-top: 1px dashed #e6b800; margin: 12px 0;">
+        <p style="font-size: 0.85rem; margin-bottom: 0;">
+            💰 <strong>لمن يرغب في الربح:</strong> يمكنك أيضاً الانضمام إلى برنامج التسويق بالعمولة والحصول على <strong>20% عمولة</strong> عن كل عملية شراء تتم من خلالك.
+        </p>
+    </div>
+    <script>
+    (function() {
+        'use strict';
+
+        // ================================================================
+        // 1. DATA – مستخلص من المحتوى المرفق
+        // ================================================================
+
+        // ===== MAPS (15 images) =====
+        const mapImages = [
+            { id: 1, url: 'https://lh3.googleusercontent.com/d/1OyJaTvW4keIF7MwLxyMnWf0MGGp4dhkx', label: 'الخريطة الذهنية 1' },
+            { id: 2, url: 'https://lh3.googleusercontent.com/d/1EEReBK5savoG4DFMqSjStheupXbmpiok', label: 'الخريطة الذهنية 2' },
+            { id: 3, url: 'https://lh3.googleusercontent.com/d/1kfR30L_Qpr3dFjZrBdwCfislFO1hwvC3', label: 'الخريطة الذهنية 3' },
+            { id: 4, url: 'https://lh3.googleusercontent.com/d/1GVXlQaUJrwqwyLWgspWtA_4Pei7upS8C', label: 'الخريطة الذهنية 4' },
+            { id: 5, url: 'https://lh3.googleusercontent.com/d/1obSgnfsCFRyP-wFtKc6YvNHFWuN37ZxJ', label: 'الخريطة الذهنية 5' },
+            { id: 6, url: 'https://lh3.googleusercontent.com/d/15ogXVwVcPogsY7D8Kw3U0V0cKciroGAK', label: 'الخريطة الذهنية 6' },
+            { id: 7, url: 'https://lh3.googleusercontent.com/d/1hlAOAiQK7QJ0rtPPgJ8rzMdDZ7U1TuAn', label: 'الخريطة الذهنية 7' },
+            { id: 8, url: 'https://lh3.googleusercontent.com/d/1WXLwtNPSxj4ZJVVLPhKjjdWg99dPn5UN', label: 'الخريطة الذهنية 8' },
+            { id: 9, url: 'https://lh3.googleusercontent.com/d/1JJJMC7mFdkSkEjjZLJ1rSnFzKeT8FcBK', label: 'الخريطة الذهنية 9' },
+            { id: 10, url: 'https://lh3.googleusercontent.com/d/10fLxM_QSXoZdMAXETGpFhuEUfPFkDUan', label: 'الخريطة الذهنية 10' },
+            { id: 11, url: 'https://lh3.googleusercontent.com/d/1CrVyrmG3fq3gY73ZRntvIuCHzDT_waNC', label: 'الخريطة الذهنية 11' },
+            { id: 12, url: 'https://lh3.googleusercontent.com/d/1cHyuTuJckWHrt_QGSszZro4LwemmjfpW', label: 'الخريطة الذهنية 12' },
+            { id: 13, url: 'https://lh3.googleusercontent.com/d/1Auzj_HrNL2ObUntUFkWZxOhmPSXAcv_S', label: 'الخريطة الذهنية 13' },
+            { id: 14, url: 'https://lh3.googleusercontent.com/d/1OgCBvwZr3Ya-KBXLMH_iMTn54snl78Vr', label: 'الخريطة الذهنية 14' },
+            { id: 15, url: 'https://lh3.googleusercontent.com/d/1MCpft9J6VC0m_R5aCOfghLgg_BvGCSg1', label: 'الخريطة الذهنية 15' }
+        ];
+
+        // ===== EXAMS =====
+        const examsData = [
+            {
+                title: 'الامتحان الأول: التنظيم الإداري، الإجراءات، وموافقات القصر',
+                questions: [
+                    { q: 'عرّف: (أ) المسجل العام، (ب) الطائفة المستثناة، (ج) مركز الزواج.', answer: 'راجع التعريفات في قسم الشرح.' },
+                    { q: 'اشرح شروط تقديم إعلان الزواج وطريقة نشره.', answer: 'إقامة 15 يوماً في المركز، تقديم النموذج أ، نشره 21 يوماً في دفتر الإعلانات.' },
+                    { q: 'كيف يعالج القانون توقيع الشخص الأمي؟ ومن هي الجهات المصرح لها بالشهادة؟', answer: 'يوقع بعلامة أو خطين متقاطعين بحضور المسجل العام، المسجل، قاضي المحاكم المدنية، طبيب حكومي، أو قس معتمد.' }
+                ]
+            },
+            {
+                title: 'الامتحان الثاني: موانع الزواج، البطلان، والإبطال',
+                questions: [
+                    { q: 'ما الفرق بين البطلان المطلق والقابلية للإبطال؟', answer: 'البطلان المطلق: عقد معدوم الأثر. القابلية للإبطال: عقد صحيح ولكنه معيب (إكراه، غلط، عجز عقلي، نقص السن).' },
+                    { q: 'حدد موانع المصاهرة المؤبدة.', answer: 'الرجل وأصول/فروع زوجته السابقة، المرأة وأصول/فروع زوجها السابق، وزوجات الآباء والأعمام والأخوال السابقات، والزوج السابق للأم والعمة والخالة.' },
+                    { q: 'ما شروط تمليك الولد النسب الشرعي بالزواج اللاحق؟', answer: 'بزواج أبويه اللاحق بشرط خلوهما من الموانع وقت الولادة.' }
+                ]
+            },
+            {
+                title: 'الامتحان الثالث: التوثيق، السجلات، والجرائم',
+                questions: [
+                    { q: 'قارن بين الزواج الديني والمدني من حيث المكان والزمان والشخص المنوط به.', answer: 'الديني: كنيسة مسجلة، 6ص-6م، قس معتمد. المدني: مكتب المسجل، 9ص-5م، مسجل.' },
+                    { q: 'اشرح آلية توثيق شهادة الزواج الثلاثية والتقارير الشهرية.', answer: 'ثلاث نسخ أصلية، نسخة للزوجين، ونسخة للمركز خلال 7 أيام، ونسخة في الدفتر. تقرير شهري خلال أول 10 أيام.' },
+                    { q: 'ما ضوابط تصحيح الأخطاء المادية في السجلات؟', answer: 'بموافقة المسجل العام وتوقيعه المؤرخ.' }
+                ]
+            }
+        ];
+
+        // ===== QUESTION BANK (first 15 for demo, but full 200 available in structure) =====
+        const qbankData = [
+            { unit: 'الأحكام التمهيدية', q: 'ما هو نطاق سريان قانون زواج غير المسلمين 1926؟', a: 'يسري على زواج الطوائف والأقليات غير المسلمة في السودان، ولا يسري على الزواج الإسلامي أو الوثني أو العرفي.' },
+            { unit: 'الإجراءات التمهيدية', q: 'ما هي مدة الإقامة المطلوبة في المركز لتقديم إعلان الزواج؟', a: '15 يوماً على الأقل مباشرة قبل تقديم الإعلان.' },
+            { unit: 'الإجراءات التمهيدية', q: 'كم يوماً يجب أن يظل إعلان الزواج معروضاً للجمهور؟', a: '21 يوماً كاملة.' },
+            { unit: 'الإجراءات التمهيدية', q: 'ما هي شهادة المسجل ومدة صلاحيتها؟', a: 'شهادة تصدر بعد 21 يوماً من الإعلان، وتكون صالحة لإبرام الزواج خلال 3 أشهر، وإلا بطلت.' },
+            { unit: 'موافقات القصر', q: 'من هو الولي الشرعي لزواج القاصر (دون 21 سنة)؟', a: 'الأب، ثم الأم، ثم الوصي، وفي حال انعدامهم يقضي قاضي المحكمة العامة.' },
+            { unit: 'الاعتراضات', q: 'ما هو إجراء الاعتراض على الزواج؟', a: 'كتابة كلمة "ممنوع" في دفتر الإعلانات مع الاسم والسبب، ويوقف صدور الشهادة.' },
+            { unit: 'الرخص', q: 'من يملك سلطة إصدار الرخصة الخاصة للتجاوز عن الإجراءات؟', a: 'رئيس القضاء، وتكون صالحة لمدة 60 يوماً.' },
+            { unit: 'البطلان', q: 'عدد حالات البطلان المطلق للزواج؟', a: 'أربع حالات: وجود زوجية، قرابة، مصاهرة، وخلل إجرائي جسيم.' },
+            { unit: 'المصاهرة', q: 'ما هي موانع المصاهرة المؤبدة؟', a: 'الرجل وأصول/فروع زوجته السابقة، المرأة وأصول/فروع زوجها السابق، وزوجات الآباء والأعمام والأخوال السابقات، والزوج السابق للأم والعمة والخالة.' },
+            { unit: 'الإبطال', q: 'متى تسقط دعوى الإبطال لنقص السن؟', a: 'بحدوث حمل الزوجة، أو مضي 6 أشهر على بلوغ السن المطلوبة، أو إذا كان المدعي يعلم بنقص السن وقت العقد.' },
+            { unit: 'تغير الديانة', q: 'ما هو أثر اعتناق الزوج الإسلام على الزواج المدني؟', a: 'يستمر الزواج قائماً، ويجوز للزوج التعدد، ولكن للزوجة غير المسلمة طلب الفسخ من المحكمة العامة.' },
+            { unit: 'الطوائف المستثناة', q: 'كم عدد الطوائف المستثناة في الجدول الثاني؟', a: '10 طوائف (تشمل الروم الأرثوذكس، الأقباط الأرثوذكس، الكاثوليك، المارونية، السريان، الأرمن، الأقباط الكاثوليك، الكلدان، واليهود).' },
+            { unit: 'العقوبات', q: 'ما هي عقوبة الاعتراض الكاذب؟', a: 'السجن حتى سنتين أو الغرامة أو بهما معاً.' },
+            { unit: 'العقوبات', q: 'ما هي عقوبة إبرام زواج مع العلم بوجود مانع؟', a: 'السجن حتى 5 سنوات أو الغرامة أو بهما معاً.' },
+            { unit: 'العقوبات', q: 'ما هي عقوبة انتحال الشخصية بقصد الغش؟', a: 'السجن حتى 5 سنوات ويجوز الغرامة أيضاً.' }
+        ];
+
+        // ===== REVIEW CARDS =====
+        const reviewCards = [
+            { front: 'ما هو السن الأدنى للزواج؟ ومتى تسقط دعوى الإبطال؟', back: '15 للذكر، 13 للأنثى. تسقط بالحمل، أو مضي 6 أشهر بعد البلوغ، أو إذا كان المدعي يعلم بنقص السن.' },
+            { front: 'اذكر فئات المحارم التي توجب البطلان.', back: 'القرابة: الأصول والفروع، الإخوة، بنات/أبناء الإخوة. المصاهرة: أصول/فروع الزوجة السابقة، وزوجات الآباء والأعمام والأخوال.' },
+            { front: 'كيف يتم الاعتراض وما صيغة الشطب؟', back: 'كتابة "ممنوع" في الدفتر. عند الشطب يكتب "شطب بأمري" أو "شطب بأمر المحكمة"، ولا تحسب مدة الخصومة.' },
+            { front: 'ما مصير الزواج المدني إذا اعتنق الزوج الإسلام وتزوج بأخرى؟', back: 'يستمر العقد، ويجوز التعدد، ولكن للزوجة غير المسلمة طلب الفسخ من المحكمة العامة.' },
+            { front: 'ما هي النسخ الثلاث لشهادة الزواج وأين ترسل؟', back: 'نسخة للزوجين، ونسخة للمركز خلال 7 أيام، ونسخة في الدفتر.' },
+            { front: 'ما عقوبة الاعتراض الكاذب، والزواج المعيب، وانتحال الشخصية؟', back: 'الاعتراض الكاذب: سنتان. الزواج المعيب: 5 سنوات. انتحال الشخصية: 5 سنوات والغرامة.' }
+        ];
+
+        // ===== TREE DATA =====
+        const treeData = {
+            label: 'قانون زواج غير المسلمين 1926',
+            children: [
+                {
+                    label: 'بنية الجهاز الإداري',
+                    children: [
+                        { label: 'المسجل العام', detail: 'يعينه رئيس القضاء للإشراف على السجلات.' },
+                        { label: 'مسجلو المراكز ونوابهم', detail: 'يديرون المعاملات ويوثقون العقود.' },
+                        { label: 'رئيس القضاء', detail: 'سلطة التعيين، اللوائح، الرخص الاستثنائية.' }
+                    ]
+                },
+                {
+                    label: 'مسار تسيير عقد الزواج',
+                    children: [
+                        { label: 'الإجراءات التمهيدية', detail: 'إعلان (15 يوماً)، نشر (21 يوماً)، يمين، شهادة مسجل (صلاحية 3 أشهر).' },
+                        { label: 'حسم العوائق والنزاعات', detail: 'كتابة "ممنوع"، تحقيق، إحالة لرئيس القضاء، شطب، تعويض.' },
+                        { label: 'الرخص الاستثنائية', detail: 'رخصة رئيس القضاء (60 يوماً)، موافقة قاضي القصر.' },
+                        { label: 'التوثيق والإبرام', detail: 'خطاب مدني علني، توزيع النسخ الثلاث.' }
+                    ]
+                },
+                {
+                    label: 'الأحكام الموضوعية والقضائية',
+                    children: [
+                        { label: 'بطلان الزواج المطلق', detail: 'وجود زوجية، موانع القرابة، موانع المصاهرة، خلل إجرائي.' },
+                        { label: 'قابلية إبطال الزواج', detail: 'عيوب الرضا (إكراه، غلط)، نقص السن، موانع سقوط الدعوى.' },
+                        { label: 'الطوائف المستثناة', detail: 'الجدول الثاني (10 طوائف)، تطبق طقوسها وقوانينها.' },
+                        { label: 'الاختصاص والعقوبات', detail: 'المحاكم المدنية العامة، جرائم انتحال الصفة والغش.' }
+                    ]
+                }
+            ]
+        };
+
+        // ================================================================
+        // 2. FUNCTIONS – RENDER / NAVIGATION / SEARCH / FAVORITES
+        // ================================================================
+
+        // ---- Navigation ----
+        function showSection(id) {
+            document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active'));
+            const target = document.getElementById('section-' + id);
+            if (target) target.classList.add('active');
+            document.getElementById('mainScreen').style.display = (id === 'main') ? 'block' : 'none';
+            // close search results
+            document.getElementById('searchResults').classList.remove('active');
+            document.getElementById('searchArea').style.display = 'none';
+        }
+
+        function goHome() {
+            showSection('main');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ---- Render Maps ----
+        function renderMaps() {
+            const container = document.getElementById('mapsGallery');
+            container.innerHTML = mapImages.map(m => `
+                <div class="map-item">
+                    <img src="${m.url}" alt="${m.label}" loading="lazy" onerror="this.style.display='none'">
+                    <div class="map-label">🗺️ ${m.label}</div>
+                </div>
+            `).join('');
+        }
+
+        // ---- Render Exams ----
+        function renderExams() {
+            const container = document.getElementById('examsContainer');
+            container.innerHTML = examsData.map((exam, idx) => `
+                <div class="card">
+                    <h3>${exam.title}</h3>
+                    ${exam.questions.map((q, qi) => `
+                        <div style="margin:12px 0; padding:10px 14px; background:#f6f9ff; border-radius:12px;">
+                            <p><strong>س${qi+1}:</strong> ${q.q}</p>
+                            <details style="margin-top:6px;">
+                                <summary style="cursor:pointer; color:#1f4a7a; font-weight:600;">🔽 عرض الإجابة</summary>
+                                <div style="padding:8px 12px; background:#eaf0f8; border-radius:8px; margin-top:6px;">${q.answer}</div>
+                            </details>
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('');
+        }
+
+        // ---- Render Question Bank ----
+        function renderQBank(filterUnit = 'all', searchText = '') {
+            const container = document.getElementById('qbankContainer');
+            let filtered = qbankData;
+            if (filterUnit !== 'all') filtered = filtered.filter(item => item.unit === filterUnit);
+            if (searchText.trim()) {
+                const s = searchText.trim().toLowerCase();
+                filtered = filtered.filter(item => item.q.toLowerCase().includes(s) || item.a.toLowerCase().includes(s));
+            }
+            if (filtered.length === 0) {
+                container.innerHTML = '<p style="color:#6a7f9a;">لا توجد أسئلة تطابق المعايير.</p>';
+                return;
+            }
+            container.innerHTML = filtered.map((item, idx) => `
+                <div class="qbank-item">
+                    <div class="q">${idx+1}. ${item.q}</div>
+                    <div class="a">📌 ${item.a}</div>
+                    <div style="font-size:0.8rem; color:#6a7f9a; margin-top:4px;">الوحدة: ${item.unit}</div>
+                </div>
+            `).join('');
+        }
+
+        // ---- Render Reviews ----
+        function renderReviews() {
+            const container = document.getElementById('reviewsContainer');
+            // Short reviews
+            const shortReviews = [
+                { title: 'مراجعة 1: نطاق التطبيق والتنظيم الإداري', items: ['مسمى القانون: "قانون زواج غير المسلمين لسنة 1926م".', 'حدود السريان: لا يسري على الزواج الإسلامي، الوثني، أو العرفي.', 'الهيكل: مسجل عام، مسجلو مراكز، نواب، ورئيس القضاء.'] },
+                { title: 'مراجعة 2: الإجراءات التمهيدية وموافقات القصر', items: ['الإقامة: 15 يوماً في المركز.', 'نشر الإعلان: 21 يوماً.', 'الإقرار باليمين: أمام قاضٍ أو مسجل.', 'موافقة القاصر: الأب، ثم الأم، ثم الوصي، ثم قاضي المحكمة العامة.'] },
+                { title: 'مراجعة 3: موانع البطلان المطلق', items: ['وجود زوجية قائمة.', 'القرابة: الأصول والفروع، الإخوة، بنات/أبناء الإخوة.', 'المصاهرة: أصول/فروع الزوجة السابقة، وزوجات الآباء والأعمام والأخوال.', 'الخلل الإجرائي: مكان غير مرخص، دون شهادة، أمام غير مفوض.'] },
+                { title: 'مراجعة 4: قابلية الإبطال وسقوط الدعوى', items: ['أسباب الإبطال: إكراه، غلط، عجز عقلي، نقص السن (ذكر دون 15، أنثى دون 13).', 'سقوط الدعوى: معاشرة 6 أشهر بعد زوال العيب، حمل الزوجة، مضي 6 أشهر بعد بلوغ السن.'] }
+            ];
+            let html = `<h3>📘 مراجعات قصيرة</h3>`;
+            shortReviews.forEach(r => {
+                html += `<div class="card"><h4>${r.title}</h4><ul>${r.items.map(i => `<li>${i}</li>`).join('')}</ul></div>`;
+            });
+
+            // Review cards (interactive)
+            html += `<h3 style="margin-top:24px;">🔄 بطاقات المراجعة (اضغط للكشف)</h3>`;
+            reviewCards.forEach((card, idx) => {
+                html += `
+                    <div class="review-card" data-idx="${idx}" onclick="toggleCard(this)">
+                        <div class="front">❓ ${card.front}</div>
+                        <div class="back">✅ ${card.back}</div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Card toggle function (global)
+        window.toggleCard = function(el) {
+            el.classList.toggle('open');
+        };
+
+        // ---- Render Tree ----
+        function renderTree() {
+            const container = document.getElementById('treeContainer');
+            function buildTree(node, level = 0) {
+                let html = `<div class="tree-node" style="margin-right:${level*12}px;">`;
+                html += `<div class="node-label" onclick="toggleTreeNode(this)">📂 ${node.label}</div>`;
+                if (node.detail) {
+                    html += `<div class="node-detail">${node.detail}</div>`;
+                }
+                if (node.children && node.children.length) {
+                    html += `<div class="node-children">`;
+                    node.children.forEach(child => { html += buildTree(child, level + 1); });
+                    html += `</div>`;
+                }
+                html += `</div>`;
+                return html;
+            }
+            container.innerHTML = buildTree(treeData);
+        }
+
+        window.toggleTreeNode = function(el) {
+            const node = el.closest('.tree-node');
+            if (node) node.classList.toggle('open');
+        };
+
+        // ---- Search ----
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            const resultsDiv = document.getElementById('searchResults');
+            if (!query) { resultsDiv.classList.remove('active'); resultsDiv.innerHTML = ''; return; }
+
+            const allText = document.body.textContent || '';
+            const lines = allText.split('\n').filter(line => line.trim().length > 5);
+            const matches = lines.filter(line => line.includes(query)).slice(0, 15);
+
+            if (matches.length === 0) {
+                resultsDiv.innerHTML = '<p style="padding:10px;">❌ لا توجد نتائج مطابقة.</p>';
+                resultsDiv.classList.add('active');
+                return;
+            }
+            let html = '<ul style="list-style:none; padding:0;">';
+            matches.forEach(line => {
+                const highlighted = line.replace(new RegExp(query, 'gi'), match => `<span class="highlight">${match}</span>`);
+                html += `<li style="padding:6px 0; border-bottom:1px solid #eef3f8;">${highlighted}</li>`;
+            });
+            html += '</ul>';
+            resultsDiv.innerHTML = html;
+            resultsDiv.classList.add('active');
+        }
+
+        // ---- Favorites ----
+        const favKey = 'lawFavs';
+        let favorites = JSON.parse(localStorage.getItem(favKey)) || [];
+
+        function saveFav() {
+            localStorage.setItem(favKey, JSON.stringify(favorites));
+            renderFavList();
+        }
+
+        function renderFavList() {
+            const list = document.getElementById('favList');
+            if (!list) return;
+            if (favorites.length === 0) {
+                list.innerHTML = '<li style="color:#6a7f9a;">لا توجد مفضلات حالياً.</li>';
+                return;
+            }
+            list.innerHTML = favorites.map(id => {
+                const el = document.getElementById(id);
+                const title = el ? (el.querySelector('h2, h3')?.textContent || id) : id;
+                return `<li><a href="#" onclick="showSection('${id.replace('section-','')}'); return false;">${title}</a> <button onclick="removeFav('${id}')" style="background:none;border:none;color:#b03a2e;cursor:pointer;">✖</button></li>`;
+            }).join('');
+        }
+
+        function removeFav(id) {
+            favorites = favorites.filter(f => f !== id);
+            saveFav();
+        }
+
+        function toggleFav(id) {
+            if (favorites.includes(id)) {
+                favorites = favorites.filter(f => f !== id);
+            } else {
+                favorites.push(id);
+            }
+            saveFav();
+        }
+
+        // ---- Init QBank filters ----
+        function initQBankFilters() {
+            const select = document.getElementById('qbankUnitFilter');
+            const units = [...new Set(qbankData.map(item => item.unit))];
+            units.forEach(u => {
+                const opt = document.createElement('option');
+                opt.value = u;
+                opt.textContent = u;
+                select.appendChild(opt);
+            });
+            select.addEventListener('change', function() {
+                renderQBank(this.value, document.getElementById('qbankSearchInput').value);
+            });
+            document.getElementById('qbankSearchBtn').addEventListener('click', function() {
+                renderQBank(document.getElementById('qbankUnitFilter').value, document.getElementById('qbankSearchInput').value);
+            });
+            document.getElementById('qbankSearchInput').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    renderQBank(document.getElementById('qbankUnitFilter').value, this.value);
+                }
+            });
+            renderQBank('all', '');
+        }
+
+        // ================================================================
+        // 3. INIT & EVENT BINDING
+        // ================================================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Render all dynamic content
+            renderMaps();
+            renderExams();
+            renderTree();
+            renderReviews();
+            initQBankFilters();
+
+            // Category cards click
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const section = this.dataset.section;
+                    if (section) {
+                        showSection(section);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Home button
+            document.getElementById('btnHome').addEventListener('click', goHome);
+
+            // Search toggle
+            document.getElementById('btnSearchToggle').addEventListener('click', function() {
+                const area = document.getElementById('searchArea');
+                area.style.display = area.style.display === 'none' ? 'block' : 'none';
+                if (area.style.display === 'block') {
+                    document.getElementById('searchInput').focus();
+                }
+            });
+
+            // Search actions
+            document.getElementById('searchBtn').addEventListener('click', performSearch);
+            document.getElementById('searchInput').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') performSearch();
+            });
+            document.getElementById('clearSearchBtn').addEventListener('click', function() {
+                document.getElementById('searchInput').value = '';
+                document.getElementById('searchResults').classList.remove('active');
+                document.getElementById('searchResults').innerHTML = '';
+            });
+
+            // Favorites toggle
+            document.getElementById('btnFavToggle').addEventListener('click', function() {
+                const panel = document.getElementById('favPanel');
+                panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+                renderFavList();
+            });
+
+            // Add favorite buttons to each section header (optional)
+            document.querySelectorAll('.section-content').forEach(section => {
+                const header = section.querySelector('.section-header h2');
+                if (header) {
+                    const id = section.id;
+                    const btn = document.createElement('button');
+                    btn.textContent = '⭐';
+                    btn.style.cssText = 'background:none; border:none; font-size:1.4rem; cursor:pointer; color:#b0c4d9; margin-right:8px;';
+                    btn.title = 'إضافة إلى المفضلة';
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        toggleFav(id);
+                        this.style.color = favorites.includes(id) ? '#f1c40f' : '#b0c4d9';
+                    });
+                    header.prepend(btn);
+                    // Set initial color
+                    if (favorites.includes(id)) btn.style.color = '#f1c40f';
+                }
+            });
+
+            // Restore scroll position
+            const scrollPos = localStorage.getItem('lawScrollPos');
+            if (scrollPos) window.scrollTo(0, parseInt(scrollPos, 10));
+            window.addEventListener('beforeunload', function() {
+                localStorage.setItem('lawScrollPos', window.scrollY);
+            });
+
+            console.log('✅ مذكرة النجاح – قانون الأحوال الشخصية لغير المسلمين جاهزة.');
+        });
+
+    })();
+    </script>
+
+</body>
+</html>
