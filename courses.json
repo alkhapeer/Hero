@@ -2,8 +2,8 @@
   "courses": [
     {
       "id": 1,
-      "title": "مادة الإحصاء",
-      "description": "دورة تعليمية شاملة لمادة الإحصاء للثانوية العامة.",
+      "title": "مادة الأحوال الشخصية لغير المسلمين",
+      "description": "دورة تعليمية شاملة لمادة الأحوال الشخصية لغير المسلمين.",
       "icon": "📊",
       "url": "/courses/non_muslims_law/protected_non_muslims_law (1).html"
     },
