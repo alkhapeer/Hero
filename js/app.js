@@ -29,10 +29,9 @@ function settings() {
     app.innerHTML = `<section class="section"><h1>الإعدادات</h1><div class="card"><b>Hero Academy</b><p class="muted">نسخة Static — بدون نظام دفع أو تسجيل أو تفعيل داخل الواجهة العامة.</p></div></section>`;
 }
 
-/* ------------------ القسم الجديد: الـ Loader ------------------ */
+/* ------------------ الـ Loader للدورات ------------------ */
 let coursesData = [];
 
-// عرض قائمة الدورات
 function renderHomePage() {
     let html = `<section class="section"><h1 style="margin-bottom:20px;">📚 جميع الدورات</h1><div class="grid">`;
     if (!coursesData || coursesData.length === 0) {
@@ -53,30 +52,21 @@ function renderHomePage() {
     app.innerHTML = html;
 }
 
-// دالة Loader (مع طباعة الرابط للتصحيح)
 function loadPageIntoApp(url) {
     async function load() {
         try {
-            // تنظيف الآثار السابقة
             document.querySelectorAll('style[data-loader-src]').forEach(el => el.remove());
             document.querySelectorAll('link[data-loader-src]').forEach(el => el.remove());
 
-            console.log("🚀 محاولة تحميل الدورة من الرابط:", url); // 🔴 للمساعدة في التصحيح
             const response = await fetch(url);
-            if (!response.ok) {
-                console.error("❌ فشل التحميل، حالة HTTP:", response.status, response.statusText);
-                throw new Error(`فشل تحميل الدورة (HTTP ${response.status})`);
-            }
-            
+            if (!response.ok) throw new Error(`فشل تحميل الدورة (HTTP ${response.status})`);
             const htmlText = await response.text();
 
             const parser = new DOMParser();
             const doc = parser.parseFromString(htmlText, 'text/html');
 
-            // حقن المحتوى
             app.innerHTML = doc.body.innerHTML;
 
-            // حقن CSS
             const styles = doc.head.querySelectorAll('style, link[rel="stylesheet"]');
             styles.forEach(el => {
                 const newEl = document.createElement(el.tagName);
@@ -86,7 +76,6 @@ function loadPageIntoApp(url) {
                 document.head.appendChild(newEl);
             });
 
-            // حقن وتنفيذ JavaScript
             const scripts = doc.body.querySelectorAll('script');
             scripts.forEach(oldScript => {
                 const newScript = document.createElement('script');
@@ -94,33 +83,24 @@ function loadPageIntoApp(url) {
                 if (oldScript.textContent) newScript.textContent = oldScript.textContent;
                 document.body.appendChild(newScript);
             });
-
             if (window.onCourseLoaded) window.onCourseLoaded();
         } catch (error) {
-            console.error("❌ خطأ في دالة Loader:", error);
-            app.innerHTML = `<div class="empty" style="padding:40px;">
-                ❌ حدث خطأ أثناء تحميل الدورة:<br><br>
-                <code style="background:#f0f0f0;padding:5px;border-radius:4px;">${error.message}</code><br><br>
-                <small>تحقق من وحدة التحكم (F12) لمزيد من التفاصيل.</small>
-            </div>`;
+            app.innerHTML = `<div class="empty">❌ خطأ: ${error.message}</div>`;
         }
     }
     load();
 }
 
-// دالة التنقل
 window.navigateToCourse = function(id) {
     const course = coursesData.find(c => c.id == id);
-    if (course) {
-        window.location.hash = `course/${id}`;
-    }
+    if (course) window.location.hash = `course/${id}`;
 };
 
 /* ------------------ التهيئة والتوجيه ------------------ */
 async function initApp() {
     try {
         const response = await fetch('/courses.json', { cache: 'no-store' });
-        if (!response.ok) throw new Error(`لم يتم العثور على courses.json (HTTP ${response.status})`);
+        if (!response.ok) throw new Error(`courses.json غير موجود (HTTP ${response.status})`);
         const json = await response.json();
         coursesData = json.courses || [];
         route(); 
@@ -131,17 +111,13 @@ async function initApp() {
 
 function route() {
     const h = location.hash.slice(1) || 'home';
-    
     if (h === 'home') home();
     else if (h === 'apps') apps();
     else if (h.startsWith('course/')) {
         const id = parseInt(h.split('/')[1]);
         const course = coursesData.find(c => c.id === id);
-        if (course) {
-            loadPageIntoApp(course.url);
-        } else {
-            app.innerHTML = `<div class="empty">⚠️ الدورة غير موجودة في قاعدة البيانات.</div>`;
-        }
+        if (course) loadPageIntoApp(course.url);
+        else app.innerHTML = `<div class="empty">⚠️ الدورة غير موجودة</div>`;
     }
     else if (h === 'active') active();
     else if (h === 'settings') settings();
@@ -152,22 +128,27 @@ function route() {
 window.addEventListener('hashchange', route);
 document.addEventListener('DOMContentLoaded', initApp);
 
-// التثبيت والسيرفر ووركر
+/* ------------------ معالجة التثبيت (PWA) بدون أخطاء ------------------ */
+// التعديل هنا: إذا لم نجد زرًا مخصصًا، نسمح للشريط بالظهور تلقائياً.
 window.addEventListener('beforeinstallprompt', e => {
-    e.preventDefault();
     deferredInstall = e;
+    // البحث عن زر التثبيت المخصص (إن وجد)
     const btnInstall = document.getElementById('installBtn');
-    if(btnInstall) btnInstall.classList.remove('hidden');
+    if (btnInstall) {
+        e.preventDefault(); // إذا كان الزر موجودًا، نمنع الشريط التلقائي ونستخدم الزر المخصص
+        btnInstall.classList.remove('hidden');
+        btnInstall.onclick = async () => {
+            if (deferredInstall) {
+                deferredInstall.prompt();
+                await deferredInstall.userChoice;
+                deferredInstall = null;
+            }
+        };
+    }
+    // إذا لم يكن الزر موجودًا، لا نستخدم preventDefault()، وسيظهر شريط التثبيت التلقائي، وبذلك يختفي الخطأ!
 });
-if (document.getElementById('installBtn')) {
-    document.getElementById('installBtn').onclick = async () => {
-        if (deferredInstall) {
-            deferredInstall.prompt();
-            await deferredInstall.userChoice;
-            deferredInstall = null;
-        }
-    };
-}
+
+// تسجيل السيرفر ووركر
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(console.error));
 }
