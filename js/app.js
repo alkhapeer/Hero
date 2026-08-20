@@ -32,7 +32,7 @@ function apps() { app.innerHTML = `<section class="section"><h1>التطبيقا
 function active() { app.innerHTML = `<section class="section"><h1>دوراتي</h1><div class="notice">يتم الحصول على الدورات المملوكة وروابطها من نظام الأكاديمية.</div><div class="actions">${btn(`${ACADEMY}home.php`,'فتح دوراتي في الأكاديمية ↗')}</div></section>`; }
 function settings() { app.innerHTML = `<section class="section"><h1>الإعدادات</h1><div class="card"><b>Hero Academy</b><p class="muted">نسخة Static — بدون نظام دفع أو تسجيل أو تفعيل داخل الواجهة العامة.</p></div></section>`; }
 
-/* ------------------ النظام الجديد: عرض الدورات كبطاقات ------------------ */
+/* ------------------ عرض الدورات كبطاقات (تفتح في تبويب جديد) ------------------ */
 var coursesData = [];
 
 function renderHomePage() {
@@ -42,8 +42,9 @@ function renderHomePage() {
     } else {
         for (var i = 0; i < coursesData.length; i++) {
             var course = coursesData[i];
+            // التعديل هنا: فتح الرابط مباشرة في تبويب جديد (_blank)
             html += `
-                <a href="#course/${course.id}" class="card course" style="cursor:pointer; display:block; text-decoration:none;">
+                <a href="${esc(course.url)}" target="_blank" class="card course" style="cursor:pointer; display:block; text-decoration:none;">
                     <span class="icon">${esc(course.icon)}</span>
                     <h3>${esc(course.title)}</h3>
                     <p style="color:#687386;line-height:1.6;font-size:14px;">${esc(course.description)}</p>
@@ -55,87 +56,6 @@ function renderHomePage() {
     html += `</div></section>`;
     app.innerHTML = html;
 }
-
-function loadPageIntoApp(url) {
-    var fullUrl = new URL(url, window.location.href).href;
-    console.log("🔍 جاري تحميل الدورة من:", fullUrl);
-
-    function load() {
-        fetch(fullUrl).then(function(response) {
-            if (!response.ok) {
-                throw new Error('خطأ HTTP ' + response.status);
-            }
-            return response.text();
-        }).then(function(htmlText) {
-            var parser = new DOMParser();
-            var doc = parser.parseFromString(htmlText, 'text/html');
-
-            app.innerHTML = doc.body.innerHTML;
-
-            // دمج CSS
-            var styles = doc.head.querySelectorAll('style, link[rel="stylesheet"]');
-            for (var i = 0; i < styles.length; i++) {
-                var el = styles[i];
-                var newEl = document.createElement(el.tagName);
-                var attrs = el.attributes;
-                for (var j = 0; j < attrs.length; j++) {
-                    newEl.setAttribute(attrs[j].name, attrs[j].value);
-                }
-                if (el.tagName === 'STYLE') {
-                    newEl.textContent = el.textContent;
-                }
-                document.head.appendChild(newEl);
-            }
-
-            // دمج وتنفيذ JS
-            var scripts = doc.body.querySelectorAll('script');
-            for (var k = 0; k < scripts.length; k++) {
-                var oldScript = scripts[k];
-                var newScript = document.createElement('script');
-                var attrs2 = oldScript.attributes;
-                for (var l = 0; l < attrs2.length; l++) {
-                    newScript.setAttribute(attrs2[l].name, attrs2[l].value);
-                }
-                if (oldScript.textContent) {
-                    newScript.textContent = oldScript.textContent;
-                }
-                document.body.appendChild(newScript);
-            }
-
-            // تشغيل أي كود ينتظر window.onload (لضمان عمل العداد)
-            if (typeof window.onload === 'function') {
-                setTimeout(function() {
-                    window.onload();
-                }, 0);
-            }
-
-            if (window.onCourseLoaded) {
-                window.onCourseLoaded();
-            }
-        }).catch(function(error) {
-            console.error(error);
-            app.innerHTML = `<div class="empty">❌ فشل تحميل الدورة: ${error.message}<br><br>المسار الذي تم البحث عنه: <code style="background:#eee;padding:4px;border-radius:4px;">${fullUrl}</code></div>`;
-        });
-    }
-    load();
-}
-
-/* ------------------ معالجة النقر على الروابط الخارجية (منع الخروج من التطبيق) ------------------ */
-// التقاط أي نقرة داخل حاوية #app
-document.getElementById('app').addEventListener('click', function(e) {
-    // البحث عن أقرب رابط <a>
-    var link = e.target.closest('a');
-    if (!link) return;
-
-    var href = link.getAttribute('href');
-    // إذا كان الرابط فارغًا أو يبدأ بـ # أو javascript، تخطى المعالجة (دع التطبيق يتعامل معه)
-    if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
-
-    // منع إعادة تحميل الصفحة والانتقال للخارج
-    e.preventDefault();
-    // فتح الرابط في نافذة جديدة خارج التطبيق
-    window.open(href, '_blank');
-});
 
 /* ------------------ التوجيه (Route) ------------------ */
 function initApp() {
@@ -158,21 +78,6 @@ function route() {
     if (h === 'home') { home(); }
     else if (h === 'apps') { apps(); }
     else if (h === 'courses') { renderHomePage(); }
-    else if (h.startsWith('course/')) {
-        var id = parseInt(h.split('/')[1]);
-        var course = null;
-        for (var i = 0; i < coursesData.length; i++) {
-            if (coursesData[i].id === id) {
-                course = coursesData[i];
-                break;
-            }
-        }
-        if (course) {
-            loadPageIntoApp(course.url);
-        } else {
-            app.innerHTML = `<div class="empty">⚠️ الدورة غير موجودة.</div>`;
-        }
-    }
     else if (h === 'active') { active(); }
     else if (h === 'settings') { settings(); }
     else { home(); }
