@@ -57,7 +57,6 @@ function renderHomePage() {
 }
 
 function loadPageIntoApp(url) {
-    // بناء المسار الصحيح
     var fullUrl = new URL(url, window.location.href).href;
     console.log("🔍 جاري تحميل الدورة من:", fullUrl);
 
@@ -103,17 +102,12 @@ function loadPageIntoApp(url) {
                 document.body.appendChild(newScript);
             }
 
-            // ====== الحل السحري هنا ======
-            // إعادة إطلاق حدث التحميل (يسمح لأكواد ملفات الدورات التي تنتظر DOMContentLoaded بالعمل فوراً)
-            try {
-                var domEvent = new Event('DOMContentLoaded');
-                document.dispatchEvent(domEvent);
-                var loadEvent = new Event('load');
-                window.dispatchEvent(loadEvent);
-            } catch (e) {
-                console.log("محاولة تشغيل الأحداث تخطت بسبب بيئة المتصفح.");
+            // تشغيل أي كود ينتظر window.onload (لضمان عمل العداد)
+            if (typeof window.onload === 'function') {
+                setTimeout(function() {
+                    window.onload();
+                }, 0);
             }
-            // =============================
 
             if (window.onCourseLoaded) {
                 window.onCourseLoaded();
@@ -125,6 +119,23 @@ function loadPageIntoApp(url) {
     }
     load();
 }
+
+/* ------------------ معالجة النقر على الروابط الخارجية (منع الخروج من التطبيق) ------------------ */
+// التقاط أي نقرة داخل حاوية #app
+document.getElementById('app').addEventListener('click', function(e) {
+    // البحث عن أقرب رابط <a>
+    var link = e.target.closest('a');
+    if (!link) return;
+
+    var href = link.getAttribute('href');
+    // إذا كان الرابط فارغًا أو يبدأ بـ # أو javascript، تخطى المعالجة (دع التطبيق يتعامل معه)
+    if (!href || href.startsWith('#') || href.startsWith('javascript:')) return;
+
+    // منع إعادة تحميل الصفحة والانتقال للخارج
+    e.preventDefault();
+    // فتح الرابط في نافذة جديدة خارج التطبيق
+    window.open(href, '_blank');
+});
 
 /* ------------------ التوجيه (Route) ------------------ */
 function initApp() {
