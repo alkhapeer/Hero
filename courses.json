@@ -5,10 +5,17 @@
       "title": "مادة الإحصاء",
       "description": "دورة تعليمية شاملة لمادة الإحصاء للثانوية العامة.",
       "icon": "📊",
+      "url": "/courses/non_muslims_law/protected_non_muslims_law (1).html"
+    },
+      {
+      "id": 1,
+      "title": "مادة الإحصاء",
+      "description": "دورة تعليمية شاملة لمادة الإحصاء للثانوية العامة.",
+      "icon": "📊",
       "url": "/courses/stats/index.html"
     },
     {
-      "id": 2,
+      "id": 3,
       "title": "مادة الفيزياء",
       "description": "شرح مبسط وممتع لقوانين الفيزياء.",
       "icon": "⚛️",
