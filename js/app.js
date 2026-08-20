@@ -19,7 +19,7 @@ function apps() { app.innerHTML = `<section class="section"><h1>التطبيقا
 function active() { app.innerHTML = `<section class="section"><h1>دوراتي</h1><div class="notice">يتم الحصول على الدورات المملوكة وروابطها من نظام الأكاديمية.</div><div class="actions">${btn(`${ACADEMY}home.php`,'فتح دوراتي في الأكاديمية ↗')}</div></section>`; }
 function settings() { app.innerHTML = `<section class="section"><h1>الإعدادات</h1><div class="card"><b>Hero Academy</b><p class="muted">نسخة Static — بدون نظام دفع أو تسجيل أو تفعيل داخل الواجهة العامة.</p></div></section>`; }
 
-/* ------------------ النظام الجديد: عرض الدورات كبطاقات (بديل coursesPage) ------------------ */
+/* ------------------ النظام الجديد: عرض الدورات كبطاقات ------------------ */
 let coursesData = [];
 
 // عرض الشبكة
@@ -87,7 +87,8 @@ function loadPageIntoApp(url) {
 /* ------------------ التوجيه (Route) ------------------ */
 async function initApp() {
     try {
-        const response = await fetch('/courses.json', { cache: 'no-store' });
+        // هنا تم الإصلاح: حذف علامة / من بداية المسار
+        const response = await fetch('courses.json', { cache: 'no-store' });
         if (!response.ok) throw new Error('لم يتم العثور على courses.json');
         const json = await response.json();
         coursesData = json.courses || [];
@@ -102,7 +103,7 @@ function route() {
     
     if (h === 'home') home();
     else if (h === 'apps') apps();
-    else if (h === 'courses') renderHomePage(); // مهم جداً: استدعاء الشبكة الجديدة هنا
+    else if (h === 'courses') renderHomePage();
     else if (h.startsWith('course/')) {
         const id = parseInt(h.split('/')[1]);
         const course = coursesData.find(c => c.id === id);
