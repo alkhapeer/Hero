@@ -2,7 +2,6 @@
 const ACADEMY = 'https://hero.kesug.com/Academy/';
 const app = document.getElementById('app');
 
-// دالة تنسيق النصوص (تمت كتابتها بشكل مبسط لتجنب أي أخطاء نحوية)
 function esc(s) {
     if (!s) return '';
     return String(s).replace(/[&<>"']/g, function(m) {
@@ -14,7 +13,6 @@ function esc(s) {
     });
 }
 
-// دالة إنشاء الأزرار
 function btn(href, text, cls) {
     cls = cls || 'primary';
     return `<a class="btn ${cls}" href="${esc(href)}"> ${text}</a>`;
@@ -59,11 +57,10 @@ function renderHomePage() {
 }
 
 function loadPageIntoApp(url) {
-    // استخدام window.location.href لبناء المسار الكامل بشكل صحيح
+    // بناء المسار الصحيح
     var fullUrl = new URL(url, window.location.href).href;
     console.log("🔍 جاري تحميل الدورة من:", fullUrl);
 
-    // دالة داخلية لتحميل الصفحة
     function load() {
         fetch(fullUrl).then(function(response) {
             if (!response.ok) {
@@ -105,6 +102,18 @@ function loadPageIntoApp(url) {
                 }
                 document.body.appendChild(newScript);
             }
+
+            // ====== الحل السحري هنا ======
+            // إعادة إطلاق حدث التحميل (يسمح لأكواد ملفات الدورات التي تنتظر DOMContentLoaded بالعمل فوراً)
+            try {
+                var domEvent = new Event('DOMContentLoaded');
+                document.dispatchEvent(domEvent);
+                var loadEvent = new Event('load');
+                window.dispatchEvent(loadEvent);
+            } catch (e) {
+                console.log("محاولة تشغيل الأحداث تخطت بسبب بيئة المتصفح.");
+            }
+            // =============================
 
             if (window.onCourseLoaded) {
                 window.onCourseLoaded();
