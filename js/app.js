@@ -19,18 +19,18 @@ function apps() { app.innerHTML = `<section class="section"><h1>التطبيقا
 function active() { app.innerHTML = `<section class="section"><h1>دوراتي</h1><div class="notice">يتم الحصول على الدورات المملوكة وروابطها من نظام الأكاديمية.</div><div class="actions">${btn(`${ACADEMY}home.php`,'فتح دوراتي في الأكاديمية ↗')}</div></section>`; }
 function settings() { app.innerHTML = `<section class="section"><h1>الإعدادات</h1><div class="card"><b>Hero Academy</b><p class="muted">نسخة Static — بدون نظام دفع أو تسجيل أو تفعيل داخل الواجهة العامة.</p></div></section>`; }
 
-/* ------------------ الـ Loader للدورات ------------------ */
+/* ------------------ النظام الجديد: عرض الدورات كبطاقات (بديل coursesPage) ------------------ */
 let coursesData = [];
 
+// عرض الشبكة
 function renderHomePage() {
     let html = `<section class="section"><h1 style="margin-bottom:20px;">📚 جميع الدورات</h1><div class="grid">`;
     if (!coursesData || coursesData.length === 0) {
         html += `<div class="empty">لا توجد دورات متاحة حاليًا.</div>`;
     } else {
-        // التعديل الجديد: استخدام <a> بدلاً من div لضمان عمل النقر 100%
         coursesData.forEach(course => {
             html += `
-                <a href="#course/${course.id}" class="card course" style="cursor:pointer; display:block; text-decoration:none; transition: 0.2s;">
+                <a href="#course/${course.id}" class="card course" style="cursor:pointer; display:block; text-decoration:none;">
                     <span class="icon">${esc(course.icon)}</span>
                     <h3>${esc(course.title)}</h3>
                     <p style="color:#687386;line-height:1.6;font-size:14px;">${esc(course.description)}</p>
@@ -43,27 +43,23 @@ function renderHomePage() {
     app.innerHTML = html;
 }
 
-// دالة تحميل الدورة (استخدمناها لتقنية الـ DOM Parser)
+// تحميل الدورة داخل التطبيق (Loader)
 function loadPageIntoApp(url) {
-    // بناء المسار الكامل بشكل آمن
     const fullUrl = new URL(url, window.location.origin).href;
-    console.log("🔍 يحاول التطبيق جلب الدورة من المسار:", fullUrl);
+    console.log("🔍 جاري تحميل الدورة من:", fullUrl);
 
     async function load() {
         try {
             const response = await fetch(fullUrl);
-            if (!response.ok) {
-                throw new Error(`الملف غير موجود (خطأ HTTP ${response.status})`);
-            }
+            if (!response.ok) throw new Error(`خطأ HTTP ${response.status}`);
             const htmlText = await response.text();
 
-            // تحليل الصفحة
             const parser = new DOMParser();
             const doc = parser.parseFromString(htmlText, 'text/html');
 
             app.innerHTML = doc.body.innerHTML;
 
-            // جلب وتنفيذ الـ CSS الخاص بالصفحة
+            // دمج CSS
             const styles = doc.head.querySelectorAll('style, link[rel="stylesheet"]');
             styles.forEach(el => {
                 const newEl = document.createElement(el.tagName);
@@ -72,7 +68,7 @@ function loadPageIntoApp(url) {
                 document.head.appendChild(newEl);
             });
 
-            // جلب وتنفيذ الـ JS الخاص بالصفحة
+            // دمج وتنفيذ JS
             const scripts = doc.body.querySelectorAll('script');
             scripts.forEach(oldScript => {
                 const newScript = document.createElement('script');
@@ -81,62 +77,48 @@ function loadPageIntoApp(url) {
                 document.body.appendChild(newScript);
             });
         } catch (error) {
-            console.error("❌ حدث خطأ أثناء تحميل الدورة:", error);
-            app.innerHTML = `
-                <div class="empty" style="padding:40px;">
-                    ❌ فشل تحميل الدورة.<br><br>
-                    <b>السبب:</b> ${error.message}<br>
-                    <b>المسار الذي تم البحث عنه:</b> <code style="background:#eee;padding:4px;">${fullUrl}</code><br><br>
-                    <small>تأكد من أن الملف موجود فعليًا في هذا المسار على GitHub.</small>
-                    <br><br>
-                    <a href="#home" class="btn btn-primary" style="background:#2563eb;color:white;padding:8px 15px;border-radius:8px;">🔙 الرجوع للقائمة</a>
-                </div>
-            `;
+            console.error(error);
+            app.innerHTML = `<div class="empty">❌ فشل تحميل الدورة: ${error.message}</div>`;
         }
     }
     load();
 }
 
-/* ------------------ التهيئة والتوجيه ------------------ */
+/* ------------------ التوجيه (Route) ------------------ */
 async function initApp() {
     try {
-        console.log("📡 جارٍ تحميل ملف courses.json...");
         const response = await fetch('/courses.json', { cache: 'no-store' });
-        if (!response.ok) throw new Error(`لم يتم العثور على ملف courses.json (HTTP ${response.status})`);
+        if (!response.ok) throw new Error('لم يتم العثور على courses.json');
         const json = await response.json();
         coursesData = json.courses || [];
-        console.log("✅ تم تحميل الدورات بنجاح، عددها:", coursesData.length);
         route(); 
     } catch (error) {
-        console.error("❌ فشل تحميل الدورات:", error);
-        app.innerHTML = `<div class="empty">❌ خطأ في تحميل الدورات:<br><br><code>${error.message}</code><br><br>تأكد من وجود ملف <b>courses.json</b> في جذر المشروع.</div>`;
+        app.innerHTML = `<div class="empty">❌ خطأ: ${error.message}. تأكد من وجود courses.json في الجذر.</div>`;
     }
 }
 
 function route() {
     const h = location.hash.slice(1) || 'home';
+    
     if (h === 'home') home();
     else if (h === 'apps') apps();
+    else if (h === 'courses') renderHomePage(); // مهم جداً: استدعاء الشبكة الجديدة هنا
     else if (h.startsWith('course/')) {
         const id = parseInt(h.split('/')[1]);
         const course = coursesData.find(c => c.id === id);
-        if (course) {
-            loadPageIntoApp(course.url);
-        } else {
-            app.innerHTML = `<div class="empty">⚠️ الدورة التي تحاول الوصول إليها غير موجودة في قاعدة البيانات.</div>`;
-        }
+        if (course) loadPageIntoApp(course.url);
+        else app.innerHTML = `<div class="empty">⚠️ الدورة غير موجودة.</div>`;
     }
     else if (h === 'active') active();
     else if (h === 'settings') settings();
-    else if (h === 'courses') renderHomePage();
     else home();
 }
 
-// مستمع الأحداث (بدون أي كود تثبيت مزعج)
+// تشغيل التطبيق
 window.addEventListener('hashchange', route);
 document.addEventListener('DOMContentLoaded', initApp);
 
-// تسجيل السيرفر ووركر (للعمل دون إنترنت)
+// تسجيل السيرفر ووركر
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(console.error));
 }
