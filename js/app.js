@@ -1,67 +1,36 @@
-/* ------------------ الثوابت والدوال الأساسية ------------------ */
-const ACADEMY = 'https://hero.kesug.com/Academy/';
 const app = document.getElementById('app');
+let coursesData = [];
 
 function esc(s) {
     if (!s) return '';
-    return String(s).replace(/[&<>"']/g, function(m) {
-        if (m === '&') return '&amp;';
-        if (m === '<') return '&lt;';
-        if (m === '>') return '&gt;';
-        if (m === '"') return '&quot;';
-        return '&#039;';
-    });
+    return String(s).replace(/[&<>"']/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 }
 
-function btn(href, text, cls) {
-    cls = cls || 'primary';
-    return `<a class="btn ${cls}" href="${esc(href)}"> ${text}</a>`;
-}
-
-/* ------------------ الصفحات الثابتة ------------------ */
+// الصفحة الرئيسية
 function home() {
-    app.innerHTML = `<section class="hero"><span>HERO ACADEMY</span><h1>أكاديمية هيرو</h1>
-        <p>واجهة واحدة لتصفح التطبيقات والدورات وتشغيل الدورات التي يوجهك إليها نظام الأكاديمية.</p>
-        <div class="actions">${btn('#courses','📚 الدورات')}${btn('#apps','📱 التطبيقات','ghost')}</div></section>
-        <section class="section"><h2>الأكاديمية</h2><div class="grid">
-        <a class="card" href="${ACADEMY}courses.php" target="_blank" rel="noopener"><b>📚 الدورات</b><small>استعرض الدورات والتجارب والشراء.</small></a>
-        <a class="card" href="${ACADEMY}home.php" target="_blank" rel="noopener"><b>🎓 دوراتي</b><small>ادخل إلى دوراتك وروابطها بعد الاعتماد.</small></a>
-        </div></section>`;
-}
-function apps() { app.innerHTML = `<section class="section"><h1>التطبيقات</h1><div class="empty">قسم التطبيقات جاهز لإضافة التطبيقات التعليمية مستقبلًا.</div></section>`; }
-function active() { app.innerHTML = `<section class="section"><h1>دوراتي</h1><div class="notice">يتم الحصول على الدورات المملوكة وروابطها من نظام الأكاديمية.</div><div class="actions">${btn(`${ACADEMY}home.php`,'فتح دوراتي في الأكاديمية ↗')}</div></section>`; }
-function settings() { app.innerHTML = `<section class="section"><h1>الإعدادات</h1><div class="card"><b>Hero Academy</b><p class="muted">نسخة Static — بدون نظام دفع أو تسجيل أو تفعيل داخل الواجهة العامة.</p></div></section>`; }
-
-/* ------------------ عرض الدورات كبطاقات (تفتح في نافذة جديدة) ------------------ */
-var coursesData = [];
-
-// دالة بناء الرابط الكامل (مع أخذ مجلد المشروع الفرعي في الحسبان)
-function getAbsoluteUrl(relativeUrl) {
-    // الحصول على المسار الحالي من عنوان المتصفح
-    var basePath = window.location.pathname.replace(/\/$/, ''); // إزالة الشرطة المائلة في النهاية إن وجدت
-    // إذا كان التطبيق في مجلد فرعي (مثل /Hero/)، نقوم بإضافته
-    if (basePath !== '') {
-        return window.location.origin + basePath + '/' + relativeUrl;
-    }
-    return window.location.origin + '/' + relativeUrl;
+    app.innerHTML = `
+        <section class="hero">
+            <h1>أكاديمية هيرو</h1>
+            <p>واجهة لتصفح الدورات.</p>
+            <div class="actions"><a class="btn primary" href="#courses">📚 تصفح الدورات</a></div>
+        </section>`;
 }
 
-function renderHomePage() {
-    var html = `<section class="section"><h1 style="margin-bottom:20px;">📚 جميع الدورات</h1><div class="grid">`;
+// عرض قائمة الدورات
+function renderCourses() {
+    let html = `<section class="section"><h1>📚 جميع الدورات</h1><div class="grid">`;
     if (!coursesData || coursesData.length === 0) {
-        html += `<div class="empty">لا توجد دورات متاحة حاليًا.</div>`;
+        html += `<div class="empty">لا توجد دورات متاحة.</div>`;
     } else {
-        for (var i = 0; i < coursesData.length; i++) {
-            var course = coursesData[i];
-            // بناء الرابط الكامل
-            var fullUrl = getAbsoluteUrl(course.url);
+        for (let c of coursesData) {
+            // ربط النقر بفتح الدورة في إطار كامل
             html += `
-                <a href="${esc(fullUrl)}" target="_blank" class="card course" style="cursor:pointer; display:block; text-decoration:none;">
-                    <span class="icon">${esc(course.icon)}</span>
-                    <h3>${esc(course.title)}</h3>
-                    <p style="color:#687386;line-height:1.6;font-size:14px;">${esc(course.description)}</p>
-                    <span style="color:#2563eb;font-size:14px;margin-top:10px;display:inline-block;">افتح الدورة ➜</span>
-                </a>
+                <div class="card course" onclick="openCourseFull('${esc(c.url)}')" style="cursor:pointer;">
+                    <span class="icon">${esc(c.icon)}</span>
+                    <h3>${esc(c.title)}</h3>
+                    <p style="color:#687386;">${esc(c.description)}</p>
+                    <span style="color:#2563eb;">افتح الدورة ➜</span>
+                </div>
             `;
         }
     }
@@ -69,39 +38,44 @@ function renderHomePage() {
     app.innerHTML = html;
 }
 
-/* ------------------ التوجيه (Route) ------------------ */
+// 🔥 الدالة السحرية لفتح الدورة في إطار كامل (بدون رأس ولا ذيل)
+window.openCourseFull = function(url) {
+    // بناء الرابط الكامل بناءً على موقع التطبيق الحالي
+    let base = window.location.pathname.replace(/\/$/, '');
+    let fullUrl = (base ? base + '/' : '') + url;
+
+    // نغير محتوى #app ليصبح عبارة عن إطار شاشة كاملة
+    app.innerHTML = `
+        <div style="position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:9999; background:#fff;">
+            <div style="position:absolute; top:10px; right:15px; z-index:10000; background:#fff; padding:8px 15px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+                <a href="#courses" style="color:#2563eb; text-decoration:none; font-weight:bold; font-size:18px;">✕ رجوع</a>
+            </div>
+            <iframe src="${esc(fullUrl)}" style="width:100%; height:100%; border:none; display:block;"></iframe>
+        </div>
+    `;
+};
+
+// التوجيه
+function route() {
+    let h = location.hash.slice(1) || 'home';
+    if (h === 'home') home();
+    else if (h === 'courses') renderCourses();
+    else home();
+}
+
+// التحميل والبدء
 function initApp() {
-    fetch('courses.json', { cache: 'no-store' }).then(function(response) {
-        if (!response.ok) {
-            throw new Error('لم يتم العثور على courses.json');
-        }
-        return response.json();
-    }).then(function(json) {
+    // تأكد من مسار ملف JSON (بدون / لأن الاستضافة المجانية حساسة)
+    fetch('courses.json').then(r => {
+        if(!r.ok) throw new Error('courses.json غير موجود');
+        return r.json();
+    }).then(json => {
         coursesData = json.courses || [];
         route();
-    }).catch(function(error) {
-        app.innerHTML = `<div class="empty">❌ خطأ: ${error.message}. تأكد من وجود courses.json في الجذر.</div>`;
+    }).catch(() => {
+        app.innerHTML = `<div class="empty">❌ تأكد من وجود ملف courses.json في نفس المجلد.</div>`;
     });
 }
 
-function route() {
-    var h = location.hash.slice(1) || 'home';
-    
-    if (h === 'home') { home(); }
-    else if (h === 'apps') { apps(); }
-    else if (h === 'courses') { renderHomePage(); }
-    else if (h === 'active') { active(); }
-    else if (h === 'settings') { settings(); }
-    else { home(); }
-}
-
-// تشغيل التطبيق
 window.addEventListener('hashchange', route);
 document.addEventListener('DOMContentLoaded', initApp);
-
-// تسجيل السيرفر ووركر
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-        navigator.serviceWorker.register('./sw.js').catch(console.error);
-    });
-}
