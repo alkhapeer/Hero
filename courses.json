@@ -1,0 +1,18 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "title": "مادة الإحصاء",
+      "description": "دورة تعليمية شاملة لمادة الإحصاء للثانوية العامة.",
+      "icon": "📊",
+      "url": "/courses/stats/index.html"
+    },
+    {
+      "id": 2,
+      "title": "مادة الفيزياء",
+      "description": "شرح مبسط وممتع لقوانين الفيزياء.",
+      "icon": "⚛️",
+      "url": "/courses/physics/index.html"
+    }
+  ]
+}
