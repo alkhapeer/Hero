@@ -1,4 +1,4 @@
-/* ------------------ الثوابت والدوال الأساسية (محتفظ بها من الأصل) ------------------ */
+/* ------------------ الثوابت والدوال الأساسية ------------------ */
 const ACADEMY = 'https://hero.kesug.com/Academy/';
 const app = document.getElementById('app');
 let deferredInstall = null;
@@ -6,7 +6,7 @@ let deferredInstall = null;
 const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m]));
 const btn = (href, text, cls = 'primary') => `<a class="btn ${cls}" href="${esc(href)}"> ${text}</a>`;
 
-/* ------------------ الصفحات الثابتة (محتفظ بها من الأصل) ------------------ */
+/* ------------------ الصفحات الثابتة ------------------ */
 function home() {
     app.innerHTML = `<section class="hero"><span>HERO ACADEMY</span><h1>أكاديمية هيرو</h1>
         <p>واجهة واحدة لتصفح التطبيقات والدورات وتشغيل الدورات التي يوجهك إليها نظام الأكاديمية.</p>
@@ -29,10 +29,10 @@ function settings() {
     app.innerHTML = `<section class="section"><h1>الإعدادات</h1><div class="card"><b>Hero Academy</b><p class="muted">نسخة Static — بدون نظام دفع أو تسجيل أو تفعيل داخل الواجهة العامة.</p></div></section>`;
 }
 
-/* ------------------ القسم الجديد: جلب البيانات وعرض الدورات (بديل قديم) ------------------ */
+/* ------------------ القسم الجديد: الـ Loader ------------------ */
 let coursesData = [];
 
-// 1. دالة عرض قائمة الدورات كبطاقات (بدلاً من coursesPage القديمة)
+// عرض قائمة الدورات
 function renderHomePage() {
     let html = `<section class="section"><h1 style="margin-bottom:20px;">📚 جميع الدورات</h1><div class="grid">`;
     if (!coursesData || coursesData.length === 0) {
@@ -53,7 +53,7 @@ function renderHomePage() {
     app.innerHTML = html;
 }
 
-// 2. دالة Loader (تحليل صفحات الدورات وحقنها داخل #app)
+// دالة Loader (مع طباعة الرابط للتصحيح)
 function loadPageIntoApp(url) {
     async function load() {
         try {
@@ -61,14 +61,19 @@ function loadPageIntoApp(url) {
             document.querySelectorAll('style[data-loader-src]').forEach(el => el.remove());
             document.querySelectorAll('link[data-loader-src]').forEach(el => el.remove());
 
+            console.log("🚀 محاولة تحميل الدورة من الرابط:", url); // 🔴 للمساعدة في التصحيح
             const response = await fetch(url);
-            if (!response.ok) throw new Error('فشل تحميل ملف الدورة');
+            if (!response.ok) {
+                console.error("❌ فشل التحميل، حالة HTTP:", response.status, response.statusText);
+                throw new Error(`فشل تحميل الدورة (HTTP ${response.status})`);
+            }
+            
             const htmlText = await response.text();
 
             const parser = new DOMParser();
             const doc = parser.parseFromString(htmlText, 'text/html');
 
-            // حقن محتوى الصفحة
+            // حقن المحتوى
             app.innerHTML = doc.body.innerHTML;
 
             // حقن CSS
@@ -92,41 +97,44 @@ function loadPageIntoApp(url) {
 
             if (window.onCourseLoaded) window.onCourseLoaded();
         } catch (error) {
-            app.innerHTML = `<div class="empty">❌ حدث خطأ: ${error.message}</div>`;
+            console.error("❌ خطأ في دالة Loader:", error);
+            app.innerHTML = `<div class="empty" style="padding:40px;">
+                ❌ حدث خطأ أثناء تحميل الدورة:<br><br>
+                <code style="background:#f0f0f0;padding:5px;border-radius:4px;">${error.message}</code><br><br>
+                <small>تحقق من وحدة التحكم (F12) لمزيد من التفاصيل.</small>
+            </div>`;
         }
     }
     load();
 }
 
-// 3. دالة التنقل عند الضغط على بطاقة الدورة
+// دالة التنقل
 window.navigateToCourse = function(id) {
     const course = coursesData.find(c => c.id == id);
     if (course) {
-        window.location.hash = `course/${id}`; // يغير الرابط
+        window.location.hash = `course/${id}`;
     }
 };
 
-// 4. دالة التهيئة (جلب البيانات)
+/* ------------------ التهيئة والتوجيه ------------------ */
 async function initApp() {
     try {
         const response = await fetch('/courses.json', { cache: 'no-store' });
-        if (!response.ok) throw new Error('لم يتم العثور على ملف courses.json في الجذر.');
+        if (!response.ok) throw new Error(`لم يتم العثور على courses.json (HTTP ${response.status})`);
         const json = await response.json();
         coursesData = json.courses || [];
-        route(); // تشغيل التوجيه الحالي
+        route(); 
     } catch (error) {
         app.innerHTML = `<div class="empty">❌ خطأ في تحميل الدورات: ${error.message}</div>`;
     }
 }
 
-/* ------------------ التوجيه والتنقل (المحدث) ------------------ */
 function route() {
     const h = location.hash.slice(1) || 'home';
     
     if (h === 'home') home();
     else if (h === 'apps') apps();
     else if (h.startsWith('course/')) {
-        // التوجيه الجديد للدورات: استدعاء الـ Loader
         const id = parseInt(h.split('/')[1]);
         const course = coursesData.find(c => c.id === id);
         if (course) {
@@ -137,15 +145,14 @@ function route() {
     }
     else if (h === 'active') active();
     else if (h === 'settings') settings();
-    else if (h === 'courses') renderHomePage(); // من يتصفح عن طريق الرابط القديم #courses
+    else if (h === 'courses') renderHomePage();
     else home();
 }
 
-/* ------------------ تشغيل التطبيق ------------------ */
 window.addEventListener('hashchange', route);
 document.addEventListener('DOMContentLoaded', initApp);
 
-// إضافة خاصية التثبيت (كما هي في الأصل)
+// التثبيت والسيرفر ووركر
 window.addEventListener('beforeinstallprompt', e => {
     e.preventDefault();
     deferredInstall = e;
