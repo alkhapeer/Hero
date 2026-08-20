@@ -32,8 +32,19 @@ function apps() { app.innerHTML = `<section class="section"><h1>التطبيقا
 function active() { app.innerHTML = `<section class="section"><h1>دوراتي</h1><div class="notice">يتم الحصول على الدورات المملوكة وروابطها من نظام الأكاديمية.</div><div class="actions">${btn(`${ACADEMY}home.php`,'فتح دوراتي في الأكاديمية ↗')}</div></section>`; }
 function settings() { app.innerHTML = `<section class="section"><h1>الإعدادات</h1><div class="card"><b>Hero Academy</b><p class="muted">نسخة Static — بدون نظام دفع أو تسجيل أو تفعيل داخل الواجهة العامة.</p></div></section>`; }
 
-/* ------------------ عرض الدورات كبطاقات (تفتح في تبويب جديد) ------------------ */
+/* ------------------ عرض الدورات كبطاقات (تفتح في نافذة جديدة) ------------------ */
 var coursesData = [];
+
+// دالة بناء الرابط الكامل (مع أخذ مجلد المشروع الفرعي في الحسبان)
+function getAbsoluteUrl(relativeUrl) {
+    // الحصول على المسار الحالي من عنوان المتصفح
+    var basePath = window.location.pathname.replace(/\/$/, ''); // إزالة الشرطة المائلة في النهاية إن وجدت
+    // إذا كان التطبيق في مجلد فرعي (مثل /Hero/)، نقوم بإضافته
+    if (basePath !== '') {
+        return window.location.origin + basePath + '/' + relativeUrl;
+    }
+    return window.location.origin + '/' + relativeUrl;
+}
 
 function renderHomePage() {
     var html = `<section class="section"><h1 style="margin-bottom:20px;">📚 جميع الدورات</h1><div class="grid">`;
@@ -42,9 +53,10 @@ function renderHomePage() {
     } else {
         for (var i = 0; i < coursesData.length; i++) {
             var course = coursesData[i];
-            // التعديل هنا: فتح الرابط مباشرة في تبويب جديد (_blank)
+            // بناء الرابط الكامل
+            var fullUrl = getAbsoluteUrl(course.url);
             html += `
-                <a href="${esc(course.url)}" target="_blank" class="card course" style="cursor:pointer; display:block; text-decoration:none;">
+                <a href="${esc(fullUrl)}" target="_blank" class="card course" style="cursor:pointer; display:block; text-decoration:none;">
                     <span class="icon">${esc(course.icon)}</span>
                     <h3>${esc(course.title)}</h3>
                     <p style="color:#687386;line-height:1.6;font-size:14px;">${esc(course.description)}</p>
