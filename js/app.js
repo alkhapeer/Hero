@@ -23,7 +23,6 @@ function renderCourses() {
         html += `<div class="empty">لا توجد دورات متاحة.</div>`;
     } else {
         for (let c of coursesData) {
-            // ربط النقر بفتح الدورة في إطار كامل
             html += `
                 <div class="card course" onclick="openCourseFull('${esc(c.url)}')" style="cursor:pointer;">
                     <span class="icon">${esc(c.icon)}</span>
@@ -38,17 +37,18 @@ function renderCourses() {
     app.innerHTML = html;
 }
 
-// 🔥 الدالة السحرية لفتح الدورة في إطار كامل (بدون رأس ولا ذيل)
+// 🔥 دالة فتح الدورة في إطار كامل
 window.openCourseFull = function(url) {
-    // بناء الرابط الكامل بناءً على موقع التطبيق الحالي
+    // بناء الرابط الكامل
     let base = window.location.pathname.replace(/\/$/, '');
     let fullUrl = (base ? base + '/' : '') + url;
 
-    // نغير محتوى #app ليصبح عبارة عن إطار شاشة كاملة
+    // عرض الإطار
     app.innerHTML = `
         <div style="position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:9999; background:#fff;">
             <div style="position:absolute; top:10px; right:15px; z-index:10000; background:#fff; padding:8px 15px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
-                <a href="#courses" style="color:#2563eb; text-decoration:none; font-weight:bold; font-size:18px;">✕ رجوع</a>
+                <!-- ✅ تم إصلاح زر الرجوع ليستخدم onclick مباشرة -->
+                <span onclick="window.location.hash='#courses';" style="cursor:pointer; color:#2563eb; font-weight:bold; font-size:18px;">✕ رجوع</span>
             </div>
             <iframe src="${esc(fullUrl)}" style="width:100%; height:100%; border:none; display:block;"></iframe>
         </div>
@@ -65,7 +65,6 @@ function route() {
 
 // التحميل والبدء
 function initApp() {
-    // تأكد من مسار ملف JSON (بدون / لأن الاستضافة المجانية حساسة)
     fetch('courses.json').then(r => {
         if(!r.ok) throw new Error('courses.json غير موجود');
         return r.json();
