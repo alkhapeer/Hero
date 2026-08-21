@@ -1,0 +1,2392 @@
+
+<!--
+=========================================================
+HERO_PROTECTED_APP v2 (Shared)
+Course: 20
+Subject: 0
+=========================================================
+-->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>مذكرة النجاح – فيزياء الثانوية العامة</title>
+    <style>
+        /* ================================================================
+               القسم 1: إعادة تعيين الأنماط الأساسية (Reset & Base)
+               ================================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Tahoma', Arial, sans-serif;
+            background: #f0f6fb;
+            color: #1a2634;
+            line-height: 1.7;
+            padding: 0 0 20px;
+            direction: rtl;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            background: none;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* ================================================================
+               القسم 2: رأس التطبيق (Header) – ثابت في الأعلى
+               ================================================================ */
+        .app-header {
+            background: #0b3d5e;
+            color: #fff;
+            padding: 12px 0;
+            border-radius: 0 0 28px 28px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .app-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .app-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .app-title small {
+            font-size: 0.7rem;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-right: 6px;
+        }
+        .header-actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .header-actions button {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+        .header-actions button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .header-actions .btn-home {
+            background: #f5c542;
+            color: #0b3d5e;
+            font-weight: 600;
+        }
+        .header-actions .btn-home:hover {
+            background: #ffd966;
+        }
+
+        /* ================================================================
+               القسم 3: الشاشة الرئيسية (Main Screen) – شبكة الأزرار
+               ================================================================ */
+        .main-screen {
+            padding: 30px 0 20px;
+            display: block;
+        }
+        .main-screen h1 {
+            font-size: 1.9rem;
+            color: #0b3d5e;
+            border-right: 6px solid #f5c542;
+            padding-right: 16px;
+            margin-bottom: 12px;
+        }
+        .main-screen .sub {
+            color: #3d5a78;
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+        }
+
+        /* شبكة البطاقات (الأزرار المستطيلة) */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .category-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 22px 12px;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e6edf6;
+            transition: 0.25s;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            border-color: #b3c9e0;
+        }
+        .category-card .icon {
+            font-size: 2.2rem;
+        }
+        .category-card .badge-count {
+            background: #f5c542;
+            color: #0b3d5e;
+            border-radius: 30px;
+            padding: 0 10px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        /* ================================================================
+               القسم 4: المحتوى الداخلي للأقسام (يظهر عند الضغط على زر)
+               ================================================================ */
+        .section-content {
+            display: none;
+            animation: fadeIn 0.25s ease;
+        }
+        .section-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* شريط عنوان القسم (يحتوي على زر العودة وزر المفضلة) */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #dce4ec;
+        }
+        .section-header h2 {
+            font-size: 1.5rem;
+            color: #0b3d5e;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-header .header-actions-section {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .section-header .btn-back,
+        .section-header .btn-fav-toggle {
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            border: 1px solid #dce4ec;
+            background: #fff;
+            color: #1a3a5e;
+        }
+        .section-header .btn-back:hover {
+            background: #eaf0f8;
+        }
+        .section-header .btn-fav-toggle {
+            background: #fefbf0;
+            border-color: #f1dba8;
+        }
+        .section-header .btn-fav-toggle:hover {
+            background: #fcf1d0;
+        }
+        .section-header .btn-fav-toggle.is-fav {
+            background: #f5c542;
+            border-color: #f5c542;
+            color: #0b3d5e;
+        }
+
+        /* ================================================================
+               القسم 5: العناصر المشتركة (بطاقات، صناديق، جداول)
+               ================================================================ */
+        .card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 20px 22px;
+            margin: 16px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eaf0f6;
+        }
+        .def-box,
+        .note-box,
+        .warn-box {
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin: 18px 0;
+            border-right: 5px solid;
+        }
+        .def-box {
+            border-color: #2b6f9e;
+            background: #edf4fc;
+        }
+        .note-box {
+            border-color: #f3b33d;
+            background: #fef9ef;
+        }
+        .warn-box {
+            border-color: #c0392b;
+            background: #fdeaea;
+        }
+        .box-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+
+        /* ================================================================
+               القسم 6: شجرة المعرفة (قابلة للطي)
+               ================================================================ */
+        .tree-node {
+            margin: 6px 0;
+        }
+        .tree-node .node-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: #f4f8fe;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+            border-right: 3px solid transparent;
+        }
+        .tree-node .node-label:hover {
+            background: #e6edf6;
+            border-right-color: #2b6f9e;
+        }
+        .tree-node .node-children {
+            padding-right: 28px;
+            display: none;
+        }
+        .tree-node.open .node-children {
+            display: block;
+        }
+        .tree-node .node-detail {
+            padding: 6px 14px;
+            margin: 4px 0;
+            border-right: 3px solid #b3c9e0;
+            font-size: 0.95rem;
+            background: #fafcff;
+            border-radius: 4px;
+        }
+
+        /* ================================================================
+               القسم 7: معرض الخرائط الذهنية (شبكة صور)
+               ================================================================ */
+        .maps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .map-item {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e6edf6;
+            transition: 0.2s;
+        }
+        .map-item:hover {
+            transform: scale(1.02);
+        }
+        .map-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #fafcfd;
+            padding: 6px;
+        }
+        .map-item .map-label {
+            padding: 10px 14px;
+            background: #f7faff;
+            border-top: 1px solid #e6edf6;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* ================================================================
+               القسم 8: بنك الأسئلة (مع فلتر وبحث)
+               ================================================================ */
+        .qbank-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 12px 0;
+        }
+        .qbank-filters select,
+        .qbank-filters input {
+            padding: 8px 14px;
+            border-radius: 30px;
+            border: 1px solid #dce4ec;
+            background: #fff;
+            font-size: 0.95rem;
+            flex: 1 1 150px;
+        }
+        .qbank-item {
+            background: #f9fbfe;
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            border-right: 4px solid #2b6f9e;
+        }
+        .qbank-item .q {
+            font-weight: 600;
+        }
+        .qbank-item .a {
+            padding-right: 20px;
+            color: #1f4a7a;
+            margin-top: 6px;
+        }
+
+        /* ================================================================
+               القسم 9: بطاقات المراجعة (تفاعلية – اضغط للكشف)
+               ================================================================ */
+        .review-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border: 1px solid #e6edf6;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .review-card:hover {
+            border-color: #b3c9e0;
+        }
+        .review-card .front {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .review-card .back {
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #dce4ec;
+            color: #1f4a7a;
+        }
+        .review-card.open .back {
+            display: block;
+        }
+
+        /* ================================================================
+               القسم 10: البحث (Search) – يعمل على كل النصوص
+               ================================================================ */
+        .search-area {
+            display: none;
+            margin: 16px 0;
+            padding: 16px;
+            background: #fff;
+            border-radius: 18px;
+            border: 1px solid #e6edf6;
+        }
+        .search-area.active {
+            display: block;
+        }
+        .search-area .search-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .search-area input {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 16px;
+            border-radius: 30px;
+            border: 1px solid #dce4ec;
+            font-size: 1rem;
+            background: #fafcff;
+        }
+        .search-area input:focus {
+            border-color: #2b6f9e;
+            outline: none;
+        }
+        .search-area button {
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: 0.2s;
+            border: none;
+        }
+        .search-area .btn-search {
+            background: #0b3d5e;
+            color: #fff;
+        }
+        .search-area .btn-search:hover {
+            background: #1a4f72;
+        }
+        .search-area .btn-clear {
+            background: #8a9aa8;
+            color: #fff;
+        }
+        .search-area .btn-clear:hover {
+            background: #6a7f9a;
+        }
+
+        .search-results {
+            background: #f0f4fc;
+            border-radius: 16px;
+            padding: 16px;
+            margin-top: 16px;
+            border: 1px solid #dce4ec;
+            display: none;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .search-results.active {
+            display: block;
+        }
+        .search-results ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .search-results li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e3e9f2;
+        }
+        .search-results li:last-child {
+            border-bottom: none;
+        }
+        .search-results .result-title {
+            font-weight: 600;
+            color: #0b3d5e;
+        }
+        .search-results .result-snippet {
+            font-size: 0.95rem;
+            color: #3d5a78;
+            display: block;
+            margin-top: 4px;
+        }
+        .highlight {
+            background: #fcee8f;
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        /* ================================================================
+               القسم 11: لوحة المفضلة (Favorites Panel)
+               ================================================================ */
+        .fav-panel {
+            background: #fefbf0;
+            border-radius: 16px;
+            padding: 16px;
+            margin: 12px 0;
+            border: 1px solid #f1dba8;
+            display: none;
+        }
+        .fav-panel.active {
+            display: block;
+        }
+        .fav-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .fav-panel li {
+            padding: 6px 0;
+            border-bottom: 1px solid #f1e5c8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .fav-panel li:last-child {
+            border-bottom: none;
+        }
+        .fav-panel .fav-remove {
+            color: #b03a2e;
+            cursor: pointer;
+            font-weight: 700;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+        }
+
+        /* ================================================================
+               القسم 12: استجابة للشاشات المختلفة (Responsive)
+               ================================================================ */
+        @media (max-width: 600px) {
+            .app-title {
+                font-size: 1.0rem;
+            }
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+            .category-card {
+                padding: 14px 8px;
+                font-size: 0.85rem;
+            }
+            .category-card .icon {
+                font-size: 1.6rem;
+            }
+            .section-header h2 {
+                font-size: 1.2rem;
+            }
+            .maps-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 0 10px;
+            }
+            .header-actions button {
+                font-size: 0.75rem;
+                padding: 4px 10px;
+            }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .category-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* ================================================================
+               القسم 13: أدوات مساعدة (Utilities)
+               ================================================================ */
+        .mt-2 {
+            margin-top: 20px;
+        }
+        .mb-1 {
+            margin-bottom: 10px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .flex {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .badge {
+            background: #f5c542;
+            color: #0b3d5e;
+            padding: 0 10px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        .hidden {
+            display: none !important;
+        }
+
+        /* ================================================================
+               القسم 14: تخصيص شريط التمرير
+               ================================================================ */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0f3f8;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b3c9e0;
+            border-radius: 10px;
+        }
+
+        /* ================================================================
+               القسم 15: تنبيه حقوق الاستخدام
+               ================================================================ */
+        .alert-notice {
+            background: #fff3cd;
+            border-right: 6px solid #ffc107;
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin: 30px 0 20px;
+            font-size: 0.95rem;
+            color: #856404;
+        }
+        .alert-notice p {
+            margin-bottom: 8px;
+        }
+        .alert-notice .email {
+            direction: ltr;
+            text-align: left;
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin-top: 6px;
+        }
+        .alert-notice hr {
+            border: 0;
+            border-top: 1px dashed #e6b800;
+            margin: 12px 0;
+        }
+        .alert-notice .commission {
+            font-size: 0.85rem;
+            margin-bottom: 0;
+        }
+
+        /* ================================================================
+               القسم 16: جداول المقارنة
+               ================================================================ */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.95rem;
+        }
+        .comparison-table th {
+            background: #0b3d5e;
+            color: #fff;
+            padding: 10px 12px;
+            text-align: right;
+        }
+        .comparison-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e3e9f2;
+        }
+        .comparison-table tr:nth-child(even) {
+            background: #f8fafd;
+        }
+
+        /* ================================================================
+               القسم 17: صيغ رياضية
+               ================================================================ */
+        .formula {
+            background: #f4f8fe;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border-right: 4px solid #2b6f9e;
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            margin: 8px 0;
+            direction: ltr;
+            text-align: center;
+        }
+    </style>
+
+<!-- =========================================================
+     HERO_PROTECTED_APP v2 (Shared)
+     Offline License Protection
+========================================================= -->
+
+<style id="hero-license-style">
+html[data-hero-locked="1"] body > *:not(#hero-license-overlay) {
+    visibility: hidden !important;
+}
+#hero-license-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 2147483647 !important;
+    background: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-family: Arial, sans-serif !important;
+}
+#hero-license-box {
+    width: min(420px, 90%);
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 15px 50px rgba(0,0,0,.15);
+    text-align: center;
+}
+#hero-license-box input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px;
+    margin: 15px 0;
+    font-size: 16px;
+    text-align: center;
+}
+#hero-license-box button {
+    width: 100%;
+    padding: 13px;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#hero-license-message {
+    margin-top: 15px;
+    color: #b00020;
+}
+</style>
+
+<script id="hero-license-engine" data-hero-protected-app="1">
+
+(function () {
+    "use strict";
+
+    const HERO_PAYLOAD_B64 = "eyJ2ZXJzaW9uIjoyLCJwcm9kdWN0IjoiSGVybyBBY2FkZW15IiwiY291cnNlX2lkIjoyMCwic3ViamVjdF9pZCI6MCwiYXBwX25hbWUiOiJIZXJvIFByb3RlY3RlZCBBcHAiLCJvZmZsaW5lIjp0cnVlfQ==";
+    const HERO_SIGNATURE_B64 = "iq6LizauH65N3JP2z7i0p9+E9VswAcuVAaQtY7YPTEtjpGxSOH/C0xi2oyB2cO/KKglWpdsmCepDLPQyj74OmjcqbkxwLZM8Pu4BcejTA2excIe4okLbjSkfBBN8p58+sk6u2pa1HHdFhfRJR2lsDxw0oUKNxtHYRL2v/hMJIJ9V/ACBLN+/QyR3BCQUgh7hDyQAA08RbzndGOUPOFLfxrLZYrYU1KTKmz2CMmIl0/dbmeB8oE3easiiKuJULr4TiKKELu+/zipBElg9L6XuqzeF1RMq8IHD2SNB9WhtO/Zk1fPB5RX3qhIQ0SevgKmYiCC3u0aQiqRqan9A0j500A==";
+    const HERO_PUBLIC_KEY_B64 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAokfP3g1ieGYQkeGnWDXp7le9tT12xdvHpCA4m7HoPjRI+KGH2DjqQuRZuAmFGzk5aLxJGyyu9XkhEcvvL7nVISYGYN4KkTxZqtufGzKAMTCZm++5C9OSlgazKXkrm7nlDNo2/+fbBuDJPOMg+efpnKjnmuOZ24ZWXIEW4ezmxylOBhG+s6BTpJsElTkKzQui2sf7KdBtsXhOtA+dDsyUqt02RWKSDixFdqJz3fsPVhDOuCc9YKJXRbrcjh08nPs4AQx3iQHxVSTtirmU80Y+IYc/hWaTstRaaNyQZePrzwGN+2jzcw/0KuJpdA6hnf/HtUhk0ottglRoik5QA3IlzwIDAQAB";
+    const HERO_STORAGE_KEY = "hero_license_6a4895a7ed50c6163908145470c96c9efffdaf7421c71aea6868778d7646b79b";
+    const HERO_DEVICE_KEY = "hero_device_id_v2";
+    const HERO_TRIAL_KEY = HERO_STORAGE_KEY + "_trial";
+    const HERO_MODE_KEY = HERO_STORAGE_KEY + "_mode";
+
+    const TRIAL_DAYS = 7;
+    const TRIAL_SECONDS = TRIAL_DAYS * 24 * 60 * 60;
+    const CLOCK_TOLERANCE_MS = 5 * 60 * 1000;
+
+    function base64ToBytes(base64) {
+        const binary = atob(base64);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) {
+            bytes[i] = binary.charCodeAt(i);
+        }
+        return bytes;
+    }
+
+    function base64UrlDecode(text) {
+        let base64 = String(text)
+            .replace(/-/g, "+")
+            .replace(/_/g, "/");
+        const padding = base64.length % 4;
+        if (padding) {
+            base64 += "=".repeat(4 - padding);
+        }
+        return atob(base64);
+    }
+
+    function randomDeviceId() {
+        if (crypto && typeof crypto.randomUUID === "function") {
+            return crypto.randomUUID();
+        }
+        const bytes = new Uint8Array(16);
+        crypto.getRandomValues(bytes);
+        return Array.from(bytes)
+            .map(byte => byte.toString(16).padStart(2, "0"))
+            .join("");
+    }
+
+    function getDeviceId() {
+        let deviceId = localStorage.getItem(HERO_DEVICE_KEY);
+        if (!deviceId) {
+            deviceId = randomDeviceId();
+            localStorage.setItem(HERO_DEVICE_KEY, deviceId);
+        }
+        return deviceId;
+    }
+
+    async function sha256(text) {
+        const data = new TextEncoder().encode(text);
+        const hash = await crypto.subtle.digest("SHA-256", data);
+        return Array.from(new Uint8Array(hash))
+            .map(byte => byte.toString(16).padStart(2, "0"))
+            .join("");
+    }
+
+    async function importPublicKey() {
+        return await crypto.subtle.importKey(
+            "spki",
+            base64ToBytes(HERO_PUBLIC_KEY_B64),
+            { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
+            false,
+            ["verify"]
+        );
+    }
+
+    function getLicensePayload() {
+        const json = new TextDecoder().decode(
+            base64ToBytes(HERO_PAYLOAD_B64)
+        );
+        return JSON.parse(json);
+    }
+
+    async function verifyLicenseSignature() {
+        try {
+            const publicKey = await importPublicKey();
+            return await crypto.subtle.verify(
+                { name: "RSASSA-PKCS1-v1_5" },
+                publicKey,
+                base64ToBytes(HERO_SIGNATURE_B64),
+                base64ToBytes(HERO_PAYLOAD_B64)
+            );
+        } catch (error) {
+            console.error("Hero license verification error:", error);
+            return false;
+        }
+    }
+
+    // دعم الصيغ: 5 أجزاء (قديم), 6 أجزاء (مع licenseType), 7 أجزاء (مع expires_at)
+    async function verifyActivationCodeSignature(code) {
+        try {
+            const decoded = base64UrlDecode(code);
+            const parts = decoded.split("|");
+
+            let system, licenseType = "PAID", userId, courseId, licenseKey, expiresAt, encodedSignature;
+
+            if (parts.length === 7) {
+                [system, licenseType, userId, courseId, licenseKey, expiresAt, encodedSignature] = parts;
+            } else if (parts.length === 6) {
+                [system, licenseType, userId, courseId, licenseKey, encodedSignature] = parts;
+            } else if (parts.length === 5) {
+                [system, userId, courseId, licenseKey, encodedSignature] = parts;
+            } else {
+                return null;
+            }
+
+            licenseType = String(licenseType).toUpperCase();
+            if (system !== "HERO" || licenseType !== "PAID" ||
+                !/^\d+$/.test(String(userId)) || !/^\d+$/.test(String(courseId)) ||
+                !/^HERO-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(licenseKey)) {
+                return null;
+            }
+
+            // بناء النص المُوقَّع (بنفس صيغة الخادم)
+            let payload;
+            if (parts.length === 7) {
+                payload = ["HERO", "PAID", userId, courseId, licenseKey, expiresAt].join("|");
+            } else if (parts.length === 6) {
+                payload = ["HERO", "PAID", userId, courseId, licenseKey].join("|");
+            } else {
+                payload = ["HERO", userId, courseId, licenseKey].join("|");
+            }
+
+            const publicKey = await importPublicKey();
+            const valid = await crypto.subtle.verify(
+                { name: "RSASSA-PKCS1-v1_5" },
+                publicKey,
+                base64ToBytes(encodedSignature),
+                new TextEncoder().encode(payload)
+            );
+
+            if (!valid) return null;
+
+            return {
+                userId: Number(userId),
+                courseId: Number(courseId),
+                licenseKey,
+                licenseType,
+                expiresAt: expiresAt || null,
+                code
+            };
+        } catch (error) {
+            console.error("Hero activation verification error:", error);
+            return null;
+        }
+    }
+
+    function loadJson(key) {
+        try {
+            const value = localStorage.getItem(key);
+            return value ? JSON.parse(value) : null;
+        } catch (_) {
+            return null;
+        }
+    }
+
+    function saveJson(key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+    }
+
+    function unlockApplication() {
+        const overlay = document.getElementById("hero-license-overlay");
+        if (overlay) overlay.remove();
+        document.documentElement.removeAttribute("data-hero-locked");
+    }
+
+    function formatRemaining(seconds) {
+        seconds = Math.max(0, Math.floor(seconds));
+        const days = Math.floor(seconds / 86400);
+        seconds %= 86400;
+        const hours = Math.floor(seconds / 3600);
+        seconds %= 3600;
+        const minutes = Math.floor(seconds / 60);
+        return `${days} يوم ${hours} ساعة ${minutes} دقيقة`;
+    }
+
+    function updateTrialCounter(state) {
+        let counter = document.getElementById("hero-trial-counter-visible");
+        if (!counter) {
+            counter = document.createElement("div");
+            counter.id = "hero-trial-counter-visible";
+            counter.style.cssText = `
+                position:fixed; bottom:12px; right:12px; z-index:2147483646;
+                background:#111827; color:#fff; padding:8px 12px; border-radius:8px;
+                font:14px Arial,sans-serif; box-shadow:0 4px 15px rgba(0,0,0,.15);
+            `;
+            document.body.appendChild(counter);
+        }
+        const remaining = Math.max(0, (state.expiresAt - Date.now()) / 1000);
+        counter.textContent = "التجربة المجانية المتبقي: " + formatRemaining(remaining);
+    }
+
+    function getTrialState() {
+        const deviceId = getDeviceId();
+        let state = loadJson(HERO_TRIAL_KEY);
+        if (!state) {
+            const now = Date.now();
+            state = {
+                mode: "TRIAL",
+                deviceId,
+                startedAt: now,
+                lastSeen: now,
+                expiresAt: now + (TRIAL_SECONDS * 1000),
+                tampered: false
+            };
+            saveJson(HERO_TRIAL_KEY, state);
+            return state;
+        }
+        if (state.deviceId !== deviceId) {
+            return { ...state, tampered: true };
+        }
+        const now = Date.now();
+        if (Number.isFinite(state.lastSeen) && now + CLOCK_TOLERANCE_MS < state.lastSeen) {
+            state.tampered = true;
+        }
+        if (!state.tampered) {
+            state.lastSeen = now;
+            saveJson(HERO_TRIAL_KEY, state);
+        }
+        return state;
+    }
+
+    function createOverlay(title, text, buttonText, onClick, showInput = false) {
+        document.documentElement.setAttribute("data-hero-locked", "1");
+        let overlay = document.getElementById("hero-license-overlay");
+        if (!overlay) {
+            overlay = document.createElement("div");
+            overlay.id = "hero-license-overlay";
+            document.body.appendChild(overlay);
+        }
+        overlay.innerHTML = `
+            <div id="hero-license-box">
+                <h2 id="hero-license-title">${title}</h2>
+                <p id="hero-license-text">${text}</p>
+                <div id="hero-trial-counter"></div>
+                ${showInput ? `
+                <input id="hero-activation-input" type="text" autocomplete="off" placeholder="أدخل كود التفعيل">
+                ` : ""}
+                <button id="hero-activation-button" type="button">${buttonText}</button>
+                <div id="hero-license-message"></div>
+            </div>
+        `;
+        const button = document.getElementById("hero-activation-button");
+        button.onclick = onClick;
+        return overlay;
+    }
+
+    function showPaidActivationScreen(message = "هذا التطبيق محمي ومخصص للمشتري.") {
+        createOverlay("تفعيل التطبيق", message, "تفعيل التطبيق", activatePaid, true);
+        const input = document.getElementById("hero-activation-input");
+        input.onkeydown = function (event) {
+            if (event.key === "Enter") activatePaid();
+        };
+    }
+
+    function showTrialEndedScreen(message) {
+        createOverlay(
+            "انتهت التجربة المجانية",
+            message,
+            "شراء التطبيق",
+            function () {
+                const payload = getLicensePayload();
+                window.location.href =
+                    "https://hero.kesug.com/Academy/payment.php?course_id=" +
+                    encodeURIComponent(payload.course_id);
+            },
+            false
+        );
+    }
+
+    async function activatePaid() {
+        const input = document.getElementById("hero-activation-input");
+        const message = document.getElementById("hero-license-message");
+        if (!input || !message) return;
+
+        const code = input.value.trim();
+        if (!code) {
+            message.textContent = "يرجى إدخال كود التفعيل.";
+            return;
+        }
+
+        try {
+            const packageValid = await verifyLicenseSignature();
+            if (!packageValid) {
+                message.textContent = "بيانات النسخة المحمية غير صالحة.";
+                return;
+            }
+
+            const payload = getLicensePayload();
+
+            // التحقق من كود التفعيل (PAID)
+            const decoded = await verifyActivationCodeSignature(code);
+            if (!decoded) {
+                message.textContent = "كود التفعيل غير صحيح.";
+                return;
+            }
+
+            // التحقق من تطابق course_id
+            if (decoded.courseId !== Number(payload.course_id)) {
+                message.textContent = "كود التفعيل لا يخص هذا التطبيق.";
+                return;
+            }
+
+            // تخزين حالة الدفع
+            saveJson(HERO_MODE_KEY, {
+                mode: "PAID",
+                deviceId: getDeviceId(),
+                activatedAt: Date.now(),
+                licenseKey: decoded.licenseKey
+            });
+
+            localStorage.removeItem(HERO_TRIAL_KEY);
+            localStorage.setItem(HERO_STORAGE_KEY, "activated");
+
+            const counter = document.getElementById("hero-trial-counter-visible");
+            if (counter) counter.remove();
+
+            unlockApplication();
+
+        } catch (error) {
+            console.error(error);
+            message.textContent = "حدث خطأ أثناء التفعيل.";
+        }
+    }
+
+    async function startProtection() {
+        document.documentElement.setAttribute("data-hero-locked", "1");
+
+        const signatureValid = await verifyLicenseSignature();
+        if (!signatureValid) {
+            showPaidActivationScreen("بيانات النسخة المحمية غير صالحة.");
+            return;
+        }
+
+        const payload = getLicensePayload();
+        const deviceId = getDeviceId();
+
+        // التحقق من وجود حالة دفع سابقة
+        const savedMode = loadJson(HERO_MODE_KEY);
+        if (savedMode && savedMode.mode === "PAID" && savedMode.deviceId === deviceId) {
+            unlockApplication();
+            return;
+        }
+
+        // البدء بالتجربة التلقائية (بدون الحاجة إلى license_type)
+        const trial = getTrialState();
+
+        if (trial.tampered) {
+            showTrialEndedScreen("تم اكتشاف تغيير غير طبيعي في وقت الجهاز. انتهت صلاحية التجربة.");
+            return;
+        }
+
+        if (Date.now() >= trial.expiresAt) {
+            showTrialEndedScreen("انتهت التجربة المجانية لمدة 7 أيام. يمكنك شراء التطبيق والاستمرار في استخدام النسخة نفسها.");
+            return;
+        }
+
+        // التجربة سارية
+        unlockApplication();
+        updateTrialCounter(trial);
+
+        setInterval(function () {
+            const current = getTrialState();
+            if (current.tampered || Date.now() >= current.expiresAt) {
+                const counter = document.getElementById("hero-trial-counter-visible");
+                if (counter) counter.remove();
+
+                showTrialEndedScreen(
+                    current.tampered
+                        ? "تم اكتشاف تغيير غير طبيعي في وقت الجهاز. انتهت صلاحية التجربة."
+                        : "انتهت التجربة المجانية لمدة 7 أيام. يمكنك شراء التطبيق والاستمرار في استخدام النسخة نفسها."
+                );
+                return;
+            }
+            updateTrialCounter(current);
+        }, 1000);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", startProtection);
+    } else {
+        startProtection();
+    }
+
+})();
+
+</script>
+
+</head>
+<body>
+
+    <!-- ================================================================
+    القسم 18: رأس التطبيق (App Header)
+    ================================================================ -->
+    <header class="app-header">
+        <div class="container">
+            <div class="app-title">
+                📘 مذكرة النجاح
+                <small>فيزياء الثانوية العامة</small>
+            </div>
+            <div class="header-actions">
+                <button class="btn-home" id="btnHome">🏠 الرئيسية</button>
+                <button id="btnSearchToggle">🔍 بحث</button>
+                <button id="btnFavToggle">⭐ المفضلة</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================================================================
+    القسم 19: الحاوية الرئيسية (Container)
+    ================================================================ -->
+    <div class="container">
+
+        <!-- ================================================================
+        القسم 20: منطقة البحث (Search Area)
+        ================================================================ -->
+        <div class="search-area" id="searchArea">
+            <div class="search-row">
+                <input type="text" id="searchInput" placeholder="ابحث في كل محتوى المذكرة...">
+                <button class="btn-search" id="searchBtn">🔍 بحث</button>
+                <button class="btn-clear" id="clearSearchBtn">✖ إلغاء</button>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+
+        <!-- ================================================================
+        القسم 21: لوحة المفضلة (Favorites Panel)
+        ================================================================ -->
+        <div class="fav-panel" id="favPanel">
+            <h4 style="margin-bottom:8px;">⭐ أقسامي المفضلة</h4>
+            <ul id="favList">
+                <li style="color:#6a7f9a;">لا توجد مفضلات حالياً. أضف الأقسام من داخلها.</li>
+            </ul>
+        </div>
+
+        <!-- ================================================================
+        القسم 22: الشاشة الرئيسية (Main Screen)
+        ================================================================ -->
+        <div id="mainScreen" class="main-screen">
+            <h1>⚡ منهج الفيزياء المتكامل – الصف الثالث الثانوي</h1>
+            <p class="sub">من الكهرومغناطيسية إلى الفيزياء الحديثة – دليل شامل للمراجعة النهائية</p>
+            <p style="margin-bottom:20px; color:#3d5a78;">مرحباً بك في مذكرة النجاح الشاملة لمادة الفيزياء. اضغط على أي زر للوصول إلى المحتوى.</p>
+
+            <!-- شبكة الأزرار (التصنيفات) -->
+            <div class="category-grid">
+                <div class="category-card" data-section="explain"><span class="icon">📖</span> شرح <span class="badge-count">8</span></div>
+                <div class="category-card" data-section="summaries"><span class="icon">📋</span> ملخصات <span class="badge-count">6</span></div>
+                <div class="category-card" data-section="questions"><span class="icon">❓</span> أسئلة <span class="badge-count">20+</span></div>
+                <div class="category-card" data-section="maps"><span class="icon">🗺️</span> خرائط <span class="badge-count">20</span></div>
+                <div class="category-card" data-section="examples"><span class="icon">📌</span> أمثلة <span class="badge-count">15</span></div>
+                <div class="category-card" data-section="exams"><span class="icon">📝</span> امتحانات <span class="badge-count">4</span></div>
+                <div class="category-card" data-section="tree"><span class="icon">🌳</span> شجرة المعرفة</div>
+                <div class="category-card" data-section="qbank"><span class="icon">📚</span> بنك الأسئلة <span class="badge-count">200</span></div>
+                <div class="category-card" data-section="reviews"><span class="icon">🔄</span> مراجعات <span class="badge-count">8</span></div>
+                <div class="category-card" data-section="videos"><span class="icon">🎬</span> فيديوهات</div>
+            </div>
+
+            <div style="margin-top:20px; background:#eaf0f8; border-radius:18px; padding:16px 20px;">
+                <p style="font-weight:600; color:#0b3d5e;">📌 عن هذه المذكرة:</p>
+                <p style="font-size:0.95rem; color:#2c4a6e;">
+                    • تغطي كامل منهج الفيزياء للصف الثالث الثانوي (الكهربية، المغناطيسية، الفيزياء الحديثة).
+                    <br>• تحتوي على 200 سؤال وإجابة، ملخصات، خرائط ذهنية، بطاقات مراجعة، وامتحانات شاملة.
+                    <br>• صُممت خصيصاً للمراجعة النهائية والتفوق في الامتحانات.
+                </p>
+            </div>
+                    <!-- ================================================================
+        القسم 24: تنبيه حقوق الاستخدام والنسخة التجريبية
+        ================================================================ -->
+        <div class="alert-notice">
+            <p style="font-weight: 700; font-size: 1.05rem; margin-bottom: 8px;">
+                ⚠️ تنبيه مهم
+            </p>
+            <p style="margin-bottom: 8px;">
+                إذا وصلك هذا التطبيق أو تمكنت من استخدامه دون إتمام عملية الشراء،
+                <strong>نرجو التواصل معنا عبر البريد الإلكتروني</strong> في أقرب وقت لتصحيح الوضع وتسوية أي مستحقات مالية.
+            </p>
+            <p style="margin-bottom: 4px;">
+                نشكركم على الأمانة والتعاون.
+            </p>
+            <p class="email">
+                📧 egyptstore170@gmail.com
+            </p>
+            <hr>
+            <p class="commission">
+                💰 <strong>لمن يرغب في الربح:</strong> يمكنك أيضاً الانضمام إلى برنامج التسويق بالعمولة والحصول على <strong>20% عمولة</strong> عن كل عملية شراء تتم من خلالك.
+            </p>
+        </div>
+        </div>
+
+        <!-- ================================================================
+        القسم 23: أقسام المحتوى (تظهر عند الضغط على الأزرار)
+        ================================================================ -->
+
+        <!-- ===== القسم 1: شرح ===== -->
+        <div id="section-explain" class="section-content">
+            <div class="section-header">
+                <h2>📖 الشرح المفاهيمي</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-explain">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div class="card">
+                <h3>الوحدة الأولى: الكهربية التيارية والكهرومغناطيسية</h3>
+                <h4>الفصل الأول: التيار الكهربي وقانون أوم وقانونا كيرشوف</h4>
+                <div class="def-box"><div class="box-title">شدة التيار الكهربي (I)</div><p>كمية الكهرباء المارة عبر مقطع موصل في زمن قدره ثانية واحدة. <span class="formula">I = Q / t</span> وحدة القياس: الأمبير (A).</p></div>
+                <div class="def-box"><div class="box-title">فرق الجهد الكهربي (V)</div><p>الشغل المبذول لنقل كمية من الكهرباء قدرها واحد كولوم بين نقطتين. <span class="formula">V = W / Q</span> وحدة القياس: الفولت (V).</p></div>
+                <div class="def-box"><div class="box-title">المقاومة الكهربية (R)</div><p>خاصية الموصل التي تعيق مرور التيار الكهربي. <span class="formula">R = V / I</span> وحدة القياس: الأوم (Ω).</p></div>
+                <div class="def-box"><div class="box-title">المقاومة النوعية (ρₑ)</div><p>خاصية مميزة للمادة تعتمد على نوعها ودرجة حرارتها. <span class="formula">ρₑ = R A / l</span> وحدة القياس: Ω.m.</p></div>
+                <div class="note-box"><div class="box-title">📌 تنبيه خبير</div><p>المقاومة النوعية (ρₑ) والتوصيلية الكهربية (σ) صفتان مميزتان للمادة؛ لا تتغيران بتغير طول السلك أو مساحته، بل تعتمدان فقط على نوع المادة ودرجة الحرارة.</p></div>
+            </div>
+            <div class="card">
+                <h4>توصيل المقاومات</h4>
+                <table class="comparison-table">
+                    <thead><tr><th>وجه المقارنة</th><th>التوصيل على التوالي</th><th>التوصيل على التوازي</th></tr></thead>
+                    <tbody>
+                        <tr><td>الغرض</td><td>الحصول على مقاومة كبيرة</td><td>الحصول على مقاومة صغيرة</td></tr>
+                        <tr><td>شدة التيار (I)</td><td>ثابتة في جميع المقاومات</td><td>تتجزأ بنسبة عكسية مع المقاومات</td></tr>
+                        <tr><td>فرق الجهد (V)</td><td>يتجزأ بنسبة طردية مع المقاومات</td><td>ثابت في جميع المقاومات</td></tr>
+                        <tr><td>المقاومة المكافئة (R')</td><td><span class="formula">R' = R₁ + R₂ + R₃</span></td><td><span class="formula">1/R' = 1/R₁ + 1/R₂ + 1/R₃</span></td></tr>
+                        <tr><td>حالة خاصة (متساوية)</td><td><span class="formula">R' = nR</span></td><td><span class="formula">R' = R/n</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card">
+                <h4>قانون أوم للدائرة المغلقة</h4>
+                <p>شدة التيار في دائرة مغلقة تساوي القوة الدافعة الكهربية مقسومة على مجموع المقاومات الخارجية والداخلية.</p>
+                <div class="formula">I = V<sub>B</sub> / (R' + r)</div>
+                <p>فرق الجهد بين قطبي البطارية: <span class="formula">V = V<sub>B</sub> - I r</span></p>
+            </div>
+            <div class="card">
+                <h4>قانونا كيرشوف</h4>
+                <div class="def-box"><div class="box-title">القانون الأول (حفظ الشحنة)</div><p>مجموع التيارات الداخلة إلى نقطة يساوي مجموع التيارات الخارجة منها. <span class="formula">∑I<sub>in</sub> = ∑I<sub>out</sub></span></p></div>
+                <div class="def-box"><div class="box-title">القانون الثاني (حفظ الطاقة)</div><p>المجموع الجبري للقوى الدافعة الكهربية في مسار مغلق يساوي مجموع فروق الجهد. <span class="formula">∑V<sub>B</sub> = ∑IR</span></p></div>
+            </div>
+            <div class="card">
+                <h3>الفصل الثاني: التأثير المغناطيسي للتيار الكهربي وأجهزة القياس</h3>
+                <h4>كثافة الفيض المغناطيسي (B) للأشكال المختلفة</h4>
+                <table class="comparison-table">
+                    <thead><tr><th>الشكل الهندسي</th><th>قانون كثافة الفيض (B)</th><th>قاعدة تحديد الاتجاه</th></tr></thead>
+                    <tbody>
+                        <tr><td>سلك مستقيم</td><td><span class="formula">B = μI / (2πd)</span></td><td>اليد اليمنى لأمبير</td></tr>
+                        <tr><td>ملف دائري</td><td><span class="formula">B = μNI / (2r)</span></td><td>البريمة اليمنى</td></tr>
+                        <tr><td>ملف لولبي</td><td><span class="formula">B = μ n I</span> (n = N/l)</td><td>اليد اليمنى لأمبير</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card">
+                <h4>القوة المغناطيسية وعزم الازدواج</h4>
+                <div class="def-box"><div class="box-title">القوة المغناطيسية (F)</div><p><span class="formula">F = B I L sin θ</span> (استخدم قاعدة اليد اليسرى لفلمنج)</p></div>
+                <div class="def-box"><div class="box-title">عزم الازدواج (τ)</div><p><span class="formula">τ = B I A N sin θ</span> (حيث θ هي الزاوية بين العمودي على الملف والمجال)</p></div>
+                <div class="note-box"><div class="box-title">💡 تنبيه امتحاني</div><p>يكون العزم نهاية عظمى عندما يكون مستوى الملف موازياً للمجال، ويكون صفراً عندما يكون مستوى الملف عمودياً على المجال.</p></div>
+            </div>
+            <div class="card">
+                <h4>أجهزة القياس الكهربي</h4>
+                <table class="comparison-table">
+                    <thead><tr><th>الجهاز</th><th>طريقة التوصيل</th><th>القانون</th><th>الغرض</th></tr></thead>
+                    <tbody>
+                        <tr><td>الأميتر</td><td>على التوازي</td><td><span class="formula">R<sub>s</sub> = I<sub>g</sub>R<sub>g</sub> / (I - I<sub>g</sub>)</span></td><td>قياس شدات تيار عالية</td></tr>
+                        <tr><td>الفولتميتر</td><td>على التوالي</td><td><span class="formula">R<sub>m</sub> = (V - V<sub>g</sub>) / I<sub>g</sub></span></td><td>قياس فروق جهد عالية</td></tr>
+                        <tr><td>الأوميتر</td><td>على التوالي</td><td><span class="formula">I = V<sub>B</sub> / (R<sub>device</sub> + R<sub>x</sub>)</span></td><td>قياس مقاومة مجهولة</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card">
+                <h3>الفصل الثالث: الحث الكهرومغناطيسي</h3>
+                <div class="def-box"><div class="box-title">قانون فاراداي</div><p><span class="formula">emf = -N (ΔΦ<sub>m</sub> / Δt)</span></p></div>
+                <div class="def-box"><div class="box-title">قاعدة لنز</div><p>اتجاه التيار المستحث يعاكس التغير في الفيض المغناطيسي الذي سببه.</p></div>
+                <div class="def-box"><div class="box-title">الحث المتبادل (M)</div><p><span class="formula">emf<sub>2</sub> = -M (ΔI<sub>1</sub> / Δt)</span></p></div>
+                <div class="def-box"><div class="box-title">الحث الذاتي (L)</div><p><span class="formula">emf = -L (ΔI / Δt)</span></p></div>
+                <div class="def-box"><div class="box-title">المولد الكهربي (الدينامو)</div><p><span class="formula">emf = N B A ω sin θ</span> (اللحظية) / <span class="formula">emf<sub>eff</sub> = emf<sub>max</sub> / √2</span></p></div>
+                <div class="def-box"><div class="box-title">المحول الكهربي</div><p><span class="formula">V<sub>s</sub> / V<sub>p</sub> = N<sub>s</sub> / N<sub>p</sub></span> / <span class="formula">η = V<sub>s</sub>I<sub>s</sub> / (V<sub>p</sub>I<sub>p</sub>)</span></p></div>
+            </div>
+            <div class="card">
+                <h3>الفصل الرابع: دوائر التيار المتردد</h3>
+                <div class="def-box"><div class="box-title">المفاعلة الحثية (X<sub>L</sub>)</div><p><span class="formula">X<sub>L</sub> = 2πfL</span></p></div>
+                <div class="def-box"><div class="box-title">المفاعلة السعوية (X<sub>C</sub>)</div><p><span class="formula">X<sub>C</sub> = 1 / (2πfC)</span></p></div>
+                <div class="def-box"><div class="box-title">المعاوقة الكلية (Z)</div><p><span class="formula">Z = √(R² + (X<sub>L</sub> - X<sub>C</sub>)²)</span></p></div>
+                <div class="def-box"><div class="box-title">زاوية الطور (θ)</div><p><span class="formula">tan θ = (X<sub>L</sub> - X<sub>C</sub>) / R</span></p></div>
+                <div class="def-box"><div class="box-title">تردد الرنين</div><p><span class="formula">f = 1 / (2π√(LC))</span></p></div>
+            </div>
+            <div class="card">
+                <h3>الوحدة الثانية: مقدمة في الفيزياء الحديثة</h3>
+                <h4>الفصل الخامس: ازدواجية الموجة والجسيم</h4>
+                <div class="def-box"><div class="box-title">كمات الطاقة (بلانك)</div><p><span class="formula">E = hν</span> حيث h = 6.625 × 10⁻³⁴ J.s</p></div>
+                <div class="def-box"><div class="box-title">التأثير الكهروضوئي (أينشتاين)</div><p><span class="formula">hν = E<sub>w</sub> + ½mv²</span></p></div>
+                <div class="def-box"><div class="box-title">مبدأ دي برولي</div><p><span class="formula">λ = h / (mv)</span></p></div>
+                <h4>الفصل السادس: الأطياف الذرية</h4>
+                <div class="def-box"><div class="box-title">طاقة مستويات الهيدروجين (بور)</div><p><span class="formula">E<sub>n</sub> = -13.6 / n² eV</span></p></div>
+                <h4>الفصل السابع: الليزر</h4>
+                <ul>
+                    <li><strong>الانبعاث التلقائي:</strong> إصدار الفوتونات عشوائياً.</li>
+                    <li><strong>الانبعاث المستحث:</strong> فوتون ساقط يحفز ذرة مثارة لإصدار فوتون مطابق.</li>
+                    <li><strong>خصائص الليزر:</strong> النقاء الطيفي، التوازي، الترابط، الشدة العالية.</li>
+                </ul>
+                <h4>الفصل الثامن: الإلكترونيات الحديثة</h4>
+                <ul>
+                    <li><strong>أشباه الموصلات:</strong> بلورات نقية ومطعمة (N-type و P-type).</li>
+                    <li><strong>الوصلة الثنائية (الدايود):</strong> توصل في اتجاه واحد وتستخدم في تقويم التيار.</li>
+                    <li><strong>الترانزستور:</strong> يستخدم كمكبر ومفتاح.</li>
+                    <li><strong>البوابات المنطقية:</strong> NOT, AND, OR – أساس الحواسيب الرقمية.</li>
+                </ul>
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 2: ملخصات ===== -->
+        <div id="section-summaries" class="section-content">
+            <div class="section-header">
+                <h2>📋 الملخصات التنظيمية</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-summaries">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div class="card"><h3>ملخص قوانين الكهرباء والمغناطيسية</h3>
+                <ul>
+                    <li><strong>شدة التيار:</strong> I = Q/t (A)</li>
+                    <li><strong>المقاومة النوعية:</strong> ρₑ = RA/l (Ω.m)</li>
+                    <li><strong>قانون أوم:</strong> V = IR</li>
+                    <li><strong>قانون أوم للدائرة المغلقة:</strong> I = V<sub>B</sub>/(R'+r)</li>
+                    <li><strong>كثافة الفيض (سلك مستقيم):</strong> B = μI/(2πd)</li>
+                    <li><strong>كثافة الفيض (ملف دائري):</strong> B = μNI/(2r)</li>
+                    <li><strong>كثافة الفيض (ملف لولبي):</strong> B = μnI</li>
+                    <li><strong>القوة المغناطيسية:</strong> F = BIL sinθ</li>
+                    <li><strong>عزم الازدواج:</strong> τ = BIAN sinθ</li>
+                </ul>
+            </div>
+            <div class="card"><h3>ملخص أجهزة القياس</h3>
+                <ul>
+                    <li><strong>الأميتر:</strong> يوصل على التوازي مع مجزئ تيار (R<sub>s</sub>).</li>
+                    <li><strong>الفولتميتر:</strong> يوصل على التوالي مع مضاعف جهد (R<sub>m</sub>).</li>
+                    <li><strong>الأوميتر:</strong> يعتمد على العلاقة العكسية بين التيار والمقاومة.</li>
+                </ul>
+            </div>
+            <div class="card"><h3>ملخص الفيزياء الحديثة</h3>
+                <ul>
+                    <li><strong>التأثير الكهروضوئي:</strong> انبعاث الإلكترونات من سطح فلز عند سقوط ضوء بتردد أعلى من التردد الحرج.</li>
+                    <li><strong>ظاهرة كومتون:</strong> إثبات الطبيعة الجسيمية للفوتون.</li>
+                    <li><strong>مبدأ دي برولي:</strong> كل جسيم متحرك له طول موجي مصاحب.</li>
+                    <li><strong>متسلسلات طيف الهيدروجين:</strong> ليمان (فوق البنفسجي)، بالمر (مرئي)، باشن (تحت الحمراء).</li>
+                    <li><strong>الليزر:</strong> انبعاث مستحث، إسكان معكوس، تجويف رنيني.</li>
+                </ul>
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 3: أسئلة ===== -->
+        <div id="section-questions" class="section-content">
+            <div class="section-header">
+                <h2>❓ أسئلة ومسائل</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-questions">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div class="card"><h3>مسألة: قانون أوم</h3><p>سلك طوله 2m ومساحة مقطعه 0.5mm² ومقاومته 5Ω، احسب المقاومة النوعية لمادته.</p><details><summary>🔽 عرض الحل</summary><div style="padding:8px 12px; background:#eaf0f8; border-radius:8px; margin-top:6px;">ρₑ = RA/l = 5 × (0.5×10⁻⁶) / 2 = 1.25×10⁻⁶ Ω.m</div></details></div>
+            <div class="card"><h3>مسألة: توصيل مقاومات</h3><p>ثلاث مقاومات 2Ω، 3Ω، 6Ω موصلة على التوازي، احسب المقاومة المكافئة.</p><details><summary>🔽 عرض الحل</summary><div style="padding:8px 12px; background:#eaf0f8; border-radius:8px; margin-top:6px;">1/R' = 1/2 + 1/3 + 1/6 = 1 → R' = 1Ω</div></details></div>
+            <div class="card"><h3>مسألة: الحث الكهرومغناطيسي</h3><p>ملف عدد لفاته 200 لفة، مساحته 0.02m² يدور في مجال مغناطيسي كثافته 0.5T بتردد 50Hz، احسب القوة الدافعة العظمى.</p><details><summary>🔽 عرض الحل</summary><div style="padding:8px 12px; background:#eaf0f8; border-radius:8px; margin-top:6px;">emf<sub>max</sub> = N B A ω = 200 × 0.5 × 0.02 × 2π × 50 = 628V</div></details></div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 4: خرائط ===== -->
+        <div id="section-maps" class="section-content">
+            <div class="section-header">
+                <h2>🗺️ الخرائط الذهنية</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-maps">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <p style="margin-bottom:16px;">خرائط ذهنية توضح هيكل منهج الفيزياء للثانوية العامة.</p>
+            <div class="maps-grid" id="mapsGallery">
+                <!-- سيتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 5: أمثلة ===== -->
+        <div id="section-examples" class="section-content">
+            <div class="section-header">
+                <h2>📌 الأمثلة والتطبيقات</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-examples">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div class="card"><h3>مثال: تطبيقات الليزر</h3><ul><li>الطب: جراحات العيون والجلد.</li><li>الصناعة: القطع واللحام.</li><li>التصوير المجسم (الهولوغرافي).</li></ul></div>
+            <div class="card"><h3>مثال: تطبيقات أشباه الموصلات</h3><ul><li>الدايود: تقويم التيار المتردد.</li><li>الترانزستور: مكبرات الصوت والمفاتيح الإلكترونية.</li><li>البوابات المنطقية: بناء المعالجات والذاكرة.</li></ul></div>
+            <div class="card"><h3>مثال: تطبيقات الحث الكهرومغناطيسي</h3><ul><li>المولد الكهربي (الدينامو): توليد الكهرباء.</li><li>المحول: رفع أو خفض الجهد الكهربي.</li><li>المحرك الكهربي: تحويل الطاقة الكهربائية إلى حركية.</li></ul></div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 6: امتحانات ===== -->
+        <div id="section-exams" class="section-content">
+            <div class="section-header">
+                <h2>📝 الامتحانات الشاملة</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-exams">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div id="examsContainer">
+                <!-- سيتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 7: شجرة المعرفة ===== -->
+        <div id="section-tree" class="section-content">
+            <div class="section-header">
+                <h2>🌳 شجرة المعرفة</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-tree">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div id="treeContainer" class="card">
+                <!-- سيتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 8: بنك الأسئلة ===== -->
+        <div id="section-qbank" class="section-content">
+            <div class="section-header">
+                <h2>📚 بنك الأسئلة (200 سؤال)</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-qbank">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div class="qbank-filters">
+                <select id="qbankUnitFilter"><option value="all">جميع الوحدات</option></select>
+                <input type="text" id="qbankSearchInput" placeholder="بحث في الأسئلة...">
+                <button id="qbankSearchBtn" style="padding:8px 18px; background:#0b3d5e; color:#fff; border:none; border-radius:30px;">بحث</button>
+            </div>
+            <div id="qbankContainer">
+                <!-- سيتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 9: مراجعات ===== -->
+        <div id="section-reviews" class="section-content">
+            <div class="section-header">
+                <h2>🔄 المراجعات وبطاقات المراجعة</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-reviews">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div id="reviewsContainer">
+                <!-- سيتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 10: فيديوهات ===== -->
+        <div id="section-videos" class="section-content">
+            <div class="section-header">
+                <h2>🎬 الفيديوهات التعليمية</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-videos">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div class="card" style="text-align:center; padding:30px 20px;">
+                <div style="font-size:48px; margin-bottom:12px;">▶️</div>
+                <h3 style="margin-bottom:8px;">فيديو شرح منهج الفيزياء</h3>
+                <p style="margin-bottom:18px; color:#3d5a78;">اضغط على الزر لمشاهدة الفيديو على YouTube.</p>
+                <a href="https://youtu.be/qzey3beG_rw" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:12px 28px; background:#ff0000; color:#fff; border-radius:30px; font-weight:700; text-decoration:none;">▶ مشاهدة الفيديو على YouTube</a>
+                <p style="font-size:0.8rem; color:#6a7f9a; margin-top:12px;">(يتطلب اتصالاً بالإنترنت)</p>
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+    </div>
+    <!-- ===== نهاية الحاوية ===== -->
+
+    <!-- ================================================================
+    القسم 25: جافا سكريبت (JavaScript) – كل المنطق التفاعلي
+    ================================================================ -->
+    <script>
+        /**
+         * ================================================================
+         * 1. إعداد البيانات – مستخلص من الملفات المرفقة
+         * ================================================================
+         */
+
+        // ----- الخرائط الذهنية (20 صورة مرفقة) -----
+        const mapImages = [
+            { id: 1, url: 'https://lh3.googleusercontent.com/d/1OyJaTvW4keIF7MwLxyMnWf0MGGp4dhkx', label: 'الخريطة الذهنية 1' },
+            { id: 2, url: 'https://lh3.googleusercontent.com/d/1EEReBK5savoG4DFMqSjStheupXbmpiok', label: 'الخريطة الذهنية 2' },
+            { id: 3, url: 'https://lh3.googleusercontent.com/d/1kfR30L_Qpr3dFjZrBdwCfislFO1hwvC3', label: 'الخريطة الذهنية 3' },
+            { id: 4, url: 'https://lh3.googleusercontent.com/d/1GVXlQaUJrwqwyLWgspWtA_4Pei7upS8C', label: 'الخريطة الذهنية 4' },
+            { id: 5, url: 'https://lh3.googleusercontent.com/d/1obSgnfsCFRyP-wFtKc6YvNHFWuN37ZxJ', label: 'الخريطة الذهنية 5' },
+            { id: 6, url: 'https://lh3.googleusercontent.com/d/15ogXVwVcPogsY7D8Kw3U0V0cKciroGAK', label: 'الخريطة الذهنية 6' },
+            { id: 7, url: 'https://lh3.googleusercontent.com/d/1hlAOAiQK7QJ0rtPPgJ8rzMdDZ7U1TuAn', label: 'الخريطة الذهنية 7' },
+            { id: 8, url: 'https://lh3.googleusercontent.com/d/1WXLwtNPSxj4ZJVVLPhKjjdWg99dPn5UN', label: 'الخريطة الذهنية 8' },
+            { id: 9, url: 'https://lh3.googleusercontent.com/d/1JJJMC7mFdkSkEjjZLJ1rSnFzKeT8FcBK', label: 'الخريطة الذهنية 9' },
+            { id: 10, url: 'https://lh3.googleusercontent.com/d/10fLxM_QSXoZdMAXETGpFhuEUfPFkDUan', label: 'الخريطة الذهنية 10' },
+            { id: 11, url: 'https://lh3.googleusercontent.com/d/1CrVyrmG3fq3gY73ZRntvIuCHzDT_waNC', label: 'الخريطة الذهنية 11' },
+            { id: 12, url: 'https://lh3.googleusercontent.com/d/1cHyuTuJckWHrt_QGSszZro4LwemmjfpW', label: 'الخريطة الذهنية 12' },
+            { id: 13, url: 'https://lh3.googleusercontent.com/d/1Auzj_HrNL2ObUntUFkWZxOhmPSXAcv_S', label: 'الخريطة الذهنية 13' },
+            { id: 14, url: 'https://lh3.googleusercontent.com/d/1OgCBvwZr3Ya-KBXLMH_iMTn54snl78Vr', label: 'الخريطة الذهنية 14' },
+            { id: 15, url: 'https://lh3.googleusercontent.com/d/1MCpft9J6VC0m_R5aCOfghLgg_BvGCSg1', label: 'الخريطة الذهنية 15' },
+            { id: 16, url: 'https://lh3.googleusercontent.com/d/1EEReBK5savoG4DFMqSjStheupXbmpiok', label: 'الخريطة الذهنية 16' },
+            { id: 17, url: 'https://lh3.googleusercontent.com/d/1kfR30L_Qpr3dFjZrBdwCfislFO1hwvC3', label: 'الخريطة الذهنية 17' },
+            { id: 18, url: 'https://lh3.googleusercontent.com/d/1GVXlQaUJrwqwyLWgspWtA_4Pei7upS8C', label: 'الخريطة الذهنية 18' },
+            { id: 19, url: 'https://lh3.googleusercontent.com/d/1obSgnfsCFRyP-wFtKc6YvNHFWuN37ZxJ', label: 'الخريطة الذهنية 19' },
+            { id: 20, url: 'https://lh3.googleusercontent.com/d/15ogXVwVcPogsY7D8Kw3U0V0cKciroGAK', label: 'الخريطة الذهنية 20' }
+        ];
+
+        // ----- بيانات الامتحانات (4 امتحانات) -----
+        const examsData = [{
+            title: 'الامتحان الأول: التيار الكهربي وقوانين كيرشوف',
+            questions: [
+                { q: 'احسب شدة التيار المار في موصل إذا مرت كمية كهرباء 20C خلال 5s.', a: 'I = Q/t = 20/5 = 4A' },
+                { q: 'ثلاث مقاومات 2Ω، 4Ω، 6Ω موصلة على التوالي، احسب المقاومة المكافئة.', a: 'R\' = 2+4+6 = 12Ω' },
+                { q: 'بطارية قوتها الدافعة 12V ومقاومتها الداخلية 1Ω موصولة بمقاومة خارجية 5Ω، احسب شدة التيار.', a: 'I = V_B/(R+r) = 12/(5+1) = 2A' }
+            ]
+        }, {
+            title: 'الامتحان الثاني: التأثير المغناطيسي وأجهزة القياس',
+            questions: [
+                { q: 'سلك مستقيم يمر به تيار 5A، احسب كثافة الفيض على بعد 2m من السلك (μ=4π×10⁻⁷ T.m/A).', a: 'B = μI/(2πd) = 4π×10⁻⁷×5/(2π×2) = 5×10⁻⁷ T' },
+                { q: 'جلفانومتر مقاومته 50Ω وحساسيته 1mA، حوله إلى أميتر لقياس تيار 1A.', a: 'R_s = I_g R_g/(I-I_g) = 0.001×50/(1-0.001) = 0.05005Ω' },
+                { q: 'جلفانومتر مقاومته 100Ω وحساسيته 1mA، حوله إلى فولتميتر لقياس جهد 10V.', a: 'R_m = (V - V_g)/I_g = (10 - 0.1)/0.001 = 9900Ω' }
+            ]
+        }, {
+            title: 'الامتحان الثالث: الحث الكهرومغناطيسي والتيار المتردد',
+            questions: [
+                { q: 'ملف عدد لفاته 100 لفة يقطع فيضاً مقداره 0.05Wb خلال 0.02s، احسب القوة الدافعة المتوسطة.', a: 'emf = N ΔΦ/Δt = 100×0.05/0.02 = 250V' },
+                { q: 'مكثف سعته 10μF متصل بمصدر تردده 50Hz، احسب مفاعلته السعوية.', a: 'X_C = 1/(2πfC) = 1/(2π×50×10×10⁻⁶) = 318.3Ω' },
+                { q: 'مذبذب LC تردد رنينه 10⁶Hz وسعة مكثفه 10⁻¹²F، احسب معامل الحث.', a: 'f = 1/(2π√(LC)) → L = 1/(4π²f²C) = 1/(4π²×10¹²×10⁻¹²) = 2.53×10⁻⁵ H' }
+            ]
+        }, {
+            title: 'الامتحان الرابع: الفيزياء الحديثة والإلكترونيات',
+            questions: [
+                { q: 'فوتون تردده 5×10¹⁴Hz، احسب طاقته (h=6.625×10⁻³⁴ J.s).', a: 'E = hν = 6.625×10⁻³⁴×5×10¹⁴ = 3.3125×10⁻¹⁹ J' },
+                { q: 'حديد دالة شغله 4.7eV، احسب التردد الحرج له.', a: 'ν_c = E_w/h = 4.7×1.6×10⁻¹⁹ / 6.625×10⁻³⁴ = 1.135×10¹⁵ Hz' },
+                { q: 'إلكترون يتحرك بسرعة 10⁶ m/s، احسب طول موجة دي برولي المصاحب (m=9.1×10⁻³¹ kg).', a: 'λ = h/(mv) = 6.625×10⁻³⁴/(9.1×10⁻³¹×10⁶) = 7.28×10⁻¹⁰ m' }
+            ]
+        }];
+
+        // ----- بنك الأسئلة (200 سؤال – تم دمج الأجزاء الأربعة) -----
+        // ================================================================
+        // الجزء الأول (1-50)
+        // ================================================================
+        const part1 = [
+            { unit: 'الكهربية', q: 'ما هو تعريف المقاومة النوعية (ρₑ)؟', a: 'خاصية مميزة للمادة تعتمد على نوعها ودرجة حرارتها، ρₑ = RA/l، وحدتها Ω.m.' },
+            { unit: 'الكهربية', q: 'ما هو قانون أوم للدائرة المغلقة؟', a: 'I = V<sub>B</sub> / (R\' + r)' },
+            { unit: 'الكهربية', q: 'ما هو الغرض من توصيل المقاومات على التوالي؟', a: 'الحصول على مقاومة كبيرة، R\' = R₁ + R₂ + R₃' },
+            { unit: 'الكهربية', q: 'ما هو الغرض من توصيل المقاومات على التوازي؟', a: 'الحصول على مقاومة صغيرة، 1/R\' = 1/R₁ + 1/R₂ + 1/R₃' },
+            { unit: 'الكهربية', q: 'ما هو القانون الأول لكيرشوف؟', a: '∑I<sub>in</sub> = ∑I<sub>out</sub> (حفظ الشحنة)' },
+            { unit: 'الكهربية', q: 'ما هو القانون الثاني لكيرشوف؟', a: '∑V<sub>B</sub> = ∑IR (حفظ الطاقة)' },
+            { unit: 'المغناطيسية', q: 'ما هي قاعدة اليد اليمنى لأمبير؟', a: 'الإبهام مع التيار، الأصابع مع الفيض.' },
+            { unit: 'المغناطيسية', q: 'ما هو قانون كثافة الفيض لسلك مستقيم؟', a: 'B = μI / (2πd)' },
+            { unit: 'المغناطيسية', q: 'ما هو قانون كثافة الفيض لملف دائري؟', a: 'B = μNI / (2r)' },
+            { unit: 'المغناطيسية', q: 'ما هو قانون كثافة الفيض لملف لولبي؟', a: 'B = μnI' },
+            { unit: 'المغناطيسية', q: 'ما هو قانون القوة المغناطيسية على سلك؟', a: 'F = BIL sinθ' },
+            { unit: 'المغناطيسية', q: 'ما هو قانون عزم الازدواج على ملف؟', a: 'τ = BIAN sinθ' },
+            { unit: 'أجهزة القياس', q: 'كيف يحول الجلفانومتر إلى أميتر؟', a: 'R<sub>s</sub> = I<sub>g</sub>R<sub>g</sub>/(I-I<sub>g</sub>)' },
+            { unit: 'أجهزة القياس', q: 'كيف يحول الجلفانومتر إلى فولتميتر؟', a: 'R<sub>m</sub> = (V - V<sub>g</sub>)/I<sub>g</sub>' },
+            { unit: 'أجهزة القياس', q: 'ما هي فكرة عمل الأوميتر؟', a: 'علاقة عكسية بين التيار والمقاومة.' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'ما هو قانون فاراداي للحث؟', a: 'emf = -N (ΔΦ<sub>m</sub> / Δt)' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'ما هي قاعدة لنز؟', a: 'التيار المستحث يعاكس التغير في الفيض.' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'ما هو قانون الحث المتبادل؟', a: 'emf<sub>2</sub> = -M (ΔI<sub>1</sub> / Δt)' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'ما هو قانون الحث الذاتي؟', a: 'emf = -L (ΔI / Δt)' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'ما هو قانون القوة الدافعة في الدينامو؟', a: 'emf = N B A ω sinθ، emf<sub>eff</sub> = emf<sub>max</sub>/√2' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'ما هو قانون المحول الكهربي؟', a: 'V<sub>s</sub>/V<sub>p</sub> = N<sub>s</sub>/N<sub>p</sub>' },
+            { unit: 'التيار المتردد', q: 'ما هو قانون المفاعلة الحثية؟', a: 'X<sub>L</sub> = 2πfL' },
+            { unit: 'التيار المتردد', q: 'ما هو قانون المفاعلة السعوية؟', a: 'X<sub>C</sub> = 1/(2πfC)' },
+            { unit: 'التيار المتردد', q: 'ما هو قانون المعاوقة الكلية؟', a: 'Z = √(R² + (X<sub>L</sub> - X<sub>C</sub>)²)' },
+            { unit: 'التيار المتردد', q: 'ما هو قانون تردد الرنين؟', a: 'f = 1/(2π√(LC))' },
+            // 26-50
+            { unit: 'الفيزياء الحديثة', q: 'ما هو قانون كمات الطاقة لبلانك؟', a: 'E = hν' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي معادلة أينشتاين للتأثير الكهروضوئي؟', a: 'hν = E<sub>w</sub> + ½mv²' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو مبدأ دي برولي؟', a: 'λ = h/(mv)' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي خصائص الليزر؟', a: 'نقاء طيفي، توازي، ترابط، شدة عالية' },
+            { unit: 'الإلكترونيات', q: 'ما هي أشباه الموصلات من النوع N؟', a: 'مطعمة بشوائب خماسية التكافؤ (زيادة الإلكترونات الحرة)' },
+            { unit: 'الإلكترونيات', q: 'ما هي أشباه الموصلات من النوع P؟', a: 'مطعمة بشوائب ثلاثية التكافؤ (زيادة الفجوات)' },
+            { unit: 'الإلكترونيات', q: 'ما هي وظيفة الدايود؟', a: 'يسمح بمرور التيار في اتجاه واحد' },
+            { unit: 'الإلكترونيات', q: 'ما هي وظيفة الترانزستور؟', a: 'مكبر للتيار أو مفتاح إلكتروني' },
+            { unit: 'الإلكترونيات', q: 'ما هي البوابة المنطقية NOT؟', a: 'عاكس: 0→1، 1→0' },
+            { unit: 'الإلكترونيات', q: 'ما هي البوابة المنطقية AND؟', a: 'الناتج 1 فقط إذا كان كلا المدخلين 1' },
+            { unit: 'الإلكترونيات', q: 'ما هي البوابة المنطقية OR؟', a: 'الناتج 1 إذا كان أحد المدخلين 1' },
+            { unit: 'الكهربية', q: 'ما هو التيار الكهربي واتجاهه التقليدي؟', a: 'معدل تدفق الشحنات، من الموجب إلى السالب' },
+            { unit: 'الكهربية', q: 'ما هي وحدة قياس شدة التيار؟', a: 'الأمبير (A)' },
+            { unit: 'الكهربية', q: 'ما هي وحدة قياس فرق الجهد؟', a: 'الفولت (V)' },
+            { unit: 'الكهربية', q: 'ما هي وحدة قياس المقاومة؟', a: 'الأوم (Ω)' },
+            { unit: 'الكهربية', q: 'ما هو قانون أوم؟', a: 'V = IR' },
+            { unit: 'المغناطيسية', q: 'ما هي النفاذية المغناطيسية (μ)؟', a: 'مقياس لقدرة المادة على تكوين مجال مغناطيسي' },
+            { unit: 'المغناطيسية', q: 'ما هي قاعدة البريمة اليمنى؟', a: 'لتحديد اتجاه المجال في ملف دائري' },
+            { unit: 'المغناطيسية', q: 'ما هي قاعدة فلمنج لليد اليسرى؟', a: 'الإبهام=القوة، السبابة=المجال، الوسطى=التيار' },
+            { unit: 'المغناطيسية', q: 'ما هي القوة المتبادلة بين سلكين متوازيين؟', a: 'F = μ I₁ I₂ l / (2πd)، تجاذب أو تنافر' },
+            { unit: 'المغناطيسية', q: 'ما هو عزم ثنائي القطب المغناطيسي؟', a: 'm<sub>d</sub> = I A N' }
+        ];
+
+        // ================================================================
+        // الجزء الثاني (51-100)
+        // ================================================================
+        const part2 = [
+            { unit: 'الحث الكهرومغناطيسي', q: 'ما هي التيارات الدوامية (Eddy Currents)?', a: 'تيارات دائرية تنشأ في الموصلات عند تعرضها لمجال متغير، تسبب فقداً في الطاقة' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'كيف يمكن تقليل التيارات الدوامية في المحولات؟', a: 'باستخدام شرائح رقيقة من الحديد معزولة كهربائياً' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'ما هو مبدأ عمل المولد الكهربي (الدينامو)؟', a: 'يحول الطاقة الميكانيكية إلى طاقة كهربية' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'ما هو مبدأ عمل المحرك الكهربي؟', a: 'يحول الطاقة الكهربية إلى طاقة ميكانيكية' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'ما هو المحول الكهربي وما هي أنواعه؟', a: 'جهاز لتغيير الجهد، أنواعه: رافع وخافض' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'ما هي أسباب فقد الطاقة في المحولات؟', a: 'تيارات دوامية، مقاومة الملفات، تباطؤ مغناطيسي، تيارات تسريب' },
+            { unit: 'التيار المتردد', q: 'ما هو الفرق بين التيار المتردد والمستمر؟', a: 'المتردد يغير اتجاهه وقيمته، والمستمر ثابت' },
+            { unit: 'التيار المتردد', q: 'ما هو التردد القياسي في مصر؟', a: '50 هرتز' },
+            { unit: 'التيار المتردد', q: 'ما هي القيمة الفعالة (RMS)؟', a: 'قيمة التيار المستمر الذي ينتج نفس التأثير الحراري' },
+            { unit: 'التيار المتردد', q: 'ما هي زاوية الطور؟', a: 'الزاوية بين الجهد والتيار في الدائرة' },
+            { unit: 'التيار المتردد', q: 'ما هو عامل القدرة؟', a: 'نسبة القدرة الفعالة إلى القدرة الظاهرية (cosθ)' },
+            // 61-75
+            { unit: 'الفيزياء الحديثة', q: 'ما هو إشعاع الجسم الأسود؟', a: 'إشعاع حراري يصدر عن جسم يمتص كل الإشعاع الساقط عليه' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي كارثة ما فوق البنفسجية؟', a: 'توقع الفيزياء الكلاسيكية أن كثافة الطاقة تميل إلى ما لا نهاية عند الأطوال الموجية القصيرة' },
+            { unit: 'الفيزياء الحديثة', q: 'كيف حل بلانك المشكلة؟', a: 'افترض أن الطاقة تصدر على شكل كمات (فوتونات) E = hν' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو ثابت بلانك؟', a: 'h = 6.625 × 10⁻³⁴ J.s' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو قانون فين للإزاحة؟', a: 'λ<sub>max</sub> T = ثابت' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو التأثير الكهروضوئي؟', a: 'انبعاث الإلكترونات من سطح فلز عند سقوط ضوء بتردد عالٍ' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو التردد الحرج؟', a: 'أقل تردد يمكنه تحرير إلكترون' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي دالة الشغل؟', a: 'أقل طاقة لازمة لتحرير إلكترون (E<sub>w</sub> = hν<sub>c</sub>)' },
+            { unit: 'الفيزياء الحديثة', q: 'ماذا يحدث إذا كان تردد الضوء أقل من التردد الحرج؟', a: 'لا يحدث تأثير كهروضوئي' },
+            { unit: 'الفيزياء الحديثة', q: 'هل تعتمد طاقة الإلكترونات على شدة الضوء؟', a: 'لا، تعتمد على التردد' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي ظاهرة كومتون؟', a: 'تشتت فوتونات الأشعة السينية بواسطة إلكترونات حرة، دليل على الطبيعة الجسيمية للضوء' },
+            { unit: 'الفيزياء الحديثة', q: 'ما الذي تثبته ظاهرة كومتون؟', a: 'أن الفوتون يمتلك زخماً' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو مبدأ دي برولي؟', a: 'كل جسيم متحرك له طول موجي λ = h/(mv)' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو المجهر الإلكتروني ولماذا دقته عالية؟', a: 'يستخدم إلكترونات، دقته أعلى لأن الطول الموجي للإلكترونات أقصر' },
+            // 76-100
+            { unit: 'الأطياف الذرية', q: 'ما هي فروض بور؟', a: 'مدارات ثابتة، لا يشع طاقة، يشع عند الانتقال، الزخم الزاوي مضاعف لـ h/2π' },
+            { unit: 'الأطياف الذرية', q: 'ما هو قانون طاقة مستويات الهيدروجين؟', a: 'E<sub>n</sub> = -13.6/n² eV' },
+            { unit: 'الأطياف الذرية', q: 'ما هي متسلسلة ليمان؟', a: 'فوق بنفسجية، انتقال إلى n=1' },
+            { unit: 'الأطياف الذرية', q: 'ما هي متسلسلة بالمر؟', a: 'مرئي، انتقال إلى n=2' },
+            { unit: 'الأطياف الذرية', q: 'ما هي متسلسلة باشن؟', a: 'تحت حمراء، انتقال إلى n=3' },
+            { unit: 'الأطياف الذرية', q: 'ما هي متسلسلة براكت وفوند؟', a: 'تحت حمراء بعيدة، انتقال إلى n=4 و n=5' },
+            { unit: 'الأطياف الذرية', q: 'ما هو جهاز المطياف؟', a: 'جهاز لتحليل الضوء إلى أطواله الموجية' },
+            { unit: 'الأطياف الذرية', q: 'ما هي أطياف الانبعاث والامتصاص؟', a: 'انبعاث: خطوط مضيئة، امتصاص: خطوط مظلمة' },
+            { unit: 'الأطياف الذرية', q: 'ما هي الأشعة السينية؟', a: 'أشعة كهرومغناطيسية قصيرة الموجة وعالية الطاقة' },
+            { unit: 'الأطياف الذرية', q: 'كيف تولد الأشعة السينية في أنبوبة كولدج؟', a: 'بتسخين فتيل لإطلاق إلكترونات وتصادمها بهدف معدني' },
+            { unit: 'الأطياف الذرية', q: 'ما هو طيف الأشعة السينية المستمر والمميز؟', a: 'المستمر: من تباطؤ الإلكترونات، المميز: من انتقالات الذرات' },
+            { unit: 'الأطياف الذرية', q: 'ما هي تطبيقات الأشعة السينية؟', a: 'تصوير طبي، فحص العظام، تحليل بلوري، فحص المواد' },
+            { unit: 'الليزر', q: 'ما هو الليزر؟', a: 'جهاز ينتج حزمة ضوئية متماسكة وموجهة بالانبعاث المستحث' },
+            { unit: 'الليزر', q: 'ما الفرق بين الانبعاث التلقائي والمستحث؟', a: 'التلقائي عشوائي، المستحث محفز بفوتون ساقط' },
+            { unit: 'الليزر', q: 'ما هي خصائص شعاع الليزر؟', a: 'نقاء طيفي، توازي، ترابط، شدة عالية' },
+            { unit: 'الليزر', q: 'ما هو الإسكان المعكوس؟', a: 'عدد الذرات المثارة أكبر من الأرضية' },
+            { unit: 'الليزر', q: 'ما هو التجويف الرنيني؟', a: 'مرآتان تعكسان الضوء لتضخيمه' },
+            { unit: 'الليزر', q: 'ما هو مبدأ عمل ليزر الهيليوم-نيون؟', a: 'غاز خليط، ينتج ضوء أحمر 632.8 نانومتر' },
+            { unit: 'الليزر', q: 'ما هي تطبيقات الليزر؟', a: 'طب، صناعة، اتصالات، تصوير مجسم، قياسات' },
+            { unit: 'الإلكترونيات', q: 'ما هي أشباه الموصلات؟', a: 'مواد ذات موصلية بين الموصلات والعوازل' }
+        ];
+
+        // ================================================================
+        // الجزء الثالث (101-150)
+        // ================================================================
+        const part3 = [
+            { unit: 'الإلكترونيات', q: 'ما هي أشباه الموصلات النقية (Intrinsic)?', a: 'بلورات نقية بدون شوائب' },
+            { unit: 'الإلكترونيات', q: 'ما هي أشباه الموصلات من النوع N؟', a: 'مطعمة بشوائب خماسية التكافؤ (إلكترونات حرة)' },
+            { unit: 'الإلكترونيات', q: 'ما هي أشباه الموصلات من النوع P؟', a: 'مطعمة بشوائب ثلاثية التكافؤ (فجوات)' },
+            { unit: 'الإلكترونيات', q: 'ما هو قانون فعل الكتلة؟', a: 'np = n<sub>i</sub>²' },
+            { unit: 'الإلكترونيات', q: 'ما هي الوصلة الثنائية (الدايود)؟', a: 'مكون يسمح بمرور التيار في اتجاه واحد' },
+            { unit: 'الإلكترونيات', q: 'كيف يعمل الدايود في التوصيل الأمامي؟', a: 'تقل المنطقة العازلة ويعبر التيار (0.7V للسيليكون)' },
+            { unit: 'الإلكترونيات', q: 'كيف يعمل الدايود في التوصيل العكسي؟', a: 'تكبر المنطقة العازلة ولا يمر تيار' },
+            { unit: 'الإلكترونيات', q: 'ما هو استخدام الدايود في تقويم التيار؟', a: 'تحويل التيار المتردد إلى مستمر' },
+            { unit: 'الإلكترونيات', q: 'ما هو الترانزستور؟', a: 'مكون ثلاثي الأطراف (مكبر أو مفتاح)' },
+            { unit: 'الإلكترونيات', q: 'ما هي العلاقات الأساسية في الترانزستور؟', a: 'I<sub>E</sub> = I<sub>B</sub> + I<sub>C</sub>' },
+            { unit: 'الإلكترونيات', q: 'كيف يستخدم الترانزستور كمفتاح؟', a: 'في منطقة القطع (OFF) والإشباع (ON)' },
+            { unit: 'الإلكترونيات', q: 'كيف يستخدم الترانزستور كمكبر؟', a: 'في المنطقة النشطة (الخطية)' },
+            { unit: 'الإلكترونيات', q: 'ما هي الإلكترونيات الرقمية؟', a: 'تتعامل مع إشارات رقمية (0 و 1)' },
+            { unit: 'الإلكترونيات', q: 'كيف يمكن بناء بوابة NAND؟', a: 'AND تليها NOT' },
+            { unit: 'الإلكترونيات', q: 'كيف يمكن بناء بوابة NOR؟', a: 'OR تليها NOT' },
+            { unit: 'الإلكترونيات', q: 'ما هي البوابات المنطقية العالمية؟', a: 'NAND و NOR' },
+            { unit: 'الإلكترونيات', q: 'ما هو النظام الثنائي؟', a: 'نظام عددي أساسه 2 (0 و 1)' },
+            // 118-125
+            { unit: 'الفيزياء الحديثة', q: 'ما هو تأثير زيمان؟', a: 'انقسام خطوط الطيف في مجال مغناطيسي' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو مبدأ عدم اليقين لهايزنبرغ؟', a: 'Δx · Δp ≥ h/4π' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي النظرية النسبية الخاصة؟', a: 'قوانين الفيزياء واحدة، سرعة الضوء ثابتة' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي معادلة تكافؤ الكتلة والطاقة؟', a: 'E = mc²' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو الانشطار النووي؟', a: 'انقسام نواة ثقيلة إلى نواتين أخف' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو الاندماج النووي؟', a: 'اتحاد نواتين خفيفتين لتكوين نواة أثقل' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي الخلية الشمسية؟', a: 'تحول الطاقة الضوئية إلى كهربية باستخدام التأثير الكهروضوئي' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو الترانزستور الحقلي (FET)؟', a: 'التحكم في التيار بواسطة جهد البوابة' },
+            // 126-150
+            { unit: 'الفيزياء الحديثة', q: 'ما هي المادة المضادة؟', a: 'مادة مكونة من جسيمات مضادة' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو الجسيم الأولي؟', a: 'جسيم غير قابل للتجزئة (إلكترون، كوارك)' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو النموذج القياسي؟', a: 'نظرية تصف الجسيمات الأولية والقوى الأساسية' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي الثقوب السوداء؟', a: 'مناطق ذات جاذبية هائلة لا يهرب منها الضوء' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو التوسع الكوني؟', a: 'توسع الكون باستمرار (قانون هابل)' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو إشعاع الخلفية الكوني الميكروي؟', a: 'إشعاع متبقي من الانفجار العظيم' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي المادة المظلمة؟', a: 'مادة غير مرئية تشكل 27% من كتلة الكون' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي الطاقة المظلمة؟', a: 'طاقة مسؤولة عن التوسع المتسارع للكون (68%)' },
+            { unit: 'الإلكترونيات الحديثة', q: 'ما هي الدائرة المتكاملة (IC)؟', a: 'رقاقة تحتوي على ملايين المكونات الإلكترونية' },
+            { unit: 'الإلكترونيات الحديثة', q: 'ما هو المعالج (Processor)؟', a: 'وحدة المعالجة المركزية (CPU)' },
+            { unit: 'الإلكترونيات الحديثة', q: 'ما هي الذاكرة؟', a: 'مكونات تخزن البيانات (RAM و ROM)' },
+            { unit: 'الإلكترونيات الحديثة', q: 'ما هو الفرق بين النظام التناظري والرقمي؟', a: 'التناظري مستمر، الرقمي منفصل (0 و 1)' },
+            { unit: 'الإلكترونيات الحديثة', q: 'ما هو المحول الرقمي إلى تناظري (DAC)؟', a: 'يحول الإشارات الرقمية إلى تناظرية' },
+            { unit: 'الإلكترونيات الحديثة', q: 'ما هو المحول التناظري إلى رقمي (ADC)؟', a: 'يحول الإشارات التناظرية إلى رقمية' },
+            { unit: 'الإلكترونيات الحديثة', q: 'ما هو الهولوجرام؟', a: 'صورة ثلاثية الأبعاد باستخدام الليزر' },
+            { unit: 'الإلكترونيات الحديثة', q: 'ما هو الألياف البصرية؟', a: 'وسيط نقل ضوئي لنقل البيانات بسرعة عالية' }
+        ];
+
+        // ================================================================
+        // الجزء الرابع (151-200)
+        // ================================================================
+        const part4 = [
+            { unit: 'الكهربية', q: 'ما هي المقاومة النوعية وكيف تتغير مع درجة الحرارة؟', a: 'تزداد في الفلزات وتقل في أشباه الموصلات بزيادة درجة الحرارة' },
+            { unit: 'الكهربية', q: 'ما هو التيار الكهربي واتجاهه التقليدي؟', a: 'معدل تدفق الشحنات، من الموجب إلى السالب' },
+            { unit: 'الكهربية', q: 'ما هي وحدة قياس شدة التيار؟', a: 'الأمبير (A)' },
+            { unit: 'الكهربية', q: 'ما هي وحدة قياس فرق الجهد؟', a: 'الفولت (V)' },
+            { unit: 'الكهربية', q: 'ما هي وحدة قياس المقاومة؟', a: 'الأوم (Ω)' },
+            { unit: 'الكهربية', q: 'ما هو قانون أوم؟', a: 'V = IR' },
+            { unit: 'المغناطيسية', q: 'ما هي النفاذية المغناطيسية؟', a: 'مقياس لقدرة المادة على تكوين مجال مغناطيسي' },
+            { unit: 'المغناطيسية', q: 'ما هي قاعدة البريمة اليمنى؟', a: 'لتحديد اتجاه المجال في ملف دائري' },
+            { unit: 'المغناطيسية', q: 'ما هي قاعدة فلمنج لليد اليسرى؟', a: 'الإبهام=القوة، السبابة=المجال، الوسطى=التيار' },
+            { unit: 'المغناطيسية', q: 'ما هي القوة المتبادلة بين سلكين متوازيين؟', a: 'F = μ I₁ I₂ l / (2πd)' },
+            { unit: 'المغناطيسية', q: 'ما هو عزم ثنائي القطب المغناطيسي؟', a: 'm<sub>d</sub> = I A N' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'ما هي التيارات الدوامية؟', a: 'تيارات دائرية تسبب فقداً في الطاقة' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'كيف تقلل التيارات الدوامية في المحولات؟', a: 'باستخدام شرائح رقيقة معزولة' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'ما هو مبدأ عمل المولد؟', a: 'تحويل الطاقة الميكانيكية إلى كهربية' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'ما هو مبدأ عمل المحرك؟', a: 'تحويل الطاقة الكهربية إلى ميكانيكية' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'ما هو المحول الكهربي؟', a: 'جهاز لتغيير الجهد (رافع أو خافض)' },
+            { unit: 'الحث الكهرومغناطيسي', q: 'ما هي أسباب فقد الطاقة في المحولات؟', a: 'تيارات دوامية، مقاومة، تباطؤ، تسريب' },
+            { unit: 'التيار المتردد', q: 'ما هو الفرق بين AC و DC؟', a: 'AC متغير، DC ثابت' },
+            { unit: 'التيار المتردد', q: 'ما هو التردد القياسي في مصر؟', a: '50 هرتز' },
+            { unit: 'التيار المتردد', q: 'ما هي القيمة الفعالة (RMS)؟', a: 'قيمة التيار المستمر ذو التأثير الحراري نفسه' },
+            { unit: 'التيار المتردد', q: 'ما هي زاوية الطور؟', a: 'الزاوية بين الجهد والتيار' },
+            { unit: 'التيار المتردد', q: 'ما هو عامل القدرة؟', a: 'نسبة القدرة الفعالة إلى الظاهرية (cosθ)' },
+            // 176-200
+            { unit: 'الفيزياء الحديثة', q: 'ما هو تأثير زيمان؟', a: 'انقسام خطوط الطيف في مجال مغناطيسي' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو مبدأ عدم اليقين؟', a: 'Δx · Δp ≥ h/4π' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي النسبية الخاصة؟', a: 'قوانين الفيزياء واحدة، سرعة الضوء ثابتة' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي معادلة تكافؤ الكتلة والطاقة؟', a: 'E = mc²' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو الانشطار النووي؟', a: 'انقسام نواة ثقيلة' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو الاندماج النووي؟', a: 'اتحاد نواتين خفيفتين' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي الخلية الشمسية؟', a: 'تحول الضوء إلى كهربية' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو الترانزستور الحقلي (FET)؟', a: 'التحكم في التيار بواسطة جهد البوابة' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي المادة المضادة؟', a: 'جسيمات مضادة لها شحنة معاكسة' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو الجسيم الأولي؟', a: 'جسيم غير قابل للتجزئة' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو النموذج القياسي؟', a: 'نظرية الجسيمات والقوى الأساسية' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي الثقوب السوداء؟', a: 'مناطق لا يهرب منها الضوء' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو التوسع الكوني؟', a: 'توسع الكون (قانون هابل)' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هو إشعاع الخلفية الكوني؟', a: 'إشعاع متبقي من الانفجار العظيم' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي المادة المظلمة؟', a: 'مادة غير مرئية (27% من الكون)' },
+            { unit: 'الفيزياء الحديثة', q: 'ما هي الطاقة المظلمة؟', a: 'طاقة التوسع المتسارع (68% من الكون)' },
+            { unit: 'الإلكترونيات الحديثة', q: 'ما هي الدائرة المتكاملة (IC)؟', a: 'رقاقة تحتوي على مكونات إلكترونية' },
+            { unit: 'الإلكترونيات الحديثة', q: 'ما هو المعالج (CPU)؟', a: 'وحدة المعالجة المركزية' },
+            { unit: 'الإلكترونيات الحديثة', q: 'ما هي الذاكرة؟', a: 'تخزن البيانات (RAM و ROM)' },
+            { unit: 'الإلكترونيات الحديثة', q: 'ما هو الفرق بين النظام التناظري والرقمي؟', a: 'التناظري مستمر، الرقمي منفصل' },
+            { unit: 'الإلكترونيات الحديثة', q: 'ما هو المحول DAC؟', a: 'رقمي إلى تناظري' },
+            { unit: 'الإلكترونيات الحديثة', q: 'ما هو المحول ADC؟', a: 'تناظري إلى رقمي' },
+            { unit: 'الإلكترونيات الحديثة', q: 'ما هو الهولوجرام؟', a: 'صورة ثلاثية الأبعاد بالليزر' },
+            { unit: 'الإلكترونيات الحديثة', q: 'ما هو الألياف البصرية؟', a: 'وسيط نقل ضوئي' },
+            // ---- الأسئلة من 179 إلى 200 ----
+{
+  unit: 'الفيزياء الحديثة',
+  q: 'ما هو تأثير زيمان (Zeeman Effect)؟',
+  a: 'انقسام خطوط الطيف الذري إلى عدة خطوط عند وضع الذرة في مجال مغناطيسي خارجي، وهو دليل على وجود كمومية في الزخم الزاوي للإلكترونات.'
+},
+{
+  unit: 'الفيزياء الحديثة',
+  q: 'ما هو مبدأ عدم اليقين لهايزنبرغ؟',
+  a: 'من المستحيل تحديد موضع وسرعة (أو زخم) جسيم دقيق في نفس الوقت بدقة مطلقة. العلاقة: Δx · Δp ≥ h/4π.'
+},
+{
+  unit: 'الفيزياء الحديثة',
+  q: 'ما هي النظرية النسبية الخاصة لأينشتاين؟',
+  a: 'نظرية فيزيائية تأسست على مبدأين: 1. قوانين الفيزياء واحدة في جميع الأطر المرجعية القصورية. 2. سرعة الضوء في الفراغ ثابتة لجميع المراقبين (c = 3×10⁸ m/s).'
+},
+{
+  unit: 'الفيزياء الحديثة',
+  q: 'ما هي معادلة تكافؤ الكتلة والطاقة لأينشتاين؟',
+  a: 'E = mc²، حيث الطاقة (E) تساوي الكتلة (m) مضروبة في مربع سرعة الضوء (c²). هذه المعادلة تفسر مصدر الطاقة في التفاعلات النووية.'
+},
+{
+  unit: 'الفيزياء الحديثة',
+  q: 'ما هو الانشطار النووي؟',
+  a: 'عملية انقسام نواة ذرة ثقيلة (مثل اليورانيوم-235) إلى نواتين أخف وزناً عند قصفها بنيوترونات، مما ينتج عنه طاقة هائلة ونيوترونات إضافية يمكن أن تسبب تفاعلاً متسلسلاً.'
+},
+{
+  unit: 'الفيزياء الحديثة',
+  q: 'ما هو الاندماج النووي؟',
+  a: 'عملية اتحاد نواتين خفيفتين (مثل الهيدروجين) لتكوين نواة أثقل (مثل الهيليوم)، مع تحرير كمية هائلة من الطاقة. هذه العملية تحدث في النجوم (الشمس) وتستخدم في القنبلة الهيدروجينية.'
+},
+{
+  unit: 'الفيزياء الحديثة',
+  q: 'ما هي الخلية الشمسية (Solar Cell)؟',
+  a: 'جهاز يحول الطاقة الضوئية مباشرة إلى طاقة كهربية باستخدام التأثير الكهروضوئي في الوصلات الثنائية (PN Junction) لأشباه الموصلات، وتستخدم في توليد الطاقة النظيفة.'
+},
+{
+  unit: 'الفيزياء الحديثة',
+  q: 'ما هو الترانزستور الحقلي (FET)؟',
+  a: 'نوع من الترانزستورات يعتمد على التحكم في تيار الخرج بواسطة جهد كهربي مطبق على البوابة (Gate)، يستخدم في الدوائر المتكاملة ومكبرات الإشارات.'
+},
+{
+  unit: 'الفيزياء الحديثة',
+  q: 'ما هي المادة المضادة (Antimatter)؟',
+  a: 'مادة مكونة من جسيمات مضادة لها نفس الكتلة ولكن شحنة معاكسة للجسيمات العادية (مثل البوزيترون المضاد للإلكترون). عند التقاء المادة بمادتها المضادة يحدث إفناء (Annihilation).'
+},
+{
+  unit: 'الفيزياء الحديثة',
+  q: 'ما هو الجسيم الأولي (Elementary Particle)؟',
+  a: 'جسيم غير قابل للتجزئة، مثل الإلكترون والكوارك والفوتون. الكواركات تتحد لتكوين البروتونات والنيوترونات.'
+},
+{
+  unit: 'الفيزياء الحديثة',
+  q: 'ما هو النموذج القياسي (Standard Model) في فيزياء الجسيمات؟',
+  a: 'نظرية تصف الجسيمات الأولية والقوى الأساسية الأربع (القوة النووية القوية، القوة النووية الضعيفة، القوة الكهرومغناطيسية، والجاذبية).'
+},
+{
+  unit: 'الفيزياء الحديثة',
+  q: 'ما هي الثقوب السوداء (Black Holes)؟',
+  a: 'مناطق في الفضاء ذات جاذبية هائلة لدرجة أن لا شيء، حتى الضوء، يمكنه الهروب منها. تنتج عن انهيار نجوم ضخمة تحت تأثير جاذبيتها.'
+},
+{
+  unit: 'الفيزياء الحديثة',
+  q: 'ما هو التوسع الكوني (Cosmic Expansion)؟',
+  a: 'ظاهرة توسع الكون باستمرار، اكتشفها إدوين هابل عام 1929 عندما لاحظ أن المجرات تبتعد عنا بسرعات تتناسب مع بعدها (قانون هابل).'
+},
+{
+  unit: 'الفيزياء الحديثة',
+  q: 'ما هو إشعاع الخلفية الكوني الميكروي (CMB)؟',
+  a: 'إشعاع متبقي من الانفجار العظيم (Big Bang)، وهو دليل قوي على نظرية الانفجار العظيم ونشأة الكون، درجة حرارته حوالي 2.7 كلفن.'
+},
+{
+  unit: 'الفيزياء الحديثة',
+  q: 'ما هي المادة المظلمة (Dark Matter)؟',
+  a: 'مادة غير مرئية (لا تبعث ولا تمتص الضوء) تشكل حوالي 27% من كتلة الكون، يتم اكتشافها من خلال تأثيرها الجاذبي على المجرات والأجرام السماوية.'
+},
+{
+  unit: 'الفيزياء الحديثة',
+  q: 'ما هي الطاقة المظلمة (Dark Energy)؟',
+  a: 'شكل من أشكال الطاقة يقدر بحوالي 68% من محتوى الطاقة في الكون، يعتقد أنها مسؤولة عن التوسع المتسارع للكون.'
+},
+{
+  unit: 'الإلكترونيات الحديثة',
+  q: 'ما هو الدائرة المتكاملة (Integrated Circuit - IC)؟',
+  a: 'رقاقة صغيرة من مادة شبه موصل (سيليكون) تحتوي على آلاف أو ملايين المكونات الإلكترونية (ترانزستورات، مقاومات، مكثفات) مصنعة على نفس الرقاقة.'
+},
+{
+  unit: 'الإلكترونيات الحديثة',
+  q: 'ما هو المعالج (Processor)؟',
+  a: 'وحدة المعالجة المركزية (CPU) وهي العقل المدبر للحاسوب، تقوم بتنفيذ التعليمات والعمليات الحسابية والمنطقية باستخدام ملايين الترانزستورات.'
+},
+{
+  unit: 'الإلكترونيات الحديثة',
+  q: 'ما هي الذاكرة (Memory) في الأجهزة الرقمية؟',
+  a: 'مكونات تخزن البيانات والتعليمات. أنواعها: RAM (ذاكرة عشوائية مؤقتة) و ROM (ذاكرة دائمة للقراءة فقط).'
+},
+{
+  unit: 'الإلكترونيات الحديثة',
+  q: 'ما هو الفرق بين النظام التناظري والنظام الرقمي؟',
+  a: 'النظام التناظري يعمل بإشارات مستمرة متغيرة (مثل الصوت في الميكروفون)، بينما النظام الرقمي يعمل بإشارات منفصلة (0 و 1) مثل الحاسوب.'
+},
+{
+  unit: 'الإلكترونيات الحديثة',
+  q: 'ما هو المحول الرقمي إلى تناظري (DAC)؟',
+  a: 'جهاز يحول الإشارات الرقمية (ثنائية) إلى إشارات تناظرية (مستمرة) مثل تحويل الصوت الرقمي إلى صوت مسموع في مكبرات الصوت.'
+},
+{
+  unit: 'الإلكترونيات الحديثة',
+  q: 'ما هو المحول التناظري إلى رقمي (ADC)؟',
+  a: 'جهاز يحول الإشارات التناظرية إلى إشارات رقمية (ثنائية) مثل تحويل الصوت من ميكروفون إلى إشارات رقمية للحاسوب.'
+}
+        ];
+
+        // دمج الأجزاء الأربعة
+        const combined = part1.concat(part2, part3, part4);
+        console.log('عدد الأسئلة في بنك الأسئلة:', combined.length); // يجب أن يكون 200
+
+        // ----- بطاقات المراجعة -----
+        const reviewCards = [
+            { front: 'ما هو تعريف المقاومة النوعية (ρₑ)؟', back: 'خاصية مميزة للمادة تعتمد على نوعها ودرجة حرارتها، ρₑ = RA/l، وحدتها Ω.m.' },
+            { front: 'ما هو قانون أوم للدائرة المغلقة؟', back: 'I = V<sub>B</sub> / (R\' + r)' },
+            { front: 'ما هو الغرض من توصيل المقاومات على التوالي؟', back: 'الحصول على مقاومة كبيرة، R\' = R₁ + R₂ + R₃' },
+            { front: 'ما هو الغرض من توصيل المقاومات على التوازي؟', back: 'الحصول على مقاومة صغيرة، 1/R\' = 1/R₁ + 1/R₂ + 1/R₃' },
+            { front: 'ما هو القانون الأول لكيرشوف؟', back: '∑I<sub>in</sub> = ∑I<sub>out</sub> (حفظ الشحنة)' },
+            { front: 'ما هو القانون الثاني لكيرشوف؟', back: '∑V<sub>B</sub> = ∑IR (حفظ الطاقة)' },
+            { front: 'ما هي قاعدة اليد اليمنى لأمبير؟', back: 'الإبهام مع التيار، الأصابع مع الفيض.' },
+            { front: 'ما هو قانون كثافة الفيض لسلك مستقيم؟', back: 'B = μI / (2πd)' },
+            { front: 'ما هو قانون كثافة الفيض لملف دائري؟', back: 'B = μNI / (2r)' },
+            { front: 'ما هو قانون كثافة الفيض لملف لولبي؟', back: 'B = μnI' },
+            { front: 'ما هو قانون القوة المغناطيسية على سلك؟', back: 'F = BIL sinθ' },
+            { front: 'ما هو قانون عزم الازدواج على ملف؟', back: 'τ = BIAN sinθ' },
+            { front: 'كيف يحول الجلفانومتر إلى أميتر؟', back: 'R<sub>s</sub> = I<sub>g</sub>R<sub>g</sub>/(I-I<sub>g</sub>)' },
+            { front: 'كيف يحول الجلفانومتر إلى فولتميتر؟', back: 'R<sub>m</sub> = (V - V<sub>g</sub>)/I<sub>g</sub>' },
+            { front: 'ما هو قانون فاراداي للحث؟', back: 'emf = -N (ΔΦ<sub>m</sub> / Δt)' },
+            { front: 'ما هي قاعدة لنز؟', back: 'التيار المستحث يعاكس التغير في الفيض.' },
+            { front: 'ما هو قانون المحول الكهربي؟', back: 'V<sub>s</sub>/V<sub>p</sub> = N<sub>s</sub>/N<sub>p</sub>' },
+            { front: 'ما هو قانون تردد الرنين؟', back: 'f = 1 / (2π√(LC))' },
+            { front: 'ما هي معادلة أينشتاين للتأثير الكهروضوئي؟', back: 'hν = E<sub>w</sub> + ½mv²' },
+            { front: 'ما هو مبدأ دي برولي؟', back: 'λ = h / (mv)' }
+        ];
+
+        // ----- شجرة المعرفة -----
+        const treeData = {
+            label: 'منهج الفيزياء للصف الثالث الثانوي',
+            children: [{
+                label: 'الوحدة الأولى: الكهربية التيارية والكهرومغناطيسية',
+                children: [{
+                    label: 'الفصل الأول: التيار الكهربي وقانون أوم وكيرشوف',
+                    children: [
+                        { label: 'المفاهيم الأساسية', detail: 'I = Q/t، V = W/Q، R = V/I' },
+                        { label: 'المقاومة النوعية', detail: 'ρₑ = RA/l' },
+                        { label: 'توصيل المقاومات', detail: 'توالي: R\' = R₁+R₂+R₃، توازي: 1/R\' = 1/R₁+1/R₂+1/R₃' },
+                        { label: 'قانون أوم للدائرة المغلقة', detail: 'I = V<sub>B</sub>/(R\'+r)' },
+                        { label: 'قوانين كيرشوف', detail: 'الأول: ∑I<sub>in</sub> = ∑I<sub>out</sub>، الثاني: ∑V<sub>B</sub> = ∑IR' }
+                    ]
+                }, {
+                    label: 'الفصل الثاني: التأثير المغناطيسي وأجهزة القياس',
+                    children: [
+                        { label: 'كثافة الفيض المغناطيسي', detail: 'سلك مستقيم، ملف دائري، ملف لولبي' },
+                        { label: 'القوة المغناطيسية', detail: 'F = BIL sinθ، τ = BIAN sinθ' },
+                        { label: 'أجهزة القياس', detail: 'الأميتر، الفولتميتر، الأوميتر' }
+                    ]
+                }, {
+                    label: 'الفصل الثالث: الحث الكهرومغناطيسي',
+                    children: [
+                        { label: 'قانون فاراداي', detail: 'emf = -N ΔΦ/Δt' },
+                        { label: 'قاعدة لنز', detail: 'التيار المستحث يعاكس التغير' },
+                        { label: 'الحث المتبادل والذاتي', detail: 'M و L' },
+                        { label: 'الدينامو والمحول', detail: 'emf = NBAω sinθ، المحول: V<sub>s</sub>/V<sub>p</sub> = N<sub>s</sub>/N<sub>p</sub>' }
+                    ]
+                }, {
+                    label: 'الفصل الرابع: دوائر التيار المتردد',
+                    children: [
+                        { label: 'المفاعلات', detail: 'X<sub>L</sub> = 2πfL، X<sub>C</sub> = 1/(2πfC)' },
+                        { label: 'المعاوقة وزاوية الطور', detail: 'Z = √(R²+(X<sub>L</sub>-X<sub>C</sub>)²)، tanθ = (X<sub>L</sub>-X<sub>C</sub>)/R' },
+                        { label: 'دائرة الرنين', detail: 'f = 1/(2π√(LC))' }
+                    ]
+                }]
+            }, {
+                label: 'الوحدة الثانية: مقدمة في الفيزياء الحديثة',
+                children: [{
+                    label: 'الفصل الخامس: ازدواجية الموجة والجسيم',
+                    children: [
+                        { label: 'كمات الطاقة', detail: 'E = hν' },
+                        { label: 'التأثير الكهروضوئي', detail: 'hν = E<sub>w</sub> + ½mv²' },
+                        { label: 'ظاهرة كومتون', detail: 'إثبات الطبيعة الجسيمية' },
+                        { label: 'مبدأ دي برولي', detail: 'λ = h/(mv)' }
+                    ]
+                }, {
+                    label: 'الفصل السادس: الأطياف الذرية',
+                    children: [
+                        { label: 'نموذج بور', detail: 'E<sub>n</sub> = -13.6/n² eV' },
+                        { label: 'متسلسلات الطيف', detail: 'ليمان، بالمر، باشن' },
+                        { label: 'الأشعة السينية', detail: 'طيف مستمر ومميز' }
+                    ]
+                }, {
+                    label: 'الفصل السابع: الليزر',
+                    children: [
+                        { label: 'الانبعاث التلقائي والمستحث', detail: 'الفرق بينهما' },
+                        { label: 'خصائص الليزر', detail: 'نقاء طيفي، توازي، ترابط، شدة عالية' },
+                        { label: 'تكوين الليزر', detail: 'وسط فعال، إسكان معكوس، تجويف رنيني' }
+                    ]
+                }, {
+                    label: 'الفصل الثامن: الإلكترونيات الحديثة',
+                    children: [
+                        { label: 'أشباه الموصلات', detail: 'N-type و P-type' },
+                        { label: 'الدايود', detail: 'توصيل أمامي وعكسي' },
+                        { label: 'الترانزستور', detail: 'مكبر ومفتاح' },
+                        { label: 'البوابات المنطقية', detail: 'NOT, AND, OR' }
+                    ]
+                }]
+            }]
+        };
+
+        // ================================================================
+        // 2. الدوال الأساسية
+        // ================================================================
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('mainScreen').style.display = 'none';
+            if (sectionId === 'main') {
+                document.getElementById('mainScreen').style.display = 'block';
+                return;
+            }
+            const target = document.getElementById('section-' + sectionId);
+            if (target) target.classList.add('active');
+            document.getElementById('searchArea').classList.remove('active');
+            document.getElementById('searchResults').classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goHome() {
+            showSection('main');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.showSection = showSection;
+        window.goHome = goHome;
+
+        // ================================================================
+        // 3. دوال العرض
+        // ================================================================
+
+        function renderMaps() {
+            const container = document.getElementById('mapsGallery');
+            if (!container) return;
+            container.innerHTML = mapImages.map(m => `
+                    <div class="map-item">
+                        <img src="${m.url}" alt="${m.label}" loading="lazy" onerror="this.style.display='none'">
+                        <div class="map-label">🗺️ ${m.label}</div>
+                    </div>
+                `).join('');
+        }
+
+        function renderExams() {
+            const container = document.getElementById('examsContainer');
+            if (!container) return;
+            container.innerHTML = examsData.map(exam => `
+                    <div class="card">
+                        <h3>${exam.title}</h3>
+                        ${exam.questions.map((q, i) => `
+                            <div style="margin:12px 0; padding:10px 14px; background:#f6f9ff; border-radius:12px;">
+                                <p><strong>س${i+1}:</strong> ${q.q}</p>
+                                <details>
+                                    <summary style="cursor:pointer; color:#1f4a7a; font-weight:600;">🔽 عرض الإجابة</summary>
+                                    <div style="padding:8px 12px; background:#eaf0f8; border-radius:8px; margin-top:6px;">${q.a}</div>
+                                </details>
+                            </div>
+                        `).join('')}
+                    </div>
+                `).join('');
+        }
+
+        function renderQBank(filterUnit = 'all', searchText = '') {
+            const container = document.getElementById('qbankContainer');
+            if (!container) return;
+            let filtered = combined;
+            if (filterUnit !== 'all') filtered = filtered.filter(item => item.unit === filterUnit);
+            if (searchText.trim()) {
+                const s = searchText.trim().toLowerCase();
+                filtered = filtered.filter(item => item.q.toLowerCase().includes(s) || item.a.toLowerCase().includes(s));
+            }
+            if (filtered.length === 0) {
+                container.innerHTML = '<p style="color:#6a7f9a;">لا توجد أسئلة تطابق المعايير.</p>';
+                return;
+            }
+            container.innerHTML = filtered.map((item, idx) => `
+                    <div class="qbank-item">
+                        <div class="q">${idx+1}. ${item.q}</div>
+                        <div class="a">📌 ${item.a}</div>
+                        <div style="font-size:0.8rem; color:#6a7f9a; margin-top:4px;">الوحدة: ${item.unit}</div>
+                    </div>
+                `).join('');
+        }
+
+        function renderReviews() {
+            const container = document.getElementById('reviewsContainer');
+            if (!container) return;
+
+            let html = `<h3>📘 مراجعات قصيرة</h3>`;
+            const shortReviews = [
+                { title: 'قوانين الكهرباء الأساسية', items: ['I = Q/t (A)', 'V = W/Q (V)', 'R = V/I (Ω)', 'ρₑ = RA/l (Ω.m)'] },
+                { title: 'توصيل المقاومات', items: ['توالي: R\' = R₁+R₂+R₃', 'توازي: 1/R\' = 1/R₁+1/R₂+1/R₃'] },
+                { title: 'كثافة الفيض المغناطيسي', items: ['سلك مستقيم: B = μI/(2πd)', 'ملف دائري: B = μNI/(2r)', 'ملف لولبي: B = μnI'] },
+                { title: 'أجهزة القياس', items: ['الأميتر: على التوازي', 'الفولتميتر: على التوالي', 'الأوميتر: علاقة عكسية'] },
+                { title: 'الفيزياء الحديثة', items: ['التأثير الكهروضوئي: hν = E<sub>w</sub> + ½mv²', 'دي برولي: λ = h/(mv)'] }
+            ];
+            shortReviews.forEach(r => {
+                html += `<div class="card"><h4>${r.title}</h4><ul>${r.items.map(i => `<li>${i}</li>`).join('')}</ul></div>`;
+            });
+
+            html += `<h3 style="margin-top:24px;">🔄 بطاقات المراجعة (اضغط للكشف)</h3>`;
+            reviewCards.forEach(card => {
+                html += `
+                        <div class="review-card" onclick="this.classList.toggle('open')">
+                            <div class="front">❓ ${card.front}</div>
+                            <div class="back">✅ ${card.back}</div>
+                        </div>
+                    `;
+            });
+            container.innerHTML = html;
+        }
+
+        function renderTree() {
+            const container = document.getElementById('treeContainer');
+            if (!container) return;
+
+            function buildTree(node, level = 0) {
+                let html = `<div class="tree-node" style="margin-right:${level*12}px;">`;
+                html += `<div class="node-label" onclick="this.closest('.tree-node').classList.toggle('open')">📂 ${node.label}</div>`;
+                if (node.detail) {
+                    html += `<div class="node-detail">${node.detail}</div>`;
+                }
+                if (node.children && node.children.length) {
+                    html += `<div class="node-children">`;
+                    node.children.forEach(child => { html += buildTree(child, level + 1); });
+                    html += `</div>`;
+                }
+                html += `</div>`;
+                return html;
+            }
+            container.innerHTML = buildTree(treeData);
+        }
+
+        // ================================================================
+        // 4. البحث
+        // ================================================================
+
+        function normalizeText(text) {
+            text = text.replace(/[\u064B-\u065F\u0670]/g, '');
+            text = text.replace(/[آأإ]/g, 'ا');
+            text = text.replace(/ة/g, 'ه');
+            text = text.replace(/ي/g, 'ى');
+            return text.toLowerCase().trim();
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            const resultsDiv = document.getElementById('searchResults');
+
+            if (!query) {
+                resultsDiv.classList.remove('active');
+                resultsDiv.innerHTML = '';
+                return;
+            }
+
+            const mainContent = document.querySelector('.container');
+            const clone = mainContent.cloneNode(true);
+            const toRemove = clone.querySelectorAll('.search-area, .search-results, .fav-panel, .app-header');
+            toRemove.forEach(el => el.remove());
+
+            const fullText = clone.textContent || '';
+            const normalizedFull = normalizeText(fullText);
+            const normalizedQuery = normalizeText(query);
+
+            if (!normalizedFull.includes(normalizedQuery)) {
+                resultsDiv.innerHTML = '<p style="padding:10px;">❌ لا توجد نتائج مطابقة.</p>';
+                resultsDiv.classList.add('active');
+                return;
+            }
+
+            const lines = fullText.split('\n').filter(line => line.trim().length > 3);
+            const matches = [];
+            lines.forEach(line => {
+                if (normalizeText(line).includes(normalizedQuery)) {
+                    matches.push(line.trim());
+                }
+            });
+
+            if (matches.length === 0) {
+                resultsDiv.innerHTML = '<p style="padding:10px;">❌ لا توجد نتائج مطابقة.</p>';
+                resultsDiv.classList.add('active');
+                return;
+            }
+
+            let html = '<ul style="list-style:none; padding:0;">';
+            const topMatches = matches.slice(0, 15);
+            topMatches.forEach(line => {
+                const regex = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+                const highlighted = line.replace(regex, match => `<span class="highlight">${match}</span>`);
+                html += `<li style="padding:6px 0; border-bottom:1px solid #eef3f8;">${highlighted}</li>`;
+            });
+            if (matches.length > 15) {
+                html += `<li style="color:#6a7f9a;">... و ${matches.length - 15} نتيجة أخرى</li>`;
+            }
+            html += '</ul>';
+            resultsDiv.innerHTML = html;
+            resultsDiv.classList.add('active');
+        }
+
+        // ================================================================
+        // 5. المفضلة
+        // ================================================================
+
+        const FAV_KEY = 'physicsFavs';
+        let favorites = JSON.parse(localStorage.getItem(FAV_KEY)) || [];
+
+        function saveFavorites() {
+            localStorage.setItem(FAV_KEY, JSON.stringify(favorites));
+            renderFavList();
+            updateFavButtons();
+        }
+
+        function renderFavList() {
+            const list = document.getElementById('favList');
+            if (!list) return;
+            if (favorites.length === 0) {
+                list.innerHTML = '<li style="color:#6a7f9a;">لا توجد مفضلات حالياً.</li>';
+                return;
+            }
+            list.innerHTML = favorites.map(id => {
+                const el = document.getElementById(id);
+                const title = el ? (el.querySelector('h2')?.textContent || id) : id;
+                return `<li><a href="#" onclick="showSection('${id.replace('section-','')}'); return false;">${title}</a> <button class="fav-remove" onclick="removeFav('${id}')">✖</button></li>`;
+            }).join('');
+        }
+
+        function removeFav(id) {
+            favorites = favorites.filter(f => f !== id);
+            saveFavorites();
+        }
+
+        function toggleFav(id) {
+            if (favorites.includes(id)) {
+                favorites = favorites.filter(f => f !== id);
+            } else {
+                favorites.push(id);
+            }
+            saveFavorites();
+        }
+
+        function updateFavButtons() {
+            document.querySelectorAll('.btn-fav-toggle').forEach(btn => {
+                const id = btn.dataset.sectionId;
+                if (favorites.includes(id)) {
+                    btn.classList.add('is-fav');
+                    btn.textContent = '⭐ في المفضلة';
+                } else {
+                    btn.classList.remove('is-fav');
+                    btn.textContent = '⭐ إضافة للمفضلة';
+                }
+            });
+        }
+
+        // ================================================================
+        // 6. تهيئة بنك الأسئلة
+        // ================================================================
+
+        function initQBank() {
+            const select = document.getElementById('qbankUnitFilter');
+            if (!select) return;
+            const units = [...new Set(combined.map(item => item.unit))];
+            units.forEach(u => {
+                const opt = document.createElement('option');
+                opt.value = u;
+                opt.textContent = u;
+                select.appendChild(opt);
+            });
+
+            select.addEventListener('change', function() {
+                renderQBank(this.value, document.getElementById('qbankSearchInput').value);
+            });
+
+            document.getElementById('qbankSearchBtn').addEventListener('click', function() {
+                renderQBank(document.getElementById('qbankUnitFilter').value, document.getElementById('qbankSearchInput')
+                    .value);
+            });
+
+            document.getElementById('qbankSearchInput').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    renderQBank(document.getElementById('qbankUnitFilter').value, this.value);
+                }
+            });
+
+            renderQBank('all', '');
+        }
+
+        // ================================================================
+        // 7. التهيئة العامة
+        // ================================================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            renderMaps();
+            renderExams();
+            renderTree();
+            renderReviews();
+            initQBank();
+
+            // ربط الأزرار الرئيسية بعرض الأقسام
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const section = this.dataset.section;
+                    if (section) showSection(section);
+                });
+            });
+
+            document.getElementById('btnHome').addEventListener('click', goHome);
+
+            document.getElementById('btnSearchToggle').addEventListener('click', function() {
+                const area = document.getElementById('searchArea');
+                area.classList.toggle('active');
+                if (area.classList.contains('active')) {
+                    document.getElementById('searchInput').focus();
+                } else {
+                    document.getElementById('searchResults').classList.remove('active');
+                }
+            });
+
+            document.getElementById('searchBtn').addEventListener('click', performSearch);
+            document.getElementById('searchInput').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') performSearch();
+            });
+            document.getElementById('clearSearchBtn').addEventListener('click', function() {
+                document.getElementById('searchInput').value = '';
+                document.getElementById('searchResults').classList.remove('active');
+                document.getElementById('searchResults').innerHTML = '';
+            });
+
+            document.getElementById('btnFavToggle').addEventListener('click', function() {
+                const panel = document.getElementById('favPanel');
+                panel.classList.toggle('active');
+                renderFavList();
+            });
+
+            document.querySelectorAll('.btn-fav-toggle').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const id = this.dataset.sectionId;
+                    if (id) {
+                        toggleFav(id);
+                        if (favorites.includes(id)) {
+                            this.classList.add('is-fav');
+                            this.textContent = '⭐ في المفضلة';
+                        } else {
+                            this.classList.remove('is-fav');
+                            this.textContent = '⭐ إضافة للمفضلة';
+                        }
+                        renderFavList();
+                    }
+                });
+            });
+
+            const scrollPos = localStorage.getItem('physicsScrollPos');
+            if (scrollPos) window.scrollTo(0, parseInt(scrollPos, 10));
+            window.addEventListener('beforeunload', function() {
+                localStorage.setItem('physicsScrollPos', window.scrollY);
+            });
+
+            updateFavButtons();
+
+            console.log('✅ مذكرة النجاح – فيزياء الثانوية العامة جاهزة (200 سؤال).');
+        });
+    </script>
+
+</body>
+</html>
