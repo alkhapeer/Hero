@@ -6,75 +6,71 @@ function esc(s) {
     return String(s).replace(/[&<>"']/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 }
 
-// الصفحة الرئيسية
-function home() {
-    app.innerHTML = `
-        <section class="hero">
-            <h1>أكاديمية هيرو</h1>
-            <p>واجهة لتصفح الدورات.</p>
-            <div class="actions"><a class="btn primary" href="#courses">📚 تصفح الدورات</a></div>
-        </section>`;
+// دالة لاستخراج مجلد التطبيق الحالي (تدعم المجلدات الفرعية مثل /Hero/)
+function getBasePath() {
+    let path = window.location.pathname;
+    return path.substring(0, path.lastIndexOf('/') + 1);
+}
+
+// تحميل الدورات
+async function loadCourses() {
+    try {
+        const base = getBasePath();
+        const response = await fetch(base + 'courses.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        coursesData = (await response.json()).courses || [];
+        renderList();
+    } catch (e) {
+        app.innerHTML = `<div class="empty">❌ فشل تحميل الدورات: ${e.message}</div>`;
+    }
 }
 
 // عرض قائمة الدورات
-function renderCourses() {
-    let html = `<section class="section"><h1>📚 جميع الدورات</h1><div class="grid">`;
-    if (!coursesData || coursesData.length === 0) {
-        html += `<div class="empty">لا توجد دورات متاحة.</div>`;
+function renderList() {
+    let html = `<section class="section" style="max-width:800px;margin:auto;padding:20px;">
+        <h1>📚 الدورات المتاحة</h1>
+        <p style="color:#687386;line-height:1.6;">اضغط على "ابدأ التجربة" لفتح الدورة داخل التطبيق.</p>
+        <div class="grid" style="grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));">`;
+    if (coursesData.length === 0) {
+        html += `<div class="empty">لا توجد دورات متاحة حالياً.</div>`;
     } else {
-        for (let c of coursesData) {
+        coursesData.forEach(course => {
             html += `
-                <div class="card course" onclick="openCourseFull('${esc(c.url)}')" style="cursor:pointer;">
-                    <span class="icon">${esc(c.icon)}</span>
-                    <h3>${esc(c.title)}</h3>
-                    <p style="color:#687386;">${esc(c.description)}</p>
-                    <span style="color:#2563eb;">افتح الدورة ➜</span>
+                <div class="card course" style="display:flex;flex-direction:column;justify-content:space-between;">
+                    <div>
+                        <div class="icon" style="font-size:40px;">${esc(course.icon)}</div>
+                        <h3>${esc(course.title)}</h3>
+                        <p style="color:#687386;font-size:14px;line-height:1.6;">${esc(course.description)}</p>
+                    </div>
+                    <div style="margin-top:15px;">
+                        <button class="btn primary" style="width:100%;background:#2563eb;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:bold;cursor:pointer;" onclick="startCourse('${esc(course.url)}')">▶ ابدأ التجربة</button>
+                    </div>
                 </div>
             `;
-        }
+        });
     }
     html += `</div></section>`;
     app.innerHTML = html;
 }
 
-// 🔥 دالة فتح الدورة في إطار كامل
-window.openCourseFull = function(url) {
-    // بناء الرابط الكامل
-    let base = window.location.pathname.replace(/\/$/, '');
-    let fullUrl = (base ? base + '/' : '') + url;
-
-    // عرض الإطار
+// فتح الدورة داخل إطار كامل
+window.startCourse = function(url) {
+    const base = getBasePath();
+    const fullUrl = base + url;
     app.innerHTML = `
-        <div style="position:fixed; top:0; left:0; width:100vw; height:100vh; z-index:9999; background:#fff;">
-            <div style="position:absolute; top:10px; right:15px; z-index:10000; background:#fff; padding:8px 15px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
-                <!-- ✅ تم إصلاح زر الرجوع ليستخدم onclick مباشرة -->
-                <span onclick="window.location.hash='#courses';" style="cursor:pointer; color:#2563eb; font-weight:bold; font-size:18px;">✕ رجوع</span>
+        <div style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:#fff;">
+            <div style="position:absolute;top:10px;right:15px;z-index:10000;">
+                <button onclick="backToList()" style="background:#fff;border:1px solid #ddd;padding:8px 15px;border-radius:8px;cursor:pointer;font-weight:bold;color:#2563eb;">✕ رجوع</button>
             </div>
-            <iframe src="${esc(fullUrl)}" style="width:100%; height:100%; border:none; display:block;"></iframe>
+            <iframe src="${esc(fullUrl)}" style="width:100%;height:100%;border:none;display:block;"></iframe>
         </div>
     `;
 };
 
-// التوجيه
-function route() {
-    let h = location.hash.slice(1) || 'home';
-    if (h === 'home') home();
-    else if (h === 'courses') renderCourses();
-    else home();
-}
+// العودة للقائمة
+window.backToList = function() {
+    renderList();
+};
 
-// التحميل والبدء
-function initApp() {
-    fetch('courses.json').then(r => {
-        if(!r.ok) throw new Error('courses.json غير موجود');
-        return r.json();
-    }).then(json => {
-        coursesData = json.courses || [];
-        route();
-    }).catch(() => {
-        app.innerHTML = `<div class="empty">❌ تأكد من وجود ملف courses.json في نفس المجلد.</div>`;
-    });
-}
-
-window.addEventListener('hashchange', route);
-document.addEventListener('DOMContentLoaded', initApp);
+// تشغيل التطبيق
+document.addEventListener('DOMContentLoaded', loadCourses);
