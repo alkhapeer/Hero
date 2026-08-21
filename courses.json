@@ -9,15 +9,15 @@
     },
       {
       "id": 1,
-      "title": "مادة الإحصاء",
-      "description": "دورة تعليمية شاملة لمادة الإحصاء للثانوية العامة.",
+      "title": "مادة الفيزياء ",
+      "description": "شرح مبسط وممتع لقوانين الفيزياء",
       "icon": "📊",
-      "url": "/courses/stats/index.html"
+      "url": "/courses/physics/protected_physics3.html"
     },
     {
       "id": 3,
-      "title": "مادة الفيزياء",
-      "description": "شرح مبسط وممتع لقوانين الفيزياء.",
+      "title": "مادة الإحصاء",
+      "description": "دورة تعليمية شاملة لمادة الإحصاء للثانوية العامة.",
       "icon": "⚛️",
       "url": "/courses/physics/index.html"
     }
