@@ -1,0 +1,2912 @@
+
+<!--
+=========================================================
+HERO_PROTECTED_APP v2 (Shared)
+Course: 28
+Subject: 0
+=========================================================
+-->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>مذكرة النجاح – قانون الإثبات السوداني 1994</title>
+    <style>
+        /* ================================================================
+               القسم 1: إعادة تعيين الأنماط الأساسية (Reset & Base)
+               ================================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Tahoma', Arial, sans-serif;
+            background: #f2f6fc;
+            color: #1a2634;
+            line-height: 1.7;
+            padding: 0 0 20px;
+            direction: rtl;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            background: none;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* ================================================================
+               القسم 2: رأس التطبيق (Header) – ثابت في الأعلى
+               ================================================================ */
+        .app-header {
+            background: #0b2a47;
+            color: #fff;
+            padding: 12px 0;
+            border-radius: 0 0 28px 28px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .app-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .app-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .app-title small {
+            font-size: 0.7rem;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-right: 6px;
+        }
+        .header-actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .header-actions button {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+        .header-actions button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .header-actions .btn-home {
+            background: #f5c542;
+            color: #0b2a47;
+            font-weight: 600;
+        }
+        .header-actions .btn-home:hover {
+            background: #ffd966;
+        }
+
+        /* ================================================================
+               القسم 3: الشاشة الرئيسية (Main Screen) – شبكة الأزرار
+               ================================================================ */
+        .main-screen {
+            padding: 30px 0 20px;
+            display: block;
+        }
+        .main-screen h1 {
+            font-size: 1.9rem;
+            color: #0b2a47;
+            border-right: 6px solid #f5c542;
+            padding-right: 16px;
+            margin-bottom: 12px;
+        }
+        .main-screen .sub {
+            color: #3d5a78;
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+        }
+
+        /* شبكة البطاقات (الأزرار المستطيلة) */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .category-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 22px 12px;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e6edf6;
+            transition: 0.25s;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            border-color: #b3c9e0;
+        }
+        .category-card .icon {
+            font-size: 2.2rem;
+        }
+        .category-card .badge-count {
+            background: #f5c542;
+            color: #0b2a47;
+            border-radius: 30px;
+            padding: 0 10px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        /* ================================================================
+               القسم 4: المحتوى الداخلي للأقسام (يظهر عند الضغط على زر)
+               ================================================================ */
+        .section-content {
+            display: none;
+            animation: fadeIn 0.25s ease;
+        }
+        .section-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* شريط عنوان القسم (يحتوي على زر العودة وزر المفضلة) */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #dce4ec;
+        }
+        .section-header h2 {
+            font-size: 1.5rem;
+            color: #0b2a47;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-header .header-actions-section {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .section-header .btn-back,
+        .section-header .btn-fav-toggle {
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            border: 1px solid #dce4ec;
+            background: #fff;
+            color: #1a3a5e;
+        }
+        .section-header .btn-back:hover {
+            background: #eaf0f8;
+        }
+        .section-header .btn-fav-toggle {
+            background: #fefbf0;
+            border-color: #f1dba8;
+        }
+        .section-header .btn-fav-toggle:hover {
+            background: #fcf1d0;
+        }
+        .section-header .btn-fav-toggle.is-fav {
+            background: #f5c542;
+            border-color: #f5c542;
+            color: #0b2a47;
+        }
+
+        /* ================================================================
+               القسم 5: العناصر المشتركة (بطاقات، صناديق، جداول)
+               ================================================================ */
+        .card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 20px 22px;
+            margin: 16px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eaf0f6;
+        }
+        .def-box,
+        .note-box,
+        .warn-box {
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin: 18px 0;
+            border-right: 5px solid;
+        }
+        .def-box {
+            border-color: #2b6f9e;
+            background: #edf4fc;
+        }
+        .note-box {
+            border-color: #f3b33d;
+            background: #fef9ef;
+        }
+        .warn-box {
+            border-color: #c0392b;
+            background: #fdeaea;
+        }
+        .box-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+
+        /* ================================================================
+               القسم 6: شجرة المعرفة (قابلة للطي)
+               ================================================================ */
+        .tree-node {
+            margin: 6px 0;
+        }
+        .tree-node .node-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: #f4f8fe;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+            border-right: 3px solid transparent;
+        }
+        .tree-node .node-label:hover {
+            background: #e6edf6;
+            border-right-color: #2b6f9e;
+        }
+        .tree-node .node-children {
+            padding-right: 28px;
+            display: none;
+        }
+        .tree-node.open .node-children {
+            display: block;
+        }
+        .tree-node .node-detail {
+            padding: 6px 14px;
+            margin: 4px 0;
+            border-right: 3px solid #b3c9e0;
+            font-size: 0.95rem;
+            background: #fafcff;
+            border-radius: 4px;
+        }
+
+        /* ================================================================
+               القسم 7: معرض الخرائط الذهنية (شبكة صور)
+               ================================================================ */
+        .maps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .map-item {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e6edf6;
+            transition: 0.2s;
+        }
+        .map-item:hover {
+            transform: scale(1.02);
+        }
+        .map-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #fafcfd;
+            padding: 6px;
+        }
+        .map-item .map-label {
+            padding: 10px 14px;
+            background: #f7faff;
+            border-top: 1px solid #e6edf6;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* ================================================================
+               القسم 8: بنك الأسئلة (مع فلتر وبحث)
+               ================================================================ */
+        .qbank-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 12px 0;
+        }
+        .qbank-filters select,
+        .qbank-filters input {
+            padding: 8px 14px;
+            border-radius: 30px;
+            border: 1px solid #dce4ec;
+            background: #fff;
+            font-size: 0.95rem;
+            flex: 1 1 150px;
+        }
+        .qbank-item {
+            background: #f9fbfe;
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            border-right: 4px solid #2b6f9e;
+        }
+        .qbank-item .q {
+            font-weight: 600;
+        }
+        .qbank-item .a {
+            padding-right: 20px;
+            color: #1f4a7a;
+            margin-top: 6px;
+        }
+
+        /* ================================================================
+               القسم 9: بطاقات المراجعة (تفاعلية – اضغط للكشف)
+               ================================================================ */
+        .review-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border: 1px solid #e6edf6;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .review-card:hover {
+            border-color: #b3c9e0;
+        }
+        .review-card .front {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .review-card .back {
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #dce4ec;
+            color: #1f4a7a;
+        }
+        .review-card.open .back {
+            display: block;
+        }
+
+        /* ================================================================
+               القسم 10: البحث (Search) – يعمل على كل النصوص
+               ================================================================ */
+        .search-area {
+            display: none;
+            margin: 16px 0;
+            padding: 16px;
+            background: #fff;
+            border-radius: 18px;
+            border: 1px solid #e6edf6;
+        }
+        .search-area.active {
+            display: block;
+        }
+        .search-area .search-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .search-area input {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 16px;
+            border-radius: 30px;
+            border: 1px solid #dce4ec;
+            font-size: 1rem;
+            background: #fafcff;
+        }
+        .search-area input:focus {
+            border-color: #2b6f9e;
+            outline: none;
+        }
+        .search-area button {
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: 0.2s;
+            border: none;
+        }
+        .search-area .btn-search {
+            background: #0b2a47;
+            color: #fff;
+        }
+        .search-area .btn-search:hover {
+            background: #1a3a5e;
+        }
+        .search-area .btn-clear {
+            background: #8a9aa8;
+            color: #fff;
+        }
+        .search-area .btn-clear:hover {
+            background: #6a7f9a;
+        }
+
+        .search-results {
+            background: #f0f4fc;
+            border-radius: 16px;
+            padding: 16px;
+            margin-top: 16px;
+            border: 1px solid #dce4ec;
+            display: none;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .search-results.active {
+            display: block;
+        }
+        .search-results ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .search-results li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e3e9f2;
+        }
+        .search-results li:last-child {
+            border-bottom: none;
+        }
+        .search-results .result-title {
+            font-weight: 600;
+            color: #0b2a47;
+        }
+        .search-results .result-snippet {
+            font-size: 0.95rem;
+            color: #3d5a78;
+            display: block;
+            margin-top: 4px;
+        }
+        .highlight {
+            background: #fcee8f;
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        /* ================================================================
+               القسم 11: لوحة المفضلة (Favorites Panel)
+               ================================================================ */
+        .fav-panel {
+            background: #fefbf0;
+            border-radius: 16px;
+            padding: 16px;
+            margin: 12px 0;
+            border: 1px solid #f1dba8;
+            display: none;
+        }
+        .fav-panel.active {
+            display: block;
+        }
+        .fav-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .fav-panel li {
+            padding: 6px 0;
+            border-bottom: 1px solid #f1e5c8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .fav-panel li:last-child {
+            border-bottom: none;
+        }
+        .fav-panel .fav-remove {
+            color: #b03a2e;
+            cursor: pointer;
+            font-weight: 700;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+        }
+
+        /* ================================================================
+               القسم 12: استجابة للشاشات المختلفة (Responsive)
+               ================================================================ */
+        @media (max-width: 600px) {
+            .app-title {
+                font-size: 1.0rem;
+            }
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+            .category-card {
+                padding: 14px 8px;
+                font-size: 0.85rem;
+            }
+            .category-card .icon {
+                font-size: 1.6rem;
+            }
+            .section-header h2 {
+                font-size: 1.2rem;
+            }
+            .maps-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 0 10px;
+            }
+            .header-actions button {
+                font-size: 0.75rem;
+                padding: 4px 10px;
+            }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .category-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* ================================================================
+               القسم 13: أدوات مساعدة (Utilities)
+               ================================================================ */
+        .mt-2 {
+            margin-top: 20px;
+        }
+        .mb-1 {
+            margin-bottom: 10px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .flex {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .badge {
+            background: #f5c542;
+            color: #0b2a47;
+            padding: 0 10px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        .hidden {
+            display: none !important;
+        }
+
+        /* ================================================================
+               القسم 14: تخصيص شريط التمرير
+               ================================================================ */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0f3f8;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b3c9e0;
+            border-radius: 10px;
+        }
+    </style>
+
+<!-- =========================================================
+     HERO_PROTECTED_APP v2 (Shared)
+     Offline License Protection
+========================================================= -->
+
+<style id="hero-license-style">
+html[data-hero-locked="1"] body > *:not(#hero-license-overlay) {
+    visibility: hidden !important;
+}
+#hero-license-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 2147483647 !important;
+    background: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-family: Arial, sans-serif !important;
+}
+#hero-license-box {
+    width: min(420px, 90%);
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 15px 50px rgba(0,0,0,.15);
+    text-align: center;
+}
+#hero-license-box input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px;
+    margin: 15px 0;
+    font-size: 16px;
+    text-align: center;
+}
+#hero-license-box button {
+    width: 100%;
+    padding: 13px;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#hero-license-message {
+    margin-top: 15px;
+    color: #b00020;
+}
+</style>
+
+<script id="hero-license-engine" data-hero-protected-app="1">
+
+(function () {
+    "use strict";
+
+    const HERO_PAYLOAD_B64 = "eyJ2ZXJzaW9uIjoyLCJwcm9kdWN0IjoiSGVybyBBY2FkZW15IiwiY291cnNlX2lkIjoyOCwic3ViamVjdF9pZCI6MCwiYXBwX25hbWUiOiJIZXJvIFByb3RlY3RlZCBBcHAiLCJvZmZsaW5lIjp0cnVlfQ==";
+    const HERO_SIGNATURE_B64 = "bS1TWijqsDoB5dDHEZIeAwn/2A6eIj3KBQ3RnrWNZkCB6ZbVxRpzadxZAJnNQGNSb4g7QrNI5MwAcuZm59YgyR2x0Gx9NQvASmvFQsvdIG3boFewDEZOPzqcDHz1Mmlra6AuJNlno5XqR80GTp/fFiMXU6fBnPZc9GMwaqQANMX7mgb9H5pTEJcJ90TF1xmOsxst2+zYyZu68iWIbLSEVzL+pnKQpbXJhHmaO12fFC2brNNSJkEznt3BVuPPj6Sli2QdqdQAwCEKZwf9y0G+99jlOEv8spwu1cUMGuUXh3DOzCq1UXYOBppdyz1KTTk2rLq0XdTBFIhgsI7svwnAfA==";
+    const HERO_PUBLIC_KEY_B64 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAokfP3g1ieGYQkeGnWDXp7le9tT12xdvHpCA4m7HoPjRI+KGH2DjqQuRZuAmFGzk5aLxJGyyu9XkhEcvvL7nVISYGYN4KkTxZqtufGzKAMTCZm++5C9OSlgazKXkrm7nlDNo2/+fbBuDJPOMg+efpnKjnmuOZ24ZWXIEW4ezmxylOBhG+s6BTpJsElTkKzQui2sf7KdBtsXhOtA+dDsyUqt02RWKSDixFdqJz3fsPVhDOuCc9YKJXRbrcjh08nPs4AQx3iQHxVSTtirmU80Y+IYc/hWaTstRaaNyQZePrzwGN+2jzcw/0KuJpdA6hnf/HtUhk0ottglRoik5QA3IlzwIDAQAB";
+    const HERO_STORAGE_KEY = "hero_license_0e368d044d95154015cbe1f5aff6d4e900aed56e5c33b6475c6373b4fec589d0";
+    const HERO_DEVICE_KEY = "hero_device_id_v2";
+    const HERO_TRIAL_KEY = HERO_STORAGE_KEY + "_trial";
+    const HERO_MODE_KEY = HERO_STORAGE_KEY + "_mode";
+
+    const TRIAL_DAYS = 7;
+    const TRIAL_SECONDS = TRIAL_DAYS * 24 * 60 * 60;
+    const CLOCK_TOLERANCE_MS = 5 * 60 * 1000;
+
+    function base64ToBytes(base64) {
+        const binary = atob(base64);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) {
+            bytes[i] = binary.charCodeAt(i);
+        }
+        return bytes;
+    }
+
+    function base64UrlDecode(text) {
+        let base64 = String(text)
+            .replace(/-/g, "+")
+            .replace(/_/g, "/");
+        const padding = base64.length % 4;
+        if (padding) {
+            base64 += "=".repeat(4 - padding);
+        }
+        return atob(base64);
+    }
+
+    function randomDeviceId() {
+        if (crypto && typeof crypto.randomUUID === "function") {
+            return crypto.randomUUID();
+        }
+        const bytes = new Uint8Array(16);
+        crypto.getRandomValues(bytes);
+        return Array.from(bytes)
+            .map(byte => byte.toString(16).padStart(2, "0"))
+            .join("");
+    }
+
+    function getDeviceId() {
+        let deviceId = localStorage.getItem(HERO_DEVICE_KEY);
+        if (!deviceId) {
+            deviceId = randomDeviceId();
+            localStorage.setItem(HERO_DEVICE_KEY, deviceId);
+        }
+        return deviceId;
+    }
+
+    async function sha256(text) {
+        const data = new TextEncoder().encode(text);
+        const hash = await crypto.subtle.digest("SHA-256", data);
+        return Array.from(new Uint8Array(hash))
+            .map(byte => byte.toString(16).padStart(2, "0"))
+            .join("");
+    }
+
+    async function importPublicKey() {
+        return await crypto.subtle.importKey(
+            "spki",
+            base64ToBytes(HERO_PUBLIC_KEY_B64),
+            { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
+            false,
+            ["verify"]
+        );
+    }
+
+    function getLicensePayload() {
+        const json = new TextDecoder().decode(
+            base64ToBytes(HERO_PAYLOAD_B64)
+        );
+        return JSON.parse(json);
+    }
+
+    async function verifyLicenseSignature() {
+        try {
+            const publicKey = await importPublicKey();
+            return await crypto.subtle.verify(
+                { name: "RSASSA-PKCS1-v1_5" },
+                publicKey,
+                base64ToBytes(HERO_SIGNATURE_B64),
+                base64ToBytes(HERO_PAYLOAD_B64)
+            );
+        } catch (error) {
+            console.error("Hero license verification error:", error);
+            return false;
+        }
+    }
+
+    // دعم الصيغ: 5 أجزاء (قديم), 6 أجزاء (مع licenseType), 7 أجزاء (مع expires_at)
+    async function verifyActivationCodeSignature(code) {
+        try {
+            const decoded = base64UrlDecode(code);
+            const parts = decoded.split("|");
+
+            let system, licenseType = "PAID", userId, courseId, licenseKey, expiresAt, encodedSignature;
+
+            if (parts.length === 7) {
+                [system, licenseType, userId, courseId, licenseKey, expiresAt, encodedSignature] = parts;
+            } else if (parts.length === 6) {
+                [system, licenseType, userId, courseId, licenseKey, encodedSignature] = parts;
+            } else if (parts.length === 5) {
+                [system, userId, courseId, licenseKey, encodedSignature] = parts;
+            } else {
+                return null;
+            }
+
+            licenseType = String(licenseType).toUpperCase();
+            if (system !== "HERO" || licenseType !== "PAID" ||
+                !/^\d+$/.test(String(userId)) || !/^\d+$/.test(String(courseId)) ||
+                !/^HERO-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(licenseKey)) {
+                return null;
+            }
+
+            // بناء النص المُوقَّع (بنفس صيغة الخادم)
+            let payload;
+            if (parts.length === 7) {
+                payload = ["HERO", "PAID", userId, courseId, licenseKey, expiresAt].join("|");
+            } else if (parts.length === 6) {
+                payload = ["HERO", "PAID", userId, courseId, licenseKey].join("|");
+            } else {
+                payload = ["HERO", userId, courseId, licenseKey].join("|");
+            }
+
+            const publicKey = await importPublicKey();
+            const valid = await crypto.subtle.verify(
+                { name: "RSASSA-PKCS1-v1_5" },
+                publicKey,
+                base64ToBytes(encodedSignature),
+                new TextEncoder().encode(payload)
+            );
+
+            if (!valid) return null;
+
+            return {
+                userId: Number(userId),
+                courseId: Number(courseId),
+                licenseKey,
+                licenseType,
+                expiresAt: expiresAt || null,
+                code
+            };
+        } catch (error) {
+            console.error("Hero activation verification error:", error);
+            return null;
+        }
+    }
+
+    function loadJson(key) {
+        try {
+            const value = localStorage.getItem(key);
+            return value ? JSON.parse(value) : null;
+        } catch (_) {
+            return null;
+        }
+    }
+
+    function saveJson(key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+    }
+
+    function unlockApplication() {
+        const overlay = document.getElementById("hero-license-overlay");
+        if (overlay) overlay.remove();
+        document.documentElement.removeAttribute("data-hero-locked");
+    }
+
+    function formatRemaining(seconds) {
+        seconds = Math.max(0, Math.floor(seconds));
+        const days = Math.floor(seconds / 86400);
+        seconds %= 86400;
+        const hours = Math.floor(seconds / 3600);
+        seconds %= 3600;
+        const minutes = Math.floor(seconds / 60);
+        return `${days} يوم ${hours} ساعة ${minutes} دقيقة`;
+    }
+
+    function updateTrialCounter(state) {
+        let counter = document.getElementById("hero-trial-counter-visible");
+        if (!counter) {
+            counter = document.createElement("div");
+            counter.id = "hero-trial-counter-visible";
+            counter.style.cssText = `
+                position:fixed; bottom:12px; right:12px; z-index:2147483646;
+                background:#111827; color:#fff; padding:8px 12px; border-radius:8px;
+                font:14px Arial,sans-serif; box-shadow:0 4px 15px rgba(0,0,0,.15);
+            `;
+            document.body.appendChild(counter);
+        }
+        const remaining = Math.max(0, (state.expiresAt - Date.now()) / 1000);
+        counter.textContent = "التجربة المجانية المتبقي: " + formatRemaining(remaining);
+    }
+
+    function getTrialState() {
+        const deviceId = getDeviceId();
+        let state = loadJson(HERO_TRIAL_KEY);
+        if (!state) {
+            const now = Date.now();
+            state = {
+                mode: "TRIAL",
+                deviceId,
+                startedAt: now,
+                lastSeen: now,
+                expiresAt: now + (TRIAL_SECONDS * 1000),
+                tampered: false
+            };
+            saveJson(HERO_TRIAL_KEY, state);
+            return state;
+        }
+        if (state.deviceId !== deviceId) {
+            return { ...state, tampered: true };
+        }
+        const now = Date.now();
+        if (Number.isFinite(state.lastSeen) && now + CLOCK_TOLERANCE_MS < state.lastSeen) {
+            state.tampered = true;
+        }
+        if (!state.tampered) {
+            state.lastSeen = now;
+            saveJson(HERO_TRIAL_KEY, state);
+        }
+        return state;
+    }
+
+    function createOverlay(title, text, buttonText, onClick, showInput = false) {
+        document.documentElement.setAttribute("data-hero-locked", "1");
+        let overlay = document.getElementById("hero-license-overlay");
+        if (!overlay) {
+            overlay = document.createElement("div");
+            overlay.id = "hero-license-overlay";
+            document.body.appendChild(overlay);
+        }
+        overlay.innerHTML = `
+            <div id="hero-license-box">
+                <h2 id="hero-license-title">${title}</h2>
+                <p id="hero-license-text">${text}</p>
+                <div id="hero-trial-counter"></div>
+                ${showInput ? `
+                <input id="hero-activation-input" type="text" autocomplete="off" placeholder="أدخل كود التفعيل">
+                ` : ""}
+                <button id="hero-activation-button" type="button">${buttonText}</button>
+                <div id="hero-license-message"></div>
+            </div>
+        `;
+        const button = document.getElementById("hero-activation-button");
+        button.onclick = onClick;
+        return overlay;
+    }
+
+    function showPaidActivationScreen(message = "هذا التطبيق محمي ومخصص للمشتري.") {
+        createOverlay("تفعيل التطبيق", message, "تفعيل التطبيق", activatePaid, true);
+        const input = document.getElementById("hero-activation-input");
+        input.onkeydown = function (event) {
+            if (event.key === "Enter") activatePaid();
+        };
+    }
+
+    function showTrialEndedScreen(message) {
+        createOverlay(
+            "انتهت التجربة المجانية",
+            message,
+            "شراء التطبيق",
+            function () {
+                const payload = getLicensePayload();
+                window.location.href =
+                    "https://hero.kesug.com/Academy/payment.php?course_id=" +
+                    encodeURIComponent(payload.course_id);
+            },
+            false
+        );
+    }
+
+    async function activatePaid() {
+        const input = document.getElementById("hero-activation-input");
+        const message = document.getElementById("hero-license-message");
+        if (!input || !message) return;
+
+        const code = input.value.trim();
+        if (!code) {
+            message.textContent = "يرجى إدخال كود التفعيل.";
+            return;
+        }
+
+        try {
+            const packageValid = await verifyLicenseSignature();
+            if (!packageValid) {
+                message.textContent = "بيانات النسخة المحمية غير صالحة.";
+                return;
+            }
+
+            const payload = getLicensePayload();
+
+            // التحقق من كود التفعيل (PAID)
+            const decoded = await verifyActivationCodeSignature(code);
+            if (!decoded) {
+                message.textContent = "كود التفعيل غير صحيح.";
+                return;
+            }
+
+            // التحقق من تطابق course_id
+            if (decoded.courseId !== Number(payload.course_id)) {
+                message.textContent = "كود التفعيل لا يخص هذا التطبيق.";
+                return;
+            }
+
+            // تخزين حالة الدفع
+            saveJson(HERO_MODE_KEY, {
+                mode: "PAID",
+                deviceId: getDeviceId(),
+                activatedAt: Date.now(),
+                licenseKey: decoded.licenseKey
+            });
+
+            localStorage.removeItem(HERO_TRIAL_KEY);
+            localStorage.setItem(HERO_STORAGE_KEY, "activated");
+
+            const counter = document.getElementById("hero-trial-counter-visible");
+            if (counter) counter.remove();
+
+            unlockApplication();
+
+        } catch (error) {
+            console.error(error);
+            message.textContent = "حدث خطأ أثناء التفعيل.";
+        }
+    }
+
+    async function startProtection() {
+        document.documentElement.setAttribute("data-hero-locked", "1");
+
+        const signatureValid = await verifyLicenseSignature();
+        if (!signatureValid) {
+            showPaidActivationScreen("بيانات النسخة المحمية غير صالحة.");
+            return;
+        }
+
+        const payload = getLicensePayload();
+        const deviceId = getDeviceId();
+
+        // التحقق من وجود حالة دفع سابقة
+        const savedMode = loadJson(HERO_MODE_KEY);
+        if (savedMode && savedMode.mode === "PAID" && savedMode.deviceId === deviceId) {
+            unlockApplication();
+            return;
+        }
+
+        // البدء بالتجربة التلقائية (بدون الحاجة إلى license_type)
+        const trial = getTrialState();
+
+        if (trial.tampered) {
+            showTrialEndedScreen("تم اكتشاف تغيير غير طبيعي في وقت الجهاز. انتهت صلاحية التجربة.");
+            return;
+        }
+
+        if (Date.now() >= trial.expiresAt) {
+            showTrialEndedScreen("انتهت التجربة المجانية لمدة 7 أيام. يمكنك شراء التطبيق والاستمرار في استخدام النسخة نفسها.");
+            return;
+        }
+
+        // التجربة سارية
+        unlockApplication();
+        updateTrialCounter(trial);
+
+        setInterval(function () {
+            const current = getTrialState();
+            if (current.tampered || Date.now() >= current.expiresAt) {
+                const counter = document.getElementById("hero-trial-counter-visible");
+                if (counter) counter.remove();
+
+                showTrialEndedScreen(
+                    current.tampered
+                        ? "تم اكتشاف تغيير غير طبيعي في وقت الجهاز. انتهت صلاحية التجربة."
+                        : "انتهت التجربة المجانية لمدة 7 أيام. يمكنك شراء التطبيق والاستمرار في استخدام النسخة نفسها."
+                );
+                return;
+            }
+            updateTrialCounter(current);
+        }, 1000);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", startProtection);
+    } else {
+        startProtection();
+    }
+
+})();
+
+</script>
+
+</head>
+<body>
+
+    <!-- ================================================================
+    القسم 15: رأس التطبيق (App Header)
+    ================================================================ -->
+    <header class="app-header">
+        <div class="container">
+            <div class="app-title">
+                📘 مذكرة النجاح
+                <small>قانون الإثبات السوداني 1994</small>
+            </div>
+            <div class="header-actions">
+                <button class="btn-home" id="btnHome">🏠 الرئيسية</button>
+                <button id="btnSearchToggle">🔍 بحث</button>
+                <button id="btnFavToggle">⭐ المفضلة</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================================================================
+    القسم 16: الحاوية الرئيسية (Container)
+    ================================================================ -->
+    <div class="container">
+
+        <!-- ================================================================
+        القسم 17: منطقة البحث (Search Area) – تظهر عند الضغط على زر البحث
+        ================================================================ -->
+        <div class="search-area" id="searchArea">
+            <div class="search-row">
+                <input type="text" id="searchInput" placeholder="ابحث في كل محتوى المذكرة...">
+                <button class="btn-search" id="searchBtn">🔍 بحث</button>
+                <button class="btn-clear" id="clearSearchBtn">✖ إلغاء</button>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+
+        <!-- ================================================================
+        القسم 18: لوحة المفضلة (Favorites Panel)
+        ================================================================ -->
+        <div class="fav-panel" id="favPanel">
+            <h4 style="margin-bottom:8px;">⭐ أقسامي المفضلة</h4>
+            <ul id="favList">
+                <li style="color:#6a7f9a;">لا توجد مفضلات حالياً. أضف الأقسام من داخلها.</li>
+            </ul>
+        </div>
+
+        <!-- ================================================================
+        القسم 19: الشاشة الرئيسية (Main Screen) – تحتوي على أزرار التصنيفات
+        ================================================================ -->
+        <div id="mainScreen" class="main-screen">
+            <h1>⚖️ قانون الإثبات السوداني 1994</h1>
+            <p class="sub">دراسة قانونية مقارنة – شرح تطبيقي فقهي وقضائي</p>
+            <p style="margin-bottom:20px; color:#3d5a78;">مرحباً بك في مذكرة النجاح الشاملة لمادة قانون الإثبات السوداني. اضغط على أي زر للوصول إلى المحتوى.</p>
+
+            <!-- شبكة الأزرار (التصنيفات) -->
+            <div class="category-grid">
+                <div class="category-card" data-section="explain"><span class="icon">📖</span> شرح <span class="badge-count">8</span></div>
+                <div class="category-card" data-section="summaries"><span class="icon">📋</span> ملخصات <span class="badge-count">6</span></div>
+                <div class="category-card" data-section="questions"><span class="icon">❓</span> أسئلة <span class="badge-count">20+</span></div>
+                <div class="category-card" data-section="maps"><span class="icon">🗺️</span> خرائط <span class="badge-count">6</span></div>
+                <div class="category-card" data-section="examples"><span class="icon">📌</span> أمثلة <span class="badge-count">15</span></div>
+                <div class="category-card" data-section="exams"><span class="icon">📝</span> امتحانات <span class="badge-count">4</span></div>
+                <div class="category-card" data-section="tree"><span class="icon">🌳</span> شجرة المعرفة</div>
+                <div class="category-card" data-section="qbank"><span class="icon">📚</span> بنك الأسئلة <span class="badge-count">200</span></div>
+                <div class="category-card" data-section="reviews"><span class="icon">🔄</span> مراجعات <span class="badge-count">8</span></div>
+                <div class="category-card" data-section="videos"><span class="icon">🎬</span> فيديوهات</div>
+            </div>
+
+            <div style="margin-top:20px; background:#eaf0f8; border-radius:18px; padding:16px 20px;">
+                <p style="font-weight:600; color:#0b2a47;">📌 عن هذه المذكرة:</p>
+                <p style="font-size:0.95rem; color:#2c4a6e;">
+                    • تغطي كامل قانون الإثبات السوداني 1994 مع تطبيقاته الفقهية والقضائية.
+                    <br>• تحتوي على 200 سؤال وإجابة، امتحانات شاملة، خرائط ذهنية، وبطاقات مراجعة.
+                    <br>• صُممت خصيصاً لطلاب القانون والممارسين المهنيين.
+                </p>
+            </div>
+                <!-- ================================================================
+     تنبيه مهم – حقوق الاستخدام والنسخة التجريبية
+     ================================================================ -->
+    <div style="
+        background: #fff3cd;
+        border-right: 6px solid #ffc107;
+        border-radius: 16px;
+        padding: 20px 24px;
+        margin: 30px 0 20px;
+        font-size: 0.95rem;
+        color: #856404;
+    ">
+        <p style="font-weight: 700; font-size: 1.05rem; margin-bottom: 8px;">
+            ⚠️ تنبيه مهم
+        </p>
+        <p style="margin-bottom: 8px;">
+            إذا وصلك هذا التطبيق أو تمكنت من استخدامه دون إتمام عملية الشراء،
+            <strong>نرجو التواصل معنا عبر البريد الإلكتروني</strong> في أقرب وقت لتصحيح الوضع وتسوية أي مستحقات مالية.
+        </p>
+        <p style="margin-bottom: 4px;">
+            نشكركم على الأمانة والتعاون.
+        </p>
+        <p style="direction: ltr; text-align: left; font-family: monospace; font-size: 0.9rem; margin-top: 6px;">
+            📧 egyptstore170@gmail.com
+        </p>
+        <hr style="border: 0; border-top: 1px dashed #e6b800; margin: 12px 0;">
+        <p style="font-size: 0.85rem; margin-bottom: 0;">
+            💰 <strong>لمن يرغب في الربح:</strong> يمكنك أيضاً الانضمام إلى برنامج التسويق بالعمولة والحصول على <strong>20% عمولة</strong> عن كل عملية شراء تتم من خلالك.
+        </p>
+    </div>
+</div>
+
+        <!-- ================================================================
+        القسم 20: أقسام المحتوى (كل قسم يظهر عند الضغط على الزر المناسب)
+        ================================================================ -->
+
+        <!-- ===== القسم 1: شرح ===== -->
+        <div id="section-explain" class="section-content">
+            <div class="section-header">
+                <h2>📖 الشرح والتحليل الفقهي</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-explain">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div class="card">
+                <h3>تعريف البينة والإثبات</h3>
+                <div class="def-box"><div class="box-title">البينة لغةً</div><p>الوضوح، اليقين، البيان، والمعجزة.</p></div>
+                <div class="def-box"><div class="box-title">البينة شرعاً وقانوناً</div><p>كل وسيلة يتم بها إثبات أو نفي واقعة متعلقة بدعوى أو نزاع أمام المحكمة (المادة 4).</p></div>
+                <div class="def-box"><div class="box-title">الإثبات</div><p>إقامة الدليل أمام المحكمة بالطرق التي يحددها القانون لإثبات واقعة تترتب عليها آثار قانونية.</p></div>
+                <div class="def-box"><div class="box-title">الواقعة</div><p>أي فعل، شيء، حالة، أو علاقة بين الأشياء مما يمكن إدراكه بالحواس أو العقل.</p></div>
+                <div class="note-box"><div class="box-title">📌 المذاهب الفقهية في تفسير البينة</div><p><strong>المذهب الأول (الشافعية):</strong> البينة محصورة في شهادة الشهود.<br><strong>المذهب الثاني (الجمهور وابن القيم):</strong> البينة كل ما يظهر الحق ويبينه (مستندات، قرائن، إقرار، شهود).<br><strong>المذهب الثالث (ابن حزم):</strong> تشمل علم القاضي الشخصي والإقرار والشهادة.</p></div>
+            </div>
+            <div class="card">
+                <h3>نطاق تطبيق قانون 1994</h3>
+                <ul>
+                    <li><strong>موضوعياً:</strong> المعاملات (المدنية والأحوال الشخصية) والمسائل الجنائية.</li>
+                    <li><strong>زمانياً:</strong> يسري على الدعاوى التي لم تسمع فيها البينة وقت صدوره.</li>
+                    <li><strong>شخصياً:</strong> يطبق أمام المحاكم الرسمية، ولا يسري على التحكيم إلا باتفاق الأطراف.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>التطور التاريخي لقانون الإثبات في السودان</h3>
+                <ul>
+                    <li><strong>قبل 1962:</strong> تطبيق المنشورات القضائية الإنجليزية وقانون الإثبات الهندي.</li>
+                    <li><strong>1962:</strong> منشور رئيس القضاء رقم 45 – دمج مصادر الإثبات.</li>
+                    <li><strong>1973:</strong> دستور 1973 – الشريعة والعرف مصدران رئيسيان للتشريع.</li>
+                    <li><strong>1983:</strong> أول قانون إثبات موحد يجمع الجنائي والمدني.</li>
+                    <li><strong>1994:</strong> القانون الحالي – دمج متوازن بين الفقه الإسلامي والقانون الإنجليزي.</li>
+                </ul>
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 2: ملخصات ===== -->
+        <div id="section-summaries" class="section-content">
+            <div class="section-header">
+                <h2>📋 الملخصات التنظيمية</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-summaries">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div class="card"><h3>ملخص القواعد الأصولية لعبء الإثبات</h3><ul><li>البينة على من يدعي خلاف الأصل.</li><li>الأصل في المعاملات براءة الذمة.</li><li>الأصل براءة المتهم حتى تثبت إدانته دون شك معقول.</li><li>الأصل في الأهلية وحرية التصرف السلامة.</li><li>الأصل صحة الأحكام والتدابير الرسمية.</li><li>الأصل بقاء ما كان على ما كان.</li><li>السكوت في معرض الحاجة إلى البيان بيان.</li><li>من سعى في نقض ما تم على يديه فسعيه مردود عليه (الإغلاق).</li></ul></div>
+            <div class="card"><h3>ملخص شروط قبول البينة</h3><ul><li>متعلقة بالدعوى.</li><li>منتجة فيها.</li><li>جائزة القبول قانوناً.</li></ul></div>
+            <div class="card"><h3>ملخص البينة المردودة (المادة 11)</h3><ul><li>مخالفة الشريعة الإسلامية (التجسس، التنصت).</li><li>البناء على علم القاضي الشخصي.</li><li>نفي سلوك دال على الرضا ثبت بإقرار أو حكم.</li><li>بينة الرأي من غير أهل الخبرة.</li><li>بينة الأخلاق السيئة للمتهم كأصل عام.</li></ul></div>
+            <div class="card"><h3>ملخص طرق الإثبات السبعة</h3><ul><li>الإقرار.</li><li>الشهادة.</li><li>المستندات.</li><li>القرائن.</li><li>اليمين.</li><li>المعاينة.</li><li>العلم القضائي.</li></ul></div>
+            <div class="card"><h3>ملخص الأيمان القضائية</h3><ul><li><strong>الحاسمة:</strong> يوجهها خصم لخصمه عند عجز البينة.</li><li><strong>المتممة:</strong> توجهها المحكمة لاستكمال أدلة ناقصة.</li><li><strong>الاستظهار:</strong> توجهها المحكمة وجوباً للمدعي في مواجهة ميت أو غائب.</li><li><strong>الملاعنة (اللعان):</strong> أيمان متبادلة بين الزوجين لدرء حد الزنا أو نفي النسب.</li></ul></div>
+            <div class="card"><h3>ملخص بينة الحدود</h3><ul><li><strong>الزنا:</strong> إقرار، أو شهادة 4 رجال عدول، أو الحمل لغير الزوجة، أو نكول الزوجة عن يمين اللعان.</li><li><strong>شرب الخمر:</strong> قرينة الرائحة (الاستنكاه) بشهادة عدليين أو تقرير خبير.</li><li><strong>القاعدة:</strong> تدرأ الحدود بالشبهات.</li></ul></div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 3: أسئلة ===== -->
+        <div id="section-questions" class="section-content">
+            <div class="section-header">
+                <h2>❓ أسئلة ومسائل قضائية</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-questions">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div class="card"><h3>مسألة: حجية الإقرار غير القضائي</h3><p>هل يعتبر الإقرار الذي يدون في محاضر التحريات أمام الشرطة بينة قاطعة للإدانة؟<br><strong>الجواب:</strong> لا، بموجب المادة 34-3، لا يشكل الإقرار غير القضائي بينة قاطعة للإدانة الوجوبية إذا شابته شبهة الإكراه أو الغموض.</p></div>
+            <div class="card"><h3>مسألة: قبول البينة المتحصل عليها بإجراء معيب</h3><p>ما هي شروط قبول الدليل المستخلص من تفتيش باطل؟<br><strong>الجواب:</strong> بموجب المادة 10، لا ترد البينة لمجرد بطلان الإجراء الشكلي، شريطة أن تطمئن المحكمة لاستقلالها وموضوعيتها، وألا تؤسس الإدانة عليها بمفردها.</p></div>
+            <div class="card"><h3>مسألة: قاعدة شمولية المستند</h3><p>هل يجوز إثبات عكس ما اشتمل عليه المستند المكتوب بالبينة الشفوية؟<br><strong>الجواب:</strong> لا، إلا في استثناءات: وجود نص يجيز ذلك، إثبات شرط سابق، إثبات العرف التجاري، أو إثبات وقائع تبطل العقد (الغش، الإكراه، الغلط، الصورية).</p></div>
+            <div class="card"><h3>مسألة: أثر رجوع المتهم عن اعترافه في الحدود</h3><p>ما هو مصير اعتراف المتهم بالزنا إذا رجع عنه قبل التنفيذ؟<br><strong>الجواب:</strong> يعتبر رجوعه شبهة تدرأ الحد وتسقطه، وتتحول العقوبة إلى التعزير (المادة 35-2).</p></div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 4: خرائط ===== -->
+        <div id="section-maps" class="section-content">
+            <div class="section-header">
+                <h2>🗺️ الخرائط الذهنية</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-maps">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <p style="margin-bottom:16px;">خرائط ذهنية توضح هيكل قانون الإثبات السوداني 1994.</p>
+            <div class="maps-grid" id="mapsGallery">
+                <!-- سيتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 5: أمثلة ===== -->
+        <div id="section-examples" class="section-content">
+            <div class="section-header">
+                <h2>📌 الأمثلة والتطبيقات القضائية</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-examples">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div class="card"><h3>مثال على عبء الإثبات (قضية حكومة السودان ضد محمود أحمد عبد الغفار)</h3><p>قررت المحكمة العليا أن عبء إثبات سوء السلوك والقصد الجنائي يقع كلياً وبصفة مستمرة على عاتق الاتهام طوال مراحل المحاكمة.</p></div>
+            <div class="card"><h3>مثال على البينة الظرفية (قضية حكومة السودان ضد علي محمد حماد)</h3><p>أُدين المتهم بخيانة الأمانة بالبينة الظرفية عند اختفاء المبالغ التي بعهدته وفشله في تقديم تبرير معقول.</p></div>
+            <div class="card"><h3>مثال على البينة الباطلة (قضية حكومة السودان ضد سعيد حمد مصطفى)</h3><p>أهدرت المحكمة البينة المستخلصة من تجسس البوليس وتتبع العورات لمخالفتها مبادئ الشريعة الإسلامية.</p></div>
+            <div class="card"><h3>مثال على بينة الوقائع المتماثلة (قضية R v. Smith)</h3><p>قُبلت بينة وفاة زوجات المتهم الثلاث بذات الطريقة (الغرق في حوض الاستحمام) لإثبات القصد الجنائي ونفي الصدفة.</p></div>
+            <div class="card"><h3>مثال على الشهادة بالنقل (أقوال المحتضر)</h3><p>تقبل أقوال المحتضر في قضايا القتل بشرط وفاته فعلياً، ووعيه التام، وانصراف أقواله لسبب الوفاة (قضية حكومة السودان ضد حبيب الله حسن).</p></div>
+            <div class="card"><h3>مثال على قاعدة شمولية المستند</h3><p>إذا ورد في عقد بيع مبلغ محدد، لا يجوز لأحد الطرفين إثبات زيادة شفهية على الثمن إلا إذا كانت تندرج تحت استثناءات المادة 92 (كالغش أو الصورية).</p></div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 6: امتحانات ===== -->
+        <div id="section-exams" class="section-content">
+            <div class="section-header">
+                <h2>📝 الامتحانات الشاملة</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-exams">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div id="examsContainer">
+                <!-- سيتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 7: شجرة المعرفة ===== -->
+        <div id="section-tree" class="section-content">
+            <div class="section-header">
+                <h2>🌳 شجرة المعرفة</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-tree">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div id="treeContainer" class="card">
+                <!-- سيتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 8: بنك الأسئلة ===== -->
+        <div id="section-qbank" class="section-content">
+            <div class="section-header">
+                <h2>📚 بنك الأسئلة الشامل (200 سؤال)</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-qbank">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div class="qbank-filters">
+                <select id="qbankUnitFilter"><option value="all">جميع الوحدات</option></select>
+                <input type="text" id="qbankSearchInput" placeholder="بحث في الأسئلة...">
+                <button id="qbankSearchBtn" style="padding:8px 18px; background:#0b2a47; color:#fff; border:none; border-radius:30px;">بحث</button>
+            </div>
+            <div id="qbankContainer">
+                <!-- سيتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 9: مراجعات ===== -->
+        <div id="section-reviews" class="section-content">
+            <div class="section-header">
+                <h2>🔄 المراجعات وبطاقات المراجعة</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-reviews">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div id="reviewsContainer">
+                <!-- سيتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 10: فيديوهات ===== -->
+        <div id="section-videos" class="section-content">
+            <div class="section-header">
+                <h2>🎬 الفيديوهات التعليمية</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-videos">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div class="card" style="text-align:center; padding:30px 20px;">
+                <div style="font-size:48px; margin-bottom:12px;">▶️</div>
+                <h3 style="margin-bottom:8px;">فيديو شرح قانون الإثبات السوداني 1994</h3>
+                <p style="margin-bottom:18px; color:#3d5a78;">اضغط على الزر لمشاهدة الفيديو على YouTube.</p>
+                <a href="https://youtu.be/KvkjyH7GCaY" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:12px 28px; background:#ff0000; color:#fff; border-radius:30px; font-weight:700; text-decoration:none;">▶ مشاهدة الفيديو على YouTube</a>
+                <p style="font-size:0.8rem; color:#6a7f9a; margin-top:12px;">(يتطلب اتصالاً بالإنترنت)</p>
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+    </div>
+    <!-- ===== نهاية الحاوية ===== -->
+
+        <!-- ================================================================
+        القسم 21: جافا سكريبت (JavaScript) – كل المنطق التفاعلي
+    ================================================================ -->
+    <script>
+        /**
+         * ================================================================
+         * 1. إعداد البيانات (Data) – يمكنك تعديلها أو إضافة المزيد
+         * ================================================================
+         */
+
+        // ----- الخرائط الذهنية (6 صور مرفقة) -----
+        const mapImages = [
+            { id: 1, url: 'https://lh3.googleusercontent.com/d/1OyJaTvW4keIF7MwLxyMnWf0MGGp4dhkx', label: 'الخريطة الذهنية 1 - تعريفات أساسية' },
+            { id: 2, url: 'https://lh3.googleusercontent.com/d/1EEReBK5savoG4DFMqSjStheupXbmpiok', label: 'الخريطة الذهنية 2 - القواعد' },
+            { id: 3, url: 'https://lh3.googleusercontent.com/d/1kfR30L_Qpr3dFjZrBdwCfislFO1hwvC3', label: 'الخريطة الذهنية 3 - القرار' },
+            { id: 4, url: 'https://lh3.googleusercontent.com/d/1GVXlQaUJrwqwyLWgspWtA_4Pei7upS8C', label: 'الخريطة الذهنية 4 - تعريفات أساسية' },
+            { id: 5, url: 'https://lh3.googleusercontent.com/d/1obSgnfsCFRyP-wFtKc6YvNHFWuN37ZxJ', label: 'الخريطة الذهنية 5 - ركائز قانون الإثبات' },
+            { id: 6, url: 'https://lh3.googleusercontent.com/d/15ogXVwVcPogsY7D8Kw3U0V0cKciroGAK', label: 'الخريطة الذهنية 6 - منهجية الإثبات' }
+        ];
+
+        // ----- بيانات الامتحانات (4 امتحانات) -----
+        const examsData = [{
+            title: 'الامتحان الأول: الأحكام التمهيدية وقواعد عبء الإثبات',
+            questions: [
+                { q: 'عرّف "البينة" لغةً وشرعاً وقانوناً بموجب المادة الرابعة، مع استعراض الآراء الفقهية الثلاثة.', a: 'راجع قسم التعريفات في الشرح.' },
+                { q: 'اشرح قاعدة "الأصل براءة المتهم حتى تثبت إدانته دون شك معقول" وأساسها الشرعي والقانوني.', a: 'تستند للحديث "أدرؤوا الحدود بالشبهات" وقاعدة "اليقين لا يزول بالشك"، وتلزم الاتهام بإثبات التهمة دون ترك مجال للشك المعقول.' },
+                { q: 'ما المقصود بقاعدة "السعي والمردود" (الإغلاق) وكيف وظفها المشرع السوداني؟', a: 'تمنع الشخص من إنكار ما صدر عنه سابقاً من قول أو فعل دل على رضاه. مقتبسة من قاعدة "من سعى في نقض ما تم على يديه فسعيه مردود عليه".' }
+            ]
+        }, {
+            title: 'الامتحان الثاني: شروط القبول، البينة الظرفية، والدليل الباطل',
+            questions: [
+                { q: 'ما هي الأركان الثلاثة لقبول البينة بموجب المادة 9؟', a: 'متعلقة بالدعوى، منتجة فيها، جائزة القبول قانوناً.' },
+                { q: 'اشرح نظرية "البينة المتحصل عليها بإجراء غير صحيح" بموجب المادة 10.', a: 'لا ترد لمجرد بطلان الإجراء الشكلي، شريطة الاستقلال والموضوعية، ولا تؤسس الإدانة عليها منفردة.' },
+                { q: 'ما هي البينة الظرفية وشروطها؟', a: 'وقائع غير مباشرة ترتبط بالدعوى لتشكل سلسلة منطقية تؤدي لاستنتاج الواقعة واستبعاد فرضية البراءة.' }
+            ]
+        }, {
+            title: 'الامتحان الثالث: الإقرار، الشهادة، والمستندات',
+            questions: [
+                { q: 'ما الفرق بين الإقرار القضائي وغير القضائي من حيث الحجية؟', a: 'القضائي: حجة قاطعة على المقر. غير القضائي: يخضع لتقدير المحكمة ويقبل إثبات عكسه.' },
+                { q: 'ما هي قاعدة "عدم جواز إثبات عكس المستند المكتوب إلا بالكتابة" واستثناءاتها؟', a: 'المادة 92. الاستثناءات: نص يجيز ذلك، شرط سابق، عرف تجاري، وقائع تبطل العقد (غش، إكراه، غلط، صورية).' },
+                { q: 'متى تقبل شهادة الصغير دون يمين في القانون السوداني؟', a: 'تقبل كبينة معززة في مسائل الجروح والاعتداءات بين الصغار عند الضرورة، ولا تؤسس الإدانة عليها بمفردها.' }
+            ]
+        }, {
+            title: 'الامتحان الرابع: القرائن، اليمين، وبينة الحدود',
+            questions: [
+                { q: 'قارن بين اليمين الحاسمة والمتممة والاستظهار.', a: 'الحاسمة: يوجهها خصم لخصمه. المتممة: توجهها المحكمة. الاستظهار: توجهها المحكمة وجوباً في مواجهة ميت أو غائب.' },
+                { q: 'كيف يثبت حد شرب الخمر بقرينة الرائحة (الاستنكاه)؟', a: 'بشهادة عدليين أو بتقرير خبير فني مختص (المادة 14).' },
+                { q: 'ما هي طرق إثبات جريمة الزنا في القانون السوداني؟', a: 'الإقرار الصريح، شهادة 4 رجال عدول، الحمل لغير الزوجة، أو نكول الزوجة عن يمين اللعان.' }
+            ]
+        }];
+
+    // ================================================================
+// بنك الأسئلة الكامل – قانون الإثبات السوداني 1994 (200 سؤال)
+// مستخلص حرفياً من الملف المرفق sudanese_evidence_question_bank_v2.md
+// ================================================================
+
+const qbankData = [
+
+// ===== الوحدة الأولى: الأحكام التمهيدية والتطور التاريخي (الأسئلة 1 - 25) =====
+
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'ما هو المسمى الرسمي لقانون الإثبات الحالي في السودان، ومتى بدأ العمل به رسمياً؟',
+  a: 'يسمى القانون "قانون الإثبات السوداني لسنة 1994". وقد صدر بموجب مرسوم جمهوري مؤقت، ونُشر في الجريدة الرسمية في ملحق التشريع رقم 1603 بتاريخ 15 يناير 1994، وتقرر بدء العمل به بعد شهر من تاريخ نشره (أي في 15 فبراير 1994).'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'ما هو القانون الذي ألغاه قانون الإثبات لسنة 1994؟',
+  a: 'ألغى قانون الإثبات لسنة 1994 "قانون الإثبات السوداني السابق لسنة 1983" بأكمله وبكافة تعديلاته.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'حدد بدقة النطاق الموضوعي لتطبيق قانون الإثبات السوداني لعام 1994 بموجب المادة 3.',
+  a: 'يطبق قانون الإثبات لسنة 1994 على إثبات الوقائع في جبهتين رئيستين: المواد والخصومات المدنية والأحوال الشخصية (المعاملات)، والخصومات والمسائل الجنائية.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'كيف عالج القانون المسألة الانتقالية للأثر الزمني لسريان أحكامه على الدعاوى القائمة وقت صدوره؟',
+  a: 'تسري أحكام هذا القانون بأثر فوري على جميع الدعاوى والنزاعات القائمة وقت صدوره، ما لم تكن المحكمة قد شرعت بالفعل في سماع البينة في تلك الدعوى قبل بدء العمل بالقانون الجديد.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'ما هو الحكم القانوني الساري على الأدلة التي تم إعدادها أو تهيئتها قبل صدور قانون 1994؟',
+  a: 'تسري في شأن الأدلة التي أُعدت قبل صدور القانون الأحكام والقوانين المعمول بها في الوقت الذي أُعد فيه ذلك الدليل، أو الوقت الذي كان ينبغي إعداده فيه، صوناً للمراكز القانونية المستقرة وتفادياً لإهدار الأدلة المهيأة قانوناً.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'هل تسري أحكام قانون الإثبات السوداني لسنة 1994 تلقائياً على هيئات التحكيم والموفقين؟',
+  a: 'لا تسري أحكام هذا القانون تلقائياً على هيئات التحكيم أو الموفقين، وإنما تقتصر على الدعاوى والنزاعات المعروضة أمام المحاكم القضائية الرسمية، إلا إذا اتفق أطراف التحكيم صراحةً في اتفاق التحكيم على إخضاع إجراءاتهم لأحكام قانون الإثبات.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'ما هو تعريف "البينة" لغةً واصطلاحاً وقانوناً بموجب المادة الرابعة؟',
+  a: 'لغة: الوضوح، اليقين، والبيان، والمعجزة. اصطلاحاً فقهياً: كل ما يظهر الحق ويبينه من الحجج والبينات. قانوناً بموجب المادة 4: هي أي وسيلة مادية أو معنوية يتم بها إثبات أو نفي أي واقعة متعلقة بدعوى أو نزاع أمام المحاكم أو المحكمين أو الموفقين.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'ما هو الفرق الجوهري والاصطلاحي بين مفهومي "البينة" و"الإثبات"؟',
+  a: 'البينة هي "الوسيلة والأداة" المستخدمة لإظهار الحقيقة (كالشهادة والمستند والقرينة)، أما الإثبات فهو "العملية الإجرائية والمجهود الفقهي والعقلي" الذي يقدمه الخصوم أمام مجلس القضاء لإقامة الحجة والدليل على ادعاءاتهم لترتيب آثارها القانونية.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'عرف "المعاملات" بموجب المادة 4 من قانون الإثبات.',
+  a: 'المعاملات هي كافة العلاقات والتصرفات المالية والأحوال الشخصية وسائر المسائل القانونية غير الجنائية التي تنشأ بين الأفراد أو الجهات الاعتبارية.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'ما هي "الواقعة" بموجب المادة 4؟ وكيف تنقسم موضوعياً؟',
+  a: 'الواقعة هي أي فعل، أو شيء، أو حالة، أو علاقة مادية أو معنوية بين الأشياء مما يمكن تكييفه وإدراكه بحاسة من الحواس أو بجهد عقلي. وتنقسم إلى وقائع مادية (كفعل الضرب أو تسليم المبيع) ووقائع معنوية (كالنية أو سوء القصد).'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'ما هي "الواقعة محل النزاع" في قانون الإثبات؟',
+  a: 'هي كل ادعاء قانوني أو موضوعي يثيره أحد الخصوم كعنصر حاسم لثبوت حقه أو براءته، وينكره الخصم الآخر صراحةً أو ضمناً، وتلتزم المحكمة بالفصل فيه وتأسيس حكمها بموجبه.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'تتبع تاريخياً دور "المنشورات القضائية" في نشوء نظام الإثبات في السودان قبل صدور القوانين الموحدة.',
+  a: 'قبل صدور القوانين الموحدة، لم يكن هناك قانون إثبات مكتوب في السودان. وكان القضاة الإنجليز يطبقون القواعد الموضوعية والإجرائية المأخوذة من المنشورات القضائية الصادرة عن رئيس القضاء والسكرتير الإداري، إلى جانب تطبيق أحكام الفقه الإسلامي في المحاكم الشرعية.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'ما هو الأثر القانوني والتنظيمي لمنشور رئيس القضاء رقم 45 لسنة 1962 في مسألة الإثبات؟',
+  a: 'حدد المنشور رقم 45 لسنة 1962 مصادر الإثبات بدمج أربعة مصادر رئيسية: قانون الإجراءات المدنية، قانون الإجراءات الجنائية، المنشورات القضائية، وقانون الإثبات الهندي لعام 1872 المستنبط كلياً من قواعد القانون الإنجليزي العام والسوابق القضائية.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'كيف نظمت "المحاكم الشرعية السودانية" مسائل الإثبات قبل دمج القضاءين؟',
+  a: 'كانت المحاكم الشرعية تطبق القواعد الإثباتية المستمدة من أمهات كتب الفقه الإسلامي على مذهب الإمام أبي حنيفة النعمان، وبما يتماشى مع لائحة المحاكم الشرعية ومنشورات قاضي القضاة بالسودان.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'ما هو الأثر الدستوري والتشريعي لصدور دستور السودان لعام 1973 على قوانين الإثبات؟',
+  a: 'قرر دستور 1973 في المادة 9 أن "الشريعة الإسلامية والعرف هما المصدران الرئيسيان للتشريع"، مما دفع المحاكم السودانية للاعتماد تدريجياً على قواعد الفقه الإسلامي الكبرى مثل "البينة على من يدعي واليمين على من أنكر".'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'ما هي أهم الملامح التشريعية لقانون الإثبات السوداني السابق لعام 1983؟',
+  a: 'كان قانون 1983 أول قانون إثبات مكتوب وموحد يجمع بين المواد الجنائية والمدنية في تشريع واحد، وصِيغ بأسلوب مقتضب واعتمد كلياً على أحكام الفقه الإسلامي ومجلة الأحكام العدلية.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'ما هي الفلسفة التشريعية لقانون الإثبات الحالي لسنة 1994 وما الذي يميزه عن قانون 1983؟',
+  a: 'يتميز قانون 1994 بالدمج المتوازن والدقيق بين الأحكام الفقهية الإسلامية الراسخة (كيمين الاستظهار واللعان وبينة الحدود) وبين القواعد الفنية والعملية الموروثة من القانون العام الإنجليزي (مثل قواعد شمولية المستند وتدرج الاستجواب وموانع الشهادة للحصانة).'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'كيف يتم تفضيل القوانين وتطبيقها عند التعارض بين نصوص قانون الإثبات وقانون الإجراءات الجنائية؟',
+  a: 'يعتبر قانون الإثبات تشريعاً خاصاً مخصصاً لتنظيم قبول وتقدير الحجج والبينات، فإذا وقع تعارض شكلي أو إجرائي، يُقدم قانون الإثبات كأصل عام في مسائل قبول ووزن الأدلة، بينما يُتبع قانون الإجراءات في المسائل التنظيمية البحتة للتفتيش والقبض.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'استعرض المذاهب الفقهية الثلاثة في تفسير المعنى الشرعي والاصطلاحي لكمة "البينة".',
+  a: '1. المذهب الأول (الشافعية والظاهرية): يحصر البينة في "شهادة الشهود" فقط. 2. المذهب الثاني (الجمهور - المالكية والحنابلة وابن القيم): يرى أن البينة هي "كل ما يبين الحق ويظهره" وتشمل المستندات، القرائن، الإقرار، والشهود. 3. المذهب الثالث (ابن حزم): يدمج بين علم القاضي الشخصي والإقرار والشهود مع تقديم علم القاضي بصفته يقيناً.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'ما هو القول الفقهي الراجح الذي تبناه المشرع السوداني في قانون 1994 لتفسير البينة؟',
+  a: 'تبنى المشرع السوداني المذهب الثاني (مذهب الجمهور وابن القيم) الذي يفسر البينة بأنها تشتمل على كافة الطرق والوسائل العلمية والمادية الحديثة والقرائن التي تظهر الحق وتكشف غوامض القضايا.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'كيف يسهم تفسير البينة بالمعنى الواسع في دمج الوسائل العلمية الحديثة في نظام القضاء؟',
+  a: 'يتيح التفسير الواسع قبول البصمات، تقارير الحمض النووي (DNA)، أشرطة التسجيل الصوتي والمرئي، ورسائل الهواتف كبينات مادية وقرائن قضائية يعول عليها القاضي في حكمه دون الوقوف عند حاجز شهادة الشهود التقليدية.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'ما هي المرجعية القضائية والشرعية لسند قاعدة "البينة على من يدعي واليمين على من أنكر"؟',
+  a: 'تستند للحديث النبوي الشريف: "لو يُعطى الناس بدعواهم لادعى رجال دماء رجال وأموالهم، ولكن البينة على المدعي واليمين على من أنكر"، وتطبيقات كتاب عمر بن الخطاب رضي الله عنه إلى أبي موسى الأشعري في القضاء.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'ما هو نطاق تطبيق قانون الإثبات من حيث الأشخاص والجهات؟',
+  a: 'يسري القانون على الكافة بجمهورية السودان (مواطنين وأجانب وجهات حكومية وخاصة) عند وقوفهم كأطراف في نزاع مدني أو جنائي أمام المحاكم السودانية بكافة درجاتها وتخصصاتها.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'هل يجوز للمحكمة تطبيق قواعد العدالة والوجدان السليم عند غياب النص في قانون الإثبات؟',
+  a: 'نعم، بموجب المبادئ العامة وتكامل المنظومة القضائية، للمحكمة تطبيق مبادئ الشريعة الإسلامية والعدالة والوجدان السليم لاستنباط الحقيقة القضائية عند خلو القانون من نص يحظر قبول واقعة معينة.'
+},
+{
+  unit: 'الأحكام التمهيدية',
+  q: 'ما هو معيار التمييز بين القوانين الإجرائية وقوانين الإثبات من حيث الطبيعة القانونية؟',
+  a: 'القوانين الإجرائية (كقانون الإجراءات المدنية والجنائية) تنظم شكل الدعوى واختصاص المحاكم وطرق الطعن، بينما قانون الإثبات يدمج بين القواعد الموضوعية التي تحدد حقوق الخصوم وحجية أدلتهم والقواعد الإجرائية التي تنظم طريقة تقديم تلك الأدلة واستجواب الشهود.'
+},
+
+// ===== الوحدة الثانية: نظرية عبء الإثبات والقواعد الأصولية السبعة (الأسئلة 26 - 55) =====
+
+{
+  unit: 'القواعد الأصولية',
+  q: 'ما المقصود بـ "عبء الإثبات" (Onus of Proving) في الخصومات القضائية؟',
+  a: 'هو الالتزام القانوني والإجرائي الواقع على عاتق أحد الخصوم لإقامة الحجة والبرهان أمام القاضي على صحة واقعة معينة ينكرها الخصم الآخر، بحيث يترتب على فشله في إثباتها خسارة دعواه أو دفعه.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'ما هي القاعدة الأصولية الكبرى لتوزيع عبء الإثبات بموجب المادة 5-أ؟',
+  a: 'تقرر المادة أن "البينة على من يدعي خلاف الأصل، والمنكر يعفيه التمسك بالأصل من تقديم البينة".'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'اشرح القاعدة الأصولية الأولى: "الأصل في المعاملات براءة الذمة".',
+  a: 'تعني هذه القاعدة أن الإنسان يُولد وذمته المالية والقانونية خالية تماماً من أي التزام أو دين تجاه الغير، ويظل هذا الأصل مستصحباً، فإذا ادعى شخص انشغال ذمة آخر بدين أو التزام تعاقدي، وقع عليه وحده عبء إثبات انشغال الذمة، ويكفي المدعى عليه التمسك ببراءة ذمته الأصلية.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'كيف يتوزع عبء الإثبات وينتقل موضوعياً بين الدائن والمدين في دعوى المطالبة بدين قرض مالي؟',
+  a: 'يقع عبء الإثبات ابتداءً على الدائن (المدعي) لإثبات نشوء الدين ومصدره (عقد أو واقعة). فإذا نجح وأقام البينة، انتقل العبء فوراً إلى المدين (المدعى عليه) لإثبات براءة ذمته اللاحقة بالوفاء (السداد) أو الإبراء، لأن الوفاء هو الادعاء المخالف للوضع الثابت حديثاً.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'اشرح القاعدة الأصولية الثانية: "الأصل في المتهم البراءة حتى تثبت إدانته دون شك معقول".',
+  a: 'قرينة البراءة مظهر دستوري يحمي الحرية الشخصية، ومقتضاها معاملة كل متهم بوصفه شخصاً بريئاً في كافة مراحل التحري والمحاكمة، ويقع عبء دحض هذا الأصل وإثبات التهمة بكافة أركانها المادية والمعنوية على عاتق الاتهام والنيابة العامة بصفة مستمرة، دون تكليف المتهم بإثبات براءته.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'ما هو الأساس الشرعي والفقهي لقرينة براءة المتهم في الفقه الإسلامي؟',
+  a: 'تستند للحديث النبوي: "أدرؤوا الحدود بالشبهات"، وقاعدة "اليقين لا يزول بالشك"، فالإنسان يُولد مبرأً من الخطيئة والجرم، وتظل براءته يقيناً ثابتاً لا ينقض بالظن أو الشبهة، بل يستلزم دليلاً قاطعاً يبلغ درجة اليقين.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'كيف يطبق القضاء السوداني قاعدة "الشك يفسر لصالح المتهم" في القضايا الجنائية؟',
+  a: 'إذا قدم الاتهام أدلة وتضاربت أو تعادلت مع أدلة الدفاع، أو ثار أدنى شك معقول في وجدان القاضي حول ركن من أركان الجريمة أو صلة المتهم بها، تعين تفسير هذا الشك لمصلحة المتهم والحكم ببراءته استناداً لقرينة البراءة الأصلية.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'اشرح القاعدة الأصولية الثالثة: "الأصل في أحوال الأهلية وحرية التصرف السلامة".',
+  a: 'يفترض القانون في كل شخص البلوغ، ورشد الأهلية العقلية، وسلامة الإرادة والاختيار عند إبرام التصرفات. وعلى من يدعي عارضاً عادياً أو طارئاً (كالجنون، العته، السفه، أو الغفلة) أو ادعى عيباً من عيوب الإرادة (كالغش والإكراه) تقديم البينة لإثبات ذلك خلافاً للأصل المستصحب.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'كيف تتصرف المحكمة تلقائياً إذا تبين لها أثناء المحاكمة عجز المتهم العقلي؟',
+  a: 'يقرر القضاء السوداني (سابقة حكومة السودان ضد هاشم شريف الدين) أنه تيسيراً للعدالة والرفق بالمتهم، يتعين على المحكمة تبني دفع المتهم بالخلل العقلي من تلقاء نفسها وإرساله للأخصائي لرفع تقرير رسمي، حتى لو لم يدفع المتهم أو محاميه بذلك صراحةً.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'اشرح القاعدة الأصولية الرابعة: "الأصل صحة الأحكام الظاهرة".',
+  a: 'يفترض في الأحكام القضائية الصادرة عن جهات قضائية مختصة أنها صحيحة ومطابقة للحق والواقع وصادرة وفقاً للأصول القانونية والشرعية، وعلى من ينازع في حجية أو صحة الحكم القضائي النهائي تقديم البينة القاطعة على بطلانه عبر طرق الطعن الرسمية.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'اشرح القاعدة الأصولية الخامسة: "الأصل بقاء ما كان على ما كان لزمن معقول".',
+  a: 'استصحاب الحال؛ ومقتضاها أن من ثبت له حق عيني أو وضع قانوني في زمان ما، يفترض بقاء هذا الحق مستمراً وصحيحاً في الزمان اللاحق لزمن معقول، وعلى من يدعي زوال هذا الحق أو انتقاله أو سقوطه تقديم البينة لإثبات زواله.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'اشرح القاعدة الأصولية السادسة: "الأصل في التدابير الرسمية والتشريعية الجريان على حكم القانون".',
+  a: 'يفترض في القرارات التنفيذية، الإجراءات الإدارية، المحاضر الرسمية، والتشريعات الصادرة عن الموظفين العموميين والجهات السيادية والتشريعية في الدولة أنها اتُخذت صحيحة ومطابقة للقانون وصوناً للمصلحة العامة، ويقع عبء إثبات الانحراف بالسلطة أو مخالفة القانون على من يدعي بطلانها.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'اشرح القاعدة الأصولية السابعة: "السكوت في معرض الحاجة إلى البيان بيان".',
+  a: 'القاعدة العامة في الفقه هي "لا ينسب لساكت قول"، ولكن استثناءً من ذلك، إذا وجد شخص في موطن يتطلب ويتوجب عليه الكلام صراحةً لمنع ضرر يلحق بالغير أو لتوضيح موقف يُبنى عليه تصرف قانوني، وسكت دون عذر، اعتبر سكوته بياناً وقبولاً حكمياً دالاً على الرضا.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'ما المقصود بمبدأ "الإغلاق" (Estoppel) أو "السعي المردود" بموجب المادة 5-ح؟',
+  a: 'تعني منع الخصم قانوناً من إنكار أو نقض ما صدر عنه سابقاً من قول أو فعل أو سلوك دل صراحةً أو ضمناً على رضاه وقبوله، حماية للطرف الآخر الذي تصرف بناءً على هذا السلوك بحسن نية. ويعبر عنها بالقاعدة الفقهية: "من سعى في نقض ما تم على يديه فسعيه مردود عليه".'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'كيف يطبق العرف المدي أو اللفظي في الإثبات بموجب المادة 5-ط؟ ومتى يعتبر حجة؟',
+  a: 'يعتبر العرف حجة لغوية وعملية ملزمة للفصل في الدعاوي إذا كان مطرداً (مستقراً ومطبقاً بصفة دائمة) أو غالباً في معاملات الناس، ولم يكن هناك نص قانوني أو شرعي صريح يخالفه.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'هل يقع عبء الإثبات على عاتق خصم واحد بصفة مطلقة طوال مسار الدعوى؟',
+  a: 'لا، عبء الإثبات لا يقع على خصم واحد بصفة مطلقة، وإنما يتنقل (Shifting of Burden) بين أطراف الدعوى تبعاً لتقديم الدفوع ومجرى الخصومة؛ فيقع على المدعي أولاً لإثبات الواقعة المنشئة للالتزام، وينتقل للمدعى عليه لإثبات الواقعة المعارضة أو المسقطة له.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'كيف تتدخل المحكمة لتوزيع عبء الإثبات مستعينة بالقرائن القانونية البسيطة؟',
+  a: 'عندما يقرر القانون قرينة بسيطة لصالح أحد الخصوم (كقرينة الخطأ المفترض لحارس الحيوان)، تقوم المحكمة بنقل عبء الإثبات تلقائياً وإعفاء المضرور من إثبات الخطأ، وتكليف حارس الحيوان بإثبات أنه بذل العناية الكافية لنفي المسؤولية عن نفسه.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'ما هو الحكم القانوني الساري عند تعادل الأدلة وتساوي كفتي الإثبات والنفي في الدعاوى المدنية؟',
+  a: 'إذا تساوت الأدلة وتعادلت كفتا الإثبات والنفي في المواد المدنية، يُقضى برفض الدعوى وشطبها لصالح المدعى عليه، لأن المدعي قد فشل في تغليب بينته ودحض أصل براءة الذمة المستصحب للمدعى عليه.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'ما الفرق بين "عبء الإثبات الإقناعي" و"عبء الإثبات الإجرائي للتقدم بالبينة"؟',
+  a: 'عبء الإثبات الإقناعي هو الالتزام الثابت والمستمر طوال الدعوى لإقناع وجدان المحكمة بصحة الواقعة الحاسمة، بينما عبء الإجراء هو الالتزام المؤقت بتقديم أدلة معينة لدعم دفع طارئ أثناء سير الجلسات.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'كيف يسهم مبدأ السعي المردود (الإغلاق) في استقرار المعاملات التجارية والعقارية بالسودان؟',
+  a: 'يمنع المتعاقدين من إثارة دفوع كيدية متناقضة مع سلوكهم العملي السابق؛ فإذا تسلم المؤجر الأجرة دون اعتراض لعدة أشهر، يغلق أمامه باب إنكار صحة العقد أو المطالبة بالإخلاء لعدم كتابة العقد.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'ما هي القواعد الموضوعية التي لا يجوز للأطراف الاتفاق على تعديل عبء الإثبات بشأنها؟',
+  a: 'لا يجوز الاتفاق على تعديل القواعد المرتبطة بالنظام العام أو القانون الجنائي؛ مثل الاتفاق على إعفاء الاتهام من إثبات ركن القصد الجنائي، أو نقل عبء إثبات التهمة للمتهم، لأنها قواعد جوهرية لإقامة المحاكمة العادلة.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'اشرح قاعدة "الأصل في الأشياء الإباحة" وأثرها في الإثبات الجنائي والمدني.',
+  a: 'تعني أن كافة تصرفات الأفراد العادية وأفعالهم تعتبر مباحة ومطابقة للقانون، وعلى من يدعي تجريم فعل معين أو عدم مشروعيته تقديم النص التشريعي الصريح والبيان القاطع المانع لذلك الفعل.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'ما هو أثر "العلم القضائي العام" في إعفاء الخصوم من عبء تقديم البينة؟',
+  a: 'يعفي الخصوم تماماً من عبء تقديم البينة على الوقائع الشائعة والطبيعية والمعلومات التاريخية والبلدية التي يفترض علم الكافة بها (كوقوع الحرب، أو العطلات الرسمية)، وتأخذ بها المحكمة مباشرة كحقيقة قضائية ثابتة.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'ما هو موقف الشريعة الإسلامية من تحليف اليمين للخصم كأداة لتوزيع عبء الإثبات؟',
+  a: 'جعلت الشريعة اليمين وسيلة للمنكر لتعزيز تمسكه بالأصل عند عجز المدعي عن إقامة البينة، لقوله صلى الله عليه وسلم: "واليمين على من أنكر"، فالمنكر يعفيه التمسك بالأصل من تقديم دليل البينة، ويكفيه حلف اليمين للبقاء على الأصل.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'استند إلى سابقة (حكومة السودان ضد محمود أحمد عبد الغفار) لتوضيح مسؤولية الاتهام المستمرة في الإثبات.',
+  a: 'قررت المحكمة العليا في هذه السابقة التاريخية أن عبء إثبات سوء السلوك والقصد الجنائي يقع كلياً وبصفة مستمرة على عاتق الادعاء والاتهام لإرساء عقوبة الإدانة، ولا يزول هذا العبء عن كاهل الاتهام مطلقاً طوال مراحل المحاكمة.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'كيف يطبق الفقه الإسلامي قاعدة "السكوت في معرض الحاجة إلى البيان بيان" في تصفية التركات؟',
+  a: 'إذا عُرضت تركة الميت وقُسّمت بين الورثة الحاضرين وسكت أحدهم دون مانع من الكلام طوال عملية القسمة والتصرف في الأموال، اعتبر سكوته إقراراً وقبولاً ضمنياً بالقسمة يمنعه من الطعن فيها أو إنكارها لاحقاً.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'ما هو تكييف الحيازة الفعلية للعقار أو المنقول من حيث توزيع عبء الإثبات؟',
+  a: 'تعتبر الحيازة الفعلية قرينة قانونية بسيطة وظاهرة على ملكية الحائز للمنقول أو العقار، ويقع عبء إثبات عكس ذلك وتجريد الحائز من حيازته على عاتق من يدعي خلاف هذا الظاهر.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'اشرح كيف يعزز مبدأ "الأصل صحة الأحكام والتدابير" هيبة القضاء وثبات المراكز القانونية.',
+  a: 'يمنع الفوضى القانونية؛ فالتدابير الحكومية والقرارات الرسمية الصادرة عن لجان التسجيل العقاري أو المحاكم تظل منتجة لآثارها وصحيحة ولا يجوز تجاهلها أو تعطيلها بمجرد الادعاء، بل يستلزم الطعن فيها وسلوك طريق إلغائها قضائياً.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'ما هو أثر عجز المتهم عن تقديم تبريرات مقبولة للوقائع الظرفية في دعوى جنائية؟',
+  a: 'يقرر القضاء (سابقة حكومة السودان ضد علي محمد حماد) أنه إذا عجز المتهم عن تقديم تبريرات معقولة ومقبولة تتماشى مع براءته أمام سلسلة متماسكة من البينات الظرفية (كاختفاء المبالغ التي بعهدته)، يحق للمحكمة اعتبار هذا العجز قرينة مكملة تقوي عقيدة الإدانة وتدحض قرينة البراءة الأصلية.'
+},
+{
+  unit: 'القواعد الأصولية',
+  q: 'هل يعتبر "الاعتراف المسحوك" قرينة كافية لنقل عبء الإثبات كلياً في الجنايات؟',
+  a: 'لا يعتبر الاعتراف المراجع أو المسحوب بمفرده كافياً لنقل عبء الإثبات لإثبات التهمة في جرائم القصاص والحدود، بل يورث شبهة تدرأ الحد والقصاص الوجوبي، ويتعين على الاتهام تقديم بينة مستقلة أخرى لتعضيده.'
+},
+
+// ===== الوحدة الثالثة: شروط قبول البينة والبينات المردودة وقواعد القبول المشروط (الأسئلة 56 - 85) =====
+
+{
+  unit: 'شروط القبول',
+  q: 'ما هي الشروط الثلاثة التراكمية لقبول الوقائع محل الإثبات بموجب المادة 9؟',
+  a: 'تشترط المادة لقبول أي بينة أن تكون الوقائع المراد إثباتها: 1. متعلقة بالدعوى. 2. منتجة فيها. 3. جائزة القبول قانوناً.'
+},
+{
+  unit: 'شروط القبول',
+  q: 'متى تعتبر الواقعة "متعلقة بالدعوى" بموجب المادة 9-2؟',
+  a: 'تعتبر متعلقة بالدعوى إذا كانت من الوقائع محل النزاع، أو كانت مرتبطة بها برابطة مادية أو ظرفية مباشرة بحيث تشكل معها جزءاً من عملية أو "عصبة واحدة" (Res Gestae).'
+},
+{
+  unit: 'شروط القبول',
+  q: 'ما هي نظرية "البينات المرتبطة بالفعل" (Res Gestae) وما هو شرط تطبيقها؟',
+  a: 'هي قبول العبارات، الإشارات، والوقائع المعاصرة للفعل الرئيسي التي تصدر من أطراف النزاع أو الشهود وتعد جزءاً مكملاً للحدث. وشرط تطبيقها هو الاقتران والاتصال الزمني والمكاني المباشر بالفعل دون وجود فاصل يتيح التفكير والتلفيق.'
+},
+{
+  unit: 'شروط القبول',
+  q: 'استعن بالسابقة الإنجليزية الشهيرة (R v. Bedingfield) لتوضيح حد استبعاد البينات غير المقترنة بالعمل.',
+  a: 'في هذه القضية، خرجت المجني عليها من الغرفة وحنجرتها مقطوعة وصاحت: "انظر يا بينغفيلد ماذا فعل بي!" ثم ماتت. رفض رئيس القضاء قبول عبارتها كبينة مقترنة بالفعل لوجود فاصل زمني بسيط بين وقوع الاعتداء العيني وكلامها أتاح لها التفكير.'
+},
+{
+  unit: 'شروط القبول',
+  q: 'قارن بين موقف القضاء الإنجليزي في قضية (Bedingfield) وموقف القضاء السوداني في قضية (إسماعيل عباس حمد ضد رحمة الله).',
+  a: 'يتماشى موقف القضاء السوداني في قضية (إسماعيل عباس) مع التشدد الإنجليزي؛ حيث رفض رئيس القضاء قبول العبارات الصادرة من المجني عليها قبل موتها كبينة مقترنة بالفعل لعدم ثبوت الاتصال الزمني القاطع، ولعدم تيقن تطلعها الفعلي للموت وقت الإدلاء بالعبارة.'
+},
+{
+  unit: 'شروط القبول',
+  q: 'ما هي "البينة الظرفية" (Circumstantial Evidence)؟',
+  a: 'هي مجموعة وقائع مادية غير مباشرة تحيط بالواقعة محل النزاع وترتبط بها، لتشكل مجتمعة سلسلة منطقية متماسكة تؤدي عقلاً واستنتاجاً إلى ثبوت الواقعة المراد إثباتها واستبعاد فرضية البراءة.'
+},
+{
+  unit: 'شروط القبول',
+  q: 'ما هي الشروط الصارمة التي وضعها القضاء السوداني للاعتداد بالبينة الظرفية كدليل وحيد كافٍ للإدانة؟',
+  a: 'يشترط أن تكون الوقائع الظرفية قاطعة في طبيعتها ومنحاها ومتسقة تماماً مع بعضها البعض، بحيث تؤدي إلى استنتاج معقول وحيد هو إدانة المتهم وتستبعد تماماً أي فرضية معقولة أخرى تتفق مع براءته.'
+},
+{
+  unit: 'شروط القبول',
+  q: 'كيف تُقبل "بينة الوقائع المتماثلة" (Similar Facts Evidence) كاستثناء بموجب المادة 9-2-ج-رابعاً؟',
+  a: 'تقبل سوابق المتهم وأفعاله المشابهة في مناسبات سابقة كبينة استثنائية لإثبات اتجاهه الذهني الخاص، قصد الجنائي، أو نفي ادعاءات الصدفة أو الغلط، أو إثبات وجود نهج وجرم منظم لديه.'
+},
+{
+  unit: 'شروط القبول',
+  q: 'استعرض القضية الإنجليزية الشهيرة (R v. Smith - زوجات حوض الاستحمام) لتوضيح بينة الوقائع المتماثلة.',
+  a: 'اتُهم سميث بقتل زوجته غرقاً في حوض الاستحمام، ودفع بأن موتها كان صدفة نتيجة نوبة صرع. قدم الاتهام بينة تثبت وفاة زوجتيه السابقتين بذات الطريقة غرقاً في الحوض ونفى الصدفة تماماً. قبلت المحكمة البينة لإثبات القصد الجنائي والمنهج المنظم للمتهم ونُفذ فيه الإعدام.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'حدد الحالات الخمس التي تندرج تحت "البينات المردودة والمستبعدة قانوناً" بموجب المادة 11.',
+  a: 'ترفض البينة وترد في الحالات التالية: 1. مخالفة أو انتهاك مبادئ الشريعة الإسلامية أو القانون أو العدالة أو النظام العام. 2. البناء على علم القاضي الشخصي الذي حصل عليه خارج مجلس القضاء. 3. نفي السلوك الصادر بالرضا والقبول المكتوب أو الثابت بإقرار صحيح أو حكم قضائي. 4. بينة الرأي الصادرة من غير أهل الخبرة والاختصاص. 5. بينة الأخلاق السيئة للمتهم كأصل عام في الخصومات.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'استند إلى قضية (حكومة السودان ضد سعيد حمد مصطفى) لتوضيح بطلان البينة التي تنتهك مبادئ الإسلام.',
+  a: 'في هذه السابقة الهامة، أهدرت المحكمة العليا البينة المستخلصة من تجسس أفراد الشرطة واستراق السمع تحت الأبواب وثقوب المنازل، وقررت بطلانها كلياً لمخالفتها الصريحة لمبادئ الشريعة الإسلامية التي تحظر التجسس وتتبع العورات وتكفل حرمة المساكن والدستور.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'ما هو مضمون قاعدة "حظر قضاء القاضي بعلمه الشخصي" وأثرها في صون حياد القضاء؟',
+  a: 'تمنع القاعدة القاضي منعاً باتاً من تأسيس حكمه بناءً على معلومات أو وقائع خاصة حصل عليها بنفسه خارج مجلس القضاء ودون طرحها في الجلسة لمناقشة الخصوم، صوناً لحياد المنصة وحرمة المواجهة القضائية العادلة.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'ما هي شروط قبول البينة المتحصل عليها بإجراء غير صحيح بموجب المادة 10 (قاعدة القبول المشروط)؟',
+  a: 'لا ترد البينة لمجرد بطلان أو خطأ الإجراء الشكلي الذي استخلصت به، شريطة أن تطمئن المحكمة إلى أن البينة في ذاتها مستمرة ومستقلة وموضوعية (لا تضر بدفاع المتهم في موضوع الدعوى) وموثوق بها.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'ما هو الشرط الإلزامي الذي فرضته المادة 10-2 لتأسيس الإدانة الجنائية بالبينة المتحصل عليها بإجراء معيب؟',
+  a: 'تشترط الفقرة الثانية عدم جواز تأسيس الإدانة الجنائية بالبينة المتحصل عليها بإجراء غير صحيح بمفردها، ما لم تعضدها وتؤيدها بينة مستقلة أخرى صحيحة ترفع عنها شبهة العيب الإجرائي.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'استند إلى سابقة (حكومة السودان ضد عمر محمد إدريس) لتوضيح شروط بطلان التفتيش وإهدار أدلته.',
+  a: 'قضت المحكمة بأن إجراء تفتيش منزل المتهم ليلاً دون إذن قضائي صحيح مكتوب، ودون حضور شاهدين من جيرانه كما يقتضي قانون الإجراءات، يمثل انتهاكاً جسيماً يضر بدفاع المتهم في موضوع الدعوى، مما يوجب إهدار البينة كلياً لفقدانها شرط الاستقلال والموضوعية المعني بالمادة 10.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'ما المقصود بـ "البينة المنتجة في الدعوى" بموجب المادة 11-1؟',
+  a: 'البينة المنتجة هي البينة ذات القيمة الموضوعية التي تؤثر تأثيراً مباشراً وفعالاً في إثبات أو نفي الواقعة محل النزاع وتساعد المحكمة في تكوين عقيدتها لتأسيس الحكم.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'متى يحق للمحكمة استبعاد البينة في أي مرحلة من مراحل الدعوى بموجب المادة 11-2؟',
+  a: 'يحق للمحكمة في أي مرحلة من مراحل الدعوى استبعاد وتصفية البينات المعروضة إذا رأت بعد سماعها أو تصفح أوراق الدعوى أنها وقائع "غير منتجة" أو غير ذات أصل في النزاع لإنجاز الوقت وعدم تأبيد المنازعات.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'ما هو الحكم القانوني الساري على "أثر الخطأ في قبول أو رفض البينة" بموجب المادة 12؟',
+  a: 'لا يشكل خطأ المحكمة في قبول بينة غير جائزة أو رفض بينة صحيحة سبباً لإعادة المحاكمة أو نقض الحكم، إذا تبين للمحكمة الأعلى (الاستئناف أو العليا) أن بقية البينات الصحيحة المتبقية كافية لتأسيس الحكم وحمله، أو أن البينة المرفوضة ما كانت لتغير من الحقيقة والنتيجة القضائية لو قُبلت.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'استند إلى قضية (حكومة السودان ضد ذكري سدرهم بولس) لتبيان أثر العيب الشكلي الذي لا يضر بالعدالة.',
+  a: 'قررت المحكمة العليا تماشياً مع المادة 12 وقانون الإجراءات أن العيوب الإجرائية البسيطة التي تقع أثناء جمع البينات لا توجب نقض الحكم الجنائي الصحيح ما لم يثبت أن المتهم قد تضرر فعلياً في موضوع دفاعه بصلة مباشرة مع هذا العيب.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'ما هو معيار التفاضل والوزن التقديري للبينات بموجب المادة 13 من قانون الإثبات؟',
+  a: 'تملك المحكمة سلطة تقديرية واسعة ومستقلة لوزن البينات وتقدير قيمتها الإثباتية بما تراه محققاً للعدل، وتأخذ منها بالبينات الأقوى عقلاً ومنطقاً والتي ترجح جانب الحقيقة والصدق.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'ما هو الفرق الجوهري في "درجة الإثبات" المطمئنة بين الخصومات المدنية والجنائية؟',
+  a: 'في الخصومات الجنائية يجب أن تبلغ درجة الإثبات "اليقين القضائي بما لا يدع مجالاً للشك المعقول" لقرينة البراءة، أما في الخصومات المدنية فيُكتفى بدرجة "ترجيح البينات وتغليب كفة الاحتمال الأقوى" لحسم النزاع.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'هل يجوز للمحكمة استبعاد "بينة الرأي" الصادرة من غير الخبراء والقصاصين؟',
+  a: 'نعم، بموجب المادة 11-د، تعتبر بينة الرأي الصادرة من الأشخاص العاديين بينة مردودة وغير مقبولة، لأن الشهادة العادية تقتصر على إخبار المحكمة بما أدركه الشاهد بحواسه الخمس دون إبداء رأيه أو انطباعاته الشخصية.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'ما هو معيار قبول "بينة الأخلاق الحسنة للمتهم" في القضاء الجنائي؟',
+  a: 'يُسمح للمتهم بتقديم بينة تثبت حسن أخلاقه العامة كضمانة تكميلية تقوي قرينة براءته أو تخفف العقوبة عنه، شريطة أن تكون الأخلاق المدعاة متصلة بنوع الجريمة المنسوبة إليه (كإثبات الأمانة في جريمة السرقة).'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'متى يجوز للادعاء تقديم بينة "الأخلاق السيئة للمتهم" كاستثناء؟',
+  a: 'لا يجوز للادعاء تقديم بينة الأخلاق السيئة للمتهم كأصل عام، إلا كاستثناء وحيد لدحض البينة التي قدمها المتهم بنفسه لإثبات حسن أخلاقه، أو عندما تكون سوابقه الجنائية مقبولة كبينة وقائع متماثلة لإثبات النهج.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'كيف ينظم قانون الإثبات السوداني "العلم الشخصي للقاضي" الذي يحصل عليه داخل الجلسة؟',
+  a: 'العلم الذي يحصل عليه القاضي داخل جلسة المحاكمة من خلال مجريات استجواب الشهود أو مناقشة المستندات وملاحظة سلوك الخصوم هو علم قضائي صحيح ومشروع يحق له تأسيس حكمه عليه.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'ما هو التكييف القانوني للبينات العينية المادية المكتشفة بسبب إجراء تفتيش معيب؟',
+  a: 'تعتبر البينات العينية المادية (كالأسلحة والمخدرات) أدلة مقبولة موضوعياً بموجب المادة 10 طالما ثبت استقلالها ووجودها المادي العيني، ولكن لا يجوز الإدانة بها منفردة ما لم تعضدها قرائن وشواهد مستقلة أخرى ترفع شبهة البطلان.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'كيف يطبق الفقه الإسلامي مبدأ "درء الحدود بالشبهات" لمنع التفتيش الكيدي؟',
+  a: 'يقرر الفقه الإسلامي بطلان وإهدار المضبوطات الناتجة عن تفتيش كيدي باطل بُني على التجسس وتتبع العورات دون إذن شرعي، حمايةً للنظام الاجتماعي الإسلامي الراسخ الذي يقدم صون كرامة وعورات المسلمين على كشف الجرم.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'ما هي الشروط الثلاثة لقبول مستندات وأوراق المعاملات التجارية والالكتونية الحديثة؟',
+  a: 'تشترط المادة 9 أن تكون تلك المحررات: متصلة بموضوع النزاع التجاري، ذات أثر منتج في إثبات الواقعة المالية، وألا تكون محظورة بموجب نصوص قانون المعاملات أو الإثبات.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'هل يجوز للمحكمة قبول البينة المستخلصة من تجسس البوليس إذا كان الجرم خطيراً؟',
+  a: 'لا يجوز للمحكمة قبول الدليل المستخلص من تجسس أفراد الشرطة والتنصت لمخالفته الصريحة للشريعة الإسلامية بموجب المادة 11-أ وسابقة (سعيد حمد مصطفى)، مهما كانت جسامة الجريمة، صوناً للحقوق الدستورية ولحماية المجتمع من تغول السلطة.'
+},
+{
+  unit: 'البينة المردودة',
+  q: 'ما هو معيار الاطمئنان الموضوعي للمحكمة في موازنة الأدلة المتعارضة؟',
+  a: 'هو استخلاص الحقيقة بناءً على معايير العقل والمنطق والتجربة القضائية المستقرة، بحيث تبرر المحكمة أسباب ترجيحها لبينة معينة وطرحها للبينة المعارضة بأسلوب سائغ له أصل ثابت بأوراق المحضر.'
+},
+
+// ===== الوحدة الرابعة: الإقرار (الأسئلة 86 - 110) =====
+
+{
+  unit: 'الإقرار',
+  q: 'ما هو تعريف "الإقرار" بموجب المادة 30 من قانون الإثبات؟',
+  a: 'الإقرار هو اعتراف شخص بواقعة معينة تثبت وتؤسس مسؤوليته المالية أو الجنائية المدعى بها عليه لصالح الغير.'
+},
+{
+  unit: 'الإقرار',
+  q: 'ما الفرق الجوهري والإجرائي بين الإقرار القضائي والإقرار غير القضائي؟',
+  a: 'الإقرار القضائي: هو الذي يصدر من الخصم أمام المحكمة في مجلس القضاء أثناء السير في ذات الدعوى، وحجيته قاطعة على المقر. الإقرار غير القضائي: هو الذي يصدر خارج قاعة المحكمة أو أثناء التحري، وتطبق عليه القواعد العامة للبينة ويقبل إثبات عكسه بكافة الطرق.'
+},
+{
+  unit: 'الإقرار',
+  q: 'حدد الصور الأربع لصدور الإقرار بموجب المادة 31.',
+  a: 'يصدر الإقرار صراحةً أو دلالةً، ويكون باللفظ (المشافهة)، أو بالكتابة، أو بالإشارة المعهودة والمفهومة من الأخرس الذي لا يستطيع الكتابة.'
+},
+{
+  unit: 'الإقرار',
+  q: 'ما هي الشروط الأربعة الواجب توفرها في "المقر" لصحة إقراره بموجب المادة 32-1؟',
+  a: 'تشترط المادة في المقر أن يكون: عاقلاً، مختاراً (طائعاً)، غير محجور عليه (لسفه أو غفلة في أمواله)، وبالغاً لسن المسؤولية التي يحددها القانون.'
+},
+{
+  unit: 'الإقرار',
+  q: 'هل يصح إقرار الصغير المميز قانوناً؟ ومتى يصح بموجب المادة 32-2؟',
+  a: 'نعم، يصح إقرار الصغير المميز (الذي بلغ السابعة من عمره ولم يبلغ سن الرشد) كاستثناء، ولكن يقتصر صحة إقراره حصراً في الأمور والتصرفات المالية والعملية المأذون له بالتجارة فيها من وليه أو المحكمة.'
+},
+{
+  unit: 'الإقرار',
+  q: 'ما حكم إقرار الوكيل نيابة عن موكله بموجب المادة 32-3؟',
+  a: 'يصح إقرار الوكيل ويعد ملزماً لموكله، شريطة أن يكون الإقرار صادراً في حدود سلطته القانونية والوكالة الممنوحة له صراحةً في التوكيل.'
+},
+{
+  unit: 'الإقرار',
+  q: 'ما هي الحالتان اللتان لا يكون فيهما الإقرار صحيحاً بموجب المادة 33؟',
+  a: 'لا يصح الإقرار إذا: 1. كذبه ظاهر الحال والواقع الملموس. 2. كان في المسائل الجنائية نتيجة إغراء أو إكراه مادي أو معنوي مفسد للإرادة.'
+},
+{
+  unit: 'الإقرار',
+  q: 'هل يؤثر الإغراء في صحة الإقرار بالمواد والمعاملات المدنية بموجب المادة 33-2؟',
+  a: 'لا، بموجب المادة 33-2، وبمفهوم المخالفة، لا يؤثر الإغراء أو بذل الوعد بالفائدة في صحة الإقرار بالمسائل المدنية والمعاملات المالية، ويظل الإقرار صحيحاً وملزماً لصاحبه.'
+},
+{
+  unit: 'الإقرار',
+  q: 'ما هي حجية الإقرار من حيث النطاق الشخصي بموجب المادة 34-1؟',
+  a: 'الإقرار حجة قاصرة على المقر ونطاقه الشخصي، ولا يتعدى للغير، إلا أنه يسري في المعاملات المالية بحق من يخلف المقر (كالورثة والتركة) في حدود ما أقر به المورث.'
+},
+{
+  unit: 'الإقرار',
+  q: 'متى يشكل الإقرار المدني بينة قاطعة بموجب المادة 34-2؟ وما هي الاستثناءات؟',
+  a: 'يشكل الإقرار المدني بينة قاطعة على صحة الواقعة المقر بها، إلا في استثناءين: إذا قصد المقر بالإقرار الإضرار بخلفه (كالورثة بالتواطؤ)، أو إذا اختلف طرفا الخصومة في سبب نشوء الحق المقر به.'
+},
+{
+  unit: 'الإقرار',
+  q: 'هل يشكل الإقرار غير القضائي بالمسائل الجنائية بينة قاطعة للإدانة بموجب المادة 34-3؟',
+  a: 'لا، بموجب المادة 34-3، لا يشكل الإقرار بالمسائل الجنائية بينة قاطعة للإدانة الوجوبية إذا كان غير قضائي (صدر في التحري)، أو إذا اعترته وشابته شبهة الإكراه أو الغموض.'
+},
+{
+  unit: 'الإقرار',
+  q: 'ما هي القاعدة العامة في الرجوع عن الإقرار في المعاملات المالية بموجب المادة 35-1؟',
+  a: 'القاعدة العامة هي عدم جواز الرجوع عن الإقرار في المعاملات والمسائل المدنية بعد صدوره صحيحاً، إلا كاستثناء وحيد إذا أثبت المقر وقوع خطأ مادي حقيقي في الوقائع دحض إقراره السابق.'
+},
+{
+  unit: 'الإقرار',
+  q: 'ما هو الأثر الشرعي للرجوع عن الإقرار في جرائم الحدود والقصاص بموجب المادة 35-2؟',
+  a: 'يعتبر الرجوع عن الاعتراف في جرائم الحدود والقصاص شبهة قوية تدرأ العقوبة الحدية الوجوبية وتسقطها كلياً عن المتهم (عملاً بقاعدة درء الحدود بالشبهات)، وتتحول العقوبة للتعزير.'
+},
+{
+  unit: 'الإقرار',
+  q: 'ما هي قاعدة "عدم تجزئة الإقرار" وما هو أساسها القانوني؟',
+  a: 'تعني عدم جواز أخذ الجزء الضار بالمقر من إقراره وطرح الجزء المفيد له، بل يجب أخذ الإقرار ككتلة واحدة مترابطة؛ لأن الإقرار تصرف متكامل لا يقبل التفتيت.'
+},
+{
+  unit: 'الإقرار',
+  q: 'حدد الحالات الثلاث الاستثنائية التي يجوز فيها للمحكمة "تجزئة الإقرار" على المقر.',
+  a: 'يجوز تجزئة الإقرار إذا: 1. انصب الإقرار على وقائع متميزة ومتعددة لا يستلزم ثبوت أحدها ثبوت الآخر. 2. كانت الواقعة المضافة أو الاستثنائية مستحيلة عقلاً أو طبيعةً. 3. دحض الواقعة المضافة كذب ظاهر أو بينة قاطعة قدمها المقر له.'
+},
+{
+  unit: 'الإقرار',
+  q: 'ما حكم "الاعتراف المسحوب" المدون في محضر التحريات أمام الشرطة؟',
+  a: 'يعتبر بينة غير قاطعة يمتنع تأسيس الإدانة بالحدود عليها بمفردها، ويتعين على المحكمة فحصه بدقة، فإذا ثبت صدوره طواعيةً دون إكراه، جاز استخدامه كبينة ظرفية معززة في جرائم التعازير.'
+},
+{
+  unit: 'الإقرار',
+  q: 'كيف يتحقق القاضي من طواعية واختيار المقر في المسائل الجنائية؟',
+  a: 'يقوم القاضي باستجواب المتهم وملاحظة حالته الجسدية والنفسية، والتحقق من ملابسات وظروف تدوين الاعتراف في قسم التحري، وخلو جسده من آثار التعذيب أو التهديد.'
+},
+{
+  unit: 'الإقرار',
+  q: 'ما حكم إقرار السكران بالجنايات والسرقة والحدود؟',
+  a: 'لا يصح إقرار السكران في جرائم الحدود والقصاص لزوال العقل والتمييز لديه وقت الإقرار (مما يورث شبهة تمنع ثبوت الحد)، ولكن يصح إقراره في المعاملات المالية إذا كان سكره اختيارياً بفعله.'
+},
+{
+  unit: 'الإقرار',
+  q: 'ما هو أثر الإكراه المعنوي (كالتهديد بالحبس أو إيذاء الأقارب) على صحة الاعتراف الجنائي؟',
+  a: 'يبطل الاعتراف كلياً ويهدر قيمته الإثباتية في الجنايات، لأن الإكراه المعنوي يفسد الرضا ويسلب عنصر الاختيار الحر والطوعي للمتهم تماماً كالإكراه المادي.'
+},
+{
+  unit: 'الإقرار',
+  q: 'هل يصح إقرار الشريك في الجريمة ضد متهم آخر في نفس المحاكمة؟',
+  a: 'لا يصح إقرار الشريك كبينة قاطعة ضد متهم آخر، فالإقرار حجة قاصرة على المقر فقط، وتعتبر أقواله في حق غيره مجرد شهادة شريك تستوجب الحذر الشديد والتعضيد الإلزامي لبينة مستقلة.'
+},
+{
+  unit: 'الإقرار',
+  q: 'ما المقصود بـ "الاعتراف الموصوف" في نظرية الإقرار؟',
+  a: 'هو الإقرار الذي يسلم فيه المقر بالواقعة الأصلية المدعى بها ولكنه يضيف إليها وصفاً قانونياً يعدل من آثارها (كأن يقر بالقتل ويدعي الدفاع الشرعي أو الاستفزاز الشديد المعفي).'
+},
+{
+  unit: 'الإقرار',
+  q: 'ما المقصود بـ "الاعتراف المركب"؟ وكيف يختلف عن الموصوف؟',
+  a: 'الاعتراف المركب هو الإقرار الذي يقر فيه المقر بالواقعة الأصلية ويضيف إليها واقعة مادية لاحقة ومستقلة تبرئ ذمته (كأن يقر باستلام القرض ويدعي الوفاء والسداد لاحقاً).'
+},
+{
+  unit: 'الإقرار',
+  q: 'كيف تتصرف المحكمة إجرائياً عند إنكار المتهم لاعترافه المدون أمام النيابة؟',
+  a: 'تقرر المحكمة إجراء تحقيق مصغر حول طواعية الاعتراف، وتكلف النيابة والادعاء بتقديم البينة التي تثبت طواعية واختيار المتهم وقت التدوين، لأن الاتهام يتحمل عبء دحض ادعاء الإكراه.'
+},
+{
+  unit: 'الإقرار',
+  q: 'ما هو مصير إقرار المريض بمرض الموت بالمعاملات المالية والديون؟',
+  a: 'يصح إقرار المريض بمرض الموت للأجنبي (غير الوارث) في حدود ثلث التركة، أما إقراره لوارثه المفضل فلا ينفذ في مواجهة الورثة الآخرين بعد وفاته إلا بإجازتهم وموافقتهم الصريحة.'
+},
+{
+  unit: 'الإقرار',
+  q: 'هل يشكل سكوت المتهم وصمته أثناء الاستجواب إقراراً ضمنياً بالجريمة؟',
+  a: 'لا يشكل صمت المتهم إقراراً أو اعترافاً ضمناً بارتكاب الجرم، فالمتهم يتمتع بحق دستوري أصيل في الصمت يوجبه مبدأ قرينة البراءة، ولا يجوز للمحكمة تأويل صمته ضده أو اعتباره دليلاً مسانداً للاتهام.'
+},
+
+// ===== الوحدة الخامسة: شهادة الشهود (الأسئلة 111 - 135) =====
+
+{
+  unit: 'الشهادة',
+  q: 'ما هو المفهوم القانوني لـ "الشهادة الشفوية" بموجب المادة 41؟',
+  a: 'الشهادة هي البينة الشفوية لشخص عاقل ومميز يخبر فيها المحكمة عن إدراكه الحسي المباشر (بواسطة البصر، السمع، أو اللمس) لواقعة معينة تثبت حقاً لغيره أو مسؤوليته.'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما هو معيار الأهلية القانونية للشاهد بموجب المادة 42؟',
+  a: 'يكون أهلاً لأداء الشهادة كل شخص عاقل ومميز للوقائع التي يشهد بها، ولا يشترط القانون سناً محددة للرشد طالما توفر التمييز والإدراك.'
+},
+{
+  unit: 'الشهادة',
+  q: 'هل تقبل شهادة الشخص المصاب بالجنون المتقطع؟ ومتى؟',
+  a: 'نعم، تقبل شهادته كاستثناء، ولكن يقتصر ذلك حصراً في فترات وعيه وصحوه العقلي الكامل إذا ثبت للمحكمة إدراكه للوقائع وقدرته على فهم الأسئلة والإجابة عنها.'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما هي موانع الشهادة القائمة على "التهمة" في الفقه الإسلامي وقانون الإثبات؟',
+  a: 'ترد شهادة الشاهد ويطعن فيها لوجود تهمة المحاباة أو جلب المنفعة الشخصية؛ مثل شهادة الشريك لشريكه، أو شهادة الوكيل لأصيله في ذات التصرف، أو شهادة من يجر لنفسه نفعاً مادياً مباشراً.'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما حكم شهادة الفروع للأصول (الأبناء للآباء) وعكسها في قانون الإثبات؟',
+  a: 'لا تقبل شهادة الفروع للأصول ولا شهادة الأصول للفروع في القضايا المالية والحدود لوجود قرابة وثيقة تثير شبهة المحاباة الطبيعية، وتعتبر مانعاً من موانع قبول الشهادة.'
+},
+{
+  unit: 'الشهادة',
+  q: 'هل تقبل شهادة الزوج لزوجته وعكسها؟ وما هي العلة؟',
+  a: 'لا تقبل شهادة أحد الزوجين للآخر لوجود مانع التهمة والمصلحة المشتركة واندماج المصالح المالية بينهما، وتعتبر بينة مردودة قانوناً.'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما حكم شهادة العدو على عدوه (العداوة الدنيوية المستحكمة)؟',
+  a: 'ترد شهادة الشاهد وتعتبر باطلة إذا ثبت قيام عداوة دنيوية مستحكمة وظاهرة بينه وبين المشهود ضده تثير شبهة الانتقام الكيدي وتدفع الشاهد للكذب.'
+},
+{
+  unit: 'الشهادة',
+  q: 'كيف يتم إثبات "عدم العدالة" أو "الفسق" للطعن في الشاهد ورد شهادته؟',
+  a: 'يتم إثبات عدم العدالة بتقديم سوابق الشاهد في الكذب الجنائي، أو صدور حكم نهائي ضده في جريمة شهادة الزور (المادة 42-2)، أو ثبوت ارتكابه الكبائر المخلة بالشرف والأمانة دون توبة واضحة.'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما هي الحصانة المقررة للمعلومات السرية الرسمية بموجب المادة 45؟',
+  a: 'تحظر المادة قبول شهادة الموظف العام المكلف بخدمة عامة (حتى بعد تقاعده) حول معلومات سرية رسمية وصلت لعلمه بحكم منصبه ولم تنشر رسمياً، إلا بإذن كتابي مسبق من السلطة المختصة.'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما هي "الحصانة الزوجية" في إفشاء الأسرار بموجب المادة 46؟',
+  a: 'لا تقبل شهادة أحد الزوجين ضد الآخر فيما أسر به إليه شريكه أثناء قيام الرابطة الزوجية، إلا بإذن صريح من صاحب السر، أو إذا كانت الدعوى القضائية مقامة من أحدهما ضد الآخر بسبب اعتداء.'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما هي "الحصانة المهنية" للأمناء والوكلاء والأطباء بموجب المادة 47؟',
+  a: 'تحظر المادة قبول شهادة المحامين، الأطباء، المستشارين، وأمناء السر حول معلومات وصلت لعلمهم بحكم ممارستهم لمهنتهم الحرة، إلا بإذن الموكل، أو إذا كانت المعلومات تتعلق بعزم العميل على ارتكاب جريمة مستقبلية.'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما هي "الشهادة بالنقل" (Hearsay Evidence)؟ ومتى تقبل بموجب المادة 48؟',
+  a: 'الشهادة بالنقل هي نقل الشاهد لشهادة صدرت من شخص آخر غائب. وتقبل استثناءً إذا توفي الشاهد الأصلي، أو استحيل العثور عليه، أو أصيب بعجز دائم يمنعه من الحضور، أو تعذر إحضاره دون مماطلة وتكلفة باهظة.'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما هي الشروط الأربعة لقبول "أقوال المحتضر" (Dying Declaration) في قضايا القتل؟',
+  a: 'تشترط المحكمة لقبول أقوال المحتضر: 1. وفاة قائمها فعلياً قبل المحاكمة. 2. أن تنصب الأقوال مباشرة على سبب الوفاة وملابسات الاعتداء. 3. ثبوت وعيه التام وفقدانه للأمل في الحياة وقت الإدلاء بها. 4. اطمئنان وجدان القاضي لطواعيتها التامة.'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما هي "الشهادة بالتسامع" (Notoriety)؟ وفي أي مسائل تجوز بموجب المادة 49؟',
+  a: 'هي الشهادة القائمة على استفاضة الخبر وشهرته وشيوعه بين الناس دون إدراك حسي مباشر للشاهد. وتجوز في خمس مسائل شرعية حصراً: النكاح، النسب، الموت، الكالدة، والديانة.'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما هو النصاب الشرعي للشهادة بالتسامع بموجب المادة 49-2؟',
+  a: 'تشترط المادة لقبول الشهادة بالتسامع ثبوت تفاصيل الواقعة بشهادة "رجلين عدلين" اثنين على الأقل يشهدان باستفاضة الخبر وشهرته بين الناس.'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما هي الأدوار الأربعة المرتبة لاستجواب الشاهد شفوياً أمام المحكمة؟',
+  a: 'يخضع الشاهد لأدوار مرتبة كالتالي: 1. الاستجواب الرئيسي (الخصم المستدعي). 2. المناقشة / الاستجواب المضاد (الخصم المقابل). 3. إعادة الاستجواب (الخصم المستدعي). 4. سؤال المحكمة (القاضي لترجيح اليقين).'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما حكم توجيه "الأسئلة الإيحائية" (Leading Questions) في دور الاستجواب الرئيسي؟',
+  a: 'يُمنع منعاً باتاً توجيه الأسئلة الإيحائية (التي توحي للشاهد بالإجابة وتلقنه إياها) في الاستجواب الرئيسي صوناً لحياد وموضوعية الشهادة، إلا في مسائل تمهيدية أو غير متنازع عليها بموافقة الخصم والمحكمة.'
+},
+{
+  unit: 'الشهادة',
+  q: 'هل يجوز توجيه الأسئلة الإيحائية في دور "المناقشة" (الاستجواب المضاد)؟ ولماذا؟',
+  a: 'نعم، يجوز توجيه الأسئلة الإيحائية للخصم المقابل في دور المناقشة كأداة مشروعة لزعزعة ثقة الشاهد، كشف كذبه وتناقضه، وتفنيد الشهادة أمام المحكمة.'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما هي حدود دور "إعادة الاستجواب" لشاهد الخصم؟',
+  a: 'يقتصر دور إعادة الاستجواب على ترميم وتوضيح ما تزعزع أو غمض من أقوال الشاهد في دور المناقشة، ولا يجوز طرح وقائع أو مسائل جديدة فيه إلا بإذن خاص من المحكمة.'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما هي "حصانة الشاهد ضد المساءلة القانونية" بموجب المادة 50؟',
+  a: 'يمنح القانون الشاهد حصانة كاملة ضد أي ملاحقة مدنية (كدعاوى إشانة السمعة) أو جنائية بسبب الأقوال التي أدلى بها أمام القضاء، باستثناء إذا ثبت ارتكابه لجريمة شهادة الزور أو أقر بمخالفة حد شرعي.'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما هو الوزن والتقدير القضائي لـ "تقرير الخبير الفني المكتوب" بموجب المادة 43؟',
+  a: 'يعتبر تقرير الخبير بينة رسمية فنية يخضع لسلطة محكمة الموضوع التقديرية، ويجوز الاكتفاء بالتقرير دون استدعاء الخبير، ما لم يطلب أحد الخصوم حضور الخبير لمناقشته شفوياً.'
+},
+{
+  unit: 'الشهادة',
+  q: 'كيف تتصرف المحكمة إذا قررت الحكم بخلاف رأي الخبير الفني؟',
+  a: 'للمحكمة كامل السلطة في طرح تقرير الخبير، ولكنها تلتزم بموجب المادة 43-2 بتسبيب قرارها وتضمين الحكم الأسباب الفنية والمنطقية التي أدت لعدم الأخذ برأيه.'
+},
+{
+  unit: 'الشهادة',
+  q: 'ما هو تكييف شهادة "قصاص الأثر" في القانون السوداني؟',
+  a: 'يُعامل قصاص الأثر معاملة الخبراء الفنيين، وتقبل شهادته كبينة ظرفية معززة تفيد الترجيح، شريطة اطمئنان المحكمة لمهارته والظروف الطبيعية والمادية للموقع وقت تقصي الأثر.'
+},
+{
+  unit: 'الشهادة',
+  q: 'هل تقبل شهادة الشاهد الأخرس الذي لا يستطيع الكتابة؟ وكيف؟',
+  a: 'نعم، تقبل شهادته وتعتبر شفوية، ويتم سماعها وترجمتها بواسطة خبير متخصص يفهم لغة إشارته المعهودة والمألوفة طالما اطمأنت المحكمة لإدراكه.'
+},
+{
+  unit: 'الشهادة',
+  q: 'متى تقبل شهادة الصغير كبينة تعضيدية؟ وهل يحلف اليمين؟',
+  a: 'تقبل شهادة الصغير المميز في مسائل الاعتداءات والجروح بين الصغار (شهادة الرفقة للضرورة)، ويُستمع لأقواله دون تحليفه اليمين، وتعتبر بينة تكميلية تعزز ولا يؤسس عليها بمفردها حكم الإدانة.'
+},
+
+// ===== الوحدة السادسة: المستندات (الأسئلة 136 - 155) =====
+
+{
+  unit: 'المستندات',
+  q: 'ما هو المفهوم القانوني لـ "المستند" بموجب المادة 51 من قانون الإثبات؟',
+  a: 'المستند هو كافة البيانات والمعلومات المسجلة بأي طريقة كانت، سواء بالكتابة، أو بالصوت، أو بالصورة المادية أو التكنولوجية الرقمية.'
+},
+{
+  unit: 'المستندات',
+  q: 'ما هو معيار التمييز بين "المستند الرسمي" و"المستند العادي" بموجب المادة 52؟',
+  a: 'المستند الرسمي: هو الذي يحرره أو يثبت فيه واقعة موظف عام أو شخص مكلف بخدمة عامة بموجب الأوضاع القانونية وفي حدود سلطته واختصاصه. المستند العادي (العرفي): هو الذي يصدر عن الأفراد العاديين ويحمل توقيعاتهم أو أختامهم دون تدخل موظف عام.'
+},
+{
+  unit: 'المستندات',
+  q: 'ما هي حجية المستندات الرسمية بموجب المادة 53؟',
+  a: 'تتمتع المستندات الرسمية بحجية قاطعة ومطلقة على الكافة بما دون فيها الموظف العام في حدود اختصاصه ووقائع بصره، ولا يجوز نفيها أو الطعن فيها إلا بسلوك طريق الادعاء بالتزوير صراحةً.'
+},
+{
+  unit: 'المستندات',
+  q: 'ما المقصود بـ "قاعدة شمولية المستند" بموجب المادة 54؟',
+  a: 'تعني أن المستند المكتوب يعد دليلاً كافياً وقاطعاً على ما اشتمل عليه من شروط وبنود، ولا يجوز للخصوم تقديم أي بينة شفوية (شهادة شهود) لمعارضة ما اشتمل عليه المستند أو تعديله أو الإضافة إليه أو الانتقاص منه.'
+},
+{
+  unit: 'المستندات',
+  q: 'حدد الاستثناءات الأربعة المكتوبة بموجب المادة 54 والتي يجوز فيها إثبات عكس المستند بالكتابة أو الشفوية.',
+  a: 'يجوز إثبات عكس المستند بالبينة الشفوية استثناءً في الحالات التالية: 1. وجود بند صريح في المستند يجيز إثبات عكسه بالشفوية. 2. إثبات وجود شرط سابق يتوقف عليه نفاذ الالتزام ولا يتعارض مع نصوص العقد. 3. إثبات العرف والتعامل التجاري المستقر بين المتعاقدين. 4. إثبات الوقائع التي تؤدي لبطلان العقد أصالةً كالغش، الإكراه، الصورية، الغلط، أو عدم مشروعية المحل.'
+},
+{
+  unit: 'المستندات',
+  q: 'ما هي "المستندات العتيقة" بموجب المادة 55؟ وما هي القرينة المرتبطة بها؟',
+  a: 'هي المحررات والأوراق المكتوبة التي مضى على تحريرها "عشرون عاماً" أو أكثر، وكانت محفوظة في حرز أمين وصدرت من جهة طبيعية. والقرينة المرتبطة بها هي افتراض صحتها وصحة توقيعات محرريها وشهودها قانوناً دون حاجة لإثبات.'
+},
+{
+  unit: 'المستندات',
+  q: 'كيف ينظم قانون الإثبات حجية "الرسائل والبرقيات" بموجب المادة 56؟',
+  a: 'تعتبر الرسائل الموقعة من مرسلها متمتعة بحجية المستندات العادية، وتتمتع البرقيات بذات الحجية شريطة أن يكون أصل البرقية المودع في مكتب التصدير يحمل توقيع المرسل بخط يده، وتفترض مطابقة النسخة المستلمة للأصل حتى يثبت العكس.'
+},
+{
+  unit: 'المستندات',
+  q: 'ما هو الحكم القانوني عند "فقدان المستند الأصلي" بموجب المادة 57؟',
+  a: 'إذا فُقد المستند الأصلي بسبب أجنبي وقاهر لا يد للمدعي فيه (كالحريق أو الفيضانات)، أو وجد مانع مقبول يحول دون تقديمه، سمح القانون استثناءً بإثبات الواقعة ومحتويات المستند المفقود بكافة طرق الإثبات بما في ذلك شهادة الشهود والصور.'
+},
+{
+  unit: 'المستندات',
+  q: 'ما هي حجية "الصور الرسمية المأخوذة من المستندات الرسمية" بموجب المادة 58؟',
+  a: 'تعتبر الصورة الرسمية المعتمدة والمطابقة للأصل من الموظف العام حجة بالقدر الذي تكون فيه مطابقة للأصل، وتفترض مطابقتها للأصل دائماً ما لم ينازع الخصم في ذلك فتجرى المضاهاة.'
+},
+{
+  unit: 'المستندات',
+  q: 'كيف يتم الطعن في "المستندات العادية"؟ وما الفرق بين التزوير والإنكار؟',
+  a: 'يتم الطعن في المستند العادي بإنكار الخط أو التوقيع أو البصمة صراحةً، أما المستند الرسمي فلا يطعن فيه بالإنكار البسيط، بل يجب الادعاء بتزويره وإقامة الدليل الفني على التزوير.'
+},
+{
+  unit: 'المستندات',
+  q: 'على من يقع عبء الإثبات عند إنكار التوقيع في المستند العادي؟',
+  a: 'بمجرد إنكار الخصم لتوقيعه في المستند العادي، ينقل عبء الإثبات كلياً وصراحةً على عاتق المتمسك بالمستند لإثبات صحة الخط والتوقيع بكافة طرق المضاهاة الفنية وسماع الشهود.'
+},
+{
+  unit: 'المستندات',
+  q: 'ما هي سلطة المحكمة التقديرية في مواجهة عيوب المستند المادية (كالشطب والمحو) بموجب المادة 59؟',
+  a: 'للمحكمة كامل السلطة في تقدير القيمة الإثباتية للمستند الذي يعتريه الشطب، الكشط، المحو، التحشير، أو الإضافة، ولها أن تقرر إنقاص حجته أو إهداره كلياً إذا رأت أن هذه العيوب تمس جوهر وسلامة المحرر.'
+},
+{
+  unit: 'المستندات',
+  q: 'كيف تجري عملية "المضاهاة الفنية" للتحقق من صحة خطوط المستندات؟',
+  a: 'تقرر المحكمة مضاهاة الخط أو التوقيع المنازع فيه مع خطوط أو تواقيع الخصم الثابتة بمحررات رسمية أخرى، أو تكلف الخصم بالكتابة أمامها في الجلسة، وتستعين بخبير الخطوط المنتدب لإعداد تقرير فني مستقل.'
+},
+{
+  unit: 'المستندات',
+  q: 'ما حكم إثبات الالتزامات المالية التي تفوق قيمتها نصاباً معيناً بالبينة الشفوية؟',
+  a: 'جرى العمل فقهياً وتشريعياً على تطلب الدليل الكتابي (المستند) لإثبات المعاملات والالتزامات المالية الكبيرة، ولا يجوز إثباتها بالشهادة الشفوية بمفردها تماشياً مع قاعدة شمولية المستند واستقرار الائتمان التجاري.'
+},
+{
+  unit: 'المستندات',
+  q: 'ما هي "الصور الضوئية العادية" (Photocopies)؟ وهل تتمتع بحجية في الإثبات؟',
+  a: 'لا تتمتع الصور الضوئية غير المعتمدة بحجية المستندات الرسمية أو العادية بمفردها، وتعتبر مجرد قرينة بسيطة يسهل جحدها وإنكارها، ما لم يقبلها الخصم صراحةً أو تضاهى على الأصل وتعتمد.'
+},
+{
+  unit: 'المستندات',
+  q: 'ما حكم التوقيع بالبصمة (بصمة الإصبع) مقارنة بالتوقيع بالإمضاء المكتوب؟',
+  a: 'يتمتع التوقيع ببصمة الإصبع بذات الحجية القانونية المقررة للإمضاء المكتوب، وتعتبر البصمة دليلاً مادياً قاطعاً على نسبة المحرر لصاحبه لصعوبة تزويرها مقارنة بالإمضاء الشفوي.'
+},
+{
+  unit: 'المستندات',
+  q: 'هل يصح الطعن بالتزوير في المستندات الرسمية في أي مرحلة من مراحل الدعوى؟',
+  a: 'نعم، يجوز الادعاء بتزوير المستند الرسمي في أي مرحلة تكون عليها الدعوى وقبل قفل باب تقديم البينات، شريطة تقديم طلب مكتوب ومسبب يوضح مواطن التزوير المدعاة.'
+},
+{
+  unit: 'المستندات',
+  q: 'ما هي القوة الإلزامية "للأوراق التجارية" (كالشيك والكمبيالة) في الإثبات؟',
+  a: 'تتمتع الأوراق التجارية بحجية المستندات العادية القاطعة، وتفرض التزاماً صرفياً مجرداً ومستقلاً عن العلاقة الأصلية التي نشأت بموجبها، ولا يجوز للمدين الطعن فيها إلا بالإنكار أو التزوير أو الوفاء المكتوب.'
+},
+{
+  unit: 'المستندات',
+  q: 'كيف ينظم القانون السوداني حجية "الدفاتر التجارية المنتظمة" للتجار؟',
+  a: 'تعتبر الدفاتر التجارية المنتظمة التي يمسكها التاجر حجة له وفي صالحه ضد تاجر آخر في المنازعات التجارية، وتعتبر حجة عليه في مواجهة غير التجار بما دون فيها من ديون والتزامات.'
+},
+{
+  unit: 'المستندات',
+  q: 'ما هو أثر ثبوت تزوير جزء بسيط من بند غير جوهري في المستند على سلامة بقية البنود؟',
+  a: 'للمحكمة سلطة تجزئة المستند؛ فإذا ثبت تزوير بند غير جوهري لا يؤثر على أصل التراضي ومشروعية المحل، جاز لها إبطال البند المزور وحده والتعويل على صحة وسلامة بقية البنود الموثقة بالمستند.'
+},
+
+// ===== الوحدة السابعة: القرائن (الأسئلة 156 - 170) =====
+
+{
+  unit: 'القرائن',
+  q: 'ما هي "القرينة" بموجب المادة 60 من قانون الإثبات؟',
+  a: 'القرينة هي الأمارة والعلامة الظاهرة الدالة على إثبات الواقعة محل النزاع أو نفيها بناءً على الغالب المألوف من أحوال الناس والمعاملات.'
+},
+{
+  unit: 'القرائن',
+  q: 'كيف تنقسم القرائن قانونياً وعملياً أمام القضاء؟',
+  a: 'تنقسم إلى قرائن قانونية يحددها المشرع بنص صريح في القانون، وقرائن قضائية يستنبطها القاضي بجهده العقلي من ظروف ووقائع الدعوى.'
+},
+{
+  unit: 'القرائن',
+  q: 'ما الفرق بين "القرينة القانونية البسيطة" و"القرينة القانونية القاطعة"؟',
+  a: 'القرينة البسيطة: تقبل إثبات العكس بكافة الطرق (كقرينة الخطأ المفترض). القرينة القاطعة: لا تقبل إثبات العكس مطلقاً وتعتبر قاعدة موضوعية ملزمة (كحجية الأحكام النهائية).'
+},
+{
+  unit: 'القرائن',
+  q: 'ما هي "القرائن القضائية" (Presumptions of Fact) وما قيمتها الإثباتية؟',
+  a: 'هي استنتاجات منطقية يستخلصها قاضي الموضوع بوجدانه من ظروف وملابسات الدعوى المعروضة أمامه (كآثار الأقدام أو فصيلة الدم)، وحجيتها تقديرية تخضع لسلطته التقديرية في الإقناع.'
+},
+{
+  unit: 'القرائن',
+  q: 'ما هي "حجية الأمر المقضي فيه" (Res Judicata) بموجب المادة 63؟',
+  a: 'تعني أن الأحكام القضائية النهائية والقطعية الصادرة عن محاكم مختصة تعتبر حجة قاطعة ومطلقة بين الخصوم فيما فصلت فيه من نزاع، وتمنع الخصوم تماماً من تجديد ذات النزاع أمام القضاء.'
+},
+{
+  unit: 'القرائن',
+  q: 'حدد الشروط الثلاثة الإلزامية لأعمال قاعدة حجية الأحكام ومنع تجديد النزاع.',
+  a: 'تشترط القاعدة اتحاد ثلاثة عناصر تراكمية في الدعويين السابقة واللاحقة: 1. اتحاد الخصوم بصفاتهم القانونية. 2. اتحاد المحل (موضوع الحق المطالب به). 3. اتحاد السبب (الواقعة القانونية المنشئة للحق).'
+},
+{
+  unit: 'القرائن',
+  q: 'كيف يتأثر القضاء المدني بـ "حجية الحكم الجنائي النهائي" بموجب المادة 64؟',
+  a: 'يتقيد القاضي المدني بالحكم الجنائي النهائي الصادر بالإدانة أو البراءة في الوقائع المشتركة التي فصل فيها القاضي الجنائي وكان فصله فيها ضرورياً، فلا يجوز للقاضي المدني إعادة البحث في وقوع الفعل أو نسبته للمتهم.'
+},
+{
+  unit: 'القرائن',
+  q: 'هل يحوز قرار النيابة العامة بـ "شطب الدعوى الجنائية لعدم كفاية الأدلة" حجية أمام القاضي المدني؟',
+  a: 'لا يحوز قرار النيابة بشطب الدعوى أو حفظها حجية الأحكام القضائية النهائية أمام القضاء المدني، ويجوز للمضرور رفع دعوى المطالبة بالتعويض المدني أمام المحكمة المدنية بكافة طرق الإثبات.'
+},
+{
+  unit: 'القرائن',
+  q: 'كيف تنظم الشريعة الإسلامية أعمال "القرائن الظاهرة" لحل النزاعات الزوجية؟',
+  a: 'تجيز الشريعة استخدام قرائن الأحوال الظاهرة للفصل في الدعاوي (مثل قضية أمتعة المنزل؛ حيث يقضى بأدوات النساء للزوجة وأدوات الرجال للزوج عند الاختلاف دون بينة، بيمين كل منهما).'
+},
+{
+  unit: 'القرائن',
+  q: 'ما هي "قرينة بقاء الأهلية" وكيف تدعم استقرار العقود؟',
+  a: 'تفترض سلامة العقل ورشد الاختيار وبقاء الأهلية كاملة لكل شخص أتم سن الرشد المعاملاتي (18 عاماً)، وتمنع الطعن الكيدي في العقود بالادعاء اللاحق للعوارض إلا ببينة قاطعة.'
+},
+{
+  unit: 'القرائن',
+  q: 'ما حكم تعارض قرينة "براءة الذمة الأصلية" مع قرينة "بقاء ما كان على ما كان"؟',
+  a: 'تُقدم قرينة براءة الذمة الأصلية كأصل عام في المعاملات، لأن براءة الذمة يقين طبيعي ثابت بالفطرة لا يزول بالاستصحاب العارض لبقاء الحالة الطارئة للمطالبة بالدين.'
+},
+{
+  unit: 'القرائن',
+  q: 'هل يجوز الطعن في حجية الأحكام القضائية النهائية بدعوى ظهور أدلة جديدة لم تعرض على المحكمة؟',
+  a: 'لا يجوز نقض حجية الحكم النهائي بدعوى ظهور أدلة جديدة، إلا عبر سلوك طريق "التماس إعادة النظر" الاستثنائي المقيد بشروط صارمة (كإثبات وقوع غش أو تزوير حسم الدعوى السابقة).'
+},
+{
+  unit: 'القرائن',
+  q: 'ما هي حجية "الأوراق الرسمية العتيقة" من حيث كفايتها كقرينة قانونية؟',
+  a: 'تعتبر الأوراق العتيقة (التي مضى عليها 20 عاماً) قرينة قانونية بسيطة تفترض صحة توقيعات محرريها وشهودها، وتكفي لنقل عبء الإثبات كلياً على عاتق من يدعي بطلانها أو تزويرها.'
+},
+{
+  unit: 'القرائن',
+  q: 'كيف يوازن القضاء السوداني بين حجية الحكم الجنائي النهائي الصادر بالبراءة ودعوى التعويض المدني؟',
+  a: 'إذا صدر الحكم الجنائي بالبراءة لتخلف القصد الجنائي (مع ثبوت الفعل المادي الخطأ)، لا يمنع ذلك القاضي المدني من الحكم بالتعويض للمضرور بناءً على المسؤولية التقصيرية عن الخطأ المدني.'
+},
+{
+  unit: 'القرائن',
+  q: 'ما حكم حجية الأحكام المستعجلة أو المؤقتة أمام محكمة الموضوع؟',
+  a: 'لا تحوز الأحكام المستعجلة أو القرارات الوقتية (كقرارات الحيازة المؤقتة) حجية الأمر المقضي فيه أمام محكمة الموضوع التي تفصل في أصل الحق والملكية، ولها نقضها.'
+},
+
+// ===== الوحدة الثامنة: اليمين (الأسئلة 171 - 185) =====
+
+{
+  unit: 'اليمين',
+  q: 'ما هو المفهوم القانوني والشرعي لـ "اليمين القضائية" بموجب المادة 65؟',
+  a: 'اليمين هي القسم بالله تعالى أو الرب على صدق الإخبار بواقعة معينة في مجلس القضاء لتعزيز جانب الصدق وقطع النزاع عند عجز البينات.'
+},
+{
+  unit: 'اليمين',
+  q: 'حدد الشروط الأساسية الواجب توفرها في "الواقعة" محل الاستحلاف لليقين.',
+  a: 'تشترط الواقعة أن تكون: متعلقة بالنزاع، حاسمة ومنتجة فيه، ألا تكون مخالفة للنظام العام أو الشريعة، وأن تنصب على واقعة شخصية متعلقة بذمة من وجهت إليه اليمين.'
+},
+{
+  unit: 'اليمين',
+  q: 'ما هي "اليمين الحاسمة" بموجب المادة 66 من قانون الإثبات؟',
+  a: 'هي اليمين التي يوجهها أحد الخصوم (الذي يعوزه الدليل ويتحمل عبء الإثبات) إلى خصمه الآخر لحسم النزاع كلياً في كسب الدعوى أو خسارتها.'
+},
+{
+  unit: 'اليمين',
+  q: 'هل يجوز للمحكمة التدخل لتعديل أو منع توجيه اليمين الحاسمة؟ ومتى بموجب المادة 68؟',
+  a: 'نعم، للمحكمة كامل السلطة لتحديد وصياغة اليمين، ولها أن تمنع توجيهها كلياً إذا تبين لها أن الخصم متعسف وكيدي في توجيهها، أو أن الواقعة غير منتجة ولا صلة لها بالذمة.'
+},
+{
+  unit: 'اليمين',
+  q: 'ما هو الأثر القانوني لـ "حلف اليمين الحاسمة" بموجب المادة 69؟',
+  a: 'يترتب على حلف اليمين الحاسمة كسب الحالف للدعوى حتماً وقفل باب النزاع كلياً، ويُقضى بشطب دعوى الخصم الآخر ولا يجوز له إثبات كذب اليمين بعد حلفها.'
+},
+{
+  unit: 'اليمين',
+  q: 'ما هو "النكول عن اليمين الحاسمة" وما أثره القانوني بموجب المادة 69-3؟',
+  a: 'النكول هو امتناع من وجهت إليه اليمين عن حلفها دون ردها على خصمه. ويترتب عليه خسارته الفورية للدعوى حتماً وقضاء المحكمة لصالح الخصم الموجه لليمن.'
+},
+{
+  unit: 'اليمين',
+  q: 'ما المقصود بـ "رد اليمين الحاسمة"؟ وما هي شروطه؟',
+  a: 'هو قيام من وجهت إليه اليمين بإعادة توجيهها لخصمه الموجه لكي يحلف هو الواقعة ويحسم النزاع. وشرطه أن تكون الواقعة مشتركة ومتعلقة بذمة الخصمين معاً.'
+},
+{
+  unit: 'اليمين',
+  q: 'ما هي "اليمين المتممة" بموجب المادة 70؟ ومتى توجهها المحكمة؟',
+  a: 'هي يمين توجهها المحكمة من تلقاء نفسها لأي من الخصمين لاستكمال قناعتها وترجيح الحقيقة عند وجود أدلة ناقصة في الدعوى لا تكفي وحدها للحكم.'
+},
+{
+  unit: 'اليمين',
+  q: 'هل يجوز للخصم الذي وجهت إليه المحكمة اليمين المتممة أن "يردها" على الخصم الآخر؟',
+  a: 'لا يجوز رداً للعدالة؛ فاليمين المتممة أداة قضائية يملكها القاضي لترجيح عقيدته ولا يملكها الخصوم، لذا يمتنع ردها على الخصم المقابل مطلقاً.'
+},
+{
+  unit: 'اليمين',
+  q: 'ما هي "يمين الاستظهار" (يمين الاستيقان) بموجب المادة 71؟ وما هو حكمها؟',
+  a: 'هي يمين توجهها المحكمة وجوباً وتلقائياً للمدعي استيثاقاً للحق قبل صدور الحكم في مواجهة غائب، ميت، قاصر، أو تركة ميت، لتأكيد أن الحق لم يسقط بالوفاء أو الإبراء.'
+},
+{
+  unit: 'اليمين',
+  q: 'ما هي "يمين الملاعنة" (اللعان) بموجب المادة 72؟ وما صيغتها الشرعية؟',
+  a: 'هي أيمان مغلظة متبادلة بالقسم بالله بين الزوجين لدرء حد الزنا عن الزوجة أو نفي نسب الحمل عن الأب، وصيغتها خمس شهادات مؤكدة باللعنة والغضب كالمذكور بسورة النور.'
+},
+{
+  unit: 'اليمين',
+  q: 'ما هو الأثر الشرعي المترتب على إتمام أيمان الملاعنة القضائية بين الزوجين؟',
+  a: 'يترتب عليها فصم العقد والفرقة المؤبدة بين الزوجين بسقوط حد القذف عن الزوج وحد الزنا عن الزوجة، وينتفي نسب الحمل أو الولد الملاعن عليه عن الأب ويُلحق بأمه.'
+},
+{
+  unit: 'اليمين',
+  q: 'ما حكم نكول الزوجة عن حلف أيمان الملاعنة بعد حلف زوجها بموجب المادة 12؟',
+  a: 'يترتب على نكول الزوجة إقامة حد الزنا الشرعي عليها وجوباً (عند المالكية وقانون 1994) لكون نكولها قرينة قاطعة حلت محل البينة الشرعية المفقودة.'
+},
+{
+  unit: 'اليمين',
+  q: 'هل يجوز توجيه اليمين الحاسمة في الخصومات الجنائية والحدود؟ ولماذا؟',
+  a: 'يمنع منعاً باتاً توجيه اليمين للمتهم في الخصومات الجنائية والحدود صوناً لقرينة البراءة وحظراً لإجبار المتهم على تقديم دليل ضد نفسه أو تعريضه لليمين الغموس الماحقة.'
+},
+{
+  unit: 'اليمين',
+  q: 'كيف يؤثر نكول المدعي عن حلف اليمين المتممة الموجهة إليه من المحكمة؟',
+  a: 'يترتب عليه ضعف أدلته الناقصة في وجدان المحكمة، ويقضى برفض دعواه لعدم استكمال البينة الترجيحية المطلوبة لحمل الحكم.'
+},
+
+// ===== الوحدة التاسعة: المعاينة وبينة الحدود (الأسئلة 186 - 200) =====
+
+{
+  unit: 'المعاينة وبينة الحدود',
+  q: 'ما هو المفهوم القانوني والإجرائي لـ "المعاينة القضائية" بموجب المادة 73؟',
+  a: 'المعاينة هي انتقال المحكمة (بنفسها بكامل هيئتها) لمعاينة وفحص الشيء المتنازع فيه مادياً بموقع النزاع، لاستنباط الحقيقة القضائية مباشرة بالعين الباصرة.'
+},
+{
+  unit: 'المعاينة وبينة الحدود',
+  q: 'هل يجوز للمحكمة الاستعانة بالخبراء والشهود أثناء إجراء المعاينة الميدانية؟',
+  a: 'نعم، يجوز للمحكمة استدعاء وسماع أقوال الخبراء (كالمهندسين) أو الشهود الميدانيين لإيضاح وتفسير المعالم المادية لشيء المعاينة بالموقع مباشرة ومخاطبتهم.'
+},
+{
+  unit: 'المعاينة وبينة الحدود',
+  q: 'ما هي الشروط الموضوعية التي يجب مراعاتها عند "تحرير محضر المعاينة" بموجب المادة 73-2؟',
+  a: 'يجب تدوين الوقائع المادية المجردة عيناً وبدقة وتجرد تام، ويحظر على القاضي تدوين أي انطباعات نفسية أو آراء موضوعية خاصة به بالمحضر صوناً لسلامة البينة.'
+},
+{
+  unit: 'المعاينة وبينة الحدود',
+  q: 'ما هي القيمة الإثباتية لمحضر المعاينة الميدانية بموجب المادة 73-3؟',
+  a: 'يعتبر محضر المعاينة جزءاً أصيلاً ومستقلاً من البينة القضائية التي تعتمد عليها المحكمة وتؤسس عليها حكمها وموضوع عقيدتها.'
+},
+{
+  unit: 'المعاينة وبينة الحدود',
+  q: 'حدد الطرق الأربع الحصرية لإثبات "جريمة الزنا" بموجب المادة 12 من قانون الإثبات.',
+  a: 'تثبت جريمة الزنا حصراً بـ: 1. الإقرار الصريح غير المراجع أمام القضاء. 2. شهادة أربعة رجال ذكور مسلمين عدول يعاينون الفعل مباشرة. 3. قرينة الحمل لغير ذات زوج أو سيد الخالي من الشبهة. 4. نكول الزوجة عن حلف أيمان الملاعنة بعد حلف زوجها.'
+},
+{
+  unit: 'المعاينة وبينة الحدود',
+  q: 'ما هو النصاب الشرعي والصفة الإلزامية للشهود في جريمة الزنا؟',
+  a: 'يشترط نصاب أربعة شهود ذكور عدول مسلمين بالغين يعاينون واقعة الجماع معاينة مادية مباشرة، وأي نقص في العدد أو الصفة يسقط الحد ويوجب إقامة حد القذف على الشهود.'
+},
+{
+  unit: 'المعاينة وبينة الحدود',
+  q: 'كيف تنظم الشريعة الإسلامية "إثبات سائر الحدود والقصاص" بموجب المادة 13؟',
+  a: 'تثبت سائر الحدود (كالسرقة والشرب) بالسبل الشرعية: الإقرار الصريح ولو لمرة واحدة أمام القضاء، أو شهادة رجلين ذكورين عدلين مسلمين.'
+},
+{
+  unit: 'المعاينة وبينة الحدود',
+  q: 'هل تقبل شهادة النساء في إثبات جرائم الحدود والقصاص؟ وما هو الاستثناء عند الضرورة؟',
+  a: 'لا تقبل شهادة النساء كأصل عام في الحدود والقصاص، ولكن تقبل استثناءً للضرورة في الجروح والاعتداءات بشهادة امرأتين ورجل واحد تعضيداً.'
+},
+{
+  unit: 'المعاينة وبينة الحدود',
+  q: 'كيف ينظم القانون السوداني إثبات حد شرب الخمر بقرينة "الرائحة" (الاستنكاه) بموجب المادة 14؟',
+  a: 'يثبت حد الشرب بقرينة انبعاث رائحة الخمر من الفم (الاستنكاه) بشهادة رجلين عدلين يشمّان الرائحة مباشرة، أو بموجب تقرير فني طبي صادر من خبير مخبري مختص.'
+},
+{
+  unit: 'المعاينة وبينة الحدود',
+  q: 'قارن بين موقف المالكية وموقف الشافعية والحنفية من إقامة حد الشرب بقرينة الرائحة.',
+  a: 'يوافق المالكية القانون السوداني في إقامة الحد بالرائحة كقرينة ظاهرة، بينما يرفض الحنفية والشافعية ذلك معتبرين الرائحة شبهة محتملة (كالمضمضة) والحدود تدرأ بالشبهات.'
+},
+{
+  unit: 'المعاينة وبينة الحدود',
+  q: 'ما هي القاعدة الأصولية الكبرى الحاكمة للإثبات الجنائي الشرعي بموجب المادة 10-1؟',
+  a: 'تقرر المادة بصيغة جازمة وأصولية تعبر عن روح الفقه الإسلامي أن: "تدرأ الحدود بالشبهات".'
+},
+{
+  unit: 'المعاينة وبينة الحدود',
+  q: 'حدد المسقطات الشرعية الثلاثة للحد الموصوفة كشبهة بموجب المادة 10-2.',
+  a: 'تعد من الشبهات المسقطة للحدود: 1. رجوع المقر عن إقراره الصريح قبل البدء بالتنفيذ. 2. اختلاف الشهود وتناقضهم في مواصفات الواقعة. 3. رجوع الشاهد عن أدائه لشهادته قبل التنفيذ.'
+},
+{
+  unit: 'المعاينة وبينة الحدود',
+  q: 'كيف يوازن القضاء السوداني بين سقوط الحد بالشبهة وتوقيع العقوبة التعزيرية؟',
+  a: 'سقوط العقوبة الحدية بالشبهة (كرجوع المقر عن اعترافه) لا يعفي المتهم من المسؤولية الجنائية كلياً، بل تملك المحكمة سلطة إدانته وتوقيع عقوبة تعزيرية رادعة (كالسجن والجلد تعزيراً) إذا توفرت بينات ظرفية أخرى.'
+},
+{
+  unit: 'المعاينة وبينة الحدود',
+  q: 'ما حكم إثبات حد السرقة بقرينة وجود المسرورق بحيازة المتهم؟',
+  a: 'يعتبر وجود المال المسروق في حيازة المتهم قرينة قضائية بسيطة وقوية على السرقة تكفي للإدانة التعزيرية، ولكنها لا تكفي بمفردها لإقامة عقوبة حد القطع ما لم يثبت الحرز وهتك الحرز بالبينة أو الإقرار.'
+},
+{
+  unit: 'المعاينة وبينة الحدود',
+  q: 'ما هو الأثر الشرعي المباشر لنكول الشاكي عن حلف اليمين في دعاوى القصاص والدماء؟',
+  a: 'يترتب على نكول الشاكي عن حلف اليمين عند المطالبة بالقصاص سقوط المطالبة بالقصاص العمد لورود الشبهة، وتتحول العقوبة إلى الدية الشرعية المغلظة لورثة المجني عليه تعويضاً عن الدم.'
+}
+
+];
+
+        // ----- بطاقات المراجعة (8 بطاقات) -----
+        const reviewCards = [
+            { front: 'ما هو النطاق القانوني لتطبيق قانون الإثبات السوداني لسنة 1994؟ وهل يسري على لجان التحكيم؟',
+            back: 'يطبق على المعاملات والمسائل الجنائية، ولا يسري على التحكيم إلا باتفاق الأطراف.' },
+            { front: 'قارن بين شروط قبول البينة بموجب المادة 10 وحالات استبعادها بالمادة 11.',
+            back: 'المادة 10: تقبل بشرط الاستقلال والموضوعية. المادة 11: تستبعد وجوباً إذا انتهكت الشريعة أو بنيت على علم القاضي الشخصي.' },
+            { front: 'ما هي "قاعدة شمولية المستند" واستثناءاتها؟',
+            back: 'تحظر إثبات عكس المستند المكتوب بالبينة الشفوية، إلا لاستثناءات: نص يجيز ذلك، شرط سابق، عرف تجاري، وقائع تبطل العقد.' },
+            { front: 'ما هي "المستندات العتيقة" وما القرينة المفترضة لصالحها؟',
+            back: 'الأوراق التي مضى عليها 20 عاماً في حرز أمين، يفترض صحتها وصحة توقيع شهودها.' },
+            { front: 'ما هي "اليمين الحاسمة" ومن يوجهها وما أثر النكول عنها؟',
+            back: 'يوجهها خصم لخصمه، وحلفها يحسم النزاع، والنكول عنها يخسر الدعوى.' },
+            { front: 'ما هي "يمين الاستظهار" ومتى تتوجه؟',
+            back: 'توجهها المحكمة وجوباً للمدعي في مواجهة ميت أو غائب أو قاصر استيثاقاً للحق.' },
+            { front: 'هل يجوز تجزئة الإقرار؟ اذكر حالات التجزئة الاستثنائية.',
+            back: 'الأصل عدم التجزئة، وتجوز إذا انصب على وقائع متميزة، أو كانت الواقعة المضافة مستحيلة أو كاذبة.' },
+            { front: 'كيف يثبت حد شرب الخمر بقرينة الرائحة (الاستنكاه)؟',
+            back: 'بشهادة رجلين عدلين أو بتقرير خبير فني مختص (المادة 14).' }
+        ];
+
+        // ----- شجرة المعرفة (بيانات هرمية) -----
+        const treeData = {
+            label: 'قانون الإثبات السوداني 1994',
+            children: [{
+                label: 'الأحكام التمهيدية والتطور التاريخي',
+                children: [
+                    { label: 'نطاق التطبيق', detail: 'المعاملات والمسائل الجنائية.' },
+                    { label: 'التطور التاريخي', detail: 'من المنشورات إلى قانون 1994.' },
+                    { label: 'تعريف البينة والإثبات', detail: 'المادة 4.' }
+                ]
+            }, {
+                label: 'القواعد الأصولية لعبء الإثبات',
+                children: [
+                    { label: 'براءة الذمة', detail: 'الأصل في المعاملات.' },
+                    { label: 'قرينة البراءة', detail: 'الأصل في المتهم.' },
+                    { label: 'الإغلاق (السعي المردود)', detail: 'منع نقض ما تم.' },
+                    { label: 'السكوت في معرض الحاجة', detail: 'يعتبر بياناً.' }
+                ]
+            }, {
+                label: 'طرق الإثبات السبعة',
+                children: [
+                    { label: 'الإقرار', detail: 'قضائي وغير قضائي.' },
+                    { label: 'الشهادة', detail: 'شفوية، مانع التهمة.' },
+                    { label: 'المستندات', detail: 'رسمية وعادية وعتيقة.' },
+                    { label: 'القرائن', detail: 'قانونية وقضائية.' },
+                    { label: 'اليمين', detail: 'حاسمة، متممة، استظهار، لعان.' },
+                    { label: 'المعاينة', detail: 'انتقال المحكمة.' },
+                    { label: 'العلم القضائي', detail: 'حقائق شائعة.' }
+                ]
+            }, {
+                label: 'بينة الحدود ودرء الشبهات',
+                children: [
+                    { label: 'إثبات الزنا', detail: '4 طرق حصرية.' },
+                    { label: 'إثبات شرب الخمر', detail: 'قرينة الرائحة.' },
+                    { label: 'درء الحدود بالشبهات', detail: 'رجوع المقر، اختلاف الشهود.' }
+                ]
+            }]
+        };
+
+        // ================================================================
+        // 2. الدوال الأساسية (Core Functions)
+        // ================================================================
+
+        // ---- دالة عرض/إخفاء الأقسام ----
+        function showSection(sectionId) {
+            document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('mainScreen').style.display = 'none';
+
+            if (sectionId === 'main') {
+                document.getElementById('mainScreen').style.display = 'block';
+                return;
+            }
+
+            const target = document.getElementById('section-' + sectionId);
+            if (target) target.classList.add('active');
+
+            document.getElementById('searchArea').classList.remove('active');
+            document.getElementById('searchResults').classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ---- دالة العودة للرئيسية ----
+        function goHome() {
+            showSection('main');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.showSection = showSection;
+        window.goHome = goHome;
+
+        // ================================================================
+        // 3. دوال عرض المحتوى الديناميكي (Render Functions)
+        // ================================================================
+
+        // ---- عرض الخرائط ----
+        function renderMaps() {
+            const container = document.getElementById('mapsGallery');
+            if (!container) return;
+            container.innerHTML = mapImages.map(m => `
+                    <div class="map-item">
+                        <img src="${m.url}" alt="${m.label}" loading="lazy" onerror="this.style.display='none'">
+                        <div class="map-label">🗺️ ${m.label}</div>
+                    </div>
+                `).join('');
+        }
+
+        // ---- عرض الامتحانات ----
+        function renderExams() {
+            const container = document.getElementById('examsContainer');
+            if (!container) return;
+            container.innerHTML = examsData.map(exam => `
+                    <div class="card">
+                        <h3>${exam.title}</h3>
+                        ${exam.questions.map((q, i) => `
+                            <div style="margin:12px 0; padding:10px 14px; background:#f6f9ff; border-radius:12px;">
+                                <p><strong>س${i+1}:</strong> ${q.q}</p>
+                                <details>
+                                    <summary style="cursor:pointer; color:#1f4a7a; font-weight:600;">🔽 عرض الإجابة</summary>
+                                    <div style="padding:8px 12px; background:#eaf0f8; border-radius:8px; margin-top:6px;">${q.a}</div>
+                                </details>
+                            </div>
+                        `).join('')}
+                    </div>
+                `).join('');
+        }
+
+        // ---- عرض بنك الأسئلة ----
+        function renderQBank(filterUnit = 'all', searchText = '') {
+            const container = document.getElementById('qbankContainer');
+            if (!container) return;
+            let filtered = qbankData;
+            if (filterUnit !== 'all') filtered = filtered.filter(item => item.unit === filterUnit);
+            if (searchText.trim()) {
+                const s = searchText.trim().toLowerCase();
+                filtered = filtered.filter(item => item.q.toLowerCase().includes(s) || item.a.toLowerCase().includes(s));
+            }
+            if (filtered.length === 0) {
+                container.innerHTML = '<p style="color:#6a7f9a;">لا توجد أسئلة تطابق المعايير.</p>';
+                return;
+            }
+            container.innerHTML = filtered.map((item, idx) => `
+                    <div class="qbank-item">
+                        <div class="q">${idx+1}. ${item.q}</div>
+                        <div class="a">📌 ${item.a}</div>
+                        <div style="font-size:0.8rem; color:#6a7f9a; margin-top:4px;">الوحدة: ${item.unit}</div>
+                    </div>
+                `).join('');
+        }
+
+        // ---- عرض بطاقات المراجعة ----
+        function renderReviews() {
+            const container = document.getElementById('reviewsContainer');
+            if (!container) return;
+
+            let html = `<h3>📘 مراجعات قصيرة مركزة</h3>`;
+            const shortReviews = [
+                { title: 'التطور التاريخي ونطاق التطبيق', items: ['بدأ بالمنشورات القضائية وقانون الإثبات الهندي.', 'دستور 1973 جعل الشريعة والعرف مصدرين رئيسيين.', 'قانون 1983 أول قانون موحد، وقانون 1994 الحالي.', 'يطبق على المعاملات والمسائل الجنائية.'] },
+                { title: 'قواعد عبء الإثبات', items: ['البينة على من يدعي خلاف الأصل.', 'الأصل في المعاملات براءة الذمة.', 'الأصل براءة المتهم حتى تثبت إدانته.', 'الأصل في الأهلية السلامة، وفي الأحكام الصحة.', 'السكوت في معرض الحاجة بيان، والإغلاق يمنع التناقض.'] },
+                { title: 'شروط قبول البينة وتطبيقاتها', items: ['متعلقة بالدعوى، منتجة، جائزة قانوناً.', 'البينة الظرفية: وقائع غير مباشرة تؤدي لاستنتاج وحيد.', 'الوقائع المتماثلة: تقبل لإثبات القصد ونفي الصدفة.'] },
+                { title: 'الدليل غير المشروع والبينات المردودة', items: ['المادة 10: تقبل البينة المعيبة بشروط الاستقلال والموضوعية.', 'المادة 11: ترد البينة المنتهكة للشريعة أو المبنية على علم القاضي الشخصي.', 'التجسس والتنصت يهدران البينة.'] }
+            ];
+            shortReviews.forEach(r => {
+                html += `<div class="card"><h4>${r.title}</h4><ul>${r.items.map(i => `<li>${i}</li>`).join('')}</ul></div>`;
+            });
+
+            html += `<h3 style="margin-top:24px;">🔄 بطاقات المراجعة (اضغط للكشف)</h3>`;
+            reviewCards.forEach((card, idx) => {
+                html += `
+                        <div class="review-card" onclick="this.classList.toggle('open')">
+                            <div class="front">❓ ${card.front}</div>
+                            <div class="back">✅ ${card.back}</div>
+                        </div>
+                    `;
+            });
+            container.innerHTML = html;
+        }
+
+        // ---- عرض شجرة المعرفة ----
+        function renderTree() {
+            const container = document.getElementById('treeContainer');
+            if (!container) return;
+
+            function buildTree(node, level = 0) {
+                let html = `<div class="tree-node" style="margin-right:${level*12}px;">`;
+                html += `<div class="node-label" onclick="this.closest('.tree-node').classList.toggle('open')">📂 ${node.label}</div>`;
+                if (node.detail) {
+                    html += `<div class="node-detail">${node.detail}</div>`;
+                }
+                if (node.children && node.children.length) {
+                    html += `<div class="node-children">`;
+                    node.children.forEach(child => { html += buildTree(child, level + 1); });
+                    html += `</div>`;
+                }
+                html += `</div>`;
+                return html;
+            }
+            container.innerHTML = buildTree(treeData);
+        }
+
+        // ================================================================
+        // 4. نظام البحث (Search) – يعمل على كل النصوص بدون حساسية
+        // ================================================================
+
+        function normalizeText(text) {
+            text = text.replace(/[\u064B-\u065F\u0670]/g, '');
+            text = text.replace(/[آأإ]/g, 'ا');
+            text = text.replace(/ة/g, 'ه');
+            text = text.replace(/ي/g, 'ى');
+            return text.toLowerCase().trim();
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            const resultsDiv = document.getElementById('searchResults');
+
+            if (!query) {
+                resultsDiv.classList.remove('active');
+                resultsDiv.innerHTML = '';
+                return;
+            }
+
+            const mainContent = document.querySelector('.container');
+            const clone = mainContent.cloneNode(true);
+            const toRemove = clone.querySelectorAll('.search-area, .search-results, .fav-panel, .app-header');
+            toRemove.forEach(el => el.remove());
+
+            const fullText = clone.textContent || '';
+            const normalizedFull = normalizeText(fullText);
+            const normalizedQuery = normalizeText(query);
+
+            if (!normalizedFull.includes(normalizedQuery)) {
+                resultsDiv.innerHTML = '<p style="padding:10px;">❌ لا توجد نتائج مطابقة.</p>';
+                resultsDiv.classList.add('active');
+                return;
+            }
+
+            const lines = fullText.split('\n').filter(line => line.trim().length > 3);
+            const matches = [];
+            lines.forEach(line => {
+                if (normalizeText(line).includes(normalizedQuery)) {
+                    matches.push(line.trim());
+                }
+            });
+
+            if (matches.length === 0) {
+                resultsDiv.innerHTML = '<p style="padding:10px;">❌ لا توجد نتائج مطابقة.</p>';
+                resultsDiv.classList.add('active');
+                return;
+            }
+
+            let html = '<ul style="list-style:none; padding:0;">';
+            const topMatches = matches.slice(0, 15);
+            topMatches.forEach(line => {
+                const regex = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+                const highlighted = line.replace(regex, match => `<span class="highlight">${match}</span>`);
+                html += `<li style="padding:6px 0; border-bottom:1px solid #eef3f8;">${highlighted}</li>`;
+            });
+            if (matches.length > 15) {
+                html += `<li style="color:#6a7f9a;">... و ${matches.length - 15} نتيجة أخرى</li>`;
+            }
+            html += '</ul>';
+            resultsDiv.innerHTML = html;
+            resultsDiv.classList.add('active');
+        }
+
+        // ================================================================
+        // 5. نظام المفضلة (Favorites)
+        // ================================================================
+
+        const FAV_KEY = 'evidenceFavs';
+        let favorites = JSON.parse(localStorage.getItem(FAV_KEY)) || [];
+
+        function saveFavorites() {
+            localStorage.setItem(FAV_KEY, JSON.stringify(favorites));
+            renderFavList();
+            updateFavButtons();
+        }
+
+        function renderFavList() {
+            const list = document.getElementById('favList');
+            if (!list) return;
+            if (favorites.length === 0) {
+                list.innerHTML = '<li style="color:#6a7f9a;">لا توجد مفضلات حالياً.</li>';
+                return;
+            }
+            list.innerHTML = favorites.map(id => {
+                const el = document.getElementById(id);
+                const title = el ? (el.querySelector('h2')?.textContent || id) : id;
+                return `<li><a href="#" onclick="showSection('${id.replace('section-','')}'); return false;">${title}</a> <button class="fav-remove" onclick="removeFav('${id}')">✖</button></li>`;
+            }).join('');
+        }
+
+        function removeFav(id) {
+            favorites = favorites.filter(f => f !== id);
+            saveFavorites();
+        }
+
+        function toggleFav(id) {
+            if (favorites.includes(id)) {
+                favorites = favorites.filter(f => f !== id);
+            } else {
+                favorites.push(id);
+            }
+            saveFavorites();
+        }
+
+        function updateFavButtons() {
+            document.querySelectorAll('.btn-fav-toggle').forEach(btn => {
+                const id = btn.dataset.sectionId;
+                if (favorites.includes(id)) {
+                    btn.classList.add('is-fav');
+                    btn.textContent = '⭐ في المفضلة';
+                } else {
+                    btn.classList.remove('is-fav');
+                    btn.textContent = '⭐ إضافة للمفضلة';
+                }
+            });
+        }
+
+        // ================================================================
+        // 6. تهيئة بنك الأسئلة
+        // ================================================================
+
+        function initQBank() {
+            const select = document.getElementById('qbankUnitFilter');
+            if (!select) return;
+            const units = [...new Set(qbankData.map(item => item.unit))];
+            units.forEach(u => {
+                const opt = document.createElement('option');
+                opt.value = u;
+                opt.textContent = u;
+                select.appendChild(opt);
+            });
+
+            select.addEventListener('change', function() {
+                renderQBank(this.value, document.getElementById('qbankSearchInput').value);
+            });
+
+            document.getElementById('qbankSearchBtn').addEventListener('click', function() {
+                renderQBank(document.getElementById('qbankUnitFilter').value, document.getElementById('qbankSearchInput')
+                    .value);
+            });
+
+            document.getElementById('qbankSearchInput').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    renderQBank(document.getElementById('qbankUnitFilter').value, this.value);
+                }
+            });
+
+            renderQBank('all', '');
+        }
+
+        // ================================================================
+        // 7. التهيئة العامة (DOM Ready)
+        // ================================================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            renderMaps();
+            renderExams();
+            renderTree();
+            renderReviews();
+            initQBank();
+
+            // أزرار التصنيفات
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const section = this.dataset.section;
+                    if (section) showSection(section);
+                });
+            });
+
+            // زر الرئيسية
+            document.getElementById('btnHome').addEventListener('click', goHome);
+
+            // زر البحث
+            document.getElementById('btnSearchToggle').addEventListener('click', function() {
+                const area = document.getElementById('searchArea');
+                area.classList.toggle('active');
+                if (area.classList.contains('active')) {
+                    document.getElementById('searchInput').focus();
+                } else {
+                    document.getElementById('searchResults').classList.remove('active');
+                }
+            });
+
+            // أحداث البحث
+            document.getElementById('searchBtn').addEventListener('click', performSearch);
+            document.getElementById('searchInput').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') performSearch();
+            });
+            document.getElementById('clearSearchBtn').addEventListener('click', function() {
+                document.getElementById('searchInput').value = '';
+                document.getElementById('searchResults').classList.remove('active');
+                document.getElementById('searchResults').innerHTML = '';
+            });
+
+            // زر المفضلة
+            document.getElementById('btnFavToggle').addEventListener('click', function() {
+                const panel = document.getElementById('favPanel');
+                panel.classList.toggle('active');
+                renderFavList();
+            });
+
+            // أزرار إضافة المفضلة
+            document.querySelectorAll('.btn-fav-toggle').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const id = this.dataset.sectionId;
+                    if (id) {
+                        toggleFav(id);
+                        if (favorites.includes(id)) {
+                            this.classList.add('is-fav');
+                            this.textContent = '⭐ في المفضلة';
+                        } else {
+                            this.classList.remove('is-fav');
+                            this.textContent = '⭐ إضافة للمفضلة';
+                        }
+                        renderFavList();
+                    }
+                });
+            });
+
+            // استعادة موضع التمرير
+            const scrollPos = localStorage.getItem('evidenceScrollPos');
+            if (scrollPos) window.scrollTo(0, parseInt(scrollPos, 10));
+            window.addEventListener('beforeunload', function() {
+                localStorage.setItem('evidenceScrollPos', window.scrollY);
+            });
+
+            updateFavButtons();
+
+            console.log('✅ مذكرة النجاح – قانون الإثبات السوداني 1994 جاهزة.');
+        });
+    </script>
+
+</body>
+</html>
