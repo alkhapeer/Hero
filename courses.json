@@ -27,13 +27,7 @@
       "description": "دورة تعليمية شاملة لمادة الأحوال الشخصية للمسلمين.",
       "icon": "📊",
       "url": "courses/A7wal/protected_personal_law.html"
-    },
-     {
-      "id": 5,
-      "title": "مادة الأحوال الشخصية للمسلمين / الميراث",
-      "description": "دورة مجانية تعليمية شاملة للميراث لطلاب المعادلة.",
-      "icon": "📊",
-      "url": "courses/merath/merath.html"
     }
+
   ]
 }
