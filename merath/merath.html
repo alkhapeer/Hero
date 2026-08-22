@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>مذكرة النجاح – علم المواريث</title>
+    <style>
+        /* ================================================================
+               القسم 1: إعادة تعيين الأنماط الأساسية (Reset & Base)
+               ================================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Tahoma', Arial, sans-serif;
+            background: #f2f6fc;
+            color: #1a2634;
+            line-height: 1.7;
+            padding: 0 0 20px;
+            direction: rtl;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            background: none;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* ================================================================
+               القسم 2: رأس التطبيق (Header) – ثابت في الأعلى
+               ================================================================ */
+        .app-header {
+            background: #0b2a47;
+            color: #fff;
+            padding: 12px 0;
+            border-radius: 0 0 28px 28px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .app-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .app-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .app-title small {
+            font-size: 0.7rem;
+            font-weight: 400;
+            opacity: 0.8;
+            margin-right: 6px;
+        }
+        .header-actions {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .header-actions button {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.2s;
+            border: 1px solid transparent;
+        }
+        .header-actions button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .header-actions .btn-home {
+            background: #f5c542;
+            color: #0b2a47;
+            font-weight: 600;
+        }
+        .header-actions .btn-home:hover {
+            background: #ffd966;
+        }
+
+        /* ================================================================
+               القسم 3: الشاشة الرئيسية (Main Screen) – شبكة الأزرار
+               ================================================================ */
+        .main-screen {
+            padding: 30px 0 20px;
+            display: block;
+        }
+        .main-screen h1 {
+            font-size: 1.9rem;
+            color: #0b2a47;
+            border-right: 6px solid #f5c542;
+            padding-right: 16px;
+            margin-bottom: 12px;
+        }
+        .main-screen .sub {
+            color: #3d5a78;
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+        }
+
+        /* شبكة البطاقات (الأزرار المستطيلة) */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .category-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 22px 12px;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e6edf6;
+            transition: 0.25s;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        .category-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+            border-color: #b3c9e0;
+        }
+        .category-card .icon {
+            font-size: 2.2rem;
+        }
+        .category-card .badge-count {
+            background: #f5c542;
+            color: #0b2a47;
+            border-radius: 30px;
+            padding: 0 10px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        /* ================================================================
+               القسم 4: المحتوى الداخلي للأقسام (يظهر عند الضغط على زر)
+               ================================================================ */
+        .section-content {
+            display: none;
+            animation: fadeIn 0.25s ease;
+        }
+        .section-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* شريط عنوان القسم (يحتوي على زر العودة وزر المفضلة) */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #dce4ec;
+        }
+        .section-header h2 {
+            font-size: 1.5rem;
+            color: #0b2a47;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-header .header-actions-section {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .section-header .btn-back,
+        .section-header .btn-fav-toggle {
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+            border: 1px solid #dce4ec;
+            background: #fff;
+            color: #1a3a5e;
+        }
+        .section-header .btn-back:hover {
+            background: #eaf0f8;
+        }
+        .section-header .btn-fav-toggle {
+            background: #fefbf0;
+            border-color: #f1dba8;
+        }
+        .section-header .btn-fav-toggle:hover {
+            background: #fcf1d0;
+        }
+        .section-header .btn-fav-toggle.is-fav {
+            background: #f5c542;
+            border-color: #f5c542;
+            color: #0b2a47;
+        }
+
+        /* ================================================================
+               القسم 5: العناصر المشتركة (بطاقات، صناديق، جداول)
+               ================================================================ */
+        .card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 20px 22px;
+            margin: 16px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            border: 1px solid #eaf0f6;
+        }
+        .def-box,
+        .note-box,
+        .warn-box {
+            border-radius: 14px;
+            padding: 16px 20px;
+            margin: 18px 0;
+            border-right: 5px solid;
+        }
+        .def-box {
+            border-color: #2b6f9e;
+            background: #edf4fc;
+        }
+        .note-box {
+            border-color: #f3b33d;
+            background: #fef9ef;
+        }
+        .warn-box {
+            border-color: #c0392b;
+            background: #fdeaea;
+        }
+        .box-title {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+
+        /* ================================================================
+               القسم 6: شجرة المعرفة (قابلة للطي)
+               ================================================================ */
+        .tree-node {
+            margin: 6px 0;
+        }
+        .tree-node .node-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            background: #f4f8fe;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+            border-right: 3px solid transparent;
+        }
+        .tree-node .node-label:hover {
+            background: #e6edf6;
+            border-right-color: #2b6f9e;
+        }
+        .tree-node .node-children {
+            padding-right: 28px;
+            display: none;
+        }
+        .tree-node.open .node-children {
+            display: block;
+        }
+        .tree-node .node-detail {
+            padding: 6px 14px;
+            margin: 4px 0;
+            border-right: 3px solid #b3c9e0;
+            font-size: 0.95rem;
+            background: #fafcff;
+            border-radius: 4px;
+        }
+
+        /* ================================================================
+               القسم 7: معرض الخرائط الذهنية (شبكة صور)
+               ================================================================ */
+        .maps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .map-item {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e6edf6;
+            transition: 0.2s;
+        }
+        .map-item:hover {
+            transform: scale(1.02);
+        }
+        .map-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #fafcfd;
+            padding: 6px;
+        }
+        .map-item .map-label {
+            padding: 10px 14px;
+            background: #f7faff;
+            border-top: 1px solid #e6edf6;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* ================================================================
+               القسم 8: بنك الأسئلة (مع فلتر وبحث)
+               ================================================================ */
+        .qbank-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 12px 0;
+        }
+        .qbank-filters select,
+        .qbank-filters input {
+            padding: 8px 14px;
+            border-radius: 30px;
+            border: 1px solid #dce4ec;
+            background: #fff;
+            font-size: 0.95rem;
+            flex: 1 1 150px;
+        }
+        .qbank-item {
+            background: #f9fbfe;
+            border-radius: 14px;
+            padding: 14px 18px;
+            margin: 10px 0;
+            border-right: 4px solid #2b6f9e;
+        }
+        .qbank-item .q {
+            font-weight: 600;
+        }
+        .qbank-item .a {
+            padding-right: 20px;
+            color: #1f4a7a;
+            margin-top: 6px;
+        }
+
+        /* ================================================================
+               القسم 9: بطاقات المراجعة (تفاعلية – اضغط للكشف)
+               ================================================================ */
+        .review-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border: 1px solid #e6edf6;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .review-card:hover {
+            border-color: #b3c9e0;
+        }
+        .review-card .front {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .review-card .back {
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed #dce4ec;
+            color: #1f4a7a;
+        }
+        .review-card.open .back {
+            display: block;
+        }
+
+        /* ================================================================
+               القسم 10: البحث (Search) – يعمل على كل النصوص
+               ================================================================ */
+        .search-area {
+            display: none;
+            margin: 16px 0;
+            padding: 16px;
+            background: #fff;
+            border-radius: 18px;
+            border: 1px solid #e6edf6;
+        }
+        .search-area.active {
+            display: block;
+        }
+        .search-area .search-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .search-area input {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 16px;
+            border-radius: 30px;
+            border: 1px solid #dce4ec;
+            font-size: 1rem;
+            background: #fafcff;
+        }
+        .search-area input:focus {
+            border-color: #2b6f9e;
+            outline: none;
+        }
+        .search-area button {
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: 0.2s;
+            border: none;
+        }
+        .search-area .btn-search {
+            background: #0b2a47;
+            color: #fff;
+        }
+        .search-area .btn-search:hover {
+            background: #1a3a5e;
+        }
+        .search-area .btn-clear {
+            background: #8a9aa8;
+            color: #fff;
+        }
+        .search-area .btn-clear:hover {
+            background: #6a7f9a;
+        }
+
+        .search-results {
+            background: #f0f4fc;
+            border-radius: 16px;
+            padding: 16px;
+            margin-top: 16px;
+            border: 1px solid #dce4ec;
+            display: none;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .search-results.active {
+            display: block;
+        }
+        .search-results ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .search-results li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e3e9f2;
+        }
+        .search-results li:last-child {
+            border-bottom: none;
+        }
+        .search-results .result-title {
+            font-weight: 600;
+            color: #0b2a47;
+        }
+        .search-results .result-snippet {
+            font-size: 0.95rem;
+            color: #3d5a78;
+            display: block;
+            margin-top: 4px;
+        }
+        .highlight {
+            background: #fcee8f;
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+
+        /* ================================================================
+               القسم 11: لوحة المفضلة (Favorites Panel)
+               ================================================================ */
+        .fav-panel {
+            background: #fefbf0;
+            border-radius: 16px;
+            padding: 16px;
+            margin: 12px 0;
+            border: 1px solid #f1dba8;
+            display: none;
+        }
+        .fav-panel.active {
+            display: block;
+        }
+        .fav-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .fav-panel li {
+            padding: 6px 0;
+            border-bottom: 1px solid #f1e5c8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .fav-panel li:last-child {
+            border-bottom: none;
+        }
+        .fav-panel .fav-remove {
+            color: #b03a2e;
+            cursor: pointer;
+            font-weight: 700;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+        }
+
+        /* ================================================================
+               القسم 12: استجابة للشاشات المختلفة (Responsive)
+               ================================================================ */
+        @media (max-width: 600px) {
+            .app-title {
+                font-size: 1.0rem;
+            }
+            .category-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+            .category-card {
+                padding: 14px 8px;
+                font-size: 0.85rem;
+            }
+            .category-card .icon {
+                font-size: 1.6rem;
+            }
+            .section-header h2 {
+                font-size: 1.2rem;
+            }
+            .maps-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 0 10px;
+            }
+            .header-actions button {
+                font-size: 0.75rem;
+                padding: 4px 10px;
+            }
+        }
+        @media (min-width: 601px) and (max-width: 900px) {
+            .category-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* ================================================================
+               القسم 13: أدوات مساعدة (Utilities)
+               ================================================================ */
+        .mt-2 {
+            margin-top: 20px;
+        }
+        .mb-1 {
+            margin-bottom: 10px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .flex {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .badge {
+            background: #f5c542;
+            color: #0b2a47;
+            padding: 0 10px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+        .hidden {
+            display: none !important;
+        }
+
+        /* ================================================================
+               القسم 14: تخصيص شريط التمرير
+               ================================================================ */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0f3f8;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #b3c9e0;
+            border-radius: 10px;
+        }
+
+        /* ================================================================
+               القسم 15: تنبيه حقوق الاستخدام (يظهر فقط في الرئيسية)
+               ================================================================ */
+        .alert-notice {
+            background: #fff3cd;
+            border-right: 6px solid #ffc107;
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin: 30px 0 20px;
+            font-size: 0.95rem;
+            color: #856404;
+        }
+        .alert-notice p {
+            margin-bottom: 8px;
+        }
+        .alert-notice .email {
+            direction: ltr;
+            text-align: left;
+            font-family: monospace;
+            font-size: 0.9rem;
+            margin-top: 6px;
+        }
+        .alert-notice hr {
+            border: 0;
+            border-top: 1px dashed #e6b800;
+            margin: 12px 0;
+        }
+        .alert-notice .commission {
+            font-size: 0.85rem;
+            margin-bottom: 0;
+        }
+
+        /* ================================================================
+               القسم 16: جداول المقارنة في الميراث
+               ================================================================ */
+        .inheritance-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.95rem;
+        }
+        .inheritance-table th {
+            background: #0b2a47;
+            color: #fff;
+            padding: 10px 12px;
+            text-align: right;
+        }
+        .inheritance-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e3e9f2;
+        }
+        .inheritance-table tr:nth-child(even) {
+            background: #f8fafd;
+        }
+
+        /* ================================================================
+               القسم 17: صيغ رياضية للميراث
+               ================================================================ */
+        .formula {
+            background: #f4f8fe;
+            padding: 8px 16px;
+            border-radius: 8px;
+            border-right: 4px solid #2b6f9e;
+            font-family: 'Times New Roman', serif;
+            font-size: 1.1rem;
+            margin: 8px 0;
+            direction: ltr;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================================================================
+    القسم 18: رأس التطبيق (App Header)
+    ================================================================ -->
+    <header class="app-header">
+        <div class="container">
+            <div class="app-title">
+                📘 مذكرة النجاح
+                <small>علم المواريث – الفقه الإسلامي والقانون السوداني</small>
+            </div>
+            <div class="header-actions">
+                <button class="btn-home" id="btnHome">🏠 الرئيسية</button>
+                <button id="btnSearchToggle">🔍 بحث</button>
+                <button id="btnFavToggle">⭐ المفضلة</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================================================================
+    القسم 19: الحاوية الرئيسية (Container)
+    ================================================================ -->
+    <div class="container">
+
+        <!-- ================================================================
+        القسم 20: منطقة البحث (Search Area) – تظهر عند الضغط على زر البحث
+        ================================================================ -->
+        <div class="search-area" id="searchArea">
+            <div class="search-row">
+                <input type="text" id="searchInput" placeholder="ابحث في كل محتوى المذكرة...">
+                <button class="btn-search" id="searchBtn">🔍 بحث</button>
+                <button class="btn-clear" id="clearSearchBtn">✖ إلغاء</button>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+
+        <!-- ================================================================
+        القسم 21: لوحة المفضلة (Favorites Panel)
+        ================================================================ -->
+        <div class="fav-panel" id="favPanel">
+            <h4 style="margin-bottom:8px;">⭐ أقسامي المفضلة</h4>
+            <ul id="favList">
+                <li style="color:#6a7f9a;">لا توجد مفضلات حالياً. أضف الأقسام من داخلها.</li>
+            </ul>
+        </div>
+
+        <!-- ================================================================
+        القسم 22: الشاشة الرئيسية (Main Screen) – تحتوي على أزرار التصنيفات
+        ================================================================ -->
+        <div id="mainScreen" class="main-screen">
+            <h1>⚖️ علم المواريث – الفقه الإسلامي والقانون السوداني</h1>
+            <p class="sub">دراسة تأصيلية تطبيقية لأحكام الإرث والمواريث على المذهب الحنفي</p>
+            <p style="margin-bottom:20px; color:#3d5a78;">مرحباً بك في مذكرة النجاح المتخصصة في علم المواريث. اضغط على أي زر للوصول إلى المحتوى.</p>
+
+            <!-- شبكة الأزرار (التصنيفات) -->
+            <div class="category-grid">
+                <div class="category-card" data-section="explain"><span class="icon">📖</span> شرح <span class="badge-count">8</span></div>
+                <div class="category-card" data-section="summaries"><span class="icon">📋</span> ملخصات <span class="badge-count">6</span></div>
+                <div class="category-card" data-section="questions"><span class="icon">❓</span> أسئلة <span class="badge-count">20+</span></div>
+                <div class="category-card" data-section="maps"><span class="icon">🗺️</span> خرائط <span class="badge-count">8</span></div>
+                <div class="category-card" data-section="examples"><span class="icon">📌</span> أمثلة <span class="badge-count">15</span></div>
+                <div class="category-card" data-section="exams"><span class="icon">📝</span> امتحانات <span class="badge-count">4</span></div>
+                <div class="category-card" data-section="tree"><span class="icon">🌳</span> شجرة المعرفة</div>
+                <div class="category-card" data-section="qbank"><span class="icon">📚</span> بنك الأسئلة <span class="badge-count">200</span></div>
+                <div class="category-card" data-section="reviews"><span class="icon">🔄</span> مراجعات <span class="badge-count">8</span></div>
+                <div class="category-card" data-section="videos"><span class="icon">🎬</span> فيديوهات</div>
+            </div>
+
+            <div style="margin-top:20px; background:#eaf0f8; border-radius:18px; padding:16px 20px;">
+                <p style="font-weight:600; color:#0b2a47;">📌 عن هذه المذكرة:</p>
+                <p style="font-size:0.95rem; color:#2c4a6e;">
+                    • تغطي كامل أحكام المواريث في الفقه الإسلامي والقانون السوداني (المذهب الحنفي).
+                    <br>• تحتوي على 200 سؤال وإجابة، امتحانات شاملة، خرائط ذهنية، وبطاقات مراجعة.
+                    <br>• صُممت خصيصاً لطلاب القانون والممارسين المهنيين والباحثين في الفقه الإسلامي.
+                </p>
+            </div>
+
+            <!-- ================================================================
+            تنبيه مهم – حقوق الاستخدام والنسخة التجريبية (في الرئيسية فقط)
+            ================================================================ -->
+            <div class="alert-notice">
+                <p style="font-weight: 700; font-size: 1.05rem; margin-bottom: 8px;">
+                    ⚠️ تنبيه مهم
+                </p>
+                <p style="margin-bottom: 8px;">
+                    إذا وصلك هذا التطبيق أو تمكنت من استخدامه دون إتمام عملية الشراء،
+                    <strong>نرجو التواصل معنا عبر البريد الإلكتروني</strong> في أقرب وقت لتصحيح الوضع وتسوية أي مستحقات مالية.
+                </p>
+                <p style="margin-bottom: 4px;">
+                    نشكركم على الأمانة والتعاون.
+                </p>
+                <p class="email">
+                    📧 egyptstore170@gmail.com
+                </p>
+                <hr>
+                <p class="commission">
+                    💰 <strong>لمن يرغب في الربح:</strong> يمكنك أيضاً الانضمام إلى برنامج التسويق بالعمولة والحصول على <strong>20% عمولة</strong> عن كل عملية شراء تتم من خلالك.
+                </p>
+            </div>
+        </div>
+
+        <!-- ================================================================
+        القسم 23: أقسام المحتوى (كل قسم يظهر عند الضغط على الزر المناسب)
+        ================================================================ -->
+
+        <!-- ===== القسم 1: شرح ===== -->
+        <div id="section-explain" class="section-content">
+            <div class="section-header">
+                <h2>📖 الشرح والتعاريف التأصيلية</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-explain">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+
+            <!-- 1.1 تعريف الميراث -->
+            <div class="card">
+                <h3>تعريف الميراث وأركانه وشروطه</h3>
+                <div class="def-box">
+                    <div class="box-title">📌 الميراث</div>
+                    <p>الميراث هو انتقال حتمي لتركة الميت ومنافعه وحقوقه المالية بوفاته لمن استحقها من الورثة شرعاً وقانوناً.</p>
+                </div>
+                <div class="def-box">
+                    <div class="box-title">📌 أركان الإرث</div>
+                    <p>ثلاثة: المورث، الوارث، التركة.</p>
+                </div>
+                <div class="def-box">
+                    <div class="box-title">📌 شروط الإرث</div>
+                    <p>ثلاثة: موت المورث حقيقة أو حكماً، حياة الوارث عند موت مورثه، العلم بالجهة المفضية للإرث.</p>
+                </div>
+                <div class="warn-box">
+                    <div class="box-title">⚠️ موانع الإرث</div>
+                    <p>اثنان: القتل العمد العدوان، واختلاف الدين.</p>
+                </div>
+                <div class="def-box">
+                    <div class="box-title">📌 أسباب الإرث</div>
+                    <p>ثلاثة: النسب (القرابة)، الزوجية، والولاء.</p>
+                </div>
+            </div>
+
+            <!-- 1.2 التركة والحقوق -->
+            <div class="card">
+                <h3>التركة والحقوق المتعلقة بها</h3>
+                <p><strong>التركة:</strong> كل ما يتركه المتوفى من أموال ومنافع وحقوق مالية، وتشمل العقارات والمنقولات والحقوق المعنوية والديون.</p>
+                <div class="warn-box">
+                    <div class="box-title">🔴 ترتيب الحقوق في التصفية</div>
+                    <ol>
+                        <li>نفقات تجهيز المتوفى بالمعروف.</li>
+                        <li>قضاء ديون المتوفى.</li>
+                        <li>تنفيذ الوصية في حدود الثلث (وما زاد يتوقف على إجازة الورثة).</li>
+                        <li>توزيع الباقي على الورثة.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- 1.3 أصحاب الفروض -->
+            <div class="card">
+                <h3>أصحاب الفروض (12 وارثاً)</h3>
+                <p><strong>تعريف الفرض:</strong> حصة محددة مقدرة شرعاً وقانوناً للوارث في التركة.</p>
+                <p><strong>الأنصبة الستة:</strong> النصف، الربع، الثمن، الثلثان، الثلث، السدس (وزيادة "ثلث الباقي" في المسائل العمريتين).</p>
+
+                <table class="inheritance-table">
+                    <thead>
+                        <tr>
+                            <th>الوارث</th>
+                            <th>النصيب</th>
+                            <th>شروط الاستحقاق</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>الزوج</td><td>النصف أو الربع</td><td>النصف لعدم الفرع الوارث، الربع لوجوده</td></tr>
+                        <tr><td>الزوجة</td><td>الربع أو الثمن</td><td>الربع لعدم الفرع الوارث، الثمن لوجوده</td></tr>
+                        <tr><td>الأب</td><td>السدس (مع الفرع المذكر) أو السدس + الباقي (مع الفرع المؤنث)</td><td>مع وجود الفرع الوارث</td></tr>
+                        <tr><td>الجد الصحيح</td><td>السدس أو السدس + الباقي</td><td>عند وجود الفرع الوارث وعدم الأب</td></tr>
+                        <tr><td>الأم</td><td>السدس، الثلث، أو ثلث الباقي</td><td>السدس مع الفرع أو جمع الإخوة، الثلث بدونهما</td></tr>
+                        <tr><td>البنت الصلبية</td><td>النصف أو الثلثان</td><td>النصف للواحدة، الثلثان للتعدد</td></tr>
+                        <tr><td>بنت الابن</td><td>النصف، الثلثان، أو السدس</td><td>حسب وجود البنت الصلبية</td></tr>
+                        <tr><td>الأخت الشقيقة</td><td>النصف أو الثلثان</td><td>النصف للواحدة، الثلثان للتعدد</td></tr>
+                        <tr><td>الأخت لأب</td><td>النصف، الثلثان، أو السدس</td><td>حسب وجود الأخت الشقيقة</td></tr>
+                        <tr><td>الأخت لأم</td><td>السدس أو الثلث</td><td>السدس للواحدة، الثلث للتعدد</td></tr>
+                        <tr><td>الجدة الصحيحة</td><td>السدس</td><td>عند عدم وجود الأم</td></tr>
+                        <tr><td>الأخ لأم</td><td>السدس</td><td>عند عدم وجود الفرع الوارث والأصل المذكر</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 1.4 العصبات -->
+            <div class="card">
+                <h3>العصبات (الإرث بالتعصيب)</h3>
+                <p>العصبة من يرث بالباقي بعد أصحاب الفروض، أو كل التركة إذا انفرد.</p>
+                <ul>
+                    <li><strong>عصبة بالنفس:</strong> جهة البنوة، الأبوة، الجدود والإخوة، بنو الإخوة، العمومة.</li>
+                    <li><strong>عصبة بالغير:</strong> كل أنثى صاحبة فرض معها عاصب في درجتها (بنت مع ابن، أخت مع أخ) – للذكر مثل حظ الأنثيين.</li>
+                    <li><strong>عصبة مع الغير:</strong> الأخت الشقيقة أو لأب مع الفرع الوارث المؤنث (تأخذ الباقي).</li>
+                </ul>
+            </div>
+
+            <!-- 1.5 الحجب -->
+            <div class="card">
+                <h3>الحجب</h3>
+                <p>حجب حرمان: إسقاط الوارث من الإرث كلياً. حجب نقصان: تقليل النصيب.</p>
+                <ul>
+                    <li><strong>الابن يحجب:</strong> الإخوة بجميع أنواعهم، الجد، الأعمال.</li>
+                    <li><strong>الأب يحجب:</strong> الإخوة، الجد.</li>
+                    <li><strong>الأم تحجب:</strong> الجدات.</li>
+                    <li><strong>الفرع الوارث ينقص:</strong> الزوج من النصف للربع، والزوجة من الربع للثمن، والأم من الثلث للسدس.</li>
+                </ul>
+            </div>
+
+            <!-- 1.6 العول والرد وذوو الأرحام -->
+            <div class="card">
+                <h3>العول والرد وذوو الأرحام</h3>
+                <p><strong>العول:</strong> نقصان أنصبة أصحاب الفروض بنسبة فروضهم عندما تزيد السهام على أصل المسألة.</p>
+                <p><strong>الرد:</strong> إرجاع الباقي على أصحاب الفروض (غير الزوجين) عند عدم وجود عاصب.</p>
+                <p><strong>ذوو الأرحام:</strong> كل قريب ليس بصاحب فرض ولا عصبة، ويرثون عند عدم وجود أصحاب فروض أو عصبات. مثل: أولاد البنات، أولاد الأخوات، الأخوال والخالات.</p>
+            </div>
+
+            <!-- 1.7 مسائل خاصة -->
+            <div class="card">
+                <h3>مسائل خاصة في المواريث</h3>
+                <ul>
+                    <li><strong>المفقود:</strong> يوقف له نصيب معاملة الأقل (ذكر أو أنثى) حتى يتبين حاله. يحكم بوفاته بعد مضي 4 سنوات في ظروف لا يغلب فيها الهلاك.</li>
+                    <li><strong>الحمل:</strong> يوقف له نصيب الابن أو البنت أو اثنين ذكور، ويحسم بعد ولادته.</li>
+                    <li><strong>الخنثى المشكل:</strong> يعامل بأضل حظه (أنثى)، ويوقف الباقي حتى يستبين.</li>
+                    <li><strong>ولد الزنا وولد اللعان:</strong> يرثان من الأم وقرابتها فقط.</li>
+                    <li><strong>التخارج:</strong> اتفاق الورثة على ترك بعضهم نصيبه مقابل معلوم.</li>
+                </ul>
+            </div>
+
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 2: ملخصات ===== -->
+        <div id="section-summaries" class="section-content">
+            <div class="section-header">
+                <h2>📋 الملخصات التنظيمية</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-summaries">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>ملخص المبادئ الأساسية للميراث</h3>
+                <ul>
+                    <li><strong>أركان الإرث:</strong> المورث، الوارث، التركة.</li>
+                    <li><strong>شروط الإرث:</strong> موت المورث، حياة الوارث، العلم بالجهة.</li>
+                    <li><strong>أسباب الإرث:</strong> النسب، الزوجية، الولاء.</li>
+                    <li><strong>موانع الإرث:</strong> القتل العمد، اختلاف الدين.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>ملخص أصحاب الفروض الـ 12</h3>
+                <ul>
+                    <li><strong>الرجال:</strong> الزوج، الأب، الجد الصحيح، الأخ لأم.</li>
+                    <li><strong>النساء:</strong> الزوجة، البنت الصلبية، بنت الابن، الأم، الجدة الصحيحة، الأخت الشقيقة، الأخت لأب، الأخت لأم.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>ملخص الأنصبة المقدرة</h3>
+                <ul>
+                    <li><strong>النصف:</strong> الزوج (بلا فرع)، البنت المنفردة، الأخت الشقيقة المنفردة.</li>
+                    <li><strong>الربع:</strong> الزوج (مع الفرع)، الزوجة (بلا فرع).</li>
+                    <li><strong>الثمن:</strong> الزوجة (مع الفرع).</li>
+                    <li><strong>الثلثان:</strong> بنتان فأكثر، أختان شقيقتان فأكثر.</li>
+                    <li><strong>الثلث:</strong> الأم (بدون فرع أو إخوة)، الإخوة لأم.</li>
+                    <li><strong>السدس:</strong> الأب، الأم (مع فرع أو إخوة)، الجدة، بنت الابن، الأخت لأب، الأخ لأم.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>ملخص العصبات</h3>
+                <ul>
+                    <li><strong>جهة البنوة:</strong> الابن، ابن الابن وإن نزل.</li>
+                    <li><strong>جهة الأبوة:</strong> الأب، الجد الصحيح.</li>
+                    <li><strong>جهة الجدود والإخوة:</strong> الجد، الإخوة الأشقاء، الإخوة لأب.</li>
+                    <li><strong>جهة بني الإخوة:</strong> أبناء الإخوة الأشقاء، أبناء الإخوة لأب.</li>
+                    <li><strong>جهة العمومة:</strong> الأعمام الأشقاء، الأعمام لأب، أبناؤهم.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>ملخص الحجب</h3>
+                <ul>
+                    <li><strong>الابن يحجب:</strong> الإخوة بجميع أنواعهم، الجد، الأعمال.</li>
+                    <li><strong>الأب يحجب:</strong> الإخوة، الجد.</li>
+                    <li><strong>الأم تحجب:</strong> الجدات.</li>
+                    <li><strong>الفرع الوارث ينقص:</strong> الزوج (النصف→الربع)، الزوجة (الربع→الثمن)، الأم (الثلث→السدس).</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>ملخص العول والرد وذوي الأرحام</h3>
+                <ul>
+                    <li><strong>العول:</strong> زيادة أصل المسألة عند زيادة السهام.</li>
+                    <li><strong>الرد:</strong> إرجاع الباقي على أصحاب الفروض (غير الزوجين).</li>
+                    <li><strong>ذوو الأرحام:</strong> يرثون عند عدم وجود فروض أو عصبات (أولاد البنات، أولاد الأخوات، الأخوال، الخالات، أولاد العمات).</li>
+                </ul>
+            </div>
+
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 3: أسئلة ===== -->
+        <div id="section-questions" class="section-content">
+            <div class="section-header">
+                <h2>❓ أسئلة ومسائل قضائية</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-questions">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>مسألة: تعدد الزوجات في الميراث</h3>
+                <p>إذا توفي رجل وترك زوجتين أو أكثر، كيف يتم توزيع الثمن أو الربع بينهن؟</p>
+                <div class="note-box"><div class="box-title">📌 الحل</div><p>يقسم نصيب الزوجات بالتساوي بينهن، سواء كن اثنتين أو أكثر. فلا تفضيل لواحدة على أخرى.</p></div>
+            </div>
+
+            <div class="card">
+                <h3>مسألة: ميراث المفقود</h3>
+                <p>رجل مفقود منذ 3 سنوات في ظروف لا يغلب فيها الهلاك. كيف يعامل في الميراث؟</p>
+                <div class="note-box"><div class="box-title">📌 الحل</div><p>يوقف له نصيبه كأقل الحظين (ذكر أو أنثى) حتى يتبين حاله. ولا يحكم بموته إلا بعد 4 سنوات كاملة، أو سنتين في ظروف يغلب فيها الهلاك.</p></div>
+            </div>
+
+            <div class="card">
+                <h3>مسألة: ميراث الحمل</h3>
+                <p>توفي رجل وترك زوجته حاملاً. كيف يتم توزيع التركة؟</p>
+                <div class="note-box"><div class="box-title">📌 الحل</div><p>يوقف للحمل أوفر النصيبين على تقدير الذكورة أو الأنوثة، أو اثنين ذكور إن كان ممكناً. ويوزع الباقي على الورثة الموجودين.</p></div>
+            </div>
+
+            <div class="card">
+                <h3>مسألة: المسألة المشتركة</h3>
+                <p>توفيت امرأة عن: زوج، أم، إخوة لأم (2)، أخ شقيق. كيف توزع التركة؟</p>
+                <div class="note-box"><div class="box-title">📌 الحل</div><p>الزوج النصف (3)، الأم السدس (1)، الإخوة لأم الثلث (2) = 6 سهام. يستغرق الفروض التركة، فيشارك الأخ الشقيق الإخوة لأم في الثلث بالتساوي.</p></div>
+            </div>
+
+            <div class="card">
+                <h3>مسألة: ميراث ولد الزنا</h3>
+                <p>هل يرث ولد الزنا من أبيه الزاني ومن أمه؟</p>
+                <div class="note-box"><div class="box-title">📌 الحل</div><p>يرث من أمه وقرابتها فقط، ولا يرث من أبيه الزاني لأن النسب لا يثبت بالزنا.</p></div>
+            </div>
+
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 4: خرائط ===== -->
+        <div id="section-maps" class="section-content">
+            <div class="section-header">
+                <h2>🗺️ الخرائط الذهنية</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-maps">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <p style="margin-bottom:16px;">خرائط ذهنية توضح هيكل علم المواريث وأحكامه في الفقه الإسلامي والقانون السوداني.</p>
+            <div class="maps-grid" id="mapsGallery">
+                <!-- سيتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 5: أمثلة ===== -->
+        <div id="section-examples" class="section-content">
+            <div class="section-header">
+                <h2>📌 الأمثلة والتطبيقات القضائية</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-examples">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>مثال 1: زوجة وابن وبنت</h3>
+                <p><strong>المسألة:</strong> توفي شخص وترك تركة صافية 24,000 جنيه، وورثته: زوجة، ابن، بنت.</p>
+                <p><strong>الحل:</strong></p>
+                <ol>
+                    <li>الزوجة: الثمن (1/8) = 3,000 جنيه</li>
+                    <li>الباقي = 21,000 جنيه</li>
+                    <li>للذكر مثل حظ الأنثيين: الابن 2 أسهم، البنت 1 سهم، المجموع 3 أسهم</li>
+                    <li>قيمة السهم = 21,000 ÷ 3 = 7,000</li>
+                    <li>البنت: 7,000، الابن: 14,000</li>
+                </ol>
+                <table class="inheritance-table">
+                    <tr style="background:#f0f4fc;"><th>الوارث</th><th>النصيب</th><th>القيمة</th></tr>
+                    <tr><td>الزوجة</td><td>1/8</td><td>3,000</td></tr>
+                    <tr><td>البنت</td><td>سهم واحد</td><td>7,000</td></tr>
+                    <tr><td>الابن</td><td>سهمان</td><td>14,000</td></tr>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>مثال 2: زوج وأم وأخت شقيقة</h3>
+                <p><strong>المسألة:</strong> توفيت امرأة عن: زوج، أم، أخت شقيقة واحدة. التركة 18,000 جنيه.</p>
+                <p><strong>الحل:</strong></p>
+                <ol>
+                    <li>الزوج: النصف (1/2) = 9,000</li>
+                    <li>الأم: السدس (1/6) = 3,000</li>
+                    <li>الباقي = 6,000 للأخت الشقيقة تعصيباً</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>مثال 3: المسألة المشتركة</h3>
+                <p><strong>المسألة:</strong> توفيت امرأة عن: زوج، أم، إخوة لأم (2)، أخ شقيق. التركة 24,000 جنيه.</p>
+                <p><strong>الحل:</strong></p>
+                <ol>
+                    <li>الزوج: النصف (3/6) = 12,000</li>
+                    <li>الأم: السدس (1/6) = 4,000</li>
+                    <li>الإخوة لأم: الثلث (2/6) = 8,000</li>
+                    <li>يشارك الأخ الشقيق الإخوة لأم في الثلث بالتساوي: الأخ الشقيق 4,000، الإخوة لأم 4,000</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>مثال 4: العول</h3>
+                <p><strong>المسألة:</strong> توفي رجل عن: زوجة، أخت شقيقة، أخت لأب. التركة 14,000 جنيه.</p>
+                <p><strong>الحل:</strong></p>
+                <ol>
+                    <li>الزوجة: الربع (3/12)</li>
+                    <li>الأخت الشقيقة: النصف (6/12)</li>
+                    <li>الأخت لأب: السدس (2/12)</li>
+                    <li>المجموع = 11/12، تبقى 1/12 ترد على الأخت الشقيقة فقط</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>مثال 5: الوصية بالتنزيل</h3>
+                <p><strong>المسألة:</strong> توفي رجل وله أبناء، وله أحفاد توفي أبوهم في حياته. كيف يوزع التركة؟</p>
+                <p><strong>الحل:</strong> يقوم التنزيل بإلحاق الأحفاد (غير الوارثين لوجود الأعمام) بميراث جدهم بنصيب يعادل نصيب أبيهم المتوفى لو كان حياً، شريطة ألا يتجاوز ثلث التركة.</p>
+            </div>
+
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 6: امتحانات ===== -->
+        <div id="section-exams" class="section-content">
+            <div class="section-header">
+                <h2>📝 الامتحانات الشاملة</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-exams">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div id="examsContainer">
+                <!-- سيتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 7: شجرة المعرفة ===== -->
+        <div id="section-tree" class="section-content">
+            <div class="section-header">
+                <h2>🌳 شجرة المعرفة</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-tree">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div id="treeContainer" class="card">
+                <!-- سيتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 8: بنك الأسئلة ===== -->
+        <div id="section-qbank" class="section-content">
+            <div class="section-header">
+                <h2>📚 بنك الأسئلة الشامل (200 سؤال)</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-qbank">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div class="qbank-filters">
+                <select id="qbankUnitFilter"><option value="all">جميع الوحدات</option></select>
+                <input type="text" id="qbankSearchInput" placeholder="بحث في الأسئلة...">
+                <button id="qbankSearchBtn" style="padding:8px 18px; background:#0b2a47; color:#fff; border:none; border-radius:30px;">بحث</button>
+            </div>
+            <div id="qbankContainer">
+                <!-- سيتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 9: مراجعات ===== -->
+        <div id="section-reviews" class="section-content">
+            <div class="section-header">
+                <h2>🔄 المراجعات وبطاقات المراجعة</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-reviews">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div id="reviewsContainer">
+                <!-- سيتم إنشاؤها بواسطة JS -->
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+        <!-- ===== القسم 10: فيديوهات ===== -->
+        <div id="section-videos" class="section-content">
+            <div class="section-header">
+                <h2>🎬 الفيديوهات التعليمية</h2>
+                <div class="header-actions-section">
+                    <button class="btn-fav-toggle" data-section-id="section-videos">⭐ إضافة للمفضلة</button>
+                    <button class="btn-back" onclick="goHome()">🏠 العودة</button>
+                </div>
+            </div>
+            <div class="card" style="text-align:center; padding:30px 20px;">
+                <div style="font-size:48px; margin-bottom:12px;">▶️</div>
+                <h3 style="margin-bottom:8px;">فيديو شرح المواريث</h3>
+                <p style="margin-bottom:18px; color:#3d5a78;">اضغط على الزر لمشاهدة الفيديو على YouTube.</p>
+                <a href="https://youtu.be/3Aj-tq6SVRY" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:12px 28px; background:#ff0000; color:#fff; border-radius:30px; font-weight:700; text-decoration:none;">▶ مشاهدة الفيديو على YouTube</a>
+                <p style="font-size:0.8rem; color:#6a7f9a; margin-top:12px;">(يتطلب اتصالاً بالإنترنت)</p>
+            </div>
+            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
+        </div>
+
+    </div>
+    <!-- ===== نهاية الحاوية ===== -->
+
+    <!-- ================================================================
+    القسم 24: جافا سكريبت (JavaScript) – كل المنطق التفاعلي
+    ================================================================ -->
+    <script>
+        /**
+         * ================================================================
+         * 1. إعداد البيانات – مستخلص من ملفات المواريث
+         * ================================================================
+         */
+
+        // ----- الخرائط الذهنية (8 صور مرفقة) -----
+        // ⚠️ تعليمات تضمين الصور:
+        // 1. استخدم أداة تحويل الصور إلى base64 (مثل: https://base64-image.de/)
+        // 2. قم بتحويل كل صورة webp إلى base64
+        // 3. استبدل الرابط المؤقت (PLACEHOLDER_IMAGE_X) بنتيجة التحويل
+        const mapImages = [
+            { id: 1, label: 'أحكام الإرث العامة', url: 'data:image/webp;base64,PLACEHOLDER_IMAGE_1' },
+            { id: 2, label: 'أصحاب الفروض', url: 'data:image/webp;base64,PLACEHOLDER_IMAGE_2' },
+            { id: 3, label: 'الإرث بالتعصيب', url: 'data:image/webp;base64,PLACEHOLDER_IMAGE_3' },
+            { id: 4, label: 'الحجب والرد والعول', url: 'data:image/webp;base64,PLACEHOLDER_IMAGE_4' },
+            { id: 5, label: 'أركان وشروط الإرث', url: 'data:image/webp;base64,PLACEHOLDER_IMAGE_5' },
+            { id: 6, label: 'أنواع العصبة', url: 'data:image/webp;base64,PLACEHOLDER_IMAGE_6' },
+            { id: 7, label: 'مسائل وموارث خاصة', url: 'data:image/webp;base64,PLACEHOLDER_IMAGE_7' },
+            { id: 8, label: 'شجرة المواريث', url: 'data:image/webp;base64,PLACEHOLDER_IMAGE_8' }
+        ];
+
+        // ----- بيانات الامتحانات (4 امتحانات) -----
+        const examsData = [{
+            title: 'الامتحان الأول: أساسيات الإرث وأصحاب الفروض',
+            questions: [
+                { q: 'ما هي أركان الإرث الثلاثة؟', a: 'المورث، الوارث، التركة.' },
+                { q: 'ما هي شروط الإرث الثلاثة؟', a: 'موت المورث حقيقة أو حكماً، حياة الوارث عند موت مورثه، العلم بالجهة المفضية للإرث.' },
+                { q: 'ما هي موانع الإرث الأساسية؟', a: 'القتل العمد العدوان، واختلاف الدين.' },
+                { q: 'كم عدد أصحاب الفروض في الشريعة الإسلامية؟', a: 'اثنا عشر وارثاً: أربعة من الرجال وثمانية من النساء.' }
+            ]
+        }, {
+            title: 'الامتحان الثاني: العصبات والحجب',
+            questions: [
+                { q: 'ما هو تعريف العاصب؟', a: 'العاصب هو من يرث الباقي بعد أصحاب الفروض، أو كل التركة إذا انفرد.' },
+                { q: 'من هم العصبة بالنفس في جهة البنوة؟', a: 'الابن، ثم ابن الابن وإن نزل.' },
+                { q: 'من يحجب الإخوة بجميع أنواعهم؟', a: 'الابن وابن الابن، والأب.' },
+                { q: 'من يحجب الجد الصحيح؟', a: 'الأب يحجب الجد حجب حرمان.' }
+            ]
+        }, {
+            title: 'الامتحان الثالث: العول والرد وذوو الأرحام',
+            questions: [
+                { q: 'ما هو العول في المواريث؟', a: 'نقصان أنصبة أصحاب الفروض بنسبة فروضهم عند زيادة السهام على أصل المسألة.' },
+                { q: 'ما هو الرد؟', a: 'إرجاع الباقي من التركة على أصحاب الفروض (غير الزوجين) بنسبة فروضهم عند عدم وجود عاصب.' },
+                { q: 'من هم ذوو الأرحام؟', a: 'كل قريب للميت ليس بصاحب فرض ولا عصبة، مثل أولاد البنات وأولاد الأخوات.' },
+                { q: 'ما هي المسألة المشتركة؟', a: 'مشاركة الأخ الشقيق للإخوة لأم في فرض الثلث بالتساوي عند استغراق الفروض للتركة.' }
+            ]
+        }, {
+            title: 'الامتحان الرابع: مسائل خاصة وتطبيقات',
+            questions: [
+                { q: 'كيف يعامل المفقود في الميراث؟', a: 'يوقف له نصيب معاملة الأقل (ذكر أو أنثى) حتى يتبين حاله، ويحكم بوفاته بعد 4 سنوات في ظروف لا يغلب فيها الهلاك.' },
+                { q: 'كيف يعامل الحمل في الميراث؟', a: 'يوقف له نصيب ذكر أو أنثى أو اثنين ذكور (أكثر حظاً) حتى يولد.' },
+                { q: 'كيف يعامل الخنثى المشكل في الميراث؟', a: 'يعامل بأضل حظه (أنثى)، ويوقف الباقي حتى يستبين حاله.' },
+                { q: 'ما هو التخارج في المواريث؟', a: 'اتفاق الورثة طواعية على ترك بعضهم نصيبه من التركة مقابل معلوم مالي.' }
+            ]
+        }];
+
+        // ----- بنك الأسئلة (200 سؤال – من ملف المواريث) -----
+        const qbankData = [
+            // ===== 1. تعريفات الميراث (الأسئلة 1-10) =====
+            { unit: 'تعريفات الميراث', q: 'ما هو تعريف الميراث في الفقه الإسلامي والقانون السوداني؟', a: 'الميراث هو انتقال حتمي لتركة الميت ومنافعه وحقوقه المالية بوفاته لمن استحقها من الورثة شرعاً.' },
+            { unit: 'تعريفات الميراث', q: 'ما هي أركان الإرث؟', a: 'أركان الإرث ثلاثة: المورث، الوارث، والتركة.' },
+            { unit: 'تعريفات الميراث', q: 'ما هي شروط الإرث؟', a: 'شروط الإرث ثلاثة: موت المورث حقيقة أو حكماً، حياة الوارث عند موت مورثه، والعلم بالجهة المفضية للإرث.' },
+            { unit: 'تعريفات الميراث', q: 'ما هي موانع الإرث؟', a: 'موانع الإرث اثنان: القتل العمد العدوان، واختلاف الدين.' },
+            { unit: 'تعريفات الميراث', q: 'ما هي أسباب الإرث؟', a: 'أسباب الإرث ثلاثة: النسب (القرابة)، الزوجية، والولاء.' },
+            { unit: 'تعريفات الميراث', q: 'ما هو الفرض في علم المواريث？', a: 'الفرض هو حصة محددة مقدرة شرعاً للوارث في التركة، لا تزيد إلا بالرد ولا تنقص إلا بالعول.' },
+            { unit: 'تعريفات الميراث', q: 'كم عدد أصحاب الفروض في الشريعة الإسلامية？', a: 'اثنا عشر وارثاً: أربعة من الرجال وثمانية من النساء.' },
+            { unit: 'تعريفات الميراث', q: 'اذكر الرجال الأربعة من أصحاب الفروض.', a: 'الزوج، الأب، الجد الصحيح، الأخ لأم.' },
+            { unit: 'تعريفات الميراث', q: 'اذكر النساء الثمانية من أصحاب الفروض.', a: 'الزوجة، البنت الصلبية، بنت الابن، الأم، الجدة الصحيحة، الأخت الشقيقة، الأخت لأب، الأخت لأم.' },
+            { unit: 'تعريفات الميراث', q: 'ما هي الأنصبة المقدرة في المواريث؟', a: 'الأنصبة الستة هي: النصف، الربع، الثمن، الثلثان، الثلث، السدس، وثلث الباقي في العمريتين.' },
+
+            // ===== 2. فروض الزوجين (الأسئلة 11-20) =====
+            { unit: 'فروض الزوجين', q: 'متى يستحق الزوج النصف؟', a: 'يستحق الزوج النصف من تركة زوجته إذا لم يكن لها فرع وارث مطلقاً.' },
+            { unit: 'فروض الزوجين', q: 'متى يستحق الزوج الربع？', a: 'يستحق الزوج الربع من تركة زوجته إذا كان لها فرع وارث مطلقاً (ابن أو بنت أو ابن ابن).' },
+            { unit: 'فروض الزوجين', q: 'متى تستحق الزوجة الربع؟', a: 'تستحق الزوجة الربع من تركة زوجها إذا لم يكن له فرع وارث مطلقاً.' },
+            { unit: 'فروض الزوجين', q: 'متى تستحق الزوجة الثمن？', a: 'تستحق الزوجة الثمن من تركة زوجها إذا كان له فرع وارث مطلقاً.' },
+            { unit: 'فروض الزوجين', q: 'هل يرث الزوجان معاً？', a: 'نعم، يرث الزوجان معاً في نفس التركة إذا مات المورث وترك زوجة أو زوجاً.' },
+            { unit: 'فروض الزوجين', q: 'ما هو نصيب الزوجة إذا كان للزوج فرع وارث وأم؟', a: 'الزوجة تأخذ الثمن، والأم السدس، والباقي للفرع الوارث.' },
+            { unit: 'فروض الزوجين', q: 'ما هو نصيب الزوج إذا كانت للزوجة أم وأب？', a: 'الزوج يأخذ النصف، والأم السدس، والأب السدس + الباقي تعصيباً.' },
+            { unit: 'فروض الزوجين', q: 'هل تسقط الزوجة من الميراث باختلاف الدين？', a: 'نعم، لا توارث مع اختلاف الدين، فتسقط الزوجة غير المسلمة من ميراث زوجها المسلم.' },
+            { unit: 'فروض الزوجين', q: 'هل تسقط الزوجة بالقتل العمد？', a: 'نعم، القاتل عمداً وعدواناً يحرم من الإرث، فإذا قتلت الزوجة زوجها عمداً حرمت من ميراثه.' },
+            { unit: 'فروض الزوجين', q: 'ما هو نصيب الزوجة من تركة زوجها إذا ترك ابنة واحدة وأباً？', a: 'الزوجة الثمن، والابنة النصف، والأب السدس + الباقي تعصيباً.' },
+
+            // ===== 3. فروض الأبوين والجدود (الأسئلة 21-35) =====
+            { unit: 'فروض الأبوين والجدود', q: 'متى يستحق الأب السدس？', a: 'يستحق الأب السدس إذا كان للميت فرع وارث مذكر (ابن أو ابن ابن).' },
+            { unit: 'فروض الأبوين والجدود', q: 'متى يستحق الأب السدس + الباقي تعصيباً؟', a: 'يستحق الأب السدس + الباقي تعصيباً إذا كان للميت فرع وارث مؤنث (بنت أو بنت ابن).' },
+            { unit: 'فروض الأبوين والجدود', q: 'متى يرث الأب كل التركة؟', a: 'يرث الأب كل التركة بالتعصيب إذا لم يكن للميت فرع وارث ولا أم ولا زوجة.' },
+            { unit: 'فروض الأبوين والجدود', q: 'متى تستحق الأم السدس？', a: 'تستحق الأم السدس في حالتين: 1) إذا كان للميت فرع وارث، 2) إذا كان للميت جمع من الإخوة (اثنان فأكثر).' },
+            { unit: 'فروض الأبوين والجدود', q: 'متى تستحق الأم الثلث？', a: 'تستحق الأم الثلث إذا لم يكن للميت فرع وارث ولا جمع من الإخوة.' },
+            { unit: 'فروض الأبوين والجدود', q: 'متى تستحق الأم ثلث الباقي؟', a: 'تستحق الأم ثلث الباقي بعد نصيب الزوجين في المسألتين العمريتين (إذا كان للميت زوج أو زوجة وأبوان).' },
+            { unit: 'فروض الأبوين والجدود', q: 'ما هي المسألة العمرية الأولى？', a: 'زوج، وأم، وأب. للزوج النصف، وللأم ثلث الباقي بعد نصيب الزوج، وللأب الباقي.' },
+            { unit: 'فروض الأبوين والجدود', q: 'ما هي المسألة العمرية الثانية？', a: 'زوجة، وأم، وأب. للزوجة الربع، وللأم ثلث الباقي بعد نصيب الزوجة، وللأب الباقي.' },
+            { unit: 'فروض الأبوين والجدود', q: 'متى يستحق الجد الصحيح السدس؟', a: 'يستحق الجد الصحيح السدس إذا كان للميت فرع وارث مذكر ولم يكن الأب موجوداً.' },
+            { unit: 'فروض الأبوين والجدود', q: 'متى يرث الجد الصحيح كعاصب？', a: 'يرث الجد الصحيح بالتعصيب إذا لم يكن للميت فرع وارث ولا أب.' },
+            { unit: 'فروض الأبوين والجدود', q: 'هل يحجب الجد الصحيح بالأب؟', a: 'نعم، يحجب الجد الصحيح بالأب حجب حرمان (لا يرث مع الأب).' },
+            { unit: 'فروض الأبوين والجدود', q: 'متى تستحق الجدة الصحيحة السدس？', a: 'تستحق الجدة الصحيحة السدس إذا لم تكن الأم موجودة، ولا جدة أقرب منها.' },
+            { unit: 'فروض الأبوين والجدود', q: 'كم جدة ترث في التركة الواحدة？', a: 'ترث جدة واحدة أو أكثر بالسوية (يشتركن في السدس) إذا كن في درجة واحدة.' },
+            { unit: 'فروض الأبوين والجدود', q: 'هل تحجب الجدة بالأم？', a: 'نعم، تحجب الجدة بالأم حجب حرمان (لا ترث مع الأم).' },
+            { unit: 'فروض الأبوين والجدود', q: 'ما هو نصيب الجدة الصحيحة إذا كان للميت أم وجدة؟', a: 'لا ترث الجدة شيئاً لأن الأم تحجبها.' },
+
+            // ===== 4. فروض البنات وبنات الابن (الأسئلة 36-45) =====
+            { unit: 'فروض الإناث', q: 'متى ترث البنت الصلبية النصف？', a: 'ترث البنت الصلبية النصف إذا كانت منفردة (واحدة) ولم يكن لها معصب (أخ).' },
+            { unit: 'فروض الإناث', q: 'متى ترث البنتان فأكثر الثلثين؟', a: 'ترث البنتان فأكثر الثلثين إذا لم يكن لهن معصب (أخ).' },
+            { unit: 'فروض الإناث', q: 'متى ترث بنت الابن النصف？', a: 'ترث بنت الابن النصف إذا كانت منفردة ولم توجد بنت صلبية ولا معصب.' },
+            { unit: 'فروض الإناث', q: 'متى ترث بنت الابن السدس؟', a: 'ترث بنت الابن السدس إذا وجدت معها بنت صلبية واحدة (تكملة الثلثين).' },
+            { unit: 'فروض الإناث', q: 'متى ترث بنتا الابن فأكثر الثلثين؟', a: 'ترث بنتا الابن فأكثر الثلثين إذا لم توجد بنت صلبية ولا معصب.' },
+            { unit: 'فروض الإناث', q: 'هل تحجب بنت الابن بالبنت الصلبية？', a: 'لا تحجب البنت الصلبية بنت الابن حجب حرمان، بل تنقصها من النصف إلى السدس.' },
+            { unit: 'فروض الإناث', q: 'هل ترث بنت الابن مع البنتين الصلبيتين？', a: 'لا ترث بنت الابن مع البنتين الصلبيتين لأنهما استغرقتا الثلثين.' },
+            { unit: 'فروض الإناث', q: 'ما هو نصيب البنتين الصلبيتين مع الابن？', a: 'البنتان تأخذان الثلثين، والابن يأخذ الباقي تعصيباً (لأن الابن معصب للبنتين).' },
+            { unit: 'فروض الإناث', q: 'ما هو نصيب البنت الصلبية مع ابن الابن؟', a: 'البنت الصلبية تأخذ النصف، وابن الابن يأخذ الباقي تعصيباً.' },
+            { unit: 'فروض الإناث', q: 'هل ترث البنت الصلبية مع الأب والأم？', a: 'نعم، البنت تأخذ النصف، والأم السدس، والأب السدس + الباقي تعصيباً.' },
+
+            // ===== 5. فروض الأخوات (الأسئلة 46-60) =====
+            { unit: 'فروض الأخوات', q: 'متى ترث الأخت الشقيقة النصف؟', a: 'ترث الأخت الشقيقة النصف إذا كانت منفردة، ولم يوجد فرع وارث، ولا أصل مذكر (أب أو جد)، ولا معصب.' },
+            { unit: 'فروض الأخوات', q: 'متى ترث الأختان الشقيقتان فأكثر الثلثين？', a: 'ترث الأختان الشقيقتان فأكثر الثلثين إذا لم يوجد فرع وارث ولا أصل مذكر ولا معصب.' },
+            { unit: 'فروض الأخوات', q: 'متى ترث الأخت لأب النصف？', a: 'ترث الأخت لأب النصف إذا كانت منفردة، ولم توجد أخت شقيقة، ولا فرع وارث، ولا أصل مذكر.' },
+            { unit: 'فروض الأخوات', q: 'متى ترث الأخت لأب السدس？', a: 'ترث الأخت لأب السدس إذا وجدت معها أخت شقيقة واحدة (تكملة الثلثين).' },
+            { unit: 'فروض الأخوات', q: 'متى ترث الأخت لأم السدس？', a: 'ترث الأخت لأم السدس إذا كانت منفردة، ولم يوجد فرع وارث، ولا أصل مذكر.' },
+            { unit: 'فروض الأخوات', q: 'متى يرث الإخوة لأم الثلث？', a: 'يرث الإخوة لأم الثلث إذا كانوا اثنين فأكثر، ولم يوجد فرع وارث، ولا أصل مذكر.' },
+            { unit: 'فروض الأخوات', q: 'هل تحجب الأخت الشقيقة الأخت لأب？', a: 'لا تحجبها حجب حرمان، بل تنقصها من النصف إلى السدس.' },
+            { unit: 'فروض الأخوات', q: 'هل تحجب الأخت لأب الأخت لأم？', a: 'لا، لا تحجب الأخت لأب الأخت لأم، لأنهما من جهتين مختلفتين.' },
+            { unit: 'فروض الأخوات', q: 'متى تعصب الأخت الشقيقة بالغير？', a: 'تعصب الأخت الشقيقة بالغير إذا كان معها أخ شقيق، فيكونان عصبة بالغير.' },
+            { unit: 'فروض الأخوات', q: 'متى تعصب الأخت لأب مع الغير؟', a: 'تعصب الأخت لأب مع الغير إذا كان معها أخ لأب، فيكونان عصبة بالغير.' },
+            { unit: 'فروض الأخوات', q: 'ما هي العصبة مع الغير للأخت الشقيقة؟', a: 'أن تأخذ الأخت الشقيقة الباقي بعد أصحاب الفروض إذا كان معها فرع وارث مؤنث (بنت أو بنت ابن).' },
+            { unit: 'فروض الأخوات', q: 'هل ترث الأخت الشقيقة مع البنت والأب؟', a: 'نعم، البنت النصف، والأب السدس + الباقي، والأخت الشقيقة تحرم لأن الأب يحجبها.' },
+            { unit: 'فروض الأخوات', q: 'ما هو نصيب الأخت الشقيقة مع الزوج والأم？', a: 'الزوج النصف، والأم السدس، والأخت الشقيقة الباقي تعصيباً.' },
+            { unit: 'فروض الأخوات', q: 'هل ترث الأخت لأب مع الأخت الشقيقة والأم؟', a: 'نعم، الأخت الشقيقة النصف، والأم السدس، والأخت لأب السدس تكملة الثلثين.' },
+            { unit: 'فروض الأخوات', q: 'ما هو نصيب الأخت لأم مع الزوج والأم والأخت الشقيقة？', a: 'الزوج النصف، والأم السدس، والأخت لأم السدس، والأخت الشقيقة تبقى لها الباقي تعصيباً (سدس).' },
+
+            // ===== 6. العصبات (الأسئلة 61-75) =====
+            { unit: 'العصبات', q: 'ما هو تعريف العاصب في علم المواريث؟', a: 'العاصب هو من يرث الباقي بعد أصحاب الفروض، أو كل التركة إذا انفرد.' },
+            { unit: 'العصبات', q: 'كم عدد جهات العصوبة بالنفس؟', a: 'خمس جهات مرتبة حسب الأولوية: البنوة، الأبوة، الجدود والإخوة، بنو الإخوة، العمومة.' },
+            { unit: 'العصبات', q: 'من هم العصبة بالنفس؟', a: 'هم الذكور الذين لا يدخل في نسبهم للميت أنثى: الابن، ابن الابن، الأب، الجد، الأخ الشقيق، الأخ لأب، ابن الأخ، العم، ابن العم.' },
+            { unit: 'العصبات', q: 'ما هي العصبة بالغير？', a: 'كل أنثى صاحبة فرض معها عاصب في درجتها (بنت مع ابن، أخت مع أخ)، فيصير الذكر معصباً لها، ويقسم الباقي للذكر مثل حظ الأنثيين.' },
+            { unit: 'العصبات', q: 'ما هي العصبة مع الغير？', a: 'أنثى صاحبة فرض من جهة الأخوة (أخت شقيقة أو لأب) مع وجود فرع وارث مؤنث (بنت أو بنت ابن)، فتأخذ الباقي.' },
+            { unit: 'العصبات', q: 'من هم العصبة بالنفس في جهة البنوة？', a: 'الابن، ثم ابن الابن وإن نزل.' },
+            { unit: 'العصبات', q: 'من هم العصبة بالنفس في جهة الأبوة？', a: 'الأب، ثم الجد الصحيح وإن علا.' },
+            { unit: 'العصبات', q: 'من هم العصبة بالنفس في جهة الجدود والإخوة？', a: 'الجد الصحيح، الإخوة الأشقاء، الإخوة لأب.' },
+            { unit: 'العصبات', q: 'من هم العصبة بالنفس في جهة بني الإخوة？', a: 'أبناء الإخوة الأشقاء، ثم أبناء الإخوة لأب.' },
+            { unit: 'العصبات', q: 'من هم العصبة بالنفس في جهة العمومة？', a: 'الأعمام الأشقاء، ثم الأعمام لأب، ثم أبناؤهم.' },
+            { unit: 'العصبات', q: 'هل يرث العم مع الإخوة？', a: 'لا، الإخوة مقدمون على العم في جهة العصوبة.' },
+            { unit: 'العصبات', q: 'هل يرث ابن العم مع العم？', a: 'لا، العم مقدم على ابن العم لأنه أقرب جهة.' },
+            { unit: 'العصبات', q: 'ما هو نصيب العصبة بالنفس إذا انفرد؟', a: 'يأخذ كل التركة.' },
+            { unit: 'العصبات', q: 'ما هو نصيب العصبة بالنفس مع أصحاب الفروض？', a: 'يأخذ الباقي بعد أخذ أصحاب الفروض أنصبتهم.' },
+            { unit: 'العصبات', q: 'هل يرث العصبة مع وجود أصحاب فروض مستغرقة للتركة？', a: 'لا، إذا استغرقت الفروض التركة فلا شيء للعصبة.' },
+
+            // ===== 7. الحجب (الأسئلة 76-90) =====
+            { unit: 'الحجب', q: 'ما هو تعريف الحجب في المواريث？', a: 'الحجب هو حرمان وارث من الميراث كلياً (حجب حرمان) أو من بعضه (حجب نقصان) لوجود وارث آخر أولى منه.' },
+            { unit: 'الحجب', q: 'ما هو حجب الحرمان？', a: 'إسقاط الوارث من الإرث بالكامل لوجود وارث آخر أولى منه.' },
+            { unit: 'الحجب', q: 'ما هو حجب النقصان？', a: 'تقليل نصيب الوارث من فرض أعلى إلى فرض أدنى مع بقائه في الإرث.' },
+            { unit: 'الحجب', q: 'من يحجب الإخوة بجميع أنواعهم؟', a: 'الابن وابن الابن، والأب.' },
+            { unit: 'الحجب', q: 'من يحجب الأب？', a: 'لا يحجب الأب إلا بالابن وابن الابن (الفرع الوارث المذكر).' },
+            { unit: 'الحجب', q: 'من يحجب الجد الصحيح؟', a: 'الأب يحجب الجد حجب حرمان.' },
+            { unit: 'الحجب', q: 'من تحجب الأم？', a: 'لا تحجب الأم إلا بالفرع الوارث أو جمع الإخوة (حجب نقصان من الثلث إلى السدس).' },
+            { unit: 'الحجب', q: 'من تحجب الجدة？', a: 'الأم تحجب الجدة حجب حرمان.' },
+            { unit: 'الحجب', q: 'من يحجب الزوج من النصف إلى الربع؟', a: 'الفرع الوارث (الابن أو ابن الابن) يحجب الزوج نقصاناً.' },
+            { unit: 'الحجب', q: 'من يحجب الزوجة من الربع إلى الثمن？', a: 'الفرع الوارث (الابن أو ابن الابن) يحجب الزوجة نقصاناً.' },
+            { unit: 'الحجب', q: 'هل يحجب الابن أخواته？', a: 'نعم، الابن يحجب الأخوات حجب حرمان.' },
+            { unit: 'الحجب', q: 'هل يحجب الأب الأم من الثلث إلى السدس？', a: 'لا، الأم تحجب نفسها بالفرع الوارث أو جمع الإخوة، وليس بالأب.' },
+            { unit: 'الحجب', q: 'هل تحجب الأخت الشقيقة الأخت لأب？', a: 'لا تحجبها حجب حرمان، بل تنقصها من النصف إلى السدس (حجب نقصان).' },
+            { unit: 'الحجب', q: 'هل يحجب الأخ الشقيق الأخ لأب？', a: 'نعم، يحجبه حجب حرمان.' },
+            { unit: 'الحجب', q: 'هل تحجب البنت بنات الابن？', a: 'لا تحجبهن حجب حرمان، بل تنقصهن من النصف إلى السدس (حجب نقصان).' },
+
+            // ===== 8. العول والرد (الأسئلة 91-105) =====
+            { unit: 'العول والرد', q: 'ما هو العول في المواريث？', a: 'العول هو نقصان أنصبة أصحاب الفروض بنسبة فروضهم عند زيادة السهام الفرضية على أصل المسألة.' },
+            { unit: 'العول والرد', q: 'ما هو سبب العول？', a: 'سبب العول هو زيادة السهام المفروضة على أصل المسألة الورثية.' },
+            { unit: 'العول والرد', q: 'كيف يتم حل مسائل العول？', a: 'تزيد أصل المسألة إلى عدد السهام الفعلية، ثم يوزع الباقي بنسبة فروضهم.' },
+            { unit: 'العول والرد', q: 'ما هي المسائل التي تعول من 6 إلى 7？', a: 'مسألة: زوج، أخت شقيقة، أخت لأب. للزوج النصف (3)، وللشقيقة النصف (3)، وللأخت لأب السدس (1) = 7/6.' },
+            { unit: 'العول والرد', q: 'ما هي المسائل التي تعول من 6 إلى 8？', a: 'مسألة: زوج، أختان شقيقتان، أخت لأب، أم. للزوج النصف (3)، وللشقيقتين الثلثان (4)، وللأخت لأب السدس (1)، وللأم السدس (1) = 9/6.' },
+            { unit: 'العول والرد', q: 'ما هو الرد في المواريث？', a: 'الرد هو إرجاع الباقي من التركة على أصحاب الفروض (غير الزوجين) بنسبة فروضهم عند عدم وجود عاصب وعدم استغراق الفروض للتركة.' },
+            { unit: 'العول والرد', q: 'متى يحدث الرد？', a: 'يحدث الرد إذا لم تستغرق الفروض التركة ولم يوجد عاصب يستحق الباقي.' },
+            { unit: 'العول والرد', q: 'هل يرد على الزوجين？', a: 'لا يرد على الزوجين في حال وجود أي من أصحاب الفروض أو العصبات، ويرد عليهما فقط إذا كانا وحيدين في التركة.' },
+            { unit: 'العول والرد', q: 'كيف يتم توزيع الرد على أصحاب الفروض？', a: 'يرد الباقي عليهم بنسبة فروضهم الأصلية.' },
+            { unit: 'العول والرد', q: 'ما هي مسألة الرد الشهيرة？', a: 'بنت وأم: للبنت النصف، وللأم السدس، والباقي يرد عليهما بنسبة فروضهما (3:1).' },
+            { unit: 'العول والرد', q: 'ما هي المسألة المشتركة في المواريث？', a: 'المسألة المشتركة هي مشاركة الأخ الشقيق للإخوة لأم في فرض الثلث بالتساوي عند استغراق الفروض للتركة.' },
+            { unit: 'العول والرد', q: 'مثال المسألة المشتركة؟', a: 'زوج، أم، إخوة لأم، أخ شقيق: الزوج النصف (3)، الأم السدس (1)، الإخوة لأم الثلث (2) = 6/6، ويشارك الشقيق في الثلث بالتساوي مع الإخوة لأم.' },
+            { unit: 'العول والرد', q: 'ما هو أصل المسألة الورثية？', a: 'أصل المسألة هو أقل عدد يقبل القسمة على مقامات الفروض.' },
+            { unit: 'العول والرد', q: 'ما هي طريقة تصحيح المسائل الورثية？', a: 'تحديد أصل المسألة، حساب نصيب كل وارث فرضاً، ثم توزيع الباقي على العصبات.' },
+            { unit: 'العول والرد', q: 'هل يطبق العول في جميع المسائل؟', a: 'لا، العول يطبق فقط عندما تزيد السهام على أصل المسألة.' },
+
+            // ===== 9. ذوو الأرحام (الأسئلة 106-120) =====
+            { unit: 'ذوو الأرحام', q: 'من هم ذوو الأرحام؟', a: 'ذوو الأرحام هم كل قريب للميت ليس بصاحب فرض ولا عصبة.' },
+            { unit: 'ذوو الأرحام', q: 'متى يرث ذوو الأرحام؟', a: 'يرثون عند عدم وجود أصحاب فروض (عدا الزوجين) وعدم وجود عصبات.' },
+            { unit: 'ذوو الأرحام', q: 'كم صنفاً يقسم ذوو الأرحام？', a: 'يقسمون إلى أربعة أصناف: أولاد البنات، أولاد الأخوات، الأخوال والخالات، أولاد العمات.' },
+            { unit: 'ذوو الأرحام', q: 'ما هو الصنف الأول من ذوي الأرحام？', a: 'أولاد البنات (أبناء وبنات البنت).' },
+            { unit: 'ذوو الأرحام', q: 'ما هو الصنف الثاني من ذوي الأرحام؟', a: 'أولاد الأخوات (أبناء وبنات الأخت).' },
+            { unit: 'ذوو الأرحام', q: 'ما هو الصنف الثالث من ذوي الأرحام؟', a: 'الأخوال والخالات (إخوة الأم).' },
+            { unit: 'ذوو الأرحام', q: 'ما هو الصنف الرابع من ذوي الأرحام؟', a: 'أولاد العمات (أبناء وبنات العمة).' },
+            { unit: 'ذوو الأرحام', q: 'كيف يتم توريث ذوي الأرحام؟', a: 'يقدم الأقرب درجة، ثم الأقوى جهة، ثم الأقرب قرابة.' },
+            { unit: 'ذوو الأرحام', q: 'هل يرث ابن البنت مع وجود ابن الأخ؟', a: 'لا، ابن الأخ عصبة فيقدم على ابن البنت من ذوي الأرحام.' },
+            { unit: 'ذوو الأرحام', q: 'هل ترث الخالة مع وجود الأخت لأم？', a: 'الأخت لأم صاحبة فرض، فتقدم على الخالة.' },
+            { unit: 'ذوو الأرحام', q: 'هل يرث أولاد الأخوات مع أولاد البنات？', a: 'يقدم أولاد البنات (الصنف الأول) على أولاد الأخوات (الصنف الثاني).' },
+            { unit: 'ذوو الأرحام', q: 'هل ترث الجدة الخامسة من ذوي الأرحام？', a: 'نعم، إذا لم توجد جدة أقرب منها ولا أم، ترث من ذوي الأرحام.' },
+            { unit: 'ذوو الأرحام', q: 'هل يرث العم من ذوي الأرحام？', a: 'العم عاصب بنفسه، وليس من ذوي الأرحام.' },
+            { unit: 'ذوو الأرحام', q: 'هل ترث العمة من ذوي الأرحام？', a: 'العمة من ذوي الأرحام، لأنها ليست بصاحب فرض ولا عصبة.' },
+            { unit: 'ذوو الأرحام', q: 'كيف يقسم المال بين ذوي الأرحام؟', a: 'يقسم المال بينهم بالسوية إذا استووا في الدرجة والجهة.' },
+
+            // ===== 10. مسائل خاصة (الأسئلة 121-140) =====
+            { unit: 'مسائل خاصة', q: 'كيف يعامل المفقود في الميراث؟', a: 'يوقف له نصيب معاملة الأقل (ذكر أو أنثى) حتى يتبين حاله.' },
+            { unit: 'مسائل خاصة', q: 'متى يحكم بموت المفقود？', a: 'يحكم بوفاته بعد مضي 4 سنوات في ظروف لا يغلب فيها الهلاك، وسنتين في ظروف يغلب فيها الهلاك.' },
+            { unit: 'مسائل خاصة', q: 'كيف يعامل الحمل في الميراث？', a: 'يوقف له نصيب ذكر أو أنثى أو اثنين ذكور (أكثر حظاً) حتى يولد.' },
+            { unit: 'مسائل خاصة', q: 'متى يوزع نصيب الحمل？', a: 'يوزع بعد ولادته حياً، ويعطى حسب جنسه وعدده.' },
+            { unit: 'مسائل خاصة', q: 'كيف يعامل الخنثى المشكل في الميراث？', a: 'يعامل بأضل حظه (أنثى)، ويوقف الباقي حتى يستبين حاله.' },
+            { unit: 'مسائل خاصة', q: 'كيف يرث ولد الزنا？', a: 'يرث من الأم وقرابتها فقط، ولا يرث من أبيه الزاني.' },
+            { unit: 'مسائل خاصة', q: 'كيف يرث ولد اللعان？', a: 'يرث من الأم وقرابتها فقط، ولا يرث من أبيه الملاعن.' },
+            { unit: 'مسائل خاصة', q: 'هل يرث المولود بعد موت أبيه بأقل من ستة أشهر؟', a: 'لا، لأنه لم يولد في أقل مدة للحمل.' },
+            { unit: 'مسائل خاصة', q: 'ما هي أقل مدة للحمل وأكثرها في إثبات النسب؟', a: 'أقلها 6 أشهر وأكثرها سنة كاملة.' },
+            { unit: 'مسائل خاصة', q: 'هل يرث المولود إذا ولد بعد موت أبيه بستة أشهر？', a: 'نعم، إذا ولد في أقل مدة الحمل (6 أشهر) يثبت نسبه ويرث.' },
+            { unit: 'مسائل خاصة', q: 'ما هو التخارج في المواريث？', a: 'اتفاق الورثة طواعية على ترك بعضهم نصيبه من التركة مقابل معلوم مالي (عين أو نقود).' },
+            { unit: 'مسائل خاصة', q: 'متى يصح التخارج？', a: 'يصح بعد ثبوت الوفاة وانحصار الإرث، ويكون باتفاق جميع الورثة.' },
+            { unit: 'مسائل خاصة', q: 'هل يشترط العلم بأعيان التركة في التخارج？', a: 'لا يشترط، ويصح التخارج ولو لم تعلم أعيان التركة.' },
+            { unit: 'مسائل خاصة', q: 'ما هو حكم التخارج إذا تبين بعد ذلك نقص التركة أو زيادتها؟', a: 'لا رجوع، ويبقى التخارج صحيحاً.' },
+            { unit: 'مسائل خاصة', q: 'هل يجوز التخارج بين الورثة قبل قسمة التركة؟', a: 'نعم، يجوز التخارج قبل القسمة وبعدها.' },
+
+            // ===== 11. ترتيب الحقوق (الأسئلة 141-155) =====
+            { unit: 'ترتيب الحقوق', q: 'ما هي الحقوق المتعلقة بالتركة وترتيبها؟', a: 'ترتب تصاعدياً: 1) نفقات تجهيز المتوفى، 2) قضاء ديون المتوفى، 3) تنفيذ الوصية في حدود الثلث، 4) توزيع الباقي على الورثة.' },
+            { unit: 'ترتيب الحقوق', q: 'هل تقدم نفقات التجهيز على الديون？', a: 'نعم، تقدم نفقات التجهيز بالمعروف على جميع الحقوق الأخرى.' },
+            { unit: 'ترتيب الحقوق', q: 'هل تقدم الديون على الوصية？', a: 'نعم، تقدم الديون على الوصية.' },
+            { unit: 'ترتيب الحقوق', q: 'هل تقدم الوصية على الميراث？', a: 'نعم، تقدم الوصية في حدود الثلث على توزيع الباقي للورثة.' },
+            { unit: 'ترتيب الحقوق', q: 'ما هو حكم الدين المؤجل في التركة؟', a: 'يؤخذ من التركة حالاً إذا حل أجله، وإلا يؤخر.' },
+            { unit: 'ترتيب الحقوق', q: 'هل تسقط ديون المتوفى بموته？', a: 'لا، ديون المتوفى تبقى في ذمته وتقضى من تركته.' },
+            { unit: 'ترتيب الحقوق', q: 'ما هو حد تنفيذ الوصية？', a: 'تنفذ الوصية في حدود ثلث التركة، وما زاد يتوقف على إجازة الورثة الراشدين.' },
+            { unit: 'ترتيب الحقوق', q: 'هل تجوز الوصية لوارث？', a: 'لا تجوز الوصية لوارث إلا إذا أجازها بقية الورثة الراشدين بعد وفاة الموصي.' },
+            { unit: 'ترتيب الحقوق', q: 'ما هي الوصية بالتنزيل？', a: 'وصية قانونية بإلحاق شخص غير وارث (كالأحفاد) بميراث الموصي بنصيب والدهم في حدود الثلث.' },
+            { unit: 'ترتيب الحقوق', q: 'متى تنفذ الوصية بالتنزيل？', a: 'تنفذ بقوة القانون في حدود الثلث دون حاجة لإجازة الورثة.' },
+            { unit: 'ترتيب الحقوق', q: 'هل تزاحم الوصايا بعضها البعض？', a: 'نعم، إذا تعددت الوصايا وزادت عن الثلث، تقسم الوصايا بنسبة ثلث التركة.' },
+            { unit: 'ترتيب الحقوق', q: 'ما هو الدين الذي يقدم على غيره في التركة？', a: 'الدين الذي فيه رهن أو كفالة يقدم على الدين المرسل.' },
+            { unit: 'ترتيب الحقوق', q: 'هل تقدم نفقة الزوجة على ديون التجارة？', a: 'نعم، النفقة المستمرة لها حق الامتياز والأولوية.' },
+            { unit: 'ترتيب الحقوق', q: 'ما هو حكم الدين إذا لم تف به التركة？', a: 'يقسم المال بين الدائنين بنسبة ديونهم.' },
+            { unit: 'ترتيب الحقوق', q: 'هل تسقط حقوق الورثة بديون المتوفى？', a: 'لا تسقط، وإنما تقضى الديون من التركة قبل توزيعها على الورثة.' },
+
+            // ===== 12. موانع الإرث (الأسئلة 156-170) =====
+            { unit: 'موانع الإرث', q: 'ما هو أثر القتل العمد على الإرث？', a: 'القاتل عمداً وعدواناً يحرم من إرث المقتول.' },
+            { unit: 'موانع الإرث', q: 'هل يحرم القاتل خطأ من الإرث？', a: 'لا يحرم من الإرث، ويرث كما لو لم يقتل.' },
+            { unit: 'موانع الإرث', q: 'هل يحرم القاتل شريكاً من الإرث？', a: 'نعم، كل من شارك في القتل عمداً يحرم من الإرث.' },
+            { unit: 'موانع الإرث', q: 'هل يحرم القاتل إذا كان دون سن المسؤولية？', a: 'لا يحرم لأنه غير مكلف وقت الفعل.' },
+            { unit: 'موانع الإرث', q: 'هل يحرم القاتل المكرَه من الإرث？', a: 'لا يحرم إذا كان مكرهاً على القتل.' },
+            { unit: 'موانع الإرث', q: 'ما هو أثر اختلاف الدين على الإرث？', a: 'لا توارث مع اختلاف الدين، فلا يرث المسلم من الكافر ولا الكافر من المسلم.' },
+            { unit: 'موانع الإرث', q: 'هل يرث المسلم من الكافر في القانون السوداني？', a: 'لا، مبدأ عدم التوارث بين المسلم والكافر سارٍ في القانون السوداني.' },
+            { unit: 'موانع الإرث', q: 'هل يرث المرتد من أقاربه المسلمين？', a: 'لا، المرتد لا يرث ولا يورث.' },
+            { unit: 'موانع الإرث', q: 'هل يرث غير المسلم من المسلم في الشريعة？', a: 'لا، لا توارث بين المسلم وغير المسلم.' },
+            { unit: 'موانع الإرث', q: 'ما هو حكم إرث القاتل إذا عفا عنه أولياء المقتول？', a: 'العفو لا يزيل حجب القاتل عن الإرث، فما دام قتله عمداً عدواناً فهو محروم.' },
+            { unit: 'موانع الإرث', q: 'هل يحرم القاتل إذا كانت الجريمة في حال دفاع شرعي？', a: 'لا يحرم، لأن القتل في دفاع شرعي ليس عدواناً.' },
+            { unit: 'موانع الإرث', q: 'هل يرث القاتل إذا قتل مورثه خطأ ثم مات المورث متأثراً بجراحه？', a: 'يرث، لأن القتل خطأ لا يمنع الإرث.' },
+            { unit: 'موانع الإرث', q: 'هل يحرم القاتل من جميع الميراث أم من نصيبه فقط？', a: 'يحرم من جميع الميراث، فلا يأخذ شيئاً.' },
+            { unit: 'موانع الإرث', q: 'هل يرث القاتل إذا تاب من قتله？', a: 'التوبة لا تزيل الحجب، فالقاتل محروم من الإرث ولو تاب.' },
+            { unit: 'موانع الإرث', q: 'هل يحرم القاتل إذا كان مريضاً عقلياً وقت القتل？', a: 'لا يحرم، لأنه غير مكلف.' },
+
+            // ===== 13. مسائل تطبيقية (الأسئلة 171-190) =====
+            { unit: 'تطبيقات', q: 'توفي رجل عن: زوجة، ابن، بنت. وزع التركة.', a: 'الزوجة الثمن، والباقي للابن والبنت للذكر مثل حظ الأنثيين.' },
+            { unit: 'تطبيقات', q: 'توفي رجل عن: زوجة، أم، أب، ابن. وزع التركة.', a: 'الزوجة الثمن، والأم السدس، والأب السدس، والابن الباقي تعصيباً.' },
+            { unit: 'تطبيقات', q: 'توفيت امرأة عن: زوج، أم، أخت شقيقة. وزع التركة.', a: 'الزوج النصف، والأم السدس، والأخت الشقيقة الباقي تعصيباً (الثلث).' },
+            { unit: 'تطبيقات', q: 'توفي رجل عن: بنت، ابن ابن، أخ. وزع التركة.', a: 'البنت النصف، وابن الابن الباقي تعصيباً، والأخ محروم (يحجبه ابن الابن).' },
+            { unit: 'تطبيقات', q: 'توفيت امرأة عن: زوج، أخت لأم، أخت شقيقة. وزع التركة.', a: 'الزوج النصف، والأخت لأم السدس، والأخت الشقيقة الباقي تعصيباً (الثلث).' },
+            { unit: 'تطبيقات', q: 'توفي رجل عن: أم، جد، أخ. وزع التركة.', a: 'الأم الثلث، والجد السدس (لوجود الفرع الوارث المؤنث)، والأخ الباقي تعصيباً.' },
+            { unit: 'تطبيقات', q: 'توفيت امرأة عن: زوج، أم، إخوة لأم (2)، أخ شقيق. وزع التركة (المسألة المشتركة).', a: 'الزوج النصف (3)، الأم السدس (1)، الإخوة لأم الثلث (2). يشارك الشقيق الإخوة لأم في الثلث بالتساوي.' },
+            { unit: 'تطبيقات', q: 'توفي رجل عن: زوجة، بنت، بنت ابن، أب. وزع التركة.', a: 'الزوجة الثمن، والبنت النصف، وبنت الابن السدس تكملة الثلثين، والأب السدس + الباقي تعصيباً.' },
+            { unit: 'تطبيقات', q: 'توفيت امرأة عن: زوج، أخت شقيقة، أخت لأب، أخت لأم. وزع التركة.', a: 'الزوج النصف (3)، والأخت الشقيقة النصف (3)، والأخت لأب السدس (1) = عول إلى 7. الأخت لأم تحجب.' },
+            { unit: 'تطبيقات', q: 'توفي رجل عن: أم، جدة، إخوة لأم (3). وزع التركة.', a: 'الأم السدس (لوجود الإخوة)، والجدة محجوبة بالأم، والإخوة لأم الثلث، والباقي يرد على الأم والإخوة بنسبة فروضهم.' },
+            { unit: 'تطبيقات', q: 'توفيت امرأة عن: زوج، أب، أم، ابنة ابن. وزع التركة.', a: 'الزوج الربع، والأب السدس + الباقي، والأم السدس، وبنت الابن محجوبة (لا ترث مع الأب والزوج).' },
+            { unit: 'تطبيقات', q: 'توفي رجل عن: زوجة، ابنتان، أب، أم. وزع التركة.', a: 'الزوجة الثمن، والابنتان الثلثان، والأم السدس، والأب السدس + الباقي تعصيباً.' },
+            { unit: 'تطبيقات', q: 'توفيت امرأة عن: زوج، أخ شقيق، أخت شقيقة. وزع التركة.', a: 'الزوج النصف، والأخ الشقيق الباقي تعصيباً، والأخت الشقيقة محجوبة بالأخ الشقيق.' },
+            { unit: 'تطبيقات', q: 'توفي رجل عن: بنتان، ابن، أم. وزع التركة.', a: 'البنتان الثلثان، والأم السدس، والابن الباقي تعصيباً (السدس).' },
+            { unit: 'تطبيقات', q: 'توفيت امرأة عن: زوج، أختان شقيقتان، أخت لأم. وزع التركة.', a: 'الزوج النصف (3)، والأختان الشقيقتان الثلثان (4) = عول إلى 7. الأخت لأم محجوبة.' },
+            { unit: 'تطبيقات', q: 'توفي رجل عن: أم، إخوة لأم (2)، أخ شقيق. وزع التركة.', a: 'الأم السدس، والإخوة لأم الثلث، والأخ الشقيق الباقي تعصيباً (النصف).' },
+            { unit: 'تطبيقات', q: 'توفيت امرأة عن: زوج، جدة، أخت لأب. وزع التركة.', a: 'الزوج النصف، والجدة السدس، والأخت لأب الباقي تعصيباً (الثلث).' },
+            { unit: 'تطبيقات', q: 'توفي رجل عن: ابن، ابن ابن، أخ شقيق. وزع التركة.', a: 'الابن الباقي كله تعصيباً، وابن الابن محجوب بالابن، والأخ محجوب.' },
+            { unit: 'تطبيقات', q: 'توفيت امرأة عن: زوج، أم، أب، أخت لأم. وزع التركة.', a: 'الزوج النصف، والأم السدس، والأب السدس + الباقي، والأخت لأم محجوبة بالأب.' },
+            { unit: 'تطبيقات', q: 'توفي رجل عن: بنت، بنت ابن، أخ شقيق. وزع التركة.', a: 'البنت النصف، وبنت الابن السدس تكملة الثلثين، والأخ الباقي تعصيباً (السدس).' },
+
+            // ===== 14. مسائل متقدمة (الأسئلة 191-200) =====
+            { unit: 'مسائل متقدمة', q: 'ما هو ميراث المطلقة ثلاثاً إذا مات زوجها في عدتها？', a: 'لا ترث، لأن الطلاق بائن بينونة كبرى يقطع الرابطة الزوجية.' },
+            { unit: 'مسائل متقدمة', q: 'هل ترث المرأة من زوجها إذا كانت في عدة طلاق رجعي ومات？', a: 'نعم، ترث لأن الطلاق الرجعي لا ينهي عقد الزواج حتى تنقضي العدة.' },
+            { unit: 'مسائل متقدمة', q: 'ما هو ميراث المفقود عند ظهوره حياً بعد توزيع التركة？', a: 'يسترد ما بقي من ماله في أيدي الورثة، ولا يرجع عليهم بما استهلكوه.' },
+            { unit: 'مسائل متقدمة', q: 'ما هو حكم التخارج إذا تبين أن التركة فيها ديون أكثر من قيمتها？', a: 'التخارج صحيح، ولا رجوع فيه.' },
+            { unit: 'مسائل متقدمة', q: 'هل يرث المولود الذي مات بعد ولادته بلحظات？', a: 'نعم، يرث إذا ولد حياً ولو مات بعد ذلك، وتوزع تركته على ورثته.' },
+            { unit: 'مسائل متقدمة', q: 'ما هو ميراث الخنثى المشكل إذا ظهرت عليه علامات الذكورة بعد البلوغ؟', a: 'يؤخذ بالعلامات الظاهرة، ويعطى نصيب الذكر إن ظهرت علامات الذكورة.' },
+            { unit: 'مسائل متقدمة', q: 'هل يرث ابن الابن مع ابن العم？', a: 'نعم، ابن الابن مقدم على ابن العم لأنه أقرب جهة (البنوة).' },
+            { unit: 'مسائل متقدمة', q: 'ما هو نصيب الجدة الصحيحة مع الأم والأب والزوج？', a: 'لا ترث الجدة لأن الأم تحجبها.' },
+            { unit: 'مسائل متقدمة', q: 'هل ترث الأخت لأب مع الأختين الشقيقتين والأم？', a: 'الأختان الشقيقتان الثلثان، والأم السدس، والأخت لأب محجوبة.' },
+            { unit: 'مسائل متقدمة', q: 'ما هو حكم التخارج بين الورثة إذا كان أحدهم قاصراً？', a: 'لا يصح تخارج القاصر إلا بإذن وليه أو القاضي وثبوت المصلحة.' }
+        ];
+
+        // ----- بطاقات المراجعة -----
+        const reviewCards = [
+            { front: 'ما هي أركان الإرث الثلاثة؟', back: 'المورث، الوارث، التركة.' },
+            { front: 'ما هي شروط الإرث الثلاثة؟', back: 'موت المورث، حياة الوارث، العلم بالجهة.' },
+            { front: 'ما هي موانع الإرث الأساسية؟', back: 'القتل العمد العدوان، واختلاف الدين.' },
+            { front: 'كم عدد أصحاب الفروض في الشريعة الإسلامية؟', back: 'اثنا عشر وارثاً.' },
+            { front: 'ما هو الفرض في علم المواريث؟', back: 'حصة محددة مقدرة شرعاً للوارث في التركة.' },
+            { front: 'ما هو العول في المواريث؟', back: 'نقصان أنصبة أصحاب الفروض عند زيادة السهام على أصل المسألة.' },
+            { front: 'ما هو الرد في المواريث؟', back: 'إرجاع الباقي على أصحاب الفروض غير الزوجين.' },
+            { front: 'من هم ذوو الأرحام؟', back: 'كل قريب ليس بصاحب فرض ولا عصبة.' },
+            { front: 'ما هي المسألة المشتركة؟', back: 'مشاركة الأخ الشقيق للإخوة لأم في الثلث بالتساوي.' },
+            { front: 'كيف يعامل المفقود في الميراث؟', back: 'يوقف له نصيب معاملة الأقل حتى يتبين حاله.' },
+            { front: 'كيف يعامل الحمل في الميراث؟', back: 'يوقف له أوفر النصيبين حتى يولد.' },
+            { front: 'كيف يعامل الخنثى المشكل في الميراث؟', back: 'يعامل بأضل حظه (أنثى).' }
+        ];
+
+        // ----- شجرة المعرفة -----
+        const treeData = {
+            label: 'علم المواريث (الفقه الإسلامي والقانون السوداني)',
+            children: [{
+                label: 'أحكام الإرث العامة',
+                children: [
+                    { label: 'أركان الإرث', detail: 'المورث، الوارث، التركة.' },
+                    { label: 'شروط الإرث', detail: 'موت المورث، حياة الوارث، العلم بالجهة.' },
+                    { label: 'أسباب الإرث', detail: 'النسب، الزوجية، الولاء.' },
+                    { label: 'موانع الإرث', detail: 'القتل العمد، اختلاف الدين.' },
+                    { label: 'حقوق التركة المرتبة', detail: 'تجهيز، ديون، وصية، ميراث.' }
+                ]
+            }, {
+                label: 'أصحاب الفروض',
+                children: [
+                    { label: 'النصف', detail: 'الزوج (بلا فرع)، البنت المنفردة، الأخت الشقيقة المنفردة.' },
+                    { label: 'الربع', detail: 'الزوج (مع الفرع)، الزوجة (بلا فرع).' },
+                    { label: 'الثمن', detail: 'الزوجة (مع الفرع).' },
+                    { label: 'الثلثان', detail: 'بنتان فأكثر، أختان شقيقتان فأكثر.' },
+                    { label: 'الثلث', detail: 'الأم (بدون فرع أو إخوة)، الإخوة لأم.' },
+                    { label: 'السدس', detail: 'الأب، الأم (مع فرع أو إخوة)، الجدة، بنت الابن، الأخت لأب، الأخ لأم.' }
+                ]
+            }, {
+                label: 'الإرث بالتعصيب',
+                children: [
+                    { label: 'عصبة بالنفس', detail: 'جهة البنوة، الأبوة، الجدود والإخوة، بنو الإخوة، العمومة.' },
+                    { label: 'عصبة بالغير', detail: 'بنت مع ابن، أخت مع أخ – للذكر مثل حظ الأنثيين.' },
+                    { label: 'عصبة مع الغير', detail: 'الأخت الشقيقة مع البنت أو بنت الابن.' }
+                ]
+            }, {
+                label: 'الحجب والرد والعول',
+                children: [
+                    { label: 'الحجب', detail: 'حرمان (إسقاط كلي) ونقصان (تقليل النصيب).' },
+                    { label: 'العول', detail: 'زيادة أصل المسألة عند زيادة السهام.' },
+                    { label: 'الرد', detail: 'إرجاع الباقي على أصحاب الفروض غير الزوجين.' }
+                ]
+            }, {
+                label: 'مسائل وموارث خاصة',
+                children: [
+                    { label: 'المفقود', detail: 'يوقف له نصيب معاملة الأقل.' },
+                    { label: 'الحمل', detail: 'يوقف له أوفر النصيبين.' },
+                    { label: 'الخنثى المشكل', detail: 'يعامل بأضل حظه (أنثى).' },
+                    { label: 'ولد الزنا وولد اللعان', detail: 'يرثان من الأم وقرابتها فقط.' },
+                    { label: 'التخارج', detail: 'اتفاق الورثة على ترك النصيب مقابل معلوم.' }
+                ]
+            }]
+        };
+
+        // ================================================================
+        // 2. الدوال الأساسية
+        // ================================================================
+
+        function showSection(sectionId) {
+            document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('mainScreen').style.display = 'none';
+
+            if (sectionId === 'main') {
+                document.getElementById('mainScreen').style.display = 'block';
+                return;
+            }
+
+            const target = document.getElementById('section-' + sectionId);
+            if (target) target.classList.add('active');
+
+            document.getElementById('searchArea').classList.remove('active');
+            document.getElementById('searchResults').classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goHome() {
+            showSection('main');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.showSection = showSection;
+        window.goHome = goHome;
+
+        // ================================================================
+        // 3. دوال العرض
+        // ================================================================
+
+        function renderMaps() {
+            const container = document.getElementById('mapsGallery');
+            if (!container) return;
+            container.innerHTML = mapImages.map(m => `
+                    <div class="map-item">
+                        <img src="${m.url}" alt="${m.label}" loading="lazy" onerror="this.style.display='none'">
+                        <div class="map-label">🗺️ ${m.label}</div>
+                    </div>
+                `).join('');
+        }
+
+        function renderExams() {
+            const container = document.getElementById('examsContainer');
+            if (!container) return;
+            container.innerHTML = examsData.map(exam => `
+                    <div class="card">
+                        <h3>${exam.title}</h3>
+                        ${exam.questions.map((q, i) => `
+                            <div style="margin:12px 0; padding:10px 14px; background:#f6f9ff; border-radius:12px;">
+                                <p><strong>س${i+1}:</strong> ${q.q}</p>
+                                <details>
+                                    <summary style="cursor:pointer; color:#1f4a7a; font-weight:600;">🔽 عرض الإجابة</summary>
+                                    <div style="padding:8px 12px; background:#eaf0f8; border-radius:8px; margin-top:6px;">${q.a}</div>
+                                </details>
+                            </div>
+                        `).join('')}
+                    </div>
+                `).join('');
+        }
+
+        function renderQBank(filterUnit = 'all', searchText = '') {
+            const container = document.getElementById('qbankContainer');
+            if (!container) return;
+            let filtered = qbankData;
+            if (filterUnit !== 'all') filtered = filtered.filter(item => item.unit === filterUnit);
+            if (searchText.trim()) {
+                const s = searchText.trim().toLowerCase();
+                filtered = filtered.filter(item => item.q.toLowerCase().includes(s) || item.a.toLowerCase().includes(s));
+            }
+            if (filtered.length === 0) {
+                container.innerHTML = '<p style="color:#6a7f9a;">لا توجد أسئلة تطابق المعايير.</p>';
+                return;
+            }
+            container.innerHTML = filtered.map((item, idx) => `
+                    <div class="qbank-item">
+                        <div class="q">${idx+1}. ${item.q}</div>
+                        <div class="a">📌 ${item.a}</div>
+                        <div style="font-size:0.8rem; color:#6a7f9a; margin-top:4px;">الوحدة: ${item.unit}</div>
+                    </div>
+                `).join('');
+        }
+
+        function renderReviews() {
+            const container = document.getElementById('reviewsContainer');
+            if (!container) return;
+
+            let html = `<h3>📘 مراجعات قصيرة</h3>`;
+            const shortReviews = [
+                { title: 'أركان وشروط الإرث', items: ['أركان: المورث، الوارث، التركة.', 'شروط: موت المورث، حياة الوارث، العلم بالجهة.', 'أسباب: النسب، الزوجية، الولاء.', 'موانع: القتل العمد، اختلاف الدين.'] },
+                { title: 'أصحاب الفروض', items: ['النصف: الزوج (بلا فرع)، البنت المنفردة، الأخت الشقيقة المنفردة.', 'الربع: الزوج (مع الفرع)، الزوجة (بلا فرع).', 'الثمن: الزوجة (مع الفرع).', 'الثلثان: بنتان فأكثر، أختان شقيقتان فأكثر.', 'الثلث: الأم (بدون فرع أو إخوة)، الإخوة لأم.', 'السدس: الأب، الأم (مع فرع أو إخوة)، الجدة، بنت الابن، الأخت لأب، الأخ لأم.'] },
+                { title: 'العصبات', items: ['عصبة بالنفس: البنوة، الأبوة، الجدود والإخوة، بنو الإخوة، العمومة.', 'عصبة بالغير: أنثى مع عاصب في درجتها (للذكر مثل حظ الأنثيين).', 'عصبة مع الغير: الأخت الشقيقة مع البنت.'] },
+                { title: 'الحجب والعول والرد', items: ['حجب حرمان: إسقاط كامل (الابن يحجب الإخوة).', 'حجب نقصان: تقليل النصيب (الفرع الوارث ينقص الزوج).', 'العول: زيادة أصل المسألة.', 'الرد: إرجاع الباقي على أصحاب الفروض غير الزوجين.'] }
+            ];
+            shortReviews.forEach(r => {
+                html += `<div class="card"><h4>${r.title}</h4><ul>${r.items.map(i => `<li>${i}</li>`).join('')}</ul></div>`;
+            });
+
+            html += `<h3 style="margin-top:24px;">🔄 بطاقات المراجعة (اضغط للكشف)</h3>`;
+            reviewCards.forEach(card => {
+                html += `
+                        <div class="review-card" onclick="this.classList.toggle('open')">
+                            <div class="front">❓ ${card.front}</div>
+                            <div class="back">✅ ${card.back}</div>
+                        </div>
+                    `;
+            });
+            container.innerHTML = html;
+        }
+
+        function renderTree() {
+            const container = document.getElementById('treeContainer');
+            if (!container) return;
+
+            function buildTree(node, level = 0) {
+                let html = `<div class="tree-node" style="margin-right:${level*12}px;">`;
+                html += `<div class="node-label" onclick="this.closest('.tree-node').classList.toggle('open')">📂 ${node.label}</div>`;
+                if (node.detail) {
+                    html += `<div class="node-detail">${node.detail}</div>`;
+                }
+                if (node.children && node.children.length) {
+                    html += `<div class="node-children">`;
+                    node.children.forEach(child => { html += buildTree(child, level + 1); });
+                    html += `</div>`;
+                }
+                html += `</div>`;
+                return html;
+            }
+            container.innerHTML = buildTree(treeData);
+        }
+
+        // ================================================================
+        // 4. البحث
+        // ================================================================
+
+        function normalizeText(text) {
+            text = text.replace(/[\u064B-\u065F\u0670]/g, '');
+            text = text.replace(/[آأإ]/g, 'ا');
+            text = text.replace(/ة/g, 'ه');
+            text = text.replace(/ي/g, 'ى');
+            return text.toLowerCase().trim();
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            const resultsDiv = document.getElementById('searchResults');
+
+            if (!query) {
+                resultsDiv.classList.remove('active');
+                resultsDiv.innerHTML = '';
+                return;
+            }
+
+            const mainContent = document.querySelector('.container');
+            const clone = mainContent.cloneNode(true);
+            const toRemove = clone.querySelectorAll('.search-area, .search-results, .fav-panel, .app-header');
+            toRemove.forEach(el => el.remove());
+
+            const fullText = clone.textContent || '';
+            const normalizedFull = normalizeText(fullText);
+            const normalizedQuery = normalizeText(query);
+
+            if (!normalizedFull.includes(normalizedQuery)) {
+                resultsDiv.innerHTML = '<p style="padding:10px;">❌ لا توجد نتائج مطابقة.</p>';
+                resultsDiv.classList.add('active');
+                return;
+            }
+
+            const lines = fullText.split('\n').filter(line => line.trim().length > 3);
+            const matches = [];
+            lines.forEach(line => {
+                if (normalizeText(line).includes(normalizedQuery)) {
+                    matches.push(line.trim());
+                }
+            });
+
+            if (matches.length === 0) {
+                resultsDiv.innerHTML = '<p style="padding:10px;">❌ لا توجد نتائج مطابقة.</p>';
+                resultsDiv.classList.add('active');
+                return;
+            }
+
+            let html = '<ul style="list-style:none; padding:0;">';
+            const topMatches = matches.slice(0, 15);
+            topMatches.forEach(line => {
+                const regex = new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+                const highlighted = line.replace(regex, match => `<span class="highlight">${match}</span>`);
+                html += `<li style="padding:6px 0; border-bottom:1px solid #eef3f8;">${highlighted}</li>`;
+            });
+            if (matches.length > 15) {
+                html += `<li style="color:#6a7f9a;">... و ${matches.length - 15} نتيجة أخرى</li>`;
+            }
+            html += '</ul>';
+            resultsDiv.innerHTML = html;
+            resultsDiv.classList.add('active');
+        }
+
+        // ================================================================
+        // 5. المفضلة
+        // ================================================================
+
+        const FAV_KEY = 'mirathFavs';
+        let favorites = JSON.parse(localStorage.getItem(FAV_KEY)) || [];
+
+        function saveFavorites() {
+            localStorage.setItem(FAV_KEY, JSON.stringify(favorites));
+            renderFavList();
+            updateFavButtons();
+        }
+
+        function renderFavList() {
+            const list = document.getElementById('favList');
+            if (!list) return;
+            if (favorites.length === 0) {
+                list.innerHTML = '<li style="color:#6a7f9a;">لا توجد مفضلات حالياً.</li>';
+                return;
+            }
+            list.innerHTML = favorites.map(id => {
+                const el = document.getElementById(id);
+                const title = el ? (el.querySelector('h2')?.textContent || id) : id;
+                return `<li><a href="#" onclick="showSection('${id.replace('section-','')}'); return false;">${title}</a> <button class="fav-remove" onclick="removeFav('${id}')">✖</button></li>`;
+            }).join('');
+        }
+
+        function removeFav(id) {
+            favorites = favorites.filter(f => f !== id);
+            saveFavorites();
+        }
+
+        function toggleFav(id) {
+            if (favorites.includes(id)) {
+                favorites = favorites.filter(f => f !== id);
+            } else {
+                favorites.push(id);
+            }
+            saveFavorites();
+        }
+
+        function updateFavButtons() {
+            document.querySelectorAll('.btn-fav-toggle').forEach(btn => {
+                const id = btn.dataset.sectionId;
+                if (favorites.includes(id)) {
+                    btn.classList.add('is-fav');
+                    btn.textContent = '⭐ في المفضلة';
+                } else {
+                    btn.classList.remove('is-fav');
+                    btn.textContent = '⭐ إضافة للمفضلة';
+                }
+            });
+        }
+
+        // ================================================================
+        // 6. تهيئة بنك الأسئلة
+        // ================================================================
+
+        function initQBank() {
+            const select = document.getElementById('qbankUnitFilter');
+            if (!select) return;
+            const units = [...new Set(qbankData.map(item => item.unit))];
+            units.forEach(u => {
+                const opt = document.createElement('option');
+                opt.value = u;
+                opt.textContent = u;
+                select.appendChild(opt);
+            });
+
+            select.addEventListener('change', function() {
+                renderQBank(this.value, document.getElementById('qbankSearchInput').value);
+            });
+
+            document.getElementById('qbankSearchBtn').addEventListener('click', function() {
+                renderQBank(document.getElementById('qbankUnitFilter').value, document.getElementById('qbankSearchInput')
+                    .value);
+            });
+
+            document.getElementById('qbankSearchInput').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    renderQBank(document.getElementById('qbankUnitFilter').value, this.value);
+                }
+            });
+
+            renderQBank('all', '');
+        }
+
+        // ================================================================
+        // 7. التهيئة العامة
+        // ================================================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            renderMaps();
+            renderExams();
+            renderTree();
+            renderReviews();
+            initQBank();
+
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const section = this.dataset.section;
+                    if (section) showSection(section);
+                });
+            });
+
+            document.getElementById('btnHome').addEventListener('click', goHome);
+
+            document.getElementById('btnSearchToggle').addEventListener('click', function() {
+                const area = document.getElementById('searchArea');
+                area.classList.toggle('active');
+                if (area.classList.contains('active')) {
+                    document.getElementById('searchInput').focus();
+                } else {
+                    document.getElementById('searchResults').classList.remove('active');
+                }
+            });
+
+            document.getElementById('searchBtn').addEventListener('click', performSearch);
+            document.getElementById('searchInput').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') performSearch();
+            });
+            document.getElementById('clearSearchBtn').addEventListener('click', function() {
+                document.getElementById('searchInput').value = '';
+                document.getElementById('searchResults').classList.remove('active');
+                document.getElementById('searchResults').innerHTML = '';
+            });
+
+            document.getElementById('btnFavToggle').addEventListener('click', function() {
+                const panel = document.getElementById('favPanel');
+                panel.classList.toggle('active');
+                renderFavList();
+            });
+
+            document.querySelectorAll('.btn-fav-toggle').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const id = this.dataset.sectionId;
+                    if (id) {
+                        toggleFav(id);
+                        if (favorites.includes(id)) {
+                            this.classList.add('is-fav');
+                            this.textContent = '⭐ في المفضلة';
+                        } else {
+                            this.classList.remove('is-fav');
+                            this.textContent = '⭐ إضافة للمفضلة';
+                        }
+                        renderFavList();
+                    }
+                });
+            });
+
+            const scrollPos = localStorage.getItem('mirathScrollPos');
+            if (scrollPos) window.scrollTo(0, parseInt(scrollPos, 10));
+            window.addEventListener('beforeunload', function() {
+                localStorage.setItem('mirathScrollPos', window.scrollY);
+            });
+
+            updateFavButtons();
+
+            console.log('✅ مذكرة النجاح – علم المواريث جاهزة مع 200 سؤال.');
+            console.log('📌 الصور: استبدل PLACEHOLDER_IMAGE_X بالـ base64 الفعلي للصور المرفقة.');
+        });
+    </script>
+
+</body>
+</html>
