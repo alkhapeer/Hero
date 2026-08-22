@@ -634,8 +634,8 @@ Subject: 0
     </style>
 
 <!-- =========================================================
-     HERO_PROTECTED_APP v2 (Shared)
-     Offline License Protection
+     HERO_PROTECTED_APP v2 (Shared) – معدل
+     Offline License Protection + Trial Activation Button
 ========================================================= -->
 
 <style id="hero-license-style">
@@ -851,7 +851,14 @@ html[data-hero-locked="1"] body > *:not(#hero-license-overlay) {
         localStorage.setItem(key, JSON.stringify(value));
     }
 
+    // ===== دالة فتح التطبيق (معدلة لإزالة الزر العائم) =====
     function unlockApplication() {
+        // إزالة الزر العائم إن وجد
+        const trialBtn = document.getElementById('hero-trial-activate-btn');
+        if (trialBtn) trialBtn.remove();
+        const counter = document.getElementById('hero-trial-counter-visible');
+        if (counter) counter.remove();
+
         const overlay = document.getElementById("hero-license-overlay");
         if (overlay) overlay.remove();
         document.documentElement.removeAttribute("data-hero-locked");
@@ -938,27 +945,56 @@ html[data-hero-locked="1"] body > *:not(#hero-license-overlay) {
         return overlay;
     }
 
-    function showPaidActivationScreen(message = "هذا التطبيق محمي ومخصص للمشتري.") {
-        createOverlay("تفعيل التطبيق", message, "تفعيل التطبيق", activatePaid, true);
-        const input = document.getElementById("hero-activation-input");
-        input.onkeydown = function (event) {
-            if (event.key === "Enter") activatePaid();
-        };
+    // ===== شاشة التفعيل العامة (معدلة لإضافة زر شراء) =====
+    function showPaidActivationScreen(message) {
+        createOverlay(
+            "تفعيل التطبيق",
+            message || "هذا التطبيق محمي ومخصص للمشتري.",
+            "تفعيل الكود",
+            activatePaid,
+            true
+        );
+        // إضافة زر شراء منفصل
+        const box = document.getElementById("hero-license-box");
+        const existingButton = document.getElementById("hero-activation-button");
+        if (box && existingButton) {
+            if (document.getElementById("hero-buy-button-extra")) return;
+            const buyBtn = document.createElement("button");
+            buyBtn.id = "hero-buy-button-extra";
+            buyBtn.textContent = "💰 شراء التطبيق";
+            buyBtn.style.cssText = "width:100%; padding:13px; margin-top:10px; border:0; border-radius:8px; cursor:pointer; font-size:16px; background:#f5c542; color:#0b2a47; font-weight:bold;";
+            buyBtn.onclick = function () {
+                const payload = getLicensePayload();
+                window.location.href = "https://hero.kesug.com/Academy/payment.php?course_id=" + encodeURIComponent(payload.course_id);
+            };
+            existingButton.parentNode.insertBefore(buyBtn, existingButton.nextSibling);
+        }
     }
 
+    // ===== شاشة انتهاء التجربة (معدلة لإظهار خانة التفعيل + زر شراء) =====
     function showTrialEndedScreen(message) {
         createOverlay(
             "انتهت التجربة المجانية",
             message,
-            "شراء التطبيق",
-            function () {
-                const payload = getLicensePayload();
-                window.location.href =
-                    "https://hero.kesug.com/Academy/payment.php?course_id=" +
-                    encodeURIComponent(payload.course_id);
-            },
-            false
+            "تفعيل الكود",
+            activatePaid,
+            true
         );
+        // إضافة زر شراء منفصل
+        const box = document.getElementById("hero-license-box");
+        const existingButton = document.getElementById("hero-activation-button");
+        if (box && existingButton) {
+            if (document.getElementById("hero-buy-button-extra")) return;
+            const buyBtn = document.createElement("button");
+            buyBtn.id = "hero-buy-button-extra";
+            buyBtn.textContent = "💰 شراء التطبيق";
+            buyBtn.style.cssText = "width:100%; padding:13px; margin-top:10px; border:0; border-radius:8px; cursor:pointer; font-size:16px; background:#f5c542; color:#0b2a47; font-weight:bold;";
+            buyBtn.onclick = function () {
+                const payload = getLicensePayload();
+                window.location.href = "https://hero.kesug.com/Academy/payment.php?course_id=" + encodeURIComponent(payload.course_id);
+            };
+            existingButton.parentNode.insertBefore(buyBtn, existingButton.nextSibling);
+        }
     }
 
     async function activatePaid() {
@@ -1005,8 +1041,9 @@ html[data-hero-locked="1"] body > *:not(#hero-license-overlay) {
             localStorage.removeItem(HERO_TRIAL_KEY);
             localStorage.setItem(HERO_STORAGE_KEY, "activated");
 
-            const counter = document.getElementById("hero-trial-counter-visible");
-            if (counter) counter.remove();
+            // إزالة الزر العائم إن وجد
+            const trialBtn = document.getElementById('hero-trial-activate-btn');
+            if (trialBtn) trialBtn.remove();
 
             unlockApplication();
 
@@ -1035,7 +1072,7 @@ html[data-hero-locked="1"] body > *:not(#hero-license-overlay) {
             return;
         }
 
-        // البدء بالتجربة التلقائية (بدون الحاجة إلى license_type)
+        // البدء بالتجربة التلقائية
         const trial = getTrialState();
 
         if (trial.tampered) {
@@ -1048,15 +1085,41 @@ html[data-hero-locked="1"] body > *:not(#hero-license-overlay) {
             return;
         }
 
-        // التجربة سارية
+        // ===== التجربة سارية =====
         unlockApplication();
         updateTrialCounter(trial);
 
+        // ---- إضافة زر التفعيل أثناء التجربة (العائم) ----
+        function addTrialActivationButton() {
+            let btn = document.getElementById('hero-trial-activate-btn');
+            if (btn) btn.remove();
+
+            btn = document.createElement('button');
+            btn.id = 'hero-trial-activate-btn';
+            btn.textContent = '🔑 تفعيل / شراء الآن';
+            btn.style.cssText = `
+                position: fixed; bottom: 70px; right: 12px; z-index: 2147483646;
+                background: #f5c542; color: #0b2a47; border: none;
+                padding: 10px 18px; border-radius: 30px; font-weight: 700;
+                font-size: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                cursor: pointer; font-family: Arial, sans-serif;
+            `;
+            btn.onclick = function() {
+                showPaidActivationScreen('أدخل كود التفعيل الذي حصلت عليه بعد الشراء، أو اضغط على زر الشراء لاحقاً.');
+            };
+            document.body.appendChild(btn);
+        }
+        addTrialActivationButton();
+
+        // ---- تحديث العداد والتحقق من انتهاء التجربة ----
         setInterval(function () {
             const current = getTrialState();
             if (current.tampered || Date.now() >= current.expiresAt) {
-                const counter = document.getElementById("hero-trial-counter-visible");
+                // إزالة العداد والزر العائم
+                const counter = document.getElementById('hero-trial-counter-visible');
                 if (counter) counter.remove();
+                const btn = document.getElementById('hero-trial-activate-btn');
+                if (btn) btn.remove();
 
                 showTrialEndedScreen(
                     current.tampered
