@@ -4,8 +4,8 @@
   "description": "واجهة تشغيل وتصفح التطبيقات والدورات التعليمية",
   "lang": "ar",
   "dir": "rtl",
-  "start_url": "./",
-  "scope": "./",
+  "start_url": "/Hero/"
+  "scope": "/Hero/"
   "display": "standalone",
   "theme_color": "#2563eb",
   "background_color": "#ffffff ",
