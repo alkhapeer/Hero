@@ -329,15 +329,67 @@ function renderAcademy() {
                 </button>
 
 
-                <!-- تثبيت التطبيق -->
-                <div id="installArea"></div>
+                <div style="
+    margin:20px 0;
+    padding:14px 16px;
+    border-radius:14px;
+    background:#eff6ff;
+    border:1px solid #bfdbfe;
+    overflow:hidden;
+">
+    <div style="
+        white-space:nowrap;
+        animation:heroInstallMove 18s linear infinite;
+        font-weight:bold;
+        color:#1e40af;
+    ">
+        📱 ثبّت أكاديمية هيرو على جهازك — أضفها إلى الشاشة الرئيسية للوصول السريع إلى دوراتك
+    </div>
+
+    <div style="
+        text-align:center;
+        margin-top:10px;
+    ">
+        <button id="installAppBtn"
+            style="
+                display:none;
+                background:#2563eb;
+                color:#fff;
+                border:0;
+                padding:9px 22px;
+                border-radius:8px;
+                cursor:pointer;
+                font-weight:bold;
+            ">
+            📲 تثبيت التطبيق
+        </button>
+    </div>
+</div>
+
+<style>
+@keyframes heroInstallMove {
+    from {
+        transform:translateX(100%);
+    }
+    to {
+        transform:translateX(-100%);
+    }
+}
+</style>
 
 
             </div>
         </div>
     `;
+    window.addEventListener('beforeinstallprompt', e => {
+    console.log('✅ التطبيق قابل للتثبيت');
 
-    renderInstallArea();
+    e.preventDefault();
+
+    deferredInstallPrompt = e;
+
+    setupInstallButton();
+});
 }
 
 // ================================
@@ -973,32 +1025,25 @@ window.addEventListener(
 
 
 function setupInstallButton() {
+    const btn = document.getElementById('installAppBtn');
 
-    const btn =
-        document.getElementById('installAppBtn');
+    if (!btn) return;
 
-    if (!btn || !deferredInstallPrompt) return;
+    if (deferredInstallPrompt) {
+        btn.style.display = 'inline-block';
 
+        btn.onclick = async () => {
+            deferredInstallPrompt.prompt();
 
-    btn.style.display = 'inline-block';
+            const result = await deferredInstallPrompt.userChoice;
 
+            if (result.outcome === 'accepted') {
+                btn.style.display = 'none';
+            }
 
-    btn.onclick = async () => {
-
-        deferredInstallPrompt.prompt();
-
-        const result =
-            await deferredInstallPrompt.userChoice;
-
-
-        if (result.outcome === 'accepted') {
-
-            btn.style.display = 'none';
-        }
-
-
-        deferredInstallPrompt = null;
-    };
+            deferredInstallPrompt = null;
+        };
+    }
 }
 
 
