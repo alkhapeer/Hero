@@ -911,7 +911,47 @@ function renderAbout() {
                 الدورات والمواد التعليمية بطريقة بسيطة
                 ومنظمة.
             </p>
+                <!-- أزرار الروابط -->
+            <div style="
+                display:flex;
+                flex-wrap:wrap;
+                justify-content:center;
+                gap:10px;
+                margin-top:25px;
+            ">
 
+                <a href="
+                https://hero.kesug.com/Academy/"
+                   target="_blank"
+                   rel="noopener"
+                   style="
+                       display:inline-block;
+                       padding:11px 20px;
+                       border-radius:10px;
+                       background:#2563eb;
+                       color:#fff;
+                       text-decoration:none;
+                       font-weight:bold;
+                   ">
+                    🎓 موقع الأكاديمية
+                </a>
+
+                <a href="https://web.facebook.com/Heropwa"
+                   target="_blank"
+                   rel="noopener"
+                   style="
+                       display:inline-block;
+                       padding:11px 20px;
+                       border-radius:10px;
+                       background:#1877f2;
+                       color:#fff;
+                       text-decoration:none;
+                       font-weight:bold;
+                   ">
+                    📘 فيسبوك
+                </a>
+
+            </div>
         </div>
     `;
 }
