@@ -381,17 +381,43 @@ function renderAcademy() {
             </div>
         </div>
     `;
-    window.addEventListener('beforeinstallprompt', e => {
-    console.log('✅ التطبيق قابل للتثبيت');
-
+    setupInstallButton();
+}
+window.addEventListener('beforeinstallprompt', e => {
     e.preventDefault();
 
     deferredInstallPrompt = e;
 
-    setupInstallButton();
-});
-}
+    const btn = document.getElementById('installAppBtn');
 
+    if (btn) {
+        btn.style.display = 'inline-block';
+    }
+});
+
+
+function setupInstallButton() {
+    const btn = document.getElementById('installAppBtn');
+
+    if (!btn) return;
+
+    if (deferredInstallPrompt) {
+        btn.style.display = 'inline-block';
+
+        btn.onclick = async () => {
+            deferredInstallPrompt.prompt();
+
+            const result =
+                await deferredInstallPrompt.userChoice;
+
+            if (result.outcome === 'accepted') {
+                btn.style.display = 'none';
+            }
+
+            deferredInstallPrompt = null;
+        };
+    }
+}
 // ================================
 // صفحة الدورات المتاحة
 // ================================
