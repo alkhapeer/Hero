@@ -1,5 +1,0 @@
-[[redirects]]
-  from = "/*"
-  to = "https://alkhapeer.github.io/Hero/:splat"
-  status = 200
-  force = true
