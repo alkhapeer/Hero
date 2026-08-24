@@ -989,7 +989,7 @@ html[data-hero-locked="1"] body > *:not(#hero-license-overlay) {
             buyBtn.style.cssText = "width:100%; padding:13px; margin-top:10px; border:0; border-radius:8px; cursor:pointer; font-size:16px; background:#f5c542; color:#0b2a47; font-weight:bold;";
             buyBtn.onclick = function () {
                 const payload = getLicensePayload();
-                window.location.href = "https://hero.kesug.com/Academy/payment.php?course_id=" + encodeURIComponent(payload.course_id);
+                window.top.location.href = "https://hero.kesug.com/Academy/payment.php?course_id=" + encodeURIComponent(payload.course_id);
             };
             existingButton.parentNode.insertBefore(buyBtn, existingButton.nextSibling);
         }
@@ -1015,7 +1015,7 @@ html[data-hero-locked="1"] body > *:not(#hero-license-overlay) {
             buyBtn.style.cssText = "width:100%; padding:13px; margin-top:10px; border:0; border-radius:8px; cursor:pointer; font-size:16px; background:#f5c542; color:#0b2a47; font-weight:bold;";
             buyBtn.onclick = function () {
                 const payload = getLicensePayload();
-                window.location.href = "https://hero.kesug.com/Academy/payment.php?course_id=" + encodeURIComponent(payload.course_id);
+                window.top.location.href = "https://hero.kesug.com/Academy/payment.php?course_id=" + encodeURIComponent(payload.course_id);
             };
             existingButton.parentNode.insertBefore(buyBtn, existingButton.nextSibling);
         }
