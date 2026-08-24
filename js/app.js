@@ -1015,42 +1015,85 @@ function renderCourse(course) {
 
         </div>
     `;
-   const frame = document.querySelector('iframe');
+const frame = document.getElementById('heroCourseFrame');
 
-frame.addEventListener('load', function () {
+    frame.addEventListener('load', function () {
 
-    const doc = frame.contentDocument;
-    if (!doc) return;
+        try {
 
-    doc.addEventListener('click', function (e) {
+            const doc = frame.contentDocument;
 
-        const el = e.target.closest('a, button, [onclick]');
+            if (!doc) return;
 
-        if (!el) return;
+            doc.addEventListener('click', function (e) {
 
-        const text = (el.innerText || el.textContent || '').trim();
+                const el = e.target.closest('a, button');
 
-        if (
-            text.includes('تفعيل / شراء الآن') ||
-            text.includes('شراء التطبيق')
-        ) {
+                if (!el) return;
 
-            e.preventDefault();
-            e.stopPropagation();
+                const text =
+                    (el.innerText || el.textContent || '').trim();
 
-            const href =
-                el.href ||
-                el.getAttribute('href');
+                // ==========================================
+                // استثناء زرّي الشراء فقط
+                // ==========================================
 
-            if (href) {
-                window.top.location.href = href;
-            }
+                if (
+                    text.includes('تفعيل / شراء الآن') ||
+                    text.includes('💰 شراء التطبيق')
+                ) {
+
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+
+                    // زر 💰 شراء التطبيق
+                    if (text.includes('شراء التطبيق')) {
+
+                        try {
+
+                            const payload =
+                                frame.contentWindow.getLicensePayload();
+
+                            if (payload && payload.course_id) {
+
+                                window.top.location.href =
+                                    'https://hero.kesug.com/Academy/payment.php?course_id=' +
+                                    encodeURIComponent(payload.course_id);
+
+                                return;
+                            }
+
+                        } catch (err) {
+                            console.log(
+                                'تعذر الحصول على بيانات الترخيص:',
+                                err
+                            );
+                        }
+                    }
+
+                    // زر التفعيل / الشراء الأول
+                    const href =
+                        el.getAttribute('href');
+
+                    if (href) {
+                        window.top.location.href =
+                            new URL(href, frame.src).href;
+                    }
+
+                }
+
+            }, true);
+
+        } catch (err) {
+
+            console.log(
+                'تعذر مراقبة أزرار الشراء:',
+                err
+            );
 
         }
 
-    }, true);
-
-});
+    });
 }
 
 // ================================
