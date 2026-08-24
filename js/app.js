@@ -1015,6 +1015,42 @@ function renderCourse(course) {
 
         </div>
     `;
+   const frame = document.querySelector('iframe');
+
+frame.addEventListener('load', function () {
+
+    const doc = frame.contentDocument;
+    if (!doc) return;
+
+    doc.addEventListener('click', function (e) {
+
+        const el = e.target.closest('a, button, [onclick]');
+
+        if (!el) return;
+
+        const text = (el.innerText || el.textContent || '').trim();
+
+        if (
+            text.includes('تفعيل / شراء الآن') ||
+            text.includes('شراء التطبيق')
+        ) {
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            const href =
+                el.href ||
+                el.getAttribute('href');
+
+            if (href) {
+                window.top.location.href = href;
+            }
+
+        }
+
+    }, true);
+
+});
 }
 
 // ================================
