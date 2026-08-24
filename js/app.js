@@ -1015,85 +1015,79 @@ function renderCourse(course) {
 
         </div>
     `;
-const frame = document.getElementById('heroCourseFrame');
+const frame = document.querySelector('iframe');
 
-    frame.addEventListener('load', function () {
+frame.addEventListener('load', function () {
 
-        try {
+    const doc = frame.contentDocument;
+    if (!doc) return;
 
-            const doc = frame.contentDocument;
+    function checkBuyButton() {
 
-            if (!doc) return;
+        const elements = doc.querySelectorAll('a, button');
 
-            doc.addEventListener('click', function (e) {
+        elements.forEach(el => {
 
-                const el = e.target.closest('a, button');
+            const text = (el.innerText || el.textContent || '').trim();
 
-                if (!el) return;
+            if (
+                text.includes('💰 شراء التطبيق') ||
+                text.includes('تفعيل / شراء الآن')
+            ) {
 
-                const text =
-                    (el.innerText || el.textContent || '').trim();
+                // منع تكرار المعالجة
+                if (el.dataset.heroExternalBuy === '1') return;
 
-                // ==========================================
-                // استثناء زرّي الشراء فقط
-                // ==========================================
+                el.dataset.heroExternalBuy = '1';
 
-                if (
-                    text.includes('تفعيل / شراء الآن') ||
-                    text.includes('💰 شراء التطبيق')
-                ) {
+                el.addEventListener('click', function (e) {
 
                     e.preventDefault();
                     e.stopImmediatePropagation();
 
-                    // زر 💰 شراء التطبيق
-                    if (text.includes('شراء التطبيق')) {
+                    let courseId = course.id;
 
-                        try {
-
+                    // نحاول أخذ course_id الحقيقي من الدورة
+                    try {
+                        if (
+                            frame.contentWindow.getLicensePayload &&
+                            typeof frame.contentWindow.getLicensePayload === 'function'
+                        ) {
                             const payload =
                                 frame.contentWindow.getLicensePayload();
 
                             if (payload && payload.course_id) {
-
-                                window.top.location.href =
-                                    'https://hero.kesug.com/Academy/payment.php?course_id=' +
-                                    encodeURIComponent(payload.course_id);
-
-                                return;
+                                courseId = payload.course_id;
                             }
-
-                        } catch (err) {
-                            console.log(
-                                'تعذر الحصول على بيانات الترخيص:',
-                                err
-                            );
                         }
+                    } catch (err) {
+                        console.log('تعذر قراءة بيانات الترخيص');
                     }
 
-                    // زر التفعيل / الشراء الأول
-                    const href =
-                        el.getAttribute('href');
+                    window.top.location.href =
+                        'https://hero.kesug.com/Academy/payment.php?course_id=' +
+                        encodeURIComponent(courseId);
 
-                    if (href) {
-                        window.top.location.href =
-                            new URL(href, frame.src).href;
-                    }
+                }, true);
+            }
 
-                }
+        });
+    }
 
-            }, true);
+    // فحص فوري
+    checkBuyButton();
 
-        } catch (err) {
-
-            console.log(
-                'تعذر مراقبة أزرار الشراء:',
-                err
-            );
-
-        }
-
+    // مراقبة أي زر يتم إنشاؤه لاحقًا
+    const observer = new MutationObserver(() => {
+        checkBuyButton();
     });
+
+    observer.observe(doc.body, {
+        childList: true,
+        subtree: true
+    });
+
+});
 }
 
 // ================================
