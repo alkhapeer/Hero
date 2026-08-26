@@ -1,0 +1,2335 @@
+
+<!--
+=========================================================
+HERO_PROTECTED_APP v2 (Shared)
+Course: 31
+Subject: 0
+=========================================================
+-->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>مذكرة النجاح في القانون الجنائي   
+        - 📝 إعداد الأستاذ / ابراهيم الدسوقي</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Tahoma', Arial, sans-serif;
+            background: #f4f6f9;
+            color: #1e2a3a;
+            line-height: 1.8;
+            padding-bottom: 80px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        .btn {
+            background: #1a4b6d;
+            color: #fff;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.25s;
+            display: inline-block;
+            border: 1px solid transparent;
+        }
+        .btn:hover {
+            background: #0b2b44;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: #6c757d;
+        }
+        .btn-secondary:hover {
+            background: #495057;
+        }
+        .btn-success {
+            background: #28a745;
+        }
+        .btn-success:hover {
+            background: #1e7e34;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #1a4b6d;
+            color: #1a4b6d;
+        }
+        .btn-outline:hover {
+            background: #1a4b6d;
+            color: #fff;
+        }
+        .btn-danger {
+            background: #dc3545;
+        }
+        .btn-danger:hover {
+            background: #bd2130;
+        }
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 22px 26px;
+            margin-bottom: 22px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 8px 35px rgba(0, 0, 0, 0.08);
+        }
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #0b2b44;
+            border-right: 6px solid #1a4b6d;
+            padding-right: 16px;
+        }
+        .card-sub {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a4b6d;
+            margin: 18px 0 8px;
+        }
+        .text-muted {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .badge {
+            display: inline-block;
+            background: #e9ecef;
+            padding: 2px 16px;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            color: #2c3e50;
+        }
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .mt-2 {
+            margin-top: 16px;
+        }
+        .mb-2 {
+            margin-bottom: 16px;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .text-center {
+            text-align: center;
+        }
+
+        /* ===== HEADER ===== */
+        .app-header {
+            background: linear-gradient(145deg, #0b2b44, #1a4b6d);
+            color: #fff;
+            padding: 16px 0 12px;
+            position: sticky;
+            top: 0;
+            z-index: 1100;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.25);
+        }
+        .app-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .app-header .brand {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .app-header .brand small {
+            font-weight: 300;
+            font-size: 0.7rem;
+            display: block;
+            opacity: 0.8;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .header-actions button {
+            background: rgba(255, 255, 255, 0.12);
+            border: none;
+            color: #fff;
+            padding: 7px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .header-actions button:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        .header-actions .search-btn {
+            background: #e67e22;
+        }
+        .header-actions .search-btn:hover {
+            background: #d35400;
+        }
+
+        /* ===== NAV TABS ===== */
+        .nav-tabs {
+            background: #fff;
+            padding: 10px 0;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 72px;
+            z-index: 1050;
+            border-bottom: 1px solid #e9ecef;
+            overflow-x: auto;
+        }
+        .nav-tabs .container {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 4px;
+            justify-content: flex-start;
+        }
+        .nav-tabs button {
+            background: transparent;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .nav-tabs button:hover {
+            background: #eef2f7;
+        }
+        .nav-tabs button.active {
+            background: #1a4b6d;
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(26, 75, 109, 0.3);
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            display: none;
+            animation: fadeUp 0.35s ease;
+        }
+        .section.active {
+            display: block;
+        }
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== HOME GRID ===== */
+        .home-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .home-grid .cat-btn {
+            background: #fff;
+            border: none;
+            border-radius: 18px;
+            padding: 22px 10px;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: 0.25s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #1e2a3a;
+            border: 1px solid transparent;
+        }
+        .home-grid .cat-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+            border-color: #1a4b6d;
+        }
+        .home-grid .cat-btn .icon {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        /* ===== TREE ===== */
+        .tree-node {
+            margin-right: 20px;
+            border-right: 2px dashed #ced4da;
+            padding-right: 16px;
+            margin-bottom: 10px;
+        }
+        .tree-node .node-label {
+            font-weight: 600;
+            cursor: pointer;
+            color: #0b2b44;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 0;
+        }
+        .tree-node .node-label:hover {
+            color: #1a4b6d;
+        }
+        .tree-node .node-detail {
+            padding: 10px 14px;
+            background: #f1f4f8;
+            border-radius: 12px;
+            margin: 6px 0 10px 0;
+            font-size: 0.92rem;
+            display: none;
+        }
+        .tree-node .node-detail.open {
+            display: block;
+        }
+        .tree-children {
+            margin-top: 6px;
+        }
+        .tree-children[style*="display: none"] {
+            display: none;
+        }
+
+        /* ===== FLASHCARDS ===== */
+        .flashcard {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 18px 20px;
+            margin-bottom: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #e9ecef;
+        }
+        .flashcard:hover {
+            background: #eef2f7;
+        }
+        .flashcard .front {
+            font-weight: 600;
+            color: #0b2b44;
+        }
+        .flashcard .back {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #dee2e6;
+            display: none;
+            color: #2c3e50;
+        }
+        .flashcard.open .back {
+            display: block;
+        }
+
+        /* ===== QUIZ ===== */
+        .quiz-question {
+            background: #f8f9fa;
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 16px;
+        }
+        .quiz-question .q-text {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+        .quiz-options label {
+            display: block;
+            padding: 6px 0;
+            cursor: pointer;
+        }
+        .quiz-options input[type="radio"] {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .quiz-result {
+            background: #d4edda;
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 12px;
+            display: none;
+        }
+        .quiz-result.show {
+            display: block;
+        }
+        .quiz-result .correct {
+            color: #155724;
+        }
+        .quiz-result .wrong {
+            color: #721c24;
+        }
+
+        /* ===== QBANK ===== */
+        .qbank-item {
+            background: #fff;
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin-bottom: 12px;
+            border: 1px solid #e9ecef;
+            transition: 0.2s;
+        }
+        .qbank-item:hover {
+            border-color: #1a4b6d;
+        }
+        .qbank-item .q {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .qbank-item .a {
+            margin-top: 8px;
+            color: #1e7e34;
+            display: none;
+            background: #f8f9fa;
+            padding: 10px 14px;
+            border-radius: 10px;
+        }
+        .qbank-item .a.show {
+            display: block;
+        }
+        .qbank-item .meta {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-top: 6px;
+        }
+        .qbank-item .meta button {
+            background: none;
+            border: none;
+            color: #1a4b6d;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* ===== MAPS (شبكة) ===== */
+        .maps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .map-item {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e6edf6;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .map-item:hover {
+            transform: scale(1.02);
+        }
+        .map-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #fafcfd;
+            padding: 6px;
+        }
+        .map-item .map-label {
+            padding: 10px 14px;
+            background: #f7faff;
+            border-top: 1px solid #e6edf6;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .lightbox.open {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            object-fit: contain;
+        }
+        .lightbox .close-lightbox {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 2.5rem;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* ===== VIDEO (أزرار فقط) ===== */
+        .video-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .video-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-right: 4px solid #1a4b6d;
+            transition: 0.2s;
+        }
+        .video-link:hover {
+            background: #eef2f7;
+        }
+        .video-link a {
+            color: #1a4b6d;
+            font-weight: 500;
+        }
+        .video-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== SEARCH OVERLAY ===== */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 80px;
+        }
+        .search-overlay.open {
+            display: flex;
+        }
+        .search-box {
+            background: #fff;
+            width: 92%;
+            max-width: 720px;
+            border-radius: 28px;
+            padding: 28px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+        }
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 40px;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.2s;
+        }
+        .search-box input:focus {
+            border-color: #1a4b6d;
+        }
+        .search-results {
+            margin-top: 18px;
+        }
+        .search-results .result-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .search-results .result-item .title {
+            font-weight: 600;
+        }
+        .search-results .result-item .meta {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        .search-results .result-item button {
+            background: #1a4b6d;
+            color: #fff;
+            border: none;
+            padding: 3px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* ===== NAVIGATION BUTTONS ===== */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid #e9ecef;
+            flex-wrap: wrap;
+        }
+        .nav-buttons .btn {
+            padding: 8px 22px;
+            font-size: 0.9rem;
+        }
+        .nav-buttons .indicator {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+        /* ===== EXAMS DRIVE LINKS ===== */
+        .drive-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            border-right: 4px solid #1a4b6d;
+        }
+        .drive-link a {
+            color: #1a4b6d;
+            font-weight: 500;
+        }
+        .drive-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== ALERT / NOTICE ===== */
+        .alert-notice {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-top: 24px;
+            color: #856404;
+            font-size: 0.95rem;
+        }
+        .alert-notice strong {
+            color: #856404;
+            font-weight: 700;
+        }
+        .alert-notice .contact {
+            font-weight: 600;
+            color: #0b2b44;
+            font-size: 1.05rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            .app-header .brand {
+                font-size: 1rem;
+            }
+            .header-actions button {
+                padding: 4px 10px;
+                font-size: 0.7rem;
+            }
+            .nav-tabs {
+                top: 66px;
+                padding: 6px 0;
+            }
+            .nav-tabs button {
+                font-size: 0.75rem;
+                padding: 4px 12px;
+            }
+            .home-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .container {
+                padding: 0 10px;
+            }
+            .card {
+                padding: 14px 16px;
+            }
+            .maps-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a4b6d;
+            border-radius: 10px;
+        }
+    </style>
+
+<!-- =========================================================
+     HERO_PROTECTED_APP v2 (Shared) – معدل
+     Offline License Protection + Trial Activation Button
+========================================================= -->
+
+<style id="hero-license-style">
+html[data-hero-locked="1"] body > *:not(#hero-license-overlay) {
+    visibility: hidden !important;
+}
+#hero-license-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 2147483647 !important;
+    background: #ffffff !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-family: Arial, sans-serif !important;
+}
+#hero-license-box {
+    width: min(420px, 90%);
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 15px 50px rgba(0,0,0,.15);
+    text-align: center;
+}
+#hero-license-box input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px;
+    margin: 15px 0;
+    font-size: 16px;
+    text-align: center;
+}
+#hero-license-box button {
+    width: 100%;
+    padding: 13px;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+#hero-license-message {
+    margin-top: 15px;
+    color: #b00020;
+}
+</style>
+
+<script id="hero-license-engine" data-hero-protected-app="1">
+
+(function () {
+    "use strict";
+
+    const HERO_PAYLOAD_B64 = "eyJ2ZXJzaW9uIjoyLCJwcm9kdWN0IjoiSGVybyBBY2FkZW15IiwiY291cnNlX2lkIjozMSwic3ViamVjdF9pZCI6MCwiYXBwX25hbWUiOiJIZXJvIFByb3RlY3RlZCBBcHAiLCJvZmZsaW5lIjp0cnVlfQ==";
+    const HERO_SIGNATURE_B64 = "Hg9cwYVRPIhYupgPLXY8CvSd6+i86qq3rYlRmwJOpmLSkNqYOVFVcHdi6IlQTUVEIxGX939p+37DmtK7jLTwXGQ0dcoX6cjqxlo8RikxdcughBiBg4tc9Du6RMO/3j/FGizFwrvK3z2SBx6TuKs9MTy0o9SmIIQNd3CNlMp6/1HZOns2DS1jqXQ0f5653r9Po1YlXF6Jvbb4YJxtKCCI4KjUls+tZ1s61UWUp2oEHXt45eLbAdadbfv43d21NMz8jACS5sR5bBubCr10X4k2mIUjbieSbbMr7KUh/ntwLCHPQAQ8mJS3KvxJzGGRKK7B91oKsoP3Tb2aM3ng6QCNWA==";
+    const HERO_PUBLIC_KEY_B64 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAokfP3g1ieGYQkeGnWDXp7le9tT12xdvHpCA4m7HoPjRI+KGH2DjqQuRZuAmFGzk5aLxJGyyu9XkhEcvvL7nVISYGYN4KkTxZqtufGzKAMTCZm++5C9OSlgazKXkrm7nlDNo2/+fbBuDJPOMg+efpnKjnmuOZ24ZWXIEW4ezmxylOBhG+s6BTpJsElTkKzQui2sf7KdBtsXhOtA+dDsyUqt02RWKSDixFdqJz3fsPVhDOuCc9YKJXRbrcjh08nPs4AQx3iQHxVSTtirmU80Y+IYc/hWaTstRaaNyQZePrzwGN+2jzcw/0KuJpdA6hnf/HtUhk0ottglRoik5QA3IlzwIDAQAB";
+    const HERO_STORAGE_KEY = "hero_license_594ea78501e3395fa0f6b04184dbf7674e55156d3cd6a2f2681a2135d59efc49";
+    const HERO_DEVICE_KEY = "hero_device_id_v2";
+    const HERO_TRIAL_KEY = HERO_STORAGE_KEY + "_trial";
+    const HERO_MODE_KEY = HERO_STORAGE_KEY + "_mode";
+
+    const TRIAL_DAYS = 7;
+    const TRIAL_SECONDS = TRIAL_DAYS * 24 * 60 * 60;
+    const CLOCK_TOLERANCE_MS = 5 * 60 * 1000;
+
+    // ===== متغير عام لحفظ معرف المؤقت =====
+    let heroTrialInterval = null;
+
+    function base64ToBytes(base64) {
+        const binary = atob(base64);
+        const bytes = new Uint8Array(binary.length);
+        for (let i = 0; i < binary.length; i++) {
+            bytes[i] = binary.charCodeAt(i);
+        }
+        return bytes;
+    }
+
+    function base64UrlDecode(text) {
+        let base64 = String(text)
+            .replace(/-/g, "+")
+            .replace(/_/g, "/");
+        const padding = base64.length % 4;
+        if (padding) {
+            base64 += "=".repeat(4 - padding);
+        }
+        return atob(base64);
+    }
+
+    function randomDeviceId() {
+        if (crypto && typeof crypto.randomUUID === "function") {
+            return crypto.randomUUID();
+        }
+        const bytes = new Uint8Array(16);
+        crypto.getRandomValues(bytes);
+        return Array.from(bytes)
+            .map(byte => byte.toString(16).padStart(2, "0"))
+            .join("");
+    }
+
+    function getDeviceId() {
+        let deviceId = localStorage.getItem(HERO_DEVICE_KEY);
+        if (!deviceId) {
+            deviceId = randomDeviceId();
+            localStorage.setItem(HERO_DEVICE_KEY, deviceId);
+        }
+        return deviceId;
+    }
+
+    async function sha256(text) {
+        const data = new TextEncoder().encode(text);
+        const hash = await crypto.subtle.digest("SHA-256", data);
+        return Array.from(new Uint8Array(hash))
+            .map(byte => byte.toString(16).padStart(2, "0"))
+            .join("");
+    }
+
+    async function importPublicKey() {
+        return await crypto.subtle.importKey(
+            "spki",
+            base64ToBytes(HERO_PUBLIC_KEY_B64),
+            { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
+            false,
+            ["verify"]
+        );
+    }
+
+    function getLicensePayload() {
+        const json = new TextDecoder().decode(
+            base64ToBytes(HERO_PAYLOAD_B64)
+        );
+        return JSON.parse(json);
+    }
+
+    async function verifyLicenseSignature() {
+        try {
+            const publicKey = await importPublicKey();
+            return await crypto.subtle.verify(
+                { name: "RSASSA-PKCS1-v1_5" },
+                publicKey,
+                base64ToBytes(HERO_SIGNATURE_B64),
+                base64ToBytes(HERO_PAYLOAD_B64)
+            );
+        } catch (error) {
+            console.error("Hero license verification error:", error);
+            return false;
+        }
+    }
+
+    // دعم الصيغ: 5 أجزاء (قديم), 6 أجزاء (مع licenseType), 7 أجزاء (مع expires_at)
+    async function verifyActivationCodeSignature(code) {
+        try {
+            const decoded = base64UrlDecode(code);
+            const parts = decoded.split("|");
+
+            let system, licenseType = "PAID", userId, courseId, licenseKey, expiresAt, encodedSignature;
+
+            if (parts.length === 7) {
+                [system, licenseType, userId, courseId, licenseKey, expiresAt, encodedSignature] = parts;
+            } else if (parts.length === 6) {
+                [system, licenseType, userId, courseId, licenseKey, encodedSignature] = parts;
+            } else if (parts.length === 5) {
+                [system, userId, courseId, licenseKey, encodedSignature] = parts;
+            } else {
+                return null;
+            }
+
+            licenseType = String(licenseType).toUpperCase();
+            if (system !== "HERO" || licenseType !== "PAID" ||
+                !/^\d+$/.test(String(userId)) || !/^\d+$/.test(String(courseId)) ||
+                !/^HERO-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(licenseKey)) {
+                return null;
+            }
+
+            // بناء النص المُوقَّع (بنفس صيغة الخادم)
+            let payload;
+            if (parts.length === 7) {
+                payload = ["HERO", "PAID", userId, courseId, licenseKey, expiresAt].join("|");
+            } else if (parts.length === 6) {
+                payload = ["HERO", "PAID", userId, courseId, licenseKey].join("|");
+            } else {
+                payload = ["HERO", userId, courseId, licenseKey].join("|");
+            }
+
+            const publicKey = await importPublicKey();
+            const valid = await crypto.subtle.verify(
+                { name: "RSASSA-PKCS1-v1_5" },
+                publicKey,
+                base64ToBytes(encodedSignature),
+                new TextEncoder().encode(payload)
+            );
+
+            if (!valid) return null;
+
+            return {
+                userId: Number(userId),
+                courseId: Number(courseId),
+                licenseKey,
+                licenseType,
+                expiresAt: expiresAt || null,
+                code
+            };
+        } catch (error) {
+            console.error("Hero activation verification error:", error);
+            return null;
+        }
+    }
+
+    function loadJson(key) {
+        try {
+            const value = localStorage.getItem(key);
+            return value ? JSON.parse(value) : null;
+        } catch (_) {
+            return null;
+        }
+    }
+
+    function saveJson(key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+    }
+
+    // ===== دالة فتح التطبيق (معدلة لإزالة الزر العائم والعداد) =====
+    function unlockApplication() {
+        // إزالة الزر العائم إن وجد
+        const trialBtn = document.getElementById('hero-trial-activate-btn');
+        if (trialBtn) trialBtn.remove();
+        const counter = document.getElementById('hero-trial-counter-visible');
+        if (counter) counter.remove();
+
+        const overlay = document.getElementById("hero-license-overlay");
+        if (overlay) overlay.remove();
+        document.documentElement.removeAttribute("data-hero-locked");
+    }
+
+    function formatRemaining(seconds) {
+        seconds = Math.max(0, Math.floor(seconds));
+        const days = Math.floor(seconds / 86400);
+        seconds %= 86400;
+        const hours = Math.floor(seconds / 3600);
+        seconds %= 3600;
+        const minutes = Math.floor(seconds / 60);
+        return `${days} يوم ${hours} ساعة ${minutes} دقيقة`;
+    }
+
+    function updateTrialCounter(state) {
+        let counter = document.getElementById("hero-trial-counter-visible");
+        if (!counter) {
+            counter = document.createElement("div");
+            counter.id = "hero-trial-counter-visible";
+            counter.style.cssText = `
+                position:fixed; bottom:12px; right:12px; z-index:2147483646;
+                background:#111827; color:#fff; padding:8px 12px; border-radius:8px;
+                font:14px Arial,sans-serif; box-shadow:0 4px 15px rgba(0,0,0,.15);
+            `;
+            document.body.appendChild(counter);
+        }
+        const remaining = Math.max(0, (state.expiresAt - Date.now()) / 1000);
+        counter.textContent = "التجربة المجانية المتبقي: " + formatRemaining(remaining);
+    }
+
+    function getTrialState() {
+        const deviceId = getDeviceId();
+        let state = loadJson(HERO_TRIAL_KEY);
+        if (!state) {
+            const now = Date.now();
+            state = {
+                mode: "TRIAL",
+                deviceId,
+                startedAt: now,
+                lastSeen: now,
+                expiresAt: now + (TRIAL_SECONDS * 1000),
+                tampered: false
+            };
+            saveJson(HERO_TRIAL_KEY, state);
+            return state;
+        }
+        if (state.deviceId !== deviceId) {
+            return { ...state, tampered: true };
+        }
+        const now = Date.now();
+        if (Number.isFinite(state.lastSeen) && now + CLOCK_TOLERANCE_MS < state.lastSeen) {
+            state.tampered = true;
+        }
+        if (!state.tampered) {
+            state.lastSeen = now;
+            saveJson(HERO_TRIAL_KEY, state);
+        }
+        return state;
+    }
+
+    function createOverlay(title, text, buttonText, onClick, showInput = false) {
+        document.documentElement.setAttribute("data-hero-locked", "1");
+        let overlay = document.getElementById("hero-license-overlay");
+        if (!overlay) {
+            overlay = document.createElement("div");
+            overlay.id = "hero-license-overlay";
+            document.body.appendChild(overlay);
+        }
+        overlay.innerHTML = `
+            <div id="hero-license-box">
+                <h2 id="hero-license-title">${title}</h2>
+                <p id="hero-license-text">${text}</p>
+                <div id="hero-trial-counter"></div>
+                ${showInput ? `
+                <input id="hero-activation-input" type="text" autocomplete="off" placeholder="أدخل كود التفعيل">
+                ` : ""}
+                <button id="hero-activation-button" type="button">${buttonText}</button>
+                <div id="hero-license-message"></div>
+            </div>
+        `;
+        const button = document.getElementById("hero-activation-button");
+        button.onclick = onClick;
+        return overlay;
+    }
+
+    // ===== شاشة التفعيل العامة (معدلة لإضافة زر شراء) =====
+    function showPaidActivationScreen(message) {
+        createOverlay(
+            "تفعيل التطبيق",
+            message || "هذا التطبيق محمي ومخصص للمشتري.",
+            "تفعيل الكود",
+            activatePaid,
+            true
+        );
+        // إضافة زر شراء منفصل
+        const box = document.getElementById("hero-license-box");
+        const existingButton = document.getElementById("hero-activation-button");
+        if (box && existingButton) {
+            if (document.getElementById("hero-buy-button-extra")) return;
+            const buyBtn = document.createElement("button");
+            buyBtn.id = "hero-buy-button-extra";
+            buyBtn.textContent = "💰 شراء التطبيق";
+            buyBtn.style.cssText = "width:100%; padding:13px; margin-top:10px; border:0; border-radius:8px; cursor:pointer; font-size:16px; background:#f5c542; color:#0b2a47; font-weight:bold;";
+            buyBtn.onclick = function () {
+                const payload = getLicensePayload();
+                window.top.location.href = "https://hero.kesug.com/Academy/payment.php?course_id=" + encodeURIComponent(payload.course_id);
+            };
+            existingButton.parentNode.insertBefore(buyBtn, existingButton.nextSibling);
+        }
+    }
+
+    // ===== شاشة انتهاء التجربة (معدلة لإظهار خانة التفعيل + زر شراء) =====
+    function showTrialEndedScreen(message) {
+        createOverlay(
+            "انتهت التجربة المجانية",
+            message,
+            "تفعيل الكود",
+            activatePaid,
+            true
+        );
+        // إضافة زر شراء منفصل
+        const box = document.getElementById("hero-license-box");
+        const existingButton = document.getElementById("hero-activation-button");
+        if (box && existingButton) {
+            if (document.getElementById("hero-buy-button-extra")) return;
+            const buyBtn = document.createElement("button");
+            buyBtn.id = "hero-buy-button-extra";
+            buyBtn.textContent = "💰 شراء التطبيق";
+            buyBtn.style.cssText = "width:100%; padding:13px; margin-top:10px; border:0; border-radius:8px; cursor:pointer; font-size:16px; background:#f5c542; color:#0b2a47; font-weight:bold;";
+            buyBtn.onclick = function () {
+                const payload = getLicensePayload();
+                window.top.location.href = "https://hero.kesug.com/Academy/payment.php?course_id=" + encodeURIComponent(payload.course_id);
+            };
+            existingButton.parentNode.insertBefore(buyBtn, existingButton.nextSibling);
+        }
+    }
+
+    async function activatePaid() {
+        const input = document.getElementById("hero-activation-input");
+        const message = document.getElementById("hero-license-message");
+        if (!input || !message) return;
+
+        const code = input.value.trim();
+        if (!code) {
+            message.textContent = "يرجى إدخال كود التفعيل.";
+            return;
+        }
+
+        try {
+            const packageValid = await verifyLicenseSignature();
+            if (!packageValid) {
+                message.textContent = "بيانات النسخة المحمية غير صالحة.";
+                return;
+            }
+
+            const payload = getLicensePayload();
+
+            // التحقق من كود التفعيل (PAID)
+            const decoded = await verifyActivationCodeSignature(code);
+            if (!decoded) {
+                message.textContent = "كود التفعيل غير صحيح.";
+                return;
+            }
+
+            // التحقق من تطابق course_id
+            if (decoded.courseId !== Number(payload.course_id)) {
+                message.textContent = "كود التفعيل لا يخص هذا التطبيق.";
+                return;
+            }
+
+            // تخزين حالة الدفع
+            saveJson(HERO_MODE_KEY, {
+                mode: "PAID",
+                deviceId: getDeviceId(),
+                activatedAt: Date.now(),
+                licenseKey: decoded.licenseKey
+            });
+
+            localStorage.removeItem(HERO_TRIAL_KEY);
+            localStorage.setItem(HERO_STORAGE_KEY, "activated");
+
+            // ===== إيقاف المؤقت الدوري =====
+            if (heroTrialInterval) {
+                clearInterval(heroTrialInterval);
+                heroTrialInterval = null;
+            }
+
+            // إزالة الزر العائم إن وجد (ضمان إضافي)
+            const trialBtn = document.getElementById('hero-trial-activate-btn');
+            if (trialBtn) trialBtn.remove();
+
+            // فتح التطبيق وإزالة جميع العناصر العالقة
+            unlockApplication();
+
+        } catch (error) {
+            console.error(error);
+            message.textContent = "حدث خطأ أثناء التفعيل.";
+        }
+    }
+
+    async function startProtection() {
+        document.documentElement.setAttribute("data-hero-locked", "1");
+
+        const signatureValid = await verifyLicenseSignature();
+        if (!signatureValid) {
+            showPaidActivationScreen("بيانات النسخة المحمية غير صالحة.");
+            return;
+        }
+
+        const payload = getLicensePayload();
+        const deviceId = getDeviceId();
+
+        // التحقق من وجود حالة دفع سابقة
+        const savedMode = loadJson(HERO_MODE_KEY);
+        if (savedMode && savedMode.mode === "PAID" && savedMode.deviceId === deviceId) {
+            unlockApplication();
+            return;
+        }
+
+        // البدء بالتجربة التلقائية
+        const trial = getTrialState();
+
+        if (trial.tampered) {
+            showTrialEndedScreen("تم اكتشاف تغيير غير طبيعي في وقت الجهاز. انتهت صلاحية التجربة.");
+            return;
+        }
+
+        if (Date.now() >= trial.expiresAt) {
+            showTrialEndedScreen("انتهت التجربة المجانية لمدة 7 أيام. يمكنك شراء التطبيق والاستمرار في استخدام النسخة نفسها.");
+            return;
+        }
+
+        // ===== التجربة سارية =====
+        unlockApplication();
+        updateTrialCounter(trial);
+
+        // ---- إضافة زر التفعيل أثناء التجربة (العائم) ----
+        function addTrialActivationButton() {
+            let btn = document.getElementById('hero-trial-activate-btn');
+            if (btn) btn.remove();
+
+            btn = document.createElement('button');
+            btn.id = 'hero-trial-activate-btn';
+            btn.textContent = '🔑 تفعيل / شراء الآن';
+            btn.style.cssText = `
+                position: fixed; bottom: 70px; right: 12px; z-index: 2147483646;
+                background: #f5c542; color: #0b2a47; border: none;
+                padding: 10px 18px; border-radius: 30px; font-weight: 700;
+                font-size: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                cursor: pointer; font-family: Arial, sans-serif;
+            `;
+            btn.onclick = function() {
+                showPaidActivationScreen('أدخل كود التفعيل الذي حصلت عليه بعد الشراء، أو اضغط على زر الشراء لاحقاً.');
+            };
+            document.body.appendChild(btn);
+        }
+        addTrialActivationButton();
+
+        // ---- تحديث العداد والتحقق من انتهاء التجربة ----
+        // نخزن معرف المؤقت في المتغير العام
+        heroTrialInterval = setInterval(function () {
+            const current = getTrialState();
+            if (current.tampered || Date.now() >= current.expiresAt) {
+                // إزالة العداد والزر العائم
+                const counter = document.getElementById('hero-trial-counter-visible');
+                if (counter) counter.remove();
+                const btn = document.getElementById('hero-trial-activate-btn');
+                if (btn) btn.remove();
+
+                // إيقاف المؤقت نفسه
+                if (heroTrialInterval) {
+                    clearInterval(heroTrialInterval);
+                    heroTrialInterval = null;
+                }
+
+                showTrialEndedScreen(
+                    current.tampered
+                        ? "تم اكتشاف تغيير غير طبيعي في وقت الجهاز. انتهت صلاحية التجربة."
+                        : "انتهت التجربة المجانية لمدة 7 أيام. يمكنك شراء التطبيق والاستمرار في استخدام النسخة نفسها."
+                );
+                return;
+            }
+            updateTrialCounter(current);
+        }, 1000);
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", startProtection);
+    } else {
+        startProtection();
+    }
+
+})();
+
+</script>
+
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="app-header">
+        <div class="container">
+            <div class="brand">
+                📘 مذكرة النجاح في القانون الجنائي 
+                <small>📝 إعداد الأستاذ / ابراهيم الدسوقي</small>
+            </div>
+            <div class="header-actions">
+                <button onclick="goHome()">🏠 الرئيسية</button>
+                <button class="search-btn" onclick="toggleSearch()">🔍 بحث</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== NAV TABS ===== -->
+    <nav class="nav-tabs" id="mainNav">
+        <div class="container" id="navContainer"></div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="page-content">
+        <div class="container">
+
+            <!-- ========== HOME ========== -->
+            <section id="section-home" class="section active">
+                <div class="card">
+                    <h1 style="font-size:1.9rem; margin-bottom:4px;">📘 مذكرة النجاح</h1>
+                    <p style="color:#2c3e50; font-size:1.15rem; font-weight:500;">القانون الجنائي السوداني لعام 1991 · النظرية العامة</p>
+                    <p style="margin-top:8px; color:#495057;">مساق قانوني أكاديمي متكامل لطلاب القانون وطلاب المعادلة.</p>
+                </div>
+                <div class="home-grid" id="homeGrid"></div>
+                <div class="card mt-2" style="background:#eef6fb;">
+                    <p><strong>🎯 الفئة المستهدفة:</strong> طلاب القانون، المحامون، القضاة، الباحثون الأكاديميون</p>
+                    <p><strong>📌 المستوى:</strong> جامعي تخصصي / متقدم</p>
+                    <p><strong>📋 المتطلبات:</strong> مدخل للعلوم القانونية، معرفة بأساسيات الفقه الإسلامي</p>
+                    <p><strong>📤 المخرجات التعليمية:</strong> إتقان تحليل الجريمة، تكييف النوازل، صياغة الدفوع، تطبيق نظرية المسؤولية الجنائية.</p>
+                </div>
+
+                <!-- ===== تنبيه مهم (يظهر فقط في الصفحة الرئيسية) ===== -->
+                <div class="alert-notice">
+                    <p style="font-size:1.05rem; font-weight:700;">⚠️ تنبيه مهم</p>
+                    <p style="margin-top:6px;">
+                        إذا وصلك هذا التطبيق أو تمكنت من استخدامه دون إتمام عملية الشراء، نرجو التواصل معنا في أقرب وقت لتصحيح الوضع وتسوية أي مستحقات مالية.
+                    </p>
+                    <p style="margin-top:6px;">
+                        نشكركم على الأمانة والتعاون.
+                    </p>
+                    <p style="margin-top:8px; font-size:1.05rem;">
+                        📞 <span class="contact">للتواصل عبر واتساب : +249915886600</span>
+                    </p>
+                    <hr style="border:0; border-top:1px solid #ffc107; margin:12px 0;">
+                    <p style="margin-top:6px;">
+                        💰 <strong>لمن يرغب في الربح:</strong> يمكنك أيضاً الانضمام إلى برنامج التسويق بالعمولة والحصول على <strong>20%</strong> عمولة عن كل عملية شراء تتم من خلالك.
+                    </p>
+                </div>
+                <!-- ===== نهاية التنبيه ===== -->
+
+            </section>
+
+            <!-- ========== EXPLAIN ========== -->
+            <section id="section-explain" class="section">
+                <div class="card">
+                    <h2 class="card-title">📖 الشرح التفصيلي</h2>
+                    <div id="explainContent"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('home')">🏠 الرئيسية</button>
+                        <span class="indicator">الوحدة 1 من 5</span>
+                        <button class="btn" onclick="navigateTo('summaries')">التالي 📝</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== SUMMARIES ========== -->
+            <section id="section-summaries" class="section">
+                <div class="card">
+                    <h2 class="card-title">📝 الملخصات</h2>
+                    <div id="summariesContent"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('explain')">السابق 📖</button>
+                        <span class="indicator">ملخصات</span>
+                        <button class="btn" onclick="navigateTo('questions')">التالي ❓</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== QUESTIONS ========== -->
+            <section id="section-questions" class="section">
+                <div class="card">
+                    <h2 class="card-title">❓ أسئلة التقويم الذاتي مع الإجابات</h2>
+                    <div id="questionsContent"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('summaries')">السابق 📝</button>
+                        <span class="indicator">أسئلة</span>
+                        <button class="btn" onclick="navigateTo('maps')">التالي 🗺️</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== MAPS ========== -->
+            <section id="section-maps" class="section">
+                <div class="card">
+                    <h2 class="card-title">🗺️ الخرائط الذهنية</h2>
+                    <p style="margin-bottom:16px;">خرائط ذهنية توضح هيكل القانون الجنائي السوداني لعام 1991م.</p>
+                    <div class="maps-grid" id="mapsGallery"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('questions')">السابق ❓</button>
+                        <span class="indicator">خرائط</span>
+                        <button class="btn" onclick="navigateTo('examples')">التالي 📌</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== EXAMPLES ========== -->
+            <section id="section-examples" class="section">
+                <div class="card">
+                    <h2 class="card-title">📌 الأمثلة والتطبيقات القضائية</h2>
+                    <div id="examplesContent"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('maps')">السابق 🗺️</button>
+                        <span class="indicator">أمثلة</span>
+                        <button class="btn" onclick="navigateTo('exams')">التالي 📋</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== EXAMS ========== -->
+            <section id="section-exams" class="section">
+                <div class="card">
+                    <h2 class="card-title">📋 الامتحانات والاختبارات</h2>
+                    <div id="examsContent"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('examples')">السابق 📌</button>
+                        <span class="indicator">امتحانات</span>
+                        <button class="btn" onclick="navigateTo('qbank')">التالي 📚</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== QBANK ========== -->
+            <section id="section-qbank" class="section">
+                <div class="card">
+                    <h2 class="card-title">📚 بنك الأسئلة الشامل (200 سؤال)</h2>
+                    <div style="margin:12px 0; display:flex; gap:10px; flex-wrap:wrap;">
+                        <input type="text" id="qbankSearch" placeholder="🔍 بحث في الأسئلة..." style="flex:1; min-width:180px; padding:12px 18px; border:2px solid #dee2e6; border-radius:40px; font-size:0.95rem; outline:none;">
+                        <select id="qbankFilter" style="padding:12px 18px; border-radius:40px; border:2px solid #dee2e6; background:#fff; font-size:0.95rem;">
+                            <option value="all">جميع الوحدات</option>
+                            <option value="1">الوحدة الأولى</option>
+                            <option value="2">الوحدة الثانية</option>
+                            <option value="3">الوحدة الثالثة</option>
+                            <option value="4">الوحدة الرابعة</option>
+                            <option value="5">الوحدة الخامسة</option>
+                        </select>
+                    </div>
+                    <div id="qbankList"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('exams')">السابق 📋</button>
+                        <span class="indicator">بنك الأسئلة</span>
+                        <button class="btn" onclick="navigateTo('reviews')">التالي 🔄</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== REVIEWS ========== -->
+            <section id="section-reviews" class="section">
+                <div class="card">
+                    <h2 class="card-title">🔄 المراجعات وبطاقات المراجعة</h2>
+                    <div id="reviewsContent"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('qbank')">السابق 📚</button>
+                        <span class="indicator">مراجعات</span>
+                        <button class="btn" onclick="navigateTo('tree')">التالي 🌳</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== TREE ========== -->
+            <section id="section-tree" class="section">
+                <div class="card">
+                    <h2 class="card-title">🌳 شجرة المعرفة</h2>
+                    <div id="treeContent"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('reviews')">السابق 🔄</button>
+                        <span class="indicator">شجرة المعرفة</span>
+                        <button class="btn" onclick="navigateTo('video')">التالي 🎥</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== VIDEO ========== -->
+            <section id="section-video" class="section">
+                <div class="card">
+                    <h2 class="card-title">🎥 الفيديو التعليمي</h2>
+                    <div class="video-grid">
+                        <div class="video-link">
+                            <span>🎬</span>
+                            <a href="https://youtu.be/tHKDI7tQk0k" target="_blank">فلسفة القانون الجنائي السوداني لعام 1991 - الجزء 1</a>
+                        </div>
+                        <div class="video-link">
+                            <span>🎬</span>
+                            <a href="https://youtu.be/qwk26gw1KTI" target="_blank">فلسفة القانون الجنائي السوداني لعام 1991 - الجزء 2</a>
+                        </div>
+                        <div class="video-link">
+                            <span>🎬</span>
+                            <a href="https://youtu.be/tHKDI7tQk0k" target="_blank">فلسفة القانون الجنائي السوداني لعام 1991 - الجزء 1 (مكرر)</a>
+                        </div>
+                    </div>
+                    <p style="margin-top:12px; text-align:center; color:#6c757d;">🔹 هذه الروابط تفتح مباشرة على يوتيوب (يتطلب اتصال بالإنترنت).</p>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('tree')">السابق 🌳</button>
+                        <span class="indicator">فيديو</span>
+                        <button class="btn" onclick="navigateTo('home')">🏠 الرئيسية</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="close-lightbox" onclick="closeLightbox()">✕</button>
+        <img id="lightboxImg" src="" alt="خريطة ذهنية">
+    </div>
+
+    <!-- ===== SEARCH OVERLAY ===== -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-box">
+            <div style="display:flex; gap:10px; align-items:center;">
+                <input type="text" id="searchInput" placeholder="ابحث في الدروس، التعريفات، الأسئلة، بنك الأسئلة..." style="flex:1;">
+                <button onclick="closeSearch()" style="background:none; border:none; font-size:1.6rem; cursor:pointer; color:#6c757d;">✕</button>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <script>
+        // =====================================================================
+        // DATA – القانون الجنائي السوداني لعام 1991
+        // =====================================================================
+
+        // ----- UNITS (خمس وحدات) -----
+        const units = [{
+            id: 1,
+            title: "الوحدة الأولى: المبادئ التمهيدية ونطاق تطبيق وتفسير القانون",
+            lessons: [{
+                title: "فلسفة القانون الجنائي السوداني والتطور التاريخي",
+                objectives: ["استيعاب التطور التشريعي للقوانين الجنائية في السودان", "فهم السمات العامة لقانون 1991م"],
+                skills: ["التحليل التاريخي والمقارن", "ربط القواعد العامة بخصوصية التشريع الإسلامي"],
+                outcomes: ["التمييز بين فلسفة قانون 1991 والقوانين السابقة"]
+            }, {
+                title: "مبدأ الشرعية وقواعد تفسير النصوص الجنائية",
+                objectives: ["فهم مبدأ لا جريمة ولا عقوبة إلا بنص", "معرفة حدود سلطة القاضي في التفسير", "حظر القياس في التجريم وإباحته في الإباحة"],
+                skills: ["التفسير اللغوي والقانوني للنصوص", "استخراج الدفوع القائمة على الشك"],
+                outcomes: ["تطبيق قواعد التفسير القضائي على النوازل"]
+            }, {
+                title: "سريان القانون الجنائي من حيث الزمان والمكان",
+                objectives: ["فهم قاعدة عدم رجعية القوانين", "استيعاب مبدأ الإقليمية والمبدأ العيني والشخصي"],
+                skills: ["تحديد القانون الواجب التطبيق عند تداخل التشريعات", "فحص حدود السيادة على الأقاليم"],
+                outcomes: ["حل نزاعات تنازع القوانين في الزمان والمكان"]
+            }]
+        }, {
+            id: 2,
+            title: "الوحدة الثانية: نظرية الجريمة (الركن المادي والمعنوي)",
+            lessons: [{
+                title: "الركن المادي: السلوك، النتيجة، ورابطة السببية",
+                objectives: ["تفكيك البنية المادية للجريمة", "فهم السلوك الإيجابي والامتناع السلبي", "دراسة نظرية السببية وانقطاعها"],
+                skills: ["فحص التسلسل المادي للوقائع", "إثبات أو نفي رابطة السببية"],
+                outcomes: ["تحديد مسؤولية المتهم مادياً عن النتيجة"]
+            }, {
+                title: "الركن المعنوي: القصد الجنائي والخطأ غير العمدي",
+                objectives: ["استكشاف الرابطة النفسية للجاني", "فهم القصد العام والخاص", "دراسة الإهمال والطيش"],
+                skills: ["الاستدلال على النية من القرائن", "تكييف الأفعال بين العمد وشبه العمد"],
+                outcomes: ["تحديد درجات الإسناد المعنوي"]
+            }]
+        }, {
+            id: 3,
+            title: "الوحدة الثالثة: المسؤولية الجنائية وعوارض الأهلية",
+            lessons: [{
+                title: "المسؤولية الجنائية وأساسها (التمييز والاختيار)",
+                objectives: ["فهم شروط الأهلية الجنائية", "دراسة التدرج العمري للمسؤولية"],
+                skills: ["تقييم الحالة الذهنية للمتهم وقت الفعل"],
+                outcomes: ["تحديد درجة الإعفاء الشخصي من العقوبة"]
+            }, {
+                title: "موانع المسؤولية: صغر السن، الجنون، السكر، والإكراه",
+                objectives: ["دراسة عوارض الأهلية الشخصية", "فهم الإكراه الملجئ وحالة الضرورة"],
+                skills: ["التمييز بين السكر الاختياري والقسري", "تطبيق شروط الإكراه"],
+                outcomes: ["صياغة دفوع قانونية مبنية على انتفاء الاختيار"]
+            }]
+        }, {
+            id: 4,
+            title: "الوحدة الرابعة: أسباب الإباحة (موانع العقاب الموضوعية)",
+            lessons: [{
+                title: "حق الدفاع الشرعي",
+                objectives: ["فهم شروط نشوء الدفاع الشرعي", "معرفة قيود التناسب", "حالات تجاوز الحدود"],
+                skills: ["الموازنة بين الخطر والقوة المستخدمة", "تكييف الأفعال الواقعة تحت الدفاع الشرعي"],
+                outcomes: ["الفصل في قضايا الدفاع الشرعي"]
+            }, {
+                title: "أداء الواجب القانوني ورضا المجني عليه",
+                objectives: ["فهم رخصة استعمال القوة للموظفين العموميين", "تحديد نطاق الإباحة المترتب على الرضا"],
+                skills: ["التحقق من صحة الأوامر الإدارية", "تقدير مشروعية الرضا"],
+                outcomes: ["الفصل في براءة الموظفين العموميين"]
+            }]
+        }, {
+            id: 5,
+            title: "الوحدة الخامسة: الشروع والاشتراك الجنائي",
+            lessons: [{
+                title: "الشروع في الجريمة",
+                objectives: ["التمييز بين التفكير، التحضير، والبدء في التنفيذ", "فهم عناصر الشروع", "العدول الاختياري"],
+                skills: ["تحديد لحظة البدء في التنفيذ", "تكييف الأفعال الناقصة"],
+                outcomes: ["تطبيق عقوبة الشروع"]
+            }, {
+                title: "المساهمة والاشتراك الجنائي",
+                objectives: ["فهم صور تعدد الجناة", "معرفة شروط الاتفاق والتحريض والمساعدة", "المسؤولية التضامنية"],
+                skills: ["تتبع خيوط الجريمة متعددة الأطراف", "فرز المسؤوليات بين المساهمين"],
+                outcomes: ["بناء قضايا اتهام ضد التشكيلات العصابية"]
+            }]
+        }];
+
+        // ----- SUMMARIES (ملخصات مختصرة لكل وحدة) -----
+        const summariesData = [
+            `🔹 <strong>الوحدة الأولى:</strong> مبدأ الشرعية: لا جريمة ولا عقوبة إلا بنص سابق. التفسير الضيق للنصوص العقابية لمصلحة المتهم. حظر القياس في التجريم، وجواز التوسع والقياس في نصوص الإباحة وموانع المسؤولية. عدم رجعية القوانين الجنائية إلا إذا كان القانون الجديد أصلح للمتهم. سريان القانون إقليمياً على البر والبحر والجو، ويمتد خارجياً لحماية أمن الدولة (المبدأ العيني) ولملاحقة السوداني العائد (المبدأ الشخصي).`,
+            `🔹 <strong>الوحدة الثانية:</strong> الركن المادي: السلوك (إيجابي أو امتناع)، النتيجة الضارة، ورابطة السببية. لا تنقطع السببية بمرض سابق كامن أو مضاعفات طبية مألوفة، وتنقطع بالعوامل الشاذة غير المتوقعة. الركن المعنوي: القصد الجنائي (العلم والإرادة) والخطأ غير العمدي (الطيش والإهمال).`,
+            `🔹 <strong>الوحدة الثالثة:</strong> تتأسس المسؤولية على التمييز والاختيار. صغر السن (دون 7 سنوات) يعدم المسؤولية. الجنون والسكر القسري يعفيان من العقاب. السكر الاختياري لا يعفي. الإكراه الملجئ يمنع العقاب ما لم يكن الفعل قتل نفس معصومة. حالة الضرورة تبيح ارتكاب الفعل لتوقي هلاك النفس أو المال بشرط تناسب الشرور.`,
+            `🔹 <strong>الوحدة الرابعة:</strong> الدفاع الشرعي: رد خطر حال وغير مشروع مع تعذر الاستعانة بالسلطات، وبقوة متناسبة. تجاوز الحدود بحسن نية يعدل التهمة من العمد لشبه العمد. أداء الواجب يبيح سلوك الموظفين العموميين بحسن نية وفي حدود الأمر الشرعي. رضا المجني عليه يبيح الأفعال في حدود النظام العام كالعمليات الجراحية والألعاب الرياضية.`,
+            `🔹 <strong>الوحدة الخامسة:</strong> الشروع: البدء في التنفيذ بقصد ارتكاب جريمة وخاب الأثر لسبب خارجي. يعفى بالعدول الاختياري. عقوبته نصف الحد الأقصى للجريمة التامة. الاشتراك: الاتفاق، التحريض، أو المساعدة. يسأل الجميع تضامناً عن النتائج الراجحة للمخطط. الفاعل المعنوي (من يسخر غير المؤهل) يعاقب كفاعل أصلي.`
+        ];
+
+        // ----- SELF Q&A (أسئلة تقويم ذاتي مع إجابات) -----
+        const selfQA = [
+            { q: "ما هو مبدأ الشرعية الجنائية في القانون السوداني؟",
+                a: "لا جريمة ولا عقوبة إلا بنص قانوني سابق وقت ارتكاب الفعل، وهو ضمانة أساسية لحماية الحريات الفردية." },
+            { q: "ما هي قاعدة التفسير الضيق للنصوص العقابية؟",
+                a: "يلتزم القاضي بتفسير النصوص الجنائية التي تحدد الجريمة والعقوبة تفسيراً ضيقاً لمصلحة المتهم، ولا يجوز التوسع فيها." },
+            { q: "متى يسري القانون الجنائي بأثر رجعي؟",
+                a: "يسري بأثر رجعي فقط إذا كان القانون الجديد أصلح للمتهم (يُلغي الجريمة، يخفف العقوبة، أو يقرر مانعاً من موانع المسؤولية)." },
+            { q: "ما هو معيار انقطاع رابطة السببية؟",
+                a: "تنقطع السببية بتدخل عامل أجنبي مستقل وشاذ وغير متوقع تماماً، كخطأ طبي جسيم أو حادث مروري مفاجئ." },
+            { q: "ما الفرق بين القتل العمد والقتل شبه العمد؟",
+                a: "القتل العمد: قصد الفعل المؤدي للموت مع العلم بأن الموت نتيجة راجحة. القتل شبه العمد: قصد التعدي دون قصد الموت ولم يكن الموت نتيجة راجحة." },
+            { q: "ما هي شروط الدفاع الشرعي؟",
+                a: "وجود خطر حال وغير مشروع، تعذر الاستعانة بالسلطات، وتناسب القوة المستخدمة لرد الخطر." },
+            { q: "ما هو أثر تجاوز حدود الدفاع الشرعي بحسن نية؟",
+                a: "يعتبر عذراً مخففاً يدرأ عقوبة الإعدام ويعدل التهمة من القتل العمد إلى القتل شبه العمد." },
+            { q: "ما هو الفرق بين مانع المسؤولية الشخصي وسبب الإباحة الموضوعي؟",
+                a: "مانع المسؤولية (كصغر السن والجنون) يعفي الجاني شخصياً مع بقاء الفعل جريمة. سبب الإباحة (كالدفاع الشرعي) يزيل صفة الجريمة عن الفعل نفسه فيجعله مشروعاً للكافة." },
+            { q: "ما هي عقوبة الشروع في الجريمة؟",
+                a: "لا تتجاوز نصف الحد الأقصى للعقوبة المقررة للجريمة التامة، وتستبدل عقوبة الإعدام أو القطع بالسجن التعزيري لسنوات لا تتجاوز سبع سنوات." },
+            { q: "ما هو الفاعل المعنوي في الاشتراك الجنائي؟",
+                a: "هو من يسخر طفلاً غير مميز أو مجنوناً لارتكاب المظهر المادي للجريمة، ويعاقب كفاعل أصلي، ويعفى الصغير أو المجنون." }
+        ];
+
+        // ----- EXAMPLES (أمثلة تطبيقية وسوابق قضائية) -----
+        const examplesData = [{
+            title: "سابقة حكومة السودان ضد الكباشي (1985م)",
+            desc: "أرست المحكمة العليا قاعدة حظر القياس في نصوص التجريم، حيث ألغت عقوبة القطع الحدية المقاسة على جريمة الاختلاس، وقررت أن صيانة الحرية تقتضي قصر العقاب على ما ورد فيه نص واضح بلا تأويل."
+        }, {
+            title: "سابقة حكومة السودان ضد رمضان (1972م)",
+            desc: "قررت المحكمة بقاء رابطة السببية في حالة الجلطة الرئوية الناتجة عن رقاد السرير بعد الطعن، معتبرة إياها مضاعفة طبيعية ومألوفة لا تقطع السببية."
+        }, {
+            title: "سابقة حكومة السودان ضد سلوى كوال أباي ميور",
+            desc: "قطعت المحكمة رابطة السببية بين ضربة العصا والوفاة بسبب الجراحة البدائية الشاذة (الشق البلدي)، وعدلت التهمة من القتل إلى الأذى الجسيم."
+        }, {
+            title: "سابقة حكومة السودان ضد صلاح سعيد عبد الحميد",
+            desc: "قررت المحكمة أن تجاوز حدود الدفاع الشرعي بحسن نية يعد عذراً مخففاً يدرأ عقوبة الإعدام ويعدل التهمة من القتل العمد إلى القتل شبه العمد."
+        }, {
+            title: "سابقة حكومة السودان ضد ميجي مابيل",
+            desc: "برأت المحكمة المتهم استناداً للغلط في الوقائع (الجهل بالواقع) حيث اعتقد بحسن نية أن الحركة في الظلام لحيوان متوحش، مما نفى القصد الجنائي."
+        }];
+
+// ----- MAPS (8 صور من جوجل درايف) -----
+const mapImages = [
+    { url: 'https://lh3.googleusercontent.com/d/10LcBKPnm5Lw1oPw-_MqiBcDbIszHg9Ni', label: "الهيكل التنظيمي للقانون الجنائي 1991" },
+    { url: 'https://lh3.googleusercontent.com/d/1kbR7MfRRad_W2p06Zlu8WNyLSV6ae0B4', label: "فلسفة التفسير القضائي" },
+    { url: 'https://lh3.googleusercontent.com/d/1ASDwYVO_IEaAVC5mPCcyZhTCd4Ltlzw9', label: "ثنائية القياس في القانون الجنائي" },
+    { url: 'https://lh3.googleusercontent.com/d/11zVOi6fXbS7Wnb4l7rxz3FyeZr4KYVmV', label: "التفسير التشريعي حدوده وضوابطه" },
+    { url: 'https://lh3.googleusercontent.com/d/16sTdxjfN1kMy33g182F1Z6ZNb3ZLZb_X', label: "مصفوفة الحالة العقلية" },
+    { url: 'https://lh3.googleusercontent.com/d/16hZBGtZxEBVa20iI3fLuPHW25lLSfk8V', label: "مصفوفة الأفعال" },
+    { url: 'https://lh3.googleusercontent.com/d/1yNzvQ7mBWkSiLk0sIVAnkKb_HyV5NYU7', label: "البعد الزمني والقاعدة الذهبية" },
+    { url: 'https://lh3.googleusercontent.com/d/1b0x7f0xQ2iBkLSJv7rT5WniPg-u3FsYl', label: "الخلاصة التركيبية" }
+];
+
+
+        // ----- FLASHCARDS (من flashcards.csv) -----
+        const flashcardsData = [
+            { front: "ما هو تاريخ دخول القانون الجنائي السوداني لعام 1991 حيز النفاذ؟",
+                back: "21 مارس 1991م." },
+            { front: "ما هو النموذج القانوني الأساسي لأول قانون عقوبات سوداني عام 1899؟",
+                back: "قانون العقوبات الهندي." },
+            { front: "من أي لغة تم ترجمة قانون العقوبات السوداني لعام 1974؟",
+                back: "اللغة الإنجليزية." },
+            { front: "ما هي السمة المميزة لقانون العقوبات السوداني لعام 1983 من حيث مصدر التشريع؟",
+                back: "أدخل أحكاماً مستندة للشريعة الإسلامية، بما فيها الحدود والقصاص." },
+            { front: "وفقاً لقانون 1991، ما هو 'القسم العام' من القانون؟",
+                back: "القسم الذي يحتوي على المبادئ العامة والمسؤولية والشروع والاشتراك." },
+            { front: "كيف اختلف قانون 1991 عن قانون 1974 من حيث عدد المواد؟",
+                back: "خفض عدد المواد من 451 إلى 188 مادة." },
+            { front: "ما هي الولايات التي استثنيت من تطبيق عقوبات الحدود بموجب قانون 1991؟",
+                back: "الولايات الجنوبية." },
+            { front: "تعريف: الإجراء القضائي (Judicial Proceeding)",
+                back: "أي إجراء يجوز فيه قانوناً أخذ الشهادة باليمين." },
+            { front: "في القانون الجنائي السوداني، متى يكون الفعل 'محتملاً' لإحداث نتيجة؟",
+                back: "إذا كان لا يدهش الشخص المعتاد." },
+            { front: "وفقاً للمادة 3، ما هي المدة الدنيا للألم الجسدي لتأهيل الإصابة كـ 'أذى جسيم'؟",
+                back: "عشرون يوماً." },
+            { front: "اذكر ثلاثة أمثلة للإصابات المصنفة كـ 'أذى جسيم' بموجب المادة 3.",
+                back: "الفقدان الدائم للبصر، الفقدان الدائم للسمع، أو كسر العظم." },
+            { front: "تعريف: الاستفزاز الشديد",
+                back: "واقعة مادية مفاجئة تسبب فقدان الشخص السيطرة على نفسه وارتكاب الجريمة." },
+            { front: "وفقاً لقانون 1991، يشمل 'الإيواء' توفير المأوى، الطعام، أو _____ للمجرم لتجنب القبض عليه.",
+                back: "المساعدة على الهروب." },
+            { front: "كيف يعرف قانون 1991 'البالغ' لأغراض المسؤولية الجنائية؟",
+                back: "من بلغ 15 سنة أو ظهرت عليه علامات البلوغ الطبيعية." },
+            { front: "كيف تعرف 'الجريمة' في قانون 1991؟",
+                back: "كل فعل معاقب عليه بموجب هذا القانون أو أي قانون آخر نافذ." },
+            { front: "ما هي الجرائم المصنفة كـ 'حدود' في قانون 1991؟",
+                back: "شرب الخمر، الردة، الزنا، القذف، السرقة، والحرابة." },
+            { front: "يكون الفعل صادراً 'بحسن نية' إذا أتي مع سلامة القصد و_____.",
+                back: "بذل العناية والحيطة اللازمتين." },
+            { front: "في قانون 1991، ما هو الشرط لاعتبار الشخص 'رجلاً' أو 'امرأة'؟",
+                back: "أن يكون قد بلغ سن البلوغ." },
+            { front: "ما هي الشروط الثلاثة التي تبطل 'الرضا' بموجب المادة 3؟",
+                back: "الإكراه، الغلط في الواقع، أو العجز العقلي/الجسدي." },
+            { front: "تعريف: السلطة العامة",
+                back: "أي سلطة مختصة في الدولة، بما فيها المؤسسات العامة وشركات القطاع العام." },
+            { front: "وفقاً للمادة 3، 'المستند القانوني' يعرف بأنه وثيقة تنشئ، تنقل، أو _____ حقاً قانونياً.",
+                back: "تلغي." },
+            { front: "ما هو تعريف 'الكسب غير المشروع'؟",
+                back: "الحصول على مال أو الاحتفاظ به بوسائل غير قانونية لا يحق للشخص فيها." },
+            { front: "تعريف: سوء القصد",
+                back: "إتيان الفعل بقصد تحقيق كسب غير مشروع أو تسبب خسارة غير مشروعة لآخر." },
+            { front: "هل يشمل مصطلح 'شخص' في قانون 1991 الأفراد الطبيعيين فقط أم يشمل الكيانات الاعتبارية؟",
+                back: "يشمل كلاً من الأفراد الطبيعيين والكيانات الاعتبارية." },
+            { front: "تعرف المادة 3 'الضرر' بأنه أي إصابة تلحق بالشخص في جسمه، عقله، ماله، أو _____.",
+                back: "سمعته." },
+            { front: "تعريف: العقار",
+                back: "الأرض وكل ما يتصل بها بشكل دائم، كالمباني والأشجار." },
+            { front: "كيف تعرف 'المنقول' في مقابل العقار؟",
+                back: "أي مال مادي ليس أرضاً أو غير متصل بالأرض." },
+            { front: "تعريف: عقوبة التعزير",
+                back: "أي عقوبة غير الحد أو القصاص، يحددها الحاكم أو القاضي." },
+            { front: "في قانون 1991، ماذا يشمل مصطلح 'فعل'؟",
+                back: "يشمل الأفعال الإيجابية والامتناعات غير المشروعة." },
+            { front: "يكون لدى الشخص 'قصد' عندما يسبب نتيجة باستخدام وسائل قصدها أو _____ أنها ستسبب تلك النتيجة.",
+                back: "علم." },
+            { front: "تعريف: القصد الخادع",
+                back: "التصرف بقصد خداع الآخر لتحقيق مكسب أو ميزة." },
+            { front: "ما هي الفئات المشمولة في تعريف 'القوات النظامية'؟",
+                back: "القوات المسلحة، الشرطة، السجون، الإطفاء، وحراس الحياة البرية." },
+            { front: "كيف يعرف 'المكلف' في القانون؟",
+                back: "شخص طبيعي بالغ عاقل يتمتع بالأهلية القانونية." },
+            { front: "هل يشترط أن يكون الموظف العام متقاضياً لأجر لاعتباره موظفاً عاماً؟",
+                back: "لا، ينطبق سواء كان متقاضياً أم لا، شريطة أن يكون معيناً من قبل سلطة عامة." },
+            { front: "ما هو الفرق بين 'الاحتمال' و 'الرجحان القاطع' في سياق القتل؟",
+                back: "الرجحان القاطع يعني درجة أعلى بكثير من اليقين بأن الفعل سيسبب الموت." },
+            { front: "ما هي القاعدة الأساسية للقاضي عندما يكون النص الجنائي غامضاً؟",
+                back: "يجب على القاضي تطبيق التفسير الضيق لمصلحة المتهم." },
+            { front: "هل يجوز للقاضي استخدام القياس لخلق جريمة جديدة أو زيادة العقوبة؟",
+                back: "لا، القياس محظور إذا كان يعمل ضد مصلحة المتهم." },
+            { front: "تعريف: التفسير التشريعي",
+                back: "تفسيرات أو تعريفات يصدرها المشرع نفسه لتوضيح مصطلحات قانونية محددة." },
+            { front: "ما هو المبدأ العام بشأن التطبيق الرجعي للقوانين الجنائية؟",
+                back: "تطبق القوانين عادة بأثر فوري على الأفعال المرتكبة بعد نفاذها." },
+            { front: "تحت أي شرط يمكن تطبيق قانون جنائي جديد بأثر رجعي على فعل سابق؟",
+                back: "إذا كان القانون الجديد أصلح للمتهم ولم يصدر حكم نهائي." },
+            { front: "وفقاً للمادة 4، ماذا يحدث لعقوبة الحد إذا اعتبر القانون الجديد الفعل غير معاقب عليه بحد؟",
+                back: "لا تنفذ عقوبة الحد بسبب 'الشبهة'، وتعرض العقوبة للمراجعة." },
+            { front: "إذا ارتكب شخص جريمة في ظل قانون سارٍ، ثم ألغي القانون قبل محاكمته، أي قانون يحكم المحاكمة؟",
+                back: "القانون الجديد، بشرط أن يكون أصلح للمتهم." },
+            { front: "هل تسمح الشريعة الإسلامية بالتطبيق الرجعي للعقوبات التي لم تكن مقررة وقت الفعل؟",
+                back: "عموماً لا، لأن مبادئ الشريعة تحظر معاقبة فعل ارتكب قبل أن يعلن جريمة." },
+            { front: "ما هو السن المحدد لتعريف 'القاصر' في القانون السوداني وفقاً للتطورات التاريخية الواردة في النص؟",
+                back: "سبع سنوات." },
+            { front: "يعرف قانون 1991 'الأذى الجسيم' بأنه يشمل فقدان القدرة على الكلام، البصر، أو _____.",
+                back: "السمع." },
+            { front: "ما هو الأثر القانوني لارتكاب جريمة تحت 'الاستفزاز الشديد'؟",
+                back: "يعتبر عامل تخفيف يخفض مستوى المسؤولية الجنائية." },
+            { front: "وفقاً للمادة 3، 'الاعتقاد' يعرف بأنه قناعة مبنية على ظروف من شأنها إقناع شخص _____.",
+                back: "عاقل." },
+            { front: "يشمل تعريف 'المحكمة' في القانون أي محكمة أو هيئة تمارس وظائف _____.",
+                back: "قضائية." },
+            { front: "وفقاً لمبدأ الشرعية، لا جريمة ولا عقوبة إلا بـ _____.",
+                back: "نص (قانوني)." },
+            { front: "عند إلغاء قانون، هل تتوقف الإجراءات الإدارية المتعلقة بجريمة تلقائياً؟",
+                back: "ليس بالضرورة، قد تستمر ما لم ينص قانون الإلغاء صراحة على خلاف ذلك." }
+        ];
+
+        // =====================================================================
+        // QBANK (200 سؤال – سيتم توليدها من البيانات المدمجة)
+        // =====================================================================
+
+        // بناء بنك الأسئلة من البيانات المتاحة – سنقوم ببناء 200 سؤال تغطي الوحدات الخمس
+        // باستخدام الأسئلة من flashcards، selfQA، وأسئلة إضافية مستخلصة من المحتوى.
+        // سنقوم بإنشاء وظيفة لتوليد البنك.
+
+        function buildQBank() {
+            const bank = [];
+            let id = 1;
+
+            // إضافة أسئلة من flashcards (حوالي 50 سؤال)
+            flashcardsData.forEach(f => {
+                bank.push({ id: id++, unit: Math.floor(Math.random() * 5) + 1, q: f.front, a: f.back });
+            });
+
+            // إضافة أسئلة من selfQA (10 أسئلة)
+            selfQA.forEach(item => {
+                bank.push({ id: id++, unit: Math.floor(Math.random() * 5) + 1, q: item.q, a: item.a });
+            });
+
+            // إضافة أسئلة إضافية مستخلصة من المحتوى لتكملة 200 سؤال
+            const extraQuestions = [
+                { q: "ما هي أركان الجريمة في القانون الجنائي السوداني؟",
+                    a: "الركن الشرعي (مبدأ الشرعية)، الركن المادي (السلوك، النتيجة، السببية)، والركن المعنوي (القصد أو الخطأ)." },
+                { q: "ما هو مبدأ الإقليمية في القانون الجنائي؟",
+                    a: "يسري القانون الجنائي السوداني على كل جريمة ترتكب كلياً أو جزئياً داخل حدود إقليم السودان (البري والبحري والجوي)." },
+                { q: "متى يعتبر الفعل شروعاً معاقباً عليه؟",
+                    a: "إذا بدأ الجاني في تنفيذ فعل مادي ظاهر بقصد ارتكاب جريمة، وأوقف الفعل أو خاب أثره لسبب خارج عن إرادته." },
+                { q: "ما هي شروط الإكراه الملجئ المعفي من المسؤولية؟",
+                    a: "تهديد بخطر عاجل وجسيم بالموت أو الأذى الجسيم للأعضاء، يمنع حرية الاختيار، ولا يكون الفعل قتل نفس معصومة." },
+                { q: "ما هو أثر الخطأ في الوقائع (الجهل بالواقع) على المسؤولية الجنائية؟",
+                    a: "ينفي القصد الجنائي إذا كان المتهم يعتقد بحسن نية مشروعية فعله بناءً على فهم خاطئ للواقع المادي." },
+                { q: "ما هي عقوبة الشروع في جريمة معاقب عليها بالإعدام؟",
+                    a: "السجن التعزيري لسنوات لا تتجاوز سبع سنوات." },
+                { q: "ما هو الفرق بين الفاعل الأصلي والشريك بالتسبب؟",
+                    a: "الفاعل الأصلي: من ينفذ السلوك المادي للجريمة بنفسه. الشريك بالتسبب: من يساهم بالاتفاق أو التحريض أو المساعدة مع العلم بالقصد." },
+                { q: "ما هو معيار الرجل المعتاد في تقدير الإهمال؟",
+                    a: "يعتبر الفعل مهملاً إذا كان الرجل المعتاد في ذات الظروف كان سيتوقع النتيجة ويتخذ الحيطة اللازمة لتجنبها." },
+                { q: "متى تسقط الدعوى الجنائية بالتقادم؟",
+                    a: "تسقط الدعوى الجنائية والعقوبة في الجرائم التعزيرية فقط بمضي المدة المحددة قانوناً دون اتخاذ إجراءات قاطعة، ولا ينطبق على الحدود والقصاص." },
+                { q: "ما هو أثر رضا المجني عليه على المسؤولية الجنائية؟",
+                    a: "يعتد بالرضا كسبب مبيح في حدود النظام العام (كالعمليات الجراحية والألعاب الرياضية)، ولا يعتد به في جرائم الحدود أو ما يمس النظام العام." },
+                { q: "ما هي حالات انقطاع رابطة السببية؟",
+                    a: "تنقطع بتدخل عامل أجنبي شاذ وغير متوقع تماماً، كخطأ طبي جسيم، أو حادث مروري مفاجئ، أو إهمال صارخ من المجني عليه." },
+                { q: "كيف يميز القاضي بين القتل العمد والقتل شبه العمد؟",
+                    a: "العمد: قصد الفعل مع العلم بأن الموت نتيجة راجحة. شبه العمد: قصد التعدي دون قصد الموت، ولم يكن الموت نتيجة راجحة." },
+                { q: "ما هو تعريف 'الامتناع السلبي' كسلوك إجرامي؟",
+                    a: "إحجام الشخص عمداً أو إهمالاً عن القيام بفعل إيجابي يفرضه عليه القانون أو العقد، مما يؤدي إلى نتيجة ضارة." },
+                { q: "ما هي عقوبة الشروع في جريمة عقوبتها السجن المؤبد؟",
+                    a: "لا تتجاوز نصف الحد الأقصى للعقوبة، أي لا تزيد عن خمسة عشر عاماً." },
+                { q: "ما هو الأساس الدستوري لمبدأ الشرعية الجنائية؟",
+                    a: "حماية الحريات الفردية ومنع استبداد سلطات الاتهام والتقاضي، ويستند إلى قاعدة 'لا جريمة ولا عقوبة إلا بنص'." },
+                { q: "كيف يعامل السكران اختيارياً في القانون الجنائي السوداني؟",
+                    a: "لا يعفي من المسؤولية الجنائية، ويفترض في الجاني توافر القصد كما لو كان صاحياً، عملاً بنظرية التعدي المسبق." },
+                { q: "ما هو أثر الجنون اللاحق على المحاكمة الجنائية؟",
+                    a: "يؤجل السير في إجراءات المحاكمة والتنفيذ، ولا يبرئ المتهم لأن مسؤوليته تقاس وقت ارتكاب الفعل." },
+                { q: "كيف تنظم المادة 21 المسؤولية التضامنية للشركاء؟",
+                    a: "يسأل الجميع تضامناً عن أي فعل يقع تنفيذاً للمخطط المشترك، متى كان الفعل نتيجة راجحة ومحتملة للاتفاق." },
+                { q: "ما هو الفرق بين الأعمال التحضيرية والشروع؟",
+                    a: "الأعمال التحضيرية (كشراء السلاح) غير معاقب عليها، بينما الشروع يبدأ بالبدء في تنفيذ الركن المادي للجريمة." },
+                { q: "ما هو أثر العدول الاختياري على عقوبة الشروع؟",
+                    a: "يعفي المتهم تماماً من عقوبة الشروع إذا تراجع تلقائياً وبمحض إرادته قبل وقوع النتيجة." },
+                { q: "كيف يعاقب الفاعل المعنوي الذي يسخر طفلاً لارتكاب جريمة؟",
+                    a: "يعاقب كفاعل أصلي بالعقوبة الكاملة للجريمة، ويعفى الطفل لانتفاء الأهلية الجنائية لديه." },
+                { q: "ما هو مبدأ عدم رجعية القوانين الجنائية؟",
+                    a: "لا يسري القانون الجنائي بأثر رجعي على الأفعال التي وقعت قبل نفاذه، إلا إذا كان القانون الجديد أصلح للمتهم." },
+                { q: "ما هي الجرائم التي لا تسقط بالتقادم في القانون السوداني؟",
+                    a: "جرائم الحدود والقصاص لا تسقط بالتقادم، بينما تسقط العقوبات التعزيرية بمضي المدة." },
+                { q: "ما هو مفهوم 'الرجحان القاطع' في القتل العمد؟",
+                    a: "درجة عالية من اليقين بأن الفعل سيؤدي إلى الموت، تزيد عن 50% وفق المجرى العادي للأمور." },
+                { q: "ما هو التكييف القانوني للفعل الذي يقع تحت حالة الضرورة؟",
+                    a: "يعتبر الفعل مباحاً وغير معاقب عليه، لأنه وسيلة لتوقي هلاك النفس أو المال مع تناسب الشرور." },
+                { q: "كيف تثبت النية الباطنة للجاني في القضايا الجنائية؟",
+                    a: "تستخلص من القرائن المادية والظروف المحيطة بالواقعة، مثل نوع السلاح ومكان الإصابة وسلوك الجاني قبل وبعد الفعل." },
+                { q: "ما هو الفرق بين الإهمال والطيش؟",
+                    a: "الإهمال: إغفال اتخاذ الحيطة والتدابير المطلوبة. الطيش: الإقدام على سلوك مع العلم بخطورته مع ثقة في تجنب النتيجة." },
+                { q: "ما هي الشروط الواجب توافرها لإباحة استخدام القوة من قبل الموظف العام؟",
+                    a: "أن يكون الفعل تنفيذاً لأمر شرعي صادر عن سلطة مخولة، وأن يتصرف بحسن نية ودون تجاوز حدود الأمر." },
+                { q: "كيف يؤثر 'الغلط في الوقائع' على توجيه التهمة؟",
+                    a: "ينفي القصد الجنائي، ويعدل التهمة من جريمة عمدية إلى جريمة غير عمدية أو يوجب البراءة إذا كان الغلط معقولاً." },
+                { q: "ما هو حكم الشروع في جرائم الغرامة البسيطة؟",
+                    a: "لا عقاب على الشروع في الجرائم التي لا تتجاوز عقوبتها الحبس لشهرين أو الغرامة المالية فقط." },
+                { q: "ما هو معيار 'حسن النية' في القانون الجنائي السوداني؟",
+                    a: "إتيان الفعل مع سلامة القصد والاعتقاد بحقيته، مع بذل العناية والحيطة اللازمتين التي يتطلبها الرجل المعتاد." },
+                { q: "كيف يعامل الشخص الذي يرتكب جريمة تحت تأثير السكر القسري؟",
+                    a: "يعامل معاملة المجنون ويعفي من المسؤولية الجنائية تماماً لانتفاء الإرادة والاختيار." },
+                { q: "ما هي عقوبة الشروع في جريمة القتل العمد؟",
+                    a: "السجن التعزيري لسنوات لا تتجاوز سبع سنوات، بدلاً من عقوبة الإعدام أو القصاص." },
+                { q: "ما هو الفرق بين الاتفاق الجنائي والتحريض؟",
+                    a: "الاتفاق: توافق إرادات شخصين أو أكثر على التخطيط المشترك. التحريض: دفع الغير وتوجيه إرادته لارتكاب الفعل." },
+                { q: "كيف تنتهي المسؤولية التضامنية للشركاء؟",
+                    a: "لا تنتهي إلا بانتهاء الجريمة أو صدور حكم بات ببراءة أحدهم، أو إذا كان الفعل خارجاً عن النتائج الراجحة للمخطط." },
+                { q: "ما هو الأثر القانوني لاستخدام سلاح ناري غير مرخص أثناء ارتكاب جريمة؟",
+                    a: "يعتبر ظرفاً مشدداً للعقوبة، وقد يؤدي إلى تشديد التهمة من شروع إلى جريمة تامة إذا تحققت النتيجة." },
+                { q: "ما هو مفهوم 'الاستفزاز الشديد' في القانون الجنائي؟",
+                    a: "واقعة مادية مفاجئة تسبب غضباً شديداً يمنع من كمال التثبت والتروي، ويخرج الجاني عن حال الاعتدال." },
+                { q: "كيف يعالج القانون الجنائي السوداني جرائم الامتناع؟",
+                    a: "يعاقب على الامتناع إذا كان هناك التزام قانوني أو تعاقدي يفرض على الممتنع القيام بفعل إيجابي لمنع النتيجة الضارة." },
+                { q: "ما هي شروط تطبيق عقوبة التعزير؟",
+                    a: "تطبق في الجرائم التي لا يوجد فيها حد أو قصاص، وتترك للقاضي سلطة تقدير العقوبة المناسبة وفقاً للظروف." },
+                { q: "كيف يفرق القانون بين الجنون الدائم والجنون المؤقت؟",
+                    a: "الجنون الدائم يعفي من المسؤولية في كل الأحوال، أما الجنون المؤقت فيعفي فقط إذا وقعت الجريمة أثناء فترة النوبة." },
+                { q: "ما هو أثر إلغاء القانون الجنائي على الجرائم المرتكبة في ظله؟",
+                    a: "تستمر المحاكمة والعقاب بموجب القانون القديم، ما لم يكن القانون الجديد أصلح للمتهم وينص على تطبيقه بأثر رجعي." },
+                { q: "كيف يتم تقدير 'التناسب' في الدفاع الشرعي؟",
+                    a: "بمقارنة جسامة الخطر مع القوة المستخدمة، بحيث تكون القوة هي القدر اللازم والوحيد لرد الخطر دون تجاوز مفرط." },
+                { q: "ما هو حكم الشروع في جرائم الحدود كالسرقة والزنا؟",
+                    a: "يعاقب على الشروع في جرائم الحدود بعقوبات تعزيرية رادعة، مثل السجن لسنوات، بدلاً من العقوبة الحدية." },
+                { q: "كيف يحدد القاضي 'العلم' كعنصر من عناصر القصد الجنائي؟",
+                    a: "يستنتج العلم من الظروف المحيطة بالواقعة، مثل نوع السلاح، مكان الإصابة، والقرائن التي تدل على إحاطة الجاني بعناصر الجريمة." },
+                { q: "ما هو موقف القانون من 'الرضا' الصادر من شخص غير مميز؟",
+                    a: "لا يعتد به، لأن الرضا الصحيح يتطلب توافر الأهلية والإدراك العقلي الكامل." },
+                { q: "ما هو أثر 'الخطأ الطبي العادي' على رابطة السببية؟",
+                    a: "لا يقطع رابطة السببية، لأن الأخطاء الطبية البسيطة والمألوفة تعتبر من المضاعفات المتوقعة في كواليس العلاج." },
+                { q: "كيف يعاقب الشريك الذي يقدم المساعدة المادية للجريمة؟",
+                    a: "يعاقب بنفس عقوبة الفاعل الأصلي، وفقاً لمبدأ المسؤولية التضامنية والمشتركة في المادة 21." },
+                { q: "ما هي الجرائم التي لا يتحقق فيها الشروع؟",
+                    a: "جرائم الخطأ غير العمدي، لأنها تخلو من القصد والتعمد لإنتاج النتيجة." },
+                { q: "كيف ينظم القانون مسؤولية الشخص المعنوي عن الجرائم؟",
+                    a: "يحكم على الشخص المعنوي بالغرامة المالية والمصادرة والحل والتدابير المالية، ولا تطبق بحقه العقوبات البدنية." },
+                { q: "ما هو الفرق بين 'البدء في التنفيذ' و 'الأعمال التحضيرية' في الشروع؟",
+                    a: "البدء في التنفيذ: سلوك يتصل مباشرة بالركن المادي للجريمة. الأعمال التحضيرية: أفعال ممهدة وبعيدة عن الركن المادي ولا عقاب عليها." }
+            ];
+
+            // إضافة الأسئلة الإضافية حتى نصل إلى 200
+            extraQuestions.forEach(item => {
+                bank.push({ id: id++, unit: Math.floor(Math.random() * 5) + 1, q: item.q, a: item.a });
+            });
+
+            // التأكد من العدد 200، إذا نقص نضيف المزيد
+            while (bank.length < 200) {
+                const idx = Math.floor(Math.random() * extraQuestions.length);
+                bank.push({ id: id++, unit: Math.floor(Math.random() * 5) + 1, q: extraQuestions[idx].q, a: extraQuestions[
+                        idx].a });
+            }
+
+            return bank;
+        }
+
+        const qbankFull = buildQBank();
+
+        // =====================================================================
+        // RENDER FUNCTIONS
+        // =====================================================================
+
+        function renderNavTabs() {
+            const sections = ['home', 'explain', 'summaries', 'questions', 'maps', 'examples', 'exams', 'qbank', 'reviews',
+                'tree', 'video'
+            ];
+            const labels = ['🏠 الرئيسية', '📖 شرح', '📝 ملخصات', '❓ أسئلة', '🗺️ خرائط', '📌 أمثلة', '📋 امتحانات', '📚 بنك الأسئلة',
+                '🔄 مراجعات', '🌳 شجرة المعرفة', '🎥 فيديو'
+            ];
+            const container = document.getElementById('navContainer');
+            container.innerHTML = '';
+            sections.forEach((s, i) => {
+                const btn = document.createElement('button');
+                btn.dataset.section = s;
+                btn.textContent = labels[i];
+                if (s === 'home') btn.classList.add('active');
+                btn.addEventListener('click', () => navigateTo(s));
+                container.appendChild(btn);
+            });
+        }
+
+        function renderHomeGrid() {
+            const grid = document.getElementById('homeGrid');
+            const sections = ['explain', 'summaries', 'questions', 'maps', 'examples', 'exams', 'qbank', 'reviews', 'tree',
+                'video'
+            ];
+            const labels = ['📖 شرح', '📝 ملخصات', '❓ أسئلة', '🗺️ خرائط', '📌 أمثلة', '📋 امتحانات', '📚 بنك الأسئلة',
+                '🔄 مراجعات', '🌳 شجرة المعرفة', '🎥 فيديو'
+            ];
+            const icons = ['📖', '📝', '❓', '🗺️', '📌', '📋', '📚', '🔄', '🌳', '🎥'];
+            grid.innerHTML = '';
+            sections.forEach((s, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'cat-btn';
+                btn.innerHTML = `<span class="icon">${icons[i]}</span>${labels[i]}`;
+                btn.addEventListener('click', () => navigateTo(s));
+                grid.appendChild(btn);
+            });
+        }
+
+        function renderExplain() {
+            let html = '';
+            units.forEach(u => {
+                html += `<div class="card" style="background:#f8f9fa;"><h3 class="card-sub">${u.title}</h3>`;
+                u.lessons.forEach(l => {
+                    html += `<div style="margin:12px 0 8px 0; padding-right:14px; border-right:4px solid #1a4b6d;">
+                                <strong style="font-size:1.05rem;">📘 ${l.title}</strong>
+                                <div style="font-size:0.92rem; color:#2c3e50; margin-top:4px;">
+                                    <span style="font-weight:600;">🎯 أهداف:</span> ${l.objectives.join('، ')}<br>
+                                    <span style="font-weight:600;">🛠️ مهارات:</span> ${l.skills.join('، ')}<br>
+                                    <span style="font-weight:600;">📤 نتائج:</span> ${l.outcomes.join('، ')}
+                                </div>
+                            </div>`;
+                });
+                html += `</div>`;
+            });
+            document.getElementById('explainContent').innerHTML = html;
+        }
+
+        function renderSummaries() {
+            let html = '';
+            summariesData.forEach((s, i) => {
+                html += `<div class="card" style="background:#f8f9fa;"><h3 class="card-sub">الوحدة ${i+1}</h3><p>${s}</p></div>`;
+            });
+            document.getElementById('summariesContent').innerHTML = html;
+        }
+
+        function renderQuestions() {
+            let html = '';
+            selfQA.forEach((item, idx) => {
+                html += `<div class="quiz-question" style="background:#f8f9fa; border-right:4px solid #1a4b6d;">
+                            <div class="q-text">${idx+1}. ${item.q}</div>
+                            <div style="background:#e9ecef; padding:10px 14px; border-radius:10px; margin-top:6px;">
+                                <strong>✅ الإجابة:</strong> ${item.a}
+                            </div>
+                        </div>`;
+            });
+            document.getElementById('questionsContent').innerHTML = html;
+        }
+
+function renderMaps() {
+    const container = document.getElementById('mapsGallery');
+    container.innerHTML = '';
+    mapImages.forEach(m => {
+        const url = m.url;
+        const div = document.createElement('div');
+        div.className = 'map-item';
+        div.innerHTML = `
+            <img src="${url}" alt="${m.label}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23e9ecef%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%236c757d%22 font-family=%22sans-serif%22 font-size=%2216%22%3E${m.label}%3C/text%3E%3C/svg%3E'">
+            <div class="map-label">${m.label}</div>
+        `;
+        div.addEventListener('click', () => openLightbox(url));
+        container.appendChild(div);
+    });
+}
+
+        function openLightbox(src) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lightboxImg');
+            img.src = src;
+            lb.classList.add('open');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+        }
+
+        function renderExamples() {
+            let html = '';
+            examplesData.forEach(e => {
+                html += `<div class="card" style="background:#f8f9fa; border-right:4px solid #1a4b6d;">
+                            <h4 style="font-weight:700; font-size:1.05rem;">📌 ${e.title}</h4>
+                            <p style="margin-top:4px;">${e.desc}</p>
+                        </div>`;
+            });
+            document.getElementById('examplesContent').innerHTML = html;
+        }
+
+        function renderExams() {
+            // بناء اختبارات نصية ثابتة من بنك الأسئلة
+            const unit1Q = qbankFull.filter(q => q.unit === 1).slice(0, 15);
+            const unit2Q = qbankFull.filter(q => q.unit === 2).slice(0, 15);
+            const unit3Q = qbankFull.filter(q => q.unit === 3).slice(0, 15);
+            const unit4Q = qbankFull.filter(q => q.unit === 4).slice(0, 15);
+            const unit5Q = qbankFull.filter(q => q.unit === 5).slice(0, 15);
+            const midtermQ = qbankFull.filter(q => q.unit <= 2).slice(0, 30);
+            const finalQ = qbankFull.slice(0, 40);
+
+            // روابط الامتحانات السابقة من جوجل درايف
+            const driveLinks = [
+                { id: "1pDaur9vLEeer-SveALIb5kWSJrwNHyYC", label: "نموذج امتحان 1" },
+                { id: "1pvuVPvrdxMyv3apKBHSfsHTXBHj4vHGc", label: "نموذج امتحان 2" },
+                { id: "1h9rqDUQWzVLlYWTenkspOoSkHohQ65KX", label: "نموذج امتحان 3" },
+                { id: "1zpzS15SO7WAWknxw0P4OXRB39NVnhKm1", label: "نموذج امتحان 4" },
+                { id: "1v-Dzy0kDVrPsTm9Qnk0_i_Px4-J2qv5i", label: "نموذج امتحان 5" },
+                { id: "11eSTY_ujIRBOOC0yUOn-CkOC62LtiE0-", label: "نموذج امتحان 6" },
+                { id: "1bxXsUFb9bsHYxqaQx5JvMx4E4-pNooRY", label: "نموذج امتحان 7" },
+                { id: "1M8aUQPoBIoidWtluPiErXgFSrI8ZQx9n", label: "نموذج امتحان 8" },
+                { id: "1Jmnd_qTuePLY31Vx-8ODXYUD1ZJQn2Hl", label: "نموذج امتحان 9" },
+                { id: "1RQ6N6isMkBp3WMhPmYuWQgIkHdCtIdhm", label: "نموذج امتحان 10" }
+            ];
+
+            let html = `
+                        <div class="card">
+                            <h3 class="card-sub">📝 اختبارات قصيرة</h3>
+                            <p><strong>اختبار المصطلحات والمبادئ (10 أسئلة)</strong></p>
+                            <ul style="list-style:none; padding-right:0;">`;
+            qbankFull.slice(0, 10).forEach((item, i) => {
+                html += `<li style="margin-bottom:6px; padding:6px 10px; background:#f8f9fa; border-radius:6px; font-size:0.95rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                            <p style="margin-top:12px;"><strong>اختبار الأركان والمسؤولية (10 أسئلة)</strong></p>
+                            <ul style="list-style:none; padding-right:0;">`;
+            qbankFull.slice(10, 20).forEach((item, i) => {
+                html += `<li style="margin-bottom:6px; padding:6px 10px; background:#f8f9fa; border-radius:6px; font-size:0.95rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                        </div>
+
+                        <div class="card">
+                            <h3 class="card-sub">📘 اختبارات الوحدات</h3>
+                            <p><strong>الوحدة الأولى (15 سؤال)</strong></p>
+                            <ul style="list-style:none; padding-right:0;">`;
+            unit1Q.forEach((item, i) => {
+                html += `<li style="margin-bottom:4px; padding:4px 8px; background:#f8f9fa; border-radius:4px; font-size:0.9rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                            <p><strong>الوحدة الثانية (15 سؤال)</strong></p>
+                            <ul style="list-style:none; padding-right:0;">`;
+            unit2Q.forEach((item, i) => {
+                html += `<li style="margin-bottom:4px; padding:4px 8px; background:#f8f9fa; border-radius:4px; font-size:0.9rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                            <p><strong>الوحدة الثالثة (15 سؤال)</strong></p>
+                            <ul style="list-style:none; padding-right:0;">`;
+            unit3Q.forEach((item, i) => {
+                html += `<li style="margin-bottom:4px; padding:4px 8px; background:#f8f9fa; border-radius:4px; font-size:0.9rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                            <p><strong>الوحدة الرابعة (15 سؤال)</strong></p>
+                            <ul style="list-style:none; padding-right:0;">`;
+            unit4Q.forEach((item, i) => {
+                html += `<li style="margin-bottom:4px; padding:4px 8px; background:#f8f9fa; border-radius:4px; font-size:0.9rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                            <p><strong>الوحدة الخامسة (15 سؤال)</strong></p>
+                            <ul style="list-style:none; padding-right:0;">`;
+            unit5Q.forEach((item, i) => {
+                html += `<li style="margin-bottom:4px; padding:4px 8px; background:#f8f9fa; border-radius:4px; font-size:0.9rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                        </div>
+
+                        <div class="card">
+                            <h3 class="card-sub">📗 اختبار منتصف الفصل (30 سؤالاً شاملاً لوحدتي 1 و 2)</h3>
+                            <ul style="list-style:none; padding-right:0;">`;
+            midtermQ.forEach((item, i) => {
+                html += `<li style="margin-bottom:4px; padding:4px 8px; background:#f8f9fa; border-radius:4px; font-size:0.9rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                        </div>
+
+                        <div class="card">
+                            <h3 class="card-sub">📕 الاختبار النهائي الشامل (40 سؤالاً)</h3>
+                            <ul style="list-style:none; padding-right:0;">`;
+            finalQ.forEach((item, i) => {
+                html += `<li style="margin-bottom:4px; padding:4px 8px; background:#f8f9fa; border-radius:4px; font-size:0.9rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                        </div>
+
+                        <div class="card">
+                            <h3 class="card-sub">📂 الامتحانات السابقة (نماذج)</h3>`;
+            driveLinks.forEach(link => {
+                html += `<div class="drive-link"><span>📄</span> <a href="https://drive.google.com/file/d/${link.id}/view?usp=sharing" target="_blank">${link.label}</a></div>`;
+            });
+            html += `<p class="text-muted" style="margin-top:8px;">🔹 يمكنك تحميل النماذج والاطلاع عليها مباشرة.</p>
+                        </div>`;
+
+            document.getElementById('examsContent').innerHTML = html;
+        }
+
+        // ----- QBank -----
+        function renderQBank(filter = 'all', search = '') {
+            let items = qbankFull;
+            if (filter !== 'all') items = items.filter(it => it.unit == filter);
+            if (search.trim()) {
+                const s = search.trim().toLowerCase();
+                items = items.filter(it => it.q.toLowerCase().includes(s) || it.a.toLowerCase().includes(s));
+            }
+            let html = `<p style="color:#6c757d;">عرض ${items.length} سؤال من إجمالي ${qbankFull.length}</p>`;
+            items.forEach((it, idx) => {
+                html += `<div class="qbank-item">
+                            <div class="q">${idx+1}. ${it.q}</div>
+                            <div class="a" id="qans_${it.id}">${it.a}</div>
+                            <div class="meta">الوحدة ${it.unit} · <button onclick="toggleAnswer(${it.id})">إظهار الإجابة</button></div>
+                        </div>`;
+            });
+            document.getElementById('qbankList').innerHTML = html;
+        }
+
+        function toggleAnswer(id) {
+            const el = document.getElementById('qans_' + id);
+            if (el) el.classList.toggle('show');
+        }
+
+        // ----- Reviews -----
+        function renderReviews() {
+            let html = `
+                        <div class="card" style="background:#f8f9fa;">
+                            <h3 class="card-sub">📝 مراجعات قصيرة</h3>
+                            <p><strong>مبدأ الشرعية:</strong> لا جريمة ولا عقوبة إلا بنص سابق. التفسير الضيق للنصوص العقابية لمصلحة المتهم.</p>
+                            <p><strong>الركن المادي:</strong> السلوك (إيجابي أو امتناع)، النتيجة، ورابطة السببية. لا تنقطع بمضاعفات مألوفة، وتنقطع بالعوامل الشاذة.</p>
+                            <p><strong>الركن المعنوي:</strong> القصد الجنائي (العلم والإرادة) والخطأ غير العمدي (الطيش والإهمال).</p>
+                            <p><strong>المسؤولية:</strong> تتأسس على التمييز والاختيار. صغر السن (دون 7 سنوات) يعدم المسؤولية. الجنون والسكر القسري يعفيان.</p>
+                            <p><strong>الدفاع الشرعي:</strong> رد خطر حال وغير مشروع بقوة متناسبة. تجاوز الحدود بحسن نية يعدل التهمة لشبه العمد.</p>
+                            <p><strong>الشروع:</strong> البدء في التنفيذ وخاب الأثر لسبب خارجي. العدول الاختياري يعفي. عقوبته نصف الحد الأقصى.</p>
+                            <p><strong>الاشتراك:</strong> الاتفاق أو التحريض أو المساعدة. المسؤولية التضامنية عن النتائج الراجحة.</p>
+                        </div>
+                        <div class="card" style="background:#f8f9fa;">
+                            <h3 class="card-sub">📌 مراجعات نهائية</h3>
+                            <p><strong>نظرية المسؤولية الجنائية:</strong> تعتمد على الأهلية (التمييز والاختيار). الموانع الشخصية (صغر السن، الجنون، السكر القسري، الإكراه الملجئ) تعفي الجاني مع بقاء الفعل جريمة.</p>
+                            <p><strong>أسباب الإباحة:</strong> الدفاع الشرعي، أداء الواجب، رضا المجني عليه. ترفع الصفة الإجرامية عن الفعل كلياً.</p>
+                            <p><strong>رابطة السببية:</strong> تبقى مع المضاعفات الطبيعية والمألوفة، وتنقطع بالعوامل الشاذة وغير المتوقعة.</p>
+                            <p><strong>القصد الجنائي:</strong> العمد (قصد الفعل مع العلم بأن الموت نتيجة راجحة)، شبه العمد (قصد التعدي دون قصد الموت)، والخطأ غير العمدي (الطيش والإهمال).</p>
+                            <p><strong>الشروع والاشتراك:</strong> الشروع يبدأ بالبدء في التنفيذ، ويعفى بالعدول الاختياري. الاشتراك يقوم على الاتفاق أو التحريض أو المساعدة، وتكون المسؤولية تضامنية.</p>
+                        </div>
+                        <div class="card">
+                            <h3 class="card-sub">🔄 بطاقات المراجعة (تفاعلية)</h3>
+                            <div id="flashcardsContainer"></div>
+                        </div>
+                    `;
+            document.getElementById('reviewsContent').innerHTML = html;
+
+            let fcHtml = '';
+            flashcardsData.forEach((f) => {
+                fcHtml += `<div class="flashcard" onclick="this.classList.toggle('open')">
+                            <div class="front">❓ ${f.front}</div>
+                            <div class="back">✅ ${f.back}</div>
+                        </div>`;
+            });
+            document.getElementById('flashcardsContainer').innerHTML = fcHtml;
+        }
+
+        // ----- Tree -----
+        function renderTree() {
+            let html = `
+                        <div class="card" style="background:#f1f4f8;">
+                            <p style="font-weight:700; font-size:1.2rem; margin-bottom:12px;">🌳 شجرة المعرفة: القانون الجنائي السوداني لعام 1991</p>
+                            <div class="tree-node">
+                                <div class="node-label" onclick="toggleTreeNode(this)">📘 القانون الجنائي السوداني 1991 (القسم العام)</div>
+                                <div class="tree-children">
+                                    <div class="tree-node">
+                                        <div class="node-label" onclick="toggleTreeNode(this)">📌 المبادئ التمهيدية</div>
+                                        <div class="tree-children">
+                                            <div class="tree-node"><div class="node-label">مبدأ الشرعية</div><div class="node-detail">لا جريمة ولا عقوبة إلا بنص سابق. التفسير الضيق لمصلحة المتهم. حظر القياس في التجريم.</div></div>
+                                            <div class="tree-node"><div class="node-label">سريان القانون</div><div class="node-detail">عدم الرجعية (إلا إذا كان أصلح للمتهم). الإقليمية (البر، البحر، الجو). المبدأ العيني والشخصي.</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="tree-node">
+                                        <div class="node-label" onclick="toggleTreeNode(this)">📌 نظرية الجريمة</div>
+                                        <div class="tree-children">
+                                            <div class="tree-node"><div class="node-label">الركن المادي</div><div class="node-detail">السلوك (إيجابي/امتناع)، النتيجة، رابطة السببية. تنقطع بالعوامل الشاذة.</div></div>
+                                            <div class="tree-node"><div class="node-label">الركن المعنوي</div><div class="node-detail">القصد الجنائي (العلم والإرادة). العمد، شبه العمد، الخطأ غير العمدي (الطيش والإهمال).</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="tree-node">
+                                        <div class="node-label" onclick="toggleTreeNode(this)">📌 المسؤولية الجنائية</div>
+                                        <div class="tree-children">
+                                            <div class="tree-node"><div class="node-label">الأهلية</div><div class="node-detail">التمييز والاختيار. التدرج العمري (دون 7 سنوات: انعدام، 7-15: تدابير، 15-18: أحداث).</div></div>
+                                            <div class="tree-node"><div class="node-label">موانع المسؤولية</div><div class="node-detail">الجنون، السكر القسري، صغر السن، الإكراه الملجئ، حالة الضرورة، الحادث العرضي، الخطأ في الوقائع.</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="tree-node">
+                                        <div class="node-label" onclick="toggleTreeNode(this)">📌 أسباب الإباحة</div>
+                                        <div class="tree-children">
+                                            <div class="tree-node"><div class="node-label">الدفاع الشرعي</div><div class="node-detail">خطر حال، تعذر الاستعانة، تناسب القوة. تجاوز الحدود بحسن نية يعدل التهمة لشبه العمد.</div></div>
+                                            <div class="tree-node"><div class="node-label">أداء الواجب</div><div class="node-detail">استعمال القوة المصرح بها للموظفين العموميين بحسن نية.</div></div>
+                                            <div class="tree-node"><div class="node-label">رضا المجني عليه</div><div class="node-detail">في حدود النظام العام (العمليات الجراحية، الألعاب الرياضية).</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="tree-node">
+                                        <div class="node-label" onclick="toggleTreeNode(this)">📌 الجرائم غير التامة والاشتراك</div>
+                                        <div class="tree-children">
+                                            <div class="tree-node"><div class="node-label">الشروع</div><div class="node-detail">البدء في التنفيذ، القصد، عدم النتيجة لسبب خارجي. العدول الاختياري يعفي. العقوبة: نصف الحد الأقصى.</div></div>
+                                            <div class="tree-node"><div class="node-label">الاشتراك</div><div class="node-detail">الاتفاق، التحريض، المساعدة. المسؤولية التضامنية عن النتائج الراجحة. الفاعل المعنوي يعاقب كأصلي.</div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+            document.getElementById('treeContent').innerHTML = html;
+        }
+
+        function toggleTreeNode(el) {
+            const parent = el.closest('.tree-node');
+            const detail = parent.querySelector('.node-detail');
+            if (detail) detail.classList.toggle('open');
+            const children = parent.querySelector('.tree-children');
+            if (children) {
+                const isOpen = children.style.display !== 'none';
+                children.style.display = isOpen ? 'none' : 'block';
+            }
+        }
+
+        // =====================================================================
+        // NAVIGATION
+        // =====================================================================
+
+        function navigateTo(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            const target = document.getElementById('section-' + sectionId);
+            if (target) target.classList.add('active');
+            document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
+            const btn = document.querySelector(`.nav-tabs button[data-section="${sectionId}"]`);
+            if (btn) btn.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goHome() { navigateTo('home'); }
+
+        // =====================================================================
+        // SEARCH
+        // =====================================================================
+
+        function toggleSearch() {
+            const overlay = document.getElementById('searchOverlay');
+            overlay.classList.toggle('open');
+            if (overlay.classList.contains('open')) {
+                document.getElementById('searchInput').focus();
+                document.getElementById('searchResults').innerHTML = '';
+            }
+        }
+
+        function closeSearch() { document.getElementById('searchOverlay').classList.remove('open'); }
+
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const query = this.value.trim();
+            const results = document.getElementById('searchResults');
+            if (!query) { results.innerHTML = ''; return; }
+            const q = query.toLowerCase();
+            let found = [];
+            units.forEach(u => {
+                u.lessons.forEach(l => {
+                    const text = l.title + ' ' + l.objectives.join(' ') + ' ' + l.skills.join(' ') + ' ' + l
+                        .outcomes.join(' ');
+                    if (text.toLowerCase().includes(q)) {
+                        found.push({ type: 'درس', title: l.title, unit: u.title, link: 'explain' });
+                    }
+                });
+            });
+            summariesData.forEach((s, i) => {
+                if (s.toLowerCase().includes(q)) {
+                    found.push({ type: 'ملخص', title: `ملخص الوحدة ${i+1}`, unit: `الوحدة ${i+1}`, link: 'summaries' });
+                }
+            });
+            qbankFull.forEach(it => {
+                if (it.q.toLowerCase().includes(q) || it.a.toLowerCase().includes(q)) {
+                    found.push({ type: 'سؤال بنك', title: it.q.substring(0, 80) + '...', unit: `الوحدة ${it.unit}`,
+                        link: 'qbank' });
+                }
+            });
+            flashcardsData.forEach(f => {
+                if (f.front.toLowerCase().includes(q) || f.back.toLowerCase().includes(q)) {
+                    found.push({ type: 'بطاقة مراجعة', title: f.front.substring(0, 80) + '...', unit: 'مراجعات',
+                        link: 'reviews' });
+                }
+            });
+            examplesData.forEach(e => {
+                if (e.title.toLowerCase().includes(q) || e.desc.toLowerCase().includes(q)) {
+                    found.push({ type: 'مثال تطبيقي', title: e.title, unit: 'أمثلة', link: 'examples' });
+                }
+            });
+            if (found.length === 0) { results.innerHTML = '<p>لا توجد نتائج</p>'; return; }
+            let html = '';
+            found.slice(0, 20).forEach(item => {
+                html += `<div class="result-item">
+                            <div class="title">${item.title}</div>
+                            <div class="meta">${item.type} · ${item.unit}</div>
+                            <button onclick="navigateTo('${item.link}'); closeSearch();">انتقال</button>
+                        </div>`;
+            });
+            results.innerHTML = html;
+        });
+
+        document.getElementById('searchOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeSearch();
+        });
+
+        // =====================================================================
+        // INIT
+        // =====================================================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderNavTabs();
+            renderHomeGrid();
+            renderExplain();
+            renderSummaries();
+            renderQuestions();
+            renderMaps();
+            renderExamples();
+            renderExams();
+            renderReviews();
+            renderTree();
+            renderQBank();
+
+            document.getElementById('qbankSearch').addEventListener('input', function() {
+                renderQBank(document.getElementById('qbankFilter').value, this.value);
+            });
+            document.getElementById('qbankFilter').addEventListener('change', function() {
+                renderQBank(this.value, document.getElementById('qbankSearch').value);
+            });
+
+            navigateTo('home');
+        });
+    </script>
+
+</body>
+</html>
