@@ -67,6 +67,15 @@
       "visible": true
     },
     {
+          "id": 8,
+      "category": "law",
+      "title": "مادة الإجراءات الجنائية",
+      "description": "دورة تعليمية شاملة لمادة الإجراءات الجنائية.",
+      "icon": "⚖️",
+      "url": "courses/criminal_procedures/protected_criminal_procedures.html",
+      "visible": true
+    },
+    {
       "id": 5,
       "category": "law",
       "title": "الميراث",
