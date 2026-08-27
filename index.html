@@ -30,7 +30,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/Hero/sw.js')
+                navigator.serviceWorker.register('./sw.js')
                     .then(registration => {
                         console.log(
                             '✅ Hero Service Worker registered:',
