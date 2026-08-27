@@ -1157,7 +1157,7 @@ function renderAbout() {
             ">
 
                 <a href="
-                https://hero.kesug.com/Academy/"
+                https://academy.hero1.vip/Academy/"
                    target="_blank"
                    rel="noopener"
                    style="
