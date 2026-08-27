@@ -91,7 +91,6 @@ async function loadCourses() {
 // ================================
 // الواجهة الرئيسية للأكاديمية
 // ================================
-```javascript
 function renderAcademy() {
 
     const myCount = getMyCourses().length;
