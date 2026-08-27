@@ -535,27 +535,27 @@ function renderAcademy() {
                 <!-- ========================= -->
                 <!-- واتساب -->
                 <!-- ========================= -->
-                <a
-                    href="https://wa.me/249915886600"
-                    target="_blank"
-                    rel="noopener"
-                    style="
-                        display:block;
-                        width:100%;
-                        box-sizing:border-box;
-                        text-align:center;
-                        text-decoration:none;
-                        background:#25D366;
-                        color:#fff;
-                        padding:12px;
-                        border-radius:12px;
-                        margin:15px 0;
-                        font-weight:bold;
-                        font-size:15px;
-                    "
-                >
-                    💬 تواصل معنا عبر واتساب
-                </a>
+               <a
+    href="https://wa.me/249915886600"
+    target="_blank"
+    rel="noopener"
+    style="
+        display:block;
+        width:100%;
+        box-sizing:border-box;
+        text-align:center;
+        text-decoration:none;
+        background:#25D366;
+        color:#fff;
+        padding:12px;
+        border-radius:12px;
+        margin:15px 0;
+        font-weight:bold;
+        font-size:15px;
+    "
+>
+    💬 تواصل معنا عبر واتساب
+</a>
 
 
                 <!-- ========================= -->
@@ -1155,7 +1155,7 @@ function renderAbout() {
                 gap:10px;
                 margin-top:25px;
             ">
-
+                 <!--
                 <a href="
                 https://academy.hero1.vip/Academy/"
                    target="_blank"
@@ -1171,6 +1171,7 @@ function renderAbout() {
                    ">
                     🎓 موقع الأكاديمية
                 </a>
+                -->
 
                 <a href="https://web.facebook.com/Heropwa"
                    target="_blank"
