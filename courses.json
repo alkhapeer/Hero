@@ -91,7 +91,7 @@
     "title": "اختبار القدرات التشخيصي",
     "description": "اختبر مستواك واكتشف نقاط القوة والضعف قبل بدء الاستعداد.",
     "icon": "🎯",
-    "url": "tests/qudurat.html",
+    "url": "courses/tests/qudurat.html",
     "visible": true
     },
     {
@@ -100,7 +100,7 @@
     "title": "اختبار التحصيلي التشخيصي",
     "description": "قيّم مستواك وحدد ما تحتاج إلى تطويره قبل الاختبار.",
     "icon": "📚",
-    "url": "tests/tahsili.html",
+    "url": "courses/tests/tahsili.html",
     "visible": true
     },
     {
