@@ -1,14 +1,4 @@
 {
-    "id": "test-qudurat",
-    "title": "🎯 اختبارات القدرات",
-    "icon": "🎯"
-},
-{
-    "id": "test-tahsili",
-    "title": "📚 اختبارات التحصيلي",
-    "icon": "📚"
-},
-{
   "categories": [
     {
       "id": "law",
@@ -19,6 +9,16 @@
       "id": "Thanawy",
       "title": "الثانوية",
       "icon": "🔬"
+    },
+    {
+      "id": "test-qudurat",
+      "title": "اختبارات القدرات",
+      "icon": "🎯"
+    },
+    {
+      "id": "test-tahsili",
+      "title": "اختبارات التحصيلي",
+      "icon": "📚"
     }
   ],
   "courses": [
@@ -58,7 +58,7 @@
       "url": "courses/A7wal/protected_personal_law.html",
       "visible": true
     },
-        {
+    {
       "id": 6,
       "category": "law",
       "title": "مادة العقود",
@@ -68,7 +68,7 @@
       "visible": true
     },
     {
-          "id": 7,
+      "id": 7,
       "category": "law",
       "title": "مادة القانون الجنائي",
       "description": "دورة تعليمية شاملة لمادة القانون الجنائي.",
@@ -77,7 +77,7 @@
       "visible": true
     },
     {
-          "id": 8,
+      "id": 8,
       "category": "law",
       "title": "مادة الإجراءات الجنائية",
       "description": "دورة تعليمية شاملة لمادة الإجراءات الجنائية.",
@@ -86,22 +86,22 @@
       "visible": true
     },
     {
-    "id": 9,
-    "category": "test-qudurat",
-    "title": "اختبار القدرات التشخيصي",
-    "description": "اختبر مستواك واكتشف نقاط القوة والضعف قبل بدء الاستعداد.",
-    "icon": "🎯",
-    "url": "courses/tests/qudurat.html",
-    "visible": true
+      "id": 9,
+      "category": "test-qudurat",
+      "title": "اختبار القدرات التشخيصي",
+      "description": "اختبر مستواك واكتشف نقاط القوة والضعف قبل بدء الاستعداد.",
+      "icon": "🎯",
+      "url": "courses/tests/qudurat.html",
+      "visible": true
     },
     {
-    "id": 10,
-    "category": "test-tahsili",
-    "title": "اختبار التحصيلي التشخيصي",
-    "description": "قيّم مستواك وحدد ما تحتاج إلى تطويره قبل الاختبار.",
-    "icon": "📚",
-    "url": "courses/tests/tahsili.html",
-    "visible": true
+      "id": 10,
+      "category": "test-tahsili",
+      "title": "اختبار التحصيلي التشخيصي",
+      "description": "قيّم مستواك وحدد ما تحتاج إلى تطويره قبل الاختبار.",
+      "icon": "📚",
+      "url": "courses/tests/tahsili.html",
+      "visible": true
     },
     {
       "id": 5,
@@ -115,3 +115,4 @@
     }
   ]
 }
+
