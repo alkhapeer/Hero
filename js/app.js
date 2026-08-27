@@ -91,6 +91,7 @@ async function loadCourses() {
 // ================================
 // الواجهة الرئيسية للأكاديمية
 // ================================
+```javascript
 function renderAcademy() {
 
     const myCount = getMyCourses().length;
@@ -100,7 +101,7 @@ function renderAcademy() {
             min-height:100vh;
             background:#f8fafc;
             box-sizing:border-box;
-            padding:25px 15px 35px;
+            padding:20px 15px 35px;
         ">
 
             <div style="
@@ -108,15 +109,17 @@ function renderAcademy() {
                 margin:auto;
             ">
 
+                <!-- ========================= -->
                 <!-- رأس الأكاديمية -->
+                <!-- ========================= -->
                 <div style="
                     text-align:center;
-                    padding:25px 15px 20px;
+                    padding:20px 10px 25px;
                 ">
 
                     <div style="
                         font-size:58px;
-                        margin-bottom:8px;
+                        margin-bottom:5px;
                     ">
                         🎓
                     </div>
@@ -126,47 +129,244 @@ function renderAcademy() {
                         font-size:30px;
                         color:#172033;
                     ">
-                        أكاديمية هيرو
+                        Hero Academy
                     </h1>
+
+                    <div style="
+                        margin-top:4px;
+                        font-size:17px;
+                        font-weight:bold;
+                        color:#2563eb;
+                    ">
+                        أكاديمية هيرو
+                    </div>
 
                     <p style="
                         margin:10px 0 0;
                         color:#64748b;
                         font-size:15px;
+                        line-height:1.7;
                     ">
                         تعلم بطريقة أبسط وأذكى
                     </p>
 
                 </div>
 
-                <!-- بطاقة الدورات -->
+
+                <!-- ========================= -->
+                <!-- اختبار القبول الجامعي -->
+                <!-- ========================= -->
+                <div style="
+                    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+                    color:#fff;
+                    border-radius:20px;
+                    padding:23px 20px;
+                    margin-bottom:15px;
+                    box-shadow:0 5px 18px rgba(37,99,235,.18);
+                ">
+
+                    <div style="
+                        font-size:28px;
+                        margin-bottom:8px;
+                    ">
+                        🎓
+                    </div>
+
+                    <div style="
+                        font-size:21px;
+                        font-weight:bold;
+                    ">
+                        اختبار القبول الجامعي
+                    </div>
+
+                    <div style="
+                        margin-top:7px;
+                        font-size:14px;
+                        line-height:1.7;
+                        opacity:.92;
+                    ">
+                        اختبر مستواك مجانًا واكتشف نقاط قوتك وضعفك.
+                    </div>
+
+                    <div style="
+                        margin-top:15px;
+                    ">
+                        <button
+                            onclick="location.hash='#tests'"
+                            style="
+                                border:0;
+                                background:#fff;
+                                color:#1d4ed8;
+                                padding:10px 22px;
+                                border-radius:10px;
+                                cursor:pointer;
+                                font-weight:bold;
+                                font-size:15px;
+                            "
+                        >
+                            🎯 ابدأ الاختبار
+                        </button>
+                    </div>
+
+                </div>
+
+
+                <!-- ========================= -->
+                <!-- الاختبارات -->
+                <!-- ========================= -->
+                <div style="
+                    margin-top:25px;
+                    margin-bottom:10px;
+                ">
+
+                    <h2 style="
+                        margin:0 0 12px;
+                        font-size:21px;
+                        color:#172033;
+                    ">
+                        🧪 الاختبارات
+                    </h2>
+
+                </div>
+
+
+                <div style="
+                    display:grid;
+                    grid-template-columns:
+                        repeat(auto-fit,minmax(250px,1fr));
+                    gap:12px;
+                    margin-bottom:25px;
+                ">
+
+                    <!-- القدرات -->
+                    <button
+                        onclick="location.hash='#tests'"
+                        style="
+                            width:100%;
+                            border:1px solid #dbeafe;
+                            background:#fff;
+                            border-radius:16px;
+                            padding:18px;
+                            text-align:right;
+                            cursor:pointer;
+                            box-shadow:0 2px 10px rgba(0,0,0,.04);
+                        "
+                    >
+
+                        <div style="
+                            font-size:32px;
+                            margin-bottom:8px;
+                        ">
+                            🎯
+                        </div>
+
+                        <div style="
+                            font-size:18px;
+                            font-weight:bold;
+                            color:#172033;
+                        ">
+                            اختبارات القدرات
+                        </div>
+
+                        <div style="
+                            margin-top:5px;
+                            color:#64748b;
+                            font-size:13px;
+                        ">
+                            اختبر مستواك وحدد نقاط ضعفك
+                        </div>
+
+                    </button>
+
+
+                    <!-- التحصيلي -->
+                    <button
+                        onclick="location.hash='#tests'"
+                        style="
+                            width:100%;
+                            border:1px solid #e0e7ff;
+                            background:#fff;
+                            border-radius:16px;
+                            padding:18px;
+                            text-align:right;
+                            cursor:pointer;
+                            box-shadow:0 2px 10px rgba(0,0,0,.04);
+                        "
+                    >
+
+                        <div style="
+                            font-size:32px;
+                            margin-bottom:8px;
+                        ">
+                            📚
+                        </div>
+
+                        <div style="
+                            font-size:18px;
+                            font-weight:bold;
+                            color:#172033;
+                        ">
+                            اختبارات التحصيلي
+                        </div>
+
+                        <div style="
+                            margin-top:5px;
+                            color:#64748b;
+                            font-size:13px;
+                        ">
+                            اعرف مستواك قبل بدء المذاكرة
+                        </div>
+
+                    </button>
+
+                </div>
+
+
+                <!-- ========================= -->
+                <!-- الدورات -->
+                <!-- ========================= -->
+                <div style="
+                    margin-bottom:10px;
+                ">
+
+                    <h2 style="
+                        margin:0 0 12px;
+                        font-size:21px;
+                        color:#172033;
+                    ">
+                        📚 الدورات
+                    </h2>
+
+                </div>
+
+
                 <button
                     onclick="location.hash='#courses'"
                     style="
                         width:100%;
                         border:0;
                         background:#fff;
-                        border-radius:18px;
-                        padding:22px;
-                        margin-bottom:15px;
+                        border-radius:17px;
+                        padding:19px;
+                        margin-bottom:12px;
                         text-align:right;
                         cursor:pointer;
-                        box-shadow:0 3px 15px rgba(0,0,0,.07);
+                        box-shadow:0 3px 14px rgba(0,0,0,.06);
                         display:flex;
                         align-items:center;
-                        gap:18px;
+                        gap:15px;
                     "
                 >
 
                     <div style="
-                        width:58px;
-                        height:58px;
-                        border-radius:15px;
+                        width:55px;
+                        height:55px;
+                        border-radius:14px;
                         background:#eff6ff;
                         display:flex;
                         align-items:center;
                         justify-content:center;
-                        font-size:30px;
+                        font-size:28px;
                         flex-shrink:0;
                     ">
                         📚
@@ -175,7 +375,7 @@ function renderAcademy() {
                     <div style="flex:1;">
 
                         <div style="
-                            font-size:19px;
+                            font-size:18px;
                             font-weight:bold;
                             color:#172033;
                         ">
@@ -184,16 +384,16 @@ function renderAcademy() {
 
                         <div style="
                             color:#64748b;
-                            margin-top:5px;
-                            font-size:14px;
+                            margin-top:4px;
+                            font-size:13px;
                         ">
-                            تصفح جميع الدورات والمواد التعليمية
+                            دورات متخصصة لمساعدتك على الاستعداد والنجاح
                         </div>
 
                     </div>
 
                     <div style="
-                        font-size:25px;
+                        font-size:24px;
                         color:#94a3b8;
                     ">
                         ‹
@@ -202,34 +402,36 @@ function renderAcademy() {
                 </button>
 
 
-                <!-- بطاقة دوراتي -->
+                <!-- ========================= -->
+                <!-- دوراتي -->
+                <!-- ========================= -->
                 <button
                     onclick="location.hash='#mycourses'"
                     style="
                         width:100%;
                         border:0;
                         background:#fff;
-                        border-radius:18px;
-                        padding:22px;
-                        margin-bottom:15px;
+                        border-radius:17px;
+                        padding:19px;
+                        margin-bottom:12px;
                         text-align:right;
                         cursor:pointer;
-                        box-shadow:0 3px 15px rgba(0,0,0,.07);
+                        box-shadow:0 3px 14px rgba(0,0,0,.06);
                         display:flex;
                         align-items:center;
-                        gap:18px;
+                        gap:15px;
                     "
                 >
 
                     <div style="
-                        width:58px;
-                        height:58px;
-                        border-radius:15px;
+                        width:55px;
+                        height:55px;
+                        border-radius:14px;
                         background:#fef3c7;
                         display:flex;
                         align-items:center;
                         justify-content:center;
-                        font-size:30px;
+                        font-size:28px;
                         flex-shrink:0;
                     ">
                         ⭐
@@ -238,7 +440,7 @@ function renderAcademy() {
                     <div style="flex:1;">
 
                         <div style="
-                            font-size:19px;
+                            font-size:18px;
                             font-weight:bold;
                             color:#172033;
                         ">
@@ -247,8 +449,8 @@ function renderAcademy() {
 
                         <div style="
                             color:#64748b;
-                            margin-top:5px;
-                            font-size:14px;
+                            margin-top:4px;
+                            font-size:13px;
                         ">
                             الدورات التي بدأت تجربتها
                             ${myCount ? `(${myCount})` : ''}
@@ -257,7 +459,7 @@ function renderAcademy() {
                     </div>
 
                     <div style="
-                        font-size:25px;
+                        font-size:24px;
                         color:#94a3b8;
                     ">
                         ‹
@@ -266,34 +468,36 @@ function renderAcademy() {
                 </button>
 
 
+                <!-- ========================= -->
                 <!-- عن الأكاديمية -->
+                <!-- ========================= -->
                 <button
                     onclick="location.hash='#about'"
                     style="
                         width:100%;
                         border:0;
                         background:#fff;
-                        border-radius:18px;
-                        padding:22px;
-                        margin-bottom:25px;
+                        border-radius:17px;
+                        padding:19px;
+                        margin-bottom:12px;
                         text-align:right;
                         cursor:pointer;
-                        box-shadow:0 3px 15px rgba(0,0,0,.07);
+                        box-shadow:0 3px 14px rgba(0,0,0,.06);
                         display:flex;
                         align-items:center;
-                        gap:18px;
+                        gap:15px;
                     "
                 >
 
                     <div style="
-                        width:58px;
-                        height:58px;
-                        border-radius:15px;
+                        width:55px;
+                        height:55px;
+                        border-radius:14px;
                         background:#f1f5f9;
                         display:flex;
                         align-items:center;
                         justify-content:center;
-                        font-size:30px;
+                        font-size:28px;
                         flex-shrink:0;
                     ">
                         ℹ️
@@ -302,7 +506,7 @@ function renderAcademy() {
                     <div style="flex:1;">
 
                         <div style="
-                            font-size:19px;
+                            font-size:18px;
                             font-weight:bold;
                             color:#172033;
                         ">
@@ -311,8 +515,8 @@ function renderAcademy() {
 
                         <div style="
                             color:#64748b;
-                            margin-top:5px;
-                            font-size:14px;
+                            margin-top:4px;
+                            font-size:13px;
                         ">
                             تعرف على أكاديمية هيرو
                         </div>
@@ -320,7 +524,7 @@ function renderAcademy() {
                     </div>
 
                     <div style="
-                        font-size:25px;
+                        font-size:24px;
                         color:#94a3b8;
                     ">
                         ‹
@@ -329,60 +533,93 @@ function renderAcademy() {
                 </button>
 
 
-                <div style="
-    margin:20px 0;
-    padding:14px 16px;
-    border-radius:14px;
-    background:#eff6ff;
-    border:1px solid #bfdbfe;
-    overflow:hidden;
-">
-    <div style="
-        white-space:nowrap;
-        animation:heroInstallMove 18s linear infinite;
-        font-weight:bold;
-        color:#1e40af;
-    ">
-        📱 ثبّت أكاديمية هيرو على جهازك — أضفها إلى الشاشة الرئيسية للوصول السريع إلى دوراتك
-    </div>
+                <!-- ========================= -->
+                <!-- واتساب -->
+                <!-- ========================= -->
+                <a
+                    href="https://wa.me/"
+                    target="_blank"
+                    rel="noopener"
+                    style="
+                        display:block;
+                        width:100%;
+                        box-sizing:border-box;
+                        text-align:center;
+                        text-decoration:none;
+                        background:#25D366;
+                        color:#fff;
+                        padding:12px;
+                        border-radius:12px;
+                        margin:15px 0;
+                        font-weight:bold;
+                        font-size:15px;
+                    "
+                >
+                    💬 تواصل معنا عبر واتساب
+                </a>
 
-    <div style="
-        text-align:center;
-        margin-top:10px;
-    ">
-        <button id="installAppBtn"
-            style="
-                display:none;
-                background:#2563eb;
-                color:#fff;
-                border:0;
-                padding:9px 22px;
-                border-radius:8px;
-                cursor:pointer;
-                font-weight:bold;
-            ">
-            📲 تثبيت التطبيق
-        </button>
-    </div>
-</div>
 
-<style>
-@keyframes heroInstallMove {
-    from {
-        transform:translateX(100%);
-    }
-    to {
-        transform:translateX(-100%);
-    }
-}
-</style>
+                <!-- ========================= -->
+                <!-- التثبيت -->
+                <!-- ========================= -->
+                <div id="installArea" style="
+                    margin-top:15px;
+                ">
+
+                    <div style="
+                        background:#eff6ff;
+                        border:1px solid #bfdbfe;
+                        border-radius:16px;
+                        padding:16px;
+                        text-align:center;
+                    ">
+
+                        <div style="
+                            font-weight:bold;
+                            color:#1e40af;
+                            margin-bottom:7px;
+                        ">
+                            📱 ثبّت أكاديمية هيرو
+                        </div>
+
+                        <div style="
+                            color:#475569;
+                            font-size:13px;
+                            line-height:1.6;
+                            margin-bottom:10px;
+                        ">
+                            أضف الأكاديمية إلى الشاشة الرئيسية
+                            للوصول إليها مثل أي تطبيق.
+                        </div>
+
+                        <button
+                            id="installAppBtn"
+                            style="
+                                display:none;
+                                background:#2563eb;
+                                color:#fff;
+                                border:0;
+                                padding:10px 25px;
+                                border-radius:9px;
+                                cursor:pointer;
+                                font-weight:bold;
+                            "
+                        >
+                            📲 تثبيت التطبيق
+                        </button>
+
+                    </div>
+
+                </div>
 
 
             </div>
         </div>
     `;
+
     setupInstallButton();
 }
+
 window.addEventListener('beforeinstallprompt', e => {
     e.preventDefault();
 
