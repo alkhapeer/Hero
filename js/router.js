@@ -6,13 +6,20 @@
 function route() {
     const hash = window.location.hash.replace(/^#/, '');
 
-    // الصفحة الرئيسية
+    // ================================
+    // الصفحة الرئيسية / الأكاديمية
+    // ================================
     if (!hash || hash === 'home') {
-        renderHomePage();
+        // الصفحة الرئيسية يتم رسمها بواسطة app.js
+        if (typeof renderAcademy === 'function') {
+            renderAcademy();
+        }
         return;
     }
 
-    // مسار الدورة: #course/ID
+    // ================================
+    // صفحة الدورة: #course/ID
+    // ================================
     if (hash.startsWith('course/')) {
         const courseId = hash.split('/')[1];
 
@@ -27,7 +34,7 @@ function route() {
 
         if (!course) {
             console.error('الدورة غير موجودة:', courseId);
-            renderHomePage();
+            window.location.hash = 'home';
             return;
         }
 
@@ -40,16 +47,17 @@ function route() {
         return;
     }
 
-    // أي مسار غير معروف
+    // ================================
+    // مسار غير معروف
+    // ================================
     console.warn('مسار غير معروف:', hash);
-    renderHomePage();
+    window.location.hash = 'home';
 }
 
-// جعل الدالة متاحة للملفات الأخرى
+// إتاحة Router لباقي ملفات التطبيق
 window.route = route;
 
-// تشغيل Router عند تغيير hash
+// ================================
+// مراقبة تغيير المسار
+// ================================
 window.addEventListener('hashchange', route);
-
-// تشغيل Router عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', route);
