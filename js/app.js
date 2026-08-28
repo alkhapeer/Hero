@@ -1191,33 +1191,6 @@ function renderAbout() {
     `;
 }
 // ================================
-// زر تثبيت التطبيق
-// ================================
-function setupInstallButton() {
-    const btn = document.getElementById('installAppBtn');
-
-    if (!btn) return;
-
-    if (!deferredInstallPrompt) return;
-
-    btn.style.display = 'inline-block';
-
-    btn.onclick = async () => {
-        deferredInstallPrompt.prompt();
-
-        const result =
-            await deferredInstallPrompt.userChoice;
-
-        if (result.outcome === 'accepted') {
-            btn.style.display = 'none';
-        }
-
-        deferredInstallPrompt = null;
-    };
-}
-
-
-// ================================
 // عند تثبيت التطبيق
 // ================================
 window.addEventListener(
