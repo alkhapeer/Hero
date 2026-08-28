@@ -950,8 +950,7 @@ function renderAbout() {
                    ">
                     📘 فيسبوك
                 </a>
-                                </a>
-                <a href="https://web.telegram.org/k/#-3933352279"
+                <a href="https://t.me/Herocourses"
                    target="_blank"
                    rel="noopener"
                    style="
@@ -965,7 +964,7 @@ function renderAbout() {
                    ">
                     📘 للتواصل عبر تيليجرام
                 </a>
-                <a href="https://t.me/Herocourses"
+                <a href="https://t.me/+kJNKpuOP-jQwZTM0"
                    target="_blank"
                    rel="noopener"
                    style="
@@ -978,6 +977,21 @@ function renderAbout() {
                        font-weight:bold;
                    ">
                     📘 قناة تيليجرام
+                </a>
+
+                <a href="https://www.youtube.com/@Hero1vip"
+                   target="_blank"
+                   rel="noopener"
+                   style="
+                       display:inline-block;
+                       padding:11px 20px;
+                       border-radius:10px;
+                       background:#1877f2;
+                       color:#fff;
+                       text-decoration:none;
+                       font-weight:bold;
+                   ">
+                    📘 قناة اليوتيوب
                 </a>
 
             </div>
