@@ -738,8 +738,8 @@
         }
     </style>
 
-<script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl.min.js"></script>
-<script>
+script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl.min.js"&gt;&lt;/script&gt;
+&lt;script&gt;
 // ====================================================================
 // نظام حماية Hero – إصدار 2.1 (Ed25519) – نافذة تفعيل تعمل بكامل عناصرها
 // ====================================================================
@@ -747,9 +747,9 @@
     "use strict";
 
     // 📌 ثوابت الدورة (غيّرها حسب دورتك)
-    const COURSE_ID = "8";
-    const PUBLIC_KEY_B64 = "ByI9pkBOXLSH2c2ZF/2sA9n/NYl05KqkQJNGMnyx7Dk=";
-    const TRIAL_DAYS = 7;
+    const COURSE_ID = "05bdc19c-7e3e-426e-90ce-f1617c5b4eb5";
+    const PUBLIC_KEY_B64 = "5L14jyoWsIrvPz0JJx8Owb610p9XUa/lZAQkrO4uW5c=";
+    const TRIAL_DAYS = 1;
 
     // 📦 مفاتيح التخزين
     const STORAGE_PREFIX = "hero_" + COURSE_ID + "_";
@@ -761,7 +761,7 @@
     function base64ToBytes(b64) {
         const bin = atob(b64);
         const bytes = new Uint8Array(bin.length);
-        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        for (let i = 0; i &lt; bin.length; i++) bytes[i] = bin.charCodeAt(i);
         return bytes;
     }
     function bytesToBase64(bytes) {
@@ -1058,6 +1058,22 @@
             cursor: 'pointer'
         });
         box.appendChild(waBtn);
+        // ---- زر تيليجرام (جديد) ----
+const tgBtn = document.createElement('button');
+tgBtn.textContent = '💬 شراء الدورة عبر تيليجرام';
+tgBtn.id = 'telegram-btn';
+Object.assign(tgBtn.style, {
+    width: '100%',
+    padding: '14px',
+    background: '#0088cc',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '30px',
+    fontWeight: '700',
+    fontSize: '18px',
+    cursor: 'pointer'
+});
+box.appendChild(tgBtn);
 
         // ---- نص توضيحي واتساب ----
         const waNote = document.createElement('div');
@@ -1108,6 +1124,18 @@
                 window.open('https://wa.me/' + waNumber + '?text=' + txt, '_blank');
             }
         });
+        // تيليجرام (جديد)
+tgBtn.addEventListener('click', function() {
+    const username = prompt('أدخل معرف تيليجرام الخاص بك (بدون @):', 'Herocourses');
+    if (username) {
+        const txt = encodeURIComponent(
+            'مرحباً، أرغب في شراء هذه الدورة.\n' +
+            'معرف الدورة: ' + COURSE_ID + '\n' +
+            'مفتاح التفعيل: ' + deviceId
+        );
+        window.open('https://t.me/' + username + '?text=' + txt, '_blank');
+    }
+});
 
         // الضغط على Enter في حقل الإدخال ينشط التفعيل
         licenseInput.addEventListener('keydown', function(e) {
@@ -1171,7 +1199,7 @@
                 padding: '20px'
             });
             errOverlay.innerHTML =
-                '❌ مكتبة التشفير غير محملة.تأكد من اتصال الإنترنت لتحميل tweetnacl.';
+                '❌ مكتبة التشفير غير محملة.<br>تأكد من اتصال الإنترنت لتحميل <code>tweetnacl</code>.';
             document.body.appendChild(errOverlay);
             return;
         }
@@ -1225,7 +1253,30 @@
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
     else init();
 })();
-</script>
+&lt;/script&gt;
+        </div>
+
+        <button class="btn" onclick="copyCode()">📋 نسخ الكود</button>
+        <p class="note">⚠️ بعد اللصق، غيّر <code>COURSE_ID</code> و <code>PUBLIC_KEY_B64</code> إلى قيم دورتك.</p>
+    </div>
+
+    <script>
+        function copyCode() {
+            const el = document.getElementById('protectionCode');
+            const text = el.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ تم نسخ الكود!');
+            }).catch(() => {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                ta.remove();
+                alert('✅ تم نسخ الكود!');
+            });
+        }
+    </script>
         
     
 </head>
