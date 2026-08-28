@@ -12,7 +12,7 @@ function route() {
         return;
     }
 
-    // مسار الدورة: #course/ID
+    // صفحة دورة
     if (hash.startsWith('course/')) {
         const courseId = hash.split('/')[1];
 
@@ -27,7 +27,7 @@ function route() {
 
         if (!course) {
             console.error('الدورة غير موجودة:', courseId);
-            renderHomePage();
+            window.location.hash = 'home';
             return;
         }
 
@@ -42,14 +42,11 @@ function route() {
 
     // أي مسار غير معروف
     console.warn('مسار غير معروف:', hash);
-    renderHomePage();
+    window.location.hash = 'home';
 }
 
-// جعل الدالة متاحة للملفات الأخرى
+// إتاحة Router للملفات الأخرى
 window.route = route;
 
-// تشغيل Router عند تغيير hash
+// مراقبة تغيير الـ hash
 window.addEventListener('hashchange', route);
-
-// تشغيل Router عند تحميل الصفحة
-document.addEventListener('DOMContentLoaded', route);
