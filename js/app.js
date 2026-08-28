@@ -72,8 +72,8 @@ async function loadCourses() {
 
         const data = await response.json();
 
-        coursesData = data.courses || [];
-        categoriesData = data.categories || [];
+        window.coursesData = data.courses || [];
+        window.categoriesData = data.categories || [];
 
         route();
 
