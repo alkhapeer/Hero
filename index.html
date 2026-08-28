@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <meta name="theme-color" content="#2563eb">
-    
+
     <link rel="manifest" href="manifest.webmanifest">
 
     <title>Hero Academy</title>
 
     <link rel="stylesheet" href="css/style.css">
-        <!-- Google Analytics -->
+
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FNMM52MDH1"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-FNMM52MDH1');
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FNMM52MDH1');
     </script>
 </head>
 
@@ -25,8 +26,13 @@
 
     <div id="app"></div>
 
+    <!-- Hero Academy JavaScript -->
+    <script src="js/loader.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/router.js"></script>
     <script src="js/app.js"></script>
 
+    <!-- Service Worker -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
