@@ -965,7 +965,7 @@ function renderAbout() {
                    ">
                     📘 للتواصل عبر تيليجرام
                 </a>
-                <a href="https://t.me/+kJNKpuOP-jQwZTM0"
+                <a href="https://t.me/Herocourses"
                    target="_blank"
                    rel="noopener"
                    style="
