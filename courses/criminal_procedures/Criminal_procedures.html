@@ -738,10 +738,11 @@
         }
     </style>
 
+
 <script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl.min.js"></script>
 <script>
 // ====================================================================
-// نظام حماية Hero – إصدار 2.1 (Ed25519) – نافذة تفعيل تعمل بكامل عناصرها
+// نظام حماية Hero – إصدار 2.2 (Ed25519) – مع واتساب + تيليجرام
 // ====================================================================
 (function() {
     "use strict";
@@ -761,7 +762,7 @@
     function base64ToBytes(b64) {
         const bin = atob(b64);
         const bytes = new Uint8Array(bin.length);
-        for (let i = 0; i &lt; bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
         return bytes;
     }
     function bytesToBase64(bytes) {
@@ -859,7 +860,7 @@
     }
 
     // ================================================================
-    // 🖥️ نافذة التفعيل (مع أزرار واتساب + تيليجرام)
+    // 🖥️ نافذة التفعيل (مع واتساب + تيليجرام)
     // ================================================================
     function showActivationOverlay() {
         const old = document.getElementById('hero-activation-overlay');
@@ -1209,7 +1210,7 @@
                 padding: '20px'
             });
             errOverlay.innerHTML =
-                '❌ مكتبة التشفير غير محملة.<br>تأكد من اتصال الإنترنت لتحميل <code>tweetnacl</code>.';
+                '❌ مكتبة التشفير غير محملة.تأكد من اتصال الإنترنت لتحميل tweetnacl.';
             document.body.appendChild(errOverlay);
             return;
         }
@@ -1263,30 +1264,8 @@
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
     else init();
 })();
-&lt;/script&gt;
-        </div>
-
-        <button class="btn" onclick="copyCode()">📋 نسخ الكود</button>
-        <p class="note">⚠️ بعد اللصق، غيّر <code>COURSE_ID</code> و <code>PUBLIC_KEY_B64</code> إلى قيم دورتك.</p>
-    </div>
-
-    <script>
-        function copyCode() {
-            const el = document.getElementById('protectionCode');
-            const text = el.textContent;
-            navigator.clipboard.writeText(text).then(() => {
-                alert('✅ تم نسخ الكود!');
-            }).catch(() => {
-                const ta = document.createElement('textarea');
-                ta.value = text;
-                document.body.appendChild(ta);
-                ta.select();
-                document.execCommand('copy');
-                ta.remove();
-                alert('✅ تم نسخ الكود!');
-            });
-        }
-    </script>
+</script>
+        
         
     
 </head>
