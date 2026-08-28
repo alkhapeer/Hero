@@ -1544,10 +1544,6 @@ window.addEventListener(
 // ================================
 // التشغيل
 // ================================
-window.addEventListener(
-    'hashchange',
-    loadCourses
-);
 
 document.addEventListener(
     'DOMContentLoaded',
