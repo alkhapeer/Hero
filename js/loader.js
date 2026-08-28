@@ -1,5 +1,24 @@
 // js/loader.js
 const appContainer = document.getElementById('app');
+const homeButton = document.createElement('button');
+homeButton.innerHTML = '← الرئيسية';
+homeButton.onclick = () => {
+    window.location.hash = 'home';
+};
+
+homeButton.style.cssText = `
+    display:block;
+    margin:15px auto;
+    padding:10px 18px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+`;
+
+appContainer.prepend(homeButton);
 
 // تنظيف الموارد (CSS/الأنماط) الخاصة بالصفحة السابقة لمنع التداخل
 function cleanupPreviousPage() {
