@@ -1,9 +1,96 @@
-const app = document.getElementById('app'); let coursesData = []; let categoriesData = []; // تخزين زر تثبيت التطبيق let deferredInstallPrompt = null; // ================================ // تأمين النصوص // ================================ function esc(s) { if (!s) return ''; return String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m])); } // ================================ // تحديد مسار التطبيق // ================================ function getBasePath() { let path = window.location.pathname; return path.substring(0, path.lastIndexOf('/') + 1); } // ================================ // الدورات التي بدأ المستخدم تجربتها // ================================ function getMyCourses() { try { return JSON.parse(localStorage.getItem('heroMyCourses') || '[]'); } catch (e) { return []; } } function saveMyCourse(courseId) { let myCourses = getMyCourses(); courseId = Number(courseId); if (!myCourses.includes(courseId)) { myCourses.push(courseId); localStorage.setItem('heroMyCourses', JSON.stringify(myCourses)); } } function isMyCourse(courseId) { return getMyCourses().includes(Number(courseId)); } // ================================ // تحميل بيانات الدورات // ================================ async function loadCourses() { try { const base = getBasePath(); const response = await fetch( base + 'courses.json', { cache: 'no-store' } ); if (!response.ok) { throw new Error('تعذر تحميل بيانات الدورات'); } const data = await response.json(); coursesData = data.courses || []; categoriesData = data.categories || []; route(); } catch (e) { app.innerHTML = <div class="empty" style="padding:40px;text-align:center;"> ❌ خطأ في تحميل البيانات: ${esc(e.message)} </div> ; } }
+const app = document.getElementById('app');
+
+let coursesData = [];
+let categoriesData = [];
+
+// تخزين زر تثبيت التطبيق
+let deferredInstallPrompt = null;
+
+// ================================
+// تأمين النصوص
+// ================================
+function esc(s) {
+    if (!s) return '';
+    return String(s).replace(/[&<>"']/g, m => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    }[m]));
+}
+
+// ================================
+// تحديد مسار التطبيق
+// ================================
+function getBasePath() {
+    let path = window.location.pathname;
+    return path.substring(0, path.lastIndexOf('/') + 1);
+}
+
+// ================================
+// الدورات التي بدأ المستخدم تجربتها
+// ================================
+function getMyCourses() {
+    try {
+        return JSON.parse(localStorage.getItem('heroMyCourses') || '[]');
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveMyCourse(courseId) {
+    let myCourses = getMyCourses();
+
+    courseId = Number(courseId);
+
+    if (!myCourses.includes(courseId)) {
+        myCourses.push(courseId);
+        localStorage.setItem('heroMyCourses', JSON.stringify(myCourses));
+    }
+}
+
+function isMyCourse(courseId) {
+    return getMyCourses().includes(Number(courseId));
+}
+
+// ================================
+// تحميل بيانات الدورات
+// ================================
+async function loadCourses() {
+    try {
+        const base = getBasePath();
+
+        const response = await fetch(
+            base + 'courses.json',
+            { cache: 'no-store' }
+        );
+
+        if (!response.ok) {
+            throw new Error('تعذر تحميل بيانات الدورات');
+        }
+
+        const data = await response.json();
+
+        coursesData = data.courses || [];
+        categoriesData = data.categories || [];
+
+        route();
+
+    } catch (e) {
+
+        app.innerHTML = `
+            <div class="empty" style="padding:40px;text-align:center;">
+                ❌ خطأ في تحميل البيانات:
+                ${esc(e.message)}
+            </div>
+        `;
+    }
+}
 
 // ================================
 // الواجهة الرئيسية للأكاديمية
 // ================================
-```javascript
 function renderAcademy() {
 
     const myCount = getMyCourses().length;
@@ -52,8 +139,7 @@ function renderAcademy() {
 
                 </div>
 
-
-                <!-- الدورات المتاحة -->
+                <!-- بطاقة الدورات -->
                 <button
                     onclick="location.hash='#courses'"
                     style="
@@ -116,7 +202,7 @@ function renderAcademy() {
                 </button>
 
 
-                <!-- دوراتي -->
+                <!-- بطاقة دوراتي -->
                 <button
                     onclick="location.hash='#mycourses'"
                     style="
@@ -189,7 +275,7 @@ function renderAcademy() {
                         background:#fff;
                         border-radius:18px;
                         padding:22px;
-                        margin-bottom:15px;
+                        margin-bottom:25px;
                         text-align:right;
                         cursor:pointer;
                         box-shadow:0 3px 15px rgba(0,0,0,.07);
@@ -243,97 +329,60 @@ function renderAcademy() {
                 </button>
 
 
-                <!-- واتساب -->
-                <a
-                    href="https://wa.me/201000000000"
-                    target="_blank"
-                    rel="noopener"
-                    style="
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        gap:9px;
-                        width:100%;
-                        padding:13px;
-                        margin-bottom:20px;
-                        border-radius:12px;
-                        background:#25D366;
-                        color:#fff;
-                        text-decoration:none;
-                        font-size:15px;
-                        font-weight:bold;
-                        box-sizing:border-box;
-                    "
-                >
-                    💬 تواصل معنا عبر واتساب
-                </a>
-
-
-                <!-- تثبيت التطبيق -->
                 <div style="
-                    margin:20px 0;
-                    padding:14px 16px;
-                    border-radius:14px;
-                    background:#eff6ff;
-                    border:1px solid #bfdbfe;
-                    overflow:hidden;
-                ">
+    margin:20px 0;
+    padding:14px 16px;
+    border-radius:14px;
+    background:#eff6ff;
+    border:1px solid #bfdbfe;
+    overflow:hidden;
+">
+    <div style="
+        white-space:nowrap;
+        animation:heroInstallMove 18s linear infinite;
+        font-weight:bold;
+        color:#1e40af;
+    ">
+        📱 ثبّت أكاديمية هيرو على جهازك — أضفها إلى الشاشة الرئيسية للوصول السريع إلى دوراتك
+    </div>
 
-                    <div style="
-                        white-space:nowrap;
-                        animation:heroInstallMove 18s linear infinite;
-                        font-weight:bold;
-                        color:#1e40af;
-                    ">
-                        📱 ثبّت أكاديمية هيرو على جهازك — أضفها إلى الشاشة الرئيسية للوصول السريع إلى دوراتك
-                    </div>
+    <div style="
+        text-align:center;
+        margin-top:10px;
+    ">
+        <button id="installAppBtn"
+            style="
+                display:none;
+                background:#2563eb;
+                color:#fff;
+                border:0;
+                padding:9px 22px;
+                border-radius:8px;
+                cursor:pointer;
+                font-weight:bold;
+            ">
+            📲 تثبيت التطبيق
+        </button>
+    </div>
+</div>
 
-                    <div style="
-                        text-align:center;
-                        margin-top:10px;
-                    ">
+<style>
+@keyframes heroInstallMove {
+    from {
+        transform:translateX(100%);
+    }
+    to {
+        transform:translateX(-100%);
+    }
+}
+</style>
 
-                        <button
-                            id="installAppBtn"
-                            style="
-                                display:none;
-                                background:#2563eb;
-                                color:#fff;
-                                border:0;
-                                padding:9px 22px;
-                                border-radius:8px;
-                                cursor:pointer;
-                                font-weight:bold;
-                            "
-                        >
-                            📲 تثبيت التطبيق
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <style>
-                    @keyframes heroInstallMove {
-                        from {
-                            transform:translateX(100%);
-                        }
-
-                        to {
-                            transform:translateX(-100%);
-                        }
-                    }
-                </style>
 
             </div>
         </div>
     `;
-
     setupInstallButton();
 }
-```
-
 window.addEventListener('beforeinstallprompt', e => {
     e.preventDefault();
 
@@ -870,7 +919,9 @@ function renderAbout() {
                 gap:10px;
                 margin-top:25px;
             ">
-                <a href="https://academy.hero1.vip"
+
+                <a href="
+                https://hero.kesug.com/Academy/"
                    target="_blank"
                    rel="noopener"
                    style="
@@ -884,7 +935,6 @@ function renderAbout() {
                    ">
                     🎓 موقع الأكاديمية
                 </a>
-                
 
                 <a href="https://web.facebook.com/Heropwa"
                    target="_blank"
@@ -905,12 +955,298 @@ function renderAbout() {
         </div>
     `;
 }
+
 // ================================
-// عند تثبيت التطبيق
+// صفحة الدورة - لا نغير منطقها
 // ================================
+function renderCourse(course) {
+
+    const base = getBasePath();
+    const fullUrl = base + course.url;
+
+    app.innerHTML = `
+        <div style="
+            position:fixed;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+            z-index:9999;
+            background:#fff;
+        ">
+
+            <div style="
+                position:absolute;
+                top:15px;
+                right:15px;
+                z-index:10000;
+            ">
+
+                <button
+                    onclick="window.location.hash='#home'"
+                    style="
+                        background:#fff;
+                        border:1px solid #ddd;
+                        padding:8px 20px;
+                        border-radius:8px;
+                        cursor:pointer;
+                        font-size:14px;
+                        font-weight:bold;
+                        color:#2563eb;
+                        box-shadow:
+                            0 2px 6px rgba(0,0,0,.1);
+                    "
+                >
+                    ✕ رجوع
+                </button>
+
+            </div>
+
+            <iframe
+                src="${esc(fullUrl)}"
+                style="
+                    width:100%;
+                    height:100%;
+                    border:none;
+                    display:block;
+                "
+                allowfullscreen>
+            </iframe>
+
+        </div>
+    `;
+const frame = document.querySelector('iframe');
+
+frame.addEventListener('load', function () {
+
+    const doc = frame.contentDocument;
+    if (!doc) return;
+
+    function checkBuyButton() {
+
+        const elements = doc.querySelectorAll('a, button');
+
+        elements.forEach(el => {
+
+            const text = (el.innerText || el.textContent || '').trim();
+
+            if (
+                text.includes('💰 شراء التطبيق') ||
+                text.includes('تفعيل / شراء الآن')
+            ) {
+
+                // منع تكرار المعالجة
+                if (el.dataset.heroExternalBuy === '1') return;
+
+                el.dataset.heroExternalBuy = '1';
+
+                el.addEventListener('click', function (e) {
+
+                    e.preventDefault();
+                    e.stopImmediatePropagation();
+
+                    let courseId = course.id;
+
+                    // نحاول أخذ course_id الحقيقي من الدورة
+                    try {
+                        if (
+                            frame.contentWindow.getLicensePayload &&
+                            typeof frame.contentWindow.getLicensePayload === 'function'
+                        ) {
+                            const payload =
+                                frame.contentWindow.getLicensePayload();
+
+                            if (payload && payload.course_id) {
+                                courseId = payload.course_id;
+                            }
+                        }
+                    } catch (err) {
+                        console.log('تعذر قراءة بيانات الترخيص');
+                    }
+
+                    window.top.location.href =
+                        'https://hero.kesug.com/Academy/payment.php?course_id=' +
+                        encodeURIComponent(courseId);
+
+                }, true);
+            }
+
+        });
+    }
+
+    // فحص فوري
+    checkBuyButton();
+
+    // مراقبة أي زر يتم إنشاؤه لاحقًا
+    const observer = new MutationObserver(() => {
+        checkBuyButton();
+    });
+
+    observer.observe(doc.body, {
+        childList: true,
+        subtree: true
+    });
+
+});
+}
+
+// ================================
+// التوجيه
+// ================================
+function route() {
+
+    const hash =
+        location.hash.slice(1) || 'home';
+
+
+    if (hash.startsWith('course/')) {
+
+        const id =
+            parseInt(hash.split('/')[1]);
+
+        const course =
+            coursesData.find(c => c.id === id);
+
+
+        if (course) {
+
+            // تسجيل الدورة كمجربة
+            saveMyCourse(course.id);
+
+            renderCourse(course);
+
+        } else {
+
+            app.innerHTML = `
+                <div class="empty">
+                    ⚠️ الدورة غير موجودة.
+                </div>
+            `;
+        }
+
+
+    } else if (hash === 'courses') {
+
+        renderHome();
+
+
+    } else if (hash === 'mycourses') {
+
+        renderMyCourses();
+
+
+    } else if (hash === 'about') {
+
+        renderAbout();
+
+
+    } else {
+
+        renderAcademy();
+    }
+}
+
+// ================================
+// زر تثبيت التطبيق
+// ================================
+window.addEventListener(
+    'beforeinstallprompt',
+    e => {
+
+        e.preventDefault();
+
+        deferredInstallPrompt = e;
+
+        setupInstallButton();
+        renderInstallArea();
+    }
+);
+
+
+function setupInstallButton() {
+    const btn = document.getElementById('installAppBtn');
+
+    if (!btn) return;
+
+    if (deferredInstallPrompt) {
+        btn.style.display = 'inline-block';
+
+        btn.onclick = async () => {
+            deferredInstallPrompt.prompt();
+
+            const result = await deferredInstallPrompt.userChoice;
+
+            if (result.outcome === 'accepted') {
+                btn.style.display = 'none';
+            }
+
+            deferredInstallPrompt = null;
+        };
+    }
+}
+
+
+function renderInstallArea() {
+
+    const area =
+        document.getElementById('installArea');
+
+    if (!area || !deferredInstallPrompt) return;
+
+
+    area.innerHTML = `
+        <div style="
+            background:#eff6ff;
+            border:1px solid #bfdbfe;
+            border-radius:16px;
+            padding:16px;
+            text-align:center;
+        ">
+
+            <div style="
+                font-weight:bold;
+                color:#1e40af;
+                margin-bottom:10px;
+            ">
+                📱 ثبّت أكاديمية هيرو
+            </div>
+
+            <div style="
+                color:#475569;
+                font-size:13px;
+                line-height:1.6;
+                margin-bottom:12px;
+            ">
+                أضف الأكاديمية إلى الشاشة الرئيسية
+                للوصول إليها مثل أي تطبيق.
+            </div>
+
+            <button
+                id="installAppBtn"
+                style="
+                    background:#2563eb;
+                    color:#fff;
+                    border:0;
+                    padding:10px 25px;
+                    border-radius:9px;
+                    cursor:pointer;
+                    font-weight:bold;
+                "
+            >
+                📲 تثبيت التطبيق
+            </button>
+
+        </div>
+    `;
+
+    setupInstallButton();
+}
+
+
 window.addEventListener(
     'appinstalled',
     () => {
+
         deferredInstallPrompt = null;
 
         const btn =
@@ -925,6 +1261,10 @@ window.addEventListener(
 // ================================
 // التشغيل
 // ================================
+window.addEventListener(
+    'hashchange',
+    route
+);
 
 document.addEventListener(
     'DOMContentLoaded',
