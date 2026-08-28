@@ -33,3 +33,17 @@ function escapeHtml(text) {
     const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
     return text.replace(/[&<>"']/g, m => map[m]);
 }
+
+window.navigateToCourse = function(id) {
+    const course = window.coursesData.find(c => c.id == id);
+    if (course) {
+        window.location.hash = `course/${id}`;
+        // يتم تنفيذ التحميل بواسطة router.js
+    }
+};
+
+function escapeHtml(text) {
+    if (!text) return '';
+    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+    return text.replace(/[&<>"']/g, m => map[m]);
+}
