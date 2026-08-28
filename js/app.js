@@ -921,7 +921,7 @@ function renderAbout() {
             ">
 
                 <a href="
-                https://hero.kesug.com/Academy/"
+                https://Academy.hero1.vip"
                    target="_blank"
                    rel="noopener"
                    style="
@@ -949,6 +949,35 @@ function renderAbout() {
                        font-weight:bold;
                    ">
                     📘 فيسبوك
+                </a>
+                                </a>
+                <a href="https://web.telegram.org/k/#-3933352279"
+                   target="_blank"
+                   rel="noopener"
+                   style="
+                       display:inline-block;
+                       padding:11px 20px;
+                       border-radius:10px;
+                       background:#1877f2;
+                       color:#fff;
+                       text-decoration:none;
+                       font-weight:bold;
+                   ">
+                    📘 للتواصل عبر تيليجرام
+                </a>
+                <a href="https://t.me/+kJNKpuOP-jQwZTM0"
+                   target="_blank"
+                   rel="noopener"
+                   style="
+                       display:inline-block;
+                       padding:11px 20px;
+                       border-radius:10px;
+                       background:#1877f2;
+                       color:#fff;
+                       text-decoration:none;
+                       font-weight:bold;
+                   ">
+                    📘 قناة تيليجرام
                 </a>
 
             </div>
