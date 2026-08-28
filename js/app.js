@@ -1546,7 +1546,7 @@ window.addEventListener(
 // ================================
 window.addEventListener(
     'hashchange',
-    route
+    loadCourses
 );
 
 document.addEventListener(
