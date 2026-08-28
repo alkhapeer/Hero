@@ -1,3 +1,4 @@
+
 function renderHomePage() {
     let html = `<section class="section"><h1 style="margin-bottom:20px;">📚 جميع الدورات</h1><div class="grid">`;
     
@@ -18,20 +19,6 @@ function renderHomePage() {
     }
     html += `</div></section>`;
     document.getElementById('app').innerHTML = html;
-}
-
-window.navigateToCourse = function(id) {
-    const course = window.coursesData.find(c => c.id == id);
-    if (course) {
-        window.location.hash = `course/${id}`;
-        // يتم تنفيذ التحميل بواسطة router.js
-    }
-};
-
-function escapeHtml(text) {
-    if (!text) return '';
-    const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
-    return text.replace(/[&<>"']/g, m => map[m]);
 }
 
 window.navigateToCourse = function(id) {
