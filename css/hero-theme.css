@@ -1,0 +1,264 @@
+/* ============================================
+   Hero Theme Override
+   يطبق أسلوب الصفحة الرئيسية على تطبيق الأكاديمية
+   دون تغيير أي ملف أصلي
+   ============================================ */
+
+/* استيراد خط Cairo (اختياري) */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap');
+
+/* ===== الخلفية العامة ===== */
+body {
+    background: linear-gradient(145deg, #0b0e1a 0%, #141b33 45%, #1a0f2e 100%) !important;
+    color: #e8edf5 !important;
+    font-family: 'Cairo', 'Tahoma', sans-serif !important;
+    min-height: 100vh;
+    padding-bottom: 70px !important;
+}
+
+/* ===== حاوية التطبيق ===== */
+#app {
+    max-width: 1200px !important;
+    margin: auto !important;
+    padding: 20px 24px 40px !important;
+}
+
+/* ===== رأس الأكاديمية (العنوان + الوصف) ===== */
+#app > div > div:first-child h1 {
+    font-size: 2.8rem !important;
+    font-weight: 900 !important;
+    background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 50%, #7c3aed 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    letter-spacing: -1px !important;
+}
+
+#app > div > div:first-child p {
+    color: #b9c4d9 !important;
+    font-size: 1.15rem !important;
+}
+
+/* ===== الأزرار / البطاقات الثلاث ===== */
+#app > div > button {
+    background: rgba(255, 255, 255, 0.04) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 24px !important;
+    padding: 28px 24px !important;
+    margin-bottom: 18px !important;
+    box-shadow: none !important;
+    transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    text-align: right !important;
+    cursor: pointer !important;
+}
+
+#app > div > button:hover {
+    transform: translateY(-6px) !important;
+    background: rgba(255, 255, 255, 0.07) !important;
+    border-color: rgba(108, 92, 231, 0.25) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* أيقونة البطاقة */
+#app > div > button > div:first-child {
+    background: rgba(108, 92, 231, 0.15) !important;
+    border-radius: 16px !important;
+    width: 58px !important;
+    height: 58px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 30px !important;
+    flex-shrink: 0 !important;
+}
+
+/* عنوان البطاقة */
+#app > div > button > div:nth-child(2) > div:first-child {
+    color: #ffffff !important;
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+}
+
+/* النص الفرعي */
+#app > div > button > div:nth-child(2) > div:last-child {
+    color: #94a3b8 !important;
+    font-size: 0.9rem !important;
+    margin-top: 4px !important;
+}
+
+/* السهم الأيسر */
+#app > div > button > div:last-child {
+    color: #7c8db0 !important;
+    font-size: 1.4rem !important;
+}
+
+/* ===== شريط التنقل السفلي ===== */
+.nav {
+    background: rgba(255, 255, 255, 0.04) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+.nav a {
+    color: #b0bedb !important;
+    font-size: 0.85rem !important;
+    transition: 0.3s ease !important;
+}
+
+.nav a:hover {
+    color: #a78bfa !important;
+}
+
+.nav a i {
+    font-size: 1.3rem !important;
+}
+
+/* ===== الشريط العلوي ===== */
+.topbar {
+    background: rgba(255, 255, 255, 0.04) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+.brand small {
+    color: #94a3b8 !important;
+}
+
+/* ===== بطاقات الدورات (صفحة الدورات ودوراتي) ===== */
+.course,
+.card,
+.notice,
+.empty {
+    background: rgba(255, 255, 255, 0.04) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 24px !important;
+    color: #e8edf5 !important;
+    padding: 24px !important;
+    transition: 0.3s ease !important;
+}
+
+.course:hover,
+.card:hover {
+    transform: translateY(-4px) !important;
+    background: rgba(255, 255, 255, 0.07) !important;
+    border-color: rgba(108, 92, 231, 0.25) !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4) !important;
+}
+
+.course h3,
+.card h3 {
+    color: #ffffff !important;
+    font-size: 1.2rem !important;
+}
+
+.course p,
+.card p {
+    color: #b0bedb !important;
+    line-height: 1.7 !important;
+}
+
+.course a,
+.card a {
+    background: #7c3aed !important;
+    color: #fff !important;
+    border-radius: 60px !important;
+    padding: 10px 24px !important;
+    font-weight: 700 !important;
+    display: inline-block !important;
+    transition: 0.3s ease !important;
+    border: none !important;
+}
+
+.course a:hover,
+.card a:hover {
+    background: #6d28d9 !important;
+    transform: scale(1.02) !important;
+    box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4) !important;
+}
+
+/* ===== صفحة "عن الأكاديمية" ===== */
+#app > div:last-child h1 {
+    background: linear-gradient(135deg, #ffffff, #c4b5fd, #7c3aed) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+#app > div:last-child p {
+    color: #b0bedb !important;
+}
+
+#app > div:last-child button {
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: #e8edf5 !important;
+    border-radius: 12px !important;
+    padding: 8px 20px !important;
+}
+
+/* ===== أزرار الروابط في صفحة "عن" ===== */
+#app > div:last-child a {
+    background: #7c3aed !important;
+    color: #fff !important;
+    border-radius: 60px !important;
+    padding: 10px 24px !important;
+    font-weight: 700 !important;
+    transition: 0.3s ease !important;
+    border: none !important;
+}
+
+#app > div:last-child a:hover {
+    background: #6d28d9 !important;
+    transform: scale(1.02) !important;
+}
+
+/* ===== إطار التثبيت المتحرك ===== */
+#app > div > div:last-child {
+    background: rgba(255, 255, 255, 0.04) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 20px !important;
+    padding: 18px !important;
+    margin-top: 20px !important;
+}
+
+#app > div > div:last-child div:first-child {
+    color: #c4b5fd !important;
+}
+
+/* ===== شريط التمرير ===== */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #0b0e1a;
+}
+::-webkit-scrollbar-thumb {
+    background: #7c3aed;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #6d28d9;
+}
+
+/* ===== تحسينات إضافية للشاشات الصغيرة ===== */
+@media (max-width: 600px) {
+    #app > div > div:first-child h1 {
+        font-size: 2rem !important;
+    }
+    #app > div > button {
+        padding: 20px 18px !important;
+    }
+}
