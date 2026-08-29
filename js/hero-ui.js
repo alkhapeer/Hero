@@ -105,9 +105,9 @@ window.renderAcademy = function() {
             <h3 style="color:#fff; font-size:1.2rem; margin:0 0 14px;">تابعنا</h3>
             <p style="color:#94a3b8; font-size:0.95rem; margin-bottom:18px;">كن على اطلاع دائم بآخر الأخبار والتحديثات</p>
             <div style="display:flex; justify-content:center; gap:28px; flex-wrap:wrap;">
-                <a href="#" style="font-weight:600; color:#b0bedb; transition:0.3s; display:inline-flex; align-items:center; gap:8px; text-decoration:none;"><i class="fas fa-comment-dots"></i> التواصل</a>
-                <a href="#" style="font-weight:600; color:#b0bedb; transition:0.3s; display:inline-flex; align-items:center; gap:8px; text-decoration:none;"><i class="fas fa-question-circle"></i> إستفسار</a>
-                <a href="#" style="font-weight:600; color:#b0bedb; transition:0.3s; display:inline-flex; align-items:center; gap:8px; text-decoration:none;"><i class="fab fa-youtube"></i> يوتبوب</a>
+                <a href="https://app.hero1.vip/#about" style="font-weight:600; color:#b0bedb; transition:0.3s; display:inline-flex; align-items:center; gap:8px; text-decoration:none;"><i class="fas fa-comment-dots"></i> التواصل</a>
+                <a href="https://app.hero1.vip/#about" style="font-weight:600; color:#b0bedb; transition:0.3s; display:inline-flex; align-items:center; gap:8px; text-decoration:none;"><i class="fas fa-question-circle"></i> إستفسار</a>
+                <a href="https://www.youtube.com/@Hero1vip" style="font-weight:600; color:#b0bedb; transition:0.3s; display:inline-flex; align-items:center; gap:8px; text-decoration:none;"><i class="fab fa-youtube"></i> يوتبوب</a>
             </div>
         </div>
 
@@ -135,9 +135,9 @@ window.renderAcademy = function() {
                 <p style="color:#94a3b8; font-size:0.9rem; margin:0 0 4px;">نحن هنا للإجابة على استفساراتك واقتراحاتك.</p>
                 <span style="font-size:1rem; color:#a78bfa; font-weight:600; direction:ltr; display:inline-block;"><i class="fas fa-at"></i> info@hero1.vip</span>
             </div>
-            <!--<a href="#" style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.04); padding:6px 20px; border-radius:100px; border:1px solid rgba(255,255,255,0.06); color:#b0bedb; font-weight:500; font-size:0.95rem; text-decoration:none;">
+            <a href="#" style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.04); padding:6px 20px; border-radius:100px; border:1px solid rgba(255,255,255,0.06); color:#b0bedb; font-weight:500; font-size:0.95rem; text-decoration:none;">
                 <i class="fas fa-map-marker-alt" style="color:#fbbf24;"></i> السودان
-            </a>-->
+            </a>
         </div>
 
         <!-- مساحة للتثبيت (تحت المحتوى) -->
