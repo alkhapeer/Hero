@@ -1,9 +1,6 @@
-self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
-self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
-self.addEventListener('fetch',e=>{if(e.request.method==='GET')e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)))});
-const CACHE='hero-academy-v4';
+const CACHE = 'hero-academy-v5';
 
-const CORE=[
+const CORE = [
   './',
   './index.html',
   './manifest.webmanifest',
@@ -13,30 +10,33 @@ const CORE=[
   './icons/icon-512.png'
 ];
 
-self.addEventListener('install',e=>{
+self.addEventListener('install', e => {
   e.waitUntil(
     caches.open(CACHE)
-      .then(c=>c.addAll(CORE))
-      .then(()=>self.skipWaiting())
+      .then(cache => cache.addAll(CORE))
+      .then(() => self.skipWaiting())
   );
 });
 
-self.addEventListener('activate',e=>{
+self.addEventListener('activate', e => {
   e.waitUntil(
-    caches.keys().then(keys=>
-      Promise.all(
-        keys
-          .filter(k=>k!==CACHE)
-          .map(k=>caches.delete(k))
+    caches.keys()
+      .then(keys =>
+        Promise.all(
+          keys
+            .filter(key => key !== CACHE)
+            .map(key => caches.delete(key))
+        )
       )
-    ).then(()=>self.clients.claim())
+      .then(() => self.clients.claim())
   );
 });
 
-self.addEventListener('fetch',e=>{
-  if(e.request.method==='GET'){
+self.addEventListener('fetch', e => {
+  if (e.request.method === 'GET') {
     e.respondWith(
-      caches.match(e.request).then(r=>r||fetch(e.request))
+      caches.match(e.request)
+        .then(response => response || fetch(e.request))
     );
   }
 });
