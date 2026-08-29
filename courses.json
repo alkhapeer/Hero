@@ -85,6 +85,15 @@
       "url": "courses/criminal_procedures/Criminal_procedures.html",
       "visible": true
     },
+     {
+      "id": 11,
+      "category": "law",
+      "title": "مادة أصول الفقه",
+      "description": "دورة تعليمية شاملة لمادة أصول الفقه .",
+      "icon": "⚖️",
+      "url": "courses/criminal_procedures/Criminal_procedures.html",
+      "visible": true
+    },
     {
       "id": 9,
       "category": "test-qudurat",
