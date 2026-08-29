@@ -964,6 +964,22 @@ function renderAbout() {
                    ">
                     📘 للتواصل عبر تيليجرام
                 </a>
+
+                                <a href="https://wa.me/249915886600"
+                   target="_blank"
+                   rel="noopener"
+                   style="
+                       display:inline-block;
+                       padding:11px 20px;
+                       border-radius:10px;
+                       background:#1877f2;
+                       color:#fff;
+                       text-decoration:none;
+                       font-weight:bold;
+                   ">
+                    📘 للتواصل عبر واتساب
+                </a>
+                
                 <a href="https://t.me/+kJNKpuOP-jQwZTM0"
                    target="_blank"
                    rel="noopener"
