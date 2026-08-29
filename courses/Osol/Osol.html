@@ -1,0 +1,2558 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>مذكرة النجاح - أصول الفقه</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', 'Tahoma', Arial, sans-serif;
+            background: #f4f6f9;
+            color: #1e2a3a;
+            line-height: 1.8;
+            padding-bottom: 80px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        .btn {
+            background: #1a4b6d;
+            color: #fff;
+            border: none;
+            padding: 10px 28px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.25s;
+            display: inline-block;
+            border: 1px solid transparent;
+        }
+        .btn:hover {
+            background: #0b2b44;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: #6c757d;
+        }
+        .btn-secondary:hover {
+            background: #495057;
+        }
+        .btn-success {
+            background: #28a745;
+        }
+        .btn-success:hover {
+            background: #1e7e34;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #1a4b6d;
+            color: #1a4b6d;
+        }
+        .btn-outline:hover {
+            background: #1a4b6d;
+            color: #fff;
+        }
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 22px 26px;
+            margin-bottom: 22px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 8px 35px rgba(0, 0, 0, 0.08);
+        }
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #0b2b44;
+            border-right: 6px solid #1a4b6d;
+            padding-right: 16px;
+        }
+        .card-sub {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a4b6d;
+            margin: 18px 0 8px;
+        }
+        .text-muted {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .mt-2 {
+            margin-top: 16px;
+        }
+        .mb-2 {
+            margin-bottom: 16px;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .text-center {
+            text-align: center;
+        }
+
+        /* ===== HEADER ===== */
+        .app-header {
+            background: linear-gradient(145deg, #0b2b44, #1a4b6d);
+            color: #fff;
+            padding: 16px 0 12px;
+            position: sticky;
+            top: 0;
+            z-index: 1100;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.25);
+        }
+        .app-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .app-header .brand {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        .app-header .brand small {
+            font-weight: 300;
+            font-size: 0.7rem;
+            display: block;
+            opacity: 0.8;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .header-actions button {
+            background: rgba(255, 255, 255, 0.12);
+            border: none;
+            color: #fff;
+            padding: 7px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .header-actions button:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        .header-actions .search-btn {
+            background: #e67e22;
+        }
+        .header-actions .search-btn:hover {
+            background: #d35400;
+        }
+
+        /* ===== NAV TABS ===== */
+        .nav-tabs {
+            background: #fff;
+            padding: 10px 0;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 72px;
+            z-index: 1050;
+            border-bottom: 1px solid #e9ecef;
+            overflow-x: auto;
+        }
+        .nav-tabs .container {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 4px;
+            justify-content: flex-start;
+        }
+        .nav-tabs button {
+            background: transparent;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .nav-tabs button:hover {
+            background: #eef2f7;
+        }
+        .nav-tabs button.active {
+            background: #1a4b6d;
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(26, 75, 109, 0.3);
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            display: none;
+            animation: fadeUp 0.35s ease;
+        }
+        .section.active {
+            display: block;
+        }
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== HOME GRID ===== */
+        .home-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
+        }
+        .home-grid .cat-btn {
+            background: #fff;
+            border: none;
+            border-radius: 18px;
+            padding: 22px 10px;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: 0.25s;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #1e2a3a;
+            border: 1px solid transparent;
+        }
+        .home-grid .cat-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+            border-color: #1a4b6d;
+        }
+        .home-grid .cat-btn .icon {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        /* ===== TREE ===== */
+        .tree-node {
+            margin-right: 20px;
+            border-right: 2px dashed #ced4da;
+            padding-right: 16px;
+            margin-bottom: 10px;
+        }
+        .tree-node .node-label {
+            font-weight: 600;
+            cursor: pointer;
+            color: #0b2b44;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 0;
+        }
+        .tree-node .node-label:hover {
+            color: #1a4b6d;
+        }
+        .tree-node .node-detail {
+            padding: 10px 14px;
+            background: #f1f4f8;
+            border-radius: 12px;
+            margin: 6px 0 10px 0;
+            font-size: 0.92rem;
+            display: none;
+        }
+        .tree-node .node-detail.open {
+            display: block;
+        }
+        .tree-children {
+            margin-top: 6px;
+        }
+        .tree-children[style*="display: none"] {
+            display: none;
+        }
+
+        /* ===== FLASHCARDS ===== */
+        .flashcard {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 18px 20px;
+            margin-bottom: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #e9ecef;
+        }
+        .flashcard:hover {
+            background: #eef2f7;
+        }
+        .flashcard .front {
+            font-weight: 600;
+            color: #0b2b44;
+        }
+        .flashcard .back {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #dee2e6;
+            display: none;
+            color: #2c3e50;
+        }
+        .flashcard.open .back {
+            display: block;
+        }
+
+        /* ===== QUIZ ===== */
+        .quiz-question {
+            background: #f8f9fa;
+            border-radius: 14px;
+            padding: 18px;
+            margin-bottom: 16px;
+        }
+        .quiz-question .q-text {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.05rem;
+        }
+        .quiz-options label {
+            display: block;
+            padding: 6px 0;
+            cursor: pointer;
+        }
+        .quiz-options input[type="radio"] {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .quiz-result {
+            background: #d4edda;
+            border-radius: 12px;
+            padding: 14px;
+            margin-top: 12px;
+            display: none;
+        }
+        .quiz-result.show {
+            display: block;
+        }
+        .quiz-result .correct {
+            color: #155724;
+        }
+        .quiz-result .wrong {
+            color: #721c24;
+        }
+
+        /* ===== QBANK ===== */
+        .qbank-item {
+            background: #fff;
+            border-radius: 14px;
+            padding: 16px 18px;
+            margin-bottom: 12px;
+            border: 1px solid #e9ecef;
+            transition: 0.2s;
+        }
+        .qbank-item:hover {
+            border-color: #1a4b6d;
+        }
+        .qbank-item .q {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .qbank-item .a {
+            margin-top: 8px;
+            color: #1e7e34;
+            display: none;
+            background: #f8f9fa;
+            padding: 10px 14px;
+            border-radius: 10px;
+        }
+        .qbank-item .a.show {
+            display: block;
+        }
+        .qbank-item .meta {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin-top: 6px;
+        }
+        .qbank-item .meta button {
+            background: none;
+            border: none;
+            color: #1a4b6d;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* ===== MAPS ===== */
+        .maps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .map-item {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e6edf6;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .map-item:hover {
+            transform: scale(1.02);
+        }
+        .map-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #fafcfd;
+            padding: 6px;
+        }
+        .map-item .map-label {
+            padding: 10px 14px;
+            background: #f7faff;
+            border-top: 1px solid #e6edf6;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .lightbox.open {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 95%;
+            max-height: 95%;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            object-fit: contain;
+        }
+        .lightbox .close-lightbox {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 2.5rem;
+            color: #fff;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* ===== VIDEO ===== */
+        .video-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .video-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-right: 4px solid #1a4b6d;
+            transition: 0.2s;
+        }
+        .video-link:hover {
+            background: #eef2f7;
+        }
+        .video-link a {
+            color: #1a4b6d;
+            font-weight: 500;
+        }
+        .video-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== SEARCH OVERLAY ===== */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 80px;
+        }
+        .search-overlay.open {
+            display: flex;
+        }
+        .search-box {
+            background: #fff;
+            width: 92%;
+            max-width: 720px;
+            border-radius: 28px;
+            padding: 28px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+        }
+        .search-box input {
+            width: 100%;
+            padding: 14px 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 40px;
+            font-size: 1rem;
+            outline: none;
+            transition: 0.2s;
+        }
+        .search-box input:focus {
+            border-color: #1a4b6d;
+        }
+        .search-results {
+            margin-top: 18px;
+        }
+        .search-results .result-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .search-results .result-item .title {
+            font-weight: 600;
+        }
+        .search-results .result-item .meta {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        .search-results .result-item button {
+            background: #1a4b6d;
+            color: #fff;
+            border: none;
+            padding: 3px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 4px;
+            font-size: 0.8rem;
+        }
+
+        /* ===== NAVIGATION BUTTONS ===== */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 1px solid #e9ecef;
+            flex-wrap: wrap;
+        }
+        .nav-buttons .btn {
+            padding: 8px 22px;
+            font-size: 0.9rem;
+        }
+        .nav-buttons .indicator {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+        /* ===== EXAMS DRIVE LINKS ===== */
+        .drive-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            border-right: 4px solid #1a4b6d;
+        }
+        .drive-link a {
+            color: #1a4b6d;
+            font-weight: 500;
+        }
+        .drive-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== ALERT ===== */
+        .alert-notice {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-top: 24px;
+            color: #856404;
+            font-size: 0.95rem;
+        }
+        .alert-notice strong {
+            color: #856404;
+            font-weight: 700;
+        }
+        .alert-notice .contact {
+            font-weight: 600;
+            color: #0b2b44;
+            font-size: 1.05rem;
+        }
+
+        /* ===== INSTRUCTOR NAME ===== */
+        .instructor-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a4b6d;
+            margin-top: 6px;
+            padding: 8px 14px;
+            background: #eef6fb;
+            border-radius: 12px;
+            display: inline-block;
+            border-right: 4px solid #1a4b6d;
+        }
+
+        /* ===== MAP GUIDE ===== */
+        .map-guide {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+            border-right: 4px solid #1a4b6d;
+            font-size: 0.95rem;
+        }
+        .map-guide strong {
+            color: #0b2b44;
+        }
+        .map-guide ul {
+            list-style: none;
+            padding-right: 0;
+            margin-top: 8px;
+        }
+        .map-guide ul li {
+            padding: 4px 0;
+            padding-right: 20px;
+            position: relative;
+        }
+        .map-guide ul li::before {
+            content: "•";
+            position: absolute;
+            right: 0;
+            color: #1a4b6d;
+            font-weight: bold;
+        }
+
+        /* ===== FOOTER ===== */
+        .app-footer {
+            background: #0b2b44;
+            color: #fff;
+            padding: 20px 0;
+            margin-top: 40px;
+            text-align: center;
+            border-top: 3px solid #1a4b6d;
+        }
+        .app-footer .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .app-footer .footer-text {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        .app-footer .footer-text strong {
+            color: #ffc107;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 640px) {
+            .app-header .brand {
+                font-size: 1rem;
+            }
+            .header-actions button {
+                padding: 4px 10px;
+                font-size: 0.7rem;
+            }
+            .nav-tabs {
+                top: 66px;
+                padding: 6px 0;
+            }
+            .nav-tabs button {
+                font-size: 0.75rem;
+                padding: 4px 12px;
+            }
+            .home-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .container {
+                padding: 0 10px;
+            }
+            .card {
+                padding: 14px 16px;
+            }
+            .maps-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            .instructor-name {
+                font-size: 0.95rem;
+                padding: 6px 12px;
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a4b6d;
+            border-radius: 10px;
+        }
+    </style>
+    
+<script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl.min.js"></script>
+<script>
+// ====================================================================
+// نظام حماية Hero – إصدار 2.2 (Ed25519) – مع واتساب + تيليجرام
+// ====================================================================
+(function() {
+    "use strict";
+
+    // 📌 ثوابت الدورة (غيّرها حسب دورتك)
+    const COURSE_ID = "11";
+    const PUBLIC_KEY_B64 = "F3xKF/2ptXx/G0YaOolQSvnzoBScvz5qz9dGsRbFJxI=";
+    const TRIAL_DAYS = 3;
+
+    // 📦 مفاتيح التخزين
+    const STORAGE_PREFIX = "hero_" + COURSE_ID + "_";
+    const DEVICE_ID_KEY = STORAGE_PREFIX + "device_id";
+    const TRIAL_STATE_KEY = STORAGE_PREFIX + "trial_state";
+    const LICENSE_KEY = STORAGE_PREFIX + "license_activated";
+
+    // 🧰 دوال مساعدة
+    function base64ToBytes(b64) {
+        const bin = atob(b64);
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        return bytes;
+    }
+    function bytesToBase64(bytes) {
+        return btoa(String.fromCharCode.apply(null, bytes));
+    }
+    function generateUUID() {
+        if (crypto.randomUUID) return crypto.randomUUID();
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+            var r = crypto.getRandomValues(new Uint8Array(1))[0] % 16 | 0;
+            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+    }
+
+    // 📱 معرف الجهاز
+    function getDeviceId() {
+        let id = localStorage.getItem(DEVICE_ID_KEY);
+        if (!id) { id = generateUUID(); localStorage.setItem(DEVICE_ID_KEY, id); }
+        return id;
+    }
+
+    // 🖐️ بصمة الجهاز
+    async function generateFingerprint() {
+        const data = [
+            navigator.userAgent || '', navigator.platform || '', navigator.language || '',
+            screen.width || 0, screen.height || 0, screen.colorDepth || 0,
+            new Date().getTimezoneOffset() || 0,
+            !!navigator.hardwareConcurrency, navigator.deviceMemory || 0
+        ].join('|');
+        let canvasFP = '';
+        try {
+            const canvas = document.createElement('canvas');
+            canvas.width = 200;
+            canvas.height = 50;
+            const ctx = canvas.getContext('2d');
+            ctx.textBaseline = 'top';
+            ctx.font = '14px Arial';
+            ctx.fillStyle = '#f60';
+            ctx.fillRect(125, 1, 62, 20);
+            ctx.fillStyle = '#069';
+            ctx.fillText('Cwm fjordbank glyphs vext quiz, 😃', 2, 15);
+            ctx.fillStyle = 'rgba(102,204,0,0.7)';
+            ctx.fillText('Cwm fjordbank glyphs vext quiz, 😃', 4, 17);
+            canvasFP = canvas.toDataURL();
+        } catch (e) { canvasFP = 'error'; }
+        const finalData = data + '|' + canvasFP;
+        const msgBuffer = new TextEncoder().encode(finalData);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    // ⏳ إدارة التجربة
+    async function getTrialState() {
+        let state = JSON.parse(localStorage.getItem(TRIAL_STATE_KEY));
+        const deviceId = getDeviceId();
+        const fp = await generateFingerprint();
+        if (!state) {
+            const now = Date.now();
+            state = {
+                deviceId: deviceId,
+                fingerprint: fp,
+                startedAt: now,
+                lastSeen: now,
+                expiresAt: now + TRIAL_DAYS * 24 * 60 * 60 * 1000,
+                trialUsed: true,
+                tampered: false
+            };
+            localStorage.setItem(TRIAL_STATE_KEY, JSON.stringify(state));
+            return state;
+        }
+        if (state.fingerprint !== fp) state.tampered = true;
+        state.lastSeen = Date.now();
+        localStorage.setItem(TRIAL_STATE_KEY, JSON.stringify(state));
+        return state;
+    }
+
+    // 🔑 التحقق من الترخيص
+    function verifyLicense(code) {
+        try {
+            const parts = code.split('.');
+            if (parts.length !== 2) return null;
+            const [payloadB64, sigB64] = parts;
+            const payloadBytes = base64ToBytes(payloadB64);
+            const signature = base64ToBytes(sigB64);
+            const publicKey = base64ToBytes(PUBLIC_KEY_B64);
+            const valid = nacl.sign.detached.verify(payloadBytes, signature, publicKey);
+            if (!valid) return null;
+            const payloadJson = new TextDecoder().decode(payloadBytes);
+            const payload = JSON.parse(payloadJson);
+            if (payload.course_id !== COURSE_ID) return null;
+            if (payload.expires_at && Date.now() > new Date(payload.expires_at).getTime()) return null;
+            if (payload.device_binding && payload.device_binding !== getDeviceId()) return null;
+            return payload;
+        } catch (e) { return null; }
+    }
+
+    // ================================================================
+    // 🖥️ نافذة التفعيل (مع واتساب + تيليجرام)
+    // ================================================================
+    function showActivationOverlay() {
+        const old = document.getElementById('hero-activation-overlay');
+        if (old) old.remove();
+
+        const deviceId = getDeviceId();
+
+        const overlay = document.createElement('div');
+        overlay.id = 'hero-activation-overlay';
+        Object.assign(overlay.style, {
+            position: 'fixed',
+            inset: '0',
+            zIndex: '999999',
+            background: 'rgba(0,0,0,0.75)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontFamily: "'Segoe UI', Tahoma, sans-serif",
+            padding: '16px',
+            direction: 'rtl'
+        });
+
+        const box = document.createElement('div');
+        Object.assign(box.style, {
+            background: '#fff',
+            borderRadius: '24px',
+            padding: '28px 24px',
+            maxWidth: '480px',
+            width: '100%',
+            textAlign: 'center',
+            boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+            direction: 'rtl'
+        });
+
+        // ---- العنوان ----
+        const title = document.createElement('h2');
+        title.textContent = '🔐 تفعيل الدورة';
+        Object.assign(title.style, { margin: '0 0 8px', fontSize: '26px', color: '#1a2634' });
+        box.appendChild(title);
+
+        // ---- النص التوجيهي ----
+        const sub = document.createElement('p');
+        sub.textContent = 'لتفعيل الدورة، اتبع الخطوات التالية:';
+        Object.assign(sub.style, { color: '#475569', fontSize: '15px', marginBottom: '16px' });
+        box.appendChild(sub);
+
+        // ---- قسم مفتاح التفعيل ----
+        const keySection = document.createElement('div');
+        Object.assign(keySection.style, {
+            background: '#f1f5f9',
+            padding: '14px',
+            borderRadius: '14px',
+            marginBottom: '16px',
+            textAlign: 'right',
+            direction: 'ltr'
+        });
+
+        const keyLabel = document.createElement('label');
+        keyLabel.textContent = '📱 مفتاح التفعيل (انسخه وأرسله للمدرس):';
+        Object.assign(keyLabel.style, {
+            fontWeight: '600',
+            fontSize: '14px',
+            color: '#2d3a4b',
+            display: 'block',
+            textAlign: 'right',
+            direction: 'rtl'
+        });
+        keySection.appendChild(keyLabel);
+
+        const keyDisplay = document.createElement('div');
+        keyDisplay.textContent = deviceId;
+        Object.assign(keyDisplay.style, {
+            background: '#0f172a',
+            color: '#facc15',
+            padding: '10px 14px',
+            borderRadius: '10px',
+            fontFamily: 'monospace',
+            fontSize: '14px',
+            wordBreak: 'break-all',
+            marginTop: '4px',
+            textAlign: 'left'
+        });
+        keySection.appendChild(keyDisplay);
+
+        // زر نسخ المفتاح
+        const copyKeyBtn = document.createElement('button');
+        copyKeyBtn.textContent = '📋 نسخ المفتاح';
+        Object.assign(copyKeyBtn.style, {
+            background: '#3b82f6',
+            color: '#fff',
+            border: 'none',
+            padding: '8px 20px',
+            borderRadius: '10px',
+            fontSize: '14px',
+            fontWeight: '600',
+            cursor: 'pointer',
+            marginTop: '8px'
+        });
+        copyKeyBtn.addEventListener('click', function() {
+            navigator.clipboard.writeText(deviceId).then(() => {
+                copyKeyBtn.textContent = '✅ تم النسخ';
+                setTimeout(() => copyKeyBtn.textContent = '📋 نسخ المفتاح', 2000);
+            }).catch(() => {
+                const ta = document.createElement('textarea');
+                ta.value = deviceId;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                ta.remove();
+                copyKeyBtn.textContent = '✅ تم النسخ';
+                setTimeout(() => copyKeyBtn.textContent = '📋 نسخ المفتاح', 2000);
+            });
+        });
+        keySection.appendChild(copyKeyBtn);
+        box.appendChild(keySection);
+
+        // ---- حقل إدخال كود التفعيل ----
+        const inputSection = document.createElement('div');
+        Object.assign(inputSection.style, { textAlign: 'right', direction: 'rtl' });
+
+        const inputLabel = document.createElement('label');
+        inputLabel.textContent = '2️⃣ الصق كود التفعيل الذي حصلت عليه:';
+        Object.assign(inputLabel.style, { fontWeight: '600', fontSize: '14px', color: '#2d3a4b', display: 'block' });
+        inputSection.appendChild(inputLabel);
+
+        const licenseInput = document.createElement('input');
+        licenseInput.type = 'text';
+        licenseInput.placeholder = 'ألصق كود التفعيل هنا...';
+        licenseInput.id = 'license-input';
+        Object.assign(licenseInput.style, {
+            width: '100%',
+            padding: '12px 16px',
+            marginTop: '4px',
+            border: '2px solid #d1d9e6',
+            borderRadius: '12px',
+            fontSize: '16px',
+            fontFamily: 'monospace',
+            textAlign: 'center',
+            direction: 'ltr',
+            boxSizing: 'border-box'
+        });
+        inputSection.appendChild(licenseInput);
+        box.appendChild(inputSection);
+
+        // ---- زر التفعيل ----
+        const activateBtn = document.createElement('button');
+        activateBtn.textContent = '🔑 تفعيل';
+        activateBtn.id = 'activate-btn';
+        Object.assign(activateBtn.style, {
+            width: '100%',
+            padding: '14px',
+            marginTop: '16px',
+            background: '#facc15',
+            border: 'none',
+            borderRadius: '30px',
+            fontWeight: '700',
+            fontSize: '18px',
+            cursor: 'pointer'
+        });
+        box.appendChild(activateBtn);
+
+        // ---- رسالة الحالة ----
+        const msgDiv = document.createElement('div');
+        msgDiv.id = 'activation-msg';
+        Object.assign(msgDiv.style, {
+            marginTop: '10px',
+            fontSize: '14px',
+            fontWeight: '500',
+            minHeight: '24px',
+            color: '#b00020'
+        });
+        box.appendChild(msgDiv);
+
+        // ---- خط فاصل ----
+        const hr = document.createElement('hr');
+        Object.assign(hr.style, { margin: '20px 0', border: '0', borderTop: '1px solid #e2e8f0' });
+        box.appendChild(hr);
+
+        // ---- حاوية أزرار التواصل (واتساب + تيليجرام) ----
+        const socialRow = document.createElement('div');
+        Object.assign(socialRow.style, {
+            display: 'flex',
+            gap: '10px',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
+        });
+
+        // زر واتساب
+        const waBtn = document.createElement('button');
+        waBtn.textContent = '💬 واتساب';
+        waBtn.id = 'whatsapp-btn';
+        Object.assign(waBtn.style, {
+            flex: '1',
+            minWidth: '120px',
+            padding: '14px',
+            background: '#25D366',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '30px',
+            fontWeight: '700',
+            fontSize: '16px',
+            cursor: 'pointer'
+        });
+        socialRow.appendChild(waBtn);
+
+        // زر تيليجرام
+        const tgBtn = document.createElement('button');
+        tgBtn.textContent = '💬 تيليجرام';
+        tgBtn.id = 'telegram-btn';
+        Object.assign(tgBtn.style, {
+            flex: '1',
+            minWidth: '120px',
+            padding: '14px',
+            background: '#0088cc',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '30px',
+            fontWeight: '700',
+            fontSize: '16px',
+            cursor: 'pointer'
+        });
+        socialRow.appendChild(tgBtn);
+
+        box.appendChild(socialRow);
+
+        // ---- نص توضيحي ----
+        const note = document.createElement('div');
+        note.textContent = 'سيتم إرسال معرف الدورة ومفتاح التفعيل تلقائياً';
+        Object.assign(note.style, { fontSize: '12px', color: '#94a3b8', marginTop: '8px' });
+        box.appendChild(note);
+
+        overlay.appendChild(box);
+        document.body.appendChild(overlay);
+
+        // ================================================================
+        // ربط الأحداث
+        // ================================================================
+
+        // تفعيل
+        activateBtn.addEventListener('click', function() {
+            const code = licenseInput.value.trim();
+            if (!code) {
+                msgDiv.textContent = '⚠️ الرجاء إدخال كود التفعيل.';
+                msgDiv.style.color = '#b00020';
+                return;
+            }
+            msgDiv.textContent = '⏳ جاري التحقق...';
+            msgDiv.style.color = '#3b82f6';
+
+            const payload = verifyLicense(code);
+            if (!payload) {
+                msgDiv.textContent = '❌ كود غير صحيح أو منتهي الصلاحية.';
+                msgDiv.style.color = '#b00020';
+                return;
+            }
+            localStorage.setItem(LICENSE_KEY, 'activated');
+            localStorage.removeItem(TRIAL_STATE_KEY);
+            overlay.remove();
+            location.reload();
+        });
+
+        // واتساب
+        waBtn.addEventListener('click', function() {
+            const waNumber = prompt('أدخل رقم واتساب مع رمز الدولة:', '249915886600');
+            if (waNumber) {
+                const txt = encodeURIComponent(
+                    'مرحباً، أرغب في شراء هذه الدورة.\n' +
+                    'معرف الدورة: ' + COURSE_ID + '\n' +
+                    'مفتاح التفعيل: ' + deviceId
+                );
+                window.open('https://wa.me/' + waNumber + '?text=' + txt, '_blank');
+            }
+        });
+
+        // تيليجرام
+        tgBtn.addEventListener('click', function() {
+            const username = prompt('أدخل معرف تيليجرام الخاص بك (بدون @):', 'Herocourses');
+            if (username) {
+                const txt = encodeURIComponent(
+                    'مرحباً، أرغب في شراء هذه الدورة.\n' +
+                    'معرف الدورة: ' + COURSE_ID + '\n' +
+                    'مفتاح التفعيل: ' + deviceId
+                );
+                window.open('https://t.me/' + username + '?text=' + txt, '_blank');
+            }
+        });
+
+        // Enter
+        licenseInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') activateBtn.click();
+        });
+    }
+
+    // ⏱️ عداد التجربة
+    function updateTrialCounter(expiresAt) {
+        let counter = document.getElementById('hero-trial-counter');
+        if (!counter) {
+            counter = document.createElement('div');
+            counter.id = 'hero-trial-counter';
+            Object.assign(counter.style, {
+                position: 'fixed',
+                bottom: '80px',
+                left: '20px',
+                zIndex: '99999',
+                background: '#1e293b',
+                color: '#f1f5f9',
+                padding: '10px 16px',
+                borderRadius: '12px',
+                fontSize: '14px',
+                fontFamily: 'Arial, sans-serif',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
+                direction: 'ltr'
+            });
+            document.body.appendChild(counter);
+        }
+        const now = Date.now();
+        const remaining = Math.max(0, (expiresAt - now) / 1000);
+        if (remaining <= 0) {
+            counter.textContent = '⏰ انتهت التجربة';
+            counter.style.background = '#b00020';
+            return;
+        }
+        const days = Math.floor(remaining / 86400);
+        const hours = Math.floor((remaining % 86400) / 3600);
+        const minutes = Math.floor((remaining % 3600) / 60);
+        const seconds = Math.floor(remaining % 60);
+        counter.textContent = `⏳ التجربة المتبقية: ${days}يوم ${hours}س ${minutes}د ${seconds}ث`;
+    }
+
+    // 🚀 التهيئة الرئيسية
+    async function init() {
+        if (typeof nacl === 'undefined') {
+            document.documentElement.style.visibility = 'hidden';
+            const errOverlay = document.createElement('div');
+            Object.assign(errOverlay.style, {
+                position: 'fixed',
+                inset: '0',
+                zIndex: '999999',
+                background: 'rgba(0,0,0,0.8)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#fff',
+                fontFamily: 'Arial, sans-serif',
+                fontSize: '18px',
+                textAlign: 'center',
+                padding: '20px'
+            });
+            errOverlay.innerHTML =
+                '❌ مكتبة التشفير غير محملة.تأكد من اتصال الإنترنت لتحميل tweetnacl.';
+            document.body.appendChild(errOverlay);
+            return;
+        }
+
+        // التحقق من الترخيص المخزن
+        if (localStorage.getItem(LICENSE_KEY) === 'activated') {
+            document.documentElement.style.visibility = 'visible';
+            return;
+        }
+
+        // التجربة
+        const trial = await getTrialState();
+        if (trial.tampered || Date.now() >= trial.expiresAt) {
+            document.documentElement.style.visibility = 'hidden';
+            showActivationOverlay();
+            return;
+        }
+
+        // التجربة سارية
+        document.documentElement.style.visibility = 'visible';
+
+        // زر تفعيل عائم
+        const floatBtn = document.createElement('button');
+        floatBtn.textContent = '🔑 تفعيل / شراء';
+        Object.assign(floatBtn.style, {
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            zIndex: '99999',
+            background: '#facc15',
+            color: '#0f172a',
+            border: 'none',
+            padding: '12px 24px',
+            borderRadius: '40px',
+            fontWeight: '700',
+            fontSize: '16px',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+            cursor: 'pointer'
+        });
+        floatBtn.addEventListener('click', showActivationOverlay);
+        document.body.appendChild(floatBtn);
+
+        // عداد
+        updateTrialCounter(trial.expiresAt);
+        setInterval(function() {
+            updateTrialCounter(trial.expiresAt);
+            if (Date.now() >= trial.expiresAt) location.reload();
+        }, 1000);
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+})();
+</script>
+        
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="app-header">
+        <div class="container">
+            <div class="brand">
+                📘 مذكرة النجاح
+                <small>أصول الفقه · تيسير علم الأصول</small>
+            </div>
+            <div class="header-actions">
+                <button onclick="goHome()">🏠 الرئيسية</button>
+                <button class="search-btn" onclick="toggleSearch()">🔍 بحث</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== NAV TABS ===== -->
+    <nav class="nav-tabs" id="mainNav">
+        <div class="container" id="navContainer"></div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="page-content">
+        <div class="container">
+
+            <!-- ========== HOME ========== -->
+            <section id="section-home" class="section active">
+                <div class="card">
+                    <h1 style="font-size:1.9rem; margin-bottom:4px;">📘 مذكرة النجاح</h1>
+                    <p style="color:#2c3e50; font-size:1.15rem; font-weight:500;">أصول الفقه · تيسير علم الأصول</p>
+                    <p style="margin-top:8px; color:#495057; font-size:1rem;">تيسير علم أصول الفقه لدارسي القانون والشريعة</p>
+                    <p style="margin-top:4px; color:#495057;">مساق قانوني أكاديمي متكامل لطلاب القانون وطلاب المعادلة.</p>
+                    <div class="instructor-name">✍️ إعداد الأستاذ / إبراهيم الدسوقي</div>
+                </div>
+                <div class="home-grid" id="homeGrid"></div>
+                <div class="card mt-2" style="background:#eef6fb;">
+                    <p><strong>🎯 الفئة المستهدفة:</strong> طلاب القانون، المحامون، القضاة، المستشارون القانونيون، الباحثون الأكاديميون</p>
+                    <p><strong>📌 المستوى:</strong> مبتدئ إلى متوسط</p>
+                    <p><strong>📋 المتطلبات:</strong> معرفة أساسية بمفهوم التشريع الإسلامي، قدرة على قراءة اللغة العربية وقواعدها الأساسية</p>
+                    <p><strong>📤 المخرجات التعليمية:</strong> تعريف علم أصول الفقه، فهم أدلة التشريع، التمييز بين الحكم التكليفي والوضعي، تطبيق قواعد دلالات الألفاظ، التعامل مع التعارض والترجيح، إدراك شروط الاجتهاد.</p>
+                </div>
+
+                <!-- ===== تنبيه مهم ===== -->
+                <div class="alert-notice">
+                    <p style="font-size:1.05rem; font-weight:700;">⚠️ تنبيه مهم</p>
+                    <p style="margin-top:6px;">
+                        إذا وصلك هذا التطبيق أو تمكنت من استخدامه دون إتمام عملية الشراء، نرجو التواصل معنا في أقرب وقت لتصحيح الوضع وتسوية أي مستحقات مالية.
+                    </p>
+                    <p style="margin-top:6px;">
+                        نشكركم على الأمانة والتعاون.
+                    </p>
+                    <p style="margin-top:8px; font-size:1.05rem;">
+                        📞 <span class="contact">للتواصل عبر واتساب : +249915886600</span>
+                    </p>
+                    <hr style="border:0; border-top:1px solid #ffc107; margin:12px 0;">
+                    <p style="margin-top:6px;">
+                        💰 <strong>لمن يرغب في الربح:</strong> يمكنك أيضاً الانضمام إلى برنامج التسويق بالعمولة والحصول على <strong>20%</strong> عمولة عن كل عملية شراء تتم من خلالك.
+                    </p>
+                </div>
+                <!-- ===== نهاية التنبيه ===== -->
+
+            </section>
+
+            <!-- ========== EXPLAIN ========== -->
+            <section id="section-explain" class="section">
+                <div class="card">
+                    <h2 class="card-title">📖 الشرح التفصيلي</h2>
+                    <div id="explainContent"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('home')">🏠 الرئيسية</button>
+                        <span class="indicator">الوحدة 1 من 5</span>
+                        <button class="btn" onclick="navigateTo('summaries')">التالي 📝</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== SUMMARIES ========== -->
+            <section id="section-summaries" class="section">
+                <div class="card">
+                    <h2 class="card-title">📝 الملخصات</h2>
+                    <div id="summariesContent"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('explain')">السابق 📖</button>
+                        <span class="indicator">ملخصات</span>
+                        <button class="btn" onclick="navigateTo('questions')">التالي ❓</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== QUESTIONS ========== -->
+            <section id="section-questions" class="section">
+                <div class="card">
+                    <h2 class="card-title">❓ أسئلة التقويم الذاتي مع الإجابات</h2>
+                    <div id="questionsContent"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('summaries')">السابق 📝</button>
+                        <span class="indicator">أسئلة</span>
+                        <button class="btn" onclick="navigateTo('maps')">التالي 🗺️</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== MAPS ========== -->
+            <section id="section-maps" class="section">
+                <div class="card">
+                    <h2 class="card-title">🗺️ الخرائط الذهنية</h2>
+                    <div class="map-guide">
+                        <strong>📌 توجيه مهم جداً:</strong> لتدرس علم أصول الفقه بكفاءة وتستفيد أقصى فائدة من الخرائط الذهنية، اتبع هذه الخطوات المنهجية المختصرة:
+                        <ul>
+                            <li><strong>الفكرة المركزية:</strong> ضع اسم "علم أصول الفقه" في منتصف الورقة كجذع رئيسي تنبثق منه كافة التفاصيل.</li>
+                            <li><strong>الأفرع الرئيسية (الأبواب):</strong> ارسم أفرعاً عريضة تمثل أبواب العلم الكبرى، مثل الأدلة المتفق عليها، الأدلة المختلف فيها، نظرية الحكم الشرعي، دلالات الألفاظ، والاجتهاد.</li>
+                            <li><strong>الأفرع الفرعية (الفصول):</strong> فرّع من كل باب فصوله؛ فمثلاً يتفرع من الأدلة المتفق عليها: القرآن، السنة، الإجماع، والقياس.</li>
+                            <li><strong>الكلمات المفتاحية:</strong> تجنب كتابة النصوص الطويلة، واستبدلها بكلمات دالة ومختصرة مثل "الفرض والواجب"، "المطلق والمقيد"، "المنطوق والمفهوم".</li>
+                            <li><strong>الترميز اللوني البصري:</strong> استخدم لوناً موحداً لكل باب؛ كالأزرق للأدلة، والأخضر للأحكام، والأحمر لدلالات الألفاظ لتنشيط الذاكرة البصرية.</li>
+                            <li><strong>الروابط والأسهم البينية:</strong> صِل الموضوعات المترابطة بأسهم متقطعة، مثل ربط القياس بالعلة، وربط العام بالتخصيص، لتوضيح العلاقات الأصولية.</li>
+                            <li><strong>التلخيص والمراجعة السريعة:</strong> استخدم هذه الخريطة كأداة استرجاع ذاتي؛ غطِّ الأفرع وحاول تذكر المفاهيم والقواعد التابعة لكل فرع لترسيخها قبل الامتحانات.</li>
+                        </ul>
+                    </div>
+                    <p style="margin-bottom:16px;">خرائط ذهنية توضح هيكل علم أصول الفقه ومباحثه الرئيسية.</p>
+                    <div class="maps-grid" id="mapsGallery"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('questions')">السابق ❓</button>
+                        <span class="indicator">خرائط</span>
+                        <button class="btn" onclick="navigateTo('examples')">التالي 📌</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== EXAMPLES ========== -->
+            <section id="section-examples" class="section">
+                <div class="card">
+                    <h2 class="card-title">📌 الأمثلة والتطبيقات القضائية</h2>
+                    <div id="examplesContent"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('maps')">السابق 🗺️</button>
+                        <span class="indicator">أمثلة</span>
+                        <button class="btn" onclick="navigateTo('exams')">التالي 📋</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== EXAMS ========== -->
+            <section id="section-exams" class="section">
+                <div class="card">
+                    <h2 class="card-title">📋 الامتحانات والاختبارات</h2>
+                    <div id="examsContent"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('examples')">السابق 📌</button>
+                        <span class="indicator">امتحانات</span>
+                        <button class="btn" onclick="navigateTo('qbank')">التالي 📚</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== QBANK ========== -->
+            <section id="section-qbank" class="section">
+                <div class="card">
+                    <h2 class="card-title">📚 بنك الأسئلة الشامل (200 سؤال)</h2>
+                    <div style="margin:12px 0; display:flex; gap:10px; flex-wrap:wrap;">
+                        <input type="text" id="qbankSearch" placeholder="🔍 بحث في الأسئلة..." style="flex:1; min-width:180px; padding:12px 18px; border:2px solid #dee2e6; border-radius:40px; font-size:0.95rem; outline:none;">
+                        <select id="qbankFilter" style="padding:12px 18px; border-radius:40px; border:2px solid #dee2e6; background:#fff; font-size:0.95rem;">
+                            <option value="all">جميع الوحدات</option>
+                            <option value="1">الوحدة الأولى</option>
+                            <option value="2">الوحدة الثانية</option>
+                            <option value="3">الوحدة الثالثة</option>
+                            <option value="4">الوحدة الرابعة</option>
+                            <option value="5">الوحدة الخامسة</option>
+                        </select>
+                    </div>
+                    <div id="qbankList"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('exams')">السابق 📋</button>
+                        <span class="indicator">بنك الأسئلة</span>
+                        <button class="btn" onclick="navigateTo('reviews')">التالي 🔄</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== REVIEWS ========== -->
+            <section id="section-reviews" class="section">
+                <div class="card">
+                    <h2 class="card-title">🔄 المراجعات وبطاقات المراجعة</h2>
+                    <div id="reviewsContent"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('qbank')">السابق 📚</button>
+                        <span class="indicator">مراجعات</span>
+                        <button class="btn" onclick="navigateTo('tree')">التالي 🌳</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== TREE ========== -->
+            <section id="section-tree" class="section">
+                <div class="card">
+                    <h2 class="card-title">🌳 شجرة المعرفة</h2>
+                    <div id="treeContent"></div>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('reviews')">السابق 🔄</button>
+                        <span class="indicator">شجرة المعرفة</span>
+                        <button class="btn" onclick="navigateTo('video')">التالي 🎥</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== VIDEO ========== -->
+            <section id="section-video" class="section">
+                <div class="card">
+                    <h2 class="card-title">🎥 الفيديو التعليمي</h2>
+                    <div class="video-grid">
+                        <div class="video-link">
+                            <span>🎬</span>
+                            <a href="https://youtu.be/SrVwlAS5M44" target="_blank">هندسة التشريع وفن استنباط الأحكام - الجزء 1</a>
+                        </div>
+                        <div class="video-link">
+                            <span>🎬</span>
+                            <a href="https://youtu.be/L2r1DhXOM3Q" target="_blank">هندسة التشريع وفن استنباط الأحكام - الجزء 2</a>
+                        </div>
+                    </div>
+                    <p style="margin-top:12px; text-align:center; color:#6c757d;">🔹 هذه الروابط تفتح مباشرة على يوتيوب (يتطلب اتصال بالإنترنت).</p>
+                    <div class="nav-buttons">
+                        <button class="btn btn-secondary" onclick="navigateTo('tree')">السابق 🌳</button>
+                        <span class="indicator">فيديو</span>
+                        <button class="btn" onclick="navigateTo('home')">🏠 الرئيسية</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="app-footer">
+        <div class="container">
+            <div class="footer-text">
+                ✍️ <strong>إعداد الأستاذ / إبراهيم الدسوقي</strong> · جميع الحقوق محفوظة © 2026
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="close-lightbox" onclick="closeLightbox()">✕</button>
+        <img id="lightboxImg" src="" alt="خريطة ذهنية">
+    </div>
+
+    <!-- ===== SEARCH OVERLAY ===== -->
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-box">
+            <div style="display:flex; gap:10px; align-items:center;">
+                <input type="text" id="searchInput" placeholder="ابحث في الدروس، التعريفات، الأسئلة، بنك الأسئلة..." style="flex:1;">
+                <button onclick="closeSearch()" style="background:none; border:none; font-size:1.6rem; cursor:pointer; color:#6c757d;">✕</button>
+            </div>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <script>
+        // =====================================================================
+        // DATA – أصول الفقه
+        // =====================================================================
+
+        // ----- UNITS (5 وحدات) -----
+        const units = [{
+            id: 1,
+            title: "الوحدة الأولى: المدخل العام والأدلة التشريعية المتفق عليها",
+            lessons: [{
+                title: "مدخل إلى علم أصول الفقه ونشأته",
+                objectives: ["التعرف على المفهوم اللغوي والاصطلاحي لأصول الفقه", "تبيان غاية العلم ومصادر استمداده", "المقارنة المنهجية بين طرق التدوين الأصولية"],
+                skills: ["التمييز بين القواعد الأصولية النظرية والتطبيقات الفقهية", "التحليل المقارن للمناهج الفكرية"],
+                outcomes: ["تحديد غاية علم الأصول وموضوعاته الأساسية", "ربط نشأة علم الأصول بالحاجة التاريخية لضبط فهم النصوص"]
+            }, {
+                title: "القرآن الكريم كمصدر أول للتشريع",
+                objectives: ["تعريف القرآن الكريم وتحديد خصائصه", "دراسة أوجه إعجاز القرآن", "تصنيف دلالات نصوص القرآن من حيث الثبوت والأحكام"],
+                skills: ["استنباط الأحكام من أساليب القرآن", "التمييز بين الآيات قطعية الدلالة وظنية الدلالة"],
+                outcomes: ["تحليل النصوص القرآنية واستخراج التكليف التشريعي", "تطبيق القواعد الأصولية للقرآن على النوازل"]
+            }, {
+                title: "السنة النبوية الشريفة وحجيتها",
+                objectives: ["تعريف السنة وتصنيفها", "دراسة تقسيمات السنة من حيث السند", "شرح موقف المذاهب من خبر الواحد", "تبيان دور السنة مع القرآن"],
+                skills: ["تقييم حجية السند والخبر", "الربط بين نصوص القرآن ومخصصات السنة"],
+                outcomes: ["تصنيف الأحاديث حسب طبيعتها التشريعية", "تحديد الوظيفة الأصولية للسنة"]
+            }, {
+                title: "الإجماع ومستنده التشريعي",
+                objectives: ["تعريف الإجماع وأركانه", "التمييز بين الإجماع الصريح والسكوتي", "شرح وجوب المستند الشرعي للإجماع"],
+                skills: ["البحث في ثبوت الإجماع في المسائل المعاصرة", "نقد مسألة الإجماع السكوتي"],
+                outcomes: ["تحديد مرتبة الإجماع في ترتيب الأدلة", "ربط القرارات الفقهية الجماعية بمستنداتها"]
+            }, {
+                title: "القياس الأصولي وفن استخراج العلة",
+                objectives: ["تعريف القياس وأركانه الأربعة", "دراسة شروط صحة أركان القياس", "شرح مسالك العلة وطرق استنباطها"],
+                skills: ["استنباط علل الأحكام بالطرق المنهجية", "بناء قياس فقهي متكامل الأركان"],
+                outcomes: ["إلحاق المسائل المستجدة بأصولها الشرعية", "تصنيف مسالك المجتهدين لتحديد العلة"]
+            }]
+        }, {
+            id: 2,
+            title: "الوحدة الثانية: الأدلة التشريعية المختلف فيها",
+            lessons: [{
+                title: "الاستحسان والضرورة الشرعية",
+                objectives: ["تعريف الاستحسان والخلاف المذهبي حوله", "شرح أنواع الاستحسان"],
+                skills: ["توجيه المعاملات الاستثنائية تيسيراً", "تقدير الموازنة بين قواعد التشريع والاحتياجات"],
+                outcomes: ["تطبيق نظرية الاستحسان على عقود المعاملات الحديثة", "بيان الفروق بين القياس الجلي والقياس الخفي"]
+            }, {
+                title: "الاستصحاب ومبادئ البراءة الأصلية",
+                objectives: ["تعريف الاستصحاب وأنواعه الأربعة", "مقارنة قواعد الاستصحاب بالقواعد القانونية المعاصرة"],
+                skills: ["الاستدلال بالبراءة والعدم الأصلي", "تطبيق استصحاب الصفة على الأحوال الشخصية"],
+                outcomes: ["ربط قواعد الاستصحاب بنظيراتها القانونية", "تقرير الأحكام المبنية على الحالة السابقة"]
+            }, {
+                title: "العرف وسد الذرائع والمصالح المرسلة",
+                objectives: ["دراسة العرف أقسامه وشروطه", "شرح مفهوم سد الذرائع وتصنيفها", "تعريف المصالح المرسلة وتصنيف مصالح العباد"],
+                skills: ["موازنة المصالح والمفاسد في النوازل", "توظيف الأعراف السليمة في صياغة العقود"],
+                outcomes: ["تصنيف مصالح العباد وتحديد مستوياتها", "تمييز العرف الصحيح من الفاسد", "تطبيق قاعدة سد الذرائع لمنع التحايل"]
+            }]
+        }, {
+            id: 3,
+            title: "الوحدة الثالثة: نظرية الحكم الشرعي",
+            lessons: [{
+                title: "أركان الحكم الشرعي",
+                objectives: ["تعريف الحكم الشرعي وأركانه الأربعة", "مناقشة دور العقل والشرع في إدراك الحسن والقبح", "شرح شروط التكليف وعوارض الأهلية"],
+                skills: ["تحديد مدى توفر الأهلية للأشخاص", "تقييم الأفعال من حيث إمكانية الامتثال"],
+                outcomes: ["التمييز بين عوارض الأهلية وأثرها", "تحديد متى يكون المكلف مستحقاً للتكليف"]
+            }, {
+                title: "الحكم التكليفي وأقسامه",
+                objectives: ["تعريف الحكم التكليفي وتصنيفه", "شرح الفروق بين الفرض والواجب عند الجمهور والحنفية", "تصنيف الواجب باعتباراته المختلفة"],
+                skills: ["تحليل النصوص لاستخلاص التكليف", "تصنيف الواجبات التشريعية"],
+                outcomes: ["التفرقة بين رتب الأحكام التكليفية", "التمييز بين المحرم لذاته والمحرم لغيره"]
+            }, {
+                title: "الحكم الوضعي وأقسامه",
+                objectives: ["تعريف الحكم الوضعي والفرق بينه وبين التكليفي", "شرح أقسام الحكم الوضعي"],
+                skills: ["الربط بين الأسباب والموانع لتقرير الصحة والبطلان", "توظيف الرخص الشرعية"],
+                outcomes: ["تحديد أسباب وموانع نفاذ الأحكام", "التمييز بين الرخص الاستثنائية والعزائم العامة"]
+            }]
+        }, {
+            id: 4,
+            title: "الوحدة الرابعة: القواعد اللغوية ودلالات الألفاظ",
+            lessons: [{
+                title: "اللفظ العام والخاص والمطلق والمقيد",
+                objectives: ["تعريف اللفظ العام وصيغه وحكم دلالته", "تعريف الخاص والمطلق والمقيد", "دراسة قواعد حمل المطلق على المقيد"],
+                skills: ["تخصيص العمومات بالقرائن المعتبرة", "تطبيق قواعد حمل المطلق على المقيد"],
+                outcomes: ["التمييز بين صيغ العموم والاستثناء", "تصنيف حالات تعامل المفسرين مع المطلق والمقيد"]
+            }, {
+                title: "دلالة الألفاظ من حيث الوضوح والخفاء",
+                objectives: ["دراسة اللفظ الواضح مراتبياً", "دراسة اللفظ غير الواضح ودرجات غموضه"],
+                skills: ["التعامل مع غموض الألفاظ وإزالة اللبس", "تطبيق مراتب الوضوح لترجيح النصوص المتعارضة"],
+                outcomes: ["تصنيف النصوص في سلم الوضوح والخفاء", "تجنب الأخطاء التفسيرية الناتجة عن تسرع الاستدلال"]
+            }, {
+                title: "طرق دلالة النصوص على الأحكام",
+                objectives: ["شرح دلالة المنطوق بأنواعها", "شرح دلالة المفهوم بنوعيها والخلاف فيهما"],
+                skills: ["استنباط لوازم النصوص ومسكوتاتها", "توظيف مفهوم المخالفة بضوابطه"],
+                outcomes: ["تقرير الأحكام المستفادة من عبارات النص", "تطبيق القواعد اللغوية لتحليل النصوص"]
+            }]
+        }, {
+            id: 5,
+            title: "الوحدة الخامسة: عوارض الأدلة وتعارضها والاجتهاد",
+            lessons: [{
+                title: "عوارض الأدلة وتعارضها",
+                objectives: ["تعريف التعارض وشروطه وأسبابه", "التعرف على التزاحم والتكافؤ", "دراسة خطوات دفع التعارض"],
+                skills: ["دفع التعارض الظاهري بالتأويل والجمع", "ترجيح نصوص الأحكام بالمرجحات المعتمدة"],
+                outcomes: ["تطبيق الخطوات الحتمية لمعالجة التعارض", "التمييز بين النص الناسخ والمنسوخ"]
+            }, {
+                title: "قواعد الاجتهاد والتقليد ومراتب العلماء",
+                objectives: ["تعريف الاجتهاد والتقليد وشروط المجتهد", "التمييز بين الاجتهاد التفسيري والاستنباطي", "مناقشة تجزؤ الاجتهاد ومراتب المجتهدين"],
+                skills: ["تقييم الفتاوى ونسبتها لمراتب قائليها", "ممارسة البحث العلمي في إطار التخصص"],
+                outcomes: ["تحديد الدور المعرفي بين رتبة المجتهد والمقلد", "رسم خريطة لمستويات العلماء ومناهجهم"]
+            }]
+        }];
+
+        // ----- SUMMARIES -----
+        const summariesData = [
+            `🔹 <strong>الوحدة الأولى:</strong> أصول الفقه هو العلم بالأحكام الشرعية العملية من أدلتها التفصيلية (تعريف الشافعي). موضوعه الأدلة الشرعية وأحوال المكلفين. مدارس التدوين: الشافعية (نظرية)، الحنفية (عملية)، المتأخرون (جمع)، والحديثة (تبسيط). الأدلة المتفق عليها: القرآن (قطع الثبوت، دلالته قطعية/ظنية)، السنة (قول، فعل، تقرير، وتنقسم إلى متواتر، مشهور، آحاد)، الإجماع (صريح قطعي، سكوتي محل خلاف)، والقياس (إلحاق فرع بأصل لعلة).`,
+            `🔹 <strong>الوحدة الثانية:</strong> الأدلة المختلف فيها: الاستحسان (عدول عن قياس جلي لخفي)، الاستصحاب (بقاء ما كان على ما كان)، العرف (ما تعارف عليه الناس)، سد الذرائع (منع الوسائل المؤدية للمفاسد)، المصالح المرسلة (المصالح المسكوت عنها)، شرع من قبلنا (أحكام الأمم السابقة). المصالح المرسلة تدور حول حفظ الكليات الخمس (الدين، النفس، العقل، النسل، المال).`,
+            `🔹 <strong>الوحدة الثالثة:</strong> الحكم الشرعي: خطاب الله المتعلق بأفعال المكلفين. أركانه: الحاكم، المحكوم عليه، المحكوم فيه، والحكم. الحكم التكليفي: (فرض/واجب، مندوب، محرم، مكروه، مباح). الحكم الوضعي: (سبب، شرط، مانع، عزيمة ورخصة، صحة وبطلان). الفرض والواجب مترادفان عند الجمهور، ويفرق الحنفية بقطعية الدليل وظنيته.`,
+            `🔹 <strong>الوحدة الرابعة:</strong> اللفظ العام: يستغرق جميع أفراده (دلالته قطعية عند الحنفية، ظنية عند الجمهور). الخاص: يدل على منفرد. المطلق والمقيد: له أربع حالات في الحمل. درجات الوضوح: (ظاهر، نص، مفسر، محكم). درجات الخفاء: (خفي، مشكل، مجمل، متشابه). دلالة المنطوق: (عبارة، إشارة، اقتضاء). دلالة المفهوم: (موافقة، مخالفة) ومفهوم المخالفة حجة عند الجمهور وباطل عند الحنفية.`,
+            `🔹 <strong>الوحدة الخامسة:</strong> التعارض: تقابل دليلين متساويين. خطوط دفع التعارض: الجمع والتوفيق، الترجيح، النسخ، التساقط. النسخ: رفع حكم متقدم بمتأخر تاريخياً. الاجتهاد: بذل الجهد للوصول للحكم. شروط المجتهد ثمانية. مراتب المجتهدين: مستقل، منتسب، في المذهب، مرجح، عارف. التقليد: قبول قول الغير وهو واجب على العامة.`
+        ];
+
+        // ----- SELF Q&A -----
+        const selfQA = [
+            { q: "ما هو التعريف الراجح لعلم أصول الفقه؟",
+                a: "تعريف الإمام الشافعي: هو العلم بالأحكام الشرعية العملية المستنبطة من أدلتها التفصيلية." },
+            { q: "ما هي المدارس الأصولية في التدوين؟",
+                a: "مدرسة الشافعية (الجمهور/المتكلمين) النظرية، ومدرسة الحنفية (الفقهاء) العملية، ومدرسة المتأخرين الجامعة، والمدرسة الحديثة الميسرة." },
+            { q: "ما هو القرآن الكريم في اصطلاح أهل الشرع؟",
+                a: "كلام الله المعجز، المنزل على رسول الله باللفظ العربي، المنقول بالتواتر، المتعبد بتلاوته، المكتوب في المصاحف." },
+            { q: "ما الفرق بين دلالة القرآن القطعية والظنية؟",
+                a: "القطعية: لا تحتمل إلا معنى واحداً (كنصف في الميراث). الظنية: تحتمل أكثر من معنى (كقروء في الطهر والحيض)." },
+            { q: "ما هي أقسام السنة من حيث السند؟",
+                a: "متواتر (قطعي الثبوت)، مشهور (عند الحنفية)، وخبر واحد (آحاد، ظني الثبوت)." },
+            { q: "ما هو الإجماع السكوتي ولماذا أنكره الشافعي؟",
+                a: "إجماع يبدي فيه البعض رأيهم ويسكت الباقون. أنكره الشافعي بقاعدته 'لا ينسب لساكت قول' لعدم صراحة السكوت." },
+            { q: "ما هي أركان القياس الأربعة؟",
+                a: "الأصل، الفرع، حكم الأصل، والعلة." },
+            { q: "ما هو الاستحسان ولماذا أنكره الشافعي؟",
+                a: "عدول المجتهد عن قياس جلي إلى خفي. أنكره الشافعي وقال 'من استحسن فقد شرّع'." },
+            { q: "ما هي الكليات الخمس في المصالح المرسلة؟",
+                a: "حفظ الدين، النفس، العقل، النسل والعرض، والمال." },
+            { q: "ما الفرق بين الحكم التكليفي والحكم الوضعي؟",
+                a: "التكليفي: طلب الفعل أو الترك أو التخيير (واجب، مندوب، حرام، مكروه، مباح). الوضعي: جعل الشيء علامة للحكم كالسبب والشرط والمانع." }
+        ];
+
+        // ----- EXAMPLES -----
+        const examplesData = [{
+            title: "سنة مبينة لمجمل القرآن (الصلاة)",
+            desc: "أمر القرآن بإقامة الصلاة مجملاً، وجاءت السنة ببيان كيفية الصلاة وأوقاتها وعدد ركعاتها بحديث 'صلوا كما رأيتموني أصلي'."
+        }, {
+            title: "سنة مخصصة لعموم القرآن (القاتل لا يرث)",
+            desc: "عممت آية المواريث الوراثة لجميع الأقارب، وخصصتها السنة بحديث 'لا يرث القاتل'، فأخرجت القاتل من الميراث."
+        }, {
+            title: "القياس في تحريم المخدرات",
+            desc: "قياس المخدرات على الخمر لعلة الإسكار، فكل ما يسكر الخمر حرام قياساً على الخمر لاتحادهما في العلة."
+        }, {
+            title: "سد الذرائع في سب آلهة المشركين",
+            desc: "نهى الله عن سب آلهة المشركين سداً للذريعة التي تؤدي إلى سبهم لله تعالى عدواناً."
+        }, {
+            title: "المصالح المرسلة في جمع القرآن",
+            desc: "جمع الصحابة القرآن في مصحف واحد في عهد عثمان بن عفان استناداً إلى المصلحة المرسلة في حفظ القرآن من الضياع والاختلاف."
+        }];
+
+        // ----- MAPS (خرائط ذهنية) -----
+        const mapImages = [
+            { url: 'https://lh3.googleusercontent.com/d/1ICmQ_UZxVuvzQDgj2UsAFudwOv-eaCXB', label: 'الهيكل العام لعلم أصول الفقه' },
+            { url: 'https://lh3.googleusercontent.com/d/1-bYkCMfJjH2Q39OKXFFntanv_Rxj6qaq', label: 'مصادر التشريع الإسلامي' },
+            { url: 'https://lh3.googleusercontent.com/d/1jAmtI-ZBLn0K7lRmY43NBN_ad6q2gelx', label: 'الأدلة المتفق عليها' },
+            { url: 'https://lh3.googleusercontent.com/d/1wJAEWXnTc6nifGwIT-C3xaTxNHYsDqzL', label: 'الأدلة المختلف فيها' },
+            { url: 'https://lh3.googleusercontent.com/d/1_zJcBuUoCeeQc93XBjoKZOyJlOa-QBRm', label: 'نظرية الحكم الشرعي' },
+            { url: 'https://lh3.googleusercontent.com/d/11rQ0nDUDcNnhlK7_LbHaYdt08Y4pUsBo', label: 'الحكم التكليفي والوضعي' },
+            { url: 'https://lh3.googleusercontent.com/d/1Y4_ZRqxKj-L2aRA0JdmjOzvtyOZqKVvl', label: 'دلالات الألفاظ' },
+            { url: 'https://lh3.googleusercontent.com/d/1yVXE1XSwwuVpiCtyHCsOSYlQGDpqS_ZV', label: 'العام والخاص والمطلق والمقيد' },
+            { url: 'https://lh3.googleusercontent.com/d/1nrMIpgXdpH_KjFp137fJfgt2rASBmFLb', label: 'المنطوق والمفهوم' },
+            { url: 'https://lh3.googleusercontent.com/d/1x4kSXwb7pZCwzyyhFQGLQprZ2YIkLrbS', label: 'التعارض والترجيح والنسخ' },
+            { url: 'https://lh3.googleusercontent.com/d/13Mh2M-tC67c8YJtem0asSC-RUaFebBgK', label: 'الاجتهاد والتقليد' },
+            { url: 'https://lh3.googleusercontent.com/d/1VGBq4vL0R3NCxQnIRKRXHWAi0URzlHw-', label: 'مراتب المجتهدين' },
+            { url: 'https://lh3.googleusercontent.com/d/1wqxmiOJuHh03S_FjLai_HBt8Jq8AemEt', label: 'القياس وفن العلة' },
+            { url: 'https://lh3.googleusercontent.com/d/1eRubrZ7zpz8GFwUXJZZUkzoYpUX5Z_WE', label: 'خريطة شاملة لأصول الفقه' }
+        ];
+
+        // ----- FLASHCARDS -----
+        const flashcardsData = [
+            { front: "ما هو المعنى اللغوي لكلمة 'أصول' (جمع أصل)؟",
+                back: "الأساس الذي يبنى عليه غيره." },
+            { front: "ما هي 'أصول الفقه' من الناحية التقنية؟",
+                back: "مجموعة القواعد التي تبين للمجتهد طرق استخراج الأحكام من أدلتها." },
+            { front: "ما هو التعريف اللغوي لكلمة 'الفقه'؟",
+                back: "الفهم." },
+            { front: "عرّف 'الفقه' في المصطلحات القانونية الإسلامية التقنية.",
+                back: "العلم بالأحكام الشرعية العملية المستنبطة من أدلتها التفصيلية." },
+            { front: "من هو الإمام الذي يُنسب إليه الفضل في تدوين علم أصول الفقه في كتابه 'الرسالة'؟",
+                back: "الإمام محمد بن إدريس الشافعي." },
+            { front: "ما هو الهدف الأساسي من دراسة أصول الفقه؟",
+                back: "تطبيق قواعده على الأدلة التفصيلية للوصول إلى الأحكام الشرعية." },
+            { front: "تنقسم مصادر التشريع الإسلامي إلى قسمين رئيسيين: مصادر متفق عليها ومصادر _____.",
+                back: "مختلف فيها." },
+            { front: "اذكر المصادر الأربعة 'المتفق عليها' للتشريع الإسلامي.",
+                back: "القرآن، السنة، الإجماع، والقياس." },
+            { front: "ما هو التعريف التقني للقرآن الكريم في الفقه الإسلامي؟",
+                back: "كلام الله المعجز المنزل على محمد بالعربية، المنقول بالتواتر." },
+            { front: "ماذا يعني نقل 'التواتر' في سياق القرآن؟",
+                back: "رواه جمع كبير في كل جيل يستحيل تواطؤهم على الكذب." },
+            { front: "بخصوص يقينية ثبوته (Thubut)، يُعتبر القرآن _____.",
+                back: "قطعي (Qat'i)." },
+            { front: "متى يُعتبر النص القرآني 'ظنياً' في دلالته (Dalalah)؟",
+                back: "عندما يحتمل اللفظ أكثر من معنى لغوي واحد." },
+            { front: "ما هو المعنى اللغوي لكلمة 'سنة'؟",
+                back: "طريق أو منهج يُتبع." },
+            { front: "ما هي الأنواع التقنية الثلاثة للسنة بناءً على ما صدر عن النبي؟",
+                back: "قولية، فعلية، وتقريرية." },
+            { front: "ما هي السنة التقريرية؟",
+                back: "أقوال أو أفعال الصحابة بحضرة النبي والتي لم ينكرها." },
+            { front: "تصنف المدرسة الحنفية السنة إلى ثلاثة مستويات بناءً على النقل: متواتر، آحاد، و_____.",
+                back: "مشهور." },
+            { front: "ما هي السنة 'المشهورة' عند الحنفية؟",
+                back: "خبر كان آحاداً في الجيل الأول ثم أصبح متواتراً في الأجيال اللاحقة." },
+            { front: "وفقاً للمدرسة الحنفية، يجب ألا يخالف خبر الآحاد _____ ليُقبل.",
+                back: "القياس (Qiyas)." },
+            { front: "ما هو الشرط الخاص للمالكية لقبول خبر الآحاد؟",
+                back: "ألا يخالف عمل أهل المدينة." },
+            { front: "عندما 'تخصص' السنة أمراً قرآنياً عاماً، يُعرف ذلك بـ _____.",
+                back: "تخصيص العام (Takhsis al-Amm)." },
+            { front: "عرّف 'الإجماع' في أصول الفقه.",
+                back: "اتفاق جميع المجتهدين من الأمة في عصر بعد وفاة النبي على حكم شرعي." },
+            { front: "ما هو 'الإجماع الصريح'؟",
+                back: "إجماع يُعلن فيه كل مجتهد رأيه صراحة." },
+            { front: "ما هو 'الإجماع السكوتي'؟",
+                back: "إجماع يُعلن فيه البعض ويصمت الباقون بعد علمهم بالرأي." },
+            { front: "أي مذهب فقهي معروف برفض الإجماع السكوتي كدليل ملزم؟",
+                back: "المذهب الشافعي." },
+            { front: "عرّف 'القياس' كمصدر من مصادر التشريع الإسلامي.",
+                back: "إلحاق حكم واقعة منصوص عليها بواقعة أخرى لم ينص عليها لاتحادهما في العلة." },
+            { front: "اذكر أركان القياس الأربعة.",
+                back: "الأصل، الفرع، حكم الأصل، والعلة." },
+            { front: "في القياس، ما هي 'العلة'؟",
+                back: "الوصف أو السبب الذي بُني عليه الحكم في الأصل." },
+            { front: "ما هو 'قياس الأولى'؟",
+                back: "قياس تكون العلة فيه أوضح في الفرع منها في الأصل." },
+            { front: "ما هو التعريف التقني لـ 'الاستحسان'؟",
+                back: "عدول المجتهد عن قياس جلي إلى قياس خفي لدليل أقوى." },
+            { front: "ما هو القول الشهير للإمام الشافعي الذي يعبر عن رفضه للاستحسان؟",
+                back: "'من استحسن فقد شرّع'." },
+            { front: "عرّف 'الاستصحاب' (افتراض الاستمرارية).",
+                back: "بقاء ما كان على ما كان حتى يقوم دليل على تغييره." },
+            { front: "ما هي القاعدة الفقهية الأساسية المستمدة من الاستصحاب بخصوص الذمة والالتزام؟",
+                back: "الأصل براءة الذمة (Al-Asl Bara'at al-Dhimmah)." },
+            { front: "عرّف 'العرف' في الفقه الإسلامي.",
+                back: "ما تعارف عليه الناس من قول أو فعل ولم يخالف نصاً شرعياً." },
+            { front: "ما هو 'العرف الفاسد'؟",
+                back: "عرف اجتماعي يخالف نصاً شرعياً واضحاً، كالربا." },
+            { front: "ماذا يعني مبدأ 'سد الذرائع'؟",
+                back: "منع فعل مباح في الأصل لأنه يؤدي إلى نتيجة محرمة." },
+            { front: "عرّف 'الحكم الشرعي'.",
+                back: "خطاب الله المتعلق بأفعال المكلفين طلباً، أو تخييراً، أو وضعاً." },
+            { front: "ينقسم 'الحكم التكليفي' إلى خمسة أقسام: واجب، مندوب، حرام، مكروه، و_____.",
+                back: "مباح." },
+            { front: "ما الفرق بين 'الواجب' و'الفرض' عند الحنفية؟",
+                back: "الفرض يثبت بدليل قطعي، والواجب يثبت بدليل ظني." },
+            { front: "ما هو تعريف الفعل 'المندوب' (المستحب)؟",
+                back: "فعل يثاب فاعله ولا يعاقب تاركه." },
+            { front: "عرّف 'المكروه'.",
+                back: "فعل يثاب تاركه ولا يعاقب فاعله." },
+            { front: "ما هو 'الحكم الوضعي'؟",
+                back: "حكم يحدد العلاقة بين الأشياء، كالسبب والشرط والمانع." },
+            { front: "في الأحكام الوضعية، ما هو 'السبب'؟",
+                back: "وصف يلزم من وجوده وجود الحكم ومن عدمه عدم الحكم." },
+            { front: "في الأحكام الوضعية، ما هو 'الشرط'؟",
+                back: "ما يلزم من عدمه عدم الحكم، ولا يلزم من وجوده وجوده." },
+            { front: "عرّف 'المانع'.",
+                back: "وصف يمنع ترتب الحكم رغم وجود السبب والشروط." },
+            { front: "ما هو حكم 'العزيمة'؟",
+                back: "الحكم الأصلي العام المطبق في الظروف العادية." },
+            { front: "ما هو حكم 'الرخصة'؟",
+                back: "حكم استثنائي يخفف عن المكلف بسبب ضرورة أو مشقة." },
+            { front: "عرّف 'الاجتهاد'.",
+                back: "بذل المجتهد وسعه للوصول إلى الحكم الشرعي من أدلته." },
+            { front: "ما هما الشرطان الأساسيان للقدرة على الاجتهاد؟",
+                back: "العقل وإتقان اللغة العربية." },
+            { front: "ما هو 'المجتهد المستقل'؟",
+                back: "مجتهد يضع أصوله ومنهجه الخاص في الاستنباط، كالأئمة الأربعة." },
+            { front: "ما هو 'التعارض' في أصول الفقه؟",
+                back: "تعارض ظاهري بين دليلين متساويين في القوة." },
+            { front: "عرّف 'النسخ'.",
+                back: "رفع حكم شرعي سابق بحكم لاحق." },
+            { front: "ما هو اللفظ 'الخاص'؟",
+                back: "لفظ يدل على معنى واحد منفرد." },
+            { front: "ما هو اللفظ 'العام'؟",
+                back: "لفظ يستغرق جميع أفراده." },
+            { front: "اللفظ 'المطلق' هو اللفظ الذي يطلق على حقيقة مشتركة دون أي _____.",
+                back: "تقييد أو وصف (Qayd)." },
+            { front: "عندما يتشارك نص 'مطلق' ونص 'مقيد' في السبب والحكم، ما هو الإجراء المعياري؟",
+                back: "حمل المطلق على المقيد." },
+            { front: "في علم اللغة، ما هو 'الأمر'؟",
+                back: "طلب الفعل من الأعلى إلى الأدنى." },
+            { front: "اللفظ 'الظاهر' هو لفظ واضح المعنى من صيغته ولكنه يحتمل _____.",
+                back: "التأويل أو التخصيص." },
+            { front: "ما هو النص 'المحكم'؟",
+                back: "نص واضح قطعي لا يقبل التأويل ولا التخصيص ولا النسخ." },
+            { front: "عرّف اللفظ 'الخفي'.",
+                back: "لفظ واضح المعنى ولكن تطبيقه على بعض الحالات النادرة يكون صعباً أو غامضاً." },
+            { front: "ما هو النص 'المتشابه'؟",
+                back: "نص يعلم الله معناه ولا يمكن للعقل البشري إدراك كنهه." },
+            { front: "ما هي 'دلالة العبارة'؟",
+                back: "المعنى الأساسي المتبادر من صياغة النص." },
+            { front: "ما هو 'مفهوم الموافقة'؟",
+                back: "تطبيق حكم المذكور على غير المذكور لأن العلة في الأخير أقوى." },
+            { front: "ما هو 'مفهوم المخالفة'؟",
+                back: "إثبات حكم مخالف لما في النص عند انتفاء وصف أو شرط." },
+            { front: "أي مذهب فقهي يقبل عمومًا 'مفهوم المخالفة' كدليل؟",
+                back: "المذهب الشافعي والجمهور." }
+        ];
+
+        // =====================================================================
+        // QBANK (200 سؤال) – مستخلص من بنك الأسئلة
+        // =====================================================================
+        const qbankRaw = `
+        1|1|ما هو المفهوم اللغوي للأصل والفقه؟|الأصل في اللغة هو ما يبنى عليه غيره وهو الأساس. والفقه في اللغة يعني الفهم المطلق، وقيل هو فهم الأشياء الدقيقة والخفية.
+        2|1|عرّف علم أصول الفقه باعتباره مركباً إضافياً.|باعتباره مركباً إضافياً يتكون من مضاف (أصول) ومضاف إليه (الفقه): الأصول هي القواعد التي تبين للمجتهد طرق استخراج الأحكام من الأدلة الشرعية، والفقه هو العلم بالأحكام الشرعية العملية المستنبطة من أدلتها التفصيلية.
+        3|1|ما هو التعريف المرجح لعلم أصول الفقه كلقب علمي؟|التعريف المرجح هو تعريف الإمام الشافعي: هو العلم بالأحكام الشرعية العملية المستنبطة من أدلتها التفصيلية. وهو التعريف الذي يفضله جمهور علماء الأصول.
+        4|1|ما هو تعريف الإمام أبي حنيفة للفقه وكيف يختلف عن تعريف الجمهور؟|عرّف الإمام أبو حنيفة الفقه بأنه: 'معرفة النفس ما لها وما عليها'. ويختلف عن تعريف الجمهور بأنه عام يشمل الأحكام الاعتقادية والوجدانية والعملية، بينما قصر الجمهور الفقه على الأحكام العملية المستنبطة.
+        5|1|اذكر موضوعات علم أصول الفقه الأساسية.|موضوعه ثلاثة أمور رئيسية: 1. دراسة الأدلة الشرعية وترتيبها حسب قوتها ومصادر التشريع. 2. معرفة أحوال وأفعال المكلفين من حيث الحل والحرمة. 3. معرفة الحاكم وهو الله سبحانه وتعالى بصفته مصدر التشريع.
+        6|1|ما هي غاية علم أصول الفقه ومن المستفيد منه؟|غايته هي تطبيق قواعده وبحوثه على الأدلة التفصيلية للوصول إلى الأحكام الشرعية العملية. ويستفيد منه القضاة، والمستشارون القانونيون، والمحامون لتخريج الفروع على الأصول وفهم روح النصوص.
+        7|1|من أين يستمد علم أصول الفقه مادته العلمية؟|يستمد مادته من ثلاثة علوم: 1. علم أصول الدين (العقيدة) لإثبات صدق الشارع ووحدانيته. 2. علم اللغة العربية لفهم مدلولات الألفاظ وأساليب التعبير. 3. الأحكام الشرعية الفرعية لتكون تطبيقاً عملياً لقواعده.
+        8|1|من هو أول من دوّن علم أصول الفقه وما اسم كتابه؟|أول من دون فيه هو الإمام محمد بن إدريس الشافعي في كتابه الشهير 'الرسالة'.
+        9|1|ما هو المنهج الأصولي لمدرسة الشافعية (الجمهور/المتكلمين) في التدوين؟|تقوم على تقرير القواعد الأصولية نظرياً وإثباتها بالدليل العقلي والنقلي المستقل، دون النظر لمدى موافقتها للفروع الفقهية للمذاهب.
+        10|1|ما هو منهج مدرسة الفقهاء (الحنفية) في التدوين الأصولي؟|تقوم على استقراء وتخريج القواعد الأصولية بناءً على ما نُقل من فروع وأحكام فقهية عملية لأئمتهم، وصياغة القواعد لتتلاءم مع هذه الفروع.
+        11|1|عرّف القرآن الكريم في عرف أهل الشرع.|هو كلام الله المعجز، المنزل على رسول الله محمد، باللفظ العربي، المنقول إلينا بالتواتر، المكتوب في المصاحف، والمتعبد بتلاوته.
+        12|1|اذكر ثلاثاً من خصائص القرآن الكريم التي امتاز بها.|1. أنه منزل من عند الله باللفظ والمعنى. 2. أنه محفوظ من التغيير والتبديل والتصحيف. 3. أنه معجز بلفظه ومعناه وصالح لكل زمان ومكان.
+        13|1|ما هي وجوه إعجاز القرآن الكريم؟|تشتمل على: 1. الفصاحة والبلاغة الفائقة. 2. التناسب التام بين معانيه وعدم وجود تعارض. 3. إخباره عن الأمم السابقة والقصص الغيبية. 4. إخباره عن حقائق علمية وكونية ومستقبلية لا يعلمها إلا الله.
+        14|1|بيّن حكم دلالة القرآن الكريم من حيث الثبوت مع التعليل.|دلالته من حيث الثبوت قطعية دائماً؛ لأن القرآن نُقل إلينا بطريق التواتر جيلاً بعد جيل والتواتر يفيد العلم اليقيني القطعي.
+        15|1|ما الفرق بين الدلالة القطعية والدلالة الظنية للآيات على أحكامها؟|الدلالة القطعية: هي دلالة اللفظ على معنى واحد لا يحتمل غيره (مثل أنصبة المواريث كلفظ نصف). الدلالة الظنية: هي دلالة اللفظ على أكثر من معنى وتدخله الاحتمالات والاجتهاد (مثل لفظ قروء الذي يحتمل الطهر أو الحيض).
+        16|1|مثل بنص قرآني قطعي الدلالة وآخر ظني الدلالة.|قطعي الدلالة: قوله تعالى 'ولكم نصف ما ترك أزواجكم'. ظني الدلالة: قوله تعالى 'والمطلقات يتربصن بأنفسهن ثلاثة قروء'.
+        17|1|اشرح أسلوب القرآن الكريم في بيان 'مشروعية الفعل' مع التمثيل.|يتم بطلب الفعل مباشرة أو بالثناء على فاعله أو ببيان الجزاء العظيم عليه، ومثاله قوله تعالى: 'إن الله اشترى من المؤمنين أنفسهم وأموالهم بأن لهم الجنة'.
+        18|1|اشرح أسلوب القرآن الكريم في بيان 'عدم مشروعية الفعل' (المنع والتحريم).|يتم بالنهي المباشر أو ذم الفاعل أو وصف الفعل بالرجس والخبث أو التوعيد بالعقاب، ومثاله قوله تعالى: 'إنما الخمر والميسر والأنصاب والأزلام رجس من عمل الشيطان فاجتنبوه'.
+        19|1|كيف يعبر القرآن الكريم عن 'الإباحة والتخيير'؟|يعبر عنها بلفظ الحل، أو نفي الإثم، أو رفع الجناح والحرج عن الفعل، ومثاله قوله تعالى: 'فإذا قضيت الصلاة فانتشروا في الأرض'.
+        20|1|ما هي مرتبة القرآن الكريم بين مصادر التشريع ولماذا؟|يحتل المرتبة الأولى بالاتفاق؛ لأنه كلام الله المعجز والينبوع الأصلي للشريعة، ويجب البحث فيه أولاً قبل الذهاب إلى أي مصدر آخر.
+        21|1|عرّف السنة النبوية في اصطلاح علماء الأصول.|هي كل ما صدر عن رسول الله صلى الله عليه وسلم من قول، أو فعل، أو تقرير.
+        22|1|ما هي السنة القولية مع التمثيل؟|هي الأحاديث الصادرة عنه صلى الله عليه وسلم شفاهة، مثل قوله: 'صوموا لرؤيته وأفطروا لرؤيته'.
+        23|1|ما هي السنة الفعلية مع التمثيل؟|هي الأفعال والتصرفات التطبيقية التي قام بها صلى الله عليه وسلم لبيان الأحكام، مثل قوله: 'صلوا كما رأيتموني أصلي' وتطبيقه العملي لمناسك الحج.
+        24|1|ما هي السنة التقريرية مع التمثيل؟|هي الأقوال أو الأفعال التي صدرت عن الصحابة في حضرة النبي أو علم بها وأقرها وسكت عنها دون إنكار، مثل إقراره لأكل الضب، وإقراره لمعاذ بن جبل على الاجتهاد.
+        25|1|كيف قسم علماء الأصول السنة من حيث سند وصولها إلينا؟|قسمها الجمهور إلى قسمين: متواتر، وخبر آحاد. وقسمها الحنفية إلى ثلاثة أقسام: متواتر، ومشهور، وخبر آحاد.
+        26|1|عرّف الخبر المتواتر وما حكم العمل به وحكم جاحده؟|هو نقل الخبر جيلاً بعد جيل عن جمع تحيل العادة تواطؤهم على الكذب من أول السند إلى منتهاه. حكمه: يجب العمل به، ويفيد العلم اليقيني، ويكفر جاحده لأنه قطعي الثبوت.
+        27|1|ما هو الخبر المشهور عند الحنفية وما هي مرتبته وحكمه؟|هو ما رواه عدد لا يبلغ حد التواتر في عهد الصحابة، ثم تواتر واشتهر في عهد التابعين وتابعي التابعين. مرتبته: أقل من المتواتر وأعلى من خبر الواحد. حكمه: يجب العمل به، دلالته ظنية الثبوت، ولا يكفر جاحده بل يضلل.
+        28|1|عرّف خبر الواحد (الآحاد) وما درجة ثبوته وحكم العمل به؟|هو ما رواه الواحد أو الاثنان ولم تتوفر فيه شروط المشهور أو المتواتر. درجة ثبوته: ظنية، ويفيد الظن الراجح. حكمه: يجب العمل به عند الأئمة الأربعة بضوابطهم ولا يكفر جاحده.
+        29|1|ما هي شروط الحديث الصحيح في السند والمتن؟|شروطه: 1. اتصال السند. 2. عدالة الرواة. 3. تمام الضبط. 4. خلو الحديث من الشذوذ. 5. خلو الحديث من العلة القادحة.
+        30|1|بين شروط إمام المذهب الحنفي أبي حنيفة للعمل بخبر الواحد.|اشترط ثلاثة شروط خاصة: 1. ألا يخالف الحديث قياساً جلياً مستقراً. 2. ألا يكون الحديث فيما تعم به البلوى. 3. ألا يعمل الراوي بخلاف ما رواه.
+        31|1|ما هو شرط الإمام مالك بن أنس للعمل بخبر الواحد؟|شرطه الخاص هو ألا يخالف خبر الواحد عمل أهل المدينة؛ لأن نقلهم الفعلي يجري مجرى التواتر التشريعي.
+        32|1|ما هو موقف مدرسة الشافعية من خبر الواحد؟|يقبل الإمام الشافعي خبر الواحد مباشرة إذا صح اتصال السند بالرسول صلى الله عليه وسلم، دون شروط إضافية.
+        33|1|ما هو موقف المذهب الحنبلي من العمل بخبر الواحد؟|يقبله ويستنبط منه الأحكام دون شروط مسبقة، ويقدم الإمام أحمد خبر الواحد الضعيف (الذي لم يشتد ضعفه) على الرأي والقياس.
+        34|1|اذكر الفرق والمذاهب التي رفضت العمل بخبر الواحد مطلقاً في التشريع.|هم الخوارج ومدرسة النظام من المعتزلة.
+        35|1|كيف تكون السنة النبوية 'مؤكدة' لأحكام القرآن الكريم مع التمثيل؟|تأتي لتقوية حكم مقرر أصلاً في القرآن، ومثالها حديث 'لا يحل مال امرئ مسلم إلا بطيب من نفسه' المؤكد لقوله تعالى 'ولا تأكلوا أموالكم بينكم بالباطل'.
+        36|1|كيف تكون السنة النبوية 'مبينة لمجمل' القرآن الكريم مع التمثيل؟|تشرح وتبين وتفصل حكماً ورد مجملاً في القرآن، كبيان أوقات وكيفية الصلاة ومقادير الزكاة المفسرة لقوله تعالى 'وأقيموا الصلاة وآتوا الزكاة'.
+        37|1|مثل لسنة 'مخصصة لعموم' القرآن الكريم.|حديث 'لا يرث القاتل' المخصص لعموم آية المواريث 'يوصيكم الله في أولادكم للذكر مثل حظ الأنثيين'. وكذلك حديث منع الجمع بين المرأة وعمتها وخالتها المخصص لقوله 'وأحل لكم ما وراء ذلكم'.
+        38|1|مثل لسنة 'منشئة لحكم جديد' سكت عنه القرآن الكريم كلياً.|تشريع توريث الجدة السدس لقوله 'أطعموا الجدات السدس'، وتشريع زكاة الفطر، وتحريم أكل الحمر الأهلية وكل ذي ناب من السباع.
+        39|1|عرّف الإجماع في اصطلاح الأصوليين واذكر أركانه الأربعة.|هو اتفاق جميع المجتهدين من أمة محمد صلى الله عليه وسلم بعد وفاته في عصر من العصور على حكم شرعي عملي. أركانه: 1. توفر عدد من المجتهدين وقت الواقعة. 2. أن يكونوا مسلمين من أمة محمد. 3. أن يكون الاتفاق صريحاً بالقول أو الفعل. 4. أن ينصب على حكم شرعي عملي.
+        40|1|ما الفرق بين الإجماع الصريح والإجماع السكوتي؟ وما موقف الشافعي منه؟|الإجماع الصريح: أن يبدي كل مجتهد رأيه صراحة بالقول أو الفعل (وهو حجة قطعية). الإجماع السكوتي: أن يبدي بعض المجتهدين رأيهم ويسكت الباقون دون إنكار بعد مضي فترة للتأمل. موقف الشافعي: ينكره كلياً ويعتبره ليس بحجة مطلقاً بقاعدته الشهيرة 'لا ينسب لساكت قول'.
+        41|2|ما هو القياس الأصولي واذكر أركانه الأربعة؟|هو إلحاق واقعة لم يرد نص بحكمها بواقعة أخرى ورد نص بحكمها، لاتحادهما في علة الحكم. أركانه: 1. الأصل (المقيس عليه). 2. الفرع (المقيس). 3. حكم الأصل. 4. العلة.
+        42|2|ما هي الشروط الجوهرية لصحة العلة في القياس؟|يجب أن تكون العلة وصفاً: 1. ظاهراً (يدرك بالحواس). 2. منضبطاً (لا يختلف باختلاف الأشخاص والأزمنة). 3. مناسباً (يجلب مصلحة أو يدرأ مفسدة). 4. متعدياً (لا يقتصر على الأصل بل يتعداه للفروع).
+        43|2|اشرح ثلاثة من مسالك استخراج العلة في الفقه الأصولي.|1. مسلك النص الصريح: ذكر العلة في النص بوضوح (كلفظ من أجل). 2. مسلك الإيماء والتنبيه: اقتران الحكم بوصف لو لم يكن علة لكان الكلام لغواً. 3. مسلك السبر والتقسيم: حصر الأوصاف الصالحة للعلية في الأصل وإبطال ما لا يصلح بالدليل حتى يتبقى وصف واحد.
+        44|2|عرّف الاستحسان لغةً واصطلاحاً.|الاستحسان لغة: عد الشيء حسناً. واصطلاحاً: عدول المجتهد عن حكم قياس جلي إلى حكم قياس خفي ظهرت صحته، أو استثناء واقعة من قاعدة عامة كلية لدليل أقوى لاح له يقتضي هذا العدول.
+        45|2|ما هو الاستحسان القياسي مع التمثيل؟|هو العدول عن القياس الجلي إلى القياس الخفي القوي الأثر، ومثاله طهارة سؤر سباع الطير (كالصقر والبازي). فالقياس الجلي يقتضي نجاسة سؤرها إلحاقاً لها بسباع البهائم لنجاسة لحمها، ولكن الاستحسان الخفي يقضي بطهارتها لأنها تشرب بمنقارها العظمي الجاف الطاهر بخلاف البهائم التي تشرب بلسانها الملوث بلعابها النجس.
+        46|2|ما هو الاستحسان للضرورة والحاجة مع التمثيل؟|هو العدول عن حكم القياس العام تيسيراً ودفعاً للمشقة والضيق عن الناس، ومثاله الترخيص في تطهير الآبار والأحواض الملوثة بالنجاسة بنزح بعض الماء للضرورة بالرغم من أن القياس يقتضي عدم طهارتها بالنزح الجزئي.
+        47|2|ما هو استحسان العدول عن القاعدة العامة مع التمثيل؟|هو الترخيص في بعض التصرفات والمعاملات استثناءً من قاعدة عامة كلية تنهى عنها لحاجة الناس وعموم تداولها، ومثاله إباحة عقود السلم، والمزارعة، والاستصناع بالرغم من أن القاعدة العامة تنهى عن بيع المعدوم.
+        48|2|بين حكم العمل بالاستحسان والخلاف الفقهي حوله.|الأحناف، والمالكية، والحنابلة يرونه مصدراً معتبراً وتطبيقاً للمصلحة ودفعاً للضيق. بينما أنكره الإمام الشافعي بشدة واعتبره تشريعاً بالهوى والتشهي وأطلق مقولته الشهيرة 'من استحسن فقد شرّع'.
+        49|2|عرّف الاستصحاب لغةً واصطلاحاً.|الاستصحاب لغة: طلب المصاحبة. واصطلاحاً: بقاء ما كان على ما كان، واعتبار الحالة السابقة دليلاً مستمراً في الحاضر والمستقبل حتى يقوم الدليل على تغييرها.
+        50|2|اشرح قسم 'استصحاب الإباحة الأصلية' وقارنه بالقانون المعاصر.|يعني أن الأصل في الأشياء والأطعمة والأشربة والنافع الطهارة والإباحة حتى يرد دليل التحريم (كقوله تعالى 'هو الذي خلق لكم ما في الأرض جميعاً'). ويقابله في القانون مبدأ الشرعية الجنائية: 'لا جريمة ولا عقوبة إلا بنص تشريعي'.
+        51|2|اشرح قسم 'استصحاب البراءة الأصلية' وقارنه بالقانون المعاصر.|يعني بقاء ذمة المكلف خالية من الديون والتكاليف والالتزامات الجنائية والمالية حتى يثبت العكس بيقين. ويقابله في القانون المبدأ الدستوري والجنائي: 'المتهم بريء حتى ثبت إدانته' و'الأصل براءة الذمة في المعاملات المالية'.
+        52|2|ما معنى قاعدة 'ما ثبت بيقين لا يزول إلا بيقين مثله' وقارنها قانوناً؟|تعني أن الحالة الثابتة بيقين في الماضي لا ترتفع بالشك الطارئ بل يجب دليل يقيني يزيلها. ويقابلها في قانون الإثبات والمحاكمات: 'الشك يفسر لمصلحة المتهم' لأن اليقين ببراءته لا يزول بالشك الجنائي.
+        53|2|ما هو استصحاب الصفة ومثل له بحالة المفقود؟|هو استصحاب بقاء الصفة الثابتة للشخص حتى يثبت زوالها، ومثاله استصحاب حياة المفقود الذي غاب ولم يُعرف أثره؛ فيظل حياً في حق أحكامه فلا تورث أمواله ولا تبين زوجته حتى يحكم القاضي بوفاته بناءً على دليل أو بلوغ السن الافتراضي.
+        54|2|اذكر الخلاف الفقهي حول حجية الاستصحاب.|اختلفوا على ثلاثة آراء: 1. حجة مطلقة في النفي والإثبات (الظاهرية، الشافعية، الشيعة الإمامية). 2. حجة للدفع لا للإثبات (متأخرو الحنفية والمالكية). 3. ليس بحجة مطلقاً (جمهور الأحناف).
+        55|2|عرّف العرف في اصطلاح علماء الأصول.|هو ما تعارف عليه الناس واعتادوه في حياتهم واستقامت عليه أمورهم من قول أو فعل أو ترك، ولم يخالف نصاً شرعياً.
+        56|2|ما الفرق بين العرف الصحيح والعرف الفاسد مع التمثيل؟|العرف الصحيح: ما اعتاده الناس ولم يخالف نصاً شرعياً (مثل تعارفهم على أن هدايا الخطوبة هبة لا من المهر، وجواز الاستصناع وضمان الصانع). العرف الفاسد: ما اعتاده الناس وخالف الشريعة صراحة (مثل تعارفهم على التعامل بالربا، وعقود المقامرة والمخاطرة).
+        57|2|ما الفرق بين العرف العام والعرف الخاص مع التمثيل؟|العرف العام: ما اتفق عليه الناس في كل الأقاليم في عصر معين (مثل إطلاق لفظ ولد على الذكر دون الأنثى عرفاً). العرف الخاص: ما تعارف عليه أهل مهنة معينة (كالتجار في دفاترهم، والمحامين على لبس الروب في المحاكم).
+        58|2|ما هي الشروط الثلاثة للعمل بالعرف كمصدر تشريعي؟|1. ألا يخالف نصاً شرعياً قطيعاً من كتاب أو سنة. 2. أن يكون العرف مطرداً وغالباً ومستقراً. 3. أن يكون العرف معاصراً ومصاحباً للتصرف وقت إنشائه.
+        59|2|ما معنى قاعدة 'تغير الأحكام بتغير الأزمان' وعلاقتها بالعرف؟|تعني أن الأحكام المبنية على العادات والأعراف المرنة تتغير حتماً بتغير العصور وتبدل أحوال الناس وأعرافهم صيانة للمصالح، ويسمى هذا الاختلاف 'اختلاف عصر وزمان لا اختلاف حجة وبرهان'.
+        60|2|عرّف سد الذرائع لغةً واصطلاحاً.|السد لغة: الحاجز بين الشيئين. والذريعة اصطلاحاً: الوسيلة التي يتوصل بها إلى الشيء الممنوع المشتمل على مفسدة، أو إلى الشيء المشروع المشتمل على مصلحة.
+        61|2|ما هو قانون الموازنة المنظم لفتح وسد الذرائع؟|القانون المنظم هو: تفتح الذرائع وتيسر إذا أدت لمصلحة راجحة، وتسد وتغلق وتحظر إذا أفضت لمفسدة راجحة.
+        62|2|اذكر أنواع الذرائع الأربعة من حيث إفضائها للمفسدة مع التمثيل وحكم كل نوع.|1. تفضي للمفسدة قطعاً: (حفر بئر خلف باب الدار في طريق مظلم) وحكمها المنع بالاتفاق. 2. تفضي للمفسدة نادراً: (النظر للمخطوبة لغرض الزواج) وحكمها الجواز بالاتفاق لتفوق المصلحة. 3. تفضي للمفسدة غالباً: (بيع السلاح وقت الفتنة، وسب آلهة المشركين) وحكمها المنع عند المالكية والحنابلة. 4. تفضي للمفسدة كثيراً لا غالباً: (بيوع الآجال وعقود التوريد بسعرين) وحكمها محل خلاف بين المنع والإجازة.
+        63|2|ما المقصود بـ 'شرع من قبلنا'؟|يقصد به الأحكام والشرائع السماوية السابقة التي شرعها الله للأمم السابقة ونقلها إلينا القرآن الكريم أو السنة النبوية المطهرة.
+        64|2|بين أحكام العمل بأنواع شرع من قبلنا الثلاثة.|1. ما ثبت بدليلنا أنه مقرر في شريعتنا: واجب الاتباع بالاتفاق (مثل الصيام). 2. ما ثبت بدليلنا أنه منسوخ أو خاص بهم: لا يجوز اتباعه بالاتفاق (مثل تحريم الشحوم). 3. ما حكاه الله ورسوله ولم يرد في شرعنا ما يقرره أو ينسخه: اختلف فيه والراجح أنه شرع لنا وجب اتباعه طالما قصه الله ولم ينسخه.
+        65|2|عرّف المصالح المرسلة في الفقه الأصولي.|هي المصالح المسكوت عنها التي لم يرد من الشارع دليل خاص باعتبارها وتقييدها (فتكون معتبرة) أو بإلغائها وإبطالها (فتكون ملغاة)، وتستهدف جلب المنفعة ودرء المفسدة عن العباد في واقعهم المعاش.
+        66|2|ما هي كليات الشريعة الكبرى (المصالح الضرورية الخمس) وكيف تحفظ؟|هي حفظ: 1. الدين (بتشريع العبادات وحمايتها). 2. النفس (بتحريم القتل والقصاص). 3. العقل (بتحريم الخمر والمخدرات). 4. النسل والعرض (بتحريم الزنا وتجريم القذف). 5. المال (بتحريم السرقة وتشريع المعاملات وصيانة الأملاك).
+        67|2|صنف المصالح من حيث حاجة الناس والرفاهية مع التمثيل.|1. مصالح ضرورية: التي لا تستقيم الحياة الدنيوية والدينية بدونها وتختل بفقدها (كالكليات الخمس). 2. مصالح حاجية: التي يحتاجها الناس للتيسير ودفع الضيق والحرج (كرخص السفر). 3. مصالح تحسينية: التي تتعلق بمحاسن العادات ومكارم الأخلاق ورعاية أفضل الآداب (كالنظافة والتطيب).
+        68|2|اذكر الخلاف الفقهي حول حجية المصالح المرسلة.|المالكية والحنابلة يتوسعون في الأخذ بها كأصل قائم بذاته لجلب المنافع. بينما الشافعية والحنفية يعملون بها شريطة ملاءمتها لقواعد الشرع الكلية وجريانها على سنن الأصول العامة دون انفراد مطلق.
+        69|2|صح أم خطأ: يعتبر ابن حزم الظاهري من أشد المؤيدين لحجية سد الذرائع كمصدر أصلي.|خطأ. انتقد ابن حزم الظاهري اعتبار سد الذرائع أصلاً من أصول الدين وقواعد التشريع.
+        70|2|ما هو مستند إجماع الصحابة على جمع المصحف الشريف في عهد عثمان بن عفان؟|مستند الإجماع هو المصلحة المرسلة المتمثلة في حفظ القرآن من الضياع والاختلاف اللغوي وجمع الأمة على لغة موحدة.
+        71|2|ما هو مستند الإجماع في قياس الصحابة لخلافة أبي بكر الصديق؟|مستند الإجماع هو القياس؛ حيث قاسوا خلافته السياسية على إمامته لهم في الصلاة التي ارتضاها الرسول لدينهم في مرضه.
+        72|2|ما الفرق الفقهي بين المصلحة الملغاة والمصلحة المرسلة؟|المصلحة الملغاة: هي التي ورد دليل شرعي صريح بإلغائها وإبطالها لتعارضها مع نصوص الشريعة (مثل مصلحة الفرار من القتال لحفظ النفس). المصلحة المرسلة: هي التي سكت عنها الشارع ولم يرد دليل باعتبارها أو إلغائها وتوافق مقاصد الشريعة الكلية.
+        73|2|ما حكم التكليف بالتعبدات المحضة من خلال القياس؟|لا يجوز القياس في التعبدات المحضة (مثل عدد ركعات الصلوات ومقادير الكفارات) لأن حكم الأصل فيها غير معقول المعنى ولا يمكن للعقل البشري إدراك علته المحضة للقياس عليها.
+        74|2|صح أم خطأ: يجوز أن يكون الأصل في القياس فرعاً لأصل آخر ثبت بالقياس.|خطأ. من شروط حكم الأصل ألا يكون الأصل فرعاً لأصل آخر؛ لأن القياس على الفرع المقيس يؤدي إلى تمطيط العلة وضعف الاستدلال وتراكم الشبهات.
+        75|2|ما هو مسلك 'التنقيح والتهذيب' للعلة (تنقيح المناط)؟|هو تهذيب العلة وتنقيتها بإلغاء الأوصاف الطردية التي لا أثر لها في الحكم (مثل إلغاء كون الأعرابي الذي جامع في نهار رمضان أسوداً أو من قبيلة معينة، وحصر العلية في فعل الجماع نفسه كسبب للكفارة).
+        76|2|ما هو مسلك 'تحقيق المناط' في القياس؟|هو إثبات وجود العلة المتفق عليها مسبقاً في الفرع الجديد الحادث (مثل التحقق والبحث من توفر وصف الإسكار في نوع مبتكر ومستجد من الأشربة الكيميائية لتطبيق التحريم عليه).
+        77|2|ما هو قياس الشبه مع التمثيل؟|هو تردد الفرع الجديد بين أصلين مختلفين في الأوصاف والأحكام، فيلحق بأكثرهما شبهاً في الأوصاف الشرعية، ومثاله تردد الوضوء بين التيمم (في اشتراط النية بجامع طهارة العبادة) وبين الغسل وإزالة النجاسة.
+        78|2|ما هو قياس الدلالة مع التمثيل؟|هو الجمع بين الأصل والفرع بملائم من لوازم العلة وأماراتها وليس بالعلة ذاتها، ومثاله قياس مال الصبي على مال البالغ في وجوب الزكاة بجامع نمو المال وصلاحيته للاستثمار كأمارة دالة على مواساة الفقراء.
+        79|2|ما هو قياس العلة مع التمثيل؟|هو أقوى أنواع القياس حيث تكون العلة فيه موجبة ومثيرة للحكم حقيقة وبوضوح تام، كإلحاق النبيذ بالخمر لعلة الإسكار الكامنة فيهما والموجبة للتحريم.
+        80|2|ما هو قياس المقدمتين مع التمثيل؟|هو إثبات مقدمتين واستخلاص نتيجة حتمية منهما، ومثاله: كل خمر مسكر (مقدمة أولى)، وكل نبيذ مسكر (مقدمة ثانية)، إذن النبيذ حرام قياساً (النتيجة الحتمية).
+        81|3|عرّف الحكم الشرعي لغةً واصطلاحاً عند علماء الأصول.|الحكم لغة: المنع والحظر. واصطلاحاً: خطاب الله سبحانه وتعالى المتعلق بأفعال المكلفين طلباً، أو تخييراً، أو وضعاً. وهو يمثل ثمرة وعصارة علم أصول الفقه حقيقة.
+        82|3|اذكر أركان الحكم الشرعي الأربعة بإيجاز.|1. الحاكم (مصدر التشريع وهو الله). 2. المحكوم عليه (الشخص المكلف). 3. المحكوم فيه (فعل المكلف الذي تعلق به التكليف). 4. الحكم (الوصف والخطاب الشرعي المعطى للفعل).
+        83|3|اشرح مذهب الأشاعرة في كيفية معرفة حكم الحاكم ودور العقل.|يرى الأشاعرة أن المعرّف للحكم هو الشرع فقط ولا دور للعقل إطلاقاً في إدراك حكم الله ومعرفة الحسن والقبح في الأفعال دون الرسل؛ فالحسن ما حسنه الشرع والقبيح ما قبحه الشرع.
+        84|3|اشرح مذهب المعتزلة في إدراك الحسن والقبح وحكم الحاكم.|يرى المعتزلة أن العقل البشري قادر بمفرده على إدراك الحسن والقبح الكامنين في أفعال المكلفين بناءً على ما يترتب عليها من نفع وضرر، وأن ما يراه العقل حسناً فهو عند الله حسن وموجب للثواب وما يراه قبيحاً فهو قبيح وموجب للعقاب قبل بعثة الرسل.
+        85|3|ما هو مذهب الماتريدية الوسطي في إدراك الحسن والقبح وحكم الحاكم؟|هو مذهب وسط؛ يقرر أن العقل قادر على إدراك الحسن والقبح في بعض الأفعال، ولكن التكليف الفعلي والجزاء الأخروي بالثواب والعقاب لا يثبتان قط إلا بمجيء الرسل ونزول الشرع (تطبيقاً لقوله تعالى وما كنا معذبين حتى نبعث رسولاً).
+        86|3|ما هي شروط المحكوم عليه (المكلف) ليصح تكليفه بالأحكام؟|يشترط شرطان رئيسيان: 1. القدرة على فهم دليل التكليف (بتوفر العقل ومعرفة اللغة العربية التي نزل بها الخطاب). 2. أن يكون أهلاً لما كلف به (ببلوغ أهلية الوجوب والأداء المعتمدة).
+        87|3|ما هي الأهلية وما هي أقسامها؟|الأهلية هي صلاحية الإنسان الشرعية لثبوت الحقوق له وتلقي الالتزامات وصدور التصرفات منه. وتقسم إلى قسمين: أهلية وجوب، وأهلية أداء.
+        88|3|ما الفرق بين أهلية الوجوب الناقصة والكاملة مع التمثيل؟|أهلية الوجوب الناقصة: صلاحية الإنسان لثبوت الحقوق له دون الواجبات عليه (كالجنين في بطن أمه تثبت له حقوق الإرث والوصية ولا واجبات عليه). أهلية الوجوب الكاملة: صلاحية تثبت للإنسان بعد ولادته حياً فتثبت له الحقوق وبعض الواجبات المالية كزكاة ماله وضمان ما يتلفه.
+        89|3|عرّف أهلية الأداء ومتى تتوفر للشخص؟|هي صلاحية الشخص لصدور التصرفات والأفعال المعتد بها شرعاً وقانوناً منه وتتحقق بالبلوغ والعقل والتمييز الكامل.
+        90|3|ما الفرق بين العوارض السماوية والعوارض المكتسبة للأهلية مع التمثيل؟|العوارض السماوية: هي عوارض خارجة عن إرادة الإنسان وصنعه كلياً (مثل الصغر، الجنون، العته، النسيان، الموت). العوارض المكتسبة: هي التي تقع وتحدث باختيار الإنسان وصنعه (مثل السفر، السكر، الجهل، الخطأ، الهزل، الإكراه).
+        91|3|ما هي شروط المحكوم فيه (فعل المكلف) ليكون صالحاً للتكليف؟|1. أن يكون الفعل معلوماً للمكلف علماً تاماً يزيل الجهالة. 2. أن يكون صادراً ممن له سلطة التكليف وهو الله. 3. أن يكون ممكناً ومقدوراً عليه في ذاته وفي استطاعة المكلف فعله أو تركه.
+        92|3|ما حكم التكليف بما لا يطاق (المستحيل) مع التمثيل؟|لا يصح التكليف بالمستحيل عقلاً وشرعاً لعدم إمكانه، ومثاله دلوك الشمس بغير القدرة الذاتية للشخص، فلا تكليف به.
+        93|3|ما حكم التكليف بالأفعال النفسية التي لا تخضع لإرادة الإنسان؟|الأفعال النفسية والمشاعر الداخلية (مثل الفرح، الغضب، الحب، الكراهية) لا يصح التكليف بها مباشرة لعدم خضوعها للإرادة المباشرة، وإنما يتعلق التكليف بآثارها وتصرفاتها الخارجية المقرونة بها.
+        94|3|ما حكم التكليف بالأفعال ذات المشقة الزائدة العظيمة؟|لا يصح التكليف بها على سبيل الحتم والإلزام المستمر؛ ولذلك رفع الشارع الضيق والحرج عن المكلفين بالرخص الشرعية الطارئة (كالترخيص بالفطر للمريض والمسافر).
+        95|3|ما حكم التكليف بالأفعال ذات المشقة العادية المعتادة؟|يصح التكليف بها بالاتفاق؛ لأن جميع العبادات والواجبات اليومية (كالصلاة والصيام والعمل) تشتمل على مشقة عادية معتادة لا تعيق نظام الحياة البشرية.
+        96|3|ما الفرق الجوهري في موضوع الدراسة بين الحكم التكليفي والحكم الوضعي؟|الحكم التكليفي: يتعلق بطلب الفعل، أو تركه، أو التخيير فيه مباشرة من المكلف. الحكم الوضعي: يتعلق بوضع علامات وأوصاف خارجية يربطها الشارع بوجود الحكم التكليفي أو عدمه أو نفاذه وصحته.
+        97|3|عرّف الفرض والواجب عند جمهور الأصوليين.|الفرض والواجب عند الجمهور مترادفان ولهما ذات المعنى والأثر الفقهي؛ وهما ما طلبه الشارع على وجه الحتم والإلزام بحيث يعاقب تاركه ويثاب فاعله.
+        98|3|ما الفرق بين الفرض والواجب عند فقهاء المذهب الحنفي؟|الفرض عند الحنفية: ما ثبت بدليل قطعي لا شبهة فيه (كالقرآن والتواتر). الواجب عند الحنفية: ما ثبت بدليل ظني فيه شبهة خفيفة (كخبر الواحد والقياس). وجعلوا منكر الفرض كافراً ومنكر الواجب فاسقاً ضالاً.
+        99|3|ما هو الواجب المحدد والواجب غير المحدد مع التمثيل؟|الواجب المحدد: ما عين الشارع مقداره وكميته بدقة (كالصلوات الخمس والزكاة المقدرة). الواجب غير المحدد: ما لم يحدد الشارع مقداره بل تركه للحاجة واليسر (كالإنفاق في سبيل الله وصدقة التطوع والتعاون).
+        100|3|ما هو الواجب العيني والواجب الكفائي مع التمثيل؟|الواجب العيني: مطلوب من كل مكلف بعينه لا ينوب عنه غيره (كالصلاة والصيام). الواجب الكفائي: مطلوب من مجموع المكلفين فإذا قام به البعض سقط الإثم والطلب عن الباقين (كصلاة الجنازة، وتولي القضاء، ورد السلام).
+        101|3|ما هو الواجب المضيق والواجب الموسع مع التمثيل؟|الواجب المضيق: الذي لا يتسع وقته المحدد لغيره من جنسه (كصيام شهر رمضان). الواجب الموسع: يتسع وقته لأدائه وأداء غيره من جنسه (كصلاة الظهر وأوقات الصلوات اليومية المعتادة).
+        102|3|عرّف المندوب (المستحب) واذكر حكمه الفقهي وأثره.|هو ما طلبه الشارع من المكلفين من غير حتم ولا إلزام. حكمه وأثره: يثاب فاعله امتثالاً ولا يعاقب تاركه أبداً (مثل صلاة الضحى والتوثيق بالكتابة للمعاملات).
+        103|3|عرّف المحرم (المحظور) واذكر حكمه وأقسامه.|هو ما طلب الشارع الكف عنه على وجه الحتم والإلزام. حكمه: يعاقب فاعله ويثاب تاركه امتثالاً. وينقسم إلى قسمين: محرم لذاته، ومحرم لغيره.
+        104|3|ما الفرق بين المحرم لذاته والمحرم لغيره مع التمثيل؟|المحرم لذاته: ما حرمه الشارع لأصله لما فيه من مفسدة ذاتية كامنة لا تنفك عنه (كالزنا، والسرقة، وشرب الخمر). المحرم لغيره: ما كان مشروعاً في الأصل وحرم لعارض طارئ اقترن به أدى لمفسدة (كالبيع وقت صلاة الجمعة، والجمع بين الأختين في الزواج).
+        105|3|عرّف المكروه عند الجمهور وما أقسامه عند الحنفية؟|عند الجمهور: ما طلب الشارع الكف عنه من غير حتم ولا إلزام (يثاب تاركه ولا يعاقب فاعله). وعند الحنفية ينقسم لقسمين: مكروه تنزيهاً (طلب الكف بدليل ظني فيه شبهة خفيفة تيسيراً)، ومكروه تحريماً (طلب الكف بدليل ظني يقتضي المنع الشديد القريب من الحرمة مثل خطبة الرجل على خطبة أخيه).
+        106|3|عرّف المباح لغةً واصطلاحاً مع التمثيل.|المباح لغة: المعلن والمأذون فيه. واصطلاحاً: هو الفعل الذي خير الشارع المكلف بين فعله وتركه دون ثواب أو عقاب مرتب على ذات الفعل (كالمشي والانتشار في الأرض بعد الصلاة في قوله تعالى فانتشروا في الأرض).
+        107|3|عرّف السبب في الحكم الوضعي واذكر أقسامه.|هو وصف ظاهر منضبط يلزم من وجوده وجود الحكم ومن عدمه عدم الحكم لذاته (وجد السبب وجد الحكم). أقسامه: سبب داخل مقدور المكلف (كالعقود والبيوع)، وسبب خارج مقدور المكلف (كزوال الشمس لوجوب صلاة الظهر ورؤية الهلال لوجوب رمضان).
+        108|3|عرّف الشرط في الحكم الوضعي واذكر أقسامه.|هو وصف يتوقف عليه وجود الحكم ويلزم من عدمه عدم الحكم، ولا يلزم من وجوده وجود الحكم لذاته. أقسامه: شرط شرعي من وضع الشارع (كالوضوء للصلاة وحضور الشهود للزواج)، وشرط جعلي من وضع المكلفين في معاملاتهم عقداً وصكاً.
+        109|3|عرّف المانع في الحكم الوضعي مع التمثيل.|هو وصف ظاهر منضبط يحول دون ترتب الحكم ونفاذه أو بقائه بالرغم من توفر أسبابه وشروطه الكافية، ومثاله قيام وصف القتل مانعاً من الميراث بالرغم من سبب القرابة، وكون الحيض مانعاً من الصلاة للمرأة.
+        110|3|ما هي العزيمة في مباحث الحكم الوضعي مع التمثيل؟|هي ما شرعه الله سبحانه وتعالى ابتداءً ليكون حكماً عاماً لكافة المكلفين في الظروف العادية المستقرة (كوجوب الصلوات الخمس وحرمة شرب الخمر والسرقة).
+        111|3|عرّف الرخصة واذكر أنواعها مع التمثيل.|هي ما شرعه الله استثناءً وتخفيفاً لعذر طارئ يواجه المكلف تيسيراً عليه ودفعاً للحرج والضيق. أنواعها: رخصة استباحة المحرم للضرورة (كأكل الميتة لحفظ الحياة)، ورخصة إسقاط الواجب أو تأجيله للمشقة (كالفطر والقصر للمسافر والمريض).
+        112|3|ما الفرق بين الصحة والبطلان في العبادات والمعاملات؟|الصحة: ترتب الآثار الشرعية المعتد بها على العبادة أو المعاملة الصادرة من المكلف واستيفاؤها لأركانها وشروطها. البطلان: عدم ترتب أي أثر شرعي كلياً على الفعل لوجود خلل جسيم في أركانه أو شروطه الجوهرية.
+        113|3|صح أم خطأ: يعتبر البطلان والفساد مترادفين عند الحنفية في المعاملات المالية.|خطأ. يفرق الحنفية في المعاملات المالية بين الباطل (ما خل بأصله كبيع المعدوم) والفاصل أو الفاسد (ما خل بوصفه وشروطه الخارجية الخارجة عن أصله مع صحة أصله، كبيع الربا، حيث يصحح عندهم بإلغاء الوصف الفاسد).
+        114|3|ما الفرق بين الأهلية القانونية وأهلية الوجوب في أصول الفقه؟|أهلية الوجوب في أصول الفقه تطابق تماماً الشخصية القانونية وصلاحية وجوب الحقوق للشخص الطبيعي منذ ولادته حياً وقبلها كجنين في بطن أمه.
+        115|3|بين شروط فهم دليل التكليف وعلاقته باللغة العربية والعقل.|يشترط لفهم دليل التكليف توفر عنصرين جوهريين: العقل الكامل (الذي يميز به الأوامر والنواهي)، ومعرفة قواعد وأساليب اللغة العربية لأن الشريعة نزلت بلسان عربي مبين، فلا يصح تكليف غير العاقل أو من يجهل لغة الخطاب دون بيان مسبق.
+        116|3|ما هي القاعدة الكلية المنظمة للرخص المتعلقة بالضرورات؟|القاعدة المنظمة هي: 'الضرورات تبيح المحظورات' على أن تقدر بقدرها صيانة للأنفس دون تجاوز وتعدٍ.
+        117|3|ما هي القاعدة المنظمة للرخص المتعلقة بإسقاط الواجبات وتأجيلها للمشقة؟|القاعدة المنظمة هي: 'المشقة تجلب التيسير' حيث يرفع الشارع الحرج والضيق عن المكلف رعاية لضعفه وتيسيراً لامتثاله.
+        118|3|ما معنى خطاب الوضع اعم وأشمل من خطاب التكليف؟|لأنه يدخل في أفعال وتصرفات المكلفين وغير المكلفين، ولأن بداخل كل خطاب وضعي خطاباً تكليفياً يربط الأسباب بالأحكام ويوجه السلوك البشري.
+        119|3|صح أم خطأ: السفر عارض سماوي من عوارض الأهلية.|خطأ. السفر عارض مكتسب يقع ويسعى إليه باختيار وإرادة الإنسان وصنعه.
+        120|3|ما هو العته وحكم تأثيره على أهلية الوجوب والأداء؟|العته عارض سماوي يشبه الجنون ويؤدي لضعف التمييز وفقدانه جزئياً؛ فلا يؤثر على أهلية الوجوب (فتثبت له الحقوق المالية)، ولكنه يبطل أو ينقص أهلية الأداء لزوال التمييز الكامل للتصرفات.
+        121|4|عرّف اللفظ العام لغةً واصطلاحاً.|العام لغة: الشامل والمستغرق. واصطلاحاً: هو اللفظ الموضوع لمعنى معلوم يستغرق ويشمل جميع أفراده بلا حصر دفعة واحدة بحسب وضع اللفظ لغةً.
+        122|4|اذكر خمسة من صيغ وألفاظ العموم في اللغة العربية مع التمثيل لكل صيغة.|1. اسم الجمع المعرف بالألف واللام (المسلمين). 2. اسم الجنس المعرف بالألف واللام الاستغراقية (الإنسان). 3. النكرة في سياق النفي أو النهي (لا وصية لوارث). 4. الأسماء الموصولة (الذين يرمون المحصنات). 5. لفظ 'كل' و'جميع' (كل امرئ، جميعاً).
+        123|4|ما هو الخلاف الفقهي حول دلالة العام على أفراده قبل التخصيص؟|الحنفية يرون دلالة العام قطعية قبل التخصيص، فلا يخصص عام القرآن القطعي إلا بدليل قطعي مماثل. الجمهور يرون دلالة العام ظنية لاحتمال تخصيصه، ويشيع لديهم قاعدة 'ما من عام إلا وقد خصص'، ولذا يجوز تخصيص عام القرآن بأخبار الآحاد والقياس.
+        124|4|ما الفرق بين التخصيص بالدليل المتصل والتخصيص بالدليل المنفصل؟|التخصيص بالدليل المتصل: يكون بقرينة أو دليل ملحق بالنص نفسه وفي ذات السياق (كالاستثناء، الغاية، الشرط، الصفة). التخصيص بالدليل المنفصل: يكون بدليل مستقل خارج النص تماماً (كالعقل، العرف، والنص المستقل الآخر).
+        125|4|ما هو الاستثناء كصورة للتخصيص المتصل مع التمثيل؟|هو إخراج بعض أفراد الجملة بلفظ إلا أو إحدى أخواتها، ومثاله قوله تعالى: 'والعصر * إن الإنسان لفي خسر * إلا الذين آمنوا وعملوا الصالحات'.
+        126|4|ما هو التخصيص بالغاية مع التمثيل؟|هو تحديد نهاية الحكم بـ 'حتى' أو 'إلى'، ومثاله قوله تعالى: 'ولا تقربوهن حتى يطهرن'.
+        127|4|ما هو التخصيص بالشرط مع التمثيل؟|هو تعليق الحكم بأمر مستقبل بإن أو إحدى أخواتها، ومثاله قوله تعالى: 'ولكم نصف ما ترك أزواجكم إن لم يكن لهن ولد'.
+        128|4|ما هو التخصيص بالصفة مع التمثيل؟|هو تخصيص اللفظ العام بصفة معنوية محددة تخرج غير المتصف بها من الحكم، ومثاله قوله تعالى: 'أو دماً مسفوحاً' فالمسفوح صفة خصصت الدم الممنوع.
+        129|4|ما هو التخصيص بالعقل مع التمثيل؟|هو إخراج العقل لبعض الأفراد الذين يشملهم اللفظ العام لعدم أهليتهم، كمخرج المجنون والصغير من وجوب حج البيت في قوله 'ولله على الناس حج البيت من استطاع إليه سبيلاً'.
+        130|4|ما هو التخصيص بالعرف مع التمثيل؟|هو إخراج بعض الأفراد من الحكم العام بناءً على تعارف الناس واستقرار عاداتهم، ومثاله تخصيص آية وجوب إرضاع الوالدات حولين كاملين بإخراج المرضعات المعتادات على عدم الإرضاع لمرض أو عذر طارئ عرفاً.
+        131|4|عرّف اللفظ الخاص مع التمثيل.|هو اللفظ الموضوع لمعنى معلوم منفرد على سبيل الانفراد بقطع النظر عن شمول غيره، ومثاله لفظ طالب، وتحرير رقبة.
+        132|4|ما الفرق بين الخاص المطلق والخاص المقيد مع التمثيل؟|الخاص المطلق: اللفظ الدال على فرد شائع في جنسه بلا قيد يحدده (رقبة في كفارة اليمين). الخاص المقيد: اللفظ المقرون بوصف أو صفة تخرجه من شيوعه وتحدده (رقبة مؤمنة في كفارة القتل الخطأ).
+        133|4|اذكر الحالات الأربعة لحمل المطلق على المقيد مع التمثيل وحكم العلماء فيها.|1. اتحاد السبب والحكم: (يحمل المطلق على المقيد باتفاق). 2. اختلاف السبب والحكم: (لا يحمل المطلق على المقيد باتفاق). 3. اختلاف السبب واتحاد الحكم: (اختلفوا؛ الأحناف يمنعون الحمل والجمهور يجيزونه). 4. اتحاد السبب واختلاف الحكم: (اختلفوا؛ الجمهور يمنعون الحمل والشافعية يجيزونه).
+        134|4|عرّف المشترك اللفظي واذكر أسباب وجوده في لغة العرب وحكم العمل به.|هو اللفظ الموضوع لمعنيين مختلفين أو أكثر بوضع واحد (كالقروء للطهر والحيض، والعين للباصرة والماء والجاسوس). أسبابه: اختلاف القبائل العربية، والاسخدام المجازي الطارئ. حكمه: يجب التوقف والبحث عن القرائن لتحديد المعنى ولا يجوز الجمع بين معنييه المتضادين معاً وقت التطبيق بالاتفاق.
+        135|4|ما معنى دلالة المنطوق واذكر أقسامها الثلاثة؟|هي المعاني والأحكام المستفادة مباشرة من اللفظ المنصوص عليه صراحة في محل النطق. أقسامها: دلالة العبارة، دلالة الإشارة، دلالة الاقتضاء.
+        136|4|ما هي دلالة العبارة مع التمثيل؟|هي دلالة اللفظ على المعنى المتبادر فهمه من ظاهر تركيب الكلام والمقصود والمسوق أصالة لأجله، ومثالها حديث 'مطل الغني ظلم' الدال بعبارته صراحة على تحريم مماطلة القادر بالدين.
+        137|4|ما هي دلالة الإشارة مع التمثيل؟|هي دلالة اللفظ على معنى غير مقصود من العبارة أصالة ولم يسق له الكلام، ولكنه لازم عقلي ونظري لترتيب وفهم الكلام، ومثالها قوله تعالى: 'وعلى المولود له رزقهن وكسوتهن بالمعروف' يفهم بإشارتها تفرد الأب بوجوب الإنفاق على ولده ولحوق النسب به وحده دون غيره.
+        138|4|ما هي دلالة الاقتضاء مع التمثيل؟|هي توقف صدق الكلام واستقامة معناه شرعاً وعقلاً على تقدير وإضمار كلمة محذوفة غائبة عن النطق، ومثالها حديث 'رفع عن أمتي الخطأ والنسيان...' فالمنطوق يقتضي إضمار محذوف هو 'رفع الإثم أو المؤاخذة أو الأثر الجنائي للخطأ' ليستقيم المعنى عقلاً لوقوع الخطأ والنسيان فعلياً من البشر.
+        139|4|عرّف دلالة المفهوم واذكر أقسامها الثنائية الكبرى.|هي الأحكام والمعاني المستفادة من النص في المسكوت عنه وغير المنطوق به تلاوة. وأقسامها الكبرى: مفهوم الموافقة، ومفهوم المخالفة.
+        140|4|ما هو مفهوم الموافقة واذكر أقسامه الثنائية مع التمثيل؟|هو توافق المسكوت عنه والمنطوق به في الحكم لاتحادهما في العلة. أقسامه: فحوى الخطاب (دلالة الأولى كتحريم الضرب المأخوذ من تحريم التأفف في قوله فلا تقل لهما أف)، ولحن الخطاب (دلالة المساوي كتحريم إحراق أو إتلاف مال اليتيم المأخوذ مساوياً من تحريم الأكل في قوله إن الذين يأكلون أموال اليتامى ظلماً).
+        141|4|عرّف مفهوم المخالفة واذكر أنواعه الأربعة مع التمثيل.|هو إثبات نقيض حكم المنطوق به للمسكوت عنه عند انتفاء القيد المذكور لغةً. أنواعه: 1. مفهوم الصفة (أو دماً مسفوحاً فغير المسفوح ليس بحرام). 2. مفهوم الشرط (وإن كن أولات حمل فأنفقوا عليهن فغير الحوامل لا نفقة مستمرة لهن). 3. مفهوم الغاية (فإن طلقها فلا تحل له من بعد حتى تنكح زوجاً غيره). 4. مفهوم العدد (فاجلدوهم ثمانين جلدة فالعدد مائة أو سبعون ينفي الحكم).
+        142|4|ما هو موقف المذاهب من حجية مفهوم المخالفة؟|يعتبر الجمهور والمالكية والشافعية والحنابلة مفهوم المخالفة حجة شرعية بشروطه المعتمدة. بينما يرى الحنفية والظاهرية في بعض المباح أن مفهوم المخالفة باطل كلياً ولا يحتج به مطلقاً في استنباط الأحكام الشرعية وقوانينها.
+        143|4|اذكر شروط العمل بمفهوم المخالفة عند الجمهور الأصولي.|1. ألا يخرج اللفظ مخرج الغالب (كآية وربائبكم اللاتي في حجوركم فالغالب الحجور ولا ينفي التحريم لغيرها). 2. ألا يقصد به المبالغة والامتنان والتعظيم (كآية سبعين مرة). 3. ألا يظهر الشارع قصداً مستقلاً للتعميم أو التفخيم في موضع آخر.
+        144|4|رتب درجات اللفظ الواضح تصاعدياً حسب القوة وعرّف كل درجة.|الترتيب: الظاهر ثم النص ثم المفسر ثم المحكم. 1. الظاهر: واضح المعنى لغةً ولم يسق الكلام لأجله أصالة ويحتمل التأويل والنسخ. 2. النص: واضح دلالته مسوق الكلام لأجله أصالة ويحتمل التخصيص والتأويل. 3. المفسر: واضح جداً من سياقه وتفصيله لا يحتمل التأويل ويقبل النسخ في عهد الرسالة فقط. 4. المحكم: واضح جداً لا يحتمل تأويلاً ولا تخصيصاً ولا يقبل النسخ أبداً لخلوده وعمومه.
+        145|4|مثل للفظ المحكم من الشريعة والقرآن الكريم.|قوله تعالى 'ولا تقبلوا لهم شهادة أبداً'؛ فالأبدية لفظ محكم يمنع النسخ أو التأويل لشهادة القاذف غير التائب. وكذلك آيات التوحيد والعقائد الكبرى.
+        146|4|رتب درجات اللفظ غير الواضح من الأقل خفاءً للأكثر خفاءً وعرّف كل درجة.|الترتيب: الخفي ثم المشكل ثم المجمل ثم المتشابه. 1. الخفي: واضح المعنى في ذاته ويعتريه خفاء عارض عند التطبيق على بعض أفراده غير المشهورة بالاسم. 2. المشكل: خفي معناه لسبب يرجع لذات اللفظ لتعدد معانيه لغةً ويحتاج بحثاً وتأملاً لإزالة اللبس. 3. المجمل: لا يدل صيغته على المراد إلا ببيان وتوضيح مستقل من الشارع لغرابة الكلمة أو نقل معناها. 4. المتشابه: استأثر الله بعلمه ولم يفسره للخلق ولا سبيل لعقل البشر لإدراك كنهه وحقيقته.
+        147|4|بين وجه الخفاء في لفظ 'السارق' في حق النشال والنباش وكيف يعالج أصولياً.|الخفاء يعود لكون النشال يأخذ المال بخفة ويقظة من جيب الشخص دون حرز مثله المعتاد، والنباش يسرق الأكفان من القبر (حرز الموتى). يعالج بالبحث الأصولي والقرائن اللغوية؛ فالنشال سارق لتوفر أركان الأخذ خفية، بينما النباش وقع فيه الخلاف ويقاس على السارق لاستوائهما في مفسدة الإتلاف وسرقة ملك الغير.
+        148|4|مثل للفظ المشترك اللفظي من آيات القرآن الكريم.|قوله تعالى 'والمطلقات يتربصن بأنفسهن ثلاثة قروء'؛ فلفظ قروء مشترك لغوي بين الطهر والحيض ويحتاج قرائن مذهبية لتحديده.
+        149|4|مثل للفظ المجمل من آيات القرآن وكيف بينته السنة النبوية.|ألفاظ 'الصلاة والزكاة والحج' الواردة مجملة في قوله 'وأقيموا الصلاة وآتوا الزكاة'؛ وجاءت السنة ببيان كيفية الصلاة بحديث 'صلوا كما رأيتموني أصلي' وتفصيل مقادير النصاب للزكاة ومناسك الحج بحديث 'خذوا عني مناسككم'.
+        150|4|مثل للفظ المتشابه من الشريعة والقرآن وما حكم التعامل معه؟|الحروف المقطعة في أوائل السور كـ 'الم' و'كهيعص'، وآيات صفات الذات كقوله تعالى 'الرحمن على العرش استوى'. حكمه: تفويض المراد والكنه فيه لله سبحانه وتعالى والوقوف عند حدوده إيماناً وتصديقاً دون تأويل فاسد بالهوى.
+        151|4|صح أم خطأ: دلالة العام عند الجمهور هي دلالة قطعية الأحكام دائماً.|خطأ. دلالة العام عند الجمهور هي دلالة ظنية لاحتمال تخصيص أفراده بالقرائن المتصلة والمنفصلة.
+        152|4|ما هو المفهوم المقابل اللغوي لصيغة الأمر وما دلالتها المطلقة؟|المقابل هو صيغة النهي (لا تفعل)؛ ودلالتها المطلقة تقتضي التحريم المطلق والفوري والمستمر للكف عن الفعل المنهي عنه صيانة للمصالح.
+        153|4|هل يقتضي الأمر المطلق التكرار والفورية دائماً؟|الأمر المطلق يدل في الأصل على الفورية والتكرار عند توفر القرائن المناسبة، وإلا فالأصل براءة ذمة المكلف بمطالبته بفعله مرة واحدة تبرأ بها ذمته وعقيدته.
+        154|4|ما هي دلالة النص من حيث قوة الدلالة مقارنة بالظاهر والمفسر؟|النص مرتبته الأصولية أقوى وأعلى وضوحاً من الظاهر لأنه مسوق الكلام لأجله أصالة، ولكنه أقل قوة ووضوحاً من المفسر الذي لا يقبل التأويل والخصومة الفقهية في عهد الرسالة.
+        155|4|ما هي القرينة اللفظية ودورها في توجيه معاني الألفاظ؟|هي الدليل والوصف المحيط بالنص (سواء كان لغوياً أو عقلياً أو عرفياً) الذي يوجه اللفظ ويصرفه من معناه الحقيقي المتبادر الراجح إلى معنى مجازي مرجوح تقتضيه مصلحة الفهم وسياق التشريع.
+        156|4|مثل لحمل المطلق على المقيد في حالة 'اتحاد السبب والحكم'.|اتفاق الفقهاء على حمل آية تحرير رقبة مؤمنة في كفارة ظهار معينة على الإيمان والعدل باتحادهما في السبب والحكم الشرعي المقترن بهما.
+        157|4|مثل لحالة 'اختلاف السبب والحكم' وامتناع الحمل بالاتفاق.|آية السرقة 'فاقطعوا أيديهما' المطلقة لليد، مقابل آية الوضوء 'فاغسلوا وجوهكم وأيديكم إلى المرافق' المقيدة لليد بالمرافق؛ فلا يحمل المطلق على المقيد لاختلاف سببهما وحكمهما الفعلي بالاتفاق.
+        158|4|بين حكم حالة 'اختلاف السبب واتحاد الحكم' في حمل المطلق على المقيد مع التمثيل.|كفارة اليمين 'تحرير رقبة' (مطلق)، وكفارة القتل الخطأ 'تحرير رقبة مؤمنة' (مقيد)، فالسبب مختلف (الحنث والقتل) والحكم متحد (تحرير رقبة). حكمه: اختلفوا؛ الأحناف يمنعون الحمل ويعمل بكل منهما على حاله، والجمهور يحملون المطلق على المقيد فتشترط الرقبة المؤمنة في كفارة اليمين أيضاً.
+        159|4|بين حكم حالة 'اتحاد السبب واختلاف الحكم' في حمل المطلق على المقيد مع التمثيل.|آية الوضوء 'فاغسلوا وجوهكم وأيديكم إلى المرافق' (مقيد بالمرافق)، وآية التيمم 'فامسحوا بوجوهكم وأيديكم' (مطلق اليد بغير تحديد)، والسبب متحد (إرادة الصلاة). حكمه: اختلفوا؛ الجمهور يمنعون الحمل ويعمل بالتيمم لليد مطلقاً، والشافعية يحملون المطلق على المقيد فيقيد التيمم بالمرافق أيضاً.
+        160|4|ما هي أهمية القواعد اللغوية لدارسي القانون والمحامين؟|تمثل الأداة الفنية الأساسية لتفكيك صياغة النصوص القانونية واللوائح التشريعية، وتحديد دلالة العبارة والإشارة والإقتضاء ومفهوم المخالفة للشروط والصفات والحدود العددية للجرائم والالتزامات المدنية.
+        161|5|عرّف التعارض لغةً واصطلاحاً عند علماء الأصول.|التعارض لغة: التقابل والتمانع وجعل الشيء حذاء الشيء. واصطلاحاً: تقابل دليلين متساويين في القوة والثبوت على وجه يوجب كل واحد منهما حكماً ضد وضد نقيض ما يوجبه الآخر في ذات الواقعة والمحل والوقت والجهة.
+        162|5|اذكر شروط تحقق التعارض الأربعة المعتمدة.|1. اتحاد المحل في الدليلين المتعارضين. 2. اتحاد وقت وزمن نزول أو تطبيق الدليلين. 3. التضاد الحقيقي التام بين الحكمين المقرنين (كالحل والحرمة). 4. التساوي والتعادل التام بين الدليلين في جهة الثبوت وقوة الدلالة ونوعها.
+        163|5|ما الفرق بين التعارض الحقيقي والتعارض الظاهري؟|التعارض الحقيقي: تقابل لا يمكن معالجته أبداً بالجمع أو التأويل لتكافؤ الأدلة التام وصيرورتها متساقطة (وهو ممتنع في نفس الأمر في نصوص الشريعة). التعارض الظاهري: توهم المجتهد للتمانع لضياع قرائن النصوص أو عدم معرفة التاريخ، ويمكن دفعه بالطرق الأصولية المعتمدة.
+        164|5|ما الفرق بين التزاحم والتكافؤ في مباحث التعارض؟|التزاحم: تنافي الحكمين بسبب عجز المكلف البدني عن الجمع بينهما امتثالاً في وقت واحد (يقدم المضيق ومن لا بدل له). التكافؤ: تساوي الدليلين تساوياً تاماً دون وجود أي مزية لأحدهما على الآخر لغةً وعقلاً.
+        165|5|اذكر قواعد دفع التزاحم إذا عجز المكلف عن الجمع بين واجبين في وقت واحد.|1. تقديم الواجب المضيق على الواجب الموسع. 2. تقديم ما لا بدل له على ما له بدل (كالوضوء والتيمم). 3. تقديم المشروط بالقدرة العقلية على الشرعية. 4. تقديم ما يتعلق بحفظ النفس والروح على التكاليف الأخرى المعتادة.
+        166|5|ما هي الخطوات الأربعة المرتبة ترتيباً حتمياً لدفع التعارض والتمانع بين الأدلة؟|الترتيب الحتمي هو: أولاً الجمع والتوفيق والتأويل القريب، ثانياً الترجيح لتقوية أحد الدليلين، ثالثاً النسخ بعد معرفة التاريخ والناسخ والمنسوخ، رابعاً التساقط والتوقف والرجوع للأصل العملي كالبراءة والاستصحاب.
+        167|5|عرّف التأويل واذكر أقسامه الثلاثة عند الشافعية.|التأويل: صرف الكلام واللفظ عن حقيقته ومعناه الظاهر الراجح إلى معنى آخر يحتمله اللفظ بدليل وقرينة تدل عليه. أقسامه: تأويل قريب (بأدنى قرينة)، تأويل بعيد (يحتاج تكلفاً شاقاً)، وتأويل بعيد متعذر الفهم (وهو المرفوض لغةً وشرعاً).
+        168|5|مثل للتأويل البعيد والمرفوض بمسألة ذكاة الجنين عند الحنفية والشافعية.|تأويل الحنفية لحديث 'ذكاة الجنين ذكاة أمه' بأنه يعني يذبح الجنين كما تذبح أمه ليكون طاهراً، ورأى الشافعية أن هذا التأويل بعيد متعذر ومخالف للغة والواقع، والتأويل القريب المقبول أن ذكاة الأم كافية لحل أكل الجنين النازل ميتاً دون ذبح منفرد.
+        169|5|عرّف الترجيح اصطلاحاً في عوارض الأدلة.|هو تقوية أحد الدليلين المتعارضين بمرجح ومزية معتبرة لغةً أو عقلاً أو نقلاً، والعمل به وإلغاء وإسقاط الآخر.
+        170|5|اذكر مرجحات السند المعتمدة في الترجيح.|1. ترجيح رواية الكبير السن على الصغير لضبطه. 2. ترجيح رواية الفقيه المتبحر على الأقل فقهاً لمعرفته بمدلولات الألفاظ. 3. ترجيح الحديث متصل السند على الحديث المرسل. 4. ترجيح المشهور بالعدالة والثقة على غيره.
+        171|5|اذكر مرجحات المتن المعتمدة في الترجيح.|1. تقديم النص الناهي على الآمر (لأن دفع المفاسد أولى من جلب المصالح). 2. تقديم المنطوق الصريح على المفهوم المخالف أو الموافق. 3. تقديم اللفظ الواضح الأكثر قوة (كالمحكم والمفسر على النص والظاهر).
+        172|5|اذكر مرجحات المدلول المعتمدة في الترجيح.|1. تقديم ما لا تعم به البلوى على ما تعم به البلوى. 2. تقديم الإثبات والبيان على النفي لزيادة العلم فيه. 3. تقديم الحكم الوضعي المانع أو الشرط على التكليفي العام.
+        173|5|ما معنى الترجيح بأمر خارجي مع التمثيل؟|هو تقوية الدليل بوجود أدلة ومؤيدات أخرى خارجة عن متنه وسنده تشهد له بصحته، مثل تقديم الخبر الذي تشهد وتعتضد وتتفق معه آيات قرآنية وقواعد تشريعية كلية أخرى على الخبر المنفرد.
+        174|5|عرّف النسخ لغةً واصطلاحاً مع دليل تشريعه.|النسخ لغة: النقل والإزالة والإبطال. واصطلاحاً: رفع حكم شرعي متقدم متعبد به بخطاب وحكم شرعي متأخر عنه تاريخياً. دليله قوله تعالى: 'ما ننسخ من آية أو ننسها نأتِ بخير منها أو مثلها'.
+        175|5|ما هي الشروط الأربعة الواجب توفرها لصحّة وقوع النسخ؟|1. ألا يكون الخطاب المنسوخ مؤقتاً بوقت معين. 2. أن يكون الحكم المنسوخ عملياً فرعياً (لا نسخ في العقائد والتوحيد والأخلاق والكليات العامة بالاتفاق). 3. أن يكون الناسخ متأخراً تاريخياً عن المنسوخ. 4. أن يكون الناسخ مساوياً أو أقوى من المنسوخ في الثبوت والدلالة.
+        176|5|ما الفرق بين النسخ الصريح والنسخ الضمني مع التمثيل؟|النسخ الصريح: ينص فيه الشارع على الإلغاء بوضوح (كنهيتكم عن زيارة القبور ألا فزوروها). النسخ الضمني: ورود حكم متأخر يتعارض كلياً مع حكم سابق دون إشارة صريحة للنسخ (كنسخ وجوب الوصية للوالدين في قوله 'الوصية للوالدين والأقربين' بآية المواريث والفرائض وبحديث لا وصية لوارث).
+        177|5|ما الفرق بين النسخ الكلي والنسخ الجزئي مع التمثيل؟|النسخ الكلي: رفع الحكم عن جميع الأفراد المشمولين به (نسخ التوجه لبيت المقدس بالتوجه للبيت الحرام). النسخ الجزئي: إخراج بعض الأفراد من الحكم السابق (كاللعان الذي نسخ حكماً جزئياً للزوج من آية قذف المحصنات العامة).
+        178|5|ما معنى نسخ الحكم واللفظ معاً مع التمثيل؟|هو سقوط تلاوة الآية والعمل بحكمها الفقهي والتشريعي معاً في وقت واحد، ومثالها ما روي عن عائشة في نسخ عشر رضعات يحرمن بالرضعات الخمس.
+        179|5|ما معنى نسخ اللفظ وبقاء الحكم مع التمثيل؟|هو سقوط تلاوة اللفظ وسقوطها من المصحف الشريف مع استمرار وجوب العمل والامتثال بحكمها الفقهي، ومثالها آية الرجم المنسوخة تلاوة والعمل بها مستمر وقائم بقضاء الرسول والخلفاء الراشدين.
+        180|5|ما معنى نسخ الحكم وبقاء اللفظ مع التمثيل؟|هو بقاء تلاوة الآية في المصحف والتعبد بها مع سقوط العمل بمدلول وحكم الفقه لورود ناسخ لها، ومثالها آيات عدة الوفاة سنة كاملة المنسوخة بأربعة أشهر وعشراً وبقاء تلاوتها صيانة وإعجازاً.
+        181|5|عرّف الاجتهاد لغةً واصطلاحاً عند علماء الأصول.|الاجتهاد لغة: بذل الجهد والطاقة الكاملة في أمور شاقة. واصطلاحاً: بذل المجتهد الفقيه وسعه وطاقته الكاملة للوصول إلى حكم شرعي عملي من الأدلة التفصيلية صيانة وفتوى وقضاءً.
+        182|5|اذكر خمسة من الشروط الثمانية الواجب توفرها في شخص المجتهد.|1. الإسلام والعدالة والتقوى. 2. العلم بلغة العرب وقواعدها النحوية والصرفية والبيانية. 3. العلم بمواضع الإجماع والاتفاق حتى لا يفتي بخلاف ما أجمعت عليه الأمة. 4. العلم بالناسخ والمنسوخ وتاريخ التشريع. 5. العلم بأصول الفقه وقواعد الاستنباط كعلم آلي ضروري ومقاصد الشريعة.
+        183|5|ما هي الشروط الخاصة بالمسألة التي يراد الاجتهاد فيها؟|1. ألا يكون قد ورد بها نص قطعي الثبوت قطعي الدلالة بالاتفاق (كالحدود والأنصبة المحددة). 2. ألا تكون المسألة في التقديرات الشرعية المحضة كعدد ركعات الصلوات. 3. ألا تكون من المعلوم من الدين بالضرورة كالكليات الخمس المقررة.
+        184|5|ما الفرق بين الاجتهاد التفسيري والاجتهاد الاستنباطي حكماً وثواباً؟|الاجتهاد التفسيري: بذل الجهد لفهم وتطبيق النصوص القائمة وتطبيقها وهو فرض عين على كل مسلم مكلف، وله ثوابان إن أصاب وثواب واحد إن أخطأ. الاجتهاد الاستنباطي: استخراج أحكام جديدة لوقائع معاصرة ومستجدة سكتت عنها النصوص المباشرة وهو فرض كفاية إذا قام به البعض سقط الإثم والطلب عن الباقين، وله ثواب أصاب أم أخطأ للجهد المبذول.
+        185|5|ما معنى مسألة 'تجزؤ الاجتهاد' واذكر الرأي الراجح فيها مع التعليل.|تعني جواز ممارسة المجتهد للاستنباط والاجتهاد في باب فقهي محدد ومخصوص (كباب المواريث أو المعاملات) دون بقية الأبواب الأخرى لإحاطته الكاملة بمسائل هذا الباب. الرأي الراجح: يجوز تجزؤ الاجتهاد تيسيراً وتخصصاً وتسهيلاً للبحث العلمي المتكامل ومراعاةً لضخامة العلوم وتشعبها المعاصر.
+        186|5|ما هي رتبة 'المجتهد المستقل' مع التمثيل؟|هو الذي يضع ويؤصل لنفسه قواعد وأصولاً ومناهج خاصة به ويستقل باستنباط الأحكام دون تقليد أو تقييد بمذهب معين، ومثالها أئمة المذاهب الأربعة وسعيد بن المسيب وجعفر الصادق.
+        187|5|ما هي رتبة 'المجتهد المنتسب' مع التمثيل؟|هو الذي يلتزم بقواعد وأصول إمام مذهبه وطريقته في الاستنباط، ولكنه يجتهد ويستنبط أحكاماً مستقلة في الفروع الفقهية دون تقليد لإمامه فيها، ومثالها أبو يوسف ومحمد بن الحسن الشيباني وزفر.
+        188|5|ما هي رتبة 'المجتهد في المذهب' مع التمثيل؟|هو الذي يتقيد بأصول وفروع المذهب ويقتصر دورة الفعلي والمنهجي على التخريج والاستنباط للمسائل الجديدة الحادثة بناءً على تقعيد أئمته، ومثالها الكرخي والسرخسي في المذهب الحنفي.
+        189|5|ما هي رتبة 'المجتهد المرجح' مع التمثيل؟|هو المتمكن من الموازنة بين الآراء والاقوال المتعددة داخل المذهب وترجيح أحدها لقوة دليله وسنده، ومثالها أبو بكر الجصاص والكمال بن الهمام.
+        190|5|ما هي رتبة 'التقليد' وحكم العمل بها لعامة الناس؟|التقليد: قبول قول الغير ورأيه دون معرفة دليله الشرعي أو البحث في طرق استنباطه. حكمه: هو الواجب الشرعي على عامة الناس وغير المتخصصين في العلوم الشرعية والقانونية بالاتفاق لقوله تعالى 'فاسألوا أهل الذكر إن كنتم لا تعلمون'.
+        191|5|صح أم خطأ: القبول بسد باب الاجتهاد مطلقاً هو الرأي الراجح عند علماء الأصول المعاصرين.|خطأ. الراجح عند الأصوليين عدم خلو أي عصر من مجتهد تفسيري لتفتيت نوازل الأمة، وأن باب الاجتهاد مفتوح ومستمر ما دامت الحياة قائمة لمواجهة النوازل المستجدة وقضايا التشريع المرنة.
+        192|5|ما هو التساقط والتوقف في عوارض الأدلة وتعارضها؟|هو إسقاط الدليلين المتعارضين كلياً عن الاعتبار والوقوع عند التكافؤ التام والتعادل المطلق بينهما وعجز المجتهد عن إعمال الجمع أو الترجيح أو معرفة التاريخ لتقرير النسخ؛ فيتحتم عليه التوقف والرجوع لأصل عملي آخر كالبراءة الأصلية والاستصحاب.
+        193|5|ما وجه الدليل وقرينته في حديث 'ذكاة الجنين ذكاة أمه' عند الشافعية؟|وجه الدليل والقرينة أن ذكاة الأم كافية وتابعة لحل أكل الجنين النازل ميتاً دون حاجة لذبح مستقل ومستقيم، وهو تأويل قريب تدل عليه الفطرة والقرينة الطبية والشرعية المعول عليها.
+        194|5|كيف يتكامل الاجتهاد القضائي مع الاجتهاد الأصولي؟|يتكاملان بأن الأصول يضع القواعد العامة والمناهج التفسيرية الصارمة لاستخراج الأحكام من النصوص صيانة للبنية التشريعية، ويأتي القاضي ورجل القانون لتطبيق هذه القواعد والأحكام الأصولية بحكمة ومرونة على القضايا والوقائع التطبيقية المعروضة أمامه في المحاكم لتحقيق العدالة وتيسير شؤون العباد.
+        195|5|ما هو مسلك 'التخريج والتعليل' (تخريج المناط) في القياس؟|هو استنباط العلة الملائمة والمناسبة من النص دون نص صريح أو إيماء من الشارع عليها؛ فيبذل المجتهد وسعه لاستخراج الوصف المناسب الذي بنى الشارع عليه الحكم بملائمته وموافقته لمقاصد الشريعة.
+        196|5|ما هي أسباب وقوع التعارض ظاهرياً بين الأدلة النبوية؟|1. نقل الرواة للحديث بالمعنى مما يعتري الألفاظ بعض الاختلاف والتعديل الطفيف. 2. ضياع القرائن والظروف التاريخية والملابسات المحيطة بالحديث. 3. وقوع النسخ التشريعي المتتابع صيانة لمصالح الناس. 4. توهم المجتهد لعدم إحاطته الكاملة بالقرائن والمبينات.
+        197|5|صح أم خطأ: الإجماع السكوتي حجة قطعية بإجماع المذاهب الأربعة.|خطأ. الإجماع السكوتي محل خلاف كبير ونزاع أصولي شديد؛ فالجمهور يعتبرونه حجة ظنية، بينما أنكره الإمام الشافعي كلياً لعدم صراحة السكوت واعتبره ليس بحجة مطلقاً.
+        198|5|ما الفرق بين النسخ والتخصيص في اللفظ العام؟|النسخ: رفع وإبطال الحكم كلياً أو جزئياً لجميع الأفراد مستقبلاً بمتأخر تاريخي. التخصيص: قصر العام وحصر الحكم في بعض أفراده منذ البداية والنشأة بقرينة متصلة أو منفصلة معاصرة للنص دون إبطال لأصل التشريع.
+        199|5|ما هو دور السنة النبوية في 'سد الذرائع' مع التمثيل؟|حظر الرسول صلى الله عليه وسلم الجمع بين المرأة وعمتها وخالتها في الزواج سداً لذريعة قطع صلة الأرحام الكامنة في تضاد الغيرة وحرصاً على تماسك الروابط الأسرية والاجتماعية للعباد.
+        200|5|ما هي الخاتمة والغاية الكبرى لعلم أصول الفقه في حياة الدارس للشريعة والقانون؟|الخاتمة والغاية الكبرى هي امتلاك الملكة التشريعية والاستنباطية العميقة التي تمكنه من فهم روح التشريعات الإسلامية والقوانين الوضعية، وتفسير نصوصها بدقة علمية صارمة بعيدة عن الهوى والتشتت، وحل النوازل والقضايا العملية التي تواجهه في تولي القضاء والمحاماة والفتوى بكل كفاءة واقتدار.
+        `;
+
+        function parseQBank() {
+            const items = [];
+            const lines = qbankRaw.trim().split('\n');
+            lines.forEach(line => {
+                const parts = line.split('|');
+                if (parts.length === 4) {
+                    items.push({ id: parseInt(parts[0]), unit: parseInt(parts[1]), q: parts[2].trim(), a: parts[3]
+                            .trim() });
+                }
+            });
+            return items;
+        }
+        const qbankFull = parseQBank();
+
+        // =====================================================================
+        // RENDER FUNCTIONS
+        // =====================================================================
+
+        function renderNavTabs() {
+            const sections = ['home', 'explain', 'summaries', 'questions', 'maps', 'examples', 'exams', 'qbank', 'reviews',
+                'tree', 'video'
+            ];
+            const labels = ['🏠 الرئيسية', '📖 شرح', '📝 ملخصات', '❓ أسئلة', '🗺️ خرائط', '📌 أمثلة', '📋 امتحانات', '📚 بنك الأسئلة',
+                '🔄 مراجعات', '🌳 شجرة المعرفة', '🎥 فيديو'
+            ];
+            const container = document.getElementById('navContainer');
+            container.innerHTML = '';
+            sections.forEach((s, i) => {
+                const btn = document.createElement('button');
+                btn.dataset.section = s;
+                btn.textContent = labels[i];
+                if (s === 'home') btn.classList.add('active');
+                btn.addEventListener('click', () => navigateTo(s));
+                container.appendChild(btn);
+            });
+        }
+
+        function renderHomeGrid() {
+            const grid = document.getElementById('homeGrid');
+            const sections = ['explain', 'summaries', 'questions', 'maps', 'examples', 'exams', 'qbank', 'reviews', 'tree',
+                'video'
+            ];
+            const labels = ['📖 شرح', '📝 ملخصات', '❓ أسئلة', '🗺️ خرائط', '📌 أمثلة', '📋 امتحانات', '📚 بنك الأسئلة',
+                '🔄 مراجعات', '🌳 شجرة المعرفة', '🎥 فيديو'
+            ];
+            const icons = ['📖', '📝', '❓', '🗺️', '📌', '📋', '📚', '🔄', '🌳', '🎥'];
+            grid.innerHTML = '';
+            sections.forEach((s, i) => {
+                const btn = document.createElement('button');
+                btn.className = 'cat-btn';
+                btn.innerHTML = `<span class="icon">${icons[i]}</span>${labels[i]}`;
+                btn.addEventListener('click', () => navigateTo(s));
+                grid.appendChild(btn);
+            });
+        }
+
+        function renderExplain() {
+            let html = '';
+            units.forEach(u => {
+                html += `<div class="card" style="background:#f8f9fa;"><h3 class="card-sub">${u.title}</h3>`;
+                u.lessons.forEach(l => {
+                    html += `<div style="margin:12px 0 8px 0; padding-right:14px; border-right:4px solid #1a4b6d;">
+                                <strong style="font-size:1.05rem;">📘 ${l.title}</strong>
+                                <div style="font-size:0.92rem; color:#2c3e50; margin-top:4px;">
+                                    <span style="font-weight:600;">🎯 أهداف:</span> ${l.objectives.join('، ')}<br>
+                                    <span style="font-weight:600;">🛠️ مهارات:</span> ${l.skills.join('، ')}<br>
+                                    <span style="font-weight:600;">📤 نتائج:</span> ${l.outcomes.join('، ')}
+                                </div>
+                            </div>`;
+                });
+                html += `</div>`;
+            });
+            document.getElementById('explainContent').innerHTML = html;
+        }
+
+        function renderSummaries() {
+            let html = '';
+            summariesData.forEach((s, i) => {
+                html += `<div class="card" style="background:#f8f9fa;"><h3 class="card-sub">الوحدة ${i+1}</h3><p>${s}</p></div>`;
+            });
+            document.getElementById('summariesContent').innerHTML = html;
+        }
+
+        function renderQuestions() {
+            let html = '';
+            selfQA.forEach((item, idx) => {
+                html += `<div class="quiz-question" style="background:#f8f9fa; border-right:4px solid #1a4b6d;">
+                            <div class="q-text">${idx+1}. ${item.q}</div>
+                            <div style="background:#e9ecef; padding:10px 14px; border-radius:10px; margin-top:6px;">
+                                <strong>✅ الإجابة:</strong> ${item.a}
+                            </div>
+                        </div>`;
+            });
+            document.getElementById('questionsContent').innerHTML = html;
+        }
+
+        function renderMaps() {
+            const container = document.getElementById('mapsGallery');
+            container.innerHTML = '';
+            mapImages.forEach(m => {
+                const url = m.url;
+                const div = document.createElement('div');
+                div.className = 'map-item';
+                div.innerHTML = `
+                            <img src="${url}" alt="${m.label}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23e9ecef%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%236c757d%22 font-family=%22sans-serif%22 font-size=%2216%22%3E${m.label}%3C/text%3E%3C/svg%3E'">
+                            <div class="map-label">${m.label}</div>
+                        `;
+                div.addEventListener('click', () => openLightbox(url));
+                container.appendChild(div);
+            });
+        }
+
+        function openLightbox(src) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lightboxImg');
+            img.src = src;
+            lb.classList.add('open');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('open');
+        }
+
+        function renderExamples() {
+            let html = '';
+            examplesData.forEach(e => {
+                html += `<div class="card" style="background:#f8f9fa; border-right:4px solid #1a4b6d;">
+                            <h4 style="font-weight:700; font-size:1.05rem;">📌 ${e.title}</h4>
+                            <p style="margin-top:4px;">${e.desc}</p>
+                        </div>`;
+            });
+            document.getElementById('examplesContent').innerHTML = html;
+        }
+
+        function renderExams() {
+            // بناء محتوى الامتحانات النصية من بنك الأسئلة
+            const unit1Q = qbankFull.filter(q => q.unit === 1).slice(0, 20);
+            const unit2Q = qbankFull.filter(q => q.unit === 2).slice(0, 20);
+            const unit3Q = qbankFull.filter(q => q.unit === 3).slice(0, 20);
+            const unit4Q = qbankFull.filter(q => q.unit === 4).slice(0, 20);
+            const unit5Q = qbankFull.filter(q => q.unit === 5).slice(0, 20);
+            const midtermQ = qbankFull.filter(q => q.unit <= 2).slice(0, 30);
+            const finalQ = qbankFull.slice(0, 40);
+
+            // روابط الامتحانات السابقة
+            const driveLinks = [
+                { id: "1pDaur9vLEeer-SveALIb5kWSJrwNHyYC", label: "نموذج امتحان 1" },
+                { id: "1pvuVPvrdxMyv3apKBHSfsHTXBHj4vHGc", label: "نموذج امتحان 2" },
+                { id: "1h9rqDUQWzVLlYWTenkspOoSkHohQ65KX", label: "نموذج امتحان 3" },
+                { id: "1zpzS15SO7WAWknxw0P4OXRB39NVnhKm1", label: "نموذج امتحان 4" },
+                { id: "1v-Dzy0kDVrPsTm9Qnk0_i_Px4-J2qv5i", label: "نموذج امتحان 5" },
+                { id: "11eSTY_ujIRBOOC0yUOn-CkOC62LtiE0-", label: "نموذج امتحان 6" },
+                { id: "1bxXsUFb9bsHYxqaQx5JvMx4E4-pNooRY", label: "نموذج امتحان 7" },
+                { id: "1M8aUQPoBIoidWtluPiErXgFSrI8ZQx9n", label: "نموذج امتحان 8" },
+                { id: "1Jmnd_qTuePLY31Vx-8ODXYUD1ZJQn2Hl", label: "نموذج امتحان 9" },
+                { id: "13P7eo1swwAGpE9klo3Bf8jWy7KqdAADM", label: "هندسة الفقه" }
+            ];
+
+            let html = `
+                        <div class="card">
+                            <h3 class="card-sub">📝 اختبارات قصيرة</h3>
+                            <p><strong>اختبار المصطلحات والمبادئ (10 أسئلة)</strong></p>
+                            <ul style="list-style:none; padding-right:0;">`;
+            qbankFull.slice(0, 10).forEach((item, i) => {
+                html += `<li style="margin-bottom:6px; padding:6px 10px; background:#f8f9fa; border-radius:6px; font-size:0.95rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                            <p style="margin-top:12px;"><strong>اختبار الأدلة والحكم (10 أسئلة)</strong></p>
+                            <ul style="list-style:none; padding-right:0;">`;
+            qbankFull.slice(10, 20).forEach((item, i) => {
+                html += `<li style="margin-bottom:6px; padding:6px 10px; background:#f8f9fa; border-radius:6px; font-size:0.95rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                        </div>
+
+                        <div class="card">
+                            <h3 class="card-sub">📘 اختبارات الوحدات</h3>
+                            <p><strong>الوحدة الأولى (20 سؤال)</strong></p>
+                            <ul style="list-style:none; padding-right:0;">`;
+            unit1Q.forEach((item, i) => {
+                html += `<li style="margin-bottom:4px; padding:4px 8px; background:#f8f9fa; border-radius:4px; font-size:0.9rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                            <p><strong>الوحدة الثانية (20 سؤال)</strong></p>
+                            <ul style="list-style:none; padding-right:0;">`;
+            unit2Q.forEach((item, i) => {
+                html += `<li style="margin-bottom:4px; padding:4px 8px; background:#f8f9fa; border-radius:4px; font-size:0.9rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                            <p><strong>الوحدة الثالثة (20 سؤال)</strong></p>
+                            <ul style="list-style:none; padding-right:0;">`;
+            unit3Q.forEach((item, i) => {
+                html += `<li style="margin-bottom:4px; padding:4px 8px; background:#f8f9fa; border-radius:4px; font-size:0.9rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                            <p><strong>الوحدة الرابعة (20 سؤال)</strong></p>
+                            <ul style="list-style:none; padding-right:0;">`;
+            unit4Q.forEach((item, i) => {
+                html += `<li style="margin-bottom:4px; padding:4px 8px; background:#f8f9fa; border-radius:4px; font-size:0.9rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                            <p><strong>الوحدة الخامسة (20 سؤال)</strong></p>
+                            <ul style="list-style:none; padding-right:0;">`;
+            unit5Q.forEach((item, i) => {
+                html += `<li style="margin-bottom:4px; padding:4px 8px; background:#f8f9fa; border-radius:4px; font-size:0.9rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                        </div>
+
+                        <div class="card">
+                            <h3 class="card-sub">📗 اختبار منتصف الفصل (30 سؤالاً شاملاً لوحدتي 1 و 2)</h3>
+                            <ul style="list-style:none; padding-right:0;">`;
+            midtermQ.forEach((item, i) => {
+                html += `<li style="margin-bottom:4px; padding:4px 8px; background:#f8f9fa; border-radius:4px; font-size:0.9rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                        </div>
+
+                        <div class="card">
+                            <h3 class="card-sub">📕 الاختبار النهائي الشامل (40 سؤالاً)</h3>
+                            <ul style="list-style:none; padding-right:0;">`;
+            finalQ.forEach((item, i) => {
+                html += `<li style="margin-bottom:4px; padding:4px 8px; background:#f8f9fa; border-radius:4px; font-size:0.9rem;">
+                            <strong>${i+1}. ${item.q}</strong><br>
+                            <span style="color:#1e7e34;">✅ ${item.a}</span>
+                        </li>`;
+            });
+            html += `</ul>
+                        </div>
+
+                        <div class="card">
+                            <h3 class="card-sub">📂 الامتحانات السابقة (نماذج)</h3>`;
+            driveLinks.forEach(link => {
+                html += `<div class="drive-link"><span>📄</span> <a href="https://drive.google.com/file/d/${link.id}/view?usp=sharing" target="_blank">${link.label}</a></div>`;
+            });
+            html += `<p class="text-muted" style="margin-top:8px;">🔹 يمكنك تحميل النماذج والاطلاع عليها مباشرة.</p>
+                        </div>`;
+
+            document.getElementById('examsContent').innerHTML = html;
+        }
+
+        // ----- QBank -----
+        function renderQBank(filter = 'all', search = '') {
+            let items = qbankFull;
+            if (filter !== 'all') items = items.filter(it => it.unit == filter);
+            if (search.trim()) {
+                const s = search.trim().toLowerCase();
+                items = items.filter(it => it.q.toLowerCase().includes(s) || it.a.toLowerCase().includes(s));
+            }
+            let html = `<p style="color:#6c757d;">عرض ${items.length} سؤال من إجمالي ${qbankFull.length}</p>`;
+            items.forEach((it, idx) => {
+                html += `<div class="qbank-item">
+                            <div class="q">${idx+1}. ${it.q}</div>
+                            <div class="a" id="qans_${it.id}">${it.a}</div>
+                            <div class="meta">الوحدة ${it.unit} · <button onclick="toggleAnswer(${it.id})">إظهار الإجابة</button></div>
+                        </div>`;
+            });
+            document.getElementById('qbankList').innerHTML = html;
+        }
+
+        function toggleAnswer(id) {
+            const el = document.getElementById('qans_' + id);
+            if (el) el.classList.toggle('show');
+        }
+
+        // ----- Reviews -----
+        function renderReviews() {
+            let html = `
+                        <div class="card" style="background:#f8f9fa;">
+                            <h3 class="card-sub">📝 مراجعات قصيرة</h3>
+                            <p><strong>تعريف أصول الفقه:</strong> العلم بالأحكام الشرعية العملية من أدلتها التفصيلية (تعريف الشافعي). موضوعه الأدلة وأحوال المكلفين.</p>
+                            <p><strong>القرآن:</strong> كلام الله المعجز، قطعي الثبوت، دلالته قطعية/ظنية. أساليبه: إثبات المشروعية، النهي، والإباحة.</p>
+                            <p><strong>السنة:</strong> قول، فعل، تقرير. أقسامها: متواتر (قطعي)، مشهور (عند الحنفية)، وآحاد (ظني).</p>
+                            <p><strong>الإجماع:</strong> اتفاق المجتهدين. صريح (قطعي)، سكوتي (محل خلاف، أنكره الشافعي).</p>
+                            <p><strong>القياس:</strong> إلحاق فرع بأصل لعلة. أركانه: الأصل، الفرع، حكم الأصل، العلة.</p>
+                            <p><strong>الأدلة المختلف فيها:</strong> الاستحسان، الاستصحاب، العرف، سد الذرائع، المصالح المرسلة، شرع من قبلنا.</p>
+                            <p><strong>الحكم الشرعي:</strong> خطاب الله. تكليفي (واجب، مندوب، حرام، مكروه، مباح) ووضعي (سبب، شرط، مانع، صحة، بطلان).</p>
+                            <p><strong>دلالات الألفاظ:</strong> العام والخاص، المطلق والمقيد، المنطوق (عبارة، إشارة، اقتضاء) والمفهوم (موافقة، مخالفة).</p>
+                            <p><strong>التعارض والاجتهاد:</strong> التعارض يدفع بالجمع، الترجيح، النسخ، التساقط. الاجتهاد فرض كفاية، مراتب المجتهدين خمس.</p>
+                        </div>
+                        <div class="card" style="background:#f8f9fa;">
+                            <h3 class="card-sub">📌 مراجعات نهائية</h3>
+                            <p><strong>نظرية الحكم الشرعي:</strong> تتكون من الحكم التكليفي (الذي يطلب الفعل أو الترك) والحكم الوضعي (الذي يحدد الأسباب والشروط). الفرض والواجب مترادفان عند الجمهور، ويفرق الحنفية بقطعية الدليل.</p>
+                            <p><strong>مصادر التشريع:</strong> القرآن (قطعي الثبوت)، السنة (متواتر/آحاد)، الإجماع (صريح/سكوتي)، القياس (العلة)، والأدلة المختلف فيها (الاستحسان، الاستصحاب، العرف، سد الذرائع، المصالح المرسلة).</p>
+                            <p><strong>دلالات الألفاظ:</strong> العام يُخصص بالاستثناء والغاية والشرط والصفة. المطلق يُحمل على المقيد في أربع حالات. المنطوق يشمل العبارة والإشارة والاقتضاء، والمفهوم يشمل الموافقة والمخالفة.</p>
+                            <p><strong>التعارض والترجيح:</strong> يدفع التعارض بالتأويل أولاً، ثم الترجيح بمرجحات السند والمتن والمدلول، ثم النسخ، وأخيراً التساقط والتوقف.</p>
+                            <p><strong>الاجتهاد والتقليد:</strong> الاجتهاد بذل الجهد للوصول للحكم. شروط المجتهد ثمانية. مراتب المجتهدين خمس. التقليد واجب على العامة.</p>
+                        </div>
+                        <div class="card">
+                            <h3 class="card-sub">🔄 بطاقات المراجعة (تفاعلية)</h3>
+                            <div id="flashcardsContainer"></div>
+                        </div>
+                    `;
+            document.getElementById('reviewsContent').innerHTML = html;
+
+            let fcHtml = '';
+            flashcardsData.forEach((f) => {
+                fcHtml += `<div class="flashcard" onclick="this.classList.toggle('open')">
+                            <div class="front">❓ ${f.front}</div>
+                            <div class="back">✅ ${f.back}</div>
+                        </div>`;
+            });
+            document.getElementById('flashcardsContainer').innerHTML = fcHtml;
+        }
+
+        // ----- Tree -----
+        function renderTree() {
+            let html = `
+                        <div class="card" style="background:#f1f4f8;">
+                            <p style="font-weight:700; font-size:1.2rem; margin-bottom:12px;">🌳 شجرة المعرفة: علم أصول الفقه</p>
+                            <div class="tree-node">
+                                <div class="node-label" onclick="toggleTreeNode(this)">📘 علم أصول الفقه</div>
+                                <div class="tree-children">
+                                    <div class="tree-node">
+                                        <div class="node-label" onclick="toggleTreeNode(this)">📌 المدخل العام</div>
+                                        <div class="tree-children">
+                                            <div class="tree-node"><div class="node-label">تعريف العلم</div><div class="node-detail">العلم بالأحكام الشرعية العملية من أدلتها التفصيلية (تعريف الشافعي).</div></div>
+                                            <div class="tree-node"><div class="node-label">موضوعه وغايته</div><div class="node-detail">الأدلة الشرعية، أحوال المكلفين، الحاكم. غايته تمكين المجتهد من استنباط الأحكام.</div></div>
+                                            <div class="tree-node"><div class="node-label">مناهج التدوين</div><div class="node-detail">مدرسة الشافعية (نظرية)، الحنفية (عملية)، المتأخرون (جمع)، والمدرسة الحديثة (تبسيط).</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="tree-node">
+                                        <div class="node-label" onclick="toggleTreeNode(this)">📌 الأدلة المتفق عليها</div>
+                                        <div class="tree-children">
+                                            <div class="tree-node"><div class="node-label">القرآن</div><div class="node-detail">كلام الله المعجز، قطعي الثبوت، دلالته قطعية/ظنية. أساليب: إثبات، نهي، إباحة.</div></div>
+                                            <div class="tree-node"><div class="node-label">السنة</div><div class="node-detail">قول، فعل، تقرير. أقسامها: متواتر، مشهور، آحاد. أدوارها: مؤكدة، مبينة، مخصصة، ناسخة، منشئة.</div></div>
+                                            <div class="tree-node"><div class="node-label">الإجماع</div><div class="node-detail">اتفاق المجتهدين. صريح (قطعي)، سكوتي (محل خلاف، أنكره الشافعي).</div></div>
+                                            <div class="tree-node"><div class="node-label">القياس</div><div class="node-detail">إلحاق فرع بأصل لعلة. أركانه: الأصل، الفرع، حكم الأصل، العلة. مسالك العلة: النص، الإيماء، الإجماع، السبر، التخريج، التنقيح، التحقيق.</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="tree-node">
+                                        <div class="node-label" onclick="toggleTreeNode(this)">📌 الأدلة المختلف فيها</div>
+                                        <div class="tree-children">
+                                            <div class="tree-node"><div class="node-label">الاستحسان</div><div class="node-detail">عدول عن قياس جلي لخفي. أنكره الشافعي.</div></div>
+                                            <div class="tree-node"><div class="node-label">الاستصحاب</div><div class="node-detail">بقاء ما كان على ما كان. أنواعه: الإباحة الأصلية، براءة الذمة، الحيازة، الصفة.</div></div>
+                                            <div class="tree-node"><div class="node-label">العرف</div><div class="node-detail">ما تعارف عليه الناس. صحيح (معتبر)، فاسد (ملغى).</div></div>
+                                            <div class="tree-node"><div class="node-label">سد الذرائع</div><div class="node-detail">منع الوسائل المؤدية للمفاسد.</div></div>
+                                            <div class="tree-node"><div class="node-label">المصالح المرسلة</div><div class="node-detail">مصالح مسكوت عنها. الكليات الخمس: الدين، النفس، العقل، النسل، المال.</div></div>
+                                            <div class="tree-node"><div class="node-label">شرع من قبلنا</div><div class="node-detail">أحكام الأمم السابقة. الراجح أنه شرع لنا ما لم ينسخ.</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="tree-node">
+                                        <div class="node-label" onclick="toggleTreeNode(this)">📌 نظرية الحكم الشرعي</div>
+                                        <div class="tree-children">
+                                            <div class="tree-node"><div class="node-label">أركان الحكم</div><div class="node-detail">الحاكم، المحكوم عليه، المحكوم فيه، والحكم.</div></div>
+                                            <div class="tree-node"><div class="node-label">الحكم التكليفي</div><div class="node-detail">واجب، مندوب، حرام، مكروه، مباح.</div></div>
+                                            <div class="tree-node"><div class="node-label">الحكم الوضعي</div><div class="node-detail">سبب، شرط، مانع، عزيمة ورخصة، صحة وبطلان.</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="tree-node">
+                                        <div class="node-label" onclick="toggleTreeNode(this)">📌 دلالات الألفاظ</div>
+                                        <div class="tree-children">
+                                            <div class="tree-node"><div class="node-label">العام والخاص</div><div class="node-detail">العام يستغرق جميع الأفراد. الخاص يدل على منفرد. التخصيص بالمتصل والمنفصل.</div></div>
+                                            <div class="tree-node"><div class="node-label">المطلق والمقيد</div><div class="node-detail">المطلق شائع بلا قيد، المقيد مقترن بوصف. أربع حالات للحمل.</div></div>
+                                            <div class="tree-node"><div class="node-label">الوضوح والخفاء</div><div class="node-detail">واضح: ظاهر، نص، مفسر، محكم. غير واضح: خفي، مشكل، مجمل، متشابه.</div></div>
+                                            <div class="tree-node"><div class="node-label">المنطوق والمفهوم</div><div class="node-detail">المنطوق: عبارة، إشارة، اقتضاء. المفهوم: موافقة (فحوى، لحن)، مخالفة (صفة، شرط، غاية، عدد).</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="tree-node">
+                                        <div class="node-label" onclick="toggleTreeNode(this)">📌 التعارض والاجتهاد</div>
+                                        <div class="tree-children">
+                                            <div class="tree-node"><div class="node-label">التعارض</div><div class="node-detail">تقابل دليلين متساويين. يدفع بالجمع، الترجيح، النسخ، التساقط.</div></div>
+                                            <div class="tree-node"><div class="node-label">الاجتهاد</div><div class="node-detail">بذل الجهد للوصول للحكم. شروط المجتهد ثمانية. تفسيري (فرض عين) واستنباطي (فرض كفاية).</div></div>
+                                            <div class="tree-node"><div class="node-label">مراتب المجتهدين</div><div class="node-detail">مستقل، منتسب، في المذهب، مرجح، عارف.</div></div>
+                                            <div class="tree-node"><div class="node-label">التقليد</div><div class="node-detail">قبول قول الغير. واجب على العامة.</div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+            document.getElementById('treeContent').innerHTML = html;
+        }
+
+        function toggleTreeNode(el) {
+            const parent = el.closest('.tree-node');
+            const detail = parent.querySelector('.node-detail');
+            if (detail) detail.classList.toggle('open');
+            const children = parent.querySelector('.tree-children');
+            if (children) {
+                const isOpen = children.style.display !== 'none';
+                children.style.display = isOpen ? 'none' : 'block';
+            }
+        }
+
+        // =====================================================================
+        // NAVIGATION
+        // =====================================================================
+
+        function navigateTo(sectionId) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            const target = document.getElementById('section-' + sectionId);
+            if (target) target.classList.add('active');
+            document.querySelectorAll('.nav-tabs button').forEach(b => b.classList.remove('active'));
+            const btn = document.querySelector(`.nav-tabs button[data-section="${sectionId}"]`);
+            if (btn) btn.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goHome() { navigateTo('home'); }
+
+        // =====================================================================
+        // SEARCH
+        // =====================================================================
+
+        function toggleSearch() {
+            const overlay = document.getElementById('searchOverlay');
+            overlay.classList.toggle('open');
+            if (overlay.classList.contains('open')) {
+                document.getElementById('searchInput').focus();
+                document.getElementById('searchResults').innerHTML = '';
+            }
+        }
+
+        function closeSearch() { document.getElementById('searchOverlay').classList.remove('open'); }
+
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const query = this.value.trim();
+            const results = document.getElementById('searchResults');
+            if (!query) { results.innerHTML = ''; return; }
+            const q = query.toLowerCase();
+            let found = [];
+            units.forEach(u => {
+                u.lessons.forEach(l => {
+                    const text = l.title + ' ' + l.objectives.join(' ') + ' ' + l.skills.join(' ') + ' ' + l
+                        .outcomes.join(' ');
+                    if (text.toLowerCase().includes(q)) {
+                        found.push({ type: 'درس', title: l.title, unit: u.title, link: 'explain' });
+                    }
+                });
+            });
+            summariesData.forEach((s, i) => {
+                if (s.toLowerCase().includes(q)) {
+                    found.push({ type: 'ملخص', title: `ملخص الوحدة ${i+1}`, unit: `الوحدة ${i+1}`, link: 'summaries' });
+                }
+            });
+            qbankFull.forEach(it => {
+                if (it.q.toLowerCase().includes(q) || it.a.toLowerCase().includes(q)) {
+                    found.push({ type: 'سؤال بنك', title: it.q.substring(0, 80) + '...', unit: `الوحدة ${it.unit}`,
+                        link: 'qbank' });
+                }
+            });
+            flashcardsData.forEach(f => {
+                if (f.front.toLowerCase().includes(q) || f.back.toLowerCase().includes(q)) {
+                    found.push({ type: 'بطاقة مراجعة', title: f.front.substring(0, 80) + '...', unit: 'مراجعات',
+                        link: 'reviews' });
+                }
+            });
+            examplesData.forEach(e => {
+                if (e.title.toLowerCase().includes(q) || e.desc.toLowerCase().includes(q)) {
+                    found.push({ type: 'مثال تطبيقي', title: e.title, unit: 'أمثلة', link: 'examples' });
+                }
+            });
+            if (found.length === 0) { results.innerHTML = '<p>لا توجد نتائج</p>'; return; }
+            let html = '';
+            found.slice(0, 20).forEach(item => {
+                html += `<div class="result-item">
+                            <div class="title">${item.title}</div>
+                            <div class="meta">${item.type} · ${item.unit}</div>
+                            <button onclick="navigateTo('${item.link}'); closeSearch();">انتقال</button>
+                        </div>`;
+            });
+            results.innerHTML = html;
+        });
+
+        document.getElementById('searchOverlay').addEventListener('click', function(e) {
+            if (e.target === this) closeSearch();
+        });
+
+        // =====================================================================
+        // INIT
+        // =====================================================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            renderNavTabs();
+            renderHomeGrid();
+            renderExplain();
+            renderSummaries();
+            renderQuestions();
+            renderMaps();
+            renderExamples();
+            renderExams();
+            renderReviews();
+            renderTree();
+            renderQBank();
+
+            document.getElementById('qbankSearch').addEventListener('input', function() {
+                renderQBank(document.getElementById('qbankFilter').value, this.value);
+            });
+            document.getElementById('qbankFilter').addEventListener('change', function() {
+                renderQBank(this.value, document.getElementById('qbankSearch').value);
+            });
+
+            navigateTo('home');
+        });
+    </script>
+
+</body>
+</html>
