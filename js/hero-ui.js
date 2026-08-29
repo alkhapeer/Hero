@@ -57,65 +57,19 @@ window.renderAcademy = function() {
             </a>
         </div>
 
-        <!-- قسم: مشاريعنا -->
-        <div style="max-width:1100px; margin:50px auto 0;">
-            <div style="text-align:center; margin-bottom:30px;">
-                <span style="display:inline-block; font-size:0.85rem; font-weight:600; color:#a78bfa; background:rgba(108,92,231,0.15); padding:4px 18px; border-radius:100px; border:1px solid rgba(108,92,231,0.2);">
-                    <i class="fas fa-cubes" style="margin-left:6px;"></i> مشاريعنا
-                </span>
-                <h2 style="color:#fff; font-size:clamp(1.6rem, 3vw, 2.2rem); margin:8px 0 0;">مجموعة من المشاريع والخدمات التي تعمل عليها</h2>
-            </div>
-
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:24px;">
-                <!-- 1: Hero Academy -->
-                <div style="background:rgba(255,255,255,0.04); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.06); border-radius:24px; padding:28px 24px 24px; transition:0.3s ease;">
-                    <div style="width:48px; height:48px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:1.6rem; background:rgba(108,92,231,0.15); color:#a78bfa; margin-bottom:16px;">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3 style="color:#fff; font-size:1.25rem; margin:0 0 2px;">Hero Academy</h3>
-                    <span style="font-size:0.8rem; font-weight:600; color:#7c8db0; direction:ltr; display:inline-block; background:rgba(255,255,255,0.05); padding:2px 14px; border-radius:100px; margin-bottom:12px; border:1px solid rgba(255,255,255,0.04);">app.hero1.vip</span>
-                    <p style="color:#b0bedb; font-size:0.92rem; line-height:1.7; margin-bottom:18px;">منصة تعليمية حديثة تقدم دورات وموارد تعليمية تفاعلية للطلاب.</p>
-                    <a href="#courses" style="display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:0.9rem; color:#a78bfa; transition:0.3s ease; border-bottom:2px solid transparent; text-decoration:none;">زيارة الأكاديمية <i class="fas fa-arrow-left"></i></a>
-                </div>
-
-                <!-- 2: Coming Soon (learn) -->
-                <div style="background:rgba(255,255,255,0.04); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.06); border-radius:24px; padding:28px 24px 24px; transition:0.3s ease;">
-                    <span style="display:inline-block; background:rgba(251,191,36,0.12); color:#fbbf24; font-size:0.7rem; font-weight:700; padding:2px 14px; border-radius:100px; border:1px solid rgba(251,191,36,0.15); margin-bottom:6px;"><i class="fas fa-clock" style="margin-left:4px;"></i> Coming Soon</span>
-                    <div style="width:48px; height:48px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:1.6rem; background:rgba(108,92,231,0.15); color:#a78bfa; margin:4px 0 16px;">
-                        <i class="fas fa-hourglass-half"></i>
-                    </div>
-                    <h3 style="color:#fff; font-size:1.25rem; margin:0 0 2px;">Coming Soon</h3>
-                    <span style="font-size:0.8rem; font-weight:600; color:#7c8db0; direction:ltr; display:inline-block; background:rgba(255,255,255,0.05); padding:2px 14px; border-radius:100px; margin-bottom:12px; border:1px solid rgba(255,255,255,0.04);">learn.hero1.vip</span>
-                    <p style="color:#b0bedb; font-size:0.92rem; line-height:1.7; margin-bottom:18px;">مشروع جديد قادراً على ترفيه المزيد!</p>
-                    <a href="#" style="display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:0.9rem; color:#a78bfa; transition:0.3s ease; border-bottom:2px solid transparent; text-decoration:none;">قررها <i class="fas fa-arrow-left"></i></a>
-                </div>
-
-                <!-- 3: Coming Soon (tools) -->
-                <div style="background:rgba(255,255,255,0.04); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.06); border-radius:24px; padding:28px 24px 24px; transition:0.3s ease;">
-                    <span style="display:inline-block; background:rgba(251,191,36,0.12); color:#fbbf24; font-size:0.7rem; font-weight:700; padding:2px 14px; border-radius:100px; border:1px solid rgba(251,191,36,0.15); margin-bottom:6px;"><i class="fas fa-clock" style="margin-left:4px;"></i> Coming Soon</span>
-                    <div style="width:48px; height:48px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:1.6rem; background:rgba(108,92,231,0.15); color:#a78bfa; margin:4px 0 16px;">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3 style="color:#fff; font-size:1.25rem; margin:0 0 2px;">Coming Soon</h3>
-                    <span style="font-size:0.8rem; font-weight:600; color:#7c8db0; direction:ltr; display:inline-block; background:rgba(255,255,255,0.05); padding:2px 14px; border-radius:100px; margin-bottom:12px; border:1px solid rgba(255,255,255,0.04);">tools.hero1.vip</span>
-                    <p style="color:#b0bedb; font-size:0.92rem; line-height:1.7; margin-bottom:18px;">أدوات ذكية وحلول عملية لتسهيل حياتك اليومية.</p>
-                    <a href="#" style="display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:0.9rem; color:#a78bfa; transition:0.3s ease; border-bottom:2px solid transparent; text-decoration:none;">قررها <i class="fas fa-arrow-left"></i></a>
-                </div>
-
-                <!-- 4: Coming Soon (ideas) -->
-                <div style="background:rgba(255,255,255,0.04); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.06); border-radius:24px; padding:28px 24px 24px; transition:0.3s ease;">
-                    <span style="display:inline-block; background:rgba(251,191,36,0.12); color:#fbbf24; font-size:0.7rem; font-weight:700; padding:2px 14px; border-radius:100px; border:1px solid rgba(251,191,36,0.15); margin-bottom:6px;"><i class="fas fa-clock" style="margin-left:4px;"></i> Coming Soon</span>
-                    <div style="width:48px; height:48px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:1.6rem; background:rgba(108,92,231,0.15); color:#a78bfa; margin:4px 0 16px;">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3 style="color:#fff; font-size:1.25rem; margin:0 0 2px;">Coming Soon</h3>
-                    <span style="font-size:0.8rem; font-weight:600; color:#7c8db0; direction:ltr; display:inline-block; background:rgba(255,255,255,0.05); padding:2px 14px; border-radius:100px; margin-bottom:12px; border:1px solid rgba(255,255,255,0.04);">ideas.hero1.vip</span>
-                    <p style="color:#b0bedb; font-size:0.92rem; line-height:1.7; margin-bottom:18px;">مساحة للإبداع والأفكار المبتكرة التي نصنعها معاً.</p>
-                    <a href="#" style="display:inline-flex; align-items:center; gap:8px; font-weight:600; font-size:0.9rem; color:#a78bfa; transition:0.3s ease; border-bottom:2px solid transparent; text-decoration:none;">قررها <i class="fas fa-arrow-left"></i></a>
-                </div>
+                <!-- قسم: تصفح الدورات (بدلاً من مشاريعنا) -->
+        <div style="max-width:1100px; margin:50px auto 0; text-align:center;">
+            <div style="background:rgba(255,255,255,0.04); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.06); border-radius:32px; padding:60px 30px; transition:0.3s ease;">
+                <div style="font-size:72px; margin-bottom:20px;">📚</div>
+                <h2 style="color:#fff; font-size:clamp(1.8rem, 4vw, 2.8rem); margin:0 0 15px;">استكشف دوراتنا</h2>
+                <p style="color:#b0bedb; font-size:1.1rem; max-width:500px; margin:0 auto 30px; line-height:1.8;">
+                    انطلق في رحلة تعليمية مع منصتنا التفاعلية وتعلم مهارات جديدة تناسبك.
+                </p>
+                <a href="#courses" style="display:inline-block; background:linear-gradient(135deg,#7c3aed,#6d28d9); color:#fff; padding:16px 50px; border-radius:60px; font-size:1.2rem; font-weight:700; text-decoration:none; box-shadow:0 8px 32px rgba(124,58,237,0.4); transition:0.3s ease;">
+                    🚀 تصفح الدورات
+                </a>
             </div>
         </div>
-
         <!-- قسم: لماذا؟ -->
         <div style="max-width:1100px; margin:60px auto 0; background:rgba(255,255,255,0.02); border-top:1px solid rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.04); padding:40px 0;">
             <div style="text-align:center; margin-bottom:30px;">
@@ -179,11 +133,11 @@ window.renderAcademy = function() {
             <div>
                 <h4 style="color:#fff; font-size:1.1rem; margin:0 0 4px;"><i class="fas fa-envelope" style="margin-left:10px; color:#7c8db0;"></i> التواصل معنا</h4>
                 <p style="color:#94a3b8; font-size:0.9rem; margin:0 0 4px;">نحن هنا للإجابة على استفساراتك واقتراحاتك.</p>
-                <span style="font-size:1rem; color:#a78bfa; font-weight:600; direction:ltr; display:inline-block;"><i class="fas fa-at"></i> hello@hero1.vip</span>
+                <span style="font-size:1rem; color:#a78bfa; font-weight:600; direction:ltr; display:inline-block;"><i class="fas fa-at"></i> info@hero1.vip</span>
             </div>
-            <a href="#" style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.04); padding:6px 20px; border-radius:100px; border:1px solid rgba(255,255,255,0.06); color:#b0bedb; font-weight:500; font-size:0.95rem; text-decoration:none;">
+            <!--<a href="#" style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.04); padding:6px 20px; border-radius:100px; border:1px solid rgba(255,255,255,0.06); color:#b0bedb; font-weight:500; font-size:0.95rem; text-decoration:none;">
                 <i class="fas fa-map-marker-alt" style="color:#fbbf24;"></i> السودان
-            </a>
+            </a>-->
         </div>
 
         <!-- مساحة للتثبيت (تحت المحتوى) -->
