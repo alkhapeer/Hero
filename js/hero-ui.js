@@ -53,7 +53,7 @@ window.renderAcademy = function() {
                 Hero هي علامة تجارية رقمية تهدف إلى بناء مشاريع ومنتجات تعليمية وتقنية مبتكرة تصنع فرقاً حقيقياً.
             </p>
             <a href="#courses" class="btn-primary" style="display:inline-flex; align-items:center; gap:12px; background:linear-gradient(135deg,#7c3aed,#6d28d9); color:#fff; padding:14px 44px; border-radius:60px; font-size:1.05rem; font-weight:700; border:none; cursor:pointer; transition:0.3s ease; box-shadow:0 8px 32px rgba(124,58,237,0.35); margin-top:18px; text-decoration:none;">
-                <i class="fas fa-arrow-left"></i> اكششف مشاريعنا
+                <i class="fas fa-arrow-left"></i> اكتشف مشاريعنا
             </a>
         </div>
 
