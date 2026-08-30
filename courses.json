@@ -100,11 +100,9 @@
       "title": "مادة الاجراءات المدنية",
       "description": "دورة تعليمية شاملة لمادة لاجراءات المدنية .",
       "icon": "⚖️",
-      "url": "courses/civil_procedures.html",
+      "url": "courses/Civil/civil_procedures.html",
       "visible": true
     },
-
-
     {
       "id": 9,
       "category": "test-qudurat",
