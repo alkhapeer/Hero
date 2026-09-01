@@ -735,6 +735,7 @@
         }
     </style>
     
+
 <script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl.min.js"></script>
 <script>
 // ====================================================================
@@ -744,7 +745,7 @@
     "use strict";
 
     // 📌 ثوابت الدورة (غيّرها حسب دورتك)
-    const COURSE_ID = "12";
+    const COURSE_ID = "hero012";
     const PUBLIC_KEY_B64 = "V+pGkH/R04mf43tdiZG6Bkk7y5oiz2/qjT5540dZ2aU=";
     const TRIAL_DAYS = 1;
 
@@ -762,7 +763,13 @@
         return bytes;
     }
     function bytesToBase64(bytes) {
-        return btoa(String.fromCharCode.apply(null, bytes));
+    let binary = '';
+    const chunkSize = 8192;
+    for (let i = 0; i < bytes.length; i += chunkSize) {
+        const chunk = bytes.subarray(i, i + chunkSize);
+        binary += String.fromCharCode.apply(null, chunk);
+    }
+    return btoa(binary);
     }
     function generateUUID() {
         if (crypto.randomUUID) return crypto.randomUUID();
@@ -1189,6 +1196,7 @@
     // 🚀 التهيئة الرئيسية
     async function init() {
         if (typeof nacl === 'undefined') {
+            console.log('✅ [HERO] المفتاح العام المستخدم في هذه الدورة:', PUBLIC_KEY_B64);
             document.documentElement.style.visibility = 'hidden';
             const errOverlay = document.createElement('div');
             Object.assign(errOverlay.style, {
@@ -1261,6 +1269,7 @@
     else init();
 })();
 </script>
+        
         
 
 </head>
