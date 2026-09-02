@@ -671,10 +671,21 @@ function renderHome() {
                     </p>
 
                     <a
-                        href="#course/${course.id}"
+                        href="${esc(course.url)}"
+                        download
                         onclick="saveMyCourse(${course.id})"
+                        style="
+                            display:block;
+                            text-align:center;
+                            background:#2563eb;
+                            color:#fff;
+                            text-decoration:none;
+                            padding:10px;
+                            border-radius:8px;
+                            font-weight:bold;
+                        "
                     >
-                        ▶ ابدأ التجربة
+                    📥 تحميل الدورة وبدء التجربة
                     </a>
 
                 </div>
