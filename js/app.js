@@ -606,8 +606,7 @@ function renderHome() {
                         ">
 
                             <a
-                                href="#course/${course.id}"
-                                onclick="saveMyCourse(${course.id})"
+                                href="${esc(course.url)}" download onclick="saveMyCourse(${course.id})"
                                 style="
                                     display:block;
                                     text-align:center;
@@ -619,7 +618,7 @@ function renderHome() {
                                     font-weight:bold;
                                 "
                             >
-                                ▶ ابدأ التجربة
+                                ▶ تحميل الدورة وبدء التجربة
                             </a>
 
                         </div>
@@ -846,7 +845,7 @@ function renderMyCourses() {
                     </p>
 
                     <a
-                        href="#course/${course.id}"
+                        href="${esc(course.url)}" download onclick="saveMyCourse(${course.id})"
                         style="
                             display:block;
                             text-align:center;
@@ -859,7 +858,7 @@ function renderMyCourses() {
                             margin-top:15px;
                         "
                     >
-                        ▶ متابعة الدورة
+                        ▶ تحميل الدورة
                     </a>
 
                 </div>
