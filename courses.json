@@ -28,7 +28,8 @@
       "title": "مادة الأحوال الشخصية لغير المسلمين",
       "description": "دورة تعليمية شاملة لمادة الأحوال الشخصية لغير المسلمين.",
       "icon": "⚖️",
-      "url": "courses/non_muslims_law/protected_non_muslims_law.zip",
+      "drive_url": "https://drive.google.com/uc?export=download&id=1dbLOgcV_T-JwtV1FNOo76VtP7W-1o6yU",
+      "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true
     },
     {
@@ -46,7 +47,8 @@
       "title": "النجاح في مادة الإثبات",
       "description": "دورة تعليمية شاملة لمادة الإثبات.",
       "icon": "⚖️",
-      "url": "courses/evedense_law/Evidence_law.zip",
+      "drive_url": "https://drive.google.com/uc?export=download&id=1R24FtlLGpIT7hFlFuihuAI_MHPko2828",
+      "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true
     },
     {
@@ -55,7 +57,8 @@
       "title": "مادة الأحوال الشخصية للمسلمين",
       "description": "دورة تعليمية شاملة لمادة الأحوال الشخصية للمسلمين.",
       "icon": "⚖️",
-      "url": "courses/A7wal/protected_personal_law.zip",
+      "drive_url": "https://drive.google.com/uc?export=download&id=1YNyRttueAwg9UPgGWIpFtpz7B1_HkBQI",
+      "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true
     },
     {
@@ -64,7 +67,8 @@
       "title": "مادة العقود",
       "description": "دورة تعليمية شاملة لمادة العقود.",
       "icon": "⚖️",
-      "url": "courses/contracts/protected_contract.zip",
+      "drive_url": "https://drive.google.com/uc?export=download&id=1sNoGa6QLjbDbi4V6-us1rG-6srvR9pH0",
+      "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true
     },
     {
@@ -73,7 +77,8 @@
       "title": "مادة القانون الجنائي",
       "description": "دورة تعليمية شاملة لمادة القانون الجنائي.",
       "icon": "⚖️",
-      "url": "courses/Criminal_law/protected_criminal.zip",
+      "drive_url": "https://drive.google.com/uc?export=download&id=1C2yjmS3S3et-P_J-PRE1zcpvyYcNJ4L3",
+      "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true
     },
     {
@@ -82,14 +87,16 @@
       "title": "مادة الإجراءات الجنائية",
       "description": "دورة تعليمية شاملة لمادة الإجراءات الجنائية.",
       "icon": "⚖️",
-      "url": "courses/criminal_procedures/Criminal_procedures.zip",
+      "drive_url": "https://drive.google.com/uc?export=download&id=1fpzfdyDtqV85adQviyDuhMhgcZbMFz4N",
+      "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true
     },
      {
       "id": 11,
       "category": "law",
       "title": "مادة أصول الفقه",
-      "description": "دورة تعليمية شاملة لمادة أصول الفقه .",
+      "drive_url": "https://drive.google.com/uc?export=download&id=1n0DF3OgVTVyKSjZrlZMJCR5-dhUfM9vb",
+      "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "icon": "⚖️",
       "url": "courses/Osol/Osol.zip",
       "visible": true
@@ -100,7 +107,8 @@
       "title": "مادة الاجراءات المدنية",
       "description": "دورة تعليمية شاملة لمادة لاجراءات المدنية .",
       "icon": "⚖️",
-      "url": "courses/Civil/civil_procedures.zip",
+      "drive_url": "https://drive.google.com/uc?export=download&id=14yUOGfpOgF52jfiKsNJ5L9bbz7FcodHW",
+      "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true
     },
     {
@@ -127,7 +135,8 @@
       "title": "الميراث",
       "description": "مادة الميراث ضمن دورة الأحوال الشخصية للمسلمين.",
       "icon": "🧮",
-      "url": "courses/A7wal/merath/merath.zip",
+      "drive_url": "https://drive.google.com/uc?export=download&id=1FiM5zLnyN4bnG_xIPtBU5OUXzFLkIsxl",
+      "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": false,
       "parentCourse": 4
     }
