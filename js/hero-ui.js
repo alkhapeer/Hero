@@ -1,6 +1,6 @@
 // ============================================================
 // hero-ui.js  -  إعادة تعريف واجهات التطبيق
-// الهدف: تطبيق تصميم الصفحة الرئيسية (Hero Projects) 
+// الهدف: تطبيق تصميم الصفحة الرئيسية (Hero Projects)
 // دون تعديل أي سطر في app.js أو style.css
 // ============================================================
 
@@ -16,10 +16,6 @@ function renderNav(activeTab) {
             <i class="fas fa-book"></i>
             <span>الدورات</span>
         </a>
-        <a href="#mycourses" style="${activeTab === 'mycourses' ? 'color:#a78bfa;' : ''}">
-            <i class="fas fa-star"></i>
-            <span>دوراتي</span>
-        </a>
         <a href="#about" style="${activeTab === 'about' ? 'color:#a78bfa;' : ''}">
             <i class="fas fa-info-circle"></i>
             <span>عن</span>
@@ -32,8 +28,7 @@ function renderNav(activeTab) {
 // 1. إعادة تعريف الصفحة الرئيسية (Academy)
 // ============================================================
 window.renderAcademy = function() {
-    const myCount = getMyCourses ? getMyCourses().length : 0;
-
+    // لا نستخدم دوراتي، لذلك لا نستدعي getMyCourses
     let html = `
     <div style="min-height:100vh; background:transparent; box-sizing:border-box; padding:20px 15px 100px;">
 
@@ -147,7 +142,6 @@ window.renderAcademy = function() {
 
     app.innerHTML = html + renderNav('home');
 
-    // استدعاء زر التثبيت (دالة موجودة في app.js)
     if (typeof setupInstallButton === 'function') {
         setTimeout(setupInstallButton, 50);
     }
@@ -184,12 +178,16 @@ window.renderHome = function() {
             `;
 
             catCourses.forEach(course => {
+                // استخدام رابط التحميل المباشر (Google Drive أو أي رابط)
+                const downloadUrl = course.drive_url || course.url || '#';
                 html += `
                 <div style="background:rgba(255,255,255,0.04); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.06); border-radius:20px; padding:22px; transition:0.3s ease;">
                     <div style="font-size:40px; margin-bottom:10px;">${esc(course.icon)}</div>
                     <h3 style="color:#fff; margin:8px 0;">${esc(course.title)}</h3>
                     <p style="color:#b0bedb; font-size:14px; line-height:1.7;">${esc(course.description)}</p>
-                    <a href="#course/${course.id}" onclick="saveMyCourse(${course.id})" style="display:block; text-align:center; background:linear-gradient(135deg,#7c3aed,#6d28d9); color:#fff; text-decoration:none; padding:10px; border-radius:60px; font-weight:bold; margin-top:15px; transition:0.3s;">▶ ابدأ التجربة</a>
+                    <a href="${esc(downloadUrl)}" target="_blank" rel="noopener" style="display:block; text-align:center; background:linear-gradient(135deg,#7c3aed,#6d28d9); color:#fff; text-decoration:none; padding:10px; border-radius:60px; font-weight:bold; margin-top:15px; transition:0.3s;">
+                        📥 تحميل الدورة
+                    </a>
                 </div>
                 `;
             });
@@ -200,12 +198,15 @@ window.renderHome = function() {
         // وضع قديم بدون تصنيفات
         html += `<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:16px;">`;
         visibleCourses.forEach(course => {
+            const downloadUrl = course.drive_url || course.url || '#';
             html += `
             <div style="background:rgba(255,255,255,0.04); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.06); border-radius:20px; padding:22px;">
                 <div style="font-size:40px;">${esc(course.icon)}</div>
                 <h3 style="color:#fff;">${esc(course.title)}</h3>
                 <p style="color:#b0bedb;">${esc(course.description)}</p>
-                <a href="#course/${course.id}" onclick="saveMyCourse(${course.id})" style="display:block; text-align:center; background:linear-gradient(135deg,#7c3aed,#6d28d9); color:#fff; text-decoration:none; padding:10px; border-radius:60px; font-weight:bold;">▶ ابدأ التجربة</a>
+                <a href="${esc(downloadUrl)}" target="_blank" rel="noopener" style="display:block; text-align:center; background:linear-gradient(135deg,#7c3aed,#6d28d9); color:#fff; text-decoration:none; padding:10px; border-radius:60px; font-weight:bold;">
+                    📥 تحميل الدورة
+                </a>
             </div>
             `;
         });
@@ -221,48 +222,11 @@ window.renderHome = function() {
 };
 
 // ============================================================
-// 3. إعادة تعريف صفحة دوراتي (My Courses)
+// 3. إعادة تعريف صفحة دوراتي (My Courses) - يمكن حذفها إن لم تكن مستخدمة
 // ============================================================
 window.renderMyCourses = function() {
-    const myIds = getMyCourses ? getMyCourses() : [];
-    const myCourses = coursesData.filter(c => myIds.includes(Number(c.id)));
-
-    let html = `
-    <div style="max-width:1100px; margin:auto; padding:20px 18px 100px;">
-        <div style="display:flex; align-items:center; gap:10px; margin-bottom:25px;">
-            <button onclick="location.hash='#home'" style="border:0; background:rgba(255,255,255,0.06); color:#fff; width:42px; height:42px; border-radius:12px; cursor:pointer; font-size:22px; backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.08);">
-                ←
-            </button>
-            <h1 style="margin:0; font-size:25px; color:#fff;">⭐ دوراتي</h1>
-        </div>
-    `;
-
-    if (!myCourses.length) {
-        html += `
-        <div style="text-align:center; padding:60px 20px; background:rgba(255,255,255,0.04); border-radius:24px; backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.06);">
-            <div style="font-size:55px; margin-bottom:15px;">📚</div>
-            <h2 style="color:#fff;">لا توجد دورات بعد</h2>
-            <p style="color:#94a3b8; line-height:1.7;">عندما تبدأ تجربة أي دورة ستظهر هنا لتستطيع العودة إليها بسرعة.</p>
-            <button onclick="location.hash='#courses'" style="background:linear-gradient(135deg,#7c3aed,#6d28d9); color:#fff; border:0; padding:11px 25px; border-radius:60px; cursor:pointer; font-weight:bold; margin-top:10px;">📚 استعراض الدورات</button>
-        </div>
-        `;
-    } else {
-        html += `<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:16px;">`;
-        myCourses.forEach(course => {
-            html += `
-            <div style="background:rgba(255,255,255,0.04); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.06); border-radius:20px; padding:22px;">
-                <div style="font-size:40px; margin-bottom:10px;">${esc(course.icon)}</div>
-                <h3 style="color:#fff;">${esc(course.title)}</h3>
-                <p style="color:#b0bedb; line-height:1.7;">${esc(course.description)}</p>
-                <a href="#course/${course.id}" style="display:block; text-align:center; background:linear-gradient(135deg,#7c3aed,#6d28d9); color:#fff; text-decoration:none; padding:10px; border-radius:60px; font-weight:bold; margin-top:15px;">▶ متابعة الدورة</a>
-            </div>
-            `;
-        });
-        html += `</div>`;
-    }
-
-    html += `</div>`;
-    app.innerHTML = html + renderNav('mycourses');
+    // إذا أردت إزالة القسم نهائياً يمكنك حذف هذه الدالة أو تركها فارغة
+    app.innerHTML = `<div style="text-align:center; padding:80px 20px; color:#b0bedb;">هذا القسم لم يعد متاحاً</div>` + renderNav('mycourses');
 };
 
 // ============================================================
