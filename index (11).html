@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <meta name="theme-color" content="#2563eb">
+
+    <link rel="manifest" href="/manifest.webmanifest">
+
+    <title>Hero Academy</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/hero-theme.css" />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FNMM52MDH1"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'G-FNMM52MDH1');
+    </script>
+</head>
+
+<body>
+
+    <div id="app"></div>
+
+    <script src="/js/app2.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+
+                navigator.serviceWorker.register('/sw.js')
+
+                    .then(registration => {
+                        console.log(
+                            '✅ Hero Service Worker registered:',
+                            registration.scope
+                        );
+                    })
+
+                    .catch(error => {
+                        console.error(
+                            '❌ Hero Service Worker registration failed:',
+                            error
+                        );
+                    });
+
+            });
+        }
+    </script>
+        <!-- الملف الجديد الذي يعيد تعريف الواجهات (ضع المسار الصحيح) -->
+    <script src="/js/hero-ui.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => console.log('✅ Service Worker registered:', registration.scope))
+                    .catch(error => console.error('❌ Service Worker registration failed:', error));
+            });
+        }
+    </script>
+
+</body>
+</html>
