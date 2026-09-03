@@ -93,8 +93,6 @@ async function loadCourses() {
 // ================================
 function renderAcademy() {
 
-    const myCount = getMyCourses().length;
-
     app.innerHTML = `
         <div style="
             min-height:100vh;
@@ -188,70 +186,6 @@ function renderAcademy() {
                             font-size:14px;
                         ">
                             تصفح جميع الدورات والمواد التعليمية
-                        </div>
-
-                    </div>
-
-                    <div style="
-                        font-size:25px;
-                        color:#94a3b8;
-                    ">
-                        ‹
-                    </div>
-
-                </button>
-
-
-                <!-- بطاقة دوراتي -->
-                <button
-                    onclick="location.hash='#mycourses'"
-                    style="
-                        width:100%;
-                        border:0;
-                        background:#fff;
-                        border-radius:18px;
-                        padding:22px;
-                        margin-bottom:15px;
-                        text-align:right;
-                        cursor:pointer;
-                        box-shadow:0 3px 15px rgba(0,0,0,.07);
-                        display:flex;
-                        align-items:center;
-                        gap:18px;
-                    "
-                >
-
-                    <div style="
-                        width:58px;
-                        height:58px;
-                        border-radius:15px;
-                        background:#fef3c7;
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                        font-size:30px;
-                        flex-shrink:0;
-                    ">
-                        ⭐
-                    </div>
-
-                    <div style="flex:1;">
-
-                        <div style="
-                            font-size:19px;
-                            font-weight:bold;
-                            color:#172033;
-                        ">
-                            دوراتي
-                        </div>
-
-                        <div style="
-                            color:#64748b;
-                            margin-top:5px;
-                            font-size:14px;
-                        ">
-                            الدورات التي بدأت تجربتها
-                            ${myCount ? `(${myCount})` : ''}
                         </div>
 
                     </div>
@@ -703,177 +637,6 @@ function renderHome() {
 }
 
 // ================================
-// دوراتي
-// ================================
-function renderMyCourses() {
-
-    const myIds = getMyCourses();
-
-    const myCourses =
-        coursesData.filter(course =>
-            myIds.includes(Number(course.id))
-        );
-
-
-    let html = `
-        <div style="
-            max-width:900px;
-            margin:auto;
-            padding:20px;
-        ">
-
-            <div style="
-                display:flex;
-                align-items:center;
-                gap:10px;
-                margin-bottom:25px;
-            ">
-
-                <button
-                    onclick="location.hash='#home'"
-                    style="
-                        border:0;
-                        background:#fff;
-                        width:42px;
-                        height:42px;
-                        border-radius:10px;
-                        cursor:pointer;
-                        font-size:22px;
-                    "
-                >
-                    ←
-                </button>
-
-                <h1 style="
-                    margin:0;
-                    font-size:25px;
-                ">
-                    ⭐ دوراتي
-                </h1>
-
-            </div>
-    `;
-
-
-    if (!myCourses.length) {
-
-        html += `
-            <div style="
-                text-align:center;
-                padding:60px 20px;
-                background:#fff;
-                border-radius:18px;
-            ">
-
-                <div style="
-                    font-size:55px;
-                    margin-bottom:15px;
-                ">
-                    📚
-                </div>
-
-                <h2>
-                    لا توجد دورات بعد
-                </h2>
-
-                <p style="
-                    color:#64748b;
-                    line-height:1.7;
-                ">
-                    عندما تبدأ تجربة أي دورة ستظهر هنا
-                    لتستطيع العودة إليها بسرعة.
-                </p>
-
-                <button
-                    onclick="location.hash='#courses'"
-                    style="
-                        background:#2563eb;
-                        color:#fff;
-                        border:0;
-                        padding:11px 25px;
-                        border-radius:9px;
-                        cursor:pointer;
-                        font-weight:bold;
-                    "
-                >
-                    📚 استعراض الدورات
-                </button>
-
-            </div>
-        `;
-
-    } else {
-
-        html += `
-            <div style="
-                display:grid;
-                grid-template-columns:
-                    repeat(auto-fit,minmax(250px,1fr));
-                gap:15px;
-            ">
-        `;
-
-
-        myCourses.forEach(course => {
-
-            html += `
-                <div style="
-                    background:#fff;
-                    border:1px solid #e0e0e0;
-                    border-radius:14px;
-                    padding:20px;
-                    box-shadow:
-                        0 2px 8px rgba(0,0,0,.05);
-                ">
-
-                    <div style="
-                        font-size:38px;
-                        margin-bottom:10px;
-                    ">
-                        ${esc(course.icon)}
-                    </div>
-
-                    <h3>
-                        ${esc(course.title)}
-                    </h3>
-
-                    <p style="
-                        color:#64748b;
-                        line-height:1.6;
-                    ">
-                        ${esc(course.description)}
-                    </p>
-
-                    <a
-                        href="${esc(course.url)}" download onclick="saveMyCourse(${course.id})"
-                        style="
-                            display:block;
-                            text-align:center;
-                            background:#2563eb;
-                            color:#fff;
-                            text-decoration:none;
-                            padding:10px;
-                            border-radius:8px;
-                            font-weight:bold;
-                            margin-top:15px;
-                        "
-                    >
-                        ▶ تحميل الدورة
-                    </a>
-
-                </div>
-            `;
-        });
-
-
-        html += `</div>`;
-    }
-
-
-    html += `</div>`;
-
-    app.innerHTML = html;
-}
 
 // ================================
 // عن الأكاديمية
@@ -1197,12 +960,6 @@ function route() {
     } else if (hash === 'courses') {
 
         renderHome();
-
-
-    } else if (hash === 'mycourses') {
-
-        renderMyCourses();
-
 
     } else if (hash === 'about') {
 
