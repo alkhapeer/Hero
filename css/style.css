@@ -17,3 +17,97 @@ h3{margin:8px 0;font-size:18px}
 .nav a:hover{color:#2563eb}
 .nav span{font-size:10px;font-weight:bold}
 @media(max-width:600px){.topbar{padding:0 14px}.nav a{font-size:14px}.nav span{font-size:9px}}
+
+/* ===== إضافات الشريط الترويجي المتحرك ===== */
+
+/* الشريط الرئيسي */
+#hero-helper-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: #ffffff;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    font-family: 'Tahoma', Arial, sans-serif;
+}
+
+/* حاوية المحتوى */
+.hero-helper-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    max-width: 1200px;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* النص المتحرك */
+.hero-helper-text {
+    white-space: nowrap;
+    animation: heroBarMove 18s linear infinite;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* زر التثبيت */
+.hero-helper-btn {
+    background: #ffffff;
+    color: #2563eb;
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: 0.3s ease;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.hero-helper-btn:hover {
+    background: #f0f4ff;
+    transform: scale(1.05);
+}
+
+/* حركة النص من اليمين إلى اليسار */
+@keyframes heroBarMove {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* تعديل موضع الشريط حسب الشاشة */
+@media (max-width: 600px) {
+    #hero-helper-bar {
+        top: auto;
+        bottom: 60px; /* فوق شريط التنقل السفلي */
+        padding: 8px 12px;
+    }
+    .hero-helper-text {
+        font-size: 0.85rem;
+    }
+    .hero-helper-btn {
+        padding: 4px 14px;
+        font-size: 0.8rem;
+    }
+}
+
+/* تعديل المسافة حتى لا يغطي الشريط المحتوى على الشاشات الكبيرة */
+body {
+    padding-top: 50px; /* إضافة مساحة للشريط العلوي */
+}
+
+@media (max-width: 600px) {
+    body {
+        padding-top: 0; /* إلغاء المسافة العلوية على الهاتف */
+        padding-bottom: 130px; /* تعويض الشريط السفلي + شريط التنقل */
+    }
+}
