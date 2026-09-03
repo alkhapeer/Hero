@@ -28,6 +28,31 @@ function getBasePath() {
 }
 
 // ================================
+// الدورات التي بدأ المستخدم تجربتها
+// (أعدنا هذه الدوال لاستخدامها في نقاط أخرى من الكود الأصلي)
+// ================================
+function getMyCourses() {
+    try {
+        return JSON.parse(localStorage.getItem('heroMyCourses') || '[]');
+    } catch (e) {
+        return [];
+    }
+}
+
+function saveMyCourse(courseId) {
+    let myCourses = getMyCourses();
+    courseId = Number(courseId);
+    if (!myCourses.includes(courseId)) {
+        myCourses.push(courseId);
+        localStorage.setItem('heroMyCourses', JSON.stringify(myCourses));
+    }
+}
+
+function isMyCourse(courseId) {
+    return getMyCourses().includes(Number(courseId));
+}
+
+// ================================
 // تحميل بيانات الدورات
 // ================================
 async function loadCourses() {
@@ -124,9 +149,8 @@ function renderHome() {
                     <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:15px;">
             `;
             categoryCourses.forEach(course => {
-                // استخراج المميزات (إن وجدت، وإلا نعرض مميزات افتراضية)
                 const features = course.features || ['شرح مبسط', 'أمثلة تطبيقية', 'ملخصات جاهزة'];
-                const downloadUrl = course.drive_url || course.url; // استخدام رابط دريف إذا وجد، وإلا الرابط العادي
+                const downloadUrl = course.drive_url || course.url;
                 html += `
                     <div style="display:flex; flex-direction:column; justify-content:space-between; border:1px solid #e0e0e0; border-radius:12px; padding:20px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.05);">
                         <div>
