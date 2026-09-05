@@ -111,12 +111,12 @@
       "visible": true
     },
     {
-      "id": 9,
+      "id": Q001,
       "category": "test-qudurat",
       "title": "اختبار القدرات التشخيصي",
       "description": "اختبر مستواك واكتشف نقاط القوة والضعف قبل بدء الاستعداد.",
       "icon": "🎯",
-      "drive_url": "https://drive.google.com/uc?export=download&id=1LV2opcqkEqWvxHzriSTF7qEC6XKTL_1f",
+      "url": "courses/tests/qudurat.html",
       "features": [" تطبيق عملي تفاعلي مهمته تجهيز الطالب للامتحان والتفوق فيه"],
       "visible": true
     },
@@ -126,7 +126,8 @@
       "title": "اختبار التحصيلي التشخيصي",
       "description": "قيّم مستواك وحدد ما تحتاج إلى تطويره قبل الاختبار.",
       "icon": "📚",
-      "url": "courses/tests/tahsili.html",
+      "drive_url": "https://drive.google.com/uc?export=download&id=1LV2opcqkEqWvxHzriSTF7qEC6XKTL_1f",
+      "features": [" تطبيق عملي تفاعلي مهمته تجهيز الطالب للامتحان والتفوق فيه"],
       "visible": true
     },
     {
