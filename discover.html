@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>اكتشف نفسك | أكاديمية هيرو</title>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6C5CE7;
+            --primary-light: #a29bfe;
+            --primary-dark: #4834d4;
+            --secondary: #00CEC9;
+            --accent: #FD79A8;
+            --bg: #f0f2f8;
+            --card-bg: #ffffff;
+            --text: #2d3436;
+            --text-light: #636e72;
+            --shadow: 0 12px 40px rgba(108, 92, 231, 0.15);
+            --radius: 24px;
+            --radius-sm: 14px;
+            --transition: 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 20px 16px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ===== CONTAINER ===== */
+        .app-container {
+            max-width: 820px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* ===== HEADER ===== */
+        .app-header {
+            text-align: center;
+            padding: 10px 0 24px;
+        }
+        .app-header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+        .app-header .subhead {
+            font-size: 1.05rem;
+            color: var(--text-light);
+            margin-top: 6px;
+            max-width: 540px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        .app-header .subhead strong {
+            color: var(--primary);
+            -webkit-text-fill-color: var(--primary);
+        }
+
+        /* ===== PROGRESS BAR ===== */
+        .progress-wrap {
+            background: #e8ecf4;
+            border-radius: 40px;
+            height: 6px;
+            margin: 12px 0 28px;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 40px;
+            transition: width 0.6s ease;
+        }
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 4px;
+            padding: 0 2px;
+        }
+        .step-indicator span {
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+        .step-indicator span.active {
+            opacity: 1;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* ===== CARDS / STEPS ===== */
+        .step {
+            display: none;
+            animation: fadeUp 0.45s ease;
+        }
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .step-desc {
+            color: var(--text-light);
+            font-size: 0.98rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        /* ===== GRID CARDS ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .card-grid.two-col {
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        }
+        .card-grid.three-col {
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        }
+
+        .choice-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-sm);
+            padding: 18px 14px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-align: center;
+            user-select: none;
+            position: relative;
+        }
+        .choice-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        .choice-card.selected {
+            border-color: var(--primary);
+            background: #f8f7ff;
+            box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.12);
+        }
+        .choice-card .icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .choice-card .label {
+            font-weight: 600;
+            font-size: 0.92rem;
+            line-height: 1.3;
+        }
+        .choice-card .desc {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+        .choice-card .badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.65rem;
+            padding: 2px 10px;
+            border-radius: 40px;
+            font-weight: 700;
+        }
+
+        /* ===== MULTI-SELECT ===== */
+        .choice-card.multi {
+            border-style: dashed;
+        }
+        .choice-card.multi.selected {
+            border-style: solid;
+            border-color: var(--secondary);
+            background: #f0fffe;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+            justify-content: flex-start;
+        }
+        .btn-row.center {
+            justify-content: center;
+        }
+        .btn-row.space {
+            justify-content: space-between;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(108, 92, 231, 0.3);
+            text-decoration: none;
+            font-family: var(--font);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(108, 92, 231, 0.35);
+        }
+        .btn:active {
+            transform: scale(0.97);
+        }
+        .btn-secondary {
+            background: #e8ecf4;
+            color: var(--text);
+            box-shadow: none;
+        }
+        .btn-secondary:hover {
+            background: #d5dbe8;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            box-shadow: none;
+            border: 2px solid var(--primary);
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+        .btn-success {
+            background: var(--secondary);
+            box-shadow: 0 4px 16px rgba(0, 206, 201, 0.3);
+        }
+        .btn-success:hover {
+            box-shadow: 0 8px 28px rgba(0, 206, 201, 0.4);
+        }
+        .btn-accent {
+            background: var(--accent);
+            box-shadow: 0 4px 16px rgba(253, 121, 168, 0.3);
+        }
+        .btn-accent:hover {
+            box-shadow: 0 8px 28px rgba(253, 121, 168, 0.4);
+        }
+        .btn-sm {
+            padding: 10px 22px;
+            font-size: 0.88rem;
+        }
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+        .btn:disabled {
+            opacity: 0.4;
+            pointer-events: none;
+            transform: none !important;
+        }
+
+        /* ===== RESULTS ===== */
+        .result-profile {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            box-shadow: var(--shadow);
+            margin-bottom: 24px;
+            border-right: 6px solid var(--primary);
+        }
+        .result-profile .profile-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .result-profile .profile-tag {
+            display: inline-block;
+            background: var(--primary-light);
+            color: #fff;
+            padding: 2px 16px;
+            border-radius: 40px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        .result-profile .profile-desc {
+            margin-top: 12px;
+            line-height: 1.7;
+        }
+        .result-profile .profile-traits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        .result-profile .profile-traits span {
+            background: #f0f2f8;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.82rem;
+        }
+
+        .result-fields {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 16px 0 24px;
+        }
+        .result-field {
+            background: var(--card-bg);
+            border-radius: var(--radius-sm);
+            padding: 18px 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            border-top: 4px solid var(--primary-light);
+            transition: all var(--transition);
+        }
+        .result-field:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+        .result-field .field-icon {
+            font-size: 1.8rem;
+        }
+        .result-field .field-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin: 4px 0 2px;
+        }
+        .result-field .field-desc {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        .result-field .field-tag {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.65rem;
+            padding: 1px 12px;
+            border-radius: 40px;
+            margin-top: 6px;
+        }
+
+        /* ===== EXPERIENCE ===== */
+        .exp-box {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 24px 22px;
+            box-shadow: var(--shadow);
+            margin: 16px 0;
+            border: 2px solid var(--secondary);
+        }
+        .exp-box .exp-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .exp-box .exp-body {
+            margin: 12px 0 16px;
+            line-height: 1.7;
+        }
+        .exp-box .exp-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* ===== MAPPING ===== */
+        .mapping-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 8px 0 14px;
+        }
+        .mapping-grid .map-item {
+            background: #f0f2f8;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all var(--transition);
+            cursor: default;
+        }
+        .mapping-grid .map-item:hover {
+            background: var(--primary-light);
+            color: #fff;
+            transform: scale(1.04);
+        }
+        .mapping-grid .map-item .arrow {
+            color: var(--primary);
+            margin: 0 4px;
+        }
+
+        .path-visual {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px 12px;
+            background: #f8f7ff;
+            padding: 16px 20px;
+            border-radius: var(--radius-sm);
+            margin: 12px 0;
+        }
+        .path-visual .node {
+            background: var(--card-bg);
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+        .path-visual .node.highlight {
+            background: var(--primary);
+            color: #fff;
+        }
+        .path-visual .connector {
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+
+        /* ===== "لا أعرف" ===== */
+        .explore-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 14px;
+            margin: 12px 0;
+        }
+        .explore-item {
+            background: var(--card-bg);
+            border-radius: var(--radius-sm);
+            padding: 16px 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            cursor: pointer;
+            transition: all var(--transition);
+            border: 2px solid transparent;
+        }
+        .explore-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+        .explore-item.selected {
+            border-color: var(--accent);
+            background: #fff5f8;
+        }
+        .explore-item .exp-icon {
+            font-size: 2.2rem;
+        }
+        .explore-item .exp-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+        .explore-item .exp-feedback {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+
+        /* ===== PROFILE SAVED ===== */
+        .saved-profile {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 22px 20px;
+            box-shadow: var(--shadow);
+            margin: 20px 0;
+        }
+        .saved-profile .section-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .saved-profile .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .saved-profile .tag-group .tag {
+            background: #f0f2f8;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.82rem;
+        }
+        .saved-profile .tag-group .tag.removed {
+            background: #fde8e8;
+            color: #c0392b;
+            text-decoration: line-through;
+        }
+
+        /* ===== UTILITY ===== */
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mt-24 {
+            margin-top: 24px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .text-muted {
+            color: var(--text-light);
+        }
+        .fw-700 {
+            font-weight: 700;
+        }
+        .flex-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .gap-12 {
+            gap: 12px;
+        }
+
+        .divider {
+            height: 2px;
+            background: #e8ecf4;
+            margin: 24px 0;
+            border: none;
+        }
+
+        .note-box {
+            background: #fef9e7;
+            border-radius: var(--radius-sm);
+            padding: 16px 20px;
+            border-right: 4px solid #f39c12;
+            margin: 16px 0;
+            font-size: 0.92rem;
+        }
+        .note-box .icon {
+            font-size: 1.2rem;
+            margin-left: 8px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            body {
+                padding: 12px 10px 40px;
+            }
+            .app-header h1 {
+                font-size: 1.7rem;
+            }
+            .app-header .subhead {
+                font-size: 0.92rem;
+            }
+            .card-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 10px;
+            }
+            .card-grid.two-col {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+            .card-grid.three-col {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+            .choice-card {
+                padding: 14px 10px;
+            }
+            .choice-card .icon {
+                font-size: 1.6rem;
+            }
+            .choice-card .label {
+                font-size: 0.82rem;
+            }
+            .result-fields {
+                grid-template-columns: 1fr 1fr;
+            }
+            .btn {
+                padding: 12px 24px;
+                font-size: 0.92rem;
+            }
+            .btn-sm {
+                padding: 8px 16px;
+                font-size: 0.8rem;
+            }
+            .step-title {
+                font-size: 1.25rem;
+            }
+            .result-profile {
+                padding: 20px 16px;
+            }
+            .result-profile .profile-name {
+                font-size: 1.3rem;
+            }
+            .explore-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            }
+            .path-visual {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 4px;
+            }
+            .path-visual .connector {
+                transform: rotate(90deg);
+                display: inline-block;
+            }
+            .path-visual .node {
+                text-align: center;
+            }
+            .mapping-grid {
+                gap: 6px;
+            }
+            .mapping-grid .map-item {
+                font-size: 0.78rem;
+                padding: 4px 12px;
+            }
+            .saved-profile {
+                padding: 16px 14px;
+            }
+            .exp-box {
+                padding: 18px 16px;
+            }
+            .btn-row.space {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .card-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+            .result-fields {
+                grid-template-columns: 1fr;
+            }
+            .choice-card .label {
+                font-size: 0.75rem;
+            }
+            .choice-card .icon {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e8ecf4;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-light);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+
+        /* ===== LOADING ===== */
+        .loading-placeholder {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-light);
+        }
+        .loading-placeholder .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #e8ecf4;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 16px;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ===== HIDDEN HELPER ===== */
+        .hidden {
+            display: none !important;
+        }
+
+        /* ===== ACADEMY LINK ===== */
+        .academy-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            padding: 6px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+        .academy-link:hover {
+            border-bottom-color: var(--primary);
+        }
+        .academy-link .arrow {
+            font-size: 1.1rem;
+        }
+
+        /* small extra */
+        .chip-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 6px 0 10px;
+        }
+        .chip-group .chip {
+            background: #f0f2f8;
+            padding: 4px 16px;
+            border-radius: 40px;
+            font-size: 0.82rem;
+        }
+        .chip-group .chip.primary {
+            background: var(--primary);
+            color: #fff;
+        }
+        .chip-group .chip.secondary {
+            background: var(--secondary);
+            color: #fff;
+        }
+        .chip-group .chip.accent {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .feedback-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        .feedback-buttons .fb-btn {
+            padding: 6px 20px;
+            border-radius: 40px;
+            border: 2px solid #e8ecf4;
+            background: transparent;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: var(--font);
+        }
+        .feedback-buttons .fb-btn:hover {
+            border-color: var(--primary);
+            background: #f8f7ff;
+        }
+        .feedback-buttons .fb-btn.liked {
+            border-color: var(--secondary);
+            background: #f0fffe;
+            color: var(--secondary);
+        }
+        .feedback-buttons .fb-btn.disliked {
+            border-color: var(--accent);
+            background: #fff5f8;
+            color: var(--accent);
+        }
+
+        .restart-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-light);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: color 0.3s;
+            background: none;
+            border: none;
+            font-family: var(--font);
+            padding: 4px 0;
+        }
+        .restart-link:hover {
+            color: var(--primary);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-container" id="app">
+
+        <!-- HEADER -->
+        <header class="app-header">
+            <h1>🧭 اكتشف نفسك</h1>
+            <p class="subhead">
+                لا تحتاج أن تعرف ماذا تريد الآن. ابدأ بما تحب، وجرّب، ودعنا نساعدك على اكتشاف الطريق.
+            </p>
+            <div class="progress-wrap">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="step-indicator" id="stepIndicator">
+                <span class="active" data-step="0">البداية</span>
+                <span data-step="1">المرحلة</span>
+                <span data-step="2">المواد</span>
+                <span data-step="3">الاهتمامات</span>
+                <span data-step="4">الهوايات</span>
+                <span data-step="5">النتيجة</span>
+            </div>
+        </header>
+
+        <!-- ===== STEP 0: WELCOME ===== -->
+        <div class="step active" data-step="0" id="step0">
+            <div class="step-title">👋 أهلاً بك!</div>
+            <p class="step-desc">
+                لن نطلب منك أن تحدد مستقبلك الآن. سنبدأ بسؤال بسيط:
+            </p>
+            <div style="font-size:1.3rem; font-weight:700; margin:8px 0 16px; color:var(--primary);">
+                «أين أنت الآن؟»
+            </div>
+            <div class="card-grid" id="stageGrid">
+                <!-- filled by JS -->
+            </div>
+            <div class="btn-row center">
+                <button class="btn btn-secondary btn-sm" id="resetBtn" style="display:none;">🔄 ابدأ من جديد</button>
+            </div>
+        </div>
+
+        <!-- ===== STEP 1: STAGE ===== -->
+        <div class="step" data-step="1" id="step1">
+            <div class="step-title">📚 المرحلة الدراسية</div>
+            <p class="step-desc">اختر المرحلة التي تناسبك حالياً.</p>
+            <div class="card-grid" id="stageGrid2">
+                <!-- filled by JS -->
+            </div>
+            <div class="btn-row space">
+                <button class="btn btn-secondary btn-sm" onclick="goToStep(0)">↩ رجوع</button>
+                <button class="btn btn-sm" id="nextStep1" disabled onclick="goToStep(2)">التالي →</button>
+            </div>
+        </div>
+
+        <!-- ===== STEP 2: SUBJECTS ===== -->
+        <div class="step" data-step="2" id="step2">
+            <div class="step-title">📖 ماذا تدرس؟</div>
+            <p class="step-desc" id="subjectDesc">اختر المواد التي تدرسها حالياً.</p>
+            <div class="card-grid two-col" id="subjectGrid">
+                <!-- filled by JS -->
+            </div>
+            <div style="margin:8px 0 4px;">
+                <button class="btn btn-secondary btn-sm" id="otherSubjectBtn" onclick="toggleOtherSubject()">➕ شيء آخر</button>
+            </div>
+            <div id="otherSubjectInput" class="hidden" style="margin:8px 0 16px;">
+                <input type="text" id="otherSubjectField" placeholder="اكتب المادة التي تدرسها..." style="width:100%; padding:12px 16px; border-radius:12px; border:2px solid #e8ecf4; font-size:1rem; font-family:var(--font);" />
+                <button class="btn btn-sm btn-success" style="margin-top:8px;" onclick="addOtherSubject()">إضافة</button>
+            </div>
+            <div class="btn-row space">
+                <button class="btn btn-secondary btn-sm" onclick="goToStep(1)">↩ رجوع</button>
+                <button class="btn btn-sm" id="nextStep2" disabled onclick="goToStep(3)">التالي →</button>
+            </div>
+        </div>
+
+        <!-- ===== STEP 3: INTERESTS ===== -->
+        <div class="step" data-step="3" id="step3">
+            <div class="step-title">💡 ما الذي يهمك الآن؟</div>
+            <p class="step-desc">اختر كل ما يناسبك (يمكنك اختيار أكثر من واحد).</p>
+            <div class="card-grid three-col" id="interestGrid">
+                <!-- filled by JS -->
+            </div>
+            <div class="btn-row space">
+                <button class="btn btn-secondary btn-sm" onclick="goToStep(2)">↩ رجوع</button>
+                <button class="btn btn-sm" id="nextStep3" disabled onclick="goToStep(4)">التالي →</button>
+            </div>
+        </div>
+
+        <!-- ===== STEP 4: HOBBIES ===== -->
+        <div class="step" data-step="4" id="step4">
+            <div class="step-title">🎨 ماذا تستمتع بفعله؟</div>
+            <p class="step-desc">اختر الهوايات والأنشطة التي تحبها (يمكنك اختيار أكثر من واحد).</p>
+            <div class="card-grid three-col" id="hobbyGrid">
+                <!-- filled by JS -->
+            </div>
+            <div class="btn-row space">
+                <button class="btn btn-secondary btn-sm" onclick="goToStep(3)">↩ رجوع</button>
+                <button class="btn btn-sm" id="nextStep4" disabled onclick="generateResults()">🌟 اعرض نتيجتي</button>
+            </div>
+        </div>
+
+        <!-- ===== STEP 5: RESULTS ===== -->
+        <div class="step" data-step="5" id="step5">
+            <div class="step-title">✨ ملفك الاستكشافي</div>
+            <p class="step-desc">هذه مؤشرات تساعدك على الاستكشاف وليست حكماً على مستقبلك.</p>
+
+            <div id="resultsContainer">
+                <!-- filled by JS -->
+            </div>
+
+            <div class="btn-row center" style="margin-top:20px;">
+                <button class="btn btn-secondary btn-sm" onclick="goToStep(4)">↩ عدّل اختياراتي</button>
+                <button class="btn btn-sm btn-success" onclick="resetAll()">🔄 ابدأ من جديد</button>
+            </div>
+            <div class="text-center mt-16">
+                <button class="restart-link" onclick="saveAndContinue()">💾 احفظ تقدمي واستمر لاحقاً</button>
+            </div>
+            <div class="text-center mt-8">
+                <a href="https://app.hero1.vip" class="academy-link" onclick="alert('🚀 سيتم نقلك إلى محتوى أكاديمية هيرو قريباً!')">
+                    🏫 استكشف محتوى الأكاديمية <span class="arrow">←</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <div style="margin-top:40px; text-align:center; font-size:0.8rem; color:var(--text-light); border-top:1px solid #e8ecf4; padding-top:20px;">
+            أكاديمية هيرو · اكتشف نفسك · جميع الحقوق محفوظة
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================================
+        //  DATA — embedded fallback, will be overridden by fetch
+        // ============================================================
+        const DEFAULT_DATA = {
+            stages: [
+                { id: 'ابتدائي', label: 'ابتدائي', icon: '📚' },
+                { id: 'إعدادي', label: 'إعدادي', icon: '📖' },
+                { id: 'ثانوي', label: 'ثانوي', icon: '🎓' },
+                { id: 'جامعي', label: 'طالب جامعي / متعلم', icon: '🏛️' },
+                { id: 'تطوير', label: 'أتعلم لمجرد تطوير نفسي', icon: '🧠' },
+            ],
+            subjects: {
+                'ابتدائي': ['لغة عربية', 'رياضيات', 'علوم', 'دراسات', 'لغة إنجليزية', 'فنية'],
+                'إعدادي': ['لغة عربية', 'رياضيات', 'علوم', 'دراسات', 'لغة إنجليزية', 'حاسب آلي'],
+                'ثانوي': ['رياضيات', 'فيزياء', 'كيمياء', 'أحياء', 'لغة عربية', 'لغة إنجليزية', 'تاريخ', 'جغرافيا', 'حاسب آلي'],
+                'جامعي': ['برمجة', 'هندسة', 'طب', 'إدارة', 'اقتصاد', 'تصميم', 'إعلام', 'قانون', 'تربية'],
+                'تطوير': ['برمجة', 'تصميم', 'تسويق', 'كتابة', 'تحليل بيانات', 'ذكاء اصطناعي', 'لغات']
+            },
+            interests: [
+                'أريد اكتشاف ما أحب',
+                'أريد معرفة نقاط قوتي',
+                'أريد معرفة المهن التي قد تناسبني',
+                'أريد معرفة التخصصات المناسبة لي',
+                'أريد تجربة مجالات مختلفة',
+                'أريد تحويل هوايتي إلى مهارة',
+                'أريد اكتشاف مهارة يمكن أن أتعلمها',
+                'أريد معرفة ماذا يمكن أن أفعل بما أتعلمه في المدرسة',
+                'لا أعرف ماذا أريد أصلًا'
+            ],
+            hobbies: [
+                'حل المشكلات', 'الرسم والتصميم', 'الكتابة', 'التحدث والإقناع',
+                'مساعدة الآخرين', 'التجارب', 'استخدام الكمبيوتر', 'صناعة الأشياء',
+                'التصوير والفيديو', 'الألعاب', 'البحث واكتشاف المعلومات', 'تنظيم الأشياء',
+                'البيع والتجارة', 'القيادة والعمل مع فريق', 'الحيوانات والطبيعة',
+                'الرياضة', 'الموسيقى', 'البرمجة والتقنية', 'شيء آخر'
+            ],
+            fields: [{
+                id: 'programming',
+                name: 'البرمجة',
+                icon: '💻',
+                desc: 'بناء التطبيقات والمواقع وحل المشكلات بالكود.',
+                traits: ['حل المشكلات', 'التجارب', 'استخدام الكمبيوتر', 'البرمجة والتقنية'],
+                skills: ['لغات برمجة', 'خوارزميات', 'تفكير منطقي', 'إدارة مشاريع'],
+                careers: ['مطور برمجيات', 'مهندس برمجيات', 'محلل نظم', 'مطور ألعاب'],
+                subjects: ['رياضيات', 'حاسب آلي', 'برمجة'],
+                experience: {
+                    title: '💻 جرّب البرمجة',
+                    body: 'لديك مشكلة بسيطة: تريد ترتيب قائمة أسماء من الألف إلى الياء. كيف ستجعل الكمبيوتر يحل هذه المشكلة؟ اكتب خطوات بسيطة (خوارزمية) لحلها.',
+                    action: 'جرب التفكير المنطقي'
+                },
+                project: {
+                    title: 'مشروعك الأول: تطبيق بسيط',
+                    body: 'أنشئ صفحة ويب بسيطة تعرض اسمك وهواياتك، واستخدم ألواناً تعبر عن شخصيتك.'
+                }
+            }, {
+                id: 'design',
+                name: 'التصميم',
+                icon: '🎨',
+                desc: 'تصميم واجهات، رسوميات، وتجارب مستخدم جذابة.',
+                traits: ['الرسم والتصميم', 'تنظيم الأشياء', 'استخدام الكمبيوتر'],
+                skills: ['تصميم واجهات', 'أدوات التصميم', 'إبداع بصري', 'تفكير المستخدم'],
+                careers: ['مصمم واجهات', 'مصمم جرافيك', 'مصمم تجارب مستخدم', 'مخرج فني'],
+                subjects: ['فنية', 'حاسب آلي', 'تصميم'],
+                experience: {
+                    title: '🎨 جرّب التصميم',
+                    body: 'صمم فكرة لواجهة تطبيق يساعد الطلاب على تنظيم مذاكرتهم. ارسمها على ورقة أو صفها بالكلمات.',
+                    action: 'جرب الإبداع البصري'
+                },
+                project: {
+                    title: 'مشروعك الأول: تصميم تطبيق',
+                    body: 'صمم واجهة تطبيق تعليمي بسيط باستخدام أي أداة رسم أو حتى ورقة وقلم.'
+                }
+            }, {
+                id: 'ai',
+                name: 'الذكاء الاصطناعي',
+                icon: '🤖',
+                desc: 'تعلم الآلة، معالجة اللغة، ورؤية الكمبيوتر.',
+                traits: ['حل المشكلات', 'البحث واكتشاف المعلومات', 'البرمجة والتقنية', 'التجارب'],
+                skills: ['تعلم الآلة', 'تحليل بيانات', 'برمجة', 'إحصاء'],
+                careers: ['مهندس ذكاء اصطناعي', 'عالم بيانات', 'باحث', 'مطور نماذج'],
+                subjects: ['رياضيات', 'علوم', 'برمجة', 'إحصاء'],
+                experience: {
+                    title: '🧠 جرّب الذكاء الاصطناعي',
+                    body: 'لديك مجموعة صور لقطط وكلاب. كيف يمكنك تعليم الكمبيوتر التمييز بينهما؟ صف خطواتك.',
+                    action: 'جرب التفكير الخوارزمي'
+                },
+                project: {
+                    title: 'مشروعك الأول: أداة تلخيص',
+                    body: 'أنشئ أداة بسيطة تساعد طالباً على تلخيص درس باستخدام قواعد بسيطة (بدون برمجة معقدة).'
+                }
+            }, {
+                id: 'data',
+                name: 'تحليل البيانات',
+                icon: '📊',
+                desc: 'استخراج الأنماط والقرارات من البيانات.',
+                traits: ['حل المشكلات', 'البحث واكتشاف المعلومات', 'تنظيم الأشياء', 'استخدام الكمبيوتر'],
+                skills: ['إحصاء', 'تحليل بيانات', 'تصور بيانات', 'برمجة'],
+                careers: ['محلل بيانات', 'عالم بيانات', 'أخصائي ذكاء أعمال', 'إحصائي'],
+                subjects: ['رياضيات', 'حاسب آلي', 'إحصاء', 'اقتصاد'],
+                experience: {
+                    title: '📈 جرّب تحليل البيانات',
+                    body: 'لديك جدول بسيط: (الطالب، الدرجة، المادة). ما المعلومة التي تستطيع استنتاجها من هذه البيانات؟ اذكر ثلاث استنتاجات.',
+                    action: 'جرب تحليل الأرقام'
+                },
+                project: {
+                    title: 'مشروعك الأول: تحليل درجات',
+                    body: 'اجمع درجات 5 مواد لأسبوع، وحللها لتعرف أين تحتاج إلى تحسين.'
+                }
+            }, {
+                id: 'engineering',
+                name: 'الهندسة',
+                icon: '⚙️',
+                desc: 'تصميم حلول عملية للمشكلات باستخدام العلم والرياضيات.',
+                traits: ['حل المشكلات', 'صناعة الأشياء', 'التجارب', 'تنظيم الأشياء'],
+                skills: ['تفكير هندسي', 'رياضيات', 'فيزياء', 'تصميم حلول'],
+                careers: ['مهندس مدني', 'مهندس ميكانيكي', 'مهندس كهربائي', 'مهندس معماري'],
+                subjects: ['رياضيات', 'فيزياء', 'علوم', 'هندسة'],
+                experience: {
+                    title: '🔧 جرّب الهندسة',
+                    body: 'كيف تصمم حلًا بسيطًا لتقليل استهلاك الماء في مدرستك؟ اكتب فكرتك.',
+                    action: 'جرب التفكير الهندسي'
+                },
+                project: {
+                    title: 'مشروعك الأول: ترشيد الماء',
+                    body: 'احسب استهلاك الماء في منزلك لمدة أسبوع واقترح طريقة لتقليله.'
+                }
+            }, {
+                id: 'marketing',
+                name: 'التسويق',
+                icon: '📣',
+                desc: 'فهم السوق والجمهور وبناء استراتيجيات تواصل.',
+                traits: ['التحدث والإقناع', 'البيع والتجارة', 'مساعدة الآخرين', 'القيادة والعمل مع فريق'],
+                skills: ['تسويق', 'تواصل', 'تحليل سوق', 'إبداع'],
+                careers: ['أخصائي تسويق', 'مدير علامة تجارية', 'مخطط إعلانات', 'مدير مبيعات'],
+                subjects: ['لغة عربية', 'لغة إنجليزية', 'اقتصاد', 'إدارة'],
+                experience: {
+                    title: '📢 جرّب التسويق',
+                    body: 'لديك منتج جديد (مثل قلم ذكي) وميزانية محدودة. كيف ستجذب أول 100 عميل؟ اكتب خطة.',
+                    action: 'جرب التفكير التسويقي'
+                },
+                project: {
+                    title: 'مشروعك الأول: خطة تسويق',
+                    body: 'اختر منتجاً واكتب خطة بسيطة لبيعه لأول 10 عملاء.'
+                }
+            }, {
+                id: 'writing',
+                name: 'الكتابة والإعلام',
+                icon: '✍️',
+                desc: 'التعبير بالكلمات، الصحافة، وصناعة المحتوى.',
+                traits: ['الكتابة', 'التحدث والإقناع', 'البحث واكتشاف المعلومات', 'مساعدة الآخرين'],
+                skills: ['كتابة', 'تحرير', 'بحث', 'سرد قصصي'],
+                careers: ['كاتب', 'صحفي', 'منتج محتوى', 'محرر', 'مؤلف'],
+                subjects: ['لغة عربية', 'لغة إنجليزية', 'دراسات', 'إعلام'],
+                experience: {
+                    title: '📝 جرّب الكتابة',
+                    body: 'لديك خبران عن نفس الحدث. كيف تتحقق من أيهما أكثر موثوقية؟ اكتب خطواتك.',
+                    action: 'جرب التفكير النقدي'
+                },
+                project: {
+                    title: 'مشروعك الأول: مقالة',
+                    body: 'اكتب مقالة قصيرة عن موضوع يهمك، وحاول أن تكون موضوعياً ومقنعاً.'
+                }
+            }, {
+                id: 'business',
+                name: 'ريادة الأعمال',
+                icon: '🚀',
+                desc: 'بناء مشاريع وحلول مبتكرة من الصفر.',
+                traits: ['البيع والتجارة', 'القيادة والعمل مع فريق', 'حل المشكلات', 'التجارب'],
+                skills: ['تخطيط', 'قيادة', 'تحليل سوق', 'إدارة'],
+                careers: ['رائد أعمال', 'مدير مشروع', 'مستشار', 'مطور أعمال'],
+                subjects: ['اقتصاد', 'إدارة', 'رياضيات', 'لغة عربية'],
+                experience: {
+                    title: '💡 جرّب ريادة الأعمال',
+                    body: 'لديك مشكلة يواجهها الطلاب (مثل ضعف التنظيم). اقترح منتجاً أو خدمة تحل هذه المشكلة.',
+                    action: 'جرب التفكير الريادي'
+                },
+                project: {
+                    title: 'مشروعك الأول: فكرة مشروع',
+                    body: 'اكتب فكرة مشروع بسيط يمكن أن تنفذه بميزانية صغيرة، وصف كيفية البدء.'
+                }
+            }, {
+                id: 'education',
+                name: 'التعليم',
+                icon: '👨‍🏫',
+                desc: 'تسهيل التعلم ومساعدة الآخرين على النمو.',
+                traits: ['مساعدة الآخرين', 'التحدث والإقناع', 'تنظيم الأشياء', 'البحث واكتشاف المعلومات'],
+                skills: ['شرح', 'تخطيط دروس', 'تواصل', 'صبر'],
+                careers: ['معلم', 'مدرب', 'مطور مناهج', 'أخصائي تعليمي'],
+                subjects: ['لغة عربية', 'علوم', 'رياضيات', 'تربية'],
+                experience: {
+                    title: '📖 جرّب التعليم',
+                    body: 'اشرح مفهومًا صعباً (مثل الكسور أو الجاذبية) لطفل عمره 8 سنوات. كيف ستجعل الأمر ممتعاً؟',
+                    action: 'جرب شرح فكرة'
+                },
+                project: {
+                    title: 'مشروعك الأول: درس مصغر',
+                    body: 'حضّر درساً قصيراً في موضوع تحبه، وقدمه لشخص آخر.'
+                }
+            }],
+            subjectMappings: {
+                'رياضيات': ['برمجة', 'ذكاء اصطناعي', 'تحليل بيانات', 'اقتصاد', 'هندسة', 'علوم', 'ألعاب', 'تشفير وأمن سيبراني'],
+                'علوم': ['طب', 'هندسة', 'أحياء', 'كيمياء', 'فيزياء', 'بيئة', 'بحث علمي'],
+                'لغة عربية': ['كتابة', 'صحافة', 'تعليم', 'قانون', 'إعلام', 'أدب'],
+                'لغة إنجليزية': ['ترجمة', 'تدريس', 'إعلام', 'أعمال', 'سياحة', 'لغويات'],
+                'حاسب آلي': ['برمجة', 'ذكاء اصطناعي', 'أمن سيبراني', 'شبكات', 'تحليل بيانات', 'تصميم واجهات'],
+                'برمجة': ['برمجة', 'ذكاء اصطناعي', 'أمن سيبراني', 'تحليل بيانات', 'ألعاب', 'تطوير ويب'],
+                'فيزياء': ['هندسة', 'فيزياء', 'علوم', 'طاقة', 'بصريات', 'ميكانيكا'],
+                'كيمياء': ['كيمياء', 'طب', 'هندسة', 'بيئة', 'مواد', 'أبحاث'],
+                'أحياء': ['طب', 'أحياء', 'بيئة', 'زراعة', 'بحث علمي', 'تغذية'],
+                'اقتصاد': ['اقتصاد', 'إدارة', 'أعمال', 'تحليل بيانات', 'تسويق', 'تمويل'],
+                'إدارة': ['إدارة', 'أعمال', 'ريادة', 'تسويق', 'موارد بشرية'],
+                'تصميم': ['تصميم', 'فنون', 'إعلام', 'هندسة', 'عمارة', 'تجارب مستخدم'],
+                'تاريخ': ['تعليم', 'بحث', 'كتابة', 'إعلام', 'سياسة', 'علم اجتماع'],
+                'جغرافيا': ['بيئة', 'تخطيط', 'سياحة', 'مساحة', 'علوم الأرض']
+            },
+            hobbyMappings: {
+                'الألعاب': ['تصميم ألعاب', 'برمجة ألعاب', 'رسم ثلاثي الأبعاد', 'كتابة القصص', 'اختبار الألعاب', 'صناعة المحتوى',
+                    'تحليل الألعاب', 'إدارة المجتمعات', 'تسويق الألعاب'
+                ],
+                'الرسم والتصميم': ['تصميم جرافيك', 'تصميم واجهات', 'فن رقمي', 'رسوم متحركة', 'عمارة', 'أزياء'],
+                'البرمجة والتقنية': ['برمجة', 'ذكاء اصطناعي', 'أمن سيبراني', 'تحليل بيانات', 'تطوير ويب', 'تطبيقات جوال'],
+                'الكتابة': ['كتابة', 'صحافة', 'تأليف', 'تحرير', 'إعلام', 'محتوى رقمي'],
+                'التصوير والفيديو': ['تصوير', 'مونتاج', 'إخراج', 'صناعة محتوى', 'إعلام', 'فنون بصرية'],
+                'الموسيقى': ['موسيقى', 'تأليف موسيقي', 'هندسة صوت', 'تعليم موسيقى', 'إنتاج موسيقي'],
+                'الرياضة': ['مدرب', 'علاج طبيعي', 'إدارة رياضية', 'إعلام رياضي', 'تسويق رياضي'],
+                'الحيوانات والطبيعة': ['بيئة', 'زراعة', 'طب بيطري', 'علوم طبيعة', 'سياحة بيئية'],
+                'مساعدة الآخرين': ['تعليم', 'تمريض', 'خدمة اجتماعية', 'إرشاد', 'تطوع'],
+                'البحث واكتشاف المعلومات': ['بحث علمي', 'تحليل بيانات', 'صحافة استقصائية', 'أكاديميا', 'ذكاء اصطناعي'],
+                'التجارب': ['علوم', 'هندسة', 'بحث', 'طب', 'صناعة'],
+                'صناعة الأشياء': ['هندسة', 'نجارة', 'تصنيع', 'عمارة', 'حرف يدوية'],
+                'البيع والتجارة': ['تسويق', 'أعمال', 'ريادة', 'تجارة إلكترونية', 'مبيعات'],
+                'القيادة والعمل مع فريق': ['إدارة', 'ريادة', 'موارد بشرية', 'سياسة', 'خدمة اجتماعية'],
+                'التحدث والإقناع': ['قانون', 'إعلام', 'تسويق', 'تعليم', 'سياسة', 'خطابة']
+            },
+            // For the "I don't know" path
+            exploreScenarios: [
+                { id: 'logic', icon: '🧩', label: 'مشكلة منطقية', desc: 'حل لغز أو مشكلة تحتاج إلى تفكير.' },
+                { id: 'creative', icon: '🎭', label: 'مهمة إبداعية', desc: 'ابتكار شيء جديد من الخيال.' },
+                { id: 'social', icon: '🤝', label: 'موقف اجتماعي', desc: 'التعامل مع موقف مع الناس.' },
+                { id: 'science', icon: '🔬', label: 'تجربة علمية', desc: 'استكشاف ظاهرة علمية.' },
+                { id: 'tech', icon: '⚡', label: 'مهمة تقنية', desc: 'استخدام التكنولوجيا لحل مشكلة.' },
+                { id: 'business', icon: '📈', label: 'موقف تجاري', desc: 'اتخاذ قرار في مجال العمل.' },
+                { id: 'writing', icon: '📝', label: 'مهمة كتابة', desc: 'التعبير عن فكرة كتابةً.' },
+                { id: 'leadership', icon: '🚩', label: 'قيادة وتنظيم', desc: 'توجيه مجموعة لتحقيق هدف.' }
+            ]
+        };
+
+        // ============================================================
+        //  STATE
+        // ============================================================
+        let DATA = null;
+        let state = {
+            step: 0,
+            stage: null,
+            subjects: [],
+            interests: [],
+            hobbies: [],
+            otherSubjects: [],
+            exploreFeedbacks: {}, // for "لا أعرف" path
+            profile: null, // generated result
+            saved: null, // from localStorage
+        };
+
+        const STORAGE_KEY = 'hero_discover_state';
+
+        // ============================================================
+        //  DOM REFS
+        // ============================================================
+        const $ = id => document.getElementById(id);
+        const progressBar = $('progressBar');
+        const stepIndicator = $('stepIndicator');
+
+        // ============================================================
+        //  HELPERS
+        // ============================================================
+        function shuffle(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+        function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+
+        // ============================================================
+        //  LOAD DATA
+        // ============================================================
+        async function loadData() {
+            try {
+                const resp = await fetch('data/discovery.json');
+                if (!resp.ok) throw new Error('HTTP ' + resp.status);
+                const json = await resp.json();
+                DATA = json;
+            } catch (e) {
+                console.warn('⚠️ Using fallback data:', e.message);
+                DATA = JSON.parse(JSON.stringify(DEFAULT_DATA));
+            }
+            // ensure arrays
+            if (!DATA.stages) DATA.stages = DEFAULT_DATA.stages;
+            if (!DATA.subjects) DATA.subjects = DEFAULT_DATA.subjects;
+            if (!DATA.interests) DATA.interests = DEFAULT_DATA.interests;
+            if (!DATA.hobbies) DATA.hobbies = DEFAULT_DATA.hobbies;
+            if (!DATA.fields) DATA.fields = DEFAULT_DATA.fields;
+            if (!DATA.subjectMappings) DATA.subjectMappings = DEFAULT_DATA.subjectMappings;
+            if (!DATA.hobbyMappings) DATA.hobbyMappings = DEFAULT_DATA.hobbyMappings;
+            if (!DATA.exploreScenarios) DATA.exploreScenarios = DEFAULT_DATA.exploreScenarios;
+            initApp();
+        }
+
+        // ============================================================
+        //  INIT
+        // ============================================================
+        function initApp() {
+            // Load saved state
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    state.saved = parsed;
+                    // If there's a saved profile, offer to resume
+                    if (parsed.profile && parsed.step !== undefined) {
+                        if (confirm('🗂️ لديك ملف سابق. هل تريد استكماله؟')) {
+                            Object.assign(state, parsed);
+                            // Rebuild UI from saved state
+                            renderAll();
+                            goToStep(state.step || 0);
+                            return;
+                        } else {
+                            localStorage.removeItem(STORAGE_KEY);
+                        }
+                    }
+                } catch (_) { localStorage.removeItem(STORAGE_KEY); }
+            }
+
+            // Fresh start
+            state.stage = null;
+            state.subjects = [];
+            state.interests = [];
+            state.hobbies = [];
+            state.otherSubjects = [];
+            state.exploreFeedbacks = {};
+            state.profile = null;
+            renderAll();
+            goToStep(0);
+        }
+
+        // ============================================================
+        //  RENDER
+        // ============================================================
+        function renderAll() {
+            renderStages();
+            renderSubjects();
+            renderInterests();
+            renderHobbies();
+            updateProgress();
+            updateButtons();
+        }
+
+        function renderStages() {
+            const grid = $('stageGrid');
+            const grid2 = $('stageGrid2');
+            if (!grid || !grid2) return;
+            const html = DATA.stages.map(s =>
+                `<div class="choice-card ${state.stage === s.id ? 'selected' : ''}" onclick="selectStage('${s.id}')">
+              <span class="icon">${s.icon}</span>
+              <span class="label">${s.label}</span>
+            </div>`
+            ).join('');
+            grid.innerHTML = html;
+            grid2.innerHTML = html;
+        }
+
+        function renderSubjects() {
+            const grid = $('subjectGrid');
+            if (!grid) return;
+            const stage = state.stage || 'تطوير';
+            let subjects = DATA.subjects[stage] || DATA.subjects['تطوير'] || [];
+            // Add other subjects
+            const allSubjects = [...subjects, ...state.otherSubjects];
+            const html = allSubjects.map(s =>
+                `<div class="choice-card ${state.subjects.includes(s) ? 'selected' : ''}" onclick="toggleSubject('${s}')">
+              <span class="label">${s}</span>
+            </div>`
+            ).join('');
+            grid.innerHTML = html || '<p class="text-muted">لا توجد مواد متاحة، اختر "شيء آخر" لإضافة مادة.</p>';
+            // Update description
+            const desc = $('subjectDesc');
+            if (desc) {
+                const stageLabel = DATA.stages.find(st => st.id === stage)?.label || stage;
+                desc.textContent = `اختر المواد التي تدرسها حالياً في مرحلة "${stageLabel}".`;
+            }
+        }
+
+        function renderInterests() {
+            const grid = $('interestGrid');
+            if (!grid) return;
+            const html = DATA.interests.map(i =>
+                `<div class="choice-card multi ${state.interests.includes(i) ? 'selected' : ''}" onclick="toggleInterest('${i.replace(/'/g, "\\'")}')">
+              <span class="label">${i}</span>
+            </div>`
+            ).join('');
+            grid.innerHTML = html;
+        }
+
+        function renderHobbies() {
+            const grid = $('hobbyGrid');
+            if (!grid) return;
+            const html = DATA.hobbies.map(h =>
+                `<div class="choice-card multi ${state.hobbies.includes(h) ? 'selected' : ''}" onclick="toggleHobby('${h.replace(/'/g, "\\'")}')">
+              <span class="label">${h}</span>
+            </div>`
+            ).join('');
+            grid.innerHTML = html;
+        }
+
+        function updateProgress() {
+            const total = 6;
+            const current = clamp(state.step + 1, 1, total);
+            const pct = (current / total) * 100;
+            progressBar.style.width = pct + '%';
+            const indicators = stepIndicator.querySelectorAll('span');
+            indicators.forEach(el => {
+                const idx = parseInt(el.dataset.step);
+                el.classList.toggle('active', idx === state.step);
+            });
+        }
+
+        function updateButtons() {
+            const s1 = $('nextStep1');
+            const s2 = $('nextStep2');
+            const s3 = $('nextStep3');
+            const s4 = $('nextStep4');
+            if (s1) s1.disabled = !state.stage;
+            if (s2) s2.disabled = state.subjects.length === 0 && state.otherSubjects.length === 0;
+            if (s3) s3.disabled = state.interests.length === 0;
+            if (s4) s4.disabled = state.hobbies.length === 0;
+        }
+
+        // ============================================================
+        //  NAVIGATION
+        // ============================================================
+        function goToStep(step) {
+            state.step = clamp(step, 0, 5);
+            document.querySelectorAll('.step').forEach(el => {
+                el.classList.toggle('active', parseInt(el.dataset.step) === state.step);
+            });
+            updateProgress();
+            updateButtons();
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // If step 5, generate results if not already
+            if (step === 5 && !state.profile) {
+                generateResults();
+            }
+            // Save state
+            saveState();
+        }
+
+        // ============================================================
+        //  INTERACTIONS
+        // ============================================================
+        function selectStage(id) {
+            state.stage = id;
+            state.subjects = [];
+            state.otherSubjects = [];
+            renderStages();
+            renderSubjects();
+            updateButtons();
+            // Auto-advance after a moment
+            setTimeout(() => {
+                if (state.stage) {
+                    const btn = $('nextStep1');
+                    if (btn && !btn.disabled) goToStep(2);
+                }
+            }, 400);
+        }
+
+        function toggleSubject(subj) {
+            const idx = state.subjects.indexOf(subj);
+            if (idx > -1) state.subjects.splice(idx, 1);
+            else state.subjects.push(subj);
+            renderSubjects();
+            updateButtons();
+        }
+
+        function toggleOtherSubject() {
+            const container = $('otherSubjectInput');
+            container.classList.toggle('hidden');
+            if (!container.classList.contains('hidden')) {
+                $('otherSubjectField')?.focus();
+            }
+        }
+
+        function addOtherSubject() {
+            const field = $('otherSubjectField');
+            const val = field.value.trim();
+            if (!val) return;
+            if (!state.otherSubjects.includes(val) && !state.subjects.includes(val)) {
+                state.otherSubjects.push(val);
+                field.value = '';
+                renderSubjects();
+                updateButtons();
+                $('otherSubjectInput').classList.add('hidden');
+            } else {
+                alert('⚠️ هذه المادة مضافة بالفعل.');
+            }
+        }
+
+        function toggleInterest(interest) {
+            const idx = state.interests.indexOf(interest);
+            if (idx > -1) state.interests.splice(idx, 1);
+            else state.interests.push(interest);
+            renderInterests();
+            updateButtons();
+            // If "لا أعرف ماذا أريد" is selected, trigger special path
+            if (state.interests.includes('لا أعرف ماذا أريد أصلًا')) {
+                // We'll handle this in generateResults
+            }
+            saveState();
+        }
+
+        function toggleHobby(hobby) {
+            const idx = state.hobbies.indexOf(hobby);
+            if (idx > -1) state.hobbies.splice(idx, 1);
+            else state.hobbies.push(hobby);
+            renderHobbies();
+            updateButtons();
+            saveState();
+        }
+
+        // ============================================================
+        //  SAVE STATE
+        // ============================================================
+        function saveState() {
+            try {
+                const toSave = {
+                    step: state.step,
+                    stage: state.stage,
+                    subjects: state.subjects,
+                    interests: state.interests,
+                    hobbies: state.hobbies,
+                    otherSubjects: state.otherSubjects,
+                    exploreFeedbacks: state.exploreFeedbacks,
+                    profile: state.profile,
+                };
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
+            } catch (_) {}
+        }
+
+        function saveAndContinue() {
+            saveState();
+            alert('💾 تم حفظ تقدمك! يمكنك العودة لاحقاً لاستكمال الاكتشاف.');
+        }
+
+        function resetAll() {
+            if (!confirm('هل تريد البدء من جديد؟ سيتم حذف تقدمك الحالي.')) return;
+            localStorage.removeItem(STORAGE_KEY);
+            state.stage = null;
+            state.subjects = [];
+            state.interests = [];
+            state.hobbies = [];
+            state.otherSubjects = [];
+            state.exploreFeedbacks = {};
+            state.profile = null;
+            state.saved = null;
+            renderAll();
+            goToStep(0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============================================================
+        //  GENERATE RESULTS
+        // ============================================================
+        function generateResults() {
+            // Check if "لا أعرف ماذا أريد أصلًا" is selected
+            const dontKnow = state.interests.includes('لا أعرف ماذا أريد أصلًا');
+
+            if (dontKnow || (state.interests.length === 0 && state.hobbies.length === 0)) {
+                // "لا أعرف" path
+                state.profile = { type: 'explorer', label: 'المستكشف', desc: 'أنت في رحلة اكتشاف، وهذا رائع!' };
+                renderResultsExplorer();
+                goToStep(5);
+                saveState();
+                return;
+            }
+
+            // Build profile based on interests + hobbies
+            const traits = [...state.hobbies];
+            const matchedFields = [];
+
+            DATA.fields.forEach(field => {
+                let score = 0;
+                // Match hobbies
+                field.traits.forEach(t => {
+                    if (state.hobbies.includes(t)) score += 2;
+                });
+                // Match interests
+                state.interests.forEach(interest => {
+                    if (interest.includes('مهارة') || interest.includes('تجربة') || interest.includes('اكتشاف')) {
+                        score += 1;
+                    }
+                    if (interest.includes('مهن') && field.careers.length) score += 1;
+                    if (interest.includes('تخصصات')) score += 1;
+                    if (interest.includes('هوايتي') && state.hobbies.length) score += 1;
+                });
+                // Match subjects
+                field.subjects.forEach(sub => {
+                    if (state.subjects.includes(sub) || state.otherSubjects.includes(sub)) score += 2;
+                });
+                // If there's a direct subject match in mappings
+                state.subjects.forEach(sub => {
+                    const mapped = DATA.subjectMappings[sub] || [];
+                    if (mapped.includes(field.name)) score += 3;
+                });
+                if (score > 0) {
+                    matchedFields.push({ ...field, score });
+                }
+            });
+
+            // Sort by score
+            matchedFields.sort((a, b) => b.score - a.score);
+
+            // Take top 4-5
+            const topFields = matchedFields.slice(0, 5);
+
+            // If no matches, fallback to top fields by general popularity
+            let finalFields = topFields;
+            if (finalFields.length === 0) {
+                // Use default recommendations based on hobbies
+                const fallback = [];
+                DATA.fields.forEach(f => {
+                    f.traits.forEach(t => {
+                        if (state.hobbies.includes(t) && !fallback.includes(f)) fallback.push(f);
+                    });
+                });
+                finalFields = fallback.slice(0, 4);
+                if (finalFields.length === 0) {
+                    // Ultimate fallback: show all fields with some order
+                    finalFields = DATA.fields.slice(0, 4);
+                }
+            }
+
+            // Build profile
+            const top = finalFields[0] || DATA.fields[0];
+            const profileLabel = top ? top.name : 'مستكشف';
+            const profileIcon = top ? top.icon : '🧭';
+            const profileDesc = top ? top.desc : 'أنت في بداية رحلة الاكتشاف.';
+
+            state.profile = {
+                type: 'profile',
+                label: profileLabel,
+                icon: profileIcon,
+                desc: profileDesc,
+                fields: finalFields,
+                traits: [...new Set(state.hobbies.slice(0, 6))],
+                allInterests: state.interests,
+                allHobbies: state.hobbies,
+                subjects: [...state.subjects, ...state.otherSubjects],
+            };
+
+            renderResultsProfile();
+            goToStep(5);
+            saveState();
+        }
+
+        // ============================================================
+        //  RENDER RESULTS — PROFILE
+        // ============================================================
+        function renderResultsProfile() {
+            const container = $('resultsContainer');
+            if (!container) return;
+            const p = state.profile;
+            if (!p) return;
+
+            // If explorer (لا أعرف)
+            if (p.type === 'explorer') {
+                renderResultsExplorer();
+                return;
+            }
+
+            const fieldsHtml = p.fields.map(f => `
+            <div class="result-field">
+              <div class="field-icon">${f.icon}</div>
+              <div class="field-name">${f.name}</div>
+              <div class="field-desc">${f.desc}</div>
+              <div class="field-tag">⭐ ${f.skills.slice(0, 2).join(' • ')}</div>
+              <div style="margin-top:8px;">
+                <button class="btn btn-sm btn-secondary" onclick="showFieldDetail('${f.id}')">🔍 استكشف</button>
+                <button class="btn btn-sm btn-success" onclick="showExperience('${f.id}')">🧪 جرّب</button>
+              </div>
+            </div>
+          `).join('');
+
+            const subjectMappingsHtml = (p.subjects && p.subjects.length > 0) ?
+                p.subjects.map(sub => {
+                    const mapped = DATA.subjectMappings[sub] || [];
+                    if (mapped.length === 0) return '';
+                    return `<div style="margin:8px 0;">
+                <strong>${sub}</strong>
+                <div class="mapping-grid">
+                  ${mapped.map(m => `<span class="map-item">${m}</span>`).join(' → ')}
+                </div>
+              </div>`;
+                }).filter(Boolean).join('') :
+                '';
+
+            const hobbyMappingsHtml = (p.allHobbies && p.allHobbies.length > 0) ?
+                p.allHobbies.slice(0, 4).map(hobby => {
+                    const mapped = DATA.hobbyMappings[hobby] || [];
+                    if (mapped.length === 0) return '';
+                    return `<div style="margin:8px 0;">
+                <strong>🎯 من هوايتك "${hobby}" إلى:</strong>
+                <div class="mapping-grid">
+                  ${mapped.slice(0, 6).map(m => `<span class="map-item">${m}</span>`).join(' → ')}
+                </div>
+                <div style="margin-top:4px;">
+                  <button class="btn btn-sm btn-secondary" onclick="showHobbyPath('${hobby.replace(/'/g, "\\'")}')">🧪 جرّب مساراً</button>
+                </div>
+              </div>`;
+                }).filter(Boolean).join('') :
+                '';
+
+            container.innerHTML = `
+            <!-- Profile -->
+            <div class="result-profile">
+              <div class="profile-name">${p.icon} ${p.label}</div>
+              <div class="profile-tag">ملفك الاستكشافي</div>
+              <div class="profile-desc">${p.desc}</div>
+              <div class="profile-traits">
+                ${p.traits.map(t => `<span>✦ ${t}</span>`).join('')}
+              </div>
+              <div class="note-box" style="margin-top:12px;">
+                <span class="icon">💡</span>
+                هذه مؤشرات تساعدك على الاستكشاف وليست حكماً على مستقبلك.
+              </div>
+            </div>
+
+            <!-- Fields -->
+            <div style="font-weight:700; font-size:1.1rem; margin:16px 0 8px;">🔍 المجالات التي قد تناسبك:</div>
+            <div class="result-fields">${fieldsHtml}</div>
+
+            <!-- Subject mappings -->
+            ${subjectMappingsHtml ? `
+              <div style="font-weight:700; font-size:1.1rem; margin:24px 0 8px;">📚 أين يمكن أن تأخذك موادك؟</div>
+              ${subjectMappingsHtml}
+            ` : ''}
+
+            <!-- Hobby mappings -->
+            ${hobbyMappingsHtml ? `
+              <div style="font-weight:700; font-size:1.1rem; margin:24px 0 8px;">🎯 من هوايتك إلى مسار عملي</div>
+              ${hobbyMappingsHtml}
+            ` : ''}
+
+            <!-- "لم يعجبني" option -->
+            <div style="margin:20px 0 8px; text-align:center;">
+              <button class="btn btn-secondary btn-sm" onclick="markDislike()">👎 لم يعجبني هذا التوجيه</button>
+            </div>
+          `;
+        }
+
+        // ============================================================
+        //  RENDER RESULTS — "لا أعرف" EXPLORER
+        // ============================================================
+        function renderResultsExplorer() {
+            const container = $('resultsContainer');
+            if (!container) return;
+
+            const scenarios = DATA.exploreScenarios || DEFAULT_DATA.exploreScenarios;
+            const feedbacks = state.exploreFeedbacks || {};
+
+            const scenariosHtml = scenarios.map(sc => {
+                const fb = feedbacks[sc.id] || {};
+                return `<div class="explore-item ${fb.liked ? 'selected' : ''}" onclick="exploreScenario('${sc.id}')">
+              <div class="exp-icon">${sc.icon}</div>
+              <div class="exp-label">${sc.label}</div>
+              <div class="exp-feedback">${sc.desc}</div>
+              ${fb.liked ? '❤️' : ''}
+              ${fb.disliked ? '👎' : ''}
+              <div class="feedback-buttons" style="margin-top:6px; justify-content:center;">
+                <button class="fb-btn ${fb.liked ? 'liked' : ''}" onclick="event.stopPropagation(); likeScenario('${sc.id}')">👍 أعجبني</button>
+                <button class="fb-btn ${fb.disliked ? 'disliked' : ''}" onclick="event.stopPropagation(); dislikeScenario('${sc.id}')">👎 لم يعجبني</button>
+              </div>
+            </div>`;
+            }).join('');
+
+            // Count likes
+            const likes = Object.values(feedbacks).filter(f => f.liked).length;
+
+            container.innerHTML = `
+            <div class="result-profile" style="border-right-color:var(--accent);">
+              <div class="profile-name">🧭 المستكشف</div>
+              <div class="profile-tag">رحلة الاكتشاف</div>
+              <div class="profile-desc">
+                لا بأس أن لا تعرف ماذا تريد بعد! هذا هو وقت التجربة والاستكشاف.
+                ${likes > 0 ? `👏 لقد أعجبتك ${likes} تجارب حتى الآن!` : 'ابدأ بتجربة بعض المواقف واكتشف ما يثير اهتمامك.'}
+              </div>
+            </div>
+
+            <div style="font-weight:700; font-size:1.1rem; margin:16px 0 8px;">🧪 جرّب مواقف متنوعة:</div>
+            <div class="explore-grid">${scenariosHtml}</div>
+
+            <div class="note-box">
+              <span class="icon">💡</span>
+              بعد كل تجربة، أخبرنا إن كانت ممتعة أم لا. سنستخدم ذلك لاقتراح مسار يناسبك.
+            </div>
+
+            ${likes >= 2 ? `
+              <div style="margin:16px 0; text-align:center;">
+                <button class="btn btn-success" onclick="generateFromExplorer()">🌟 اقترح لي مساراً بناءً على تجاربي</button>
+              </div>
+            ` : `
+              <p class="text-muted text-center" style="margin:12px 0;">جرّب تجربتين على الأقل لنتمكن من اقتراح مسار مناسب.</p>
+            `}
+
+            <div style="margin:12px 0; text-align:center;">
+              <button class="btn btn-secondary btn-sm" onclick="resetAll()">🔄 ابدأ من جديد</button>
+            </div>
+          `;
+        }
+
+        // ============================================================
+        //  EXPLORER INTERACTIONS
+        // ============================================================
+        function exploreScenario(id) {
+            const scenarios = DATA.exploreScenarios || DEFAULT_DATA.exploreScenarios;
+            const sc = scenarios.find(s => s.id === id);
+            if (!sc) return;
+            alert(`🧪 ${sc.label}\n\n${sc.desc}\n\nجرّب التفكير في هذا الموقف. ماذا ستفعل؟`);
+            // Record that they tried it
+            if (!state.exploreFeedbacks[id]) state.exploreFeedbacks[id] = {};
+            state.exploreFeedbacks[id].tried = true;
+            saveState();
+            renderResultsExplorer();
+        }
+
+        function likeScenario(id) {
+            if (!state.exploreFeedbacks[id]) state.exploreFeedbacks[id] = {};
+            state.exploreFeedbacks[id].liked = true;
+            state.exploreFeedbacks[id].disliked = false;
+            saveState();
+            renderResultsExplorer();
+            // Check if we can suggest a path
+            const likes = Object.values(state.exploreFeedbacks).filter(f => f.liked).length;
+            if (likes >= 2) {
+                setTimeout(() => {
+                    if (confirm('🌟 بناءً على تجاربك، يمكننا اقتراح مسار لك. هل تريد ذلك؟')) {
+                        generateFromExplorer();
+                    }
+                }, 300);
+            }
+        }
+
+        function dislikeScenario(id) {
+            if (!state.exploreFeedbacks[id]) state.exploreFeedbacks[id] = {};
+            state.exploreFeedbacks[id].disliked = true;
+            state.exploreFeedbacks[id].liked = false;
+            saveState();
+            renderResultsExplorer();
+        }
+
+        function generateFromExplorer() {
+            const feedbacks = state.exploreFeedbacks || {};
+            const likedIds = Object.keys(feedbacks).filter(k => feedbacks[k].liked);
+            if (likedIds.length === 0) {
+                alert('لم تعجبك أي تجربة حتى الآن. استمر في التجربة واكتشاف ما تحب!');
+                return;
+            }
+
+            // Map liked scenarios to fields
+            const scenarioMap = {
+                'logic': 'programming',
+                'creative': 'design',
+                'social': 'marketing',
+                'science': 'engineering',
+                'tech': 'programming',
+                'business': 'business',
+                'writing': 'writing',
+                'leadership': 'business'
+            };
+
+            const fieldIds = likedIds.map(id => scenarioMap[id]).filter(Boolean);
+            const matchedFields = DATA.fields.filter(f => fieldIds.includes(f.id));
+
+            if (matchedFields.length === 0) {
+                alert('بناءً على تجاربك، نقترح أن تستمر في الاستكشاف. جرب مجالات جديدة!');
+                return;
+            }
+
+            // Build a profile from these fields
+            const top = matchedFields[0];
+            state.profile = {
+                type: 'profile',
+                label: top.name,
+                icon: top.icon,
+                desc: top.desc,
+                fields: matchedFields.slice(0, 4),
+                traits: [...new Set(top.traits || [])],
+                allInterests: state.interests,
+                allHobbies: state.hobbies,
+                subjects: state.subjects,
+            };
+
+            renderResultsProfile();
+            goToStep(5);
+            saveState();
+        }
+
+        // ============================================================
+        //  FIELD DETAIL / EXPERIENCE
+        // ============================================================
+        function showFieldDetail(fieldId) {
+            const field = DATA.fields.find(f => f.id === fieldId);
+            if (!field) return;
+            const careerList = field.careers ? field.careers.map(c => `• ${c}`).join('\n') : '• متعدد';
+            alert(`🔍 ${field.name}\n\n${field.desc}\n\n🛠️ المهارات:\n${field.skills.map(s => `• ${s}`).join('\n')}\n\n💼 مسارات مهنية محتملة:\n${careerList}`);
+        }
+
+        function showExperience(fieldId) {
+            const field = DATA.fields.find(f => f.id === fieldId);
+            if (!field) return;
+            const exp = field.experience;
+            if (!exp) {
+                alert('لا توجد تجربة متاحة لهذا المجال حالياً.');
+                return;
+            }
+            // Show in a nice modal-like alert
+            const msg =
+                `🧪 ${exp.title}\n\n${exp.body}\n\n${exp.action ? '💡 ' + exp.action : ''}`;
+            alert(msg);
+
+            // After they try it, offer a project
+            if (field.project) {
+                setTimeout(() => {
+                    if (confirm('🎯 هل تريد أن ترى مشروعاً صغيراً يمكنك تنفيذه في هذا المجال؟')) {
+                        alert(`🚀 ${field.project.title}\n\n${field.project.body}`);
+                    }
+                }, 300);
+            }
+        }
+
+        function showHobbyPath(hobby) {
+            const mapped = DATA.hobbyMappings[hobby] || [];
+            if (mapped.length === 0) {
+                alert('لم نجد مسارات لهذه الهواية بعد، لكن استمر في الاستكشاف!');
+                return;
+            }
+            const list = mapped.map((m, i) => `${i + 1}. ${m}`).join('\n');
+            const choice = prompt(`🎯 من هوايتك "${hobby}" إلى:\n\n${list}\n\nاختر رقماً لتجرب مساراً:`);
+            const idx = parseInt(choice) - 1;
+            if (idx >= 0 && idx < mapped.length) {
+                const selected = mapped[idx];
+                // Try to find a matching field
+                const field = DATA.fields.find(f => f.name === selected || f.name.includes(selected));
+                if (field) {
+                    showExperience(field.id);
+                } else {
+                    alert(`🧪 جرّب التفكير في "${selected}". كيف يمكنك تحويل هذه الهواية إلى مهارة؟ ابحث عن مشروع صغير تبدأ به.`);
+                }
+            }
+        }
+
+        function markDislike() {
+            if (confirm('👎 هل هذا التوجيه لا يناسبك؟ سنأخذ ذلك بعين الاعتبار في اقتراحاتنا القادمة.')) {
+                // Record dislike and suggest trying other paths
+                state.profile = null;
+                // Reset interests to encourage exploration
+                state.interests = state.interests.filter(i => i !== 'لا أعرف ماذا أريد أصلًا');
+                // Add "لا أعرف" to encourage exploration
+                if (!state.interests.includes('لا أعرف ماذا أريد أصلًا')) {
+                    state.interests.push('لا أعرف ماذا أريد أصلًا');
+                }
+                renderInterests();
+                saveState();
+                generateResults();
+                alert('✅ تم تسجيل ملاحظتك. سنقدم لك مسارات جديدة للاستكشاف.');
+            }
+        }
+
+        // ============================================================
+        //  KEYBOARD SUPPORT
+        // ============================================================
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                // Find the primary button in the current step
+                const step = document.querySelector('.step.active');
+                if (step) {
+                    const btn = step.querySelector('.btn:not(.btn-secondary)');
+                    if (btn && !btn.disabled) btn.click();
+                }
+            }
+            if (e.key === 'Escape') {
+                const resetBtn = $('resetBtn');
+                if (resetBtn) resetBtn.click();
+            }
+        });
+
+        // ============================================================
+        //  START
+        // ============================================================
+        document.addEventListener('DOMContentLoaded', loadData);
+
+        // Expose functions to global scope for inline onclick
+        window.selectStage = selectStage;
+        window.toggleSubject = toggleSubject;
+        window.toggleOtherSubject = toggleOtherSubject;
+        window.addOtherSubject = addOtherSubject;
+        window.toggleInterest = toggleInterest;
+        window.toggleHobby = toggleHobby;
+        window.goToStep = goToStep;
+        window.generateResults = generateResults;
+        window.resetAll = resetAll;
+        window.saveAndContinue = saveAndContinue;
+        window.showFieldDetail = showFieldDetail;
+        window.showExperience = showExperience;
+        window.showHobbyPath = showHobbyPath;
+        window.markDislike = markDislike;
+        window.exploreScenario = exploreScenario;
+        window.likeScenario = likeScenario;
+        window.dislikeScenario = dislikeScenario;
+        window.generateFromExplorer = generateFromExplorer;
+        window.renderResultsProfile = renderResultsProfile;
+        window.renderResultsExplorer = renderResultsExplorer;
+    </script>
+
+</body>
+</html>
