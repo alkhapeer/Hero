@@ -52,7 +52,7 @@ window.renderAcademy = function() {
             </a>
         </div>
 
-                <!-- قسم: تصفح الدورات (بدلاً من مشاريعنا) -->
+        <!-- قسم: تصفح الدورات (بدلاً من مشاريعنا) -->
         <div style="max-width:1100px; margin:50px auto 0; text-align:center;">
             <div style="background:rgba(255,255,255,0.04); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.06); border-radius:32px; padding:60px 30px; transition:0.3s ease;">
                 <div style="font-size:72px; margin-bottom:20px;">📚</div>
@@ -148,78 +148,8 @@ window.renderAcademy = function() {
 };
 
 // ============================================================
-// 2. إعادة تعريف صفحة الدورات (Courses)
+// 2. [تم حذف دالة renderHome من هنا للسماح لـ app.js بعرض التصنيفات]
 // ============================================================
-window.renderHome = function() {
-    let html = `
-    <div style="max-width:1100px; margin:auto; padding:20px 18px 100px;">
-        <div style="display:flex; align-items:center; gap:10px; margin-bottom:25px;">
-            <button onclick="location.hash='#home'" style="border:0; background:rgba(255,255,255,0.06); color:#fff; width:42px; height:42px; border-radius:12px; cursor:pointer; font-size:22px; backdrop-filter:blur(4px); border:1px solid rgba(255,255,255,0.08);">
-                ←
-            </button>
-            <h1 style="margin:0; font-size:25px; color:#fff;">📚 الدورات المتاحة</h1>
-        </div>
-    `;
-
-    // عرض التصنيفات والدورات (نفس منطق app.js)
-    const visibleCourses = coursesData.filter(c => c.visible !== false);
-
-    if (categoriesData.length) {
-        categoriesData.forEach(category => {
-            const catCourses = visibleCourses.filter(c => c.category === category.id);
-            if (!catCourses.length) return;
-
-            html += `
-            <section style="margin-bottom:40px;">
-                <h2 style="color:#fff; margin-bottom:15px; padding-bottom:8px; border-bottom:2px solid rgba(255,255,255,0.06);">
-                    ${esc(category.icon || '📚')} ${esc(category.title)}
-                </h2>
-                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:16px;">
-            `;
-
-            catCourses.forEach(course => {
-                // استخدام رابط التحميل المباشر (Google Drive أو أي رابط)
-                const downloadUrl = course.drive_url || course.url || '#';
-                html += `
-                <div style="background:rgba(255,255,255,0.04); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.06); border-radius:20px; padding:22px; transition:0.3s ease;">
-                    <div style="font-size:40px; margin-bottom:10px;">${esc(course.icon)}</div>
-                    <h3 style="color:#fff; margin:8px 0;">${esc(course.title)}</h3>
-                    <p style="color:#b0bedb; font-size:14px; line-height:1.7;">${esc(course.description)}</p>
-                    <a href="${esc(downloadUrl)}" target="_blank" rel="noopener" style="display:block; text-align:center; background:linear-gradient(135deg,#7c3aed,#6d28d9); color:#fff; text-decoration:none; padding:10px; border-radius:60px; font-weight:bold; margin-top:15px; transition:0.3s;">
-                        📥 تحميل الدورة
-                    </a>
-                </div>
-                `;
-            });
-
-            html += `</div></section>`;
-        });
-    } else {
-        // وضع قديم بدون تصنيفات
-        html += `<div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:16px;">`;
-        visibleCourses.forEach(course => {
-            const downloadUrl = course.drive_url || course.url || '#';
-            html += `
-            <div style="background:rgba(255,255,255,0.04); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.06); border-radius:20px; padding:22px;">
-                <div style="font-size:40px;">${esc(course.icon)}</div>
-                <h3 style="color:#fff;">${esc(course.title)}</h3>
-                <p style="color:#b0bedb;">${esc(course.description)}</p>
-                <a href="${esc(downloadUrl)}" target="_blank" rel="noopener" style="display:block; text-align:center; background:linear-gradient(135deg,#7c3aed,#6d28d9); color:#fff; text-decoration:none; padding:10px; border-radius:60px; font-weight:bold;">
-                    📥 تحميل الدورة
-                </a>
-            </div>
-            `;
-        });
-        html += `</div>`;
-    }
-
-    html += `</div>`;
-    app.innerHTML = html + renderNav('courses');
-
-    if (typeof setupInstallButton === 'function') {
-        setTimeout(setupInstallButton, 50);
-    }
-};
 
 // ============================================================
 // 3. إعادة تعريف صفحة دوراتي (My Courses) - يمكن حذفها إن لم تكن مستخدمة
