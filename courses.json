@@ -123,8 +123,8 @@
     {
       "id": 10,
       "category": "test-tahsili",
-      "title": "اختبار التحصيلي التشخيصي",
-      "description": "قيّم مستواك وحدد ما تحتاج إلى تطويره قبل الاختبار.",
+      "title": "اختبار الفيزياء التحصيلي المتقدم",
+      "description": "قيّم مستواك واختبر نفسك قبل الاختبار.",
       "icon": "📚",
       "drive_url": "https://drive.google.com/uc?export=download&id=1LV2opcqkEqWvxHzriSTF7qEC6XKTL_1f",
       "features": [" تطبيق عملي تفاعلي مهمته تجهيز الطالب للامتحان والتفوق فيه"],
