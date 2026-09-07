@@ -279,29 +279,30 @@ body {
     color: #a78bfa !important; /* لون "عرض الدورات ←" */
 }
 /* ===== تخصيص القائمة السفلية في صفحات العناصر (Helper Item) ===== */
+
 .helper-item-nav-wrapper .nav {
-    background: #ffffff !important;
-    border-top: 1px solid #e5e9f0 !important;
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.05) !important;
+    background: linear-gradient(135deg, #312e81, #4f46e5) !important;
+    border-top: 1px solid #6366f1 !important;
+    box-shadow: 0 -4px 18px rgba(49, 46, 129, 0.22) !important;
 }
 
 .helper-item-nav-wrapper .nav a {
-    color: #172033 !important;
+    color: #ffffff !important;
 }
 
 .helper-item-nav-wrapper .nav a span {
-    color: #172033 !important;
+    color: #e0e7ff !important;
 }
 
 .helper-item-nav-wrapper .nav a i {
-    color: #172033 !important;
+    color: #ffffff !important;
 }
 
 .helper-item-nav-wrapper .nav a:hover {
-    color: #2563eb !important;
+    color: #ffffff !important;
 }
 
 .helper-item-nav-wrapper .nav a:hover span,
 .helper-item-nav-wrapper .nav a:hover i {
-    color: #2563eb !important;
+    color: #c7d2fe !important;
 }
