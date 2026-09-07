@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#4f46e5">
+<title>🧠 مهارات الدراسة | أكاديمية هيرو</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Tahoma", "Segoe UI", Arial, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+    line-height: 1.9;
+}
+
+.container {
+    width: min(100% - 30px, 1000px);
+    margin: auto;
+}
+
+.hero {
+    background: linear-gradient(135deg, #4338ca, #6366f1);
+    color: white;
+    padding: 55px 20px;
+    text-align: center;
+    border-radius: 0 0 35px 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.12);
+}
+
+.hero .icon {
+    font-size: 58px;
+    margin-bottom: 10px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(30px, 5vw, 46px);
+}
+
+.hero p {
+    margin: 12px auto 0;
+    max-width: 650px;
+    font-size: 18px;
+    opacity: .95;
+}
+
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(10px);
+    padding: 12px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.nav-inner {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+}
+
+.nav button {
+    flex: 0 0 auto;
+    border: 0;
+    background: #eef2ff;
+    color: #4338ca;
+    padding: 9px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.nav button:hover {
+    background: #e0e7ff;
+}
+
+.section {
+    background: white;
+    margin: 25px 0;
+    padding: 30px;
+    border-radius: 22px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.05);
+    border: 1px solid #eef0f5;
+    scroll-margin-top: 75px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.number {
+    min-width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border-radius: 15px;
+    background: #eef2ff;
+    color: #4338ca;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #111827;
+}
+
+h3 {
+    color: #4338ca;
+    margin-top: 25px;
+}
+
+ol, ul {
+    padding-right: 25px;
+}
+
+li {
+    margin: 7px 0;
+}
+
+strong {
+    color: #111827;
+}
+
+.tip {
+    background: #f0fdf4;
+    border-right: 5px solid #22c55e;
+    padding: 18px 20px;
+    margin: 22px 0;
+    border-radius: 12px;
+}
+
+.tip strong {
+    color: #15803d;
+}
+
+.quote {
+    background: #faf5ff;
+    border-right: 5px solid #a855f7;
+    padding: 18px 20px;
+    border-radius: 12px;
+    margin: 20px 0;
+    font-weight: bold;
+    color: #581c87;
+}
+
+.steps {
+    display: grid;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.step {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 13px 15px;
+    background: #f8fafc;
+    border-radius: 12px;
+}
+
+.step-num {
+    background: #6366f1;
+    color: white;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+}
+
+.example {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.example-box {
+    padding: 16px;
+    border-radius: 14px;
+}
+
+.bad {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+}
+
+.good {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+}
+
+.bad b {
+    color: #dc2626;
+}
+
+.good b {
+    color: #16a34a;
+}
+
+.flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 25px 0;
+}
+
+.flow span {
+    background: #eef2ff;
+    color: #3730a3;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.flow i {
+    color: #9ca3af;
+    font-style: normal;
+}
+
+.challenge {
+    margin: 35px 0;
+    background: linear-gradient(135deg, #111827, #312e81);
+    color: white;
+    border-radius: 25px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 12px 35px rgba(49,46,129,.25);
+}
+
+.challenge h2 {
+    color: white;
+    font-size: 28px;
+}
+
+.challenge p {
+    font-size: 18px;
+}
+
+.challenge button {
+    border: 0;
+    background: white;
+    color: #312e81;
+    padding: 13px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.challenge button:hover {
+    transform: translateY(-2px);
+}
+
+.challenge-result {
+    display: none;
+    margin-top: 18px;
+    background: rgba(255,255,255,.12);
+    padding: 15px;
+    border-radius: 12px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 15px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+@media (max-width: 650px) {
+    .section {
+        padding: 22px 18px;
+        margin: 18px 0;
+    }
+
+    .example {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 40px 18px;
+    }
+
+    .flow {
+        flex-direction: column;
+    }
+
+    .flow i {
+        transform: rotate(90deg);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+    <div class="container">
+        <div class="icon">🧠</div>
+        <h1>مهارات الدراسة</h1>
+        <p>
+            طرق عملية تساعدك على التعلم بشكل أفضل،
+            وليس فقط قضاء وقت أطول أمام الكتاب.
+        </p>
+    </div>
+</header>
+
+<nav class="nav">
+    <div class="container nav-inner">
+        <button onclick="goTo('s1')">الحفظ</button>
+        <button onclick="goTo('s2')">الاختبار</button>
+        <button onclick="goTo('s3')">الأسئلة الصعبة</button>
+        <button onclick="goTo('s4')">الوقت</button>
+        <button onclick="goTo('s5')">التسويف</button>
+        <button onclick="goTo('s6')">المواد</button>
+        <button onclick="goTo('s7')">النسيان</button>
+        <button onclick="goTo('s8')">الأخطاء</button>
+        <button onclick="goTo('s9')">التركيز</button>
+        <button onclick="goTo('s10')">المراجعة</button>
+        <button onclick="goTo('s11')">الاستعداد</button>
+        <button onclick="goTo('s12')">القاعدة الذهبية</button>
+    </div>
+</nav>
+
+<main class="container">
+
+<section class="section" id="s1">
+    <div class="section-header">
+        <div class="number">1</div>
+        <h2>كيف تحفظ أسرع؟</h2>
+    </div>
+
+    <p>
+        الحفظ لا يعتمد على تكرار المعلومة عشرات المرات،
+        بل على <strong>استرجاعها من ذاكرتك</strong>.
+    </p>
+
+    <div class="steps">
+        <div class="step"><span class="step-num">1</span>اقرأ الجزء المطلوب بفهم.</div>
+        <div class="step"><span class="step-num">2</span>أغلق الكتاب أو الصفحة.</div>
+        <div class="step"><span class="step-num">3</span>حاول أن تشرح ما قرأته من ذاكرتك.</div>
+        <div class="step"><span class="step-num">4</span>افتح الصفحة وتحقق مما نسيت.</div>
+        <div class="step"><span class="step-num">5</span>أعد المحاولة بعد فترة.</div>
+    </div>
+
+    <div class="tip">
+        <strong>قاعدة مهمة:</strong><br>
+        بدلاً من أن تقول: «قرأت الدرس ثلاث مرات»،
+        اسأل نفسك: <strong>«هل أستطيع شرحه بدون النظر إليه؟»</strong>
+    </div>
+
+    <p>
+        ويمكنك استخدام بطاقات المراجعة والأسئلة القصيرة
+        لتختبر نفسك باستمرار.
+    </p>
+</section>
+
+
+<section class="section" id="s2">
+    <div class="section-header">
+        <div class="number">2</div>
+        <h2>كيف تستعد للاختبار؟</h2>
+    </div>
+
+    <p>لا تجعل المراجعة تبدأ في الليلة السابقة للاختبار.</p>
+
+    <h3>قبل الاختبار بعدة أيام:</h3>
+
+    <div class="steps">
+        <div class="step"><span class="step-num">1</span>حدد الموضوعات المطلوبة.</div>
+        <div class="step"><span class="step-num">2</span>راجع المفاهيم والقواعد الأساسية.</div>
+        <div class="step"><span class="step-num">3</span>حل أسئلة بدون النظر إلى الإجابات.</div>
+        <div class="step"><span class="step-num">4</span>راجع أخطاءك وحدد أسبابها.</div>
+        <div class="step"><span class="step-num">5</span>أعد حل الأسئلة التي أخطأت فيها.</div>
+    </div>
+
+    <div class="quote">
+        أفضل مراجعة هي التي تكشف لك ما لا تعرفه، وليس فقط ما تعرفه.
+    </div>
+
+    <p>
+        وفي اليوم الأخير ركز على <strong>المراجعة والتثبيت</strong>،
+        وليس على تعلم كمية كبيرة من المعلومات الجديدة.
+    </p>
+</section>
+
+
+<section class="section" id="s3">
+    <div class="section-header">
+        <div class="number">3</div>
+        <h2>كيف تتعامل مع الأسئلة الصعبة؟</h2>
+    </div>
+
+    <p>عندما تواجه سؤالاً صعباً، لا تنتقل مباشرة إلى الإجابة.</p>
+
+    <div class="steps">
+        <div class="step">
+            <span class="step-num">1</span>
+            <div><strong>اقرأ السؤال ببطء.</strong><br>حدد بالضبط ما الذي يطلبه.</div>
+        </div>
+
+        <div class="step">
+            <span class="step-num">2</span>
+            <div><strong>استخرج المعلومات المهمة.</strong><br>
+            في الرياضيات والعلوم مثلاً، اكتب المعطيات والقوانين المحتملة.</div>
+        </div>
+
+        <div class="step">
+            <span class="step-num">3</span>
+            <div><strong>حاول بنفسك أولاً.</strong><br>
+            حتى لو لم تكن متأكداً من الحل.</div>
+        </div>
+
+        <div class="step">
+            <span class="step-num">4</span>
+            <div><strong>إذا توقفت، انتقل مؤقتاً.</strong><br>
+            لا تسمح لسؤال واحد أن يستهلك وقت الاختبار كله.</div>
+        </div>
+
+        <div class="step">
+            <span class="step-num">5</span>
+            <div><strong>عد إليه لاحقاً.</strong></div>
+        </div>
+    </div>
+
+    <div class="quote">
+        السؤال الصعب ليس دليلاً على أنك لا تستطيع الحل؛
+        أحياناً يحتاج فقط إلى طريقة مختلفة للتفكير.
+    </div>
+</section>
+
+
+<section class="section" id="s4">
+    <div class="section-header">
+        <div class="number">4</div>
+        <h2>كيف تنظم وقتك؟</h2>
+    </div>
+
+    <p>لا تحاول أن تدرس طوال اليوم.</p>
+
+    <p>قسّم وقتك إلى جلسات قصيرة ومركزة.</p>
+
+    <div class="tip">
+        <strong>مثال:</strong> 25 دقيقة دراسة + 5 دقائق راحة
+    </div>
+
+    <p>قبل بدء الدراسة حدد مهمة واضحة:</p>
+
+    <div class="example">
+        <div class="example-box bad">
+            ❌ <b>سأذاكر الرياضيات.</b>
+        </div>
+
+        <div class="example-box good">
+            ✅ <b>سأراجع درس الدوال وأحل 10 أسئلة.</b>
+        </div>
+    </div>
+
+    <p>المهمة المحددة أسهل في البدء وأوضح في الإنجاز.</p>
+
+    <h3>وفي نهاية اليوم اسأل نفسك:</h3>
+
+    <ul>
+        <li>ماذا أنجزت؟</li>
+        <li>ماذا لم أنجز؟</li>
+        <li>ما أهم شيء يجب أن أفعله غداً؟</li>
+    </ul>
+</section>
+
+
+<section class="section" id="s5">
+    <div class="section-header">
+        <div class="number">5</div>
+        <h2>كيف تتخلص من التسويف؟</h2>
+    </div>
+
+    <p>
+        غالباً المشكلة ليست أنك لا تريد الدراسة،
+        وإنما أنك تفكر في المهمة على أنها <strong>كبيرة وصعبة</strong>.
+    </p>
+
+    <div class="example">
+        <div class="example-box bad">
+            <b>❌</b><br>
+            «يجب أن أذاكر الفصل كاملاً.»
+        </div>
+
+        <div class="example-box good">
+            <b>✅</b><br>
+            «سأفتح الدرس وأقرأ أول صفحتين فقط.»
+        </div>
+    </div>
+
+    <p>ابدأ بخمس دقائق. بعد البداية يصبح الاستمرار أسهل بكثير.</p>
+
+    <h3>جرّب أيضاً:</h3>
+
+    <ul>
+        <li>ضع الهاتف بعيداً أثناء الدراسة.</li>
+        <li>أغلق الإشعارات غير الضرورية.</li>
+        <li>جهز مكان الدراسة قبل البدء.</li>
+        <li>حدد مهمة واحدة فقط.</li>
+        <li>استخدم مؤقتاً.</li>
+        <li>كافئ نفسك بعد إنجاز المهمة.</li>
+    </ul>
+
+    <div class="quote">
+        لا تنتظر أن تشعر بالرغبة في الدراسة؛ ابدأ بخطوة صغيرة،
+        وستأتي الرغبة غالباً بعد البداية.
+    </div>
+</section>
+
+
+<section class="section" id="s6">
+    <div class="section-header">
+        <div class="number">6</div>
+        <h2>كيف تذاكر مادة لا تحبها؟</h2>
+    </div>
+
+    <p>
+        ليس مطلوباً أن تحب كل المواد.
+    </p>
+
+    <p>
+        ابدأ بالجزء الأسهل منها حتى تدخل في أجواء الدراسة،
+        ثم انتقل تدريجياً إلى الأجزاء الأصعب.
+    </p>
+
+    <p>وحاول تحويل المادة إلى أسئلة:</p>
+
+    <div class="tip">
+        ما الفكرة الرئيسية؟<br>
+        لماذا حدث ذلك؟<br>
+        ما القاعدة؟<br>
+        كيف أطبقها؟<br>
+        ماذا يمكن أن يأتي في الاختبار؟
+    </div>
+
+    <p>
+        كلما أصبحت مشاركاً في الدراسة، أصبحت المعلومة أسهل في التذكر.
+    </p>
+</section>
+
+
+<section class="section" id="s7">
+    <div class="section-header">
+        <div class="number">7</div>
+        <h2>ماذا أفعل عندما أنسى ما درست؟</h2>
+    </div>
+
+    <p>
+        نسيان بعض المعلومات طبيعي.
+    </p>
+
+    <p>
+        المشكلة ليست في النسيان، بل في
+        <strong>عدم مراجعة المعلومة بعد تعلمها.</strong>
+    </p>
+
+    <h3>استخدم المراجعة المتباعدة:</h3>
+
+    <div class="flow">
+        <span>بعد الدراسة</span>
+        <i>↓</i>
+        <span>اليوم التالي</span>
+        <i>↓</i>
+        <span>بعد عدة أيام</span>
+        <i>↓</i>
+        <span>بعد أسبوع</span>
+        <i>↓</i>
+        <span>اختبر نفسك</span>
+    </div>
+
+    <div class="quote">
+        لا تكتفِ بإعادة القراءة.
+        حاول استرجاع المعلومة من ذاكرتك أولاً.
+    </div>
+</section>
+
+
+<section class="section" id="s8">
+    <div class="section-header">
+        <div class="number">8</div>
+        <h2>كيف أتعلم من أخطائي؟</h2>
+    </div>
+
+    <p>
+        الخطأ يمكن أن يكون أفضل من الإجابة الصحيحة إذا تعلمت منه.
+    </p>
+
+    <p><strong>عندما تخطئ في سؤال، لا تكتفِ بمعرفة الإجابة الصحيحة.</strong></p>
+
+    <h3>اسأل: لماذا أخطأت؟</h3>
+
+    <ul>
+        <li>لم أفهم السؤال؟</li>
+        <li>نسيت القاعدة؟</li>
+        <li>استخدمت قانوناً خاطئاً؟</li>
+        <li>استعجلت؟</li>
+        <li>أخطأت في الحساب؟</li>
+        <li>لم أراجع الإجابة؟</li>
+    </ul>
+
+    <div class="tip">
+        أنشئ قائمة صغيرة باسم <strong>«أخطائي المتكررة»</strong>
+        وراجعها قبل الاختبارات.
+    </div>
+</section>
+
+
+<section class="section" id="s9">
+    <div class="section-header">
+        <div class="number">9</div>
+        <h2>كيف أركز أثناء الدراسة؟</h2>
+    </div>
+
+    <p>قبل البدء، اجعل هدف الجلسة واضحاً.</p>
+
+    <div class="flow">
+        <span>الهاتف بعيد</span>
+        <span>الإشعارات مغلقة</span>
+        <span>مهمة واحدة</span>
+        <span>مؤقت محدد</span>
+        <span>مكان هادئ</span>
+    </div>
+
+    <p>
+        إذا جاءتك فكرة أو مهمة أخرى أثناء الدراسة،
+        لا تترك ما تفعله.
+        اكتبها في ورقة صغيرة وارجع إليها بعد انتهاء الجلسة.
+    </p>
+
+    <div class="quote">
+        التركيز لا يعني الدراسة لساعات؛
+        يعني أن تكون حاضراً أثناء الدقائق التي تدرس فيها.
+    </div>
+</section>
+
+
+<section class="section" id="s10">
+    <div class="section-header">
+        <div class="number">10</div>
+        <h2>كيف أراجع بطريقة أفضل؟</h2>
+    </div>
+
+    <p>اجعل المراجعة عملية وليست مجرد قراءة.</p>
+
+    <div class="flow">
+        <span>تعلم</span>
+        <i>↓</i>
+        <span>أغلق الكتاب</span>
+        <i>↓</i>
+        <span>استرجع</span>
+        <i>↓</i>
+        <span>حل أسئلة</span>
+        <i>↓</i>
+        <span>اكتشف الأخطاء</span>
+        <i>↓</i>
+        <span>راجع الأخطاء</span>
+        <i>↓</i>
+        <span>اختبر نفسك</span>
+    </div>
+
+    <p>
+        إذا استطعت حل الأسئلة وشرح الفكرة بدون مساعدة،
+        فهذا مؤشر أفضل على إتقانك للمادة من مجرد شعورك بأن الدرس «مألوف».
+    </p>
+</section>
+
+
+<section class="section" id="s11">
+    <div class="section-header">
+        <div class="number">11</div>
+        <h2>كيف أعرف أنني مستعد للاختبار؟</h2>
+    </div>
+
+    <p>
+        لا تعتمد على شعورك بأنك قرأت كل شيء.
+    </p>
+
+    <p><strong>اختبر نفسك.</strong></p>
+
+    <p>أنت أقرب إلى الجاهزية عندما تستطيع:</p>
+
+    <ul>
+        <li>شرح الأفكار الأساسية بدون الكتاب.</li>
+        <li>حل الأسئلة المعتادة بدون مساعدة.</li>
+        <li>التعامل مع أسئلة جديدة.</li>
+        <li>اكتشاف أخطائك وتصحيحها.</li>
+        <li>تذكر القواعد والمفاهيم الأساسية.</li>
+        <li>الحصول على نتائج جيدة في اختبارات تجريبية.</li>
+    </ul>
+
+    <div class="quote">
+        أفضل طريقة لمعرفة مستواك هي أن تختبر نفسك
+        قبل أن يختبرك الامتحان.
+    </div>
+</section>
+
+
+<section class="section" id="s12">
+    <div class="section-header">
+        <div class="number">12</div>
+        <h2>قاعدة ذهبية للطالب</h2>
+    </div>
+
+    <p>لا تحاول أن تكون مثالياً كل يوم.</p>
+
+    <div class="example">
+        <div class="example-box good">
+            إذا لم تستطع الدراسة ساعتين، ادرس 30 دقيقة.
+        </div>
+
+        <div class="example-box good">
+            إذا لم تستطع حل 50 سؤالاً، حل 10.
+        </div>
+
+        <div class="example-box good">
+            إذا لم تستطع إنهاء فصل كامل، أنجز درساً واحداً.
+        </div>
+    </div>
+
+    <div class="quote">
+        الاستمرار في خطوات صغيرة أفضل من خطة مثالية لا تبدأ بها.
+    </div>
+</section>
+
+
+<section class="challenge">
+    <div style="font-size:45px;">🎯</div>
+    <h2>تحدي اليوم</h2>
+
+    <p>
+        اختر نصيحة واحدة من هذا القسم وطبقها اليوم.
+        لا تنتقل إلى النصيحة التالية قبل أن تجربها.
+    </p>
+
+    <button onclick="dailyChallenge()">اختر نصيحة لي</button>
+
+    <div class="challenge-result" id="challengeResult"></div>
+</section>
+
+</main>
+
+<footer>
+    🧠 مهارات الدراسة — أكاديمية هيرو
+</footer>
+
+<script>
+function goTo(id) {
+    document.getElementById(id).scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+const challenges = [
+    "أغلق الكتاب بعد دراسة جزء صغير وحاول شرحه من ذاكرتك.",
+    "حدد مهمة دراسية واحدة واضحة وأنجزها خلال 25 دقيقة.",
+    "حل 5 أسئلة بدون النظر إلى الإجابات، ثم راجع أخطاءك.",
+    "ضع هاتفك بعيداً عنك أثناء جلسة الدراسة القادمة.",
+    "اختر معلومة درستها أمس وحاول استرجاعها دون النظر إلى الكتاب.",
+    "خذ سؤالاً أخطأت فيه واسأل نفسك: لماذا أخطأت؟",
+    "حوّل درساً واحداً إلى 5 أسئلة واختبر نفسك بها.",
+    "ابدأ المهمة التي تؤجلها بخمس دقائق فقط."
+];
+
+function dailyChallenge() {
+    const result = document.getElementById("challengeResult");
+
+    const today = new Date();
+    const dayNumber =
+        Math.floor(
+            new Date(
+                today.getFullYear(),
+                today.getMonth(),
+                today.getDate()
+            ).getTime() / 86400000
+        );
+
+    const challenge = challenges[dayNumber % challenges.length];
+
+    result.innerHTML = "🎯 <strong>تحديك اليوم:</strong><br>" + challenge;
+    result.style.display = "block";
+}
+</script>
+
+</body>
+</html>
