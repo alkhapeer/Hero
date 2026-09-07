@@ -280,29 +280,23 @@ body {
 }
 /* ===== تخصيص القائمة السفلية في صفحات العناصر (Helper Item) ===== */
 
+/* إجبار النصوص على الظهور في صفحات العناصر */
 .helper-item-nav-wrapper .nav {
-    background: linear-gradient(135deg, #312e81, #4f46e5) !important;
-    border-top: 1px solid #6366f1 !important;
-    box-shadow: 0 -4px 18px rgba(49, 46, 129, 0.22) !important;
+    background: #ffffff !important;
+    border-top: none !important;
+    box-shadow: none !important;
 }
 
-.helper-item-nav-wrapper .nav a {
-    color: #ffffff !important;
-}
-
-.helper-item-nav-wrapper .nav a span {
-    color: #e0e7ff !important;
-}
-
+.helper-item-nav-wrapper .nav a,
+.helper-item-nav-wrapper .nav a span,
 .helper-item-nav-wrapper .nav a i {
-    color: #ffffff !important;
+    color: #172033 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
-.helper-item-nav-wrapper .nav a:hover {
-    color: #ffffff !important;
-}
-
+.helper-item-nav-wrapper .nav a:hover,
 .helper-item-nav-wrapper .nav a:hover span,
 .helper-item-nav-wrapper .nav a:hover i {
-    color: #c7d2fe !important;
+    color: #2563eb !important;
 }
