@@ -197,8 +197,7 @@ function renderHelperCategory(catId) {
                     <div>
                         <h3 style="margin-top:0;color:#172033;">${esc(item.title)}</h3>
                         <p style="color:#666;font-size:14px;">${esc(item.description || '')}</p>
-                    </div>
-                    <a href="${esc(item.url)}" target="_blank" rel="noopener" style="display:block;text-align:center;background:#2563eb;color:#fff;text-decoration:none;padding:10px;border-radius:8px;font-weight:bold;margin-top:15px;">📖 فتح الصفحة</a>
+                    </div><a href="#helper/item/${item.id}" style="display:block;text-align:center;background:#2563eb;color:#fff;text-decoration:none;padding:10px;border-radius:8px;font-weight:bold;margin-top:15px;">📖 فتح الصفحة</a>
                 </div>
             `;
         });
@@ -209,6 +208,21 @@ function renderHelperCategory(catId) {
     html += renderNav('helper');
     app.innerHTML = attachInstallButton(html);
     setupInstallButton();
+}
+function renderHelperItem(itemId) {
+    const item = helperData.items.find(i => i.id === parseInt(itemId));
+    if (!item) {
+        app.innerHTML = `<div style="text-align:center;padding:40px;">العنصر غير موجود</div>`;
+        return;
+    }
+    app.innerHTML = `
+        <div style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:#fff;">
+            <div style="position:absolute;top:15px;right:15px;z-index:10000;">
+                <button onclick="location.hash='#helper/category/${item.category}'" style="background:#fff;border:1px solid #ddd;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:bold;color:#2563eb;box-shadow:0 2px 6px rgba(0,0,0,0.1);">✕ رجوع</button>
+            </div>
+            <iframe src="${esc(item.url)}" style="width:100%;height:100%;border:none;display:block;" allowfullscreen></iframe>
+        </div>
+    `;
 }
 
 function renderAbout() {
@@ -231,6 +245,7 @@ function route() {
     else if (h.startsWith('category/')) renderCategoryCourses(h.split('/')[1]);
     else if (h === 'helper') renderHelper();
     else if (h.startsWith('helper/category/')) renderHelperCategory(h.split('/')[2]);
+    else if (h.startsWith('helper/item/')) renderHelperItem(h.split('/')[2]);
     else if (h === 'about') renderAbout();
     else renderAcademy(); // سيتم استبدالها بـ hero-ui.js
 }
