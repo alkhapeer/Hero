@@ -1,25 +1,9 @@
 {
   "categories": [
-    {
-      "id": "law",
-      "title": "مواد القانون",
-      "icon": "⚖️"
-    },
-    {
-      "id": "Thanawy",
-      "title": "الثانوية",
-      "icon": "🔬"
-    },
-    {
-      "id": "test-qudurat",
-      "title": "اختبارات القدرات",
-      "icon": "🎯"
-    },
-    {
-      "id": "test-tahsili",
-      "title": "اختبارات التحصيلي",
-      "icon": "📚"
-    }
+    { "id": "law", "title": "مواد القانون", "icon": "⚖️" },
+    { "id": "Thanawy", "title": "الثانوية", "icon": "🔬" },
+    { "id": "test-qudurat", "title": "اختبارات القدرات", "icon": "🎯" },
+    { "id": "test-tahsili", "title": "اختبارات التحصيلي", "icon": "📚" }
   ],
   "courses": [
     {
@@ -91,20 +75,21 @@
       "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true
     },
-     {
+    {
       "id": 11,
       "category": "law",
       "title": "مادة أصول الفقه",
+      "description": "دورة تعليمية شاملة لمادة أصول الفقه.",
+      "icon": "⚖️",
       "drive_url": "https://drive.google.com/uc?export=download&id=1n0DF3OgVTVyKSjZrlZMJCR5-dhUfM9vb",
       "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
-      "icon": "⚖️",
       "visible": true
     },
     {
       "id": 20,
       "category": "law",
-      "title": "مادة الاجراءات المدنية",
-      "description": "دورة تعليمية شاملة لمادة لاجراءات المدنية .",
+      "title": "مادة الإجراءات المدنية",
+      "description": "دورة تعليمية شاملة لمادة الإجراءات المدنية.",
       "icon": "⚖️",
       "drive_url": "https://drive.google.com/uc?export=download&id=14yUOGfpOgF52jfiKsNJ5L9bbz7FcodHW",
       "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
@@ -117,7 +102,7 @@
       "description": "اختبر مستواك واكتشف نقاط القوة والضعف قبل بدء الاستعداد.",
       "icon": "🎯",
       "url": "courses/tests/qudurat.html",
-      "features": [" تطبيق عملي تفاعلي مهمته تجهيز الطالب للامتحان والتفوق فيه"],
+      "features": ["تطبيق عملي تفاعلي مهمته تجهيز الطالب للامتحان والتفوق فيه"],
       "visible": true
     },
     {
@@ -127,7 +112,7 @@
       "description": "قيّم مستواك واختبر نفسك قبل الاختبار.",
       "icon": "📚",
       "drive_url": "https://drive.google.com/uc?export=download&id=1LV2opcqkEqWvxHzriSTF7qEC6XKTL_1f",
-      "features": [" تطبيق عملي تفاعلي مهمته تجهيز الطالب للامتحان والتفوق فيه"],
+      "features": ["تطبيق عملي تفاعلي مهمته تجهيز الطالب للامتحان والتفوق فيه"],
       "visible": true
     },
     {
@@ -140,23 +125,38 @@
       "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": false,
       "parentCourse": 4
-    },
-    "helper": {
-  "categories": [
-    { "id": "help", "title": "أدوات مفيدة", "icon": "📐",
-     "description": "أدوات لمساعدة الطالب",
-    },
-    { "id": "science", "title": "العلوم", "icon": "🔬",
-     "description": "
-هنا يبدأ التحدي الحقيقي! ⚡",
-    },
-  "items": [
-    { "id": 1, "category": "help", "title": "اكتشف نفسك", "url": "helper/help/discover.html",
-     "description": "لا تحتاج أن تعرف ماذا تريد الآن. ابدأ بما تحب، وجرّب، ودعنا نساعدك على اكتشاف الطريق.",
-    },
-    { "id": 2, "category": "science", "title": "بنك أسئلة الكيمياء", "url": "helper/science/chemistryQB.html",
-     "description": "🧪 بنك أسئلة الكيمياء التحصيلي",
     }
-  ]
+  ],
+  "helper": {
+    "categories": [
+      {
+        "id": "help",
+        "title": "أدوات مفيدة",
+        "icon": "📐",
+        "description": "أدوات لمساعدة الطالب"
+      },
+      {
+        "id": "science",
+        "title": "العلوم",
+        "icon": "🔬",
+        "description": "هنا يبدأ التحدي الحقيقي! ⚡"
+      }
+    ],
+    "items": [
+      {
+        "id": 1,
+        "category": "help",
+        "title": "اكتشف نفسك",
+        "url": "helper/help/discover.html",
+        "description": "لا تحتاج أن تعرف ماذا تريد الآن. ابدأ بما تحب، وجرّب، ودعنا نساعدك على اكتشاف الطريق."
+      },
+      {
+        "id": 2,
+        "category": "science",
+        "title": "بنك أسئلة الكيمياء",
+        "url": "helper/science/chemistryQB.html",
+        "description": "🧪 بنك أسئلة الكيمياء التحصيلي"
+      }
+    ]
+  }
 }
-
