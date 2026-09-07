@@ -140,6 +140,22 @@
       "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": false,
       "parentCourse": 4
+    },
+    "helper": {
+  "categories": [
+    { "id": "help", "title": "أدوات مفيدة", "icon": "📐",
+     "description": "أدوات لمساعدة الطالب",
+    },
+    { "id": "science", "title": "العلوم", "icon": "🔬",
+     "description": "
+هنا يبدأ التحدي الحقيقي! ⚡",
+    },
+  "items": [
+    { "id": 1, "category": "help", "title": "اكتشف نفسك", "url": "helper/help/discover.html",
+     "description": "لا تحتاج أن تعرف ماذا تريد الآن. ابدأ بما تحب، وجرّب، ودعنا نساعدك على اكتشاف الطريق.",
+    },
+    { "id": 2, "category": "science", "title": "بنك أسئلة الكيمياء", "url": "helper/science/chemistryQB.html",
+     "description": "🧪 بنك أسئلة الكيمياء التحصيلي",
     }
   ]
 }
