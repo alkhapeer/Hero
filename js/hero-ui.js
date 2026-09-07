@@ -25,6 +25,9 @@ function renderNav(activeTab) {
     `;
 }
 
+// ============================================================
+// 1. إعادة تعريف الصفحة الرئيسية (Academy)
+// ============================================================
 window.renderAcademy = function() {
     let html = `
     <div style="min-height:100vh; background:transparent; box-sizing:border-box; padding:20px 15px 100px;">
@@ -126,7 +129,12 @@ window.renderAcademy = function() {
             </a>
         </div>
 
-        <div id="installArea" style="max-width:1100px; margin:30px auto 0;"></div>
+        <!-- إضافة زر التثبيت في أسفل الصفحة الرئيسية -->
+        <div id="installArea" style="max-width:1100px; margin:30px auto 0; text-align:center;">
+            <button id="installAppBtn" style="background:#2563eb;color:#fff;border:0;padding:12px 28px;border-radius:50px;font-weight:bold;cursor:pointer;display:none;">
+                📲 تثبيت تطبيق Hero
+            </button>
+        </div>
     </div>
     `;
 
@@ -142,11 +150,8 @@ window.renderAcademy = function() {
 // ============================================================
 
 // ============================================================
-// 3. إعادة تعريف صفحة مساعد الطالب (لأنها لم تعد دوراتي)
+// 3. [تم حذف تعريف window.renderHelper نهائياً حتى تستخدم دالة app.js]
 // ============================================================
-window.renderHelper = function() {
-    app.innerHTML = `<div style="text-align:center; padding:80px 20px; color:#b0bedb;">هذا القسم يُعرض الآن من داخل app.js</div>` + renderNav('helper');
-};
 
 // ============================================================
 // 4. إعادة تعريف صفحة عن الأكاديمية
