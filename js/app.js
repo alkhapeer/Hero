@@ -197,7 +197,8 @@ function renderHelperCategory(catId) {
                     <div>
                         <h3 style="margin-top:0;color:#172033;">${esc(item.title)}</h3>
                         <p style="color:#666;font-size:14px;">${esc(item.description || '')}</p>
-                    </div><a href="#helper/item/${item.id}" style="display:block;text-align:center;background:#2563eb;color:#fff;text-decoration:none;padding:10px;border-radius:8px;font-weight:bold;margin-top:15px;">📖 فتح الصفحة</a>
+                    </div>
+                    <a href="#helper/item/${item.id}" style="display:block;text-align:center;background:#2563eb;color:#fff;text-decoration:none;padding:10px;border-radius:8px;font-weight:bold;margin-top:15px;">📖 فتح الصفحة</a>
                 </div>
             `;
         });
