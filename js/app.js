@@ -226,7 +226,7 @@ function renderHelperItem(itemId) {
             <!-- المحتوى داخل iframe مع ترك مساحة للقائمة السفلية -->
             <iframe src="${esc(item.url)}" style="position:absolute;top:55px;left:0;width:100%;height:calc(100% - 55px - 60px);border:none;" allowfullscreen></iframe>
             <!-- القائمة السفلية -->
-            <div class="helper-item-nav-wrapper">${renderNav('helper')}</div>
+            <div class="helper-item-nav-wrapper" style="position:fixed;bottom:0;left:0;right:0;z-index:10002;background:#ffffff;border-top:1px solid #e5e9f0;">${renderNav('helper')}</div>
         </div>
     `;
 }
