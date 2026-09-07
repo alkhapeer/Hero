@@ -218,12 +218,19 @@ function renderHelperItem(itemId) {
     }
     app.innerHTML = `
         <div style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:#fff;">
-            <div style="position:absolute;top:15px;right:15px;z-index:10000;">
-                <button onclick="location.hash='#helper/category/${item.category}'" style="background:#fff;border:1px solid #ddd;padding:8px 20px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:bold;color:#2563eb;box-shadow:0 2px 6px rgba(0,0,0,0.1);">✕ رجوع</button>
+            <!-- شريط علوي ثابت -->
+            <div style="position:fixed;top:0;left:0;right:0;height:55px;background:#2563eb;display:flex;align-items:center;justify-content:space-between;padding:0 15px;z-index:10001;box-shadow:0 2px 10px rgba(0,0,0,0.2);">
+                <button onclick="location.hash='#helper/category/${item.category}'" style="background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer;font-weight:bold;">✕ رجوع</button>
+                <span style="color:#fff;font-weight:bold;font-size:16px;">${esc(item.title)}</span>
             </div>
-            <iframe src="${esc(item.url)}" style="width:100%;height:100%;border:none;display:block;" allowfullscreen></iframe>
+            <!-- المحتوى داخل iframe مع بداية أسفل الشريط -->
+            <iframe src="${esc(item.url)}" style="position:absolute;top:55px;left:0;width:100%;height:calc(100% - 55px);border:none;" allowfullscreen></iframe>
         </div>
     `;
+    // إضافة القائمة السفلية
+    html += renderNav('about');
+    app.innerHTML = attachInstallButton(html);
+    setupInstallButton();
 }
 
 function renderAbout() {
