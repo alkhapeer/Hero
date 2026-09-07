@@ -150,6 +150,13 @@
         "url": "helper/help/discover.html",
         "description": "لا تحتاج أن تعرف ماذا تريد الآن. ابدأ بما تحب، وجرّب، ودعنا نساعدك على اكتشاف الطريق."
       },
+       {
+        "id": 3,
+        "category": "help",
+        "title": " مهارات الدراسة",
+        "url": "helper/help/study-skills.html",
+        "description": "لا تحتاج أن تعرف ماذا تريد الآن. ابدأ بما تحب، وجرّب، ودعنا نساعدك على اكتشاف الطريق."
+      },
       {
         "id": 2,
         "category": "science",
