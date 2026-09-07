@@ -32,11 +32,24 @@ self.addEventListener('activate', e => {
   );
 });
 
+// استقبال رسالة من الصفحة لتخطي الانتظار وتفعيل النسخة الجديدة
+self.addEventListener('message', event => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+
+// استراتيجية Network-First: جلب النسخة الجديدة من الشبكة أولاً، ثم تخزينها في الكاش
 self.addEventListener('fetch', e => {
   if (e.request.method === 'GET') {
     e.respondWith(
-      caches.match(e.request)
-        .then(response => response || fetch(e.request))
+      fetch(e.request)
+        .then(response => {
+          const clone = response.clone();
+          caches.open(CACHE).then(cache => cache.put(e.request, clone));
+          return response;
+        })
+        .catch(() => caches.match(e.request).then(r => r || Response.error()))
     );
   }
 });
