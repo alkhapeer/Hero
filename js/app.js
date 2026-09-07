@@ -237,11 +237,69 @@ function renderAbout() {
         <div style="font-size:65px;">🎓</div>
         <h1 style="color:#172033;">أكاديمية هيرو</h1>
         <p style="color:#64748b;">منصة تعليمية تساعدك على الوصول إلى الدورات.</p>
+        <button onclick="manualUpdate()">🔄 فحص التحديثات</button>
     </div>`;
     // إضافة القائمة السفلية
     html += renderNav('about');
     app.innerHTML = attachInstallButton(html);
     setupInstallButton();
+}
+// ============================================
+// نظام كشف التحديثات التلقائي + زر التحديث اليدوي
+// ============================================
+let newWorker = null;
+
+function showUpdateNotice() {
+    if (document.getElementById('update-notice')) return;
+    const notice = document.createElement('div');
+    notice.id = 'update-notice';
+    notice.innerHTML = `
+        <div style="background:#2563eb;color:#fff;padding:14px;text-align:center;position:fixed;top:0;left:0;right:0;z-index:99999;display:flex;justify-content:center;align-items:center;gap:10px;">
+            <span>🔄 يوجد تحديث جديد متاح!</span>
+            <button onclick="applyUpdate()" style="background:#fff;color:#2563eb;border:none;padding:8px 15px;border-radius:6px;cursor:pointer;font-weight:bold;">تحديث الآن</button>
+            <button onclick="dismissUpdate()" style="background:transparent;color:#fff;border:1px solid #fff;padding:8px 12px;border-radius:6px;cursor:pointer;">إغلاق</button>
+        </div>
+    `;
+    document.body.appendChild(notice);
+}
+
+function applyUpdate() {
+    if (newWorker) {
+        newWorker.postMessage({ type: 'SKIP_WAITING' });
+        window.location.reload();
+    }
+}
+
+function dismissUpdate() {
+    const el = document.getElementById('update-notice');
+    if (el) el.remove();
+}
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').then((reg) => {
+        // اكتشاف التحديثات تلقائياً
+        reg.addEventListener('updatefound', () => {
+            const worker = reg.installing;
+            if (!worker) return;
+            worker.addEventListener('statechange', () => {
+                if (worker.state === 'installed' && navigator.serviceWorker.controller) {
+                    newWorker = worker;
+                    showUpdateNotice();
+                }
+            });
+        });
+    });
+
+    // زر التحديث اليدوي (استدعِ هذه الدالة من أي مكان تريد)
+    window.manualUpdate = function() {
+        navigator.serviceWorker.getRegistration().then((reg) => {
+            if (reg) {
+                reg.update().then(() => {
+                    alert('تم فحص التحديثات. إن وُجد تحديث سيظهر إشعار تلقائي.');
+                });
+            }
+        });
+    };
 }
 
 // التوجيه
