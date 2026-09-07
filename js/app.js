@@ -16,12 +16,10 @@ function getBasePath() {
     return path.substring(0, path.lastIndexOf('/') + 1);
 }
 
-// دوال وهمية لدعم hero-ui.js
 function getMyCourses() { return []; }
 function saveMyCourse(courseId) { /* لا تفعل شيئاً */ }
 function isMyCourse(courseId) { return false; }
 
-// تحميل البيانات
 async function loadCourses() {
     try {
         const base = getBasePath();
@@ -37,30 +35,38 @@ async function loadCourses() {
     }
 }
 
-// دوال العرض الأساسية
-function renderAcademy() {
-    app.innerHTML = `<div style="min-height:100vh;background:#f8fafc;padding:25px 15px;">
-        <div style="max-width:850px;margin:auto;">
-            <div style="text-align:center;padding:25px;">
-                <div style="font-size:58px;">🎓</div>
-                <h1 style="color:#172033;">أكاديمية هيرو</h1>
-                <p style="color:#64748b;">تعلم بطريقة أبسط وأذكى</p>
-            </div>
-            <button onclick="location.hash='#courses'" style="width:100%;background:#fff;border:0;border-radius:18px;padding:22px;margin-bottom:15px;text-align:right;cursor:pointer;display:flex;align-items:center;gap:18px;">
-                <div style="width:58px;height:58px;border-radius:15px;background:#eff6ff;display:flex;align-items:center;justify-content:center;font-size:30px;">📚</div>
-                <div style="flex:1;"><div style="font-weight:bold;font-size:19px;color:#172033;">الدورات المتاحة</div><div style="color:#64748b;font-size:14px;">تصفح جميع التصنيفات</div></div>
-            </button>
-            <button onclick="location.hash='#helper'" style="width:100%;background:#fff;border:0;border-radius:18px;padding:22px;margin-bottom:15px;text-align:right;cursor:pointer;display:flex;align-items:center;gap:18px;">
-                <div style="width:58px;height:58px;border-radius:15px;background:#fef3c7;display:flex;align-items:center;justify-content:center;font-size:30px;">📘</div>
-                <div style="flex:1;"><div style="font-weight:bold;font-size:19px;color:#172033;">مساعد الطالب</div><div style="color:#64748b;font-size:14px;">أدوات وبنوك أسئلة تساعدك على التفوق</div></div>
-            </button>
-            <button onclick="location.hash='#about'" style="width:100%;background:#fff;border:0;border-radius:18px;padding:22px;margin-bottom:25px;text-align:right;cursor:pointer;display:flex;align-items:center;gap:18px;">
-                <div style="width:58px;height:58px;border-radius:15px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:30px;">ℹ️</div>
-                <div style="flex:1;"><div style="font-weight:bold;font-size:19px;color:#172033;">عن الأكاديمية</div><div style="color:#64748b;font-size:14px;">تعرف علينا</div></div>
-            </button>
-        </div>
-    </div>`;
+// زر التثبيت
+function setupInstallButton() {
+    const btn = document.getElementById('installAppBtn');
+    if (!btn) return;
+    btn.style.display = 'inline-block';
+    btn.onclick = async () => {
+        if (deferredInstallPrompt) {
+            deferredInstallPrompt.prompt();
+            const result = await deferredInstallPrompt.userChoice;
+            if (result.outcome === 'accepted') {
+                btn.style.display = 'none';
+            }
+            deferredInstallPrompt = null;
+        } else {
+            alert('لإضافة التطبيق إلى شاشتك الرئيسية، افتح قائمة المتصفح واختر "إضافة إلى الشاشة الرئيسية".');
+        }
+    };
+}
+
+window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
     setupInstallButton();
+});
+
+// دالة مساعدة لإضافة زر التثبيت في أي صفحة
+function attachInstallButton(html) {
+    return html + `<div style="text-align:center; margin-top:20px;">
+        <button id="installAppBtn" style="background:#2563eb;color:#fff;border:0;padding:12px 28px;border-radius:50px;font-weight:bold;cursor:pointer;display:none;">
+            📲 تثبيت تطبيق Hero
+        </button>
+    </div>`;
 }
 
 // عرض التصنيفات (الدورات)
@@ -88,7 +94,9 @@ function renderHome() {
         html += `</div>`;
     }
     html += `</div>`;
-    app.innerHTML = html;
+    // إضافة القائمة السفلية
+    html += renderNav('courses');
+    app.innerHTML = attachInstallButton(html);
     setupInstallButton();
 }
 
@@ -128,7 +136,9 @@ function renderCategoryCourses(categoryId) {
         html += `</div>`;
     }
     html += `</div>`;
-    app.innerHTML = html;
+    // إضافة القائمة السفلية
+    html += renderNav('courses');
+    app.innerHTML = attachInstallButton(html);
     setupInstallButton();
 }
 
@@ -157,7 +167,9 @@ function renderHelper() {
         html += `</div>`;
     }
     html += `</div>`;
-    app.innerHTML = html;
+    // إضافة القائمة السفلية
+    html += renderNav('helper');
+    app.innerHTML = attachInstallButton(html);
     setupInstallButton();
 }
 
@@ -193,17 +205,23 @@ function renderHelperCategory(catId) {
         html += `</div>`;
     }
     html += `</div>`;
-    app.innerHTML = html;
+    // إضافة القائمة السفلية
+    html += renderNav('helper');
+    app.innerHTML = attachInstallButton(html);
     setupInstallButton();
 }
 
 function renderAbout() {
-    app.innerHTML = `<div style="max-width:700px;margin:auto;padding:25px;text-align:center;">
+    let html = `<div style="max-width:700px;margin:auto;padding:25px;text-align:center;">
         <button onclick="location.hash='#home'" style="border:0;background:#fff;padding:9px 18px;border-radius:9px;cursor:pointer;margin-bottom:25px;">← الرئيسية</button>
         <div style="font-size:65px;">🎓</div>
         <h1 style="color:#172033;">أكاديمية هيرو</h1>
         <p style="color:#64748b;">منصة تعليمية تساعدك على الوصول إلى الدورات.</p>
     </div>`;
+    // إضافة القائمة السفلية
+    html += renderNav('about');
+    app.innerHTML = attachInstallButton(html);
+    setupInstallButton();
 }
 
 // التوجيه
@@ -214,27 +232,7 @@ function route() {
     else if (h === 'helper') renderHelper();
     else if (h.startsWith('helper/category/')) renderHelperCategory(h.split('/')[2]);
     else if (h === 'about') renderAbout();
-    else renderAcademy();
-}
-
-// زر التثبيت
-window.addEventListener('beforeinstallprompt', e => {
-    e.preventDefault();
-    deferredInstallPrompt = e;
-    setupInstallButton();
-});
-
-function setupInstallButton() {
-    const btn = document.getElementById('installAppBtn');
-    if (!btn) return;
-    if (deferredInstallPrompt) {
-        btn.style.display = 'inline-block';
-        btn.onclick = async () => {
-            deferredInstallPrompt.prompt();
-            await deferredInstallPrompt.userChoice;
-            deferredInstallPrompt = null;
-        };
-    }
+    else renderAcademy(); // سيتم استبدالها بـ hero-ui.js
 }
 
 window.addEventListener('hashchange', route);
