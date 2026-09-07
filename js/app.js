@@ -223,14 +223,12 @@ function renderHelperItem(itemId) {
                 <button onclick="location.hash='#helper/category/${item.category}'" style="background:transparent;border:none;color:#fff;font-size:18px;cursor:pointer;font-weight:bold;">✕ رجوع</button>
                 <span style="color:#fff;font-weight:bold;font-size:16px;">${esc(item.title)}</span>
             </div>
-            <!-- المحتوى داخل iframe مع بداية أسفل الشريط -->
-            <iframe src="${esc(item.url)}" style="position:absolute;top:55px;left:0;width:100%;height:calc(100% - 55px);border:none;" allowfullscreen></iframe>
+            <!-- المحتوى داخل iframe مع ترك مساحة للقائمة السفلية -->
+            <iframe src="${esc(item.url)}" style="position:absolute;top:55px;left:0;width:100%;height:calc(100% - 55px - 60px);border:none;" allowfullscreen></iframe>
+            <!-- القائمة السفلية -->
+            ${renderNav('helper')}
         </div>
     `;
-    // إضافة القائمة السفلية
-    html += renderNav('about');
-    app.innerHTML = attachInstallButton(html);
-    setupInstallButton();
 }
 
 function renderAbout() {
