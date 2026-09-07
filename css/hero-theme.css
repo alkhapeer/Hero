@@ -278,15 +278,30 @@ body {
 #app div[onclick^="location.hash='#category/"] div:last-child {
     color: #a78bfa !important; /* لون "عرض الدورات ←" */
 }
-/* تخصيص القائمة السفلية في صفحة عنصر مساعد الطالب */
+/* ===== تخصيص القائمة السفلية في صفحات العناصر (Helper Item) ===== */
 .helper-item-nav-wrapper .nav {
     background: #ffffff !important;
     border-top: 1px solid #e5e9f0 !important;
     box-shadow: 0 -2px 10px rgba(0,0,0,0.05) !important;
 }
+
 .helper-item-nav-wrapper .nav a {
     color: #172033 !important;
 }
-.helper-item-nav-wrapper .nav a.active {
+
+.helper-item-nav-wrapper .nav a span {
+    color: #172033 !important;
+}
+
+.helper-item-nav-wrapper .nav a i {
+    color: #172033 !important;
+}
+
+.helper-item-nav-wrapper .nav a:hover {
+    color: #2563eb !important;
+}
+
+.helper-item-nav-wrapper .nav a:hover span,
+.helper-item-nav-wrapper .nav a:hover i {
     color: #2563eb !important;
 }
