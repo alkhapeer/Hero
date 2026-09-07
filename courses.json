@@ -108,10 +108,20 @@
     {
       "id": 10,
       "category": "test-tahsili",
-      "title": "اختبار الفيزياء التحصيلي المتقدم",
+      "title": "تطبيق الفيزياء التحصيلي المتقدم",
       "description": "قيّم مستواك واختبر نفسك قبل الاختبار.",
       "icon": "📚",
       "drive_url": "https://drive.google.com/uc?export=download&id=1LV2opcqkEqWvxHzriSTF7qEC6XKTL_1f",
+      "features": ["تطبيق عملي تفاعلي مهمته تجهيز الطالب للامتحان والتفوق فيه"],
+      "visible": true
+    },
+    {
+      "id": 13,
+      "category": "test-tahsili",
+      "title": "تطبيق الكيمياء التحصيلي المتقدم",
+      "description": "قيّم مستواك واختبر نفسك قبل الاختبار.",
+      "icon": "📚",
+      "drive_url": "https://drive.google.com/uc?export=download&id=1bkDKXdE6AaLDmPk5Neb53k4LsuIvimd9",
       "features": ["تطبيق عملي تفاعلي مهمته تجهيز الطالب للامتحان والتفوق فيه"],
       "visible": true
     },
