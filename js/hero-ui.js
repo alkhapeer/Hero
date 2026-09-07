@@ -1,10 +1,7 @@
 // ============================================================
 // hero-ui.js  -  إعادة تعريف واجهات التطبيق
-// الهدف: تطبيق تصميم الصفحة الرئيسية (Hero Projects)
-// دون تعديل أي سطر في app.js أو style.css
 // ============================================================
 
-// ---- دالة مساعدة لإنشاء شريط التنقل السفلي ----
 function renderNav(activeTab) {
     return `
     <nav class="nav" style="position:fixed; bottom:0; left:0; right:0; z-index:10;">
@@ -16,6 +13,10 @@ function renderNav(activeTab) {
             <i class="fas fa-book"></i>
             <span>الدورات</span>
         </a>
+        <a href="#helper" style="${activeTab === 'helper' ? 'color:#a78bfa;' : ''}">
+            <i class="fas fa-book-open"></i>
+            <span>مساعد الطالب</span>
+        </a>
         <a href="#about" style="${activeTab === 'about' ? 'color:#a78bfa;' : ''}">
             <i class="fas fa-info-circle"></i>
             <span>عن</span>
@@ -24,22 +25,16 @@ function renderNav(activeTab) {
     `;
 }
 
-// ============================================================
-// 1. إعادة تعريف الصفحة الرئيسية (Academy)
-// ============================================================
 window.renderAcademy = function() {
-    // لا نستخدم دوراتي، لذلك لا نستدعي getMyCourses
     let html = `
     <div style="min-height:100vh; background:transparent; box-sizing:border-box; padding:20px 15px 100px;">
 
-        <!-- شارة Hero Projects -->
         <div style="text-align:center; margin-bottom:18px;">
             <span style="display:inline-block; background:rgba(108,92,231,0.2); border:1px solid rgba(108,92,231,0.3); border-radius:100px; padding:6px 24px; font-size:14px; font-weight:600; color:#a78bfa; backdrop-filter:blur(4px);">
                 <i class="fas fa-rocket" style="margin-left:8px;"></i> Hero Projects
             </span>
         </div>
 
-        <!-- العنوان الرئيسي -->
         <div style="text-align:center; max-width:700px; margin:0 auto 30px;">
             <h1 style="font-size:clamp(2.4rem, 8vw, 4.2rem); font-weight:900; line-height:1.1; margin:0 0 10px; background:linear-gradient(135deg, #ffffff 0%, #c4b5fd 50%, #7c3aed 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
                 نحو مستقبل <span style="background:linear-gradient(135deg,#fcd34d,#f59e0b); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">رقمي</span> أفضل
@@ -52,7 +47,6 @@ window.renderAcademy = function() {
             </a>
         </div>
 
-        <!-- قسم: تصفح الدورات (بدلاً من مشاريعنا) -->
         <div style="max-width:1100px; margin:50px auto 0; text-align:center;">
             <div style="background:rgba(255,255,255,0.04); backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,0.06); border-radius:32px; padding:60px 30px; transition:0.3s ease;">
                 <div style="font-size:72px; margin-bottom:20px;">📚</div>
@@ -65,7 +59,7 @@ window.renderAcademy = function() {
                 </a>
             </div>
         </div>
-        <!-- قسم: لماذا؟ -->
+
         <div style="max-width:1100px; margin:60px auto 0; background:rgba(255,255,255,0.02); border-top:1px solid rgba(255,255,255,0.04); border-bottom:1px solid rgba(255,255,255,0.04); padding:40px 0;">
             <div style="text-align:center; margin-bottom:30px;">
                 <h2 style="display:inline; color:#fff; font-size:clamp(1.8rem, 4vw, 2.6rem); font-weight:800; margin:0;">لماذا؟</h2>
@@ -95,7 +89,6 @@ window.renderAcademy = function() {
             </div>
         </div>
 
-        <!-- تابعنا -->
         <div style="max-width:1100px; margin:40px auto 0; text-align:center;">
             <h3 style="color:#fff; font-size:1.2rem; margin:0 0 14px;">تابعنا</h3>
             <p style="color:#94a3b8; font-size:0.95rem; margin-bottom:18px;">كن على اطلاع دائم بآخر الأخبار والتحديثات</p>
@@ -106,7 +99,6 @@ window.renderAcademy = function() {
             </div>
         </div>
 
-        <!-- عن Hero + روابط سريعة -->
         <div style="max-width:1100px; margin:40px auto 0; display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; border-top:1px solid rgba(255,255,255,0.04); padding-top:30px;">
             <div>
                 <h3 style="color:#fff; font-size:1.3rem; margin:0 0 10px;">عن Hero</h3>
@@ -117,13 +109,12 @@ window.renderAcademy = function() {
                 <ul style="list-style:none; padding:0; margin:0; display:flex; flex-wrap:wrap; gap:16px 32px;">
                     <li><a href="#home" style="color:#b0bedb; font-size:0.95rem; font-weight:500; text-decoration:none; transition:0.3s; position:relative;">الرئيسية</a></li>
                     <li><a href="#courses" style="color:#b0bedb; font-size:0.95rem; font-weight:500; text-decoration:none; transition:0.3s; position:relative;">مشاريعنا</a></li>
+                    <li><a href="#helper" style="color:#b0bedb; font-size:0.95rem; font-weight:500; text-decoration:none; transition:0.3s; position:relative;">مساعد الطالب</a></li>
                     <li><a href="#about" style="color:#b0bedb; font-size:0.95rem; font-weight:500; text-decoration:none; transition:0.3s; position:relative;">من نحن</a></li>
-                    <li><a href="#about" style="color:#b0bedb; font-size:0.95rem; font-weight:500; text-decoration:none; transition:0.3s; position:relative;">تواصل معنا</a></li>
                 </ul>
             </div>
         </div>
 
-        <!-- التواصل + السودان -->
         <div style="max-width:1100px; margin:30px auto 0; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px; border-top:1px solid rgba(255,255,255,0.04); padding-top:30px;">
             <div>
                 <h4 style="color:#fff; font-size:1.1rem; margin:0 0 4px;"><i class="fas fa-envelope" style="margin-left:10px; color:#7c8db0;"></i> التواصل معنا</h4>
@@ -135,7 +126,6 @@ window.renderAcademy = function() {
             </a>
         </div>
 
-        <!-- مساحة للتثبيت (تحت المحتوى) -->
         <div id="installArea" style="max-width:1100px; margin:30px auto 0;"></div>
     </div>
     `;
@@ -152,11 +142,10 @@ window.renderAcademy = function() {
 // ============================================================
 
 // ============================================================
-// 3. إعادة تعريف صفحة دوراتي (My Courses) - يمكن حذفها إن لم تكن مستخدمة
+// 3. إعادة تعريف صفحة مساعد الطالب (لأنها لم تعد دوراتي)
 // ============================================================
-window.renderMyCourses = function() {
-    // إذا أردت إزالة القسم نهائياً يمكنك حذف هذه الدالة أو تركها فارغة
-    app.innerHTML = `<div style="text-align:center; padding:80px 20px; color:#b0bedb;">هذا القسم لم يعد متاحاً</div>` + renderNav('mycourses');
+window.renderHelper = function() {
+    app.innerHTML = `<div style="text-align:center; padding:80px 20px; color:#b0bedb;">هذا القسم يُعرض الآن من داخل app.js</div>` + renderNav('helper');
 };
 
 // ============================================================
