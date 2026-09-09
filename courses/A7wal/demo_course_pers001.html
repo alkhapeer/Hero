@@ -1922,7 +1922,7 @@ Subject: 0
                     box.appendChild(title);
 
                     const sub = document.createElement('p');
-                    sub.textContent = 'انسخ البصمة أدناه وأرسلها للبائع لتحصل على كود التفعيل.';
+                    sub.textContent = 'انسخ المفتاح أدناه وأرسله للبائع لتحصل على كود التفعيل.';
                     Object.assign(sub.style, { color: '#475569', fontSize: '15px', marginBottom: '16px' });
                     box.appendChild(sub);
 
@@ -1948,7 +1948,7 @@ Subject: 0
 
                     // زر واتساب
                     const waBtn = document.createElement('a');
-                    waBtn.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=مرحباً، أريد تفعيل الدورة. بصمتي هي: ' + encodeURIComponent(fp);
+                    waBtn.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?textمرحباً، أريد تفعيل الدورة. المفتاح هو : ' + encodeURIComponent(fp);
                     waBtn.target = '_blank';
                     waBtn.textContent = '📱 واتساب';
                     waBtn.className = 'btn-whatsapp';
