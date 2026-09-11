@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كتالوج مرئي — مذكرة النجاح | هيرو أكاديمي</title>
+<style>
+    /* ============================================================
+       الأساسيات
+       ============================================================ */
+    *{margin:0;padding:0;box-sizing:border-box;}
+
+    :root{
+        --navy:#0b2a47;
+        --navy2:#123a5e;
+        --navy3:#1a4a75;
+        --gold:#f5c542;
+        --gold2:#ffd966;
+        --ink:#1a2634;
+        --muted:#3d5a78;
+        --soft:#6a7f9a;
+        --bg:#f2f6fc;
+        --line:#e6edf6;
+        --line2:#dce4ec;
+    }
+
+    html,body{
+        background:#dfe7f1;
+        font-family:'Cairo','Tajawal','Segoe UI',Tahoma,Arial,sans-serif;
+        color:var(--ink);
+        direction:rtl;
+        -webkit-print-color-adjust:exact;
+        print-color-adjust:exact;
+    }
+
+    /* ============================================================
+       الصفحة A4
+       ============================================================ */
+    .page{
+        position:relative;
+        width:210mm;
+        height:297mm;
+        overflow:hidden;
+        background:#fff;
+        margin:0 auto 8mm;
+        padding:12mm 12mm 8mm;
+        display:flex;
+        flex-direction:column;
+        box-shadow:0 10px 30px rgba(11,42,71,.16);
+        page-break-after:always;
+        break-after:page;
+    }
+    .page:last-child{page-break-after:auto;break-after:auto;}
+
+    @page{size:A4;margin:0;}
+
+    @media print{
+        html,body{background:#fff;}
+        .page{margin:0;box-shadow:none;}
+    }
+
+    /* ============================================================
+       ترويسة الصفحة
+       ============================================================ */
+    .page-head{
+        display:flex;
+        align-items:flex-start;
+        justify-content:space-between;
+        gap:12px;
+        border-bottom:2px solid var(--line2);
+        padding-bottom:10px;
+        margin-bottom:14px;
+    }
+    .kicker{
+        display:inline-block;
+        background:#fdf3d6;
+        color:#8a6a12;
+        border:1px solid #f1dba8;
+        font-size:10px;
+        font-weight:700;
+        padding:2px 10px;
+        border-radius:20px;
+        margin-bottom:6px;
+        letter-spacing:.3px;
+    }
+    .page-head h2{
+        font-size:1.35rem;
+        color:var(--navy);
+        line-height:1.3;
+    }
+    .page-head .sub{
+        font-size:.76rem;
+        color:var(--soft);
+        margin-top:3px;
+    }
+    .head-icon{
+        width:52px;height:52px;
+        flex:0 0 52px;
+        border-radius:16px;
+        background:linear-gradient(150deg,var(--navy),var(--navy3));
+        color:var(--gold);
+        display:flex;align-items:center;justify-content:center;
+        font-size:1.5rem;
+        box-shadow:0 8px 18px rgba(11,42,71,.22);
+    }
+
+    /* ============================================================
+       جسم الصفحة: تعليقات + هاتف
+       ============================================================ */
+    .page-body{
+        flex:1;
+        min-height:0;
+        display:grid;
+        grid-template-columns:1fr 252px;
+        gap:16px;
+        align-items:start;
+    }
+
+    .notes{display:flex;flex-direction:column;gap:9px;}
+
+    .note{
+        background:#fff;
+        border:1px solid var(--line);
+        border-right:4px solid var(--gold);
+        border-radius:12px;
+        padding:9px 12px;
+        box-shadow:0 2px 8px rgba(11,42,71,.05);
+    }
+    .note h4{
+        font-size:.82rem;
+        color:var(--navy);
+        display:flex;
+        align-items:center;
+        gap:7px;
+        margin-bottom:3px;
+    }
+    .note h4 .num{
+        width:18px;height:18px;
+        flex:0 0 18px;
+        border-radius:50%;
+        background:var(--gold);
+        color:var(--navy);
+        font-size:10px;
+        font-weight:700;
+        display:flex;align-items:center;justify-content:center;
+    }
+    .note p{
+        font-size:.73rem;
+        color:var(--muted);
+        line-height:1.65;
+        padding-right:25px;
+    }
+
+    /* بطاقات KPI الصغيرة في التعليقات */
+    .mini-kpis{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:8px;
+        margin-top:2px;
+    }
+    .mini{
+        background:linear-gradient(150deg,#f7fafe,#eef4fb);
+        border:1px solid var(--line);
+        border-radius:12px;
+        padding:9px 6px;
+        text-align:center;
+    }
+    .mini b{display:block;font-size:1rem;color:var(--navy);}
+    .mini span{font-size:.62rem;color:var(--soft);}
+
+    .tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
+    .tag{
+        font-size:.63rem;
+        padding:3px 10px;
+        border-radius:20px;
+        background:#eef4fb;
+        color:#2b6f9e;
+        border:1px solid #dbe8f5;
+        font-weight:600;
+    }
+    .tag.gold{background:#fdf3d6;color:#8a6a12;border-color:#f1dba8;}
+    .tag.green{background:#e9f7ef;color:#1e7a4d;border-color:#c9ebd8;}
+    .tag.red{background:#fdeaea;color:#b03a2e;border-color:#f5cfcb;}
+
+    /* ============================================================
+       إطار الهاتف
+       ============================================================ */
+    .phone-wrap{display:flex;justify-content:center;}
+    .phone{
+        position:relative;
+        width:252px;
+        background:linear-gradient(160deg,#0b2a47,#1a4a75);
+        border-radius:34px;
+        padding:8px;
+        box-shadow:0 20px 44px rgba(11,42,71,.30);
+    }
+    .screen{
+        background:var(--bg);
+        border-radius:27px;
+        overflow:hidden;
+        height:520px;
+        display:flex;
+        flex-direction:column;
+    }
+
+    .scr-status{
+        background:var(--navy);
+        color:#b9cfe4;
+        font-size:8px;
+        padding:7px 14px 4px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
+    .scr-head{
+        background:linear-gradient(160deg,#0b2a47,#16406a);
+        color:#fff;
+        padding:4px 14px 14px;
+        border-radius:0 0 20px 20px;
+    }
+    .scr-head .t{font-size:12px;font-weight:700;}
+    .scr-head .s{font-size:8px;color:#a9c4dd;margin-top:2px;}
+    .scr-body{
+        flex:1;
+        padding:10px;
+        overflow:hidden;
+        display:flex;
+        flex-direction:column;
+        gap:8px;
+    }
+
+    /* عناصر داخل الشاشة */
+    .m-search{
+        background:#fff;
+        border:1px solid var(--line);
+        border-radius:20px;
+        padding:6px 12px;
+        font-size:8px;
+        color:var(--soft);
+        display:flex;
+        align-items:center;
+        gap:6px;
+    }
+    .m-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+    .m-kpi{
+        background:#fff;
+        border:1px solid var(--line);
+        border-radius:10px;
+        padding:7px 4px;
+        text-align:center;
+    }
+    .m-kpi b{display:block;font-size:12px;color:var(--navy);}
+    .m-kpi span{font-size:7px;color:var(--soft);}
+
+    .m-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+    .m-tile{
+        background:#fff;
+        border:1px solid var(--line);
+        border-radius:12px;
+        padding:9px 2px;
+        text-align:center;
+        font-size:7.5px;
+        color:var(--navy);
+        font-weight:600;
+    }
+    .m-tile .e{display:block;font-size:15px;margin-bottom:3px;}
+
+    .m-title{
+        font-size:9px;
+        font-weight:700;
+        color:var(--navy);
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
+    .m-title span{font-size:7.5px;color:var(--soft);font-weight:500;}
+
+    .m-bar{background:#e6edf6;height:6px;border-radius:6px;overflow:hidden;}
+    .m-bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--gold),var(--gold2));}
+    .m-bar.blue i{background:linear-gradient(90deg,#2b6f9e,#5aa7d8);}
+
+    .m-item{
+        background:#fff;
+        border:1px solid var(--line);
+        border-radius:11px;
+        padding:8px 9px;
+        display:flex;
+        gap:8px;
+        align-items:center;
+    }
+    .m-item .ic{
+        width:26px;height:26px;flex:0 0 26px;
+        border-radius:9px;
+        background:#eef4fb;
+        display:flex;align-items:center;justify-content:center;
+        font-size:13px;
+    }
+    .m-item .tx{flex:1;min-width:0;}
+    .m-item .tx b{display:block;font-size:8.5px;color:var(--navy);}
+    .m-item .tx span{font-size:7px;color:var(--soft);}
+
+    .m-chip{
+        display:inline-block;
+        font-size:7px;
+        padding:2px 8px;
+        border-radius:20px;
+        background:#eef4fb;
+        color:#2b6f9e;
+        border:1px solid #dbe8f5;
+        font-weight:600;
+        margin:1px;
+    }
+    .m-chip.gold{background:#fdf3d6;color:#8a6a12;border-color:#f1dba8;}
+    .m-chip.green{background:#e9f7ef;color:#1e7a4d;border-color:#c9ebd8;}
+    .m-chip.red{background:#fdeaea;color:#b03a2e;border-color:#f5cfcb;}
+
+    .m-ring{
+        width:74px;height:74px;flex:0 0 74px;
+        border-radius:50%;
+        background:conic-gradient(var(--gold) 0 68%, #e6edf6 68% 100%);
+        display:flex;align-items:center;justify-content:center;
+        margin:0 auto;
+    }
+    .m-ring i{
+        width:56px;height:56px;border-radius:50%;
+        background:#fff;
+        display:flex;align-items:center;justify-content:center;
+        font-size:13px;font-weight:700;color:var(--navy);font-style:normal;
+    }
+
+    .m-chart{
+        display:flex;align-items:flex-end;justify-content:space-between;
+        gap:5px;height:60px;
+        background:#fff;border:1px solid var(--line);border-radius:12px;
+        padding:8px 10px;
+    }
+    .m-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end;}
+    .m-col i{
+        width:100%;border-radius:5px 5px 3px 3px;
+        background:linear-gradient(180deg,#5aa7d8,#2b6f9e);
+        display:block;
+    }
+    .m-col.hot i{background:linear-gradient(180deg,var(--gold2),var(--gold));}
+    .m-col span{font-size:6.5px;color:var(--soft);}
+
+    .m-opt{
+        background:#fff;
+        border:1px solid var(--line);
+        border-radius:10px;
+        padding:7px 9px;
+        font-size:8px;
+        color:var(--muted);
+        display:flex;
+        align-items:center;
+        gap:7px;
+    }
+    .m-opt b{
+        width:15px;height:15px;flex:0 0 15px;border-radius:50%;
+        background:#eef4fb;color:#2b6f9e;
+        font-size:7.5px;display:flex;align-items:center;justify-content:center;
+    }
+    .m-opt.sel{border-color:var(--gold);background:#fffdf4;}
+    .m-opt.sel b{background:var(--gold);color:var(--navy);}
+
+    .m-timer{
+        background:#fdf3d6;
+        border:1px solid #f1dba8;
+        color:#8a6a12;
+        font-size:8px;font-weight:700;
+        padding:4px 10px;border-radius:20px;
+        display:inline-block;
+    }
+
+    .m-palette{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;}
+    .m-palette i{
+        display:flex;align-items:center;justify-content:center;
+        height:18px;border-radius:5px;font-size:7px;font-style:normal;
+        background:#eef4fb;color:#2b6f9e;border:1px solid #dbe8f5;
+        font-weight:700;
+    }
+    .m-palette i.done{background:#e9f7ef;color:#1e7a4d;border-color:#c9ebd8;}
+    .m-palette i.now{background:var(--gold);color:var(--navy);border-color:var(--gold);}
+    .m-palette i.skip{background:#fdeaea;color:#b03a2e;border-color:#f5cfcb;}
+
+    .m-step{
+        display:flex;gap:8px;align-items:flex-start;
+        background:#fff;border:1px solid var(--line);border-radius:11px;
+        padding:8px 9px;
+    }
+    .m-step .dot{
+        width:18px;height:18px;flex:0 0 18px;border-radius:50%;
+        background:var(--gold);color:var(--navy);
+        font-size:8px;font-weight:700;
+        display:flex;align-items:center;justify-content:center;
+    }
+    .m-step .dot.off{background:#eef4fb;color:#8fa6bd;}
+    .m-step b{font-size:8.5px;color:var(--navy);display:block;}
+    .m-step span{font-size:7px;color:var(--soft);}
+
+    /* ============================================================
+       تذييل الصفحة
+       ============================================================ */
+    .page-foot{
+        margin-top:auto;
+        border-top:1px solid var(--line2);
+        padding-top:7px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        font-size:.6rem;
+        color:var(--soft);
+    }
+    .page-foot .brand{display:flex;align-items:center;gap:6px;}
+    .page-foot .brand b{color:var(--navy);}
+    .pnum{
+        background:var(--navy);
+        color:var(--gold);
+        font-weight:700;
+        border-radius:20px;
+        padding:2px 11px;
+        font-size:.62rem;
+    }
+
+    /* ============================================================
+       الغلاف
+       ============================================================ */
+    .cover{
+        padding:0;
+        background:linear-gradient(160deg,#08203a 0%,#0b2a47 42%,#16406a 100%);
+        color:#fff;
+        justify-content:space-between;
+    }
+    .cover-inner{
+        padding:18mm 16mm 12mm;
+        height:100%;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between;
+        position:relative;
+        z-index:2;
+    }
+    .cover::before{
+        content:"";
+        position:absolute;
+        width:420px;height:420px;
+        border-radius:50%;
+        background:radial-gradient(circle,rgba(245,197,66,.22),transparent 62%);
+        top:-140px;left:-120px;
+    }
+    .cover::after{
+        content:"";
+        position:absolute;
+        width:340px;height:340px;
+        border-radius:50%;
+        background:radial-gradient(circle,rgba(90,167,216,.20),transparent 65%);
+        bottom:-110px;right:-90px;
+    }
+    .cover-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;}
+    .badge{
+        background:rgba(245,197,66,.14);
+        border:1px solid rgba(245,197,66,.5);
+        color:var(--gold2);
+        font-size:.68rem;
+        font-weight:700;
+        padding:6px 14px;
+        border-radius:30px;
+    }
+    .brandline{
+        font-size:.68rem;
+        color:#a9c4dd;
+        display:flex;align-items:center;gap:6px;
+    }
+    .cover-mid{margin-top:8mm;}
+    .cover-mid .eyebrow{
+        color:var(--gold);
+        font-size:.8rem;
+        font-weight:700;
+        letter-spacing:.5px;
+        margin-bottom:8px;
+    }
+    .cover-mid h1{
+        font-size:2.9rem;
+        line-height:1.2;
+        margin-bottom:10px;
+    }
+    .cover-mid h1 em{
+        font-style:normal;
+        color:var(--gold);
+    }
+    .cover-mid .lead{
+        font-size:1rem;
+        color:#c6d9ea;
+        max-width:150mm;
+        line-height:1.8;
+    }
+    .cover-stats{
+        display:grid;
+        grid-template-columns:repeat(4,1fr);
+        gap:10px;
+        margin-top:12mm;
+    }
+    .cstat{
+        background:rgba(255,255,255,.06);
+        border:1px solid rgba(255,255,255,.14);
+        border-radius:16px;
+        padding:14px 10px;
+        text-align:center;
+    }
+    .cstat b{display:block;font-size:1.6rem;color:var(--gold);}
+    .cstat span{font-size:.68rem;color:#b9cfe4;}
+    .cover-foot{
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-end;
+        gap:14px;
+        flex-wrap:wrap;
+        border-top:1px solid rgba(255,255,255,.14);
+        padding-top:12px;
+    }
+    .cover-foot .who{font-size:.78rem;color:#c6d9ea;line-height:1.9;}
+    .cover-foot .who b{color:#fff;}
+    .cover-foot .yr{
+        background:var(--gold);
+        color:var(--navy);
+        font-weight:700;
+        font-size:.72rem;
+        padding:7px 16px;
+        border-radius:30px;
+    }
+
+    /* ============================================================
+       الفهرس
+       ============================================================ */
+    .toc-list{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:9px;
+        align-content:start;
+    }
+    .toc-item{
+        display:flex;
+        align-items:center;
+        gap:10px;
+        background:#fff;
+        border:1px solid var(--line);
+        border-radius:14px;
+        padding:10px 12px;
+        box-shadow:0 2px 8px rgba(11,42,71,.04);
+    }
+    .toc-item .n{
+        width:28px;height:28px;flex:0 0 28px;
+        border-radius:10px;
+        background:linear-gradient(150deg,var(--navy),var(--navy3));
+        color:var(--gold);
+        font-size:.72rem;font-weight:700;
+        display:flex;align-items:center;justify-content:center;
+    }
+    .toc-item .tx{flex:1;min-width:0;}
+    .toc-item .tx b{display:block;font-size:.8rem;color:var(--navy);}
+    .toc-item .tx span{font-size:.64rem;color:var(--soft);}
+    .toc-item .pg{
+        font-size:.62rem;font-weight:700;color:#8a6a12;
+        background:#fdf3d6;border:1px solid #f1dba8;
+        border-radius:20px;padding:2px 9px;
+    }
+
+    /* ============================================================
+       صفحة الختام CTA
+       ============================================================ */
+    .final{
+        background:linear-gradient(160deg,#08203a,#0b2a47 45%,#16406a);
+        color:#fff;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
+        position:relative;
+    }
+    .final::before{
+        content:"";
+        position:absolute;width:520px;height:520px;border-radius:50%;
+        background:radial-gradient(circle,rgba(245,197,66,.18),transparent 62%);
+        top:-180px;right:-140px;
+    }
+    .final-inner{position:relative;z-index:2;max-width:150mm;}
+    .final .big{
+        font-size:2.6rem;
+        line-height:1.25;
+        margin-bottom:14px;
+    }
+    .final .big em{font-style:normal;color:var(--gold);}
+    .final p{
+        color:#c6d9ea;
+        font-size:.95rem;
+        line-height:1.9;
+        margin-bottom:22px;
+    }
+    .cta-btn{
+        display:inline-block;
+        background:var(--gold);
+        color:var(--navy);
+        font-weight:700;
+        font-size:1rem;
+        padding:14px 34px;
+        border-radius:40px;
+        text-decoration:none;
+        box-shadow:0 12px 28px rgba(245,197,66,.28);
+    }
+    .cta-url{
+        direction:ltr;
+        font-family:monospace;
+        font-size:.8rem;
+        color:#a9c4dd;
+        margin-top:14px;
+    }
+    .final .copy{
+        position:absolute;
+        bottom:14mm;
+        left:0;right:0;
+        text-align:center;
+        font-size:.72rem;
+        color:#8fa6bd;
+        z-index:2;
+    }
+    .final .chips{
+        display:flex;gap:8px;justify-content:center;flex-wrap:wrap;
+        margin-bottom:20px;
+    }
+    .final .chips span{
+        font-size:.7rem;
+        border:1px solid rgba(255,255,255,.2);
+        background:rgba(255,255,255,.07);
+        padding:5px 14px;
+        border-radius:20px;
+        color:#c6d9ea;
+    }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     الغلاف
+     ============================================================ -->
+<section class="page cover">
+    <div class="cover-inner">
+
+        <div class="cover-top">
+            <span class="badge">🏅 إصدار كتالوج مرئي 2026-2027</span>
+            <span class="brandline">🛡️ Hero Protection v4.0 — مشغّل</span>
+        </div>
+
+        <div class="cover-mid">
+            <div class="eyebrow">⚖️ تطبيق تعليمي تفاعلي</div>
+            <h1>مذكرة <em>النجاح</em></h1>
+            <p class="lead">
+                قانون الأحوال الشخصية للمسلمين 1991 — دراسة تأصيلية تطبيقية،
+                جرعات تعليمية، بنك أسئلة شامل، اختبارات تشخيصية، ومحاكاة امتحانات.
+            </p>
+
+            <div class="cover-stats">
+                <div class="cstat"><b>200+</b><span>سؤال وجواب</span></div>
+                <div class="cstat"><b>12</b><span>جرعة تعليمية</span></div>
+                <div class="cstat"><b>10</b><span>وحدات دراسية</span></div>
+                <div class="cstat"><b>8</b><span>امتحانات شاملة</span></div>
+            </div>
+        </div>
+
+        <div class="cover-foot">
+            <div class="who">
+                إعداد وتطوير<br>
+                <b>هيرو أكاديمي — Hero Academy</b>
+            </div>
+            <div class="yr">📅 2026 — 2027</div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة المحتويات
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div>
+            <span class="kicker">دليل الكتالوج</span>
+            <h2>📑 صفحة المحتويات</h2>
+            <p class="sub">عشرة أقسام توضح رحلة الطالب داخل التطبيق من البداية حتى الخطة العلاجية</p>
+        </div>
+        <div class="head-icon">📑</div>
+    </div>
+
+    <div class="page-body" style="display:block;">
+        <div class="toc-list">
+            <div class="toc-item"><div class="n">01</div><div class="tx"><b>🏠 الرئيسية</b><span>نقطة الانطلاق وشبكة الأقسام</span></div><div class="pg">ص 03</div></div>
+            <div class="toc-item"><div class="n">02</div><div class="tx"><b>📈 لوحة التقدم</b><span>مؤشرات الأداء والاستمرارية</span></div><div class="pg">ص 04</div></div>
+            <div class="toc-item"><div class="n">03</div><div class="tx"><b>🧪 الاختبار التشخيصي</b><span>قياس المستوى الابتدائي</span></div><div class="pg">ص 05</div></div>
+            <div class="toc-item"><div class="n">04</div><div class="tx"><b>📊 تقرير المستوى</b><span>تحليل الوحدات ونقاط القوة</span></div><div class="pg">ص 06</div></div>
+            <div class="toc-item"><div class="n">05</div><div class="tx"><b>💊 الجرعات التعليمية</b><span>تعلّم مُجزّأ ومتدرّج</span></div><div class="pg">ص 07</div></div>
+            <div class="toc-item"><div class="n">06</div><div class="tx"><b>📚 بنك الأسئلة</b><span>200 سؤال مع فلترة ذكية</span></div><div class="pg">ص 08</div></div>
+            <div class="toc-item"><div class="n">07</div><div class="tx"><b>🔍 تحليل الأخطاء</b><span>تصنيف الخطأ وأسبابه</span></div><div class="pg">ص 09</div></div>
+            <div class="toc-item"><div class="n">08</div><div class="tx"><b>⏱️ المحاكاة</b><span>امتحان بظروف حقيقية</span></div><div class="pg">ص 10</div></div>
+            <div class="toc-item"><div class="n">09</div><div class="tx"><b>🎬 الموارد</b><span>خرائط، ملخصات، فيديو</span></div><div class="pg">ص 11</div></div>
+            <div class="toc-item"><div class="n">10</div><div class="tx"><b>🩺 خطة العلاج</b><span>مسار تصحيحي مخصص</span></div><div class="pg">ص 12</div></div>
+        </div>
+
+        <div class="note" style="margin-top:16px;">
+            <h4><span class="num">★</span> كيف تقرأ هذا الكتالوج؟</h4>
+            <p>
+                كل صفحة تحتوي على إطار هاتف يوضح شكل الشاشة الفعلي، وبجانبه تعليقات مرقّمة تشرح
+                العناصر الوظيفية والتصميمية. الألوان: الأزرق الداكن للهوية، والذهبي للتمييز والتحفيز.
+            </p>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span class="brand">📘 <b>مذكرة النجاح</b> — قانون الأحوال الشخصية 1991</span>
+        <span class="pnum">02</span>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 01 — الرئيسية
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div>
+            <span class="kicker">القسم 01</span>
+            <h2>🏠 الشاشة الرئيسية</h2>
+            <p class="sub">نقطة الانطلاق: هوية واضحة، إحصاءات فورية، وشبكة وصول سريعة للأقسام</p>
+        </div>
+        <div class="head-icon">🏠</div>
+    </div>
+
+    <div class="page-body">
+        <div class="notes">
+            <div class="note">
+                <h4><span class="num">1</span> الترويسة الثابتة</h4>
+                <p>تحمل اسم المذكرة والمرجع القانوني، مع أزرار سريعة: الرئيسية، البحث، المفضلة — ثابتة أثناء التمرير.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">2</span> شريط البحث الفوري</h4>
+                <p>يبحث في كامل محتوى المذكرة (شرح، أسئلة، ملخصات) مع إبراز النتائج داخل السياق.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">3</span> مؤشرات الحالة العلوية</h4>
+                <p>ثلاث بطاقات KPI تمنح الطالب صورة سريعة عن حجم المحتوى ونسبة إنجازه.</p>
+                <div class="mini-kpis" style="margin-top:8px;">
+                    <div class="mini"><b>200+</b><span>سؤال</span></div>
+                    <div class="mini"><b>12</b><span>جرعة</span></div>
+                    <div class="mini"><b>68%</b><span>تقدم</span></div>
+                </div>
+            </div>
+            <div class="note">
+                <h4><span class="num">4</span> شبكة الأقسام</h4>
+                <p>بطاقات كبيرة بأيقونات واضحة، مع شارات رقمية تُظهر حجم كل قسم قبل الدخول إليه.</p>
+                <div class="tag-row">
+                    <span class="tag">شرح</span>
+                    <span class="tag">ملخصات</span>
+                    <span class="tag gold">أسئلة</span>
+                    <span class="tag">خرائط</span>
+                    <span class="tag">ميراث</span>
+                </div>
+            </div>
+            <div class="note">
+                <h4><span class="num">5</span> شريط التقدم العام</h4>
+                <p>يتحول لونه تدريجيًا إلى الذهبي كلما اقترب الطالب من إتمام المنهج.</p>
+            </div>
+        </div>
+
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="screen">
+                    <div class="scr-status"><span>9:41</span><span>▮▮▮ ⌁</span></div>
+                    <div class="scr-head">
+                        <div class="t">📘 مذكرة النجاح</div>
+                        <div class="s">قانون الأحوال الشخصية للمسلمين 1991</div>
+                    </div>
+                    <div class="scr-body">
+                        <div class="m-search">🔍 ابحث في كل محتوى المذكرة…</div>
+                        <div class="m-kpis">
+                            <div class="m-kpi"><b>200+</b><span>سؤال</span></div>
+                            <div class="m-kpi"><b>12</b><span>جرعة</span></div>
+                            <div class="m-kpi"><b>68%</b><span>تقدم</span></div>
+                        </div>
+                        <div class="m-title">الأقسام <span>10 أقسام</span></div>
+                        <div class="m-grid">
+                            <div class="m-tile"><span class="e">📖</span>شرح</div>
+                            <div class="m-tile"><span class="e">📋</span>ملخصات</div>
+                            <div class="m-tile"><span class="e">❓</span>أسئلة</div>
+                            <div class="m-tile"><span class="e">🗺️</span>خرائط</div>
+                            <div class="m-tile"><span class="e">💊</span>جرعات</div>
+                            <div class="m-tile"><span class="e">📚</span>بنك</div>
+                            <div class="m-tile"><span class="e">⏱️</span>محاكاة</div>
+                            <div class="m-tile"><span class="e">🎬</span>موارد</div>
+                            <div class="m-tile"><span class="e">⚖️</span>ميراث</div>
+                        </div>
+                        <div class="m-title">التقدم الكلي <span>68%</span></div>
+                        <div class="m-bar"><i style="width:68%"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span class="brand">📘 <b>مذكرة النجاح</b> — هيرو أكاديمي</span>
+        <span class="pnum">03</span>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 02 — لوحة التقدم
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div>
+            <span class="kicker">القسم 02</span>
+            <h2>📈 لوحة التقدم</h2>
+            <p class="sub">قياس مستمر للأداء: دقة، استمرارية، وقت دراسة، وإنجاز أسبوعي</p>
+        </div>
+        <div class="head-icon">📈</div>
+    </div>
+
+    <div class="page-body">
+        <div class="notes">
+            <div class="note">
+                <h4><span class="num">1</span> الحلقة الدائرية الرئيسية</h4>
+                <p>تمثّل نسبة الإنجاز الكلي من المنهج، وتتحدث لحظيًا مع كل جرعة أو اختبار يُكملها الطالب.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">2</span> بطاقات الأداء الأربع</h4>
+                <p>مؤشرات مختصرة تُظهر: عدد الأسئلة المحلولة، دقة الإجابات، إجمالي وقت الدراسة، وأيام الاستمرارية.</p>
+                <div class="mini-kpis" style="margin-top:8px;">
+                    <div class="mini"><b>1,240</b><span>سؤال محلول</span></div>
+                    <div class="mini"><b>78%</b><span>الدقة</span></div>
+                    <div class="mini"><b>14 يوم</b><span>استمرارية</span></div>
+                </div>
+            </div>
+            <div class="note">
+                <h4><span class="num">3</span> مخطط الأسبوع</h4>
+                <p>أعمدة يومية تُظهر حجم النشاط، ويُبرز أعلى يوم بلون ذهبي لتشجيع الطالب على تكراره.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">4</span> توزيع الوحدات</h4>
+                <p>أشرطة تقدم لكل وحدة دراسية، لتحديد الوحدات المتأخرة بسرعة قبل الامتحان.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">5</span> لغة تحفيزية</h4>
+                <p>رسائل قصيرة إيجابية تظهر أسفل اللوحة عند تحقيق إنجاز جديد أو تجاوز سلسلة أيام.</p>
+            </div>
+        </div>
+
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="screen">
+                    <div class="scr-status"><span>9:41</span><span>▮▮▮ ⌁</span></div>
+                    <div class="scr-head">
+                        <div class="t">📈 لوحة التقدم</div>
+                        <div class="s">تحديث لحظي لكل نشاط</div>
+                    </div>
+                    <div class="scr-body">
+                        <div class="m-ring"><i>68%</i></div>
+                        <div class="m-kpis">
+                            <div class="m-kpi"><b>1,240</b><span>محلول</span></div>
+                            <div class="m-kpi"><b>78%</b><span>الدقة</span></div>
+                            <div class="m-kpi"><b>14</b><span>يوم</span></div>
+                        </div>
+                        <div class="m-title">نشاط الأسبوع</div>
+                        <div class="m-chart">
+                            <div class="m-col"><i style="height:42%"></i><span>س</span></div>
+                            <div class="m-col"><i style="height:60%"></i><span>ح</span></div>
+                            <div class="m-col"><i style="height:34%"></i><span>ن</span></div>
+                            <div class="m-col hot"><i style="height:88%"></i><span>ث</span></div>
+                            <div class="m-col"><i style="height:52%"></i><span>ر</span></div>
+                            <div class="m-col"><i style="height:70%"></i><span>خ</span></div>
+                            <div class="m-col"><i style="height:46%"></i><span>ج</span></div>
+                        </div>
+                        <div class="m-title">الوحدات <span>4 وحدات</span></div>
+                        <div class="m-bar"><i style="width:82%"></i></div>
+                        <div class="m-bar blue"><i style="width:64%"></i></div>
+                        <div class="m-bar"><i style="width:48%"></i></div>
+                        <div class="m-bar blue"><i style="width:31%"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span class="brand">📘 <b>مذكرة النجاح</b> — هيرو أكاديمي</span>
+        <span class="pnum">04</span>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 03 — الاختبار التشخيصي
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div>
+            <span class="kicker">القسم 03</span>
+            <h2>🧪 الاختبار التشخيصي</h2>
+            <p class="sub">قياس المستوى الابتدائي قبل بدء الرحلة التعليمية</p>
+        </div>
+        <div class="head-icon">🧪</div>
+    </div>
+
+    <div class="page-body">
+        <div class="notes">
+            <div class="note">
+                <h4><span class="num">1</span> مؤقّت مرن</h4>
+                <p>يُظهر الوقت المتبقي بوضوح، مع إمكانية إيقاف الاختبار واستئنافه لاحقًا دون فقدان الإجابات.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">2</span> شريط تقدم الأسئلة</h4>
+                <p>يوضح موقع الطالب من إجمالي الأسئلة (سؤال 7 من 20) مع شريط بصري متحرك.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">3</span> نص السؤال</h4>
+                <p>مصاغ بلغة قانونية دقيقة، مع إمكانية الرجوع للخلف وتعديل الإجابة قبل الإرسال.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">4</span> الخيارات الأربعة</h4>
+                <p>الخيار المحدد يُبرز بإطار ذهبي وخلفية فاتحة، لتأكيد بصري فوري دون إرباك.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">5</span> أزرار التنقل</h4>
+                <p>السابق / التالي مع زر إنهاء يُفعّل فقط عند اكتمال الإجابات، لضمان دقة النتيجة.</p>
+            </div>
+        </div>
+
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="screen">
+                    <div class="scr-status"><span>9:41</span><span>▮▮▮ ⌁</span></div>
+                    <div class="scr-head">
+                        <div class="t">🧪 الاختبار التشخيصي</div>
+                        <div class="s">تحديد المستوى الابتدائي</div>
+                    </div>
+                    <div class="scr-body">
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                            <span class="m-timer">⏱ 12:45</span>
+                            <span style="font-size:8px;color:#6a7f9a;">سؤال 7 من 20</span>
+                        </div>
+                        <div class="m-bar"><i style="width:35%"></i></div>
+
+                        <div class="m-item" style="display:block;">
+                            <div style="font-size:8.5px;color:#0b2a47;font-weight:700;line-height:1.7;">
+                                ما هو سن الرشد المعتبر في قانون الأحوال الشخصية للمسلمين لسنة 1991؟
+                            </div>
+                        </div>
+
+                        <div class="m-opt sel"><b>أ</b> إتمام 18 سنة كاملة</div>
+                        <div class="m-opt"><b>ب</b> إتمام 15 سنة هجرية</div>
+                        <div class="m-opt"><b>ج</b> بلوغ سن الكسب</div>
+                        <div class="m-opt"><b>د</b> سنتين بعد البلوغ</div>
+
+                        <div style="display:flex;gap:6px;margin-top:auto;">
+                            <div style="flex:1;text-align:center;font-size:8px;padding:7px;border-radius:20px;border:1px solid #dce4ec;color:#3d5a78;background:#fff;">السابق</div>
+                            <div style="flex:1;text-align:center;font-size:8px;padding:7px;border-radius:20px;background:#0b2a47;color:#fff;font-weight:700;">التالي</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span class="brand">📘 <b>مذكرة النجاح</b> — هيرو أكاديمي</span>
+        <span class="pnum">05</span>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 04 — تقرير المستوى
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div>
+            <span class="kicker">القسم 04</span>
+            <h2>📊 تقرير المستوى</h2>
+            <p class="sub">تشخيص مفصّل: أين يقف الطالب؟ وما نقاط قوته وضعفه؟</p>
+        </div>
+        <div class="head-icon">📊</div>
+    </div>
+
+    <div class="page-body">
+        <div class="notes">
+            <div class="note">
+                <h4><span class="num">1</span> شارة المستوى</h4>
+                <p>تصنيف فوري (مبتدئ / متوسط / متقدم) مبني على نتيجة الاختبار التشخيصي ومعدل الدقة.</p>
+                <div class="tag-row" style="margin-top:6px;">
+                    <span class="tag gold">المستوى: متوسط متقدم</span>
+                </div>
+            </div>
+            <div class="note">
+                <h4><span class="num">2</span> أداء الوحدات</h4>
+                <p>أشرطة لكل وحدة دراسية، مع نسبة مئوية تُحدد الوحدات التي تحتاج مراجعة عاجلة.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">3</span> نقاط القوة</h4>
+                <p>وسوم خضراء تُبرز الموضوعات المتقنة، لتعزيز الثقة وبناء استراتيجية المراجعة عليها.</p>
+                <div class="tag-row">
+                    <span class="tag green">الزواج وأركانه</span>
+                    <span class="tag green">المهر</span>
+                </div>
+            </div>
+            <div class="note">
+                <h4><span class="num">4</span> نقاط الضعف</h4>
+                <p>وسوم حمراء تُحدد الموضوعات الحرجة، وتُغذي مباشرة «خطة العلاج» في القسم العاشر.</p>
+                <div class="tag-row">
+                    <span class="tag red">الطلاق الرجعي</span>
+                    <span class="tag red">الحضانة</span>
+                </div>
+            </div>
+            <div class="note">
+                <h4><span class="num">5</span> توصية تلقائية</h4>
+                <p>يقترح النظام الخطوة التالية: جرعة معينة، أو إعادة اختبار، أو الانتقال لمستوى أعلى.</p>
+            </div>
+        </div>
+
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="screen">
+                    <div class="scr-status"><span>9:41</span><span>▮▮▮ ⌁</span></div>
+                    <div class="scr-head">
+                        <div class="t">📊 تقرير المستوى</div>
+                        <div class="s">نتيجة الاختبار التشخيصي</div>
+                    </div>
+                    <div class="scr-body">
+                        <div class="m-item">
+                            <div class="ic">🏅</div>
+                            <div class="tx"><b>متوسط متقدم</b><span>النتيجة: 72 من 100</span></div>
+                        </div>
+
+                        <div class="m-title">أداء الوحدات</div>
+                        <div class="m-bar"><i style="width:88%"></i></div>
+                        <div class="m-bar blue"><i style="width:71%"></i></div>
+                        <div class="m-bar"><i style="width:45%"></i></div>
+                        <div class="m-bar blue"><i style="width:38%"></i></div>
+
+                        <div class="m-title">نقاط القوة</div>
+                        <div>
+                            <span class="m-chip green">الزواج</span>
+                            <span class="m-chip green">المهر</span>
+                            <span class="m-chip green">الخطبة</span>
+                        </div>
+
+                        <div class="m-title">نقاط الضعف</div>
+                        <div>
+                            <span class="m-chip red">الطلاق</span>
+                            <span class="m-chip red">الحضانة</span>
+                            <span class="m-chip red">النفقات</span>
+                        </div>
+
+                        <div class="m-item" style="margin-top:auto;">
+                            <div class="ic">💡</div>
+                            <div class="tx"><b>ابدأ بجرعة الطلاق</b><span>مقترح تلقائي</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span class="brand">📘 <b>مذكرة النجاح</b> — هيرو أكاديمي</span>
+        <span class="pnum">06</span>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 05 — الجرعات
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div>
+            <span class="kicker">القسم 05</span>
+            <h2>💊 الجرعات التعليمية</h2>
+            <p class="sub">تعلّم مُجزّأ ومتدرّج: كل جرعة فكرة واحدة قابلة للهضم والقياس</p>
+        </div>
+        <div class="head-icon">💊</div>
+    </div>
+
+    <div class="page-body">
+        <div class="notes">
+            <div class="note">
+                <h4><span class="num">1</span> بطاقة الجرعة</h4>
+                <p>تعرض العنوان، عدد الأسئلة، ومدة القراءة المتوقعة — ليتخذ الطالب قرار البدء بسرعة.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">2</span> حالة الجرعة</h4>
+                <p>وسوم ملوّنة: مكتملة (أخضر)، جارية (ذهبي)، لم تبدأ (رمادي) — لتتبع بصري فوري.</p>
+                <div class="tag-row" style="margin-top:6px;">
+                    <span class="tag green">مكتملة</span>
+                    <span class="tag gold">جارية</span>
+                    <span class="tag">لم تبدأ</span>
+                </div>
+            </div>
+            <div class="note">
+                <h4><span class="num">3</span> شريط إنجاز الجرعة</h4>
+                <p>يتحرك داخل البطاقة بحسب الأسئلة المجابة، ما يمنح إحساسًا مستمرًا بالتقدم.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">4</span> ترتيب منطقي</h4>
+                <p>الجرعات مرتبة حسب تدرّج المنهج، ويُقفل ما بعدها حتى إتمام السابقة (اختياريًا).</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">5</span> مؤشر العائد</h4>
+                <p>كل جرعة مرتبطة بعدد الأسئلة التي تخدمها في بنك الأسئلة، فيعرف الطالب قيمتها الفورية.</p>
+            </div>
+        </div>
+
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="screen">
+                    <div class="scr-status"><span>9:41</span><span>▮▮▮ ⌁</span></div>
+                    <div class="scr-head">
+                        <div class="t">💊 الجرعات التعليمية</div>
+                        <div class="s">12 جرعة — 7 مكتملة</div>
+                    </div>
+                    <div class="scr-body">
+                        <div class="m-item">
+                            <div class="ic">✅</div>
+                            <div class="tx"><b>جرعة 01 — الخطبة</b><span>8 أسئلة • 6 دقائق</span></div>
+                        </div>
+                        <div class="m-bar" style="margin-top:-4px;"><i style="width:100%"></i></div>
+
+                        <div class="m-item">
+                            <div class="ic">✅</div>
+                            <div class="tx"><b>جرعة 02 — أركان الزواج</b><span>10 أسئلة • 8 دقائق</span></div>
+                        </div>
+                        <div class="m-bar" style="margin-top:-4px;"><i style="width:100%"></i></div>
+
+                        <div class="m-item">
+                            <div class="ic">⏳</div>
+                            <div class="tx"><b>جرعة 03 — المهر</b><span>12 سؤالًا • 9 دقائق</span></div>
+                        </div>
+                        <div class="m-bar" style="margin-top:-4px;"><i style="width:55%"></i></div>
+
+                        <div class="m-item">
+                            <div class="ic">🔒</div>
+                            <div class="tx"><b>جرعة 04 — الطلاق</b><span>14 سؤالًا • 11 دقيقة</span></div>
+                        </div>
+                        <div class="m-bar blue" style="margin-top:-4px;"><i style="width:0%"></i></div>
+
+                        <div class="m-item">
+                            <div class="ic">🔒</div>
+                            <div class="tx"><b>جرعة 05 — الحضانة</b><span>11 سؤالًا • 9 دقائق</span></div>
+                        </div>
+                        <div class="m-bar blue" style="margin-top:-4px;"><i style="width:0%"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span class="brand">📘 <b>مذكرة النجاح</b> — هيرو أكاديمي</span>
+        <span class="pnum">07</span>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 06 — بنك الأسئلة
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div>
+            <span class="kicker">القسم 06</span>
+            <h2>📚 بنك الأسئلة</h2>
+            <p class="sub">أكثر من 200 سؤال مع فلترة بالوحدة والبحث النصي وإظهار الإجابة</p>
+        </div>
+        <div class="head-icon">📚</div>
+    </div>
+
+    <div class="page-body">
+        <div class="notes">
+            <div class="note">
+                <h4><span class="num">1</span> فلتر الوحدات</h4>
+                <p>قائمة منسدلة لاختيار وحدة دراسية بعينها، أو عرض جميع الوحدات دفعة واحدة.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">2</span> البحث داخل الأسئلة</h4>
+                <p>بحث نصي فوري في نص السؤال والإجابة، مع إبراز الكلمة المطابقة.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">3</span> بطاقة السؤال</h4>
+                <p>إطار بحدّ أزرق جانبي، يحتوي السؤال ثم الإجابة النموذجية أسفله بخط أوضح.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">4</span> وسوم التصنيف</h4>
+                <p>تُظهر الوحدة ومستوى الصعوبة (سهل / متوسط / صعب) لتخصيص المراجعة.</p>
+                <div class="tag-row">
+                    <span class="tag">سهل</span>
+                    <span class="tag gold">متوسط</span>
+                    <span class="tag red">صعب</span>
+                </div>
+            </div>
+            <div class="note">
+                <h4><span class="num">5</span> إضافة للمفضلة</h4>
+                <p>نجمة على كل سؤال لحفظه في المفضلة والرجوع إليه قبل الامتحان.</p>
+            </div>
+        </div>
+
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="screen">
+                    <div class="scr-status"><span>9:41</span><span>▮▮▮ ⌁</span></div>
+                    <div class="scr-head">
+                        <div class="t">📚 بنك الأسئلة</div>
+                        <div class="s">200 سؤال وإجابة نموذجية</div>
+                    </div>
+                    <div class="scr-body">
+                        <div style="display:flex;gap:6px;">
+                            <div class="m-search" style="flex:1;">جميع الوحدات ▾</div>
+                        </div>
+                        <div class="m-search">🔍 بحث في الأسئلة…</div>
+
+                        <div class="m-item" style="display:block;border-right:3px solid #2b6f9e;">
+                            <div style="font-size:8.5px;font-weight:700;color:#0b2a47;line-height:1.6;">س: ما حكم الزواج بدون شهود؟</div>
+                            <div style="font-size:7.5px;color:#1f4a7a;margin-top:4px;line-height:1.6;">ج: العقد غير صحيح لانعدام شرط الإشهاد.</div>
+                            <div style="margin-top:5px;">
+                                <span class="m-chip">الزواج</span>
+                                <span class="m-chip gold">متوسط</span>
+                            </div>
+                        </div>
+
+                        <div class="m-item" style="display:block;border-right:3px solid #2b6f9e;">
+                            <div style="font-size:8.5px;font-weight:700;color:#0b2a47;line-height:1.6;">س: متى تستحق الزوجة نصف المهر؟</div>
+                            <div style="font-size:7.5px;color:#1f4a7a;margin-top:4px;line-height:1.6;">ج: عند الطلاق قبل الدخول والخلوة الصحيحة.</div>
+                            <div style="margin-top:5px;">
+                                <span class="m-chip">المهر</span>
+                                <span class="m-chip red">صعب</span>
+                            </div>
+                        </div>
+
+                        <div class="m-item" style="display:block;border-right:3px solid #2b6f9e;">
+                            <div style="font-size:8.5px;font-weight:700;color:#0b2a47;line-height:1.6;">س: ما مدة حضانة الصبي؟</div>
+                            <div style="font-size:7.5px;color:#1f4a7a;margin-top:4px;line-height:1.6;">ج: سبع سنوات ما لم تقرر المحكمة تمديدها.</div>
+                            <div style="margin-top:5px;">
+                                <span class="m-chip">الحضانة</span>
+                                <span class="m-chip green">سهل</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span class="brand">📘 <b>مذكرة النجاح</b> — هيرو أكاديمي</span>
+        <span class="pnum">08</span>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 07 — تحليل الأخطاء
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div>
+            <span class="kicker">القسم 07</span>
+            <h2>🔍 تحليل الأخطاء</h2>
+            <p class="sub">لا نكتفي بعدّ الخطأ… بل نُصنّف سببه ونعالجه</p>
+        </div>
+        <div class="head-icon">🔍</div>
+    </div>
+
+    <div class="page-body">
+        <div class="notes">
+            <div class="note">
+                <h4><span class="num">1</span> تصنيف الأخطاء</h4>
+                <p>أربع فئات رئيسية: خطأ مفهوم، خطأ قراءة، سهو، تخمين — مع نسبة كل فئة.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">2</span> الأخطاء المتكررة</h4>
+                <p>قائمة بالموضوعات التي تكرر فيها الخطأ أكثر من مرة، وهي الأولوية في خطة العلاج.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">3</span> مؤشر التحسّن</h4>
+                <p>مقارنة بين آخر محاولتين لإظهار أثر المراجعة على معدل الدقة.</p>
+                <div class="mini-kpis" style="margin-top:8px;">
+                    <div class="mini"><b>+12%</b><span>تحسّن</span></div>
+                    <div class="mini"><b>23</b><span>خطأ</span></div>
+                    <div class="mini"><b>5</b><span>متكرر</span></div>
+                </div>
+            </div>
+            <div class="note">
+                <h4><span class="num">4</span> ربط مباشر بالمصدر</h4>
+                <p>بالضغط على أي خطأ ينتقل الطالب إلى الجرعة أو الفقرة القانونية المرتبطة به.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">5</span> تصدير الملاحظات</h4>
+                <p>إمكانية إنشاء قائمة مراجعة مختصرة بالأخطاء لطباعتها أو حفظها.</p>
+            </div>
+        </div>
+
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="screen">
+                    <div class="scr-status"><span>9:41</span><span>▮▮▮ ⌁</span></div>
+                    <div class="scr-head">
+                        <div class="t">🔍 تحليل الأخطاء</div>
+                        <div class="s">آخر 5 اختبارات</div>
+                    </div>
+                    <div class="scr-body">
+                        <div class="m-title">توزيع أسباب الخطأ</div>
+                        <div class="m-bar"><i style="width:40%"></i></div>
+                        <div style="font-size:7px;color:#6a7f9a;">خطأ مفهوم — 40%</div>
+
+                        <div class="m-bar blue"><i style="width:25%"></i></div>
+                        <div style="font-size:7px;color:#6a7f9a;">سهو — 25%</div>
+
+                        <div class="m-bar"><i style="width:20%"></i></div>
+                        <div style="font-size:7px;color:#6a7f9a;">خطأ قراءة — 20%</div>
+
+                        <div class="m-bar blue"><i style="width:15%"></i></div>
+                        <div style="font-size:7px;color:#6a7f9a;">تخمين — 15%</div>
+
+                        <div class="m-title" style="margin-top:4px;">الأخطاء المتكررة</div>
+                        <div class="m-item" style="padding:6px 8px;">
+                            <div class="ic" style="width:20px;height:20px;flex:0 0 20px;font-size:10px;">⚠️</div>
+                            <div class="tx"><b>الطلاق الرجعي</b><span>4 أخطاء</span></div>
+                        </div>
+                        <div class="m-item" style="padding:6px 8px;">
+                            <div class="ic" style="width:20px;height:20px;flex:0 0 20px;font-size:10px;">⚠️</div>
+                            <div class="tx"><b>ترتيب الحضانة</b><span>3 أخطاء</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span class="brand">📘 <b>مذكرة النجاح</b> — هيرو أكاديمي</span>
+        <span class="pnum">09</span>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 08 — المحاكاة
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div>
+            <span class="kicker">القسم 08</span>
+            <h2>⏱️ محاكاة الامتحان</h2>
+            <p class="sub">تجربة امتحان حقيقية: وقت، تنقل حر، ولوحة أسئلة</p>
+        </div>
+        <div class="head-icon">⏱️</div>
+    </div>
+
+    <div class="page-body">
+        <div class="notes">
+            <div class="note">
+                <h4><span class="num">1</span> المؤقّت الكبير</h4>
+                <p>يُحاكي زمن الامتحان الفعلي، ويتحول إلى اللون الأحمر عند آخر خمس دقائق.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">2</span> لوحة الأسئلة</h4>
+                <p>شبكة أرقام تُظهر حالة كل سؤال: مُجاب (أخضر)، حالي (ذهبي)، مُتخطّى (أحمر).</p>
+                <div class="tag-row" style="margin-top:6px;">
+                    <span class="tag green">مُجاب</span>
+                    <span class="tag gold">حالي</span>
+                    <span class="tag red">مُتخطّى</span>
+                </div>
+            </div>
+            <div class="note">
+                <h4><span class="num">3</span> نص السؤال</h4>
+                <p>عرض مركّز دون أي مشتتات بصرية، لتشبه ظروف قاعة الامتحان.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">4</span> إجراءات سريعة</h4>
+                <p>تخطّي، تعليم للمراجعة، وإنهاء المحاكاة مع تقرير نتيجة فوري.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">5</span> تقرير ما بعد المحاكاة</h4>
+                <p>نتيجة فورية + تحليل زمني لكل سؤال + مقارنة بمتوسط المحاولات السابقة.</p>
+            </div>
+        </div>
+
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="screen">
+                    <div class="scr-status"><span>9:41</span><span>▮▮▮ ⌁</span></div>
+                    <div class="scr-head">
+                        <div class="t">⏱️ محاكاة رقم 3</div>
+                        <div class="s">قانون الأحوال الشخصية — 1991</div>
+                    </div>
+                    <div class="scr-body">
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                            <span class="m-timer">⏱ 48:12</span>
+                            <span style="font-size:8px;color:#6a7f9a;">12 من 30</span>
+                        </div>
+
+                        <div class="m-palette">
+                            <i class="done">1</i><i class="done">2</i><i class="skip">3</i>
+                            <i class="done">4</i><i class="done">5</i><i class="now">6</i>
+                            <i>7</i><i>8</i><i>9</i><i>10</i><i>11</i><i>12</i>
+                        </div>
+
+                        <div class="m-item" style="display:block;">
+                            <div style="font-size:8.5px;color:#0b2a47;font-weight:700;line-height:1.7;">
+                                ينتهي الطلاق الرجعي بانقضاء العدة، فما حكم الرجعة فيه؟
+                            </div>
+                        </div>
+
+                        <div class="m-opt sel"><b>أ</b> تصح بالقول أو الفعل</div>
+                        <div class="m-opt"><b>ب</b> لا تصح إلا بإشهاد</div>
+                        <div class="m-opt"><b>ج</b> تحتاج حكمًا قضائيًا</div>
+
+                        <div style="display:flex;gap:6px;margin-top:auto;">
+                            <div style="flex:1;text-align:center;font-size:8px;padding:7px;border-radius:20px;border:1px solid #dce4ec;color:#3d5a78;background:#fff;">تخطّي</div>
+                            <div style="flex:1;text-align:center;font-size:8px;padding:7px;border-radius:20px;background:#f5c542;color:#0b2a47;font-weight:700;">التالي</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span class="brand">📘 <b>مذكرة النجاح</b> — هيرو أكاديمي</span>
+        <span class="pnum">10</span>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 09 — الموارد
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div>
+            <span class="kicker">القسم 09</span>
+            <h2>🎬 الموارد التعليمية</h2>
+            <p class="sub">خرائط ذهنية، ملخصات، ومرئيات — كل ما يحتاجه المراجعة السريعة</p>
+        </div>
+        <div class="head-icon">🎬</div>
+    </div>
+
+    <div class="page-body">
+        <div class="notes">
+            <div class="note">
+                <h4><span class="num">1</span> بطاقات الموارد</h4>
+                <p>كل مورد في بطاقة مستقلة بنوعه وحجمه ومدة استعراضه، لتسهيل الاختيار.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">2</span> الخرائط الذهنية</h4>
+                <p>ثماني خرائط تُلخّص هيكل القانون بصريًا: أركان الزواج، المحرمات، الطلاق، الميراث…</p>
+                <div class="tag-row" style="margin-top:6px;">
+                    <span class="tag">8 خرائط</span>
+                    <span class="tag gold">قابلة للتكبير</span>
+                </div>
+            </div>
+            <div class="note">
+                <h4><span class="num">3</span> الملخصات المكتوبة</h4>
+                <p>ملخصات مركّزة لكل وحدة، مصمّمة للمراجعة الليلة السابقة للامتحان.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">4</span> الفيديوهات التعليمية</h4>
+                <p>شرح مرئي مرتبط بمنصة خارجية، يفتح في نافذة جديدة دون مغادرة التطبيق.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">5</span> الوصول بلا إنترنت</h4>
+                <p>الملخصات والخرائط متاحة محليًا داخل التطبيق بعد التحميل الأول.</p>
+            </div>
+        </div>
+
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="screen">
+                    <div class="scr-status"><span>9:41</span><span>▮▮▮ ⌁</span></div>
+                    <div class="scr-head">
+                        <div class="t">🎬 الموارد</div>
+                        <div class="s">مراجعة سريعة ومركّزة</div>
+                    </div>
+                    <div class="scr-body">
+                        <div class="m-item">
+                            <div class="ic">🗺️</div>
+                            <div class="tx"><b>الخرائط الذهنية</b><span>8 خرائط — قابلة للتكبير</span></div>
+                        </div>
+                        <div class="m-item">
+                            <div class="ic">📋</div>
+                            <div class="tx"><b>الملخصات التنظيمية</b><span>6 ملخصات — قراءة 5 دقائق</span></div>
+                        </div>
+                        <div class="m-item">
+                            <div class="ic">▶️</div>
+                            <div class="tx"><b>فيديو الشرح الشامل</b><span>YouTube — يفتح خارجيًا</span></div>
+                        </div>
+                        <div class="m-item">
+                            <div class="ic">⚖️</div>
+                            <div class="tx"><b>قسم الميراث</b><span>ملف تفاعلي مستقل</span></div>
+                        </div>
+                        <div class="m-item">
+                            <div class="ic">📝</div>
+                            <div class="tx"><b>الامتحانات الشاملة</b><span>4 نماذج محلولة</span></div>
+                        </div>
+                        <div style="margin-top:auto;">
+                            <span class="m-chip gold">يعمل دون إنترنت</span>
+                            <span class="m-chip">تحديث تلقائي</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span class="brand">📘 <b>مذكرة النجاح</b> — هيرو أكاديمي</span>
+        <span class="pnum">11</span>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 10 — خطة العلاج
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div>
+            <span class="kicker">القسم 10</span>
+            <h2>🩺 خطة العلاج</h2>
+            <p class="sub">مسار تصحيحي مخصّص يبني على نتائج التشخيص وتحليل الأخطاء</p>
+        </div>
+        <div class="head-icon">🩺</div>
+    </div>
+
+    <div class="page-body">
+        <div class="notes">
+            <div class="note">
+                <h4><span class="num">1</span> خطوات مرقّمة</h4>
+                <p>خطة من أربع إلى ست خطوات واضحة، كل خطوة قابلة للتنفيذ في جلسة واحدة.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">2</span> حالة التنفيذ</h4>
+                <p>دائرة ذهبية = مكتملة، رمادية = قيد الانتظار، مع إمكانية إعادة ترتيب الأولويات.</p>
+                <div class="tag-row" style="margin-top:6px;">
+                    <span class="tag gold">مكتملة</span>
+                    <span class="tag">قيد الانتظار</span>
+                </div>
+            </div>
+            <div class="note">
+                <h4><span class="num">3</span> مدة متوقعة</h4>
+                <p>كل خطوة مصحوبة بمدة تقديرية، ليتمكن الطالب من جدولتها في يومه.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">4</span> تحقق تلقائي</h4>
+                <p>عند إنهاء جرعة أو اختبار مرتبط بالخطوة، يتم تعليمها كمكتملة دون تدخل يدوي.</p>
+            </div>
+            <div class="note">
+                <h4><span class="num">5</span> إعادة التقييم</h4>
+                <p>بعد إتمام الخطة يُعاد الاختبار التشخيصي لقياس الأثر وتحديث المستوى.</p>
+            </div>
+        </div>
+
+        <div class="phone-wrap">
+            <div class="phone">
+                <div class="screen">
+                    <div class="scr-status"><span>9:41</span><span>▮▮▮ ⌁</span></div>
+                    <div class="scr-head">
+                        <div class="t">🩺 خطة العلاج</div>
+                        <div class="s">مبنية على 23 خطأ مرصودًا</div>
+                    </div>
+                    <div class="scr-body">
+                        <div class="m-step">
+                            <div class="dot">1</div>
+                            <div><b>مراجعة جرعة الطلاق</b><span>15 دقيقة</span></div>
+                        </div>
+                        <div class="m-step">
+                            <div class="dot">2</div>
+                            <div><b>حل 20 سؤالًا موجّهًا</b><span>20 دقيقة</span></div>
+                        </div>
+                        <div class="m-step">
+                            <div class="dot off">3</div>
+                            <div><b>مراجعة ترتيب الحضانة</b><span>10 دقائق</span></div>
+                        </div>
+                        <div class="m-step">
+                            <div class="dot off">4</div>
+                            <div><b>محاكاة مصغّرة</b><span>30 دقيقة</span></div>
+                        </div>
+                        <div class="m-step">
+                            <div class="dot off">5</div>
+                            <div><b>إعادة الاختبار التشخيصي</b><span>25 دقيقة</span></div>
+                        </div>
+                        <div class="m-bar" style="margin-top:auto;"><i style="width:40%"></i></div>
+                        <div style="font-size:7px;color:#6a7f9a;text-align:center;">أنجزت 2 من 5 خطوات</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span class="brand">📘 <b>مذكرة النجاح</b> — هيرو أكاديمي</span>
+        <span class="pnum">12</span>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة الختام — CTA
+     ============================================================ -->
+<section class="page final">
+    <div class="final-inner">
+        <div class="chips">
+            <span>🛡️ Hero Protection</span>
+            <span>📱 تجربة عربية RTL</span>
+            <span>🎯 تصميم تعليمي</span>
+        </div>
+
+        <h2 class="big">أعجبتك طريقة <em>Hero</em>؟</h2>
+        <p>
+            نصنع تطبيقات تعليمية تفاعلية تحوّل المحتوى القانوني المعقّد إلى تجربة واضحة،
+            ممتعة، وقابلة للقياس — من الفكرة حتى النشر والحماية.
+        </p>
+
+        <a class="cta-btn" href="https://app.hero1.vip/#about">🚀 تعرّف على المزيد</a>
+        <div class="cta-url">https://app.hero1.vip/#about</div>
+    </div>
+
+    <div class="copy">© 2026-2027 — جميع الحقوق محفوظة | هيرو أكاديمي</div>
+</section>
+
+</body>
+</html>
