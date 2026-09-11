@@ -133,7 +133,7 @@
       "icon": "🧮",
       "drive_url": "courses/A7wal/merath/demo_course_merath001.html",
       "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
-      "visible": false,
+      "visible": true,
       "parentCourse": 4
     }
   ],
