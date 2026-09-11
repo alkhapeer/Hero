@@ -3,1699 +3,1677 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>كتالوج Hero — قانون الأحوال الشخصية 1991</title>
+<title>كتالوج مرئي — مذكرة النجاح | قانون الأحوال الشخصية للمسلمين 1991</title>
 <style>
 /* ============================================================
-   إعدادات عامة وطباعة A4
+   الأساسيات
    ============================================================ */
-@page {
-    size: A4;
-    margin: 0;
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root{
+  --navy:#0b2a47;
+  --navy2:#1a3a5e;
+  --navy3:#2b6f9e;
+  --gold:#f5c542;
+  --gold2:#ffd966;
+  --bg:#f2f6fc;
+  --ink:#1a2634;
+  --muted:#3d5a78;
+  --line:#e6edf6;
 }
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-:root {
-    --navy: #0b2a47;
-    --navy-2: #123a61;
-    --navy-3: #1a4a78;
-    --gold: #f5c542;
-    --gold-2: #ffd966;
-    --gold-soft: #fef7e2;
-    --ink: #1a2634;
-    --muted: #5b7392;
-    --line: #e2eaf3;
-    --bg-soft: #f2f6fc;
-    --green: #1f9d6b;
-    --red: #c0392b;
-    --blue-soft: #edf4fc;
-}
-html, body {
-    font-family: 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
-    color: var(--ink);
-    background: #d8e0ea;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-}
-body {
-    direction: rtl;
-    line-height: 1.6;
+
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  font-family:'Segoe UI','Tahoma','Arial',sans-serif;
+  background:#dbe3ee;
+  color:var(--ink);
+  direction:rtl;
+  -webkit-print-color-adjust:exact;
+  print-color-adjust:exact;
+  line-height:1.7;
 }
 
 /* ============================================================
-   صفحة الكتالوج (A4)
+   صفحة A4
    ============================================================ */
-.page {
-    width: 210mm;
-    min-height: 297mm;
-    background: #ffffff;
-    margin: 0 auto 12mm;
-    padding: 14mm 14mm 16mm;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 8px 30px rgba(11,42,71,0.18);
-    page-break-after: always;
-    display: flex;
-    flex-direction: column;
+.page{
+  width:210mm;
+  height:297mm;
+  background:#fff;
+  margin:10mm auto;
+  padding:11mm 11mm 8mm;
+  position:relative;
+  box-shadow:0 10px 34px rgba(11,42,71,.20);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  page-break-after:always;
+  break-after:page;
 }
-.page:last-of-type {
-    page-break-after: auto;
-}
+.page:last-child{ page-break-after:auto; break-after:auto; }
 
-/* تذييل الصفحة */
-.page-foot {
-    position: absolute;
-    bottom: 8mm;
-    right: 14mm;
-    left: 14mm;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.72rem;
-    color: var(--muted);
-    border-top: 1px dashed var(--line);
-    padding-top: 6px;
-}
-.page-foot .dot {
-    color: var(--gold);
-    font-weight: 700;
-}
-.page-num {
-    background: var(--navy);
-    color: #fff;
-    border-radius: 30px;
-    padding: 2px 12px;
-    font-size: 0.7rem;
-    font-weight: 700;
+@page{ size:A4; margin:0; }
+
+@media print{
+  body{ background:#fff; }
+  .page{ margin:0; box-shadow:none; }
 }
 
 /* ============================================================
-   رأس الصفحة
+   رأس وتذييل الصفحة
    ============================================================ */
-.page-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 10px;
-    border-bottom: 3px solid var(--navy);
-    margin-bottom: 12px;
+.page-head{
+  display:flex; align-items:center; justify-content:space-between;
+  border-bottom:2px solid var(--line);
+  padding-bottom:6px; margin-bottom:9px;
+  font-size:10.5px; color:var(--muted);
+  flex:0 0 auto;
 }
-.page-head .kicker {
-    font-size: 0.72rem;
-    color: var(--muted);
-    font-weight: 600;
-    letter-spacing: 0.5px;
+.page-head .ph-right{ display:flex; align-items:center; gap:8px; }
+.page-head .ph-title{ font-weight:700; color:var(--navy); font-size:13px; }
+.page-head .ph-num{
+  background:var(--navy); color:#fff;
+  min-width:24px; height:24px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; padding:0 6px;
 }
-.page-head h2 {
-    font-size: 1.35rem;
-    color: var(--navy);
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.page-head .ph-brand{
+  background:var(--gold); color:var(--navy);
+  padding:2px 11px; border-radius:20px;
+  font-weight:700; font-size:10px;
 }
-.page-head .tag {
-    background: var(--gold);
-    color: var(--navy);
-    border-radius: 30px;
-    padding: 3px 14px;
-    font-size: 0.72rem;
-    font-weight: 800;
+
+.page-foot{
+  flex:0 0 auto;
+  margin-top:7px; padding-top:6px;
+  border-top:1px dashed #dce4ec;
+  font-size:8.5px; color:#8a9aa8;
+  display:flex; justify-content:space-between; align-items:center;
 }
+
+/* ============================================================
+   جسم الصفحة: هاتف + تعليقات
+   ============================================================ */
+.page-body{
+  flex:1 1 auto;
+  display:flex; gap:9mm; align-items:flex-start;
+  min-height:0;
+}
+
+/* ---------- الهاتف ---------- */
+.phone{
+  width:60mm; flex:0 0 60mm;
+  background:linear-gradient(160deg,#123456,#0b2a47);
+  border-radius:26px;
+  padding:6px;
+  box-shadow:0 16px 34px rgba(11,42,71,.30), inset 0 0 0 2px rgba(255,255,255,.08);
+  position:relative;
+}
+.phone::before{
+  content:'';
+  position:absolute; top:11px; left:50%; transform:translateX(-50%);
+  width:36px; height:5px; border-radius:10px;
+  background:rgba(255,255,255,.35);
+  z-index:9;
+}
+.phone::after{
+  content:'';
+  position:absolute; bottom:9px; left:50%; transform:translateX(-50%);
+  width:52px; height:4px; border-radius:10px;
+  background:rgba(255,255,255,.25);
+  z-index:9;
+}
+.phone-screen{
+  background:var(--bg);
+  border-radius:21px;
+  height:145mm;
+  overflow:hidden;
+  display:flex; flex-direction:column;
+  font-size:8px;
+  line-height:1.5;
+}
+
+/* ---------- شريط التطبيق داخل الهاتف ---------- */
+.ms-head{
+  background:var(--navy); color:#fff;
+  padding:11px 9px 8px;
+  display:flex; justify-content:space-between; align-items:center;
+  border-radius:0 0 14px 14px;
+  font-size:8px;
+  flex:0 0 auto;
+}
+.ms-head b{ font-size:8.5px; font-weight:700; }
+.ms-head small{ display:block; font-size:6px; opacity:.75; font-weight:400; }
+.ms-actions{ display:flex; gap:3px; }
+.ms-actions span{
+  background:rgba(255,255,255,.16);
+  padding:2px 5px; border-radius:20px; font-size:6.5px;
+}
+.ms-actions .gold{ background:var(--gold); color:var(--navy); }
+
+.ms-pad{ padding:8px 8px 10px; flex:1 1 auto; overflow:hidden; }
+
+.ms-h1{
+  font-size:9px; font-weight:700; color:var(--navy);
+  border-right:3px solid var(--gold);
+  padding-right:6px; margin-bottom:4px;
+}
+.ms-sub{ font-size:6.5px; color:var(--muted); margin-bottom:8px; }
+
+/* ---------- شبكة الأزرار ---------- */
+.ms-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:5px; margin:7px 0; }
+.ms-tile{
+  background:#fff; border:1px solid var(--line);
+  border-radius:9px; padding:6px 2px; text-align:center;
+  font-size:6px; font-weight:700; color:var(--navy);
+  box-shadow:0 2px 6px rgba(11,42,71,.05);
+}
+.ms-tile span{ display:block; font-size:11px; margin-bottom:1px; }
+
+/* ---------- بطاقات المحتوى ---------- */
+.ms-card{
+  background:#fff; border:1px solid var(--line);
+  border-radius:10px; padding:7px 8px; margin-bottom:6px;
+  box-shadow:0 2px 7px rgba(11,42,71,.05);
+}
+.ms-card h4{ font-size:7px; color:var(--navy); margin-bottom:3px; }
+.ms-card p{ font-size:6px; color:#44586e; line-height:1.65; }
+.ms-card ul{ padding-right:10px; }
+.ms-card li{ font-size:6px; color:#44586e; line-height:1.7; }
+
+.ms-box{
+  background:#eaf0f8; border-radius:9px; padding:7px 8px;
+  font-size:6px; color:#2c4a6e; margin-top:7px;
+}
+.ms-box b{ display:block; color:var(--navy); font-size:6.5px; margin-bottom:2px; }
+
+.ms-note{
+  border-radius:8px; padding:6px 8px; margin:6px 0;
+  border-right:3px solid var(--navy3); background:#edf4fc;
+  font-size:6px; color:#1f4a7a;
+}
+.ms-note.gold{ border-right-color:#f3b33d; background:#fef9ef; color:#7a5a12; }
+.ms-note.red{ border-right-color:#c0392b; background:#fdeaea; color:#8a2a20; }
+
+.ms-sec{
+  display:flex; justify-content:space-between; align-items:center;
+  border-bottom:1.5px solid #dce4ec; padding-bottom:4px; margin-bottom:6px;
+}
+.ms-sec h3{ font-size:8px; color:var(--navy); }
+.ms-sec span{
+  font-size:5.5px; background:#fff; border:1px solid #dce4ec;
+  padding:2px 6px; border-radius:20px; color:var(--navy2);
+}
+
+.ms-chiprow{ display:flex; gap:4px; flex-wrap:wrap; margin-bottom:6px; }
+.ms-chip{
+  background:#fff; border:1px solid #dce4ec; border-radius:20px;
+  padding:2px 7px; font-size:5.5px; color:var(--navy2);
+}
+.ms-chip.active{ background:var(--navy); color:#fff; border-color:var(--navy); }
+
+.ms-q{
+  background:#f9fbfe; border-right:3px solid var(--navy3);
+  border-radius:8px; padding:6px 8px; margin-bottom:5px;
+}
+.ms-q b{ font-size:6px; color:var(--navy); display:block; }
+.ms-q span{ font-size:5.8px; color:#1f4a7a; display:block; margin-top:2px; }
+
+.ms-map{
+  background:linear-gradient(135deg,#0b2a47,#1a3a5e);
+  border-radius:10px; height:38px;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--gold); font-size:14px; margin-bottom:5px;
+  position:relative; overflow:hidden;
+}
+.ms-map::after{
+  content:''; position:absolute; inset:6px;
+  border:1px dashed rgba(245,197,66,.35); border-radius:6px;
+}
+
+.ms-video{
+  background:#111; border-radius:10px; height:58px;
+  display:flex; align-items:center; justify-content:center;
+  color:#ff0000; font-size:20px; margin-bottom:6px;
+}
+
+.ms-tree{ padding-right:6px; }
+.ms-tree-node{
+  background:#f4f8fe; border-radius:7px; padding:5px 8px;
+  font-size:6px; color:var(--navy); margin-bottom:4px;
+  border-right:3px solid #b3c9e0;
+}
+.ms-tree-node.open{ border-right-color:var(--navy3); background:#e6edf6; }
+.ms-tree-sub{ padding-right:12px; }
+.ms-tree-sub div{
+  font-size:5.5px; color:#44586e; padding:3px 6px;
+  border-right:2px solid #dce4ec; margin-bottom:3px;
+}
+
+/* ---------- عمود التعليقات ---------- */
+.notes{ flex:1 1 auto; min-width:0; }
+
+.notes h2{
+  font-size:15px; color:var(--navy);
+  border-right:5px solid var(--gold);
+  padding-right:10px; margin-bottom:4px;
+}
+.notes .lead{ font-size:9.5px; color:var(--muted); margin-bottom:10px; }
+
+.note-item{
+  display:flex; gap:8px; align-items:flex-start;
+  background:#f8fbff; border:1px solid var(--line);
+  border-radius:12px; padding:8px 10px; margin-bottom:7px;
+  box-shadow:0 2px 8px rgba(11,42,71,.04);
+}
+.note-item .ni-ico{
+  flex:0 0 24px; height:24px; border-radius:8px;
+  background:var(--navy); color:var(--gold);
+  display:flex; align-items:center; justify-content:center;
+  font-size:12px;
+}
+.note-item .ni-ico.gold{ background:var(--gold); color:var(--navy); }
+.note-item .ni-body b{
+  display:block; font-size:9.5px; color:var(--navy); margin-bottom:1px;
+}
+.note-item .ni-body p{ font-size:8.5px; color:#44586e; line-height:1.65; }
+
+.tag-list{ display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; }
+.tag{
+  background:#eaf0f8; color:var(--navy2);
+  border-radius:20px; padding:3px 10px; font-size:8px; font-weight:600;
+}
+.tag.gold{ background:#fef3d4; color:#8a6a10; }
+
+.spec-box{
+  background:linear-gradient(135deg,#0b2a47,#1a3a5e);
+  border-radius:14px; padding:12px 14px; color:#fff; margin-top:10px;
+}
+.spec-box b{ color:var(--gold); font-size:10px; display:block; margin-bottom:4px; }
+.spec-box p{ font-size:8.5px; opacity:.9; line-height:1.7; }
 
 /* ============================================================
    الغلاف
    ============================================================ */
-.cover {
-    background: radial-gradient(circle at 20% 10%, #16406d 0%, var(--navy) 55%, #061a2e 100%);
-    color: #fff;
-    justify-content: space-between;
+.cover{
+  background:radial-gradient(circle at 78% 12%, #1a3a5e 0%, #0b2a47 45%, #061a2e 100%);
+  color:#fff;
+  padding:0;
+  justify-content:space-between;
 }
-.cover::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at 85% 85%, rgba(245,197,66,0.18), transparent 45%),
-        radial-gradient(circle at 10% 75%, rgba(245,197,66,0.10), transparent 40%);
-    pointer-events: none;
+.cover-inner{
+  flex:1; display:flex; flex-direction:column;
+  padding:20mm 16mm 14mm; position:relative; z-index:2;
 }
-.cover .brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    position: relative;
+.cover::before{
+  content:'';
+  position:absolute; left:-70mm; bottom:-70mm;
+  width:150mm; height:150mm; border-radius:50%;
+  background:radial-gradient(circle,rgba(245,197,66,.20),transparent 68%);
 }
-.brand-mark {
-    width: 58px;
-    height: 58px;
-    border-radius: 16px;
-    background: linear-gradient(145deg, var(--gold), #e0a91c);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.8rem;
-    box-shadow: 0 6px 18px rgba(245,197,66,0.35);
+.cover::after{
+  content:'';
+  position:absolute; right:-40mm; top:-40mm;
+  width:110mm; height:110mm; border-radius:50%;
+  border:1.5px dashed rgba(245,197,66,.28);
 }
-.brand-text strong {
-    display: block;
-    font-size: 1.25rem;
-    letter-spacing: 0.4px;
+.cover-badge{
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(245,197,66,.14);
+  border:1px solid rgba(245,197,66,.45);
+  color:var(--gold);
+  border-radius:30px; padding:5px 16px;
+  font-size:10px; font-weight:700; align-self:flex-start;
+  letter-spacing:.3px;
 }
-.brand-text span {
-    font-size: 0.8rem;
-    color: #bcd4ee;
+.cover h1{
+  font-size:37px; line-height:1.35; font-weight:800;
+  margin-top:14px; letter-spacing:-.5px;
 }
-
-.cover-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(245,197,66,0.14);
-    border: 1px solid rgba(245,197,66,0.55);
-    color: var(--gold-2);
-    border-radius: 40px;
-    padding: 6px 18px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    margin-top: 24px;
-    position: relative;
-    width: fit-content;
+.cover h1 em{ font-style:normal; color:var(--gold); }
+.cover .cover-line{
+  width:70px; height:5px; border-radius:10px;
+  background:linear-gradient(90deg,var(--gold),rgba(245,197,66,.1));
+  margin:16px 0;
 }
-.cover-title {
-    margin-top: 20px;
-    position: relative;
+.cover .cover-sub{
+  font-size:13px; opacity:.9; max-width:130mm; line-height:1.9;
 }
-.cover-title h1 {
-    font-size: 2.6rem;
-    line-height: 1.25;
-    letter-spacing: -0.5px;
+.cover .cover-year{
+  margin-top:auto;
+  display:flex; flex-direction:column; gap:6px;
+  font-size:11px; opacity:.92;
 }
-.cover-title h1 em {
-    color: var(--gold);
-    font-style: normal;
+.cover .cover-year strong{ color:var(--gold); font-weight:700; }
+.cover .cover-emoji{
+  font-size:52px; letter-spacing:8px; margin:10px 0 2px;
 }
-.cover-title p {
-    color: #bcd4ee;
-    font-size: 1.02rem;
-    margin-top: 12px;
-    max-width: 480px;
+.cover-cta{
+  margin-top:16px;
+  display:inline-block; align-self:flex-start;
+  background:var(--gold); color:var(--navy);
+  font-weight:800; font-size:13px;
+  padding:11px 34px; border-radius:30px;
+  text-decoration:none;
+  box-shadow:0 10px 24px rgba(245,197,66,.32);
 }
-.cover-academy {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.14);
-    border-radius: 14px;
-    padding: 10px 18px;
-    font-size: 0.9rem;
-    color: #dbe8f7;
-    position: relative;
-}
-.cover-academy b { color: var(--gold-2); }
-
-.cover-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
-    margin-top: 30px;
-    position: relative;
-}
-.stat-box {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.13);
-    border-radius: 16px;
-    padding: 16px 14px;
-    text-align: center;
-    backdrop-filter: blur(4px);
-}
-.stat-box .num {
-    font-size: 1.9rem;
-    font-weight: 800;
-    color: var(--gold);
-    line-height: 1.1;
-}
-.stat-box .lbl {
-    font-size: 0.82rem;
-    color: #c7dbf2;
-    margin-top: 4px;
-}
-.cover-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 26px;
-    position: relative;
-}
-.pill {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.16);
-    color: #dbe8f7;
-    border-radius: 30px;
-    padding: 5px 14px;
-    font-size: 0.78rem;
-}
-
-.cover-bottom {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    border-top: 1px solid rgba(255,255,255,0.15);
-    padding-top: 14px;
-    font-size: 0.8rem;
-    color: #a9c4e2;
-}
-.cover-bottom .ltr { direction: ltr; font-family: monospace; }
-
-/* ============================================================
-   الفهرس
-   ============================================================ */
-.toc-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 6px;
-}
-.toc-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--bg-soft);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 12px 14px;
-    transition: 0.2s;
-}
-.toc-item .idx {
-    width: 34px;
-    height: 34px;
-    flex: none;
-    border-radius: 10px;
-    background: var(--navy);
-    color: var(--gold);
-    font-weight: 800;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem;
-}
-.toc-item .icon { font-size: 1.3rem; }
-.toc-item .t-title {
-    font-weight: 700;
-    color: var(--navy);
-    font-size: 0.95rem;
-}
-.toc-item .t-sub {
-    font-size: 0.75rem;
-    color: var(--muted);
-}
-.toc-item:hover { border-color: #b3c9e0; background: #fff; }
-
-/* ============================================================
-   تخطيط صفحة العرض (هاتف + تعليقات)
-   ============================================================ */
-.screen-layout {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 22px;
-    align-items: start;
-    flex: 1;
-    margin-top: 6px;
-}
-.screen-layout.reverse {
-    grid-template-columns: 1fr 250px;
+.cover-foot{
+  background:rgba(0,0,0,.25);
+  padding:9px 16mm; font-size:9px; opacity:.8;
+  display:flex; justify-content:space-between;
+  position:relative; z-index:2;
 }
 
 /* ============================================================
-   إطار الهاتف
+   صفحة الفهرس
    ============================================================ */
-.phone {
-    width: 250px;
-    height: 500px;
-    background: #0d1b2a;
-    border-radius: 34px;
-    padding: 10px;
-    box-shadow: 0 14px 34px rgba(11,42,71,0.28);
-    position: relative;
-    margin: 0 auto;
+.toc-title{
+  font-size:26px; color:var(--navy); margin-bottom:4px;
 }
-.phone::before {
-    content: "";
-    position: absolute;
-    top: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70px;
-    height: 5px;
-    border-radius: 10px;
-    background: rgba(255,255,255,0.18);
-}
-.phone-screen {
-    width: 100%;
-    height: 100%;
-    background: #f5f8fc;
-    border-radius: 26px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-}
+.toc-sub{ font-size:10px; color:var(--muted); margin-bottom:14px; }
 
-/* شريط الحالة */
-.p-status {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 6px 14px;
-    font-size: 0.6rem;
-    color: #6a7f9a;
-    background: #fff;
-    border-bottom: 1px solid #eef2f7;
+.toc-list{ display:flex; flex-direction:column; gap:6px; }
+.toc-row{
+  display:flex; align-items:center; gap:11px;
+  background:#f8fbff; border:1px solid var(--line);
+  border-radius:12px; padding:8px 12px;
 }
-.p-status .dots { display: flex; gap: 3px; }
-.p-status .dots i {
-    width: 4px; height: 4px; border-radius: 50%; background: #b7c7d8; display: block;
+.toc-row .toc-ico{
+  flex:0 0 28px; height:28px; border-radius:9px;
+  background:var(--navy); color:var(--gold);
+  display:flex; align-items:center; justify-content:center; font-size:14px;
 }
-
-/* رأس الهاتف */
-.p-header {
-    background: var(--navy);
-    color: #fff;
-    padding: 10px 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.toc-row .toc-txt{ flex:1; }
+.toc-row .toc-txt b{ font-size:11px; color:var(--navy); display:block; }
+.toc-row .toc-txt span{ font-size:8.5px; color:var(--muted); }
+.toc-row .toc-page{
+  font-size:10px; font-weight:800; color:var(--navy);
+  background:var(--gold); border-radius:20px; padding:1px 11px;
 }
-.p-header .ttl { font-size: 0.78rem; font-weight: 700; }
-.p-header .ic {
-    font-size: 0.75rem;
-    background: rgba(255,255,255,0.14);
-    border-radius: 30px;
-    padding: 3px 8px;
-}
-.p-body {
-    flex: 1;
-    padding: 12px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-}
-.p-nav {
-    background: #fff;
-    border-top: 1px solid #eef2f7;
-    display: flex;
-    justify-content: space-around;
-    padding: 7px 0;
-    font-size: 0.55rem;
-    color: #8a9aa8;
-}
-.p-nav span { display: flex; flex-direction: column; align-items: center; gap: 2px; }
-.p-nav span .em { font-size: 0.95rem; }
-.p-nav span.active { color: var(--navy); font-weight: 700; }
-
-/* عناصر داخل الهاتف */
-.p-h1 { font-size: 0.85rem; font-weight: 800; color: var(--navy); }
-.p-sub { font-size: 0.62rem; color: #7a8ba0; }
-
-.p-kpi-row { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
-.p-kpi {
-    background: #fff;
-    border: 1px solid #e9eff7;
-    border-radius: 12px;
-    padding: 8px 9px;
-}
-.p-kpi .v { font-size: 1.05rem; font-weight: 800; color: var(--navy); }
-.p-kpi .v.gold { color: #c9930f; }
-.p-kpi .l { font-size: 0.56rem; color: #7a8ba0; }
-
-.p-card {
-    background: #fff;
-    border: 1px solid #e9eff7;
-    border-radius: 12px;
-    padding: 9px 10px;
-}
-.p-card .ct { font-size: 0.68rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
-.p-card .cs { font-size: 0.56rem; color: #7a8ba0; }
-
-.p-bar {
-    height: 7px;
-    border-radius: 10px;
-    background: #eaf0f7;
-    overflow: hidden;
-    margin-top: 6px;
-}
-.p-bar > i {
-    display: block;
-    height: 100%;
-    border-radius: 10px;
-    background: linear-gradient(90deg, var(--gold), #e0a91c);
-}
-.p-bar.blue > i { background: linear-gradient(90deg, #2b6f9e, var(--navy)); }
-.p-bar.green > i { background: linear-gradient(90deg, #46c48a, var(--green)); }
-
-.p-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
-.p-tile {
-    background: #fff;
-    border: 1px solid #e9eff7;
-    border-radius: 11px;
-    padding: 8px 6px;
-    text-align: center;
-}
-.p-tile .em { font-size: 1.05rem; }
-.p-tile .t { font-size: 0.56rem; font-weight: 700; color: var(--navy); margin-top: 2px; }
-.p-tile .b {
-    display: inline-block;
-    background: var(--gold);
-    color: var(--navy);
-    border-radius: 20px;
-    font-size: 0.48rem;
-    font-weight: 800;
-    padding: 1px 7px;
-    margin-top: 3px;
-}
-
-.p-chiprow { display: flex; flex-wrap: wrap; gap: 5px; }
-.p-chip {
-    background: #eef4fb;
-    border: 1px solid #dbe6f3;
-    color: #2b5078;
-    border-radius: 20px;
-    font-size: 0.55rem;
-    padding: 2px 9px;
-}
-.p-chip.gold { background: var(--gold-soft); border-color: #f0dca3; color: #997513; }
-
-.p-q {
-    background: #fff;
-    border: 1px solid #e9eff7;
-    border-radius: 11px;
-    padding: 8px 9px;
-    border-right: 3px solid var(--navy);
-}
-.p-q .qn { font-size: 0.62rem; font-weight: 700; color: var(--navy); }
-.p-q .qt { font-size: 0.58rem; color: #5b7392; margin-top: 3px; }
-
-.p-btn {
-    background: var(--navy);
-    color: #fff;
-    text-align: center;
-    border-radius: 30px;
-    font-size: 0.65rem;
-    font-weight: 700;
-    padding: 8px;
-}
-.p-btn.gold { background: var(--gold); color: var(--navy); }
-
-.p-donut {
-    width: 74px; height: 74px;
-    border-radius: 50%;
-    margin: 4px auto 2px;
-    background: conic-gradient(var(--gold) 0 68%, #e6edf6 68% 100%);
-    display: flex; align-items: center; justify-content: center;
-}
-.p-donut > div {
-    width: 54px; height: 54px;
-    border-radius: 50%;
-    background: #fff;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.78rem; font-weight: 800; color: var(--navy);
-}
-
-.p-line {
-    display: flex; justify-content: space-between;
-    font-size: 0.58rem; color: #5b7392;
-    padding: 5px 0; border-bottom: 1px dashed #eaf0f7;
-}
-.p-line:last-child { border-bottom: none; }
-.p-line b { color: var(--navy); }
-
-.p-timer {
-    text-align: center;
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--navy);
-    letter-spacing: 1px;
-}
-.p-timer small { display: block; font-size: 0.55rem; color: #8a9aa8; letter-spacing: 0; font-weight: 500; }
-
-.p-opt {
-    background: #fff; border: 1px solid #e9eff7; border-radius: 10px;
-    padding: 7px 9px; font-size: 0.6rem; color: #475e78;
-    display: flex; align-items: center; gap: 7px;
-}
-.p-opt .k {
-    width: 16px; height: 16px; border-radius: 50%;
-    background: #eef4fb; border: 1px solid #dbe6f3;
-    font-size: 0.5rem; display: flex; align-items: center; justify-content: center;
-    color: #2b5078; font-weight: 700; flex: none;
-}
-.p-opt.ok { border-color: #b6e6cd; background: #eefaf3; }
-.p-opt.ok .k { background: #46c48a; color: #fff; border-color: #46c48a; }
+.toc-dots{ flex:1; border-bottom:1.5px dotted #c8d6e6; margin:0 4px; height:1px; }
 
 /* ============================================================
-   التعليقات الجانبية
+   صفحة الخاتمة CTA
    ============================================================ */
-.notes { display: flex; flex-direction: column; gap: 10px; }
-.note {
-    background: var(--bg-soft);
-    border: 1px solid var(--line);
-    border-right: 4px solid var(--navy);
-    border-radius: 12px;
-    padding: 11px 13px;
+.cta-page{
+  background:radial-gradient(circle at 50% 30%, #1a3a5e 0%, #0b2a47 50%, #061a2e 100%);
+  color:#fff; justify-content:center; align-items:center; text-align:center;
+  padding:24mm 20mm;
 }
-.note.gold { border-right-color: var(--gold); background: var(--gold-soft); border-color: #f0dca3; }
-.note.green { border-right-color: var(--green); background: #effaf4; border-color: #c6ecda; }
-.note .n-title {
-    font-weight: 800; color: var(--navy); font-size: 0.88rem;
-    display: flex; align-items: center; gap: 6px; margin-bottom: 4px;
+.cta-page::before{
+  content:'';
+  position:absolute; inset:14mm;
+  border:1.5px dashed rgba(245,197,66,.30);
+  border-radius:22px;
 }
-.note .n-body { font-size: 0.8rem; color: #37506b; }
-
-.kpi-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin: 4px 0;
+.cta-inner{ position:relative; z-index:3; max-width:150mm; }
+.cta-emoji{ font-size:46px; letter-spacing:6px; margin-bottom:10px; }
+.cta-page h2{ font-size:34px; font-weight:800; margin-bottom:12px; }
+.cta-page h2 em{ font-style:normal; color:var(--gold); }
+.cta-page p{ font-size:12.5px; opacity:.9; line-height:2; margin-bottom:8px; }
+.cta-features{
+  display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:18px 0 22px;
 }
-.kpi {
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 12px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(11,42,71,0.05);
+.cta-features span{
+  background:rgba(245,197,66,.14);
+  border:1px solid rgba(245,197,66,.40);
+  color:var(--gold); border-radius:30px;
+  padding:6px 15px; font-size:10px; font-weight:700;
 }
-.kpi .v { font-size: 1.4rem; font-weight: 800; color: var(--navy); line-height: 1.1; }
-.kpi .v.gold { color: #c9930f; }
-.kpi .l { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
-
-.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
-.tag {
-    background: var(--blue-soft);
-    border: 1px solid #d8e6f6;
-    color: #2b5078;
-    border-radius: 30px;
-    padding: 3px 12px;
-    font-size: 0.72rem;
-    font-weight: 600;
+.cta-btn{
+  display:inline-block;
+  background:var(--gold); color:var(--navy);
+  font-weight:800; font-size:15px;
+  padding:14px 46px; border-radius:34px;
+  text-decoration:none;
+  box-shadow:0 14px 32px rgba(245,197,66,.35);
+  margin-bottom:14px;
 }
-.tag.gold { background: var(--gold-soft); border-color: #f0dca3; color: #997513; }
-.tag.green { background: #effaf4; border-color: #c6ecda; color: #1c7a52; }
-.tag.red { background: #fdecec; border-color: #f3c6c6; color: #a63434; }
-
-/* أشرطة تقدم كبيرة */
-.big-bar { margin: 6px 0; }
-.big-bar .bb-head {
-    display: flex; justify-content: space-between;
-    font-size: 0.8rem; color: #37506b; font-weight: 600;
-    margin-bottom: 4px;
+.cta-link{
+  display:block; font-size:10.5px; color:#bcd0e6;
+  direction:ltr; letter-spacing:.4px; margin-bottom:20px;
+  text-decoration:none;
 }
-.big-bar .bb-track {
-    height: 10px; border-radius: 10px; background: #eaf0f7; overflow: hidden;
+.cta-rule{
+  width:60px; height:3px; background:rgba(245,197,66,.5);
+  border-radius:10px; margin:0 auto 14px;
 }
-.big-bar .bb-fill {
-    height: 100%; border-radius: 10px;
-    background: linear-gradient(90deg, var(--gold), #e0a91c);
-}
-.big-bar .bb-fill.blue { background: linear-gradient(90deg, #2b6f9e, var(--navy)); }
-.big-bar .bb-fill.green { background: linear-gradient(90deg, #46c48a, var(--green)); }
-
-/* شريط CTA أخير */
-.cta-final {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 18px;
-    background: radial-gradient(circle at 50% 20%, #16406d 0%, var(--navy) 60%, #061a2e 100%);
-    border-radius: 22px;
-    padding: 40px 30px;
-    color: #fff;
-    position: relative;
-    overflow: hidden;
-}
-.cta-final::after {
-    content: "";
-    position: absolute; inset: 0;
-    background: radial-gradient(circle at 80% 90%, rgba(245,197,66,0.16), transparent 45%);
-}
-.cta-final h2 { font-size: 1.9rem; position: relative; }
-.cta-final h2 em { color: var(--gold); font-style: normal; }
-.cta-final p { color: #c7dbf2; position: relative; max-width: 460px; }
-.cta-link {
-    position: relative;
-    display: inline-flex; align-items: center; gap: 10px;
-    background: var(--gold); color: var(--navy);
-    border-radius: 40px; padding: 12px 30px;
-    font-weight: 800; font-size: 1rem;
-    text-decoration: none;
-    box-shadow: 0 10px 26px rgba(245,197,66,0.35);
-}
-.copyright {
-    position: relative;
-    font-size: 0.8rem; color: #a9c4e2;
-    border-top: 1px solid rgba(255,255,255,0.15);
-    padding-top: 14px; width: 100%; text-align: center; margin-top: 6px;
-}
-
-/* رسوم بيانية صغيرة */
-.mini-chart {
-    display: flex; align-items: flex-end; gap: 6px; height: 70px; margin-top: 6px;
-}
-.mini-chart .col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
-.mini-chart .col .bar {
-    width: 100%; border-radius: 6px 6px 3px 3px;
-    background: linear-gradient(180deg, #2b6f9e, var(--navy));
-}
-.mini-chart .col .bar.gold { background: linear-gradient(180deg, var(--gold), #e0a91c); }
-.mini-chart .col .lb { font-size: 0.62rem; color: var(--muted); }
-
-.legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 0.75rem; color: #475e78; }
-.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-left: 5px; }
-
-.split-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.split-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-
-.hr-soft { border: 0; border-top: 1px dashed var(--line); margin: 10px 0; }
-
-@media print {
-    body { background: #fff; }
-    .page { margin: 0; box-shadow: none; page-break-after: always; }
-    .page:last-of-type { page-break-after: auto; }
-}
+.cta-copy{ font-size:9.5px; opacity:.7; }
 </style>
 </head>
 <body>
 
 <!-- ============================================================
-     صفحة 1: الغلاف
+     صفحة 1 — الغلاف
      ============================================================ -->
 <section class="page cover">
-    <div class="brand">
-        <div class="brand-mark">⚖️</div>
-        <div class="brand-text">
-            <strong>هيرو أكاديمي</strong>
-            <span>Hero Academy · منصة تعليمية تفاعلية</span>
-        </div>
-    </div>
+  <div class="cover-inner">
+    <span class="cover-badge">📘 إصدار كتالوج مرئي 2026-2027</span>
 
-    <div>
-        <div class="cover-badge">🗂️ إصدار كتالوج مرئي 2026-2027</div>
-        <div class="cover-title">
-            <h1>مذكرة النجاح<br><em>قانون الأحوال الشخصية للمسلمين</em> 1991</h1>
-            <p>كتالوج بصري يشرح تجربة التطبيق التعليمي: من لوحة التقدم والاختبار التشخيصي، إلى الجرعات والبنك والمحاكاة وخطة العلاج.</p>
-        </div>
-        <div class="cover-academy">
-            🏛️ إعداد: <b>هيرو أكاديمي</b> — تجربة تعلم قائمة على البيانات والقياس.
-        </div>
-
-        <div class="cover-stats">
-            <div class="stat-box">
-                <div class="num">200+</div>
-                <div class="lbl">سؤال وإجابة</div>
-            </div>
-            <div class="stat-box">
-                <div class="num">42</div>
-                <div class="lbl">جرعة معرفية</div>
-            </div>
-            <div class="stat-box">
-                <div class="num">12</div>
-                <div class="lbl">وحدة دراسية</div>
-            </div>
-        </div>
-
-        <div class="cover-tags">
-            <span class="pill">📘 شرح تأصيلي</span>
-            <span class="pill">🧠 خرائط ذهنية</span>
-            <span class="pill">📝 امتحانات شاملة</span>
-            <span class="pill">🔄 بطاقات مراجعة</span>
-            <span class="pill">📊 تحليل الأخطاء</span>
-            <span class="pill">⏱️ محاكاة زمنية</span>
-        </div>
-    </div>
-
-    <div class="cover-bottom">
-        <div>© 2026-2027 — جميع الحقوق محفوظة</div>
-        <div class="ltr">app.hero1.vip</div>
-    </div>
-</section>
-
-<!-- ============================================================
-     صفحة 2: الفهرس
-     ============================================================ -->
-<section class="page">
-    <div class="page-head">
-        <div>
-            <div class="kicker">CATALOG INDEX</div>
-            <h2>📑 فهرس الكتالوج</h2>
-        </div>
-        <div class="tag">10 أقسام</div>
-    </div>
-
-    <p class="p-sub" style="color:#5b7392; margin-bottom:12px;">
-        كل صفحة تعرض لقطة مبسطة من واجهة التطبيق، مع تعليقات جانبية تشرح العناصر والوظائف.
+    <h1>مذكرة النجاح<br><em>قانون الأحوال الشخصية<br>للمسلمين 1991</em></h1>
+    <div class="cover-line"></div>
+    <p class="cover-sub">
+      دراسة قانونية تأصيلية شاملة — شرح تطبيقي فقهي وقضائي، مع ملخصات منظمة،
+      بنك أسئلة موسّع، خرائط ذهنية، امتحانات شاملة، وقسم خاص بأحكام الميراث.
     </p>
 
+    <div class="cover-emoji">⚖️ 📖 🗺️ 📝</div>
+
+    <div class="cover-year">
+      <div>إعداد: <strong>هيرو أكاديمي</strong></div>
+      <div>الفئة المستهدفة: <strong>طلاب القانون والممارسون المهنيون</strong></div>
+      <div>اللغة: <strong>العربية — تنسيق RTL</strong></div>
+    </div>
+
+    <a class="cover-cta" href="https://app.hero1.vip/#about" target="_blank" rel="noopener">🛒 اشترِ الآن</a>
+  </div>
+
+  <div class="cover-foot">
+    <span>Hero Academy — Visual Catalog</span>
+    <span>© 2026-2027 — جميع الحقوق محفوظة</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 2 — الفهرس
+     ============================================================ -->
+<section class="page">
+  <div class="page-head">
+    <div class="ph-right">
+      <span class="ph-num">02</span>
+      <span class="ph-title">فهرس المحتويات</span>
+    </div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body" style="flex-direction:column;">
+    <div>
+      <h2 class="toc-title">📑 فهرس الأقسام</h2>
+      <p class="toc-sub">جولة بصرية داخل شاشات التطبيق — من الشاشة الرئيسية حتى قسم الميراث.</p>
+    </div>
+
     <div class="toc-list">
-        <div class="toc-item"><div class="idx">01</div><span class="icon">🏠</span>
-            <div><div class="t-title">الرئيسية</div><div class="t-sub">شاشة البداية وأزرار الوحدات</div></div></div>
-        <div class="toc-item"><div class="idx">02</div><span class="icon">📊</span>
-            <div><div class="t-title">لوحة التقدم</div><div class="t-sub">مؤشرات الأداء والاستمرارية</div></div></div>
-        <div class="toc-item"><div class="idx">03</div><span class="icon">🧪</span>
-            <div><div class="t-title">الاختبار التشخيصي</div><div class="t-sub">تحديد نقطة البداية</div></div></div>
-        <div class="toc-item"><div class="idx">04</div><span class="icon">📄</span>
-            <div><div class="t-title">تقرير المستوى</div><div class="t-sub">نتيجة وتحليل تفصيلي</div></div></div>
-        <div class="toc-item"><div class="idx">05</div><span class="icon">💊</span>
-            <div><div class="t-title">الجرعات</div><div class="t-sub">وحدات صغيرة متتالية</div></div></div>
-        <div class="toc-item"><div class="idx">06</div><span class="icon">📚</span>
-            <div><div class="t-title">بنك الأسئلة</div><div class="t-sub">فلترة وبحث وتصنيف</div></div></div>
-        <div class="toc-item"><div class="idx">07</div><span class="icon">🧭</span>
-            <div><div class="t-title">تحليل الأخطاء</div><div class="t-sub">تصنيف الأخطاء ومعالجتها</div></div></div>
-        <div class="toc-item"><div class="idx">08</div><span class="icon">⏱️</span>
-            <div><div class="t-title">المحاكاة</div><div class="t-sub">امتحان مؤقت بظروف واقعية</div></div></div>
-        <div class="toc-item"><div class="idx">09</div><span class="icon">🎬</span>
-            <div><div class="t-title">الموارد</div><div class="t-sub">فيديو، خرائط، ملفات</div></div></div>
-        <div class="toc-item"><div class="idx">10</div><span class="icon">🩺</span>
-            <div><div class="t-title">خطة العلاج</div><div class="t-sub">مسار شخصي لسد الفجوات</div></div></div>
+      <div class="toc-row">
+        <div class="toc-ico">🏠</div>
+        <div class="toc-txt"><b>الشاشة الرئيسية</b><span>شبكة الأزرار والوصول السريع للأقسام</span></div>
+        <div class="toc-dots"></div><div class="toc-page">03</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico">📖</div>
+        <div class="toc-txt"><b>الشرح والتعاريف التأصيلية</b><span>المفهوم، المصادر، المبادئ الفقهية، الزواج والمهر</span></div>
+        <div class="toc-dots"></div><div class="toc-page">04</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico">📋</div>
+        <div class="toc-txt"><b>الملخصات التنظيمية</b><span>ملخصات مكثفة لكل باب من أبواب القانون</span></div>
+        <div class="toc-dots"></div><div class="toc-page">05</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico">❓</div>
+        <div class="toc-txt"><b>الأسئلة والمسائل القضائية</b><span>مسائل تطبيقية مع الحلول القانونية</span></div>
+        <div class="toc-dots"></div><div class="toc-page">06</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico">📚</div>
+        <div class="toc-txt"><b>بنك الأسئلة الشامل</b><span>أكثر من 200 سؤال مع فلترة وبحث فوري</span></div>
+        <div class="toc-dots"></div><div class="toc-page">07</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico">🗺️</div>
+        <div class="toc-txt"><b>الخرائط الذهنية</b><span>8 خرائط بصرية تُلخّص هيكل القانون</span></div>
+        <div class="toc-dots"></div><div class="toc-page">08</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico">📝</div>
+        <div class="toc-txt"><b>الامتحانات الشاملة</b><span>نماذج امتحانات بأسلوب واقعي</span></div>
+        <div class="toc-dots"></div><div class="toc-page">09</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico">🔄</div>
+        <div class="toc-txt"><b>بطاقات المراجعة</b><span>مراجعة تفاعلية بنظام الكشف والاختبار</span></div>
+        <div class="toc-dots"></div><div class="toc-page">10</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico">🌳</div>
+        <div class="toc-txt"><b>شجرة المعرفة</b><span>تنقل هرمي قابل للطي في أبواب القانون</span></div>
+        <div class="toc-dots"></div><div class="toc-page">11</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico">🎬</div>
+        <div class="toc-txt"><b>الفيديوهات التعليمية</b><span>شرح مرئي مكمل للمحتوى المكتوب</span></div>
+        <div class="toc-dots"></div><div class="toc-page">12</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico">⚖️</div>
+        <div class="toc-txt"><b>قسم الميراث</b><span>الفروض، العصبات، الحجب، العول والرد</span></div>
+        <div class="toc-dots"></div><div class="toc-page">13</div>
+      </div>
+      <div class="toc-row" style="background:#fef9ef;border-color:#f1dba8;">
+        <div class="toc-ico gold" style="background:var(--gold);color:var(--navy);">⭐</div>
+        <div class="toc-txt"><b>أعجبتك طريقة Hero؟</b><span>احصل على النسخة الكاملة الآن</span></div>
+        <div class="toc-dots"></div><div class="toc-page">14</div>
+      </div>
     </div>
 
-    <div class="note gold" style="margin-top:16px;">
-        <div class="n-title">🧩 كيف تقرأ هذا الكتالوج؟</div>
-        <div class="n-body">كل صفحة تحتوي على لقطة من واجهة الهاتف + تعليقات جانبية + بطاقات قياس (KPI) توضح الوظائف.</div>
+    <div class="spec-box">
+      <b>💡 ملاحظة للقارئ</b>
+      <p>
+        كل صفحة في هذا الكتالوج تعرض لقطة مبسّطة من شاشة التطبيق الفعلية،
+        مع تعليقات جانبية توضّح وظيفة كل عنصر وطريقة استخدامه أثناء الدراسة والمراجعة.
+      </p>
     </div>
+  </div>
 
-    <div class="page-foot">
-        <span class="dot">●</span>
-        <span>كتالوج هيرو أكاديمي — قانون الأحوال الشخصية 1991</span>
-        <span class="page-num">02</span>
-    </div>
+  <div class="page-foot">
+    <span>مذكرة النجاح — قانون الأحوال الشخصية للمسلمين 1991</span>
+    <span>صفحة 2 من 14</span>
+  </div>
 </section>
 
+
 <!-- ============================================================
-     صفحة 3: الرئيسية
+     صفحة 3 — الشاشة الرئيسية
      ============================================================ -->
 <section class="page">
-    <div class="page-head">
-        <div>
-            <div class="kicker">SCREEN 01</div>
-            <h2>🏠 الشاشة الرئيسية</h2>
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">03</span><span class="ph-title">الشاشة الرئيسية</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>📘 مذكرة النجاح<small>قانون الأحوال الشخصية 1991</small></b>
+          <div class="ms-actions"><span class="gold">🏠</span><span>🔍</span><span>⭐</span></div>
         </div>
-        <div class="tag">نقطة الانطلاق</div>
+        <div class="ms-pad">
+          <div class="ms-h1">⚖️ قانون الأحوال الشخصية للمسلمين 1991</div>
+          <div class="ms-sub">دراسة قانونية تأصيلية – شرح تطبيقي فقهي وقضائي</div>
+
+          <div class="ms-grid">
+            <div class="ms-tile"><span>📖</span>شرح</div>
+            <div class="ms-tile"><span>📋</span>ملخصات</div>
+            <div class="ms-tile"><span>❓</span>أسئلة</div>
+            <div class="ms-tile"><span>🗺️</span>خرائط</div>
+            <div class="ms-tile"><span>📌</span>أمثلة</div>
+            <div class="ms-tile"><span>📝</span>امتحانات</div>
+            <div class="ms-tile"><span>🌳</span>شجرة</div>
+            <div class="ms-tile"><span>📚</span>بنك الأسئلة</div>
+            <div class="ms-tile"><span>🔄</span>مراجعات</div>
+            <div class="ms-tile"><span>🎬</span>فيديوهات</div>
+            <div class="ms-tile"><span>⚖️</span>الميراث</div>
+          </div>
+
+          <div class="ms-box">
+            <b>📌 عن هذه المذكرة</b>
+            تغطي كامل القانون السوداني مع تطبيقاته الفقهية، وتضم 200 سؤال وإجابة،
+            وامتحانات شاملة، وخرائط ذهنية، وبطاقات مراجعة.
+          </div>
+
+          <div class="ms-note gold">
+            ⚠️ تنبيه مهم — حقوق الاستخدام والنسخة التجريبية.
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="screen-layout">
-        <!-- الهاتف -->
-        <div class="phone">
-            <div class="phone-screen">
-                <div class="p-status">
-                    <span>9:41</span>
-                    <span class="dots"><i></i><i></i><i></i></span>
-                </div>
-                <div class="p-header">
-                    <span class="ttl">📘 مذكرة النجاح</span>
-                    <span class="ic">⚖️ 1991</span>
-                </div>
-                <div class="p-body">
-                    <div>
-                        <div class="p-h1">مرحباً بك 👋</div>
-                        <div class="p-sub">اختر الوحدة لتبدأ رحلتك</div>
-                    </div>
-                    <div class="p-grid2">
-                        <div class="p-tile"><div class="em">📖</div><div class="t">شرح</div><span class="b">8</span></div>
-                        <div class="p-tile"><div class="em">📋</div><div class="t">ملخصات</div><span class="b">6</span></div>
-                        <div class="p-tile"><div class="em">❓</div><div class="t">أسئلة</div><span class="b">20+</span></div>
-                        <div class="p-tile"><div class="em">🗺️</div><div class="t">خرائط</div><span class="b">8</span></div>
-                        <div class="p-tile"><div class="em">📝</div><div class="t">امتحانات</div><span class="b">4</span></div>
-                        <div class="p-tile"><div class="em">📚</div><div class="t">بنك الأسئلة</div><span class="b">200</span></div>
-                    </div>
-                    <div class="p-card" style="border-right:3px solid #f5c542;">
-                        <div class="ct">⚖️ قسم الميراث</div>
-                        <div class="cs">فتح التطبيق المرتبط</div>
-                    </div>
-                </div>
-                <div class="p-nav">
-                    <span class="active"><span class="em">🏠</span>الرئيسية</span>
-                    <span><span class="em">📊</span>تقدّم</span>
-                    <span><span class="em">📚</span>بنك</span>
-                    <span><span class="em">🩺</span>علاج</span>
-                </div>
-            </div>
+    <div class="notes">
+      <h2>🏠 نقطة الانطلاق</h2>
+      <p class="lead">الشاشة الرئيسية هي مركز التحكم الكامل؛ منها تنتقل إلى أي قسم بضغطة واحدة.</p>
+
+      <div class="note-item">
+        <div class="ni-ico">🧭</div>
+        <div class="ni-body">
+          <b>شبكة الأزرار الذكية</b>
+          <p>تتوزع الأقسام على بطاقات مرئية بأيقونات إيموجي، مع شارات رقمية توضّح حجم المحتوى داخل كل قسم قبل الدخول إليه.</p>
         </div>
+      </div>
 
-        <!-- التعليقات -->
-        <div class="notes">
-            <div class="note">
-                <div class="n-title">🎯 الهدف من الشاشة</div>
-                <div class="n-body">تقديم نقاط دخول سريعة لجميع أقسام التطبيق، مع تمييز بصري لعدد الأسئلة في كل قسم.</div>
-            </div>
-            <div class="note gold">
-                <div class="n-title">🧭 شبكة الأزرار</div>
-                <div class="n-body">أزرار ملوّنة بحدود دائرية، كل زر يحمل أيقونة + اسم القسم + شارة عددية توضح حجم المحتوى.</div>
-            </div>
-            <div class="note green">
-                <div class="n-title">⚖️ زر الميراث الخارجي</div>
-                <div class="n-body">رابط خارجي يفتح تطبيق الميراث المرتبط، لتمكين التكامل بين مسارات التعلم.</div>
-            </div>
-
-            <div class="kpi-row">
-                <div class="kpi"><div class="v">11</div><div class="l">أقسام رئيسية</div></div>
-                <div class="kpi"><div class="v gold">200+</div><div class="l">سؤال متاح</div></div>
-                <div class="kpi"><div class="v">12</div><div class="l">وحدة دراسية</div></div>
-            </div>
-
-            <div class="tags">
-                <span class="tag gold">📱 تصميم RTL</span>
-                <span class="tag">🎨 أزرق + ذهبي</span>
-                <span class="tag green">✅ وصول سريع</span>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico gold">🔍</div>
+        <div class="ni-body">
+          <b>البحث الشامل</b>
+          <p>زر البحث في الأعلى يفتح محرك بحث يغطي كل نصوص المذكرة، ويُبرز الكلمة المطلوبة داخل النتائج بلون تمييز واضح.</p>
         </div>
-    </div>
+      </div>
 
-    <div class="page-foot">
-        <span class="dot">●</span>
-        <span>الرئيسية — نقاط الدخول</span>
-        <span class="page-num">03</span>
+      <div class="note-item">
+        <div class="ni-ico">⭐</div>
+        <div class="ni-body">
+          <b>المفضلة</b>
+          <p>يمكنك تثبيت أي قسم تدرسه بكثرة في لوحة المفضلة، ليعود إليك في قائمة مستقلة أعلى الصفحة.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico gold">⚖️</div>
+        <div class="ni-body">
+          <b>قسم الميراث المستقل</b>
+          <p>رابط مباشر إلى وحدة الميراث الكاملة، تغطي الفروض والعصبات والحجب والعول والرد.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">11 قسماً رئيسياً</span>
+        <span class="tag">200+ سؤال</span>
+        <span class="tag gold">RTL كامل</span>
+        <span class="tag gold">يعمل دون إنترنت</span>
+      </div>
     </div>
+  </div>
+
+  <div class="page-foot">
+    <span>مذكرة النجاح — قانون الأحوال الشخصية للمسلمين 1991</span>
+    <span>صفحة 3 من 14</span>
+  </div>
 </section>
 
+
 <!-- ============================================================
-     صفحة 4: لوحة التقدم
+     صفحة 4 — الشرح والتعاريف
      ============================================================ -->
 <section class="page">
-    <div class="page-head">
-        <div>
-            <div class="kicker">SCREEN 02</div>
-            <h2>📊 لوحة التقدم</h2>
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">04</span><span class="ph-title">الشرح والتعاريف التأصيلية</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>📘 مذكرة النجاح<small>قانون الأحوال الشخصية 1991</small></b>
+          <div class="ms-actions"><span class="gold">🏠</span><span>🔍</span><span>⭐</span></div>
         </div>
-        <div class="tag">مؤشرات الأداء</div>
+        <div class="ms-pad">
+          <div class="ms-sec">
+            <h3>📖 الشرح والتعاريف التأصيلية</h3>
+            <span>⭐ مفضلة</span>
+          </div>
+
+          <div class="ms-card">
+            <h4>مفهوم القانون ومصادره</h4>
+            <p>يُسمى «قانون الأحوال الشخصية للمسلمين لسنة 1991م»، ويطبق على الدعاوى التي لم يكتمل فيها سماع البينات،
+            وتسود أحكامه عند التعارض. وعند خلو النص يُعمل بالقول الراجح من المذهب الحنفي.</p>
+          </div>
+
+          <div class="ms-note">
+            📌 مبدأ هام — يجوز لدائرة الأحوال الشخصية بالمحكمة العليا إصدار قواعد لتفسير أحكام القانون.
+          </div>
+
+          <div class="ms-card">
+            <h4>المبادئ الفقهية الخمسة عشر (المادة 6)</h4>
+            <ul>
+              <li>الصلح جائز بين المسلمين.</li>
+              <li>اليقين لا يزول بالشك.</li>
+              <li>الأصل براءة الذمة.</li>
+              <li>العادة محكمة.</li>
+              <li>الضرر يزال.</li>
+            </ul>
+          </div>
+
+          <div class="ms-card">
+            <h4>مفهوم الخطبة</h4>
+            <p>وعد بالزواج في المستقبل، يدخل فيه قراءة الفاتحة وتبادل الهدايا، وينتهي بالعدول أو الوفاة
+            أو عارض يحول دون الزواج.</p>
+          </div>
+
+          <div class="ms-card">
+            <h4>الزواج وأركانه</h4>
+            <p><b>الركن الأول:</b> الزوجان. <b>الركن الثاني:</b> الإيجاب والقبول المنجز في مجلس واحد.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="screen-layout reverse">
-        <div class="notes">
-            <div class="note">
-                <div class="n-title">📈 مؤشرات الاستمرارية</div>
-                <div class="n-body">تعرض اللوحة نسبة الإتمام، عدد الأيام المتتالية، ومتوسط الدرجات لتحديد نمط التعلم.</div>
-            </div>
-            <div class="note gold">
-                <div class="n-title">🍩 حلقة الإتمام</div>
-                <div class="n-body">حلقة دائرية ملوّنة توضح نسبة إتمام المنهج بشكل بصري فوري.</div>
-            </div>
-            <div class="note green">
-                <div class="n-title">🔥 سلسلة الأيام</div>
-                <div class="n-body">عدّاد الأيام المتتالية يشجع على المداومة اليومية ويحفّز على الاستمرار.</div>
-            </div>
+    <div class="notes">
+      <h2>📖 الأساس النظري</h2>
+      <p class="lead">قسم الشرح يبني القاعدة قبل التطبيق، ويؤصّل كل حكم لمصدره الفقهي والقانوني.</p>
 
-            <div class="kpi-row">
-                <div class="kpi"><div class="v">68%</div><div class="l">نسبة الإتمام</div></div>
-                <div class="kpi"><div class="v gold">14</div><div class="l">يوم متتالي</div></div>
-                <div class="kpi"><div class="v">7.9</div><div class="l">متوسط الدرجات</div></div>
-            </div>
-
-            <div class="tags">
-                <span class="tag">📊 رسوم بيانية</span>
-                <span class="tag gold">🏆 تحفيز</span>
-                <span class="tag green">📅 تتبع يومي</span>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico">🧱</div>
+        <div class="ni-body">
+          <b>تأصيل قبل التفريع</b>
+          <p>يبدأ القسم بمفهوم القانون ومصادره، ثم ينتقل إلى المبادئ الفقهية الحاكمة، قبل الدخول في الأحكام التفصيلية.</p>
         </div>
+      </div>
 
-        <div class="phone">
-            <div class="phone-screen">
-                <div class="p-status">
-                    <span>9:41</span>
-                    <span class="dots"><i></i><i></i><i></i></span>
-                </div>
-                <div class="p-header">
-                    <span class="ttl">📊 لوحة التقدم</span>
-                    <span class="ic">تحديث الآن</span>
-                </div>
-                <div class="p-body">
-                    <div class="p-donut"><div>68%</div></div>
-                    <div class="p-sub" style="text-align:center;">نسبة إتمام المنهج</div>
-
-                    <div class="p-kpi-row">
-                        <div class="p-kpi"><div class="v">14</div><div class="l">🔥 يوم متتالي</div></div>
-                        <div class="p-kpi"><div class="v gold">7.9</div><div class="l">⭐ متوسط الدرجات</div></div>
-                    </div>
-
-                    <div class="p-card">
-                        <div class="ct">تقدّم الوحدات</div>
-                        <div class="cs">الحضانة والنفقات</div>
-                        <div class="p-bar"><i style="width:82%"></i></div>
-                        <div class="cs" style="margin-top:6px;">الطلاق والتفريق</div>
-                        <div class="p-bar blue"><i style="width:54%"></i></div>
-                    </div>
-
-                    <div class="p-card">
-                        <div class="ct">سجل الأسبوع</div>
-                        <div class="mini-chart" style="height:56px;">
-                            <div class="col"><div class="bar" style="height:40%"></div><span class="lb">س</span></div>
-                            <div class="col"><div class="bar gold" style="height:70%"></div><span class="lb">ح</span></div>
-                            <div class="col"><div class="bar" style="height:55%"></div><span class="lb">ن</span></div>
-                            <div class="col"><div class="bar gold" style="height:90%"></div><span class="lb">ث</span></div>
-                            <div class="col"><div class="bar" style="height:65%"></div><span class="lb">ر</span></div>
-                            <div class="col"><div class="bar" style="height:35%"></div><span class="lb">خ</span></div>
-                            <div class="col"><div class="bar" style="height:50%"></div><span class="lb">ج</span></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-nav">
-                    <span><span class="em">🏠</span>الرئيسية</span>
-                    <span class="active"><span class="em">📊</span>تقدّم</span>
-                    <span><span class="em">📚</span>بنك</span>
-                    <span><span class="em">🩺</span>علاج</span>
-                </div>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico gold">📐</div>
+        <div class="ni-body">
+          <b>المبادئ الفقهية الخمسة عشر</b>
+          <p>مرجع تفسيري عملي؛ تُستخدم عند غياب النص الصريح أو عند تعارض الاحتمالات في تطبيق المادة.</p>
         </div>
-    </div>
+      </div>
 
-    <div class="page-foot">
-        <span class="dot">●</span>
-        <span>لوحة التقدم — قياس مستمر</span>
-        <span class="page-num">04</span>
+      <div class="note-item">
+        <div class="ni-ico">💍</div>
+        <div class="ni-body">
+          <b>الخطبة والزواج</b>
+          <p>تفريق دقيق بين الوعد بالزواج والعقد الصحيح، مع ضبط أركان العقد وشروط صحته: الإشهاد، الولي، وعدم إسقاط المهر.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico gold">🚫</div>
+        <div class="ni-body">
+          <b>المحرمات في النكاح</b>
+          <p>تصنيف واضح إلى محرمات مؤبدة (نسب، مصاهرة، رضاع، لعان) ومحرمات مؤقتة (جمع، زيادة على أربع، زوجة الغير، المطلقة ثلاثاً).</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">8 بطاقات شرح</span>
+        <span class="tag">المادة 6</span>
+        <span class="tag gold">أركان العقد</span>
+        <span class="tag gold">المهر وأحكامه</span>
+      </div>
     </div>
+  </div>
+
+  <div class="page-foot">
+    <span>مذكرة النجاح — قانون الأحوال الشخصية للمسلمين 1991</span>
+    <span>صفحة 4 من 14</span>
+  </div>
 </section>
 
+
 <!-- ============================================================
-     صفحة 5: التشخيصي
+     صفحة 5 — الملخصات
      ============================================================ -->
 <section class="page">
-    <div class="page-head">
-        <div>
-            <div class="kicker">SCREEN 03</div>
-            <h2>🧪 الاختبار التشخيصي</h2>
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">05</span><span class="ph-title">الملخصات التنظيمية</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>📘 مذكرة النجاح<small>قانون الأحوال الشخصية 1991</small></b>
+          <div class="ms-actions"><span class="gold">🏠</span><span>🔍</span><span>⭐</span></div>
         </div>
-        <div class="tag">نقطة البداية</div>
+        <div class="ms-pad">
+          <div class="ms-sec"><h3>📋 الملخصات التنظيمية</h3><span>⭐ مفضلة</span></div>
+
+          <div class="ms-card">
+            <h4>ملخص مبادئ التفسير الفقهي</h4>
+            <ul>
+              <li>الرجوع للقول الراجح من المذهب الحنفي.</li>
+              <li>المصدر التاريخي عند التفسير والتأويل.</li>
+              <li>قواعد التفسير من دائرة الأحوال الشخصية.</li>
+            </ul>
+          </div>
+
+          <div class="ms-card">
+            <h4>ملخص المحرمات في النكاح</h4>
+            <ul>
+              <li><b>مؤبدة:</b> النسب، المصاهرة، الرضاع، اللعان.</li>
+              <li><b>مؤقتة:</b> الجمع، الزيادة على أربع، زوجة الغير، المطلقة ثلاثاً، غير الكتابية.</li>
+            </ul>
+          </div>
+
+          <div class="ms-card">
+            <h4>ملخص ترتيب الحضانة</h4>
+            <ul>
+              <li>الأم ← أم الأم ← أم الأب ← الأخت الشقيقة ← الأخت لأم.</li>
+              <li>مدة الحضانة: للصبي 7 سنوات، وللبنت 9 سنوات.</li>
+            </ul>
+          </div>
+
+          <div class="ms-card">
+            <h4>ملخص درجات الطلاق</h4>
+            <ul>
+              <li><b>رجعي:</b> لا ينهي العقد إلا بانقضاء العدة.</li>
+              <li><b>بائن صغرى:</b> ينهي العقد فوراً.</li>
+              <li><b>بائن كبرى:</b> لا تحل إلا بعد زوج آخر.</li>
+            </ul>
+          </div>
+
+          <div class="ms-card">
+            <h4>ملخص الحقوق المتعلقة بالتركة</h4>
+            <ul>
+              <li>1. نفقات التجهيز.</li>
+              <li>2. قضاء الديون.</li>
+              <li>3. تنفيذ الوصية في حدود الثلث.</li>
+              <li>4. توزيع الباقي على الورثة.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="screen-layout">
-        <div class="phone">
-            <div class="phone-screen">
-                <div class="p-status"><span>9:41</span><span class="dots"><i></i><i></i><i></i></span></div>
-                <div class="p-header">
-                    <span class="ttl">🧪 اختبار تشخيصي</span>
-                    <span class="ic">12 سؤال</span>
-                </div>
-                <div class="p-body">
-                    <div class="p-sub">قبل البدء، أجب بصدق لتحديد مستواك الحقيقي.</div>
+    <div class="notes">
+      <h2>📋 التركيز قبل الامتحان</h2>
+      <p class="lead">صُمّمت الملخصات للمراجعة السريعة في الأيام الأخيرة قبل الاختبار.</p>
 
-                    <div class="p-card">
-                        <div class="ct">السؤال 3 من 12</div>
-                        <div class="p-bar blue"><i style="width:25%"></i></div>
-                    </div>
-
-                    <div class="p-q">
-                        <div class="qn">أي من المبادئ الفقهية الآتية يُعبّر عن قاعدة "اليقين لا يزول بالشك"؟</div>
-                    </div>
-
-                    <div class="p-opt"><span class="k">أ</span> الأصل بقاء ما كان على ما كان</div>
-                    <div class="p-opt"><span class="k">ب</span> العادة محكمة</div>
-                    <div class="p-opt ok"><span class="k">ج</span> الضرر يزال</div>
-                    <div class="p-opt"><span class="k">د</span> الساقط لا يعود</div>
-
-                    <div class="p-btn">السؤال التالي ←</div>
-                </div>
-                <div class="p-nav">
-                    <span><span class="em">🏠</span>الرئيسية</span>
-                    <span class="active"><span class="em">🧪</span>تشخيصي</span>
-                    <span><span class="em">📚</span>بنك</span>
-                    <span><span class="em">🩺</span>علاج</span>
-                </div>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico">⚡</div>
+        <div class="ni-body">
+          <b>كثافة معلوماتية عالية</b>
+          <p>كل ملخص في بطاقة واحدة قصيرة، تعرض النقاط الجوهرية في صورة قوائم مرقّمة يسهل حفظها.</p>
         </div>
+      </div>
 
-        <div class="notes">
-            <div class="note">
-                <div class="n-title">🎯 وظيفة الاختبار</div>
-                <div class="n-body">قياس نقطة الانطلاق قبل الجرعات، لتحديد الفجوات الفعلية وتفادي إهدار الوقت على ما يُتقنه الطالب.</div>
-            </div>
-            <div class="note gold">
-                <div class="n-title">📏 مؤشر التقدّم</div>
-                <div class="n-body">شريط تقدّم أفقي يعرض موضع السؤال الحالي من إجمالي الأسئلة.</div>
-            </div>
-            <div class="note green">
-                <div class="n-title">✅ تغذية راجعة فورية</div>
-                <div class="n-body">يظهر الاختيار الصحيح بلون أخضر بعد الإجابة، مع إمكانية المراجعة لاحقًا.</div>
-            </div>
-
-            <div class="kpi-row">
-                <div class="kpi"><div class="v">12</div><div class="l">أسئلة تشخيصية</div></div>
-                <div class="kpi"><div class="v gold">4</div><div class="l">محاور رئيسية</div></div>
-                <div class="kpi"><div class="v">~8د</div><div class="l">مدة متوقعة</div></div>
-            </div>
-
-            <div class="tags">
-                <span class="tag">🧠 تحليل دقيق</span>
-                <span class="tag gold">⚡ سريع</span>
-                <span class="tag green">🎯 تحديد المستوى</span>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico gold">🗂️</div>
+        <div class="ni-body">
+          <b>تغطية الأبواب الرئيسية</b>
+          <p>تشمل الملخصات: التفسير الفقهي، المحرمات، الحضانة، الطلاق ودرجاته، الأهلية والولاية، والحقوق المتعلقة بالتركة.</p>
         </div>
-    </div>
+      </div>
 
-    <div class="page-foot">
-        <span class="dot">●</span>
-        <span>الاختبار التشخيصي — قياس الانطلاق</span>
-        <span class="page-num">05</span>
+      <div class="note-item">
+        <div class="ni-ico">🎯</div>
+        <div class="ni-body">
+          <b>مصمّمة للمقارنة</b>
+          <p>تُعرض المفاهيم المتشابهة جنباً إلى جنب (كالطلاق الرجعي والبائن) لتثبيت الفرق بينها بسرعة.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">6 ملخصات</span>
+        <span class="tag">مراجعة سريعة</span>
+        <span class="tag gold">قوائم مرقّمة</span>
+      </div>
     </div>
+  </div>
+
+  <div class="page-foot">
+    <span>مذكرة النجاح — قانون الأحوال الشخصية للمسلمين 1991</span>
+    <span>صفحة 5 من 14</span>
+  </div>
 </section>
 
+
 <!-- ============================================================
-     صفحة 6: تقرير المستوى
+     صفحة 6 — الأسئلة والمسائل
      ============================================================ -->
 <section class="page">
-    <div class="page-head">
-        <div>
-            <div class="kicker">SCREEN 04</div>
-            <h2>📄 تقرير المستوى</h2>
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">06</span><span class="ph-title">الأسئلة والمسائل القضائية</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>📘 مذكرة النجاح<small>قانون الأحوال الشخصية 1991</small></b>
+          <div class="ms-actions"><span class="gold">🏠</span><span>🔍</span><span>⭐</span></div>
         </div>
-        <div class="tag">تحليل مفصل</div>
+        <div class="ms-pad">
+          <div class="ms-sec"><h3>❓ أسئلة ومسائل قضائية</h3><span>⭐ مفضلة</span></div>
+
+          <div class="ms-card">
+            <h4>مسألة: نزاع مقدار المهر</h4>
+            <p>إذا اختلف الزوجان أو ورثتهما في مقدار المهر وعجزوا عن إثباته، فالقول قول الزوج بيمينه
+            في حدود مهر المثل، والبينة على الزوجة لإثبات الزيادة.</p>
+          </div>
+
+          <div class="ms-card">
+            <h4>مسألة: نزاع أمتعة البيت والمصاغ</h4>
+            <p>يُقضى للزوجة بيمينها بما يصلح للنساء، وللزوج بيمينه بما يصلح للرجال،
+            وبالمناصفة بينهما بما يصلح لهما معاً عند عجز البينة.</p>
+          </div>
+
+          <div class="ms-card">
+            <h4>مسألة: نزاع صورية التجهيز</h4>
+            <p>العبرة بعرف البلد؛ فإن غلب أن الأب يدفع جهازاً لا عارية فالقول قول الزوجة بيمينها،
+            وإن كان العرف مشتركاً فالقول قول الأب بيمينه.</p>
+          </div>
+
+          <div class="ms-card">
+            <h4>مسألة: نزاع الشفاء من العنة</h4>
+            <p>يُعاد الكشف الطبي بعد انقضاء سنة التأجيل القضائية؛ فإن ثبت الشفاء رُفضت دعوى التطليق،
+            وإلا طُلّقت عليه طلاقاً بائناً.</p>
+          </div>
+
+          <div class="ms-card">
+            <h4>مسألة: أثر اشتراط عدم النقل</h4>
+            <p>الشرط صحيح ونافذ، ولا تُعدّ الزوجة ناشزاً بامتناعها عن السفر،
+            وتسقط دعوى الزوج بنشوزها وتستمر نفقتها.</p>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="screen-layout reverse">
-        <div class="notes">
-            <div class="note">
-                <div class="n-title">📑 محتوى التقرير</div>
-                <div class="n-body">درجة إجمالية، تفصيل حسب المحور، ونقاط القوة والضعف، مع توصيات أولية.</div>
-            </div>
-            <div class="note gold">
-                <div class="n-title">📊 تفصيل المحاور</div>
-                <div class="n-body">أشرطة أفقية لكل محور مع نسبة الإتقان، لتوضيح الفجوات بدقة.</div>
-            </div>
-            <div class="note green">
-                <div class="n-title">💡 توصيات ذكية</div>
-                <div class="n-body">يقترح النظام أول جرعة علاجية مناسبة بناءً على أدنى محور.</div>
-            </div>
+    <div class="notes">
+      <h2>❓ من النظرية إلى الحكم</h2>
+      <p class="lead">مسائل تطبيقية تحاكي ما يُطرح فعلاً في المحاكم، مع بيان موضع العبء في الإثبات.</p>
 
-            <div class="kpi-row">
-                <div class="kpi"><div class="v gold">72%</div><div class="l">الدرجة الإجمالية</div></div>
-                <div class="kpi"><div class="v">3</div><div class="l">نقاط قوة</div></div>
-                <div class="kpi"><div class="v">2</div><div class="l">فجوات مكتشفة</div></div>
-            </div>
-
-            <div class="tags">
-                <span class="tag">📋 تقرير شامل</span>
-                <span class="tag gold">🎯 دقيق</span>
-                <span class="tag green">🩺 توصيات</span>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico">⚖️</div>
+        <div class="ni-body">
+          <b>تحديد عبء الإثبات</b>
+          <p>كل مسألة تُظهر بوضوح: على مَن يقع اليمين؟ ومَن يُطالب بالبينة؟ وما الحد الفاصل في التقدير؟</p>
         </div>
+      </div>
 
-        <div class="phone">
-            <div class="phone-screen">
-                <div class="p-status"><span>9:41</span><span class="dots"><i></i><i></i><i></i></span></div>
-                <div class="p-header">
-                    <span class="ttl">📄 تقرير المستوى</span>
-                    <span class="ic">حفظ PDF</span>
-                </div>
-                <div class="p-body">
-                    <div class="p-donut"><div>72%</div></div>
-                    <div class="p-sub" style="text-align:center;">النتيجة الإجمالية</div>
-
-                    <div class="p-card">
-                        <div class="ct">تفصيل المحاور</div>
-                        <div class="cs">النكاح والخطبة</div>
-                        <div class="p-bar green"><i style="width:88%"></i></div>
-                        <div class="cs" style="margin-top:6px;">الطلاق والتفريق</div>
-                        <div class="p-bar blue"><i style="width:64%"></i></div>
-                        <div class="cs" style="margin-top:6px;">الحضانة والنفقات</div>
-                        <div class="p-bar"><i style="width:42%"></i></div>
-                    </div>
-
-                    <div class="p-card">
-                        <div class="ct">💡 توصية</div>
-                        <div class="cs">ابدأ بجرعة "أحكام الحضانة" لسد أدنى فجوة.</div>
-                        <div class="p-btn gold" style="margin-top:6px;">ابدأ الجرعة</div>
-                    </div>
-                </div>
-                <div class="p-nav">
-                    <span><span class="em">🏠</span>الرئيسية</span>
-                    <span><span class="em">📊</span>تقدّم</span>
-                    <span class="active"><span class="em">📄</span>تقرير</span>
-                    <span><span class="em">🩺</span>علاج</span>
-                </div>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico gold">🏠</div>
+        <div class="ni-body">
+          <b>النزاعات المنزلية العملية</b>
+          <p>منازعات المهر، أمتعة البيت، المصاغ، والتجهيز — أكثر ما يرد أمام دوائر الأحوال الشخصية.</p>
         </div>
-    </div>
+      </div>
 
-    <div class="page-foot">
-        <span class="dot">●</span>
-        <span>تقرير المستوى — تحليل النتائج</span>
-        <span class="page-num">06</span>
+      <div class="note-item">
+        <div class="ni-ico">🩺</div>
+        <div class="ni-body">
+          <b>المسائل الطبية</b>
+          <p>مسألة العنة تُبيّن العلاقة بين التأجيل القضائي والتقرير الطبي وأثر ذلك على نوع الطلاق.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico gold">📜</div>
+        <div class="ni-body">
+          <b>الشروط التعاقدية</b>
+          <p>أثر اشتراط عدم النقل على وصف الزوجة بالنشوز، وعلى استحقاقها للنفقة.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">مسائل تطبيقية</span>
+        <span class="tag gold">حلول قانونية</span>
+        <span class="tag">أسلوب قضائي</span>
+      </div>
     </div>
+  </div>
+
+  <div class="page-foot">
+    <span>مذكرة النجاح — قانون الأحوال الشخصية للمسلمين 1991</span>
+    <span>صفحة 6 من 14</span>
+  </div>
 </section>
 
+
 <!-- ============================================================
-     صفحة 7: الجرعات
+     صفحة 7 — بنك الأسئلة
      ============================================================ -->
 <section class="page">
-    <div class="page-head">
-        <div>
-            <div class="kicker">SCREEN 05</div>
-            <h2>💊 الجرعات المعرفية</h2>
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">07</span><span class="ph-title">بنك الأسئلة الشامل</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>📘 مذكرة النجاح<small>قانون الأحوال الشخصية 1991</small></b>
+          <div class="ms-actions"><span class="gold">🏠</span><span>🔍</span><span>⭐</span></div>
         </div>
-        <div class="tag">تعلم مكثف</div>
+        <div class="ms-pad">
+          <div class="ms-sec"><h3>📚 بنك الأسئلة الشامل</h3><span>⭐ مفضلة</span></div>
+
+          <div class="ms-chiprow">
+            <span class="ms-chip active">جميع الوحدات</span>
+            <span class="ms-chip">الزواج</span>
+            <span class="ms-chip">الطلاق</span>
+            <span class="ms-chip">النفقات</span>
+            <span class="ms-chip">الميراث</span>
+          </div>
+
+          <div class="ms-q">
+            <b>س1: ما هو مفهوم الخطبة في القانون؟</b>
+            <span>وعد بالزواج في المستقبل يدخل فيه ما جرى به العرف من قراءة الفاتحة وتبادل الهدايا.</span>
+          </div>
+          <div class="ms-q">
+            <b>س2: ما شروط صحة عقد الزواج؟</b>
+            <span>الإشهاد، الولي، وعدم إسقاط المهر.</span>
+          </div>
+          <div class="ms-q">
+            <b>س3: متى تستحق المطلقة نصف المهر؟</b>
+            <span>إذا طُلّقت قبل الدخول، فتستحق نصف المهر المسمّى، وإلا فمتعة لا تزيد على نصف مهر المثل.</span>
+          </div>
+          <div class="ms-q">
+            <b>س4: ما مدة حضانة الصبي والبنت؟</b>
+            <span>للصبي 7 سنوات، وللبنت 9 سنوات، ويجوز تمديدها لمصلحة المحضون.</span>
+          </div>
+          <div class="ms-q">
+            <b>س5: ما ترتيب الحقوق المتعلقة بالتركة؟</b>
+            <span>نفقات التجهيز، ثم الديون، ثم الوصية في حدود الثلث، ثم توزيع الباقي.</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="screen-layout">
-        <div class="phone">
-            <div class="phone-screen">
-                <div class="p-status"><span>9:41</span><span class="dots"><i></i><i></i><i></i></span></div>
-                <div class="p-header">
-                    <span class="ttl">💊 الجرعات</span>
-                    <span class="ic">42 جرعة</span>
-                </div>
-                <div class="p-body">
-                    <div class="p-sub">اختر جرعة وابدأ التعلم في 15 دقيقة.</div>
+    <div class="notes">
+      <h2>📚 التدريب المستمر</h2>
+      <p class="lead">أكبر قسم في التطبيق: 200+ سؤال وإجابة موزّعة على وحدات القانون.</p>
 
-                    <div class="p-card" style="border-right:3px solid #f5c542;">
-                        <div class="ct">جرعة 1 — الخطبة</div>
-                        <div class="cs">مفهومها، أحكام العدول، والهدايا.</div>
-                        <div class="p-bar"><i style="width:100%"></i></div>
-                    </div>
-
-                    <div class="p-card" style="border-right:3px solid #2b6f9e;">
-                        <div class="ct">جرعة 2 — أركان الزواج</div>
-                        <div class="cs">الزوجان، الإيجاب والقبول.</div>
-                        <div class="p-bar blue"><i style="width:60%"></i></div>
-                    </div>
-
-                    <div class="p-card" style="border-right:3px solid #46c48a;">
-                        <div class="ct">جرعة 3 — المحرمات</div>
-                        <div class="cs">المؤبدة والمؤقتة في النكاح.</div>
-                        <div class="p-bar green"><i style="width:20%"></i></div>
-                    </div>
-
-                    <div class="p-card" style="border-right:3px solid #c9930f;">
-                        <div class="ct">جرعة 4 — المهر</div>
-                        <div class="cs">التسمية، الاستحقاق، والاختلاف.</div>
-                        <div class="p-bar"><i style="width:0%"></i></div>
-                    </div>
-                </div>
-                <div class="p-nav">
-                    <span><span class="em">🏠</span>الرئيسية</span>
-                    <span class="active"><span class="em">💊</span>جرعات</span>
-                    <span><span class="em">📚</span>بنك</span>
-                    <span><span class="em">🩺</span>علاج</span>
-                </div>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico">🔎</div>
+        <div class="ni-body">
+          <b>بحث فوري داخل الأسئلة</b>
+          <p>اكتب أي كلمة مفتاحية ليُرشّح البنك الأسئلة المتعلقة بها مباشرة، دون تصفح يدوي طويل.</p>
         </div>
+      </div>
 
-        <div class="notes">
-            <div class="note">
-                <div class="n-title">🎓 فلسفة الجرعات</div>
-                <div class="n-body">تقسيم المنهج إلى وحدات صغيرة (Micro-lessons) تُنجَز في دقائق، مما يزيد الاستيعاب ويقلل الإنهاك.</div>
-            </div>
-            <div class="note gold">
-                <div class="n-title">🎨 تمييز بصري</div>
-                <div class="n-body">كل جرعة تحمل لونًا جانبيًا يعبّر عن حالتها: مكتملة، جارية، أو لم تبدأ.</div>
-            </div>
-            <div class="note green">
-                <div class="n-title">📶 شريط الإنجاز</div>
-                <div class="n-body">يعرض نسبة إتمام كل جرعة، لتتبع التقدم داخل الوحدة الواحدة.</div>
-            </div>
-
-            <div class="kpi-row">
-                <div class="kpi"><div class="v">42</div><div class="l">جرعة إجمالية</div></div>
-                <div class="kpi"><div class="v gold">15د</div><div class="l">متوسط الجرعة</div></div>
-                <div class="kpi"><div class="v">12</div><div class="l">وحدة</div></div>
-            </div>
-
-            <div class="tags">
-                <span class="tag">⚡ تعلم سريع</span>
-                <span class="tag gold">📈 تتبع دقيق</span>
-                <span class="tag green">🎯 مرتبط بالتقرير</span>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico gold">🗂️</div>
+        <div class="ni-body">
+          <b>فلترة حسب الوحدة</b>
+          <p>قائمة منسدلة تفصل الأسئلة حسب باب القانون: الزواج، الطلاق، النفقات، الميراث، وغيرها.</p>
         </div>
-    </div>
+      </div>
 
-    <div class="page-foot">
-        <span class="dot">●</span>
-        <span>الجرعات — وحدات معرفية صغيرة</span>
-        <span class="page-num">07</span>
+      <div class="note-item">
+        <div class="ni-ico">💬</div>
+        <div class="ni-body">
+          <b>عرض السؤال والإجابة معاً</b>
+          <p>كل بطاقة تعرض السؤال بخط بارز، والإجابة تحته بلون مختلف، لتسهيل الحفظ والمقارنة.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico gold">🧠</div>
+        <div class="ni-body">
+          <b>جاهز للاختبار الذاتي</b>
+          <p>يمكن تغطية الإجابة يدوياً أثناء المراجعة، ثم كشفها للتأكد من دقة الاستدعاء.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">200+ سؤال</span>
+        <span class="tag">فلترة بالوحدة</span>
+        <span class="tag gold">بحث نصي</span>
+      </div>
     </div>
+  </div>
+
+  <div class="page-foot">
+    <span>مذكرة النجاح — قانون الأحوال الشخصية للمسلمين 1991</span>
+    <span>صفحة 7 من 14</span>
+  </div>
 </section>
 
+
 <!-- ============================================================
-     صفحة 8: بنك الأسئلة
+     صفحة 8 — الخرائط الذهنية
      ============================================================ -->
 <section class="page">
-    <div class="page-head">
-        <div>
-            <div class="kicker">SCREEN 06</div>
-            <h2>📚 بنك الأسئلة</h2>
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">08</span><span class="ph-title">الخرائط الذهنية</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>📘 مذكرة النجاح<small>قانون الأحوال الشخصية 1991</small></b>
+          <div class="ms-actions"><span class="gold">🏠</span><span>🔍</span><span>⭐</span></div>
         </div>
-        <div class="tag">200 سؤال</div>
+        <div class="ms-pad">
+          <div class="ms-sec"><h3>🗺️ الخرائط الذهنية</h3><span>⭐ مفضلة</span></div>
+          <div class="ms-sub">خرائط توضّح هيكل القانون وقسم الميراث.</div>
+
+          <div class="ms-map">🧩</div>
+          <div class="ms-card"><h4>أحكام الإرث العامة</h4><p>الأركان والشروط والموانع في مخطط واحد.</p></div>
+
+          <div class="ms-map">👥</div>
+          <div class="ms-card"><h4>أصحاب الفروض</h4><p>النصف، الربع، الثمن، الثلثان، الثلث، السدس.</p></div>
+
+          <div class="ms-map">🌿</div>
+          <div class="ms-card"><h4>العصبات</h4><p>بالنفس، بالغير، مع الغير.</p></div>
+
+          <div class="ms-map">🧮</div>
+          <div class="ms-card"><h4>الحجب والعول والرد</h4><p>ضوابط التصحيح والقسمة.</p></div>
+
+          <div class="ms-map">💍</div>
+          <div class="ms-card"><h4>أركان الزواج وشروطه</h4><p>الزوجان، الإيجاب والقبول، الشروط.</p></div>
+        </div>
+      </div>
     </div>
 
-    <div class="screen-layout reverse">
-        <div class="notes">
-            <div class="note">
-                <div class="n-title">🗂️ تنظيم البنك</div>
-                <div class="n-body">يمكن الفلترة حسب الوحدة، مستوى الصعوبة، ونوع السؤال (اختيار / مقالي).</div>
-            </div>
-            <div class="note gold">
-                <div class="n-title">🔍 بحث ذكي</div>
-                <div class="n-body">بحث نصي فوري داخل نص السؤال والإجابة، مع تظليل النتائج.</div>
-            </div>
-            <div class="note green">
-                <div class="n-title">🏷️ وسوم التصنيف</div>
-                <div class="n-body">كل سؤال يحمل وسومًا لتمييز المحور والمصدر والمستوى.</div>
-            </div>
+    <div class="notes">
+      <h2>🗺️ الفهم البصري</h2>
+      <p class="lead">ثماني خرائط ذهنية تحوّل النص القانوني إلى هيكل مرئي يسهل استرجاعه.</p>
 
-            <div class="kpi-row">
-                <div class="kpi"><div class="v">200+</div><div class="l">سؤال وإجابة</div></div>
-                <div class="kpi"><div class="v gold">12</div><div class="l">تصنيف</div></div>
-                <div class="kpi"><div class="v">5</div><div class="l">مستويات</div></div>
-            </div>
-
-            <div class="tags">
-                <span class="tag">🔎 بحث فوري</span>
-                <span class="tag gold">🏷️ وسوم</span>
-                <span class="tag green">📚 شامل</span>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico">🧩</div>
+        <div class="ni-body">
+          <b>هيكل بدل النص</b>
+          <p>ترى العلاقة بين الفروع والأصول في لمحة واحدة، بدلاً من قراءة صفحات متتابعة.</p>
         </div>
+      </div>
 
-        <div class="phone">
-            <div class="phone-screen">
-                <div class="p-status"><span>9:41</span><span class="dots"><i></i><i></i><i></i></span></div>
-                <div class="p-header">
-                    <span class="ttl">📚 بنك الأسئلة</span>
-                    <span class="ic">200 سؤال</span>
-                </div>
-                <div class="p-body">
-                    <div class="p-chiprow">
-                        <span class="p-chip gold">الكل</span>
-                        <span class="p-chip">النكاح</span>
-                        <span class="p-chip">الطلاق</span>
-                        <span class="p-chip">الحضانة</span>
-                        <span class="p-chip">الميراث</span>
-                    </div>
-
-                    <div class="p-q">
-                        <div class="qn">س1 — أركان الزواج الأساسية؟</div>
-                        <div class="qt">الزوجان، الإيجاب، القبول.</div>
-                    </div>
-                    <div class="p-q">
-                        <div class="qn">س2 — شروط صحة العقد؟</div>
-                        <div class="qt">الإشهاد، الولي، عدم إسقاط المهر.</div>
-                    </div>
-                    <div class="p-q">
-                        <div class="qn">س3 — متى تستحق المطلقة نصف المهر؟</div>
-                        <div class="qt">الطلاق قبل الدخول مع تسمية المهر.</div>
-                    </div>
-
-                    <div class="p-card">
-                        <div class="ct">فلترة متقدمة</div>
-                        <div class="cs">المستوى · الوحدة · الصعوبة</div>
-                    </div>
-                </div>
-                <div class="p-nav">
-                    <span><span class="em">🏠</span>الرئيسية</span>
-                    <span><span class="em">📊</span>تقدّم</span>
-                    <span class="active"><span class="em">📚</span>بنك</span>
-                    <span><span class="em">🩺</span>علاج</span>
-                </div>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico gold">👥</div>
+        <div class="ni-body">
+          <b>خرائط الفروض والعصبات</b>
+          <p>ترتيب بصري لأصحاب الفروض وأنواع العصبات، مع تمييز الأنصبة بالألوان.</p>
         </div>
-    </div>
+      </div>
 
-    <div class="page-foot">
-        <span class="dot">●</span>
-        <span>بنك الأسئلة — مصدر شامل</span>
-        <span class="page-num">08</span>
+      <div class="note-item">
+        <div class="ni-ico">🧮</div>
+        <div class="ni-body">
+          <b>مسائل الحجب والعول</b>
+          <p>مخططات توضّح متى يُحجب الوارث حجب حرمان، ومتى يُحجب حجب نقصان.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">8 خرائط</span>
+        <span class="tag gold">تصميم بصري</span>
+        <span class="tag">مراجعة سريعة</span>
+      </div>
     </div>
+  </div>
+
+  <div class="page-foot">
+    <span>مذكرة النجاح — قانون الأحوال الشخصية للمسلمين 1991</span>
+    <span>صفحة 8 من 14</span>
+  </div>
 </section>
 
+
 <!-- ============================================================
-     صفحة 9: تحليل الأخطاء
+     صفحة 9 — الامتحانات
      ============================================================ -->
 <section class="page">
-    <div class="page-head">
-        <div>
-            <div class="kicker">SCREEN 07</div>
-            <h2>🧭 تحليل الأخطاء</h2>
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">09</span><span class="ph-title">الامتحانات الشاملة</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>📘 مذكرة النجاح<small>قانون الأحوال الشخصية 1991</small></b>
+          <div class="ms-actions"><span class="gold">🏠</span><span>🔍</span><span>⭐</span></div>
         </div>
-        <div class="tag">معالجة دقيقة</div>
+        <div class="ms-pad">
+          <div class="ms-sec"><h3>📝 الامتحانات الشاملة</h3><span>⭐ مفضلة</span></div>
+
+          <div class="ms-card">
+            <h4>الامتحان الشامل الأول</h4>
+            <p>يغطي أبواب: الخطبة، أركان الزواج، شروط الصحة، والمهر. مدة مقترحة: 90 دقيقة.</p>
+          </div>
+          <div class="ms-card">
+            <h4>الامتحان الشامل الثاني</h4>
+            <p>يغطي أبواب: الطلاق ودرجاته، العدة، النفقات، والحضانة.</p>
+          </div>
+          <div class="ms-card">
+            <h4>الامتحان الشامل الثالث</h4>
+            <p>يغطي أبواب: الأهلية والولاية، الوصية، والهبة.</p>
+          </div>
+          <div class="ms-card">
+            <h4>الامتحان الشامل الرابع</h4>
+            <p>مخصص بالكامل لقسم الميراث: الفروض، العصبات، الحجب، العول والرد.</p>
+          </div>
+
+          <div class="ms-note gold">
+            ⏱️ يُنصح بحل كل امتحان في جلسة واحدة دون الرجوع للمذكرة.
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="screen-layout">
-        <div class="phone">
-            <div class="phone-screen">
-                <div class="p-status"><span>9:41</span><span class="dots"><i></i><i></i><i></i></span></div>
-                <div class="p-header">
-                    <span class="ttl">🧭 تحليل الأخطاء</span>
-                    <span class="ic">آخر 30 يوم</span>
-                </div>
-                <div class="p-body">
-                    <div class="p-card">
-                        <div class="ct">توزيع الأخطاء</div>
-                        <div class="mini-chart" style="height:60px;">
-                            <div class="col"><div class="bar gold" style="height:80%"></div><span class="lb">مفهوم</span></div>
-                            <div class="col"><div class="bar" style="height:45%"></div><span class="lb">تطبيق</span></div>
-                            <div class="col"><div class="bar gold" style="height:30%"></div><span class="lb">حفظ</span></div>
-                            <div class="col"><div class="bar" style="height:20%"></div><span class="lb">قراءة</span></div>
-                        </div>
-                    </div>
+    <div class="notes">
+      <h2>📝 قياس الجاهزية</h2>
+      <p class="lead">أربعة نماذج امتحانية تحاكي أسلوب الأسئلة الحقيقية وتقيس مستوى الإتقان.</p>
 
-                    <div class="p-card" style="border-right:3px solid #c0392b;">
-                        <div class="ct">أكثر خطأ متكرر</div>
-                        <div class="cs">الخلط بين الطلاق الرجعي والبائن.</div>
-                    </div>
-
-                    <div class="p-card" style="border-right:3px solid #f5c542;">
-                        <div class="ct">توصية المعالجة</div>
-                        <div class="cs">مراجعة "درجات الطلاق" + 10 أسئلة مركّزة.</div>
-                    </div>
-
-                    <div class="p-btn">ابدأ المعالجة ←</div>
-                </div>
-                <div class="p-nav">
-                    <span><span class="em">🏠</span>الرئيسية</span>
-                    <span><span class="em">📊</span>تقدّم</span>
-                    <span class="active"><span class="em">🧭</span>أخطاء</span>
-                    <span><span class="em">🩺</span>علاج</span>
-                </div>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico">🧪</div>
+        <div class="ni-body">
+          <b>توزيع موضوعي</b>
+          <p>كل امتحان يغطي مجموعة أبواب محددة، ليكون تشخيص الضعف دقيقاً وقابلاً للمعالجة.</p>
         </div>
+      </div>
 
-        <div class="notes">
-            <div class="note">
-                <div class="n-title">🔎 تصنيف الأخطاء</div>
-                <div class="n-body">يُصنّف النظام الأخطاء إلى: مفهومي، تطبيقي، حفظي، وقراءة سؤال — لكل نوع معالجة مختلفة.</div>
-            </div>
-            <div class="note gold">
-                <div class="n-title">📊 رسم التوزيع</div>
-                <div class="n-body">أعمدة بيانية توضح نسبة كل نوع من الأخطاء خلال آخر 30 يومًا.</div>
-            </div>
-            <div class="note green">
-                <div class="n-title">🩺 ربط تلقائي</div>
-                <div class="n-body">يربط النظام الخطأ المتكرر بجرعة معالجة مباشرة داخل خطة العلاج.</div>
-            </div>
-
-            <div class="kpi-row">
-                <div class="kpi"><div class="v">4</div><div class="l">أنواع أخطاء</div></div>
-                <div class="kpi"><div class="v gold">30</div><div class="l">يوم تحليل</div></div>
-                <div class="kpi"><div class="v">3</div><div class="l">أنماط متكررة</div></div>
-            </div>
-
-            <div class="tags">
-                <span class="tag">🧭 تشخيص</span>
-                <span class="tag gold">🎯 معالجة</span>
-                <span class="tag green">📈 تحسّن</span>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico gold">⏱️</div>
+        <div class="ni-body">
+          <b>إدارة الوقت</b>
+          <p>مدة مقترحة لكل نموذج، تدريب عملي على التوزيع السليم للوقت داخل قاعة الاختبار.</p>
         </div>
-    </div>
+      </div>
 
-    <div class="page-foot">
-        <span class="dot">●</span>
-        <span>تحليل الأخطاء — من الخطأ إلى الإتقان</span>
-        <span class="page-num">09</span>
+      <div class="note-item">
+        <div class="ni-ico">🔁</div>
+        <div class="ni-body">
+          <b>إعادة الحل</b>
+          <p>يمكن تكرار النموذج بعد فترة لقياس التحسن في الاستدعاء وسرعة الاسترجاع.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">4 نماذج</span>
+        <span class="tag gold">تغطية كاملة</span>
+        <span class="tag">تشخيص الضعف</span>
+      </div>
     </div>
+  </div>
+
+  <div class="page-foot">
+    <span>مذكرة النجاح — قانون الأحوال الشخصية للمسلمين 1991</span>
+    <span>صفحة 9 من 14</span>
+  </div>
 </section>
 
+
 <!-- ============================================================
-     صفحة 10: المحاكاة
+     صفحة 10 — المراجعات
      ============================================================ -->
 <section class="page">
-    <div class="page-head">
-        <div>
-            <div class="kicker">SCREEN 08</div>
-            <h2>⏱️ المحاكاة</h2>
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">10</span><span class="ph-title">بطاقات المراجعة</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>📘 مذكرة النجاح<small>قانون الأحوال الشخصية 1991</small></b>
+          <div class="ms-actions"><span class="gold">🏠</span><span>🔍</span><span>⭐</span></div>
         </div>
-        <div class="tag">ظروف واقعية</div>
+        <div class="ms-pad">
+          <div class="ms-sec"><h3>🔄 المراجعات</h3><span>⭐ مفضلة</span></div>
+
+          <div class="ms-card">
+            <h4>🔄 بطاقة: الطلاق الرجعي</h4>
+            <p>اضغط للكشف ▾</p>
+            <div class="ms-note">لا ينهي العقد إلا بانقضاء العدة، ويملك الزوج الرجعة خلالها.</div>
+          </div>
+
+          <div class="ms-card">
+            <h4>🔄 بطاقة: الطلاق البائن</h4>
+            <p>اضغط للكشف ▾</p>
+            <div class="ms-note">ينهي العقد فوراً، ولا تحل المطلقة إلا بعقد ومهر جديدين.</div>
+          </div>
+
+          <div class="ms-card">
+            <h4>🔄 بطاقة: سن الرشد</h4>
+            <p>اضغط للكشف ▾</p>
+            <div class="ms-note">18 عاماً كاملة.</div>
+          </div>
+
+          <div class="ms-card">
+            <h4>🔄 بطاقة: موانع الإرث</h4>
+            <p>اضغط للكشف ▾</p>
+            <div class="ms-note">القتل العمد العدوان، واختلاف الدين.</div>
+          </div>
+
+          <div class="ms-card">
+            <h4>🔄 بطاقة: نصيب الزوج</h4>
+            <p>اضغط للكشف ▾</p>
+            <div class="ms-note">النصف بلا فرع، والربع مع الفرع.</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="screen-layout reverse">
-        <div class="notes">
-            <div class="note">
-                <div class="n-title">⏱️ محاكاة الامتحان</div>
-                <div class="n-body">يعيد النظام ظروف الاختبار الحقيقي: مدة محددة، أسئلة عشوائية، وإحصاء النتيجة فور الانتهاء.</div>
-            </div>
-            <div class="note gold">
-                <div class="n-title">🎛️ ضبط المعايير</div>
-                <div class="n-body">يمكن تحديد عدد الأسئلة، مدة الامتحان، والوحدات المُضمّنة في المحاكاة.</div>
-            </div>
-            <div class="note green">
-                <div class="n-title">📊 تقرير المحاكاة</div>
-                <div class="n-body">بعد الانتهاء، يُصدر تقرير بتوزيع الإجابات الصحيحة والخاطئة على المحاور.</div>
-            </div>
+    <div class="notes">
+      <h2>🔄 المراجعة النشطة</h2>
+      <p class="lead">بطاقات تُخفي الإجابة أولاً ثم تكشفها، وهي أسلوب فعّال لتثبيت المعلومة.</p>
 
-            <div class="kpi-row">
-                <div class="kpi"><div class="v">60د</div><div class="l">مدة المحاكاة</div></div>
-                <div class="kpi"><div class="v gold">40</div><div class="l">سؤال/امتحان</div></div>
-                <div class="kpi"><div class="v">12</div><div class="l">وحدة مشمولة</div></div>
-            </div>
-
-            <div class="tags">
-                <span class="tag">🎯 واقعي</span>
-                <span class="tag gold">⏱️ مؤقت</span>
-                <span class="tag green">📊 تحليل فوري</span>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico">👆</div>
+        <div class="ni-body">
+          <b>الكشف بالضغط</b>
+          <p>تظهر البطاقة بالسؤال فقط، وعند الضغط عليها تُكشف الإجابة أسفلها بخط فاصل متقطع.</p>
         </div>
+      </div>
 
-        <div class="phone">
-            <div class="phone-screen">
-                <div class="p-status"><span>9:41</span><span class="dots"><i></i><i></i><i></i></span></div>
-                <div class="p-header">
-                    <span class="ttl">⏱️ محاكاة الامتحان</span>
-                    <span class="ic">40 سؤال</span>
-                </div>
-                <div class="p-body">
-                    <div class="p-timer">32:14<small>الوقت المتبقي</small></div>
-
-                    <div class="p-card">
-                        <div class="ct">السؤال 12 من 40</div>
-                        <div class="p-bar blue"><i style="width:30%"></i></div>
-                    </div>
-
-                    <div class="p-q">
-                        <div class="qn">متى تكون المطلقة ثلاثًا حلالًا لمطلقها؟</div>
-                    </div>
-
-                    <div class="p-opt"><span class="k">أ</span> بعد انقضاء عدة الطلاق مباشرة</div>
-                    <div class="p-opt"><span class="k">ب</span> بعد تجديد العقد</div>
-                    <div class="p-opt"><span class="k">ج</span> بعد نكاح زوج آخر دخولًا حقيقيًا</div>
-                    <div class="p-opt"><span class="k">د</span> لا تحل له أبدًا</div>
-
-                    <div class="p-btn">التالي ←</div>
-                </div>
-                <div class="p-nav">
-                    <span><span class="em">🏠</span>الرئيسية</span>
-                    <span><span class="em">📊</span>تقدّم</span>
-                    <span class="active"><span class="em">⏱️</span>محاكاة</span>
-                    <span><span class="em">🩺</span>علاج</span>
-                </div>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico gold">🧠</div>
+        <div class="ni-body">
+          <b>الاستدعاء قبل التحقق</b>
+          <p>تُلزم نفسك بتذكّر الإجابة قبل الكشف، وهو ما يقوّي الذاكرة طويلة المدى أكثر من القراءة السلبية.</p>
         </div>
-    </div>
+      </div>
 
-    <div class="page-foot">
-        <span class="dot">●</span>
-        <span>المحاكاة — تدريب بظروف الامتحان</span>
-        <span class="page-num">10</span>
+      <div class="note-item">
+        <div class="ni-ico">📦</div>
+        <div class="ni-body">
+          <b>محتوى مركّز</b>
+          <p>كل بطاقة تحمل معلومة واحدة فقط: تعريف، مدة، نصيب، أو مانع — بلا تشتيت.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">8 بطاقات</span>
+        <span class="tag gold">تفاعلية</span>
+        <span class="tag">مراجعة سريعة</span>
+      </div>
     </div>
+  </div>
+
+  <div class="page-foot">
+    <span>مذكرة النجاح — قانون الأحوال الشخصية للمسلمين 1991</span>
+    <span>صفحة 10 من 14</span>
+  </div>
 </section>
 
+
 <!-- ============================================================
-     صفحة 11: الموارد
+     صفحة 11 — شجرة المعرفة
      ============================================================ -->
 <section class="page">
-    <div class="page-head">
-        <div>
-            <div class="kicker">SCREEN 09</div>
-            <h2>🎬 الموارد والمراجع</h2>
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">11</span><span class="ph-title">شجرة المعرفة</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>📘 مذكرة النجاح<small>قانون الأحوال الشخصية 1991</small></b>
+          <div class="ms-actions"><span class="gold">🏠</span><span>🔍</span><span>⭐</span></div>
         </div>
-        <div class="tag">مكتبة شاملة</div>
+        <div class="ms-pad">
+          <div class="ms-sec"><h3>🌳 شجرة المعرفة</h3><span>⭐ مفضلة</span></div>
+
+          <div class="ms-tree">
+            <div class="ms-tree-node open">▾ 💍 الزواج</div>
+            <div class="ms-tree-sub">
+              <div>الخطبة وأحكامها</div>
+              <div>الأركان والشروط</div>
+              <div>المهر وأحكامه</div>
+            </div>
+
+            <div class="ms-tree-node open">▾ 💔 الطلاق</div>
+            <div class="ms-tree-sub">
+              <div>الرجعي والبائن</div>
+              <div>الخلع والتطليق</div>
+              <div>العدة وأحكامها</div>
+            </div>
+
+            <div class="ms-tree-node">▸ 👶 الحضانة والنفقات</div>
+            <div class="ms-tree-node">▸ 🧾 الأهلية والولاية</div>
+            <div class="ms-tree-node">▸ 🎁 الوصية والهبة</div>
+            <div class="ms-tree-node">▸ ⚖️ الميراث والفرائض</div>
+          </div>
+
+          <div class="ms-note">
+            اضغط على أي عقدة لفتحها أو طيّها.
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="screen-layout">
-        <div class="phone">
-            <div class="phone-screen">
-                <div class="p-status"><span>9:41</span><span class="dots"><i></i><i></i><i></i></span></div>
-                <div class="p-header">
-                    <span class="ttl">🎬 الموارد</span>
-                    <span class="ic">مكتبة</span>
-                </div>
-                <div class="p-body">
-                    <div class="p-card">
-                        <div class="ct">▶️ فيديو شرح القانون</div>
-                        <div class="cs">شرح مرئي على YouTube</div>
-                    </div>
-                    <div class="p-card">
-                        <div class="ct">🗺️ خرائط ذهنية</div>
-                        <div class="cs">8 خرائط لتلخيص المنهج</div>
-                    </div>
-                    <div class="p-card">
-                        <div class="ct">📄 ملخصات PDF</div>
-                        <div class="cs">ملخصات قابلة للطباعة</div>
-                    </div>
-                    <div class="p-card">
-                        <div class="ct">⚖️ تطبيق الميراث المرتبط</div>
-                        <div class="cs">مسار تكميلي لأحكام الإرث</div>
-                    </div>
-                    <div class="p-card">
-                        <div class="ct">📝 نماذج امتحانات</div>
-                        <div class="cs">امتحانات سابقة محلولة</div>
-                    </div>
-                </div>
-                <div class="p-nav">
-                    <span><span class="em">🏠</span>الرئيسية</span>
-                    <span><span class="em">📊</span>تقدّم</span>
-                    <span class="active"><span class="em">🎬</span>موارد</span>
-                    <span><span class="em">🩺</span>علاج</span>
-                </div>
-            </div>
+    <div class="notes">
+      <h2>🌳 التنقل الهرمي</h2>
+      <p class="lead">بنية شجرية تُظهر العلاقة بين الأبواب والفروع، وتسمح بالوصول المباشر لأي موضوع.</p>
+
+      <div class="note-item">
+        <div class="ni-ico">▾</div>
+        <div class="ni-body">
+          <b>فتح وطيّ العقد</b>
+          <p>كل عقدة رئيسية قابلة للفتح لعرض فروعها، أو الطيّ لتقليل التشتيت أثناء التنقل السريع.</p>
         </div>
+      </div>
 
-        <div class="notes">
-            <div class="note">
-                <div class="n-title">📚 أنواع الموارد</div>
-                <div class="n-body">فيديوهات، خرائط ذهنية، ملخصات PDF، امتحانات، وروابط لتطبيقات مرتبطة.</div>
-            </div>
-            <div class="note gold">
-                <div class="n-title">🔗 تكامل التطبيقات</div>
-                <div class="n-body">يرتبط التطبيق بتطبيق الميراث ليمنح الطالب تجربة موحّدة عبر المسارات.</div>
-            </div>
-            <div class="note green">
-                <div class="n-title">📥 قابلية الوصول</div>
-                <div class="n-body">كل الموارد متاحة دون اتصال (بعضها)، لتسهيل المراجعة في أي وقت.</div>
-            </div>
-
-            <div class="kpi-row">
-                <div class="kpi"><div class="v">8</div><div class="l">خرائط ذهنية</div></div>
-                <div class="kpi"><div class="v gold">6</div><div class="l">ملخصات</div></div>
-                <div class="kpi"><div class="v">4</div><div class="l">امتحانات</div></div>
-            </div>
-
-            <div class="tags">
-                <span class="tag">🎬 فيديو</span>
-                <span class="tag gold">🗺️ خرائط</span>
-                <span class="tag green">📄 PDF</span>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico gold">🧭</div>
+        <div class="ni-body">
+          <b>خريطة الطريق الدراسية</b>
+          <p>تساعدك على بناء خطة مراجعة متسلسلة: من الزواج، إلى الطلاق، إلى النفقات، ثم الميراث.</p>
         </div>
-    </div>
+      </div>
 
-    <div class="page-foot">
-        <span class="dot">●</span>
-        <span>الموارد — مكتبة متكاملة</span>
-        <span class="page-num">11</span>
+      <div class="note-item">
+        <div class="ni-ico">🔗</div>
+        <div class="ni-body">
+          <b>ربط المفاهيم</b>
+          <p>ترى كيف يتفرع الباب الواحد إلى موضوعات مترابطة، فيثبت الترابط المنطقي في ذهنك.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">بنية قابلة للطي</span>
+        <span class="tag gold">وصول مباشر</span>
+        <span class="tag">خطة مراجعة</span>
+      </div>
     </div>
+  </div>
+
+  <div class="page-foot">
+    <span>مذكرة النجاح — قانون الأحوال الشخصية للمسلمين 1991</span>
+    <span>صفحة 11 من 14</span>
+  </div>
 </section>
 
+
 <!-- ============================================================
-     صفحة 12: خطة العلاج
+     صفحة 12 — الفيديوهات
      ============================================================ -->
 <section class="page">
-    <div class="page-head">
-        <div>
-            <div class="kicker">SCREEN 10</div>
-            <h2>🩺 خطة العلاج</h2>
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">12</span><span class="ph-title">الفيديوهات التعليمية</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>📘 مذكرة النجاح<small>قانون الأحوال الشخصية 1991</small></b>
+          <div class="ms-actions"><span class="gold">🏠</span><span>🔍</span><span>⭐</span></div>
         </div>
-        <div class="tag">مسار شخصي</div>
+        <div class="ms-pad">
+          <div class="ms-sec"><h3>🎬 الفيديوهات التعليمية</h3><span>⭐ مفضلة</span></div>
+
+          <div class="ms-video">▶</div>
+
+          <div class="ms-card">
+            <h4>فيديو شرح قانون الأحوال الشخصية 1991</h4>
+            <p>اضغط على الزر لمشاهدة الفيديو على YouTube.</p>
+          </div>
+
+          <div class="ms-note gold">
+            ▶ مشاهدة الفيديو على YouTube
+          </div>
+
+          <div class="ms-note">
+            ℹ️ يتطلب اتصالاً بالإنترنت.
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="screen-layout reverse">
-        <div class="notes">
-            <div class="note">
-                <div class="n-title">🧩 كيف تُبنى الخطة؟</div>
-                <div class="n-body">يعتمد النظام على نتائج التشخيص + تحليل الأخطاء + سلوك التعلم ليبني خطة أسبوعية مخصصة.</div>
-            </div>
-            <div class="note gold">
-                <div class="n-title">📅 خطة الأسبوع</div>
-                <div class="n-body">توزيع الجرعات والتمارين على أيام الأسبوع، مع تحديد أولويات المعالجة.</div>
-            </div>
-            <div class="note green">
-                <div class="n-title">🎯 أهداف قابلة للقياس</div>
-                <div class="n-body">كل هدف مرتبط بنسبة إتقان مستهدفة، ويمكن تعديله تلقائيًا حسب التقدم.</div>
-            </div>
+    <div class="notes">
+      <h2>🎬 الشرح المرئي</h2>
+      <p class="lead">محتوى فيديو مكمّل للمادة المكتوبة، يساعد من يتعلّم بالسمع والصورة.</p>
 
-            <div class="kpi-row">
-                <div class="kpi"><div class="v">6</div><div class="l">أهداف أسبوعية</div></div>
-                <div class="kpi"><div class="v gold">9</div><div class="l">جرعات مخصصة</div></div>
-                <div class="kpi"><div class="v">40د</div><div class="l">يوميًا</div></div>
-            </div>
-
-            <div class="tags">
-                <span class="tag">🎯 مخصص</span>
-                <span class="tag gold">📅 أسبوعي</span>
-                <span class="tag green">📈 متجدد</span>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico">▶️</div>
+        <div class="ni-body">
+          <b>شرح مباشر على YouTube</b>
+          <p>زر واحد ينقلك إلى الفيديو، دون الحاجة لنسخ روابط أو البحث اليدوي.</p>
         </div>
+      </div>
 
-        <div class="phone">
-            <div class="phone-screen">
-                <div class="p-status"><span>9:41</span><span class="dots"><i></i><i></i><i></i></span></div>
-                <div class="p-header">
-                    <span class="ttl">🩺 خطة العلاج</span>
-                    <span class="ic">أسبوعي</span>
-                </div>
-                <div class="p-body">
-                    <div class="p-card">
-                        <div class="ct">هدف الأسبوع</div>
-                        <div class="cs">رفع إتقان "الحضانة" إلى 75%</div>
-                        <div class="p-bar green"><i style="width:42%"></i></div>
-                    </div>
-
-                    <div class="p-line"><span>السبت</span><b>جرعة + 10 أسئلة</b></div>
-                    <div class="p-line"><span>الأحد</span><b>مراجعة بطاقات</b></div>
-                    <div class="p-line"><span>الاثنين</span><b>محاكاة قصيرة</b></div>
-                    <div class="p-line"><span>الثلاثاء</span><b>تحليل أخطاء</b></div>
-                    <div class="p-line"><span>الأربعاء</span><b>جرعة + تمارين</b></div>
-                    <div class="p-line"><span>الخميس</span><b>مراجعة شاملة</b></div>
-
-                    <div class="p-btn gold">ابدأ خطة اليوم</div>
-                </div>
-                <div class="p-nav">
-                    <span><span class="em">🏠</span>الرئيسية</span>
-                    <span><span class="em">📊</span>تقدّم</span>
-                    <span><span class="em">📚</span>بنك</span>
-                    <span class="active"><span class="em">🩺</span>علاج</span>
-                </div>
-            </div>
+      <div class="note-item">
+        <div class="ni-ico gold">🎧</div>
+        <div class="ni-body">
+          <b>أنماط تعلّم متعددة</b>
+          <p>من يفضّل الاستماع يمكنه مراجعة المادة عبر الفيديو، ثم تثبيتها بالبطاقات والنص المكتوب.</p>
         </div>
-    </div>
+      </div>
 
-    <div class="page-foot">
-        <span class="dot">●</span>
-        <span>خطة العلاج — مسار شخصي لسد الفجوات</span>
-        <span class="page-num">12</span>
+      <div class="note-item">
+        <div class="ni-ico">📶</div>
+        <div class="ni-body">
+          <b>تنبيه الاتصال</b>
+          <p>يوضّح التطبيق أن الفيديو يحتاج اتصالاً بالإنترنت، بينما بقية المحتوى يعمل دون اتصال.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">محتوى مرئي</span>
+        <span class="tag gold">رابط مباشر</span>
+        <span class="tag">مكمّل للنص</span>
+      </div>
     </div>
+  </div>
+
+  <div class="page-foot">
+    <span>مذكرة النجاح — قانون الأحوال الشخصية للمسلمين 1991</span>
+    <span>صفحة 12 من 14</span>
+  </div>
 </section>
 
+
 <!-- ============================================================
-     صفحة 13: CTA أخير
+     صفحة 13 — الميراث
      ============================================================ -->
-<section class="page" style="padding: 14mm;">
-    <div class="cta-final">
-        <div style="font-size:3rem;">🚀</div>
-        <h2>أعجبتك طريقة <em>Hero</em>؟</h2>
-        <p>انطلق بتجربة تعليمية ذكية، مبنية على القياس والتحسين المستمر، مع محتوى شامل وخطة شخصية لكل طالب.</p>
+<section class="page">
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">13</span><span class="ph-title">قسم الميراث</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
 
-        <a class="cta-link" href="https://app.hero1.vip/#about" target="_blank" rel="noopener">
-            🔗 للشراء — https://app.hero1.vip/#about
-        </a>
-
-        <div style="position:relative; display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:6px;">
-            <span class="pill">📘 محتوى شامل</span>
-            <span class="pill">📊 تحليل متقدم</span>
-            <span class="pill">🩺 خطة شخصية</span>
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>📘 مذكرة النجاح<small>قانون الأحوال الشخصية 1991</small></b>
+          <div class="ms-actions"><span class="gold">🏠</span><span>🔍</span><span>⭐</span></div>
         </div>
+        <div class="ms-pad">
+          <div class="ms-sec"><h3>⚖️ الميراث في الفقه والقانون</h3><span>⭐ مفضلة</span></div>
 
-        <div class="copyright">
-            © 2026-2027 — جميع الحقوق محفوظة · هيرو أكاديمي
+          <div class="ms-card">
+            <h4>تعريف التركة</h4>
+            <p>كل ما يتركه المتوفى من أموال ومنافع وحقوق مالية، وتشمل العقارات والمنقولات والديون.</p>
+          </div>
+
+          <div class="ms-note red">
+            <b>ترتيب الحقوق في التصفية</b>
+            1. نفقات التجهيز · 2. الديون · 3. الوصية في حدود الثلث · 4. توزيع الباقي.
+          </div>
+
+          <div class="ms-card">
+            <h4>أركان الإرث وشروطه وموانعه</h4>
+            <p><b>الأركان:</b> المورث، الوارث، التركة.<br>
+            <b>الشروط:</b> موت المورث، حياة الوارث، العلم بالجهة.<br>
+            <b>الموانع:</b> القتل العمد العدوان، اختلاف الدين.</p>
+          </div>
+
+          <div class="ms-card">
+            <h4>أصحاب الفروض</h4>
+            <ul>
+              <li><b>النصف:</b> الزوج بلا فرع، البنت المنفردة، الأخت الشقيقة.</li>
+              <li><b>الربع:</b> الزوج مع الفرع، الزوجة بلا فرع.</li>
+              <li><b>الثمن:</b> الزوجة مع الفرع.</li>
+              <li><b>الثلثان:</b> بنتان فأكثر، أختان شقيقتان فأكثر.</li>
+              <li><b>الثلث:</b> الأم بدون فرع، الإخوة لأم.</li>
+              <li><b>السدس:</b> الأب، الأم مع فرع، الجدة، بنت الابن، الأخت لأب، الأخ لأم.</li>
+            </ul>
+          </div>
+
+          <div class="ms-card">
+            <h4>العصبات</h4>
+            <ul>
+              <li><b>بالنفس:</b> البنوة، الأبوة، الجدود والإخوة، بنو الإخوة، العمومة.</li>
+              <li><b>بالغير:</b> أنثى مع عاصب في درجتها.</li>
+              <li><b>مع الغير:</b> الأخت مع الفرع الوارث المؤنث.</li>
+            </ul>
+          </div>
+
+          <div class="ms-card">
+            <h4>الحجب والعول والرد</h4>
+            <p><b>الحجب:</b> حرمان ونقصان. <b>العول:</b> زيادة أصل المسألة. <b>الرد:</b> إرجاع الباقي على أصحاب الفروض غير الزوجين.</p>
+          </div>
         </div>
+      </div>
     </div>
 
-    <div class="page-foot" style="border-top-color: rgba(255,255,255,0.15);">
-        <span class="dot">●</span>
-        <span style="color:#a9c4e2;">كتالوج هيرو أكاديمي — إصدار 2026-2027</span>
-        <span class="page-num">13</span>
+    <div class="notes">
+      <h2>⚖️ وحدة مستقلة كاملة</h2>
+      <p class="lead">قسم الميراث متاح كوحدة قائمة بذاتها، ويغطي علم الفرائض من أركانه حتى مسائل العول والرد.</p>
+
+      <div class="note-item">
+        <div class="ni-ico">🧾</div>
+        <div class="ni-body">
+          <b>تصفية التركة بالترتيب</b>
+          <p>يوضّح القسم الترتيب القانوني الصحيح: التجهيز، ثم الديون، ثم الوصية في حدود الثلث، ثم التوزيع.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico gold">👥</div>
+        <div class="ni-body">
+          <b>أصحاب الفروض</b>
+          <p>جدول شامل لأنصبة الفروض الستة (النصف، الربع، الثمن، الثلثان، الثلث، السدس) مع تحديد مستحقيها.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico">🌿</div>
+        <div class="ni-body">
+          <b>أنواع العصبات الثلاثة</b>
+          <p>تفصيل واضح للعصبة بالنفس وبالغير ومع الغير، مع قواعد الترجيح بينها.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico gold">🧮</div>
+        <div class="ni-body">
+          <b>الحجب والعول والرد</b>
+          <p>المفاهيم الثلاثة الأكثر إشكالاً في الفرائض، مشروحة بضوابط مختصرة وقابلة للتطبيق.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">أركان وشروط</span>
+        <span class="tag">فروض وعصبات</span>
+        <span class="tag gold">حجب وعول ورد</span>
+        <span class="tag gold">وحدة مستقلة</span>
+      </div>
     </div>
+  </div>
+
+  <div class="page-foot">
+    <span>مذكرة النجاح — قانون الأحوال الشخصية للمسلمين 1991</span>
+    <span>صفحة 13 من 14</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 14 — الخاتمة CTA
+     ============================================================ -->
+<section class="page cta-page">
+  <div class="cta-inner">
+    <div class="cta-emoji">🎓 📘 ⚖️</div>
+
+    <h2>أعجبتك طريقة <em>Hero</em>؟</h2>
+
+    <p>
+      انضم إلى آلاف الطلاب الذين راجعوا قانون الأحوال الشخصية للمسلمين 1991
+      بطريقة منظمة، بصرية، وفعّالة.
+    </p>
+
+    <div class="cta-features">
+      <span>📖 شرح تأصيلي</span>
+      <span>📋 ملخصات</span>
+      <span>📚 200+ سؤال</span>
+      <span>🗺️ خرائط ذهنية</span>
+      <span>⚖️ الميراث</span>
+    </div>
+
+    <a class="cta-btn" href="https://app.hero1.vip/#about" target="_blank" rel="noopener">🛒 اشترِ الآن</a>
+
+    <a class="cta-link" href="https://app.hero1.vip/#about" target="_blank" rel="noopener">https://app.hero1.vip/#about</a>
+
+    <div class="cta-rule"></div>
+
+    <p class="cta-copy">© 2026-2027 — جميع الحقوق محفوظة · هيرو أكاديمي</p>
+  </div>
 </section>
 
 </body>
