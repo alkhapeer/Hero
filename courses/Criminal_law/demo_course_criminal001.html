@@ -3,1303 +3,1634 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>كتالوج مرئي — مذكرة النجاح في القانون الجنائي | هيرو أكاديمي</title>
+<title>كتالوج مرئي – مذكرة النجاح القانون الجنائي | هيرو أكاديمي 2026-2027</title>
 <style>
-/* ===================== RESET ===================== */
-*{margin:0;padding:0;box-sizing:border-box;}
-
 :root{
-  --navy:#0b2b44;
-  --navy-2:#1a4b6d;
-  --navy-3:#123a5a;
-  --gold:#c9a227;
-  --gold-2:#f0c85a;
-  --gold-3:#fdf3d6;
-  --ink:#1e2a3a;
-  --muted:#6c757d;
-  --line:#e2e8f0;
-  --bg:#eef1f5;
-  --green:#1e7e34;
-  --red:#b00020;
+    --navy:#0b2b44; --navy-2:#123a5c; --navy-3:#1a4b6d;
+    --gold:#f5c542; --gold-2:#ffd966; --gold-d:#c99a10;
+    --bg:#f4f6f9; --ink:#1e2a3a; --muted:#3d5a78; --soft:#6c757d;
+    --line:#e6edf6; --white:#ffffff; --accent:#1a4b6d; --orange:#e67e22;
 }
-
-html,body{
-  background:var(--bg);
-  font-family:'Segoe UI',Tahoma,'Traditional Arabic',Arial,sans-serif;
-  color:var(--ink);
-  direction:rtl;
-  -webkit-print-color-adjust:exact;
-  print-color-adjust:exact;
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+body{
+    font-family:"Segoe UI","Tahoma","Noto Naskh Arabic","Arial",sans-serif;
+    background:#dfe6ef;color:var(--ink);direction:rtl;padding:24px 0;line-height:1.7;
 }
-body{padding:16px 0 50px;overflow-x:auto;}
-
-/* ===================== PAGE ===================== */
 .page{
-  width:210mm;
-  height:297mm;
-  background:#fff;
-  margin:0 auto 18px;
-  padding:11mm 10mm 8mm;
-  position:relative;
-  box-shadow:0 10px 34px rgba(11,43,68,.18);
-  display:flex;
-  flex-direction:column;
-  overflow:hidden;
-  page-break-after:always;
-  break-after:page;
+    width:210mm;min-height:297mm;background:var(--white);
+    margin:0 auto 14px;padding:12mm 12mm 8mm;position:relative;
+    display:flex;flex-direction:column;box-sizing:border-box;overflow:hidden;
+    box-shadow:0 10px 34px rgba(11,43,68,.16);border-radius:2px;
 }
-.page:last-child{page-break-after:auto;break-after:auto;}
+.page-head{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding-bottom:6px;border-bottom:2px solid var(--line);margin-bottom:7mm;
+}
+.page-head .kicker{
+    display:flex;align-items:center;gap:7px;
+    font-size:11px;font-weight:700;color:var(--soft);letter-spacing:.4px;
+}
+.page-head .kicker .dot{
+    width:9px;height:9px;border-radius:50%;background:var(--gold);
+    display:inline-block;box-shadow:0 0 0 3px rgba(245,197,66,.25);
+}
+.page-head .sec-title{font-size:15px;font-weight:800;color:var(--navy);}
+.page-head .sec-title .num{color:var(--gold-d);font-family:monospace;font-size:13px;margin-left:6px;}
+.page-foot{
+    margin-top:auto;padding-top:6px;border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
+    font-size:10px;color:var(--soft);
+}
+.page-foot .pnum{
+    background:var(--navy);color:#fff;min-width:22px;height:22px;
+    border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:10px;
+}
+.page-body{display:flex;gap:9mm;align-items:flex-start;flex:1;}
+.mock-col{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:6px;}
+.mock-caption{font-size:10px;color:var(--soft);font-weight:600;text-align:center;}
+.notes-col{flex:1;min-width:0;}
 
-/* ===================== PAGE HEAD ===================== */
-.p-head{
-  display:flex;align-items:center;gap:12px;
-  border-bottom:2px solid var(--line);
-  padding-bottom:9px;margin-bottom:12px;
-  flex:0 0 auto;
-}
-.p-num{
-  width:42px;height:42px;border-radius:13px;flex:0 0 auto;
-  background:linear-gradient(145deg,var(--navy),var(--navy-2));
-  color:var(--gold-2);display:flex;align-items:center;justify-content:center;
-  font-weight:800;font-size:15px;letter-spacing:.5px;
-  box-shadow:0 5px 14px rgba(11,43,68,.28);
-}
-.p-title{font-size:17px;font-weight:800;color:var(--navy);line-height:1.25;}
-.p-title span{display:block;font-size:10.5px;font-weight:500;color:var(--muted);margin-top:2px;}
-.p-brand{
-  margin-inline-start:auto;font-size:9.5px;font-weight:700;color:var(--gold);
-  border:1px solid var(--gold);padding:3px 10px;border-radius:20px;white-space:nowrap;
-  background:var(--gold-3);
-}
-
-/* ===================== KPI ROW ===================== */
-.kpis{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:9px;
-  margin-bottom:12px;flex:0 0 auto;
-}
-.kpi{
-  background:linear-gradient(160deg,#f8fafd,#eef3f9);
-  border:1px solid var(--line);border-radius:13px;
-  padding:9px 11px;position:relative;overflow:hidden;
-}
-.kpi::after{
-  content:'';position:absolute;top:0;right:0;width:4px;height:100%;
-  background:linear-gradient(180deg,var(--gold-2),var(--gold));
-}
-.kpi .k-val{font-size:16px;font-weight:800;color:var(--navy);line-height:1.2;}
-.kpi .k-lab{font-size:9.5px;color:var(--muted);font-weight:600;margin-top:2px;}
-
-/* ===================== GRID ===================== */
-.p-grid{
-  display:grid;
-  grid-template-columns:300px 1fr;
-  gap:16px;
-  flex:1 1 auto;
-  min-height:0;
-}
-
-/* ===================== PHONE ===================== */
 .phone{
-  width:300px;height:620px;
-  margin:0 auto;
-  background:linear-gradient(160deg,#0b2b44,#0f3350);
-  border-radius:36px;
-  padding:9px;
-  position:relative;
-  display:flex;
-  box-shadow:0 18px 40px rgba(11,43,68,.30), inset 0 0 0 1px rgba(255,255,255,.08);
+    width:78mm;height:158mm;
+    background:linear-gradient(160deg,#0b2b44,#1a4b6d);
+    border-radius:26px;padding:6px;position:relative;
+    box-shadow:0 16px 34px rgba(11,43,68,.30), inset 0 0 0 1px rgba(255,255,255,.08);
 }
 .phone::before{
-  content:'';position:absolute;top:15px;left:50%;transform:translateX(-50%);
-  width:74px;height:6px;border-radius:20px;background:rgba(255,255,255,.22);z-index:5;
+    content:"";position:absolute;top:11px;left:50%;transform:translateX(-50%);
+    width:44px;height:6px;border-radius:8px;background:rgba(255,255,255,.30);z-index:5;
 }
-.screen{
-  flex:1;background:#eef2f7;border-radius:28px;overflow:hidden;
-  display:flex;flex-direction:column;
+.phone-screen{
+    background:var(--bg);border-radius:21px;height:100%;overflow:hidden;
+    display:flex;flex-direction:column;font-size:8.5px;line-height:1.55;color:var(--ink);
 }
-.s-status{
-  background:var(--navy);color:#cfe0ef;font-size:8px;
-  padding:5px 12px;display:flex;justify-content:space-between;
-  flex:0 0 auto;
+.p-status{
+    background:#fff;display:flex;justify-content:space-between;align-items:center;
+    padding:7px 12px 3px;font-size:7px;font-weight:700;color:var(--navy);
 }
-.s-app{
-  background:linear-gradient(145deg,var(--navy),var(--navy-2));
-  color:#fff;padding:8px 11px;font-size:10px;font-weight:700;
-  display:flex;justify-content:space-between;align-items:center;
-  flex:0 0 auto;
+.p-status .r{letter-spacing:1px;color:var(--soft);}
+.p-nav{
+    background:linear-gradient(145deg,#0b2b44,#1a4b6d);color:#fff;padding:7px 9px;
+    border-radius:0 0 14px 14px;box-shadow:0 3px 10px rgba(11,43,68,.28);
 }
-.s-app small{display:block;font-weight:400;opacity:.82;font-size:7.5px;margin-top:1px;}
-.s-app .s-ico{font-size:11px;}
-.s-nav{
-  background:#fff;display:flex;gap:3px;padding:5px 7px;
-  border-bottom:1px solid var(--line);overflow:hidden;flex:0 0 auto;
+.p-brand{font-size:8.5px;font-weight:800;display:flex;align-items:center;gap:4px;}
+.p-brand small{font-size:6px;font-weight:400;opacity:.75;margin-right:4px;display:block;}
+.p-actions{display:flex;gap:4px;margin-top:6px;}
+.p-actions b{
+    background:rgba(255,255,255,.14);border-radius:20px;padding:3px 7px;
+    font-size:6px;font-weight:600;
 }
-.s-nav span{
-  font-size:7px;padding:3px 7px;border-radius:20px;
-  background:#f1f5f9;color:#334155;white-space:nowrap;font-weight:600;
+.p-actions b.gold{background:var(--gold);color:var(--navy);}
+.p-actions b.orange{background:var(--orange);color:#fff;}
+.p-content{flex:1;padding:9px 9px 12px;overflow:hidden;display:flex;flex-direction:column;gap:7px;}
+.p-h1{font-size:10px;font-weight:800;color:var(--navy);border-right:4px solid var(--gold);padding-right:7px;line-height:1.45;}
+.p-sub{font-size:7px;color:var(--muted);}
+.p-sec{
+    font-size:8px;font-weight:800;color:var(--navy);
+    padding-bottom:3px;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
 }
-.s-nav span.on{background:var(--navy);color:#fff;}
-.s-body{
-  flex:1 1 auto;padding:8px;overflow:hidden;
-  display:flex;flex-direction:column;gap:6px;
+.p-sec .back{background:#eaf0f8;color:var(--navy-3);font-size:6px;font-weight:700;padding:2px 8px;border-radius:20px;}
+.p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;}
+.p-tile{
+    background:#fff;border:1px solid var(--line);border-radius:10px;
+    padding:8px 3px 6px;text-align:center;font-size:6.4px;font-weight:700;color:var(--navy);
+    box-shadow:0 2px 6px rgba(11,43,68,.05);position:relative;
 }
-.s-card{
-  background:#fff;border-radius:11px;padding:8px 9px;
-  border:1px solid #e4ebf3;
-  box-shadow:0 2px 6px rgba(11,43,68,.05);
+.p-tile span{display:block;font-size:13px;line-height:1.2;margin-bottom:2px;}
+.p-tile i{
+    position:absolute;top:-3px;left:4px;background:var(--gold);color:var(--navy);
+    font-style:normal;font-size:5.4px;font-weight:800;border-radius:20px;padding:0 4px;
 }
-.s-card.navy{
-  background:linear-gradient(145deg,var(--navy),var(--navy-2));
-  color:#fff;border:none;
+.p-note{
+    background:#eaf0f8;border-radius:10px;padding:7px 9px;font-size:6.4px;
+    color:var(--navy-2);line-height:1.7;
 }
-.s-card.gold{
-  background:var(--gold-3);border:1px solid #f0dfa8;color:#7a6118;
+.p-note b{display:block;color:var(--navy);font-size:7px;margin-bottom:2px;}
+.p-warn{
+    background:#fff3cd;border-right:3px solid #ffc107;border-radius:8px;
+    padding:6px 8px;font-size:5.8px;color:#856404;
 }
-.s-h{font-size:9px;font-weight:800;color:var(--navy);margin-bottom:3px;}
-.s-t{font-size:8px;color:#4a5b6d;line-height:1.6;}
-.s-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;}
-.s-tile{
-  background:#fff;border:1px solid #e4ebf3;border-radius:10px;
-  padding:8px 3px;text-align:center;font-size:7.5px;font-weight:700;color:var(--navy);
+.p-box{border-radius:9px;padding:6px 8px;border-right:3px solid var(--navy-3);background:#edf4fc;}
+.p-box.gold{border-color:var(--gold);background:#fef9ef;}
+.p-box.orange{border-color:var(--orange);background:#fff4e6;}
+.p-box h5{font-size:6.8px;font-weight:800;color:var(--navy);margin-bottom:1px;}
+.p-box p{font-size:6.2px;color:var(--muted);line-height:1.65;}
+.p-card{
+    background:#fff;border:1px solid var(--line);border-radius:9px;
+    padding:7px 9px;box-shadow:0 2px 6px rgba(11,43,68,.04);
 }
-.s-tile b{display:block;font-size:14px;margin-bottom:3px;}
-.s-row{
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:7.5px;color:#334155;font-weight:600;margin-bottom:2px;
+.p-card h5{font-size:7px;font-weight:800;color:var(--navy);margin-bottom:3px;}
+.p-card ul{list-style:none;}
+.p-card li{font-size:6.2px;color:var(--muted);padding-right:9px;position:relative;line-height:1.7;}
+.p-card li::before{content:"◆";position:absolute;right:0;top:0;color:var(--gold-d);font-size:5px;}
+.p-qa{
+    background:#f8f9fa;border-radius:9px;padding:6px 8px;
+    border-right:3px solid var(--navy-3);
 }
-.s-bar{height:6px;background:#e6ecf3;border-radius:20px;overflow:hidden;}
-.s-bar > i{display:block;height:100%;border-radius:20px;background:linear-gradient(90deg,var(--navy-2),var(--gold));}
-.s-chip{
-  display:inline-block;font-size:7px;font-weight:700;
-  padding:2px 7px;border-radius:20px;background:#eef3f9;color:var(--navy-2);
-  border:1px solid #dbe6f0;
+.p-qa .q{font-size:6.4px;font-weight:700;color:var(--navy);margin-bottom:3px;}
+.p-qa .a{font-size:6px;color:#1e7e34;background:#e8f5e9;padding:4px 6px;border-radius:6px;line-height:1.65;}
+.p-unit{
+    background:#f8f9fa;border-radius:8px;padding:6px 8px;
+    border-right:3px solid var(--navy-3);
 }
-.s-chip.gold{background:var(--gold-3);color:#8a6d1a;border-color:#f0dfa8;}
-.s-chip.green{background:#e7f6ea;color:var(--green);border-color:#c6e6cd;}
-.s-chip.red{background:#fdeaea;color:var(--red);border-color:#f5c9c9;}
-.s-btn{
-  display:block;text-align:center;background:linear-gradient(145deg,var(--gold-2),var(--gold));
-  color:#3b2d05;font-size:9px;font-weight:800;padding:7px;border-radius:20px;
+.p-unit h6{font-size:6.5px;font-weight:800;color:var(--navy);margin-bottom:3px;}
+.p-unit p{font-size:6px;color:var(--muted);line-height:1.65;}
+.p-maps{display:grid;grid-template-columns:repeat(2,1fr);gap:5px;}
+.p-map{border-radius:9px;overflow:hidden;border:1px solid var(--line);background:#fff;}
+.p-map .thumb{
+    height:34px;
+    background:
+        radial-gradient(circle at 25% 30%, rgba(245,197,66,.55), transparent 55%),
+        radial-gradient(circle at 75% 70%, rgba(26,75,109,.55), transparent 55%),
+        linear-gradient(135deg,#dbe7f5,#eef4fb);
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:800;color:var(--navy);
 }
-.s-q{font-size:8.5px;font-weight:700;color:var(--navy);line-height:1.6;margin-bottom:4px;}
-.s-opt{
-  font-size:7.5px;padding:5px 8px;border-radius:8px;background:#f5f8fb;
-  border:1px solid #e4ebf3;margin-bottom:3px;color:#334155;
+.p-map .lbl{
+    font-size:5.6px;text-align:center;padding:3px 2px;
+    background:#f7faff;border-top:1px solid var(--line);
+    color:var(--navy-2);font-weight:700;
 }
-.s-opt.on{background:var(--gold-3);border-color:var(--gold);font-weight:700;color:#7a6118;}
+.p-tree{display:flex;flex-direction:column;gap:4px;}
+.p-node{background:#f1f4f8;border-radius:8px;padding:5px 8px;font-size:6.6px;font-weight:800;color:var(--navy);}
+.p-node .kids{margin-top:4px;padding-right:10px;display:flex;flex-direction:column;gap:3px;}
+.p-node .kid{
+    background:#fff;border-right:2px solid #b3c9e0;border-radius:6px;
+    padding:3px 6px;font-size:6px;font-weight:600;color:var(--navy-2);
+}
+.p-node .det{font-size:5.6px;font-weight:400;color:var(--muted);padding-right:6px;margin-top:1px;}
+.p-filters{display:flex;gap:4px;}
+.p-filters div{
+    flex:1;background:#fff;border:1px solid var(--line);border-radius:20px;
+    padding:4px 7px;font-size:5.8px;color:var(--soft);
+}
+.p-qitem{
+    background:#f9fbfe;border-right:3px solid var(--navy-3);
+    border-radius:8px;padding:6px 8px;
+}
+.p-qitem .q{font-size:6.4px;font-weight:700;color:var(--navy);}
+.p-qitem .a{font-size:5.9px;color:var(--navy-3);margin-top:2px;padding-right:8px;}
+.p-qitem .u{font-size:5.2px;color:var(--soft);margin-top:2px;}
+.p-flip{background:#fff;border:1px solid var(--line);border-radius:9px;padding:6px 8px;}
+.p-flip .f{font-size:6.3px;font-weight:700;color:var(--navy);}
+.p-flip .b{
+    font-size:5.8px;color:#2e7d32;margin-top:3px;padding-top:3px;
+    border-top:1px dashed var(--line);
+}
+.p-exam{background:#f8f9fa;border:1px solid var(--line);border-radius:9px;padding:6px 8px;border-right:3px solid var(--navy-3);}
+.p-exam h5{font-size:6.8px;font-weight:800;color:var(--navy);margin-bottom:3px;}
+.p-exam ul{list-style:none;}
+.p-exam li{font-size:5.9px;color:var(--muted);padding-right:9px;position:relative;line-height:1.65;}
+.p-exam li::before{content:"؟";position:absolute;right:0;top:0;color:var(--gold-d);font-size:6px;font-weight:800;}
+.p-video{
+    background:#f8f9fa;border:1px solid var(--line);border-radius:10px;
+    padding:6px 8px;border-right:3px solid var(--navy-3);
+    display:flex;align-items:center;gap:6px;
+}
+.p-video .ico{font-size:12px;}
+.p-video .t{font-size:6.2px;color:var(--navy-3);font-weight:700;}
 
-/* ===================== NOTES ===================== */
-.notes{display:flex;flex-direction:column;gap:9px;}
-.note{
-  background:#f8fafd;border:1px solid var(--line);
-  border-right:4px solid var(--navy-2);
-  border-radius:12px;padding:9px 11px;
-  font-size:11px;line-height:1.75;color:#243b53;
+.notes-title{font-size:12px;font-weight:800;color:var(--navy);display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+.notes-list{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.notes-list li{display:flex;gap:8px;align-items:flex-start;}
+.notes-list .n{
+    flex:0 0 auto;width:19px;height:19px;border-radius:50%;
+    background:var(--gold);color:var(--navy);font-size:10px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;margin-top:2px;
+    box-shadow:0 2px 6px rgba(245,197,66,.45);
 }
-.note b{color:var(--navy);}
-.n-badge{
-  display:inline-flex;width:18px;height:18px;border-radius:6px;
-  background:var(--gold-3);color:#8a6d1a;font-size:10px;font-weight:800;
-  align-items:center;justify-content:center;margin-inline-end:6px;
-  vertical-align:middle;
+.notes-list .txt b{display:block;font-size:11.5px;color:var(--navy);font-weight:800;margin-bottom:1px;}
+.notes-list .txt p{font-size:10px;color:var(--muted);line-height:1.65;}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px;}
+.chip{
+    background:#eaf0f8;color:var(--navy-2);border-radius:20px;padding:3px 10px;
+    font-size:9.5px;font-weight:700;border:1px solid #d7e3f1;
 }
-.insight{
-  margin-top:auto;background:linear-gradient(145deg,#0b2b44,#1a4b6d);
-  color:#fff;border-radius:14px;padding:11px 13px;font-size:10.5px;line-height:1.8;
+.chip.gold{background:#fef4d8;border-color:#f0dda1;color:#8a6a06;}
+.quote{
+    margin-top:10px;
+    background:linear-gradient(135deg,#0b2b44,#1a4b6d);
+    color:#fff;border-radius:12px;padding:11px 13px;font-size:10px;line-height:1.8;
+    position:relative;overflow:hidden;
 }
-.insight b{color:var(--gold-2);}
-.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
-.tag{
-  display:inline-block;font-size:9px;font-weight:700;
-  padding:2px 9px;border-radius:20px;
-  background:#eef3f9;color:var(--navy-2);border:1px solid #dbe6f0;
+.quote::before{
+    content:"❝";position:absolute;top:-6px;left:10px;
+    font-size:34px;color:rgba(245,197,66,.28);
 }
-.tag.gold{background:var(--gold-3);color:#8a6d1a;border-color:#f0dfa8;}
-.tag.green{background:#e7f6ea;color:var(--green);border-color:#c6e6cd;}
-.tag.red{background:#fdeaea;color:var(--red);border-color:#f5c9c9;}
-
-/* ===================== FOOTER ===================== */
-.p-foot{
-  flex:0 0 auto;margin-top:9px;padding-top:7px;
-  border-top:1px solid var(--line);
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:9px;color:var(--muted);font-weight:600;
-}
-.p-foot .dot{color:var(--gold);font-weight:800;}
-
-/* ===================== COVER ===================== */
+.quote b{color:var(--gold);}
 .cover{
-  background:radial-gradient(1100px 620px at 82% -12%, #1a4b6d 0%, #0b2b44 46%, #06192a 100%);
-  color:#fff;
-  padding:18mm 14mm;
-  justify-content:space-between;
-  position:relative;
+    padding:0;
+    background:
+        radial-gradient(circle at 85% 12%, rgba(245,197,66,.20), transparent 42%),
+        radial-gradient(circle at 12% 88%, rgba(245,197,66,.14), transparent 40%),
+        linear-gradient(160deg,#08203a 0%, #0b2b44 45%, #1a4b6d 100%);
+    color:#fff;justify-content:center;align-items:center;text-align:center;
 }
-.cover::before{
-  content:'';position:absolute;top:-140px;left:-120px;
-  width:420px;height:420px;border-radius:50%;
-  background:radial-gradient(circle, rgba(201,162,39,.22), transparent 68%);
+.cover-inner{
+    padding:22mm 18mm;display:flex;flex-direction:column;align-items:center;
+    gap:5mm;width:100%;
 }
-.cover::after{
-  content:'';position:absolute;bottom:-180px;right:-100px;
-  width:480px;height:480px;border-radius:50%;
-  background:radial-gradient(circle, rgba(26,75,109,.55), transparent 70%);
+.cover-badge{
+    background:rgba(245,197,66,.14);border:1px solid rgba(245,197,66,.55);
+    color:var(--gold);border-radius:40px;padding:6px 20px;
+    font-size:12px;font-weight:800;letter-spacing:.6px;
 }
-.cov-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2;}
-.cov-brand{font-size:15px;font-weight:800;letter-spacing:.3px;}
-.cov-brand small{display:block;font-size:9px;font-weight:400;opacity:.7;margin-top:3px;letter-spacing:1px;}
-.cov-badge{
-  font-size:10px;font-weight:800;color:var(--gold-2);
-  border:1px solid rgba(240,200,90,.55);background:rgba(240,200,90,.08);
-  padding:6px 14px;border-radius:30px;white-space:nowrap;
+.cover-icon{font-size:64px;filter:drop-shadow(0 10px 24px rgba(0,0,0,.35));line-height:1;}
+.cover h1{font-size:44px;font-weight:900;letter-spacing:-.5px;line-height:1.25;color:#fff;}
+.cover h1 span{color:var(--gold);}
+.cover h2{font-size:19px;font-weight:600;color:#cfe0f0;max-width:150mm;line-height:1.7;}
+.cover-sub{font-size:12.5px;color:#9fbbd4;max-width:140mm;line-height:1.9;}
+.cover-line{
+    width:70mm;height:3px;border-radius:4px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    margin:2mm 0;
 }
-.cov-mid{position:relative;z-index:2;text-align:center;margin:auto 0;}
-.cov-kicker{
-  display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:3px;
-  color:var(--gold-2);border-bottom:1px solid rgba(240,200,90,.45);
-  padding-bottom:6px;margin-bottom:20px;
+.cover-meta{display:flex;flex-direction:column;gap:5px;font-size:13px;color:#e3edf7;font-weight:600;}
+.cover-meta .ed{font-size:16px;font-weight:800;color:var(--gold);letter-spacing:.5px;}
+.cover-meta .author{font-size:12px;color:#cfe0f0;}
+.cover-foot{
+    position:absolute;bottom:14mm;left:0;right:0;
+    font-size:10.5px;color:#7f9cb6;letter-spacing:.4px;
 }
-.cov-title{
-  font-size:44px;font-weight:800;line-height:1.28;
-  color:#fff;letter-spacing:-.5px;
+.toc-hero{
+    background:linear-gradient(135deg,#0b2b44,#1a4b6d);
+    color:#fff;border-radius:16px;padding:16px 20px;margin-bottom:9mm;
+    display:flex;align-items:center;gap:14px;
 }
-.cov-title em{font-style:normal;color:var(--gold-2);}
-.cov-sub{
-  font-size:14px;color:#b9cfe2;margin-top:14px;font-weight:500;line-height:1.9;
+.toc-hero .ic{font-size:30px;}
+.toc-hero h2{font-size:19px;font-weight:800;}
+.toc-hero p{font-size:11px;color:#a9c4dc;}
+.toc-list{display:flex;flex-direction:column;gap:6px;}
+.toc-row{
+    display:flex;align-items:center;gap:10px;
+    background:#f7faff;border:1px solid var(--line);
+    border-radius:12px;padding:9px 13px;
 }
-.cov-line{
-  width:110px;height:3px;border-radius:20px;margin:22px auto;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+.toc-row .ic{font-size:16px;width:22px;text-align:center;}
+.toc-row .nm{flex:1;font-size:12px;font-weight:700;color:var(--navy);}
+.toc-row .pg{
+    background:var(--navy);color:#fff;font-size:10px;font-weight:800;
+    border-radius:20px;padding:2px 11px;font-family:monospace;
 }
-.cov-stats{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:11px;
-  position:relative;z-index:2;
-}
-.cov-stat{
-  background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:16px;padding:15px 8px;text-align:center;
-  backdrop-filter:blur(6px);
-}
-.cov-stat b{display:block;font-size:26px;font-weight:800;color:var(--gold-2);line-height:1.1;}
-.cov-stat span{font-size:10px;color:#b9cfe2;font-weight:600;display:block;margin-top:5px;}
-.cov-bottom{
-  position:relative;z-index:2;text-align:center;
-  border-top:1px solid rgba(255,255,255,.13);padding-top:16px;
-}
-.cov-bottom p{font-size:11.5px;color:#b9cfe2;line-height:2;}
-.cov-bottom strong{color:#fff;font-weight:700;}
-
-/* ===================== TOC ===================== */
-.toc{display:flex;flex-direction:column;gap:8px;flex:1;}
-.toc-item{
-  display:flex;align-items:center;gap:13px;
-  background:#f8fafd;border:1px solid var(--line);
-  border-radius:14px;padding:11px 14px;
-  border-right:4px solid var(--navy-2);
-}
-.toc-item .t-n{
-  width:32px;height:32px;flex:0 0 auto;border-radius:10px;
-  background:linear-gradient(145deg,var(--navy),var(--navy-2));
-  color:var(--gold-2);display:flex;align-items:center;justify-content:center;
-  font-weight:800;font-size:12px;
-}
-.toc-item .t-b{flex:1;}
-.toc-item .t-b b{display:block;font-size:13px;color:var(--navy);font-weight:800;}
-.toc-item .t-b span{font-size:10px;color:var(--muted);}
-.toc-item .t-p{
-  font-size:11px;font-weight:800;color:var(--gold);
-  border:1px solid var(--gold);border-radius:20px;padding:3px 11px;
-  background:var(--gold-3);white-space:nowrap;
-}
+.toc-row:nth-child(even){background:#fdfbf4;border-color:#f0e6c8;}
+.toc-row:nth-child(even) .pg{background:var(--gold-d);}
 .toc-note{
-  margin-top:auto;background:var(--gold-3);border:1px solid #f0dfa8;
-  border-radius:14px;padding:11px 14px;font-size:10.5px;color:#7a6118;line-height:1.8;
+    margin-top:8mm;background:#eaf0f8;border-radius:14px;
+    padding:13px 16px;font-size:10.5px;color:var(--navy-2);line-height:1.9;
+    border-right:5px solid var(--navy-3);
 }
-
-/* ===================== CTA PAGE ===================== */
-.cta-page{
-  background:radial-gradient(1000px 600px at 20% -10%, #1a4b6d 0%, #0b2b44 48%, #06192a 100%);
-  color:#fff;align-items:center;justify-content:center;text-align:center;
-  position:relative;
+.cta{
+    justify-content:center;align-items:center;text-align:center;
+    background:
+        radial-gradient(circle at 20% 15%, rgba(245,197,66,.18), transparent 45%),
+        radial-gradient(circle at 80% 85%, rgba(245,197,66,.12), transparent 45%),
+        linear-gradient(160deg,#0b2b44,#123a5c 60%,#1a4b6d);
+    color:#fff;
 }
-.cta-page::before{
-  content:'';position:absolute;top:-120px;right:-120px;
-  width:400px;height:400px;border-radius:50%;
-  background:radial-gradient(circle, rgba(201,162,39,.20), transparent 70%);
+.cta-inner{
+    display:flex;flex-direction:column;align-items:center;gap:6mm;
+    padding:16mm 16mm;width:100%;
 }
-.cta-box{position:relative;z-index:2;max-width:150mm;}
-.cta-emoji{font-size:58px;line-height:1;margin-bottom:16px;}
-.cta-box h2{font-size:38px;font-weight:800;color:#fff;line-height:1.4;}
-.cta-box h2 em{font-style:normal;color:var(--gold-2);}
-.cta-box p{font-size:13.5px;color:#b9cfe2;margin-top:16px;line-height:2;}
-.cta-link{
-  display:inline-block;margin-top:26px;
-  background:linear-gradient(145deg,var(--gold-2),var(--gold));
-  color:#3b2d05;font-weight:800;font-size:14px;
-  padding:14px 34px;border-radius:40px;
-  text-decoration:none;
-  box-shadow:0 12px 30px rgba(201,162,39,.35);
+.cta .big{font-size:38px;font-weight:900;line-height:1.35;}
+.cta .big span{color:var(--gold);}
+.cta .sub{font-size:13.5px;color:#b9cfe3;max-width:135mm;line-height:2;}
+.cta .pillars{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:2mm;}
+.cta .pillar{
+    background:rgba(255,255,255,.08);border-radius:14px;padding:10px 16px;
+    font-size:11px;font-weight:700;color:#dbe8f5;min-width:44mm;
 }
-.cta-url{
-  margin-top:14px;font-size:11px;color:#8fa9c0;
-  direction:ltr;letter-spacing:.5px;font-family:monospace;
+.cta .pillar span{display:block;font-size:19px;margin-bottom:3px;}
+.cta .copyright{
+    position:absolute;bottom:14mm;left:0;right:0;
+    font-size:11px;color:#8aa6c0;
 }
-.cta-stats{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
-  margin-top:34px;
+.cta .divider{
+    width:60mm;height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
 }
-.cta-stats div{
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
-  border-radius:14px;padding:12px 6px;
-}
-.cta-stats b{display:block;font-size:20px;color:var(--gold-2);font-weight:800;}
-.cta-stats span{font-size:10px;color:#b9cfe2;}
-.cta-foot{
-  margin-top:38px;padding-top:16px;
-  border-top:1px solid rgba(255,255,255,.13);
-  font-size:11px;color:#8fa9c0;
-}
-.cta-foot b{color:var(--gold-2);}
-
-/* ===================== PRINT ===================== */
 @page{size:A4;margin:0;}
 @media print{
-  body{background:#fff;padding:0;}
-  .page{margin:0;box-shadow:none;width:210mm;height:297mm;}
+    body{background:#fff;padding:0;}
+    .page{margin:0;box-shadow:none;border-radius:0;break-after:page;page-break-after:always;}
+    .page:last-of-type{break-after:auto;page-break-after:auto;}
 }
 </style>
 </head>
 <body>
 
 <!-- ============================================================
-     صفحة الغلاف
-============================================================ -->
+     PAGE 1 — COVER
+     ============================================================ -->
 <section class="page cover">
-  <div class="cov-top">
-    <div class="cov-brand">
-      🛡️ هيرو أكاديمي
-      <small>HERO ACADEMIC</small>
+    <div class="cover-inner">
+        <div class="cover-badge">هيرو أكاديمي · Hero Academic</div>
+        <div class="cover-icon">⚖️</div>
+        <h1>مذكرة <span>النجاح</span></h1>
+        <h2>القانون الجنائي السوداني 1991 · النظرية العامة</h2>
+        <p class="cover-sub">
+            مساق قانوني أكاديمي متكامل لطلاب القانون وطلاب المعادلة — دراسة تحليلية لنظرية الجريمة
+            والمسؤولية الجنائية وأسباب الإباحة والاشتراك، مع بنك أسئلة من 200 سؤال.
+        </p>
+        <div class="cover-line"></div>
+        <div class="cover-meta">
+            <span class="ed">إصدار كتالوج مرئي 2026-2027</span>
+            <span class="author">✍️ إعداد الأستاذ / إبراهيم الدسوقي</span>
+        </div>
     </div>
-    <div class="cov-badge">🏅 إصدار كتالوج مرئي 2026-2027</div>
-  </div>
-
-  <div class="cov-mid">
-    <div class="cov-kicker">كتالوج التطبيق التعليمي</div>
-    <h1 class="cov-title">مذكرة النجاح<br><em>في القانون الجنائي</em></h1>
-    <p class="cov-sub">
-      القانون الجنائي السوداني لعام 1991 · النظرية العامة<br>
-      مساق قانوني أكاديمي متكامل لطلاب القانون وطلاب المعادلة
-    </p>
-    <div class="cov-line"></div>
-
-    <div class="cov-stats">
-      <div class="cov-stat"><b>200</b><span>سؤال في البنك</span></div>
-      <div class="cov-stat"><b>24</b><span>جرعة تعلمية</span></div>
-      <div class="cov-stat"><b>5</b><span>وحدات علمية</span></div>
-      <div class="cov-stat"><b>11</b><span>قسماً تفاعلياً</span></div>
+    <div class="cover-foot">
+        كتالوج الشاشات · تطبيق تعليمي تفاعلي · نسخة العرض المرئي
     </div>
-  </div>
-
-  <div class="cov-bottom">
-    <p>
-      <strong>إعداد:</strong> هيرو أكاديمي &nbsp;·&nbsp; <strong>المحتوى العلمي:</strong> الأستاذ / إبراهيم الدسوقي
-    </p>
-    <p style="font-size:10px;opacity:.7;">نسخة الكتالوج المرئي — للعرض والطباعة</p>
-  </div>
 </section>
 
-
 <!-- ============================================================
-     صفحة الفهرس
-============================================================ -->
+     PAGE 2 — TOC
+     ============================================================ -->
 <section class="page">
-  <div class="p-head">
-    <div class="p-num">📑</div>
-    <div class="p-title">الفهرس<span>عشرة أقسام رئيسية + صفحة التواصل</span></div>
-    <div class="p-brand">هيرو أكاديمي</div>
-  </div>
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title">فهرس المحتويات</div>
+    </div>
 
-  <div class="toc">
-    <div class="toc-item">
-      <div class="t-n">01</div>
-      <div class="t-b"><b>الرئيسية</b><span>الشاشة الترحيبية ونقطة الانطلاق</span></div>
-      <div class="t-p">ص 01</div>
+    <div class="toc-hero">
+        <div class="ic">🗂️</div>
+        <div>
+            <h2>محتويات الكتالوج</h2>
+            <p>إحدى عشرة شاشة من تطبيق «مذكرة النجاح – القانون الجنائي» موثّقة بالشرح البصري</p>
+        </div>
     </div>
-    <div class="toc-item">
-      <div class="t-n">02</div>
-      <div class="t-b"><b>لوحة التقدم</b><span>مؤشرات الأداء وأشرطة الإنجاز</span></div>
-      <div class="t-p">ص 02</div>
-    </div>
-    <div class="toc-item">
-      <div class="t-n">03</div>
-      <div class="t-b"><b>الاختبار التشخيصي</b><span>قياس المستوى قبل البدء</span></div>
-      <div class="t-p">ص 03</div>
-    </div>
-    <div class="toc-item">
-      <div class="t-n">04</div>
-      <div class="t-b"><b>تقرير المستوى</b><span>نقاط القوة والضعف بالتفصيل</span></div>
-      <div class="t-p">ص 04</div>
-    </div>
-    <div class="toc-item">
-      <div class="t-n">05</div>
-      <div class="t-b"><b>الجرعات التعليمية</b><span>وحدات تعلم قصيرة ومكثفة</span></div>
-      <div class="t-p">ص 05</div>
-    </div>
-    <div class="toc-item">
-      <div class="t-n">06</div>
-      <div class="t-b"><b>بنك الأسئلة</b><span>200 سؤال مع بحث وتصفية</span></div>
-      <div class="t-p">ص 06</div>
-    </div>
-    <div class="toc-item">
-      <div class="t-n">07</div>
-      <div class="t-b"><b>تحليل الأخطاء</b><span>تشخيص دقيق لأسباب الخلل</span></div>
-      <div class="t-p">ص 07</div>
-    </div>
-    <div class="toc-item">
-      <div class="t-n">08</div>
-      <div class="t-b"><b>المحاكاة</b><span>امتحان تجريبي بتصحيح فوري</span></div>
-      <div class="t-p">ص 08</div>
-    </div>
-    <div class="toc-item">
-      <div class="t-n">09</div>
-      <div class="t-b"><b>الموارد</b><span>فيديو · خرائط ذهنية · نماذج</span></div>
-      <div class="t-p">ص 09</div>
-    </div>
-    <div class="toc-item">
-      <div class="t-n">10</div>
-      <div class="t-b"><b>خطة العلاج</b><span>برنامج 7 أيام لسد الفجوات</span></div>
-      <div class="t-p">ص 10</div>
-    </div>
-  </div>
 
-  <div class="toc-note">
-    💡 <b>ملاحظة:</b> كل صفحة في هذا الكتالوج تعرض لقطة مبسّطة من شاشة التطبيق داخل إطار هاتف،
-    مع تعليقات جانبية توضح وظيفة العناصر، ومؤشرات أداء (KPI) تُظهر أثر الشاشة على رحلة المتعلم.
-  </div>
+    <div class="toc-list">
+        <div class="toc-row"><span class="ic">🏠</span><span class="nm">الشاشة الرئيسية وشبكة الأقسام</span><span class="pg">03</span></div>
+        <div class="toc-row"><span class="ic">📖</span><span class="nm">الشرح التفصيلي (5 وحدات)</span><span class="pg">04</span></div>
+        <div class="toc-row"><span class="ic">📝</span><span class="nm">الملخصات التنظيمية</span><span class="pg">05</span></div>
+        <div class="toc-row"><span class="ic">❓</span><span class="nm">أسئلة التقويم الذاتي مع الإجابات</span><span class="pg">06</span></div>
+        <div class="toc-row"><span class="ic">🗺️</span><span class="nm">الخرائط الذهنية (8 خرائط)</span><span class="pg">07</span></div>
+        <div class="toc-row"><span class="ic">📌</span><span class="nm">الأمثلة والسوابق القضائية</span><span class="pg">08</span></div>
+        <div class="toc-row"><span class="ic">📋</span><span class="nm">الامتحانات والاختبارات</span><span class="pg">09</span></div>
+        <div class="toc-row"><span class="ic">📚</span><span class="nm">بنك الأسئلة الشامل (200 سؤال)</span><span class="pg">10</span></div>
+        <div class="toc-row"><span class="ic">🔄</span><span class="nm">المراجعات وبطاقات المراجعة</span><span class="pg">11</span></div>
+        <div class="toc-row"><span class="ic">🌳</span><span class="nm">شجرة المعرفة</span><span class="pg">12</span></div>
+        <div class="toc-row"><span class="ic">🎥</span><span class="nm">الفيديوهات التعليمية</span><span class="pg">13</span></div>
+        <div class="toc-row"><span class="ic">✨</span><span class="nm">دعوة للتواصل مع هيرو أكاديمي</span><span class="pg">14</span></div>
+    </div>
+
+    <div class="toc-note">
+        📌 <b>ملاحظة:</b> جميع الشاشات معروضة بإطار هاتف مبسّط، ومرفقة بتعليقات جانبية
+        توضّح العناصر البصرية ووظيفة كل جزء داخل التطبيق. المحتوى مستخلص من قانون
+        العقوبات السوداني 1991م وتطبيقاته القضائية.
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · القانون الجنائي السوداني 1991</span>
+        <span class="pnum">02</span>
+    </div>
 </section>
 
-
 <!-- ============================================================
-     صفحة 01 — الرئيسية
-============================================================ -->
+     PAGE 3 — HOME SCREEN
+     ============================================================ -->
 <section class="page">
-  <div class="p-head">
-    <div class="p-num">01</div>
-    <div class="p-title">الرئيسية<span>الشاشة الترحيبية ونقطة الانطلاق</span></div>
-    <div class="p-brand">هيرو أكاديمي</div>
-  </div>
-
-  <div class="kpis">
-    <div class="kpi"><div class="k-val">11</div><div class="k-lab">قسماً تفاعلياً</div></div>
-    <div class="kpi"><div class="k-val">10</div><div class="k-lab">اختصارات سريعة</div></div>
-    <div class="kpi"><div class="k-val">68%</div><div class="k-lab">متوسط الإنجاز</div></div>
-    <div class="kpi"><div class="k-val">RTL</div><div class="k-lab">واجهة عربية كاملة</div></div>
-  </div>
-
-  <div class="p-grid">
-    <!-- الهاتف -->
-    <div class="phone">
-      <div class="screen">
-        <div class="s-status"><span>9:41</span><span>◗◗ ◗ ▮</span></div>
-        <div class="s-app">
-          <div>📘 مذكرة النجاح<small>القانون الجنائي السوداني 1991</small></div>
-          <div class="s-ico">🔍</div>
-        </div>
-        <div class="s-nav">
-          <span class="on">🏠 الرئيسية</span>
-          <span>📖 شرح</span>
-          <span>📝 ملخصات</span>
-          <span>❓ أسئلة</span>
-        </div>
-        <div class="s-body">
-          <div class="s-card navy">
-            <div style="font-size:9.5px;font-weight:800;">أهلاً بك 👋</div>
-            <div style="font-size:7.5px;opacity:.85;margin-top:3px;line-height:1.6;">
-              مساق القانون الجنائي السوداني · النظرية العامة
-            </div>
-            <div class="s-bar" style="margin-top:6px;background:rgba(255,255,255,.2);">
-              <i style="width:68%;"></i>
-            </div>
-          </div>
-
-          <div class="s-grid">
-            <div class="s-tile"><b>📖</b>شرح</div>
-            <div class="s-tile"><b>📝</b>ملخصات</div>
-            <div class="s-tile"><b>❓</b>أسئلة</div>
-            <div class="s-tile"><b>🗺️</b>خرائط</div>
-            <div class="s-tile"><b>📚</b>بنك</div>
-            <div class="s-tile"><b>📋</b>امتحانات</div>
-          </div>
-
-          <div class="s-card">
-            <div class="s-h">🎯 الفئة المستهدفة</div>
-            <div class="s-t">طلاب القانون · المحامون · القضاة · الباحثون</div>
-          </div>
-
-          <div class="s-card gold">
-            <div style="font-size:7.5px;font-weight:700;">⚠️ تنبيه مهم — التواصل عبر واتساب</div>
-          </div>
-        </div>
-      </div>
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">01</span> الشاشة الرئيسية</div>
     </div>
 
-    <!-- التعليقات -->
-    <div class="notes">
-      <div class="note"><span class="n-badge">1</span><b>شريط علوي ثابت (Sticky):</b> يحمل اسم المذكرة واسم المعد، مع زر العودة للرئيسية وزر البحث الفوري في كل لحظة.</div>
-      <div class="note"><span class="n-badge">2</span><b>تبويبات تنقل أفقية:</b> أحد عشر تبويباً قابلاً للتمرير، تصل بضغطة واحدة إلى أي قسم دون فقدان الموضع.</div>
-      <div class="note"><span class="n-badge">3</span><b>شبكة اختصارات بصرية:</b> عشر بطاقات بأيقونات كبيرة، مصممة لأصابع المستخدم على الجوال أولاً (Mobile-First).</div>
-      <div class="note"><span class="n-badge">4</span><b>بطاقة المخرجات التعليمية:</b> توضح الفئة المستهدفة والمستوى والمتطلبات المسبقة قبل الشروع في الدراسة.</div>
-      <div class="insight">
-        <b>الأثر المتوقع:</b> تقليل زمن الوصول للمحتوى إلى أقل من ثانيتين، ورفع معدل العودة اليومي عبر نقطة انطلاق واضحة.
-      </div>
-    </div>
-  </div>
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح في القانون الجنائي <small>📝 إعداد الأستاذ / إبراهيم الدسوقي</small></div>
+                        <div class="p-actions">
+                            <b class="gold">🏠 الرئيسية</b>
+                            <b class="orange">🔍 بحث</b>
+                        </div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-h1">📘 مذكرة النجاح</div>
+                        <div class="p-sub">القانون الجنائي السوداني 1991 · النظرية العامة</div>
+                        <div class="p-sub">مساق قانوني أكاديمي متكامل لطلاب القانون وطلاب المعادلة.</div>
 
-  <div class="p-foot">
-    <span><span class="dot">●</span> القسم 01 من 10 — الرئيسية</span>
-    <span>كتالوج مرئي 2026-2027 · هيرو أكاديمي</span>
-  </div>
+                        <div class="p-grid">
+                            <div class="p-tile"><span>📖</span>شرح<i>5</i></div>
+                            <div class="p-tile"><span>📝</span>ملخصات<i>5</i></div>
+                            <div class="p-tile"><span>❓</span>أسئلة<i>10+</i></div>
+                            <div class="p-tile"><span>🗺️</span>خرائط<i>8</i></div>
+                            <div class="p-tile"><span>📌</span>أمثلة<i>5</i></div>
+                            <div class="p-tile"><span>📋</span>امتحانات<i>4</i></div>
+                            <div class="p-tile"><span>📚</span>بنك الأسئلة<i>200</i></div>
+                            <div class="p-tile"><span>🔄</span>مراجعات<i>50+</i></div>
+                            <div class="p-tile"><span>🌳</span>شجرة</div>
+                            <div class="p-tile"><span>🎥</span>فيديوهات<i>3</i></div>
+                        </div>
+
+                        <div class="p-note">
+                            <b>🎯 الفئة المستهدفة</b>
+                            طلاب القانون · المحامون · القضاة · الباحثون الأكاديميون
+                        </div>
+
+                        <div class="p-warn">
+                            ⚠️ <b>تنبيه:</b> إذا وصلك التطبيق دون شراء، تواصل معنا لتسوية المستحقات.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">شاشة البداية — شبكة الأقسام العشرة</div>
+        </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>شريط علوي متدرّج كحلي</b>
+                        <p>يعرض اسم السلسلة واسم المقرر، مع اسم معدّ المذكرة في سطر فرعي، وزرّي الرئيسية والبحث.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>عنوان المقرر بشريط ذهبي</b>
+                        <p>الحد الأيمن الذهبي يعمل كعلامة بصرية (Accent) تفصل العنوان عن باقي المحتوى.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>شبكة الأقسام العشرة</b>
+                        <p>ثلاثة أعمدة على الجوال، كل بطاقة تحمل أيقونة إيموجي وعدّاد محتوى ذهبي.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>بطاقة الفئة المستهدفة</b>
+                        <p>تُلخّص الجمهور الأكاديمي والمهني المستهدف في سطر واحد.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">5</span>
+                    <div class="txt">
+                        <b>تنبيه حقوق الاستخدام</b>
+                        <p>صندوق أصفر بحدّ أيمن ذهبي، يوضّح حقوق الشراء وبيانات التواصل وواتساب والبريد.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">10 أقسام</span>
+                <span class="chip">5 وحدات</span>
+                <span class="chip gold">200 سؤال</span>
+                <span class="chip">8 خرائط</span>
+            </div>
+
+            <div class="quote">
+                الشاشة الرئيسية تعمل كـ<b>لوحة قيادة</b> — كل قسم مرئي من النظرة الأولى دون قوائم منسدلة.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · القانون الجنائي السوداني 1991</span>
+        <span class="pnum">03</span>
+    </div>
 </section>
 
-
 <!-- ============================================================
-     صفحة 02 — لوحة التقدم
-============================================================ -->
+     PAGE 4 — EXPLAIN
+     ============================================================ -->
 <section class="page">
-  <div class="p-head">
-    <div class="p-num">02</div>
-    <div class="p-title">لوحة التقدم<span>مؤشرات الأداء وأشرطة الإنجاز</span></div>
-    <div class="p-brand">هيرو أكاديمي</div>
-  </div>
-
-  <div class="kpis">
-    <div class="kpi"><div class="k-val">16/24</div><div class="k-lab">جرعات مكتملة</div></div>
-    <div class="kpi"><div class="k-val">74%</div><div class="k-lab">دقة الإجابات</div></div>
-    <div class="kpi"><div class="k-val">6 أيام</div><div class="k-lab">سلسلة الاستمرار</div></div>
-    <div class="kpi"><div class="k-val">68%</div><div class="k-lab">الإنجاز الكلي</div></div>
-  </div>
-
-  <div class="p-grid">
-    <div class="phone">
-      <div class="screen">
-        <div class="s-status"><span>9:41</span><span>◗◗ ◗ ▮</span></div>
-        <div class="s-app">
-          <div>📊 لوحة التقدم<small>متابعة يومية</small></div>
-          <div class="s-ico">⚙️</div>
-        </div>
-        <div class="s-body">
-          <div class="s-grid" style="grid-template-columns:repeat(3,1fr);">
-            <div class="s-tile"><b>16</b>جرعة</div>
-            <div class="s-tile"><b>74%</b>دقة</div>
-            <div class="s-tile"><b>6</b>أيام</div>
-          </div>
-
-          <div class="s-card">
-            <div class="s-h">التقدم حسب الوحدة</div>
-
-            <div class="s-row"><span>الوحدة 1 · المبادئ التمهيدية</span><span>100%</span></div>
-            <div class="s-bar"><i style="width:100%"></i></div>
-
-            <div class="s-row" style="margin-top:5px;"><span>الوحدة 2 · نظرية الجريمة</span><span>80%</span></div>
-            <div class="s-bar"><i style="width:80%"></i></div>
-
-            <div class="s-row" style="margin-top:5px;"><span>الوحدة 3 · المسؤولية</span><span>55%</span></div>
-            <div class="s-bar"><i style="width:55%"></i></div>
-
-            <div class="s-row" style="margin-top:5px;"><span>الوحدة 4 · أسباب الإباحة</span><span>30%</span></div>
-            <div class="s-bar"><i style="width:30%"></i></div>
-
-            <div class="s-row" style="margin-top:5px;"><span>الوحدة 5 · الشروع والاشتراك</span><span>10%</span></div>
-            <div class="s-bar"><i style="width:10%"></i></div>
-          </div>
-
-          <div class="s-card gold">
-            <div style="font-size:7.5px;font-weight:700;">🏅 مستواك الحالي: متوسط متقدم</div>
-          </div>
-        </div>
-      </div>
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">02</span> الشرح التفصيلي</div>
     </div>
 
-    <div class="notes">
-      <div class="note"><span class="n-badge">1</span><b>بطاقات KPI فورية:</b> ثلاث بطاقات أعلى الشاشة تلخّص الجرعات المكتملة، دقة الإجابات، وسلسلة الأيام المتواصلة.</div>
-      <div class="note"><span class="n-badge">2</span><b>أشرطة تقدم لكل وحدة:</b> خمسة أشرطة تعرض نسبة الإنجاز في كل وحدة من وحدات المقرر بشكل فوري.</div>
-      <div class="note"><span class="n-badge">3</span><b>مؤشر السلسلة (Streak):</b> يحفّز المتعلم على العودة اليومية، وهو أقوى مؤشر تنبؤي بالاستمرارية.</div>
-      <div class="note"><span class="n-badge">4</span><b>شارة المستوى:</b> تصنيف تلقائي (مبتدئ / متوسط / متوسط متقدم / متقدم) يُبنى على الدقة والتغطية معاً.</div>
-      <div class="insight">
-        <b>لماذا يهم؟</b> رؤية التقدم بصرياً ترفع الالتزام بنسبة تصل إلى <b>40%</b> مقارنة بالأنظمة التي تعرض أرقاماً نصية فقط.
-      </div>
-    </div>
-  </div>
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>القانون الجنائي السوداني 1991</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b class="orange">🔍 بحث</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">📖 الشرح التفصيلي <span class="back">🏠 العودة</span></div>
+                        <div class="p-box">
+                            <h5>الوحدة 1: المبادئ التمهيدية</h5>
+                            <p>فلسفة القانون والتطور التاريخي · مبدأ الشرعية وقواعد التفسير · السريان من حيث الزمان والمكان.</p>
+                        </div>
+                        <div class="p-box">
+                            <h5>الوحدة 2: نظرية الجريمة</h5>
+                            <p>الركن المادي (السلوك، النتيجة، السببية) · الركن المعنوي (القصد، شبه العمد، الخطأ).</p>
+                        </div>
+                        <div class="p-box gold">
+                            <h5>الوحدة 3: المسؤولية الجنائية</h5>
+                            <p>الأهلية (التمييز والاختيار) · موانع المسؤولية (صغر السن، الجنون، السكر، الإكراه).</p>
+                        </div>
+                        <div class="p-box">
+                            <h5>الوحدة 4: أسباب الإباحة</h5>
+                            <p>الدفاع الشرعي · أداء الواجب القانوني · رضا المجني عليه.</p>
+                        </div>
+                        <div class="p-box orange">
+                            <h5>الوحدة 5: الشروع والاشتراك</h5>
+                            <p>الشروع في الجريمة والعدول الاختياري · المساهمة والاشتراك الجنائي.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">شاشة الشرح — الوحدات الخمس</div>
+        </div>
 
-  <div class="p-foot">
-    <span><span class="dot">●</span> القسم 02 من 10 — لوحة التقدم</span>
-    <span>كتالوج مرئي 2026-2027 · هيرو أكاديمي</span>
-  </div>
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>خمس وحدات كبرى</b>
+                        <p>تقسيم منهجي شامل يغطي كامل النظرية العامة للقانون الجنائي السوداني 1991م.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>صناديق تعريفية بلون موحّد</b>
+                        <p>كل وحدة في صندوق مستقل بحدّ أيمن كحلي مع عنوان مفتاحي وملخص محتوى.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>تمييز المسؤولية بالذهبي</b>
+                        <p>صندوق المسؤولية الجنائية بلون ذهبي لأنها الوحدة الأكثر تطبيقاً عملياً في المحاكم.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>تمييز الشروع بالبرتقالي</b>
+                        <p>صندوق الشروع والاشتراك بلون برتقالي لأنها الوحدة الختامية الجامعة للعلم.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">5</span>
+                    <div class="txt">
+                        <b>لكل درس 3 عناصر</b>
+                        <p>كل درس يضم: أهداف تعليمية، مهارات إجرائية، ومخرجات تطبيقية — نمط أكاديمي رصين.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">5 وحدات</span>
+                <span class="chip">12 درساً</span>
+                <span class="chip gold">أهداف ومهارات</span>
+                <span class="chip">مخرجات تطبيقية</span>
+            </div>
+
+            <div class="quote">
+                كل وحدة تعمل كـ<b>وحدة بناء متكاملة</b> — أهداف + مهارات + مخرجات، لا نص قانوني جامد.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · القانون الجنائي السوداني 1991</span>
+        <span class="pnum">04</span>
+    </div>
 </section>
 
-
 <!-- ============================================================
-     صفحة 03 — الاختبار التشخيصي
-============================================================ -->
+     PAGE 5 — SUMMARIES
+     ============================================================ -->
 <section class="page">
-  <div class="p-head">
-    <div class="p-num">03</div>
-    <div class="p-title">الاختبار التشخيصي<span>قياس المستوى قبل البدء</span></div>
-    <div class="p-brand">هيرو أكاديمي</div>
-  </div>
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">03</span> الملخصات التنظيمية</div>
+    </div>
 
-  <div class="kpis">
-    <div class="kpi"><div class="k-val">20</div><div class="k-lab">سؤالاً تشخيصياً</div></div>
-    <div class="kpi"><div class="k-val">25</div><div class="k-lab">دقيقة زمن</div></div>
-    <div class="kpi"><div class="k-val">5</div><div class="k-lab">وحدات مغطاة</div></div>
-    <div class="kpi"><div class="k-val">0%</div><div class="k-lab">تأثير على الدرجة</div></div>
-  </div>
-
-  <div class="p-grid">
-    <div class="phone">
-      <div class="screen">
-        <div class="s-status"><span>9:41</span><span>◗◗ ◗ ▮</span></div>
-        <div class="s-app">
-          <div>🧪 الاختبار التشخيصي<small>قبل أن تبدأ رحلتك</small></div>
-          <div class="s-ico">⏱️</div>
-        </div>
-        <div class="s-body">
-          <div class="s-card navy" style="text-align:center;">
-            <div style="font-size:20px;font-weight:800;color:#f0c85a;">20</div>
-            <div style="font-size:7.5px;opacity:.85;">سؤالاً · 25 دقيقة · تغطية شاملة</div>
-          </div>
-
-          <div class="s-card">
-            <div class="s-h">توزيع الأسئلة على الوحدات</div>
-
-            <div class="s-row"><span>الوحدة 1</span><span>4 أسئلة</span></div>
-            <div class="s-bar"><i style="width:40%"></i></div>
-
-            <div class="s-row" style="margin-top:5px;"><span>الوحدة 2</span><span>5 أسئلة</span></div>
-            <div class="s-bar"><i style="width:50%"></i></div>
-
-            <div class="s-row" style="margin-top:5px;"><span>الوحدة 3</span><span>4 أسئلة</span></div>
-            <div class="s-bar"><i style="width:40%"></i></div>
-
-            <div class="s-row" style="margin-top:5px;"><span>الوحدة 4</span><span>4 أسئلة</span></div>
-            <div class="s-bar"><i style="width:40%"></i></div>
-
-            <div class="s-row" style="margin-top:5px;"><span>الوحدة 5</span><span>3 أسئلة</span></div>
-            <div class="s-bar"><i style="width:30%"></i></div>
-          </div>
-
-          <div class="s-card gold">
-            <div style="font-size:7px;line-height:1.7;">
-              ℹ️ النتيجة لا تُحسب في درجاتك — الغرض منها رسم خريطة نقاط القوة والضعف فقط.
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>القانون الجنائي</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b class="orange">🔍 بحث</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">📝 الملخصات <span class="back">🏠 العودة</span></div>
+                        <div class="p-unit">
+                            <h6>🔹 الوحدة الأولى</h6>
+                            <p>مبدأ الشرعية · التفسير الضيق · حظر القياس في التجريم · عدم الرجعية · الإقليمية · المبدأ العيني والشخصي.</p>
+                        </div>
+                        <div class="p-unit">
+                            <h6>🔹 الوحدة الثانية</h6>
+                            <p>الركن المادي (السلوك، النتيجة، السببية) · انقطاع السببية بالعوامل الشاذة · القصد والعلم والإرادة · الخطأ غير العمدي.</p>
+                        </div>
+                        <div class="p-unit">
+                            <h6>🔹 الوحدة الثالثة</h6>
+                            <p>صغر السن (دون 7) · الجنون · السكر القسري والاختياري · الإكراه الملجئ · حالة الضرورة · الحادث العرضي.</p>
+                        </div>
+                        <div class="p-unit">
+                            <h6>🔹 الوحدة الرابعة</h6>
+                            <p>الدفاع الشرعي (شروط وتناسب) · تجاوز الحدود بحسن نية · أداء الواجب · رضا المجني عليه.</p>
+                        </div>
+                        <div class="p-unit">
+                            <h6>🔹 الوحدة الخامسة</h6>
+                            <p>الشروع والبدء في التنفيذ · العدول الاختياري · نصف الحد الأقصى · الاشتراك · المسؤولية التضامنية · الفاعل المعنوي.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          <div class="s-btn">ابدأ الاختبار التشخيصي ▸</div>
+            <div class="mock-caption">شاشة الملخصات — خمس وحدات مكثّفة</div>
         </div>
-      </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>بطاقات ملخّصة لكل وحدة</b>
+                        <p>كل بطاقة بحدّ أيمن كحلي وعنوان ذهبي، تعرض جوهر الوحدة في 3–4 أسطر.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>مصطلحات مفتاحية بارزة</b>
+                        <p>المفاهيم الأساسية معروضة صريحة (مبدأ الشرعية، انقطاع السببية، القصد والعلم والإرادة).</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>ترتيب منهجي للوحدات</b>
+                        <p>يبدأ بالمبادئ ثم الجريمة ثم المسؤولية ثم الإباحة ثم الشروع — تدرّج منطقي للفهم.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>قابلية القراءة في دقائق</b>
+                        <p>الوحدات الخمس تُقرأ كاملة في أقل من خمس دقائق قبل الامتحان.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">5 ملخصات</span>
+                <span class="chip gold">مصطلحات مفتاحية</span>
+                <span class="chip">مراجعة سريعة</span>
+            </div>
+
+            <div class="quote">
+                الملخصات مصمّمة لـ<b>المراجعة الليلية</b> — كل بطاقة تُقرأ في أقل من ثلاثين ثانية.
+            </div>
+        </div>
     </div>
 
-    <div class="notes">
-      <div class="note"><span class="n-badge">1</span><b>بطاقة تعريف الاختبار:</b> عدد الأسئلة، الزمن المحدد، ونطاق التغطية في بطاقة واحدة واضحة قبل الشروع.</div>
-      <div class="note"><span class="n-badge">2</span><b>خريطة توزيع الأسئلة:</b> تُظهر عدالة التغطية عبر الوحدات الخمس، فلا تُظلم وحدة على حساب أخرى.</div>
-      <div class="note"><span class="n-badge">3</span><b>تهدئة القلق:</b> تنبيه صريح بأن النتيجة تشخيصية فقط ولا تؤثر على تقييم المتعلم، وهو ما يرفع صدق الإجابات.</div>
-      <div class="note"><span class="n-badge">4</span><b>زر البدء الذهبي:</b> عنصر واحد بارز للفعل التالي، بلا تشتيت أو خيارات منافسة.</div>
-      <div class="insight">
-        <b>النتيجة التشخيصية</b> تُغذّي مباشرة: <b>تقرير المستوى</b> + <b>خطة الجرعات</b> + <b>خطة العلاج</b>، فتصبح الرحلة مخصصة لا موحّدة.
-      </div>
+    <div class="page-foot">
+        <span>مذكرة النجاح · القانون الجنائي السوداني 1991</span>
+        <span class="pnum">05</span>
     </div>
-  </div>
-
-  <div class="p-foot">
-    <span><span class="dot">●</span> القسم 03 من 10 — الاختبار التشخيصي</span>
-    <span>كتالوج مرئي 2026-2027 · هيرو أكاديمي</span>
-  </div>
 </section>
 
-
 <!-- ============================================================
-     صفحة 04 — تقرير المستوى
-============================================================ -->
+     PAGE 6 — QUESTIONS
+     ============================================================ -->
 <section class="page">
-  <div class="p-head">
-    <div class="p-num">04</div>
-    <div class="p-title">تقرير المستوى<span>نقاط القوة والضعف بالتفصيل</span></div>
-    <div class="p-brand">هيرو أكاديمي</div>
-  </div>
-
-  <div class="kpis">
-    <div class="kpi"><div class="k-val">74/100</div><div class="k-lab">الدرجة التشخيصية</div></div>
-    <div class="kpi"><div class="k-val">متوسط متقدم</div><div class="k-lab">التصنيف</div></div>
-    <div class="kpi"><div class="k-val">2</div><div class="k-lab">نقاط قوة</div></div>
-    <div class="kpi"><div class="k-val">2</div><div class="k-lab">فجوات حرجة</div></div>
-  </div>
-
-  <div class="p-grid">
-    <div class="phone">
-      <div class="screen">
-        <div class="s-status"><span>9:41</span><span>◗◗ ◗ ▮</span></div>
-        <div class="s-app">
-          <div>📈 تقرير المستوى<small>نتيجة الاختبار التشخيصي</small></div>
-          <div class="s-ico">📤</div>
-        </div>
-        <div class="s-body">
-          <div class="s-card navy" style="text-align:center;">
-            <div style="font-size:26px;font-weight:800;color:#f0c85a;line-height:1.1;">74</div>
-            <div style="font-size:7.5px;opacity:.85;margin-top:3px;">من 100 · متوسط متقدم</div>
-          </div>
-
-          <div class="s-card">
-            <div class="s-h">الأداء حسب الوحدة</div>
-
-            <div class="s-row"><span>الوحدة 1 · المبادئ التمهيدية</span><span>92%</span></div>
-            <div class="s-bar"><i style="width:92%"></i></div>
-
-            <div class="s-row" style="margin-top:5px;"><span>الوحدة 2 · نظرية الجريمة</span><span>61%</span></div>
-            <div class="s-bar"><i style="width:61%"></i></div>
-
-            <div class="s-row" style="margin-top:5px;"><span>الوحدة 3 · المسؤولية</span><span>78%</span></div>
-            <div class="s-bar"><i style="width:78%"></i></div>
-
-            <div class="s-row" style="margin-top:5px;"><span>الوحدة 4 · أسباب الإباحة</span><span>84%</span></div>
-            <div class="s-bar"><i style="width:84%"></i></div>
-
-            <div class="s-row" style="margin-top:5px;"><span>الوحدة 5 · الشروع والاشتراك</span><span>48%</span></div>
-            <div class="s-bar"><i style="width:48%"></i></div>
-          </div>
-
-          <div class="s-card" style="border-right:3px solid #1e7e34;">
-            <div class="s-h" style="color:#1e7e34;">✅ نقاط القوة</div>
-            <div><span class="s-chip green">مبدأ الشرعية</span> <span class="s-chip green">الدفاع الشرعي</span></div>
-          </div>
-
-          <div class="s-card" style="border-right:3px solid #b00020;">
-            <div class="s-h" style="color:#b00020;">⚠️ فجوات حرجة</div>
-            <div><span class="s-chip red">الركن المعنوي</span> <span class="s-chip red">الشروع</span></div>
-          </div>
-        </div>
-      </div>
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">04</span> أسئلة التقويم الذاتي</div>
     </div>
 
-    <div class="notes">
-      <div class="note"><span class="n-badge">1</span><b>الدرجة الإجمالية:</b> رقم كبير في صدارة الشاشة مع التصنيف اللفظي، ليمنح المتعلم صورة فورية عن موقعه.</div>
-      <div class="note"><span class="n-badge">2</span><b>تفصيل حسب الوحدة:</b> خمسة أشرطة تكشف بدقة أين يقع الخلل، لا مجرد نتيجة عامة مبهمة.</div>
-      <div class="note"><span class="n-badge">3</span><b>وسوم القوة والضعف:</b> تمييز لوني (أخضر / أحمر) يسهّل القراءة السريعة قبل الدخول في التفاصيل.</div>
-      <div class="note"><span class="n-badge">4</span><b>ربط مباشر بالعلاج:</b> كل فجوة حرجة تُحوَّل تلقائياً إلى جرعة مقترحة في خطة العلاج.</div>
-      <div class="insight">
-        <b>القيمة التشخيصية:</b> تحويل نتيجة خام إلى <b>قرار تعلمي</b> — أين أبدأ؟ وما الذي أتركه لاحقاً؟ بدل الدراسة العشوائية.
-      </div>
-    </div>
-  </div>
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>القانون الجنائي</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b class="orange">🔍 بحث</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">❓ التقويم الذاتي <span class="back">🏠 العودة</span></div>
+                        <div class="p-qa">
+                            <div class="q">1. ما هو مبدأ الشرعية الجنائية في القانون السوداني؟</div>
+                            <div class="a">✅ لا جريمة ولا عقوبة إلا بنص قانوني سابق وقت ارتكاب الفعل.</div>
+                        </div>
+                        <div class="p-qa">
+                            <div class="q">2. متى يسري القانون الجنائي بأثر رجعي؟</div>
+                            <div class="a">✅ إذا كان القانون الجديد أصلح للمتهم (يُلغي الجريمة، يخفف العقوبة، يقرر مانعاً).</div>
+                        </div>
+                        <div class="p-qa">
+                            <div class="q">3. ما هو معيار انقطاع رابطة السببية؟</div>
+                            <div class="a">✅ تنقطع بتدخل عامل أجنبي مستقل وشاذ وغير متوقع، كخطأ طبي جسيم أو حادث مفاجئ.</div>
+                        </div>
+                        <div class="p-qa">
+                            <div class="q">4. ما هي شروط الدفاع الشرعي؟</div>
+                            <div class="a">✅ خطر حال وغير مشروع · تعذر الاستعانة بالسلطات · تناسب القوة المستخدمة.</div>
+                        </div>
+                        <div class="p-qa">
+                            <div class="q">5. ما هو الفاعل المعنوي في الاشتراك الجنائي؟</div>
+                            <div class="a">✅ من يسخر طفلاً غير مميز أو مجنوناً لارتكاب الجريمة، ويعاقب كفاعل أصلي.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">شاشة التقويم الذاتي — سؤال وجواب</div>
+        </div>
 
-  <div class="p-foot">
-    <span><span class="dot">●</span> القسم 04 من 10 — تقرير المستوى</span>
-    <span>كتالوج مرئي 2026-2027 · هيرو أكاديمي</span>
-  </div>
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>صياغة سؤال محوري</b>
+                        <p>كل بطاقة تبدأ بسؤال مفتاحي رقمي، مع إجابة مباشرة تحته في صندوق أخضر فاتح.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>الإجابة بخلفية خضراء</b>
+                        <p>لون أخضر فاتح يميّز الإجابة عن السؤال ويجعل القراءة السريعة أكثر سلاسة.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>ربط بالمفاهيم القانونية</b>
+                        <p>يُشار إلى المفاهيم الأصلية (قرينة البراءة، مبدأ الشرعية) لتدريب الطالب على الاستدلال.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>نقاط الفصل بالنقطة الوسطى</b>
+                        <p>الشروط المتعددة مفصولة برمز «·» لتبسيط القراءة السريعة وتثبيت العناصر.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">5</span>
+                    <div class="txt">
+                        <b>ترقيم متسلسل واضح</b>
+                        <p>كل سؤال مرقّم بخط بارز، مع إمكانية التوسّع لعشرات الأسئلة بنفس النمط.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">10+ أسئلة</span>
+                <span class="chip gold">إجابات فورية</span>
+                <span class="chip">ربط بالمفاهيم</span>
+            </div>
+
+            <div class="quote">
+                التقويم الذاتي هو <b>الجسر</b> بين القراءة والفهم — اسأل نفسك قبل أن تنتقل للقسم التالي.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · القانون الجنائي السوداني 1991</span>
+        <span class="pnum">06</span>
+    </div>
 </section>
 
-
 <!-- ============================================================
-     صفحة 05 — الجرعات
-============================================================ -->
+     PAGE 7 — MAPS
+     ============================================================ -->
 <section class="page">
-  <div class="p-head">
-    <div class="p-num">05</div>
-    <div class="p-title">الجرعات التعليمية<span>وحدات تعلم قصيرة ومكثفة</span></div>
-    <div class="p-brand">هيرو أكاديمي</div>
-  </div>
-
-  <div class="kpis">
-    <div class="kpi"><div class="k-val">24</div><div class="k-lab">جرعة إجمالية</div></div>
-    <div class="kpi"><div class="k-val">16</div><div class="k-lab">مكتملة</div></div>
-    <div class="kpi"><div class="k-val">10-15</div><div class="k-lab">دقيقة للجرعة</div></div>
-    <div class="kpi"><div class="k-val">67%</div><div class="k-lab">نسبة الإتمام</div></div>
-  </div>
-
-  <div class="p-grid">
-    <div class="phone">
-      <div class="screen">
-        <div class="s-status"><span>9:41</span><span>◗◗ ◗ ▮</span></div>
-        <div class="s-app">
-          <div>💊 الجرعات<small>تعلّم في جلسات قصيرة</small></div>
-          <div class="s-ico">🔎</div>
-        </div>
-        <div class="s-body">
-          <div class="s-card" style="border-right:3px solid #1e7e34;">
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-              <div>
-                <div style="font-size:8.5px;font-weight:800;color:#0b2b44;">جرعة 01 · مبدأ الشرعية</div>
-                <div style="font-size:7px;color:#6c757d;margin-top:2px;">الوحدة 1 · 12 دقيقة</div>
-              </div>
-              <span class="s-chip green">مكتملة</span>
-            </div>
-          </div>
-
-          <div class="s-card" style="border-right:3px solid #1e7e34;">
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-              <div>
-                <div style="font-size:8.5px;font-weight:800;color:#0b2b44;">جرعة 02 · تفسير النصوص</div>
-                <div style="font-size:7px;color:#6c757d;margin-top:2px;">الوحدة 1 · 15 دقيقة</div>
-              </div>
-              <span class="s-chip green">مكتملة</span>
-            </div>
-          </div>
-
-          <div class="s-card" style="border-right:3px solid #c9a227;">
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-              <div>
-                <div style="font-size:8.5px;font-weight:800;color:#0b2b44;">جرعة 09 · الركن المعنوي</div>
-                <div style="font-size:7px;color:#6c757d;margin-top:2px;">الوحدة 2 · 14 دقيقة</div>
-              </div>
-              <span class="s-chip gold">جارية</span>
-            </div>
-            <div class="s-bar" style="margin-top:5px;"><i style="width:45%"></i></div>
-          </div>
-
-          <div class="s-card">
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-              <div>
-                <div style="font-size:8.5px;font-weight:800;color:#0b2b44;">جرعة 18 · الشروع</div>
-                <div style="font-size:7px;color:#6c757d;margin-top:2px;">الوحدة 5 · 13 دقيقة</div>
-              </div>
-              <span class="s-chip">🔒 مقفلة</span>
-            </div>
-          </div>
-
-          <div class="s-card">
-            <div style="display:flex;justify-content:space-between;align-items:center;">
-              <div>
-                <div style="font-size:8.5px;font-weight:800;color:#0b2b44;">جرعة 21 · الاشتراك الجنائي</div>
-                <div style="font-size:7px;color:#6c757d;margin-top:2px;">الوحدة 5 · 15 دقيقة</div>
-              </div>
-              <span class="s-chip">🔒 مقفلة</span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">05</span> الخرائط الذهنية</div>
     </div>
 
-    <div class="notes">
-      <div class="note"><span class="n-badge">1</span><b>الجرعة = وحدة تعلّم قصيرة:</b> شرح مركّز + ملخص + أسئلة تقويم، تُنجز في جلسة واحدة دون إرهاق ذهني.</div>
-      <div class="note"><span class="n-badge">2</span><b>حالة الجرعة مرئية:</b> مكتملة (أخضر) · جارية (ذهبي مع شريط تقدم) · مقفلة (رمادي) — نظام تتابعي يمنع الفجوات.</div>
-      <div class="note"><span class="n-badge">3</span><b>ربط بالوحدة والمدة:</b> كل جرعة تحمل رقم وحدتها وزمنها المتوقع، فيتخذ المتعلم قراره بوعي.</div>
-      <div class="note"><span class="n-badge">4</span><b>فتح تدريجي:</b> لا تُفتح الجرعة التالية قبل إتمام السابقة، وهو ما يضمن تراكماً معرفياً سليماً.</div>
-      <div class="insight">
-        <b>الفلسفة:</b> تقسيم 5 وحدات إلى <b>24 جرعة</b> يجعل المقرر الكبير قابلاً للهضم، ويرفع معدل الإتمام من ~20% إلى ما يتجاوز <b>65%</b>.
-      </div>
-    </div>
-  </div>
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>القانون الجنائي</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b class="orange">🔍 بحث</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">🗺️ الخرائط الذهنية (8 خرائط) <span class="back">🏠 العودة</span></div>
+                        <div class="p-sub">خرائط ذهنية توضح هيكل القانون الجنائي السوداني 1991م.</div>
+                        <div class="p-maps">
+                            <div class="p-map"><div class="thumb">01</div><div class="lbl">🗺️ الهيكل التنظيمي</div></div>
+                            <div class="p-map"><div class="thumb">02</div><div class="lbl">🗺️ فلسفة التفسير</div></div>
+                            <div class="p-map"><div class="thumb">03</div><div class="lbl">🗺️ ثنائية القياس</div></div>
+                            <div class="p-map"><div class="thumb">04</div><div class="lbl">🗺️ حدود التفسير</div></div>
+                            <div class="p-map"><div class="thumb">05</div><div class="lbl">🗺️ الحالة العقلية</div></div>
+                            <div class="p-map"><div class="thumb">06</div><div class="lbl">🗺️ مصفوفة الأفعال</div></div>
+                            <div class="p-map"><div class="thumb">07</div><div class="lbl">🗺️ البعد الزمني</div></div>
+                            <div class="p-map"><div class="thumb">08</div><div class="lbl">🗺️ الخلاصة التركيبية</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">معرض الخرائط — عرض شبكي بعمودين</div>
+        </div>
 
-  <div class="p-foot">
-    <span><span class="dot">●</span> القسم 05 من 10 — الجرعات التعليمية</span>
-    <span>كتالوج مرئي 2026-2027 · هيرو أكاديمي</span>
-  </div>
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>شبكة بعمودين</b>
+                        <p>على شاشات الجوال تُعرض الخرائط في عمودين لتبقى قابلة للتمييز دون تمرير أفقي.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>مصغّرات بترقيم ذهبي</b>
+                        <p>كل خريطة تحمل رقمها في وسط المصغّرة مع تدرّج لوني كحلي/ذهبي يميّزها عن الخلفية.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>تسمية سفلية موحّدة</b>
+                        <p>شريط رمادي فاتح أسفل كل خريطة يحمل التسمية، لتثبيت التسلسل البصري.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>عناوين موضوعية دقيقة</b>
+                        <p>التسميات تعكس محتوى الخريطة بدقة (فلسفة التفسير، ثنائية القياس، الحالة العقلية).</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">5</span>
+                    <div class="txt">
+                        <b>Lightbox عند النقر</b>
+                        <p>النقر على أي خريطة يفتحها بحجم كامل في نافذة معتمة مع زر إغلاق واضح.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">8 خرائط</span>
+                <span class="chip gold">Lightbox</span>
+                <span class="chip">تحميل ذكي</span>
+            </div>
+
+            <div class="quote">
+                الخريطة الذهنية الواحدة تختصر <b>صفحات كاملة</b> — وهي أسرع وسيلة لتثبيت البنية القانونية.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · القانون الجنائي السوداني 1991</span>
+        <span class="pnum">07</span>
+    </div>
 </section>
 
-
 <!-- ============================================================
-     صفحة 06 — بنك الأسئلة
-============================================================ -->
+     PAGE 8 — EXAMPLES
+     ============================================================ -->
 <section class="page">
-  <div class="p-head">
-    <div class="p-num">06</div>
-    <div class="p-title">بنك الأسئلة<span>200 سؤال مع بحث وتصفية</span></div>
-    <div class="p-brand">هيرو أكاديمي</div>
-  </div>
-
-  <div class="kpis">
-    <div class="kpi"><div class="k-val">200</div><div class="k-lab">سؤال شامل</div></div>
-    <div class="kpi"><div class="k-val">5</div><div class="k-lab">وحدات للتصفية</div></div>
-    <div class="kpi"><div class="k-val">فوري</div><div class="k-lab">بحث نصي</div></div>
-    <div class="kpi"><div class="k-val">إظهار/إخفاء</div><div class="k-lab">طريقة الإجابة</div></div>
-  </div>
-
-  <div class="p-grid">
-    <div class="phone">
-      <div class="screen">
-        <div class="s-status"><span>9:41</span><span>◗◗ ◗ ▮</span></div>
-        <div class="s-app">
-          <div>📚 بنك الأسئلة<small>200 سؤال · 5 وحدات</small></div>
-          <div class="s-ico">🔍</div>
-        </div>
-        <div class="s-body">
-          <div class="s-card" style="padding:6px 8px;">
-            <div style="font-size:7.5px;color:#94a3b8;">🔍 ابحث في الأسئلة والإجابات...</div>
-          </div>
-
-          <div style="display:flex;gap:4px;flex-wrap:wrap;">
-            <span class="s-chip gold">جميع الوحدات</span>
-            <span class="s-chip">الوحدة 1</span>
-            <span class="s-chip">الوحدة 2</span>
-            <span class="s-chip">الوحدة 3</span>
-          </div>
-
-          <div class="s-card">
-            <div class="s-q">1. ما هو تاريخ دخول القانون الجنائي السوداني لعام 1991 حيز النفاذ؟</div>
-            <div style="font-size:7px;color:#94a3b8;">الوحدة 1 · <span style="color:#1a4b6d;font-weight:700;">إظهار الإجابة</span></div>
-          </div>
-
-          <div class="s-card" style="background:#f0fdf4;border-color:#c6e6cd;">
-            <div style="font-size:7px;color:#1e7e34;font-weight:700;">✅ الإجابة:</div>
-            <div style="font-size:7.5px;color:#166534;margin-top:2px;">21 مارس 1991م.</div>
-          </div>
-
-          <div class="s-card">
-            <div class="s-q">2. ما هي السمة المميزة لقانون 1983 من حيث مصدر التشريع؟</div>
-            <div style="font-size:7px;color:#94a3b8;">الوحدة 1 · <span style="color:#1a4b6d;font-weight:700;">إظهار الإجابة</span></div>
-          </div>
-
-          <div class="s-card">
-            <div class="s-q">3. ما هي أركان الجريمة في القانون الجنائي السوداني؟</div>
-            <div style="font-size:7px;color:#94a3b8;">الوحدة 2 · <span style="color:#1a4b6d;font-weight:700;">إظهار الإجابة</span></div>
-          </div>
-        </div>
-      </div>
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">06</span> الأمثلة والسوابق القضائية</div>
     </div>
 
-    <div class="notes">
-      <div class="note"><span class="n-badge">1</span><b>حقل بحث فوري:</b> يبحث في نص السؤال ونص الإجابة معاً، فيصل المتعلم للمعلومة من أي مدخل يتذكره.</div>
-      <div class="note"><span class="n-badge">2</span><b>تصفية حسب الوحدة:</b> قائمة منسدلة بخمس وحدات، تمكّن من التركيز على وحدة بعينها قبل الامتحان.</div>
-      <div class="note"><span class="n-badge">3</span><b>الإجابة المخفية:</b> زر «إظهار الإجابة» يمنع التلقي السلبي، ويفرض محاولة الاسترجاع الذاتي أولاً.</div>
-      <div class="note"><span class="n-badge">4</span><b>عدّاد النتائج:</b> يوضح عدد الأسئلة المعروضة من الإجمالي، فيمنح إحساساً بحجم التغطية.</div>
-      <div class="insight">
-        <b>أسلوب الاستدعاء النشط (Active Recall):</b> إخفاء الإجابة ثم محاولة تذكّرها يضاعف كفاءة الحفظ مقارنة بالقراءة المتكررة.
-      </div>
-    </div>
-  </div>
-
-  <div class="p-foot">
-    <span><span class="dot">●</span> القسم 06 من 10 — بنك الأسئلة</span>
-    <span>كتالوج مرئي 2026-2027 · هيرو أكاديمي</span>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     صفحة 07 — تحليل الأخطاء
-============================================================ -->
-<section class="page">
-  <div class="p-head">
-    <div class="p-num">07</div>
-    <div class="p-title">تحليل الأخطاء<span>تشخيص دقيق لأسباب الخلل</span></div>
-    <div class="p-brand">هيرو أكاديمي</div>
-  </div>
-
-  <div class="kpis">
-    <div class="kpi"><div class="k-val">52</div><div class="k-lab">خطأ مُحلَّل</div></div>
-    <div class="kpi"><div class="k-val">5</div><div class="k-lab">تصنيفات للأخطاء</div></div>
-    <div class="kpi"><div class="k-val">40%</div><div class="k-lab">الخطأ الأكبر</div></div>
-    <div class="kpi"><div class="k-val">تلقائي</div><div class="k-lab">توصية العلاج</div></div>
-  </div>
-
-  <div class="p-grid">
-    <div class="phone">
-      <div class="screen">
-        <div class="s-status"><span>9:41</span><span>◗◗ ◗ ▮</span></div>
-        <div class="s-app">
-          <div>🔬 تحليل الأخطاء<small>لماذا أخطأت؟</small></div>
-          <div class="s-ico">📌</div>
-        </div>
-        <div class="s-body">
-          <div class="s-card navy" style="text-align:center;">
-            <div style="font-size:18px;font-weight:800;color:#f0c85a;">52</div>
-            <div style="font-size:7.5px;opacity:.85;">خطأ موزّع على 5 تصنيفات</div>
-          </div>
-
-          <div class="s-card">
-            <div class="s-h">توزيع مصادر الخطأ</div>
-
-            <div class="s-row"><span>تفسير النصوص القانونية</span><span>40%</span></div>
-            <div class="s-bar"><i style="width:40%"></i></div>
-
-            <div class="s-row" style="margin-top:5px;"><span>الركن المعنوي والقصد</span><span>25%</span></div>
-            <div class="s-bar"><i style="width:25%"></i></div>
-
-            <div class="s-row" style="margin-top:5px;"><span>الشروع والاشتراك</span><span>20%</span></div>
-            <div class="s-bar"><i style="width:20%"></i></div>
-
-            <div class="s-row" style="margin-top:5px;"><span>المسؤولية والموانع</span><span>10%</span></div>
-            <div class="s-bar"><i style="width:10%"></i></div>
-
-            <div class="s-row" style="margin-top:5px;"><span>أسباب الإباحة</span><span>5%</span></div>
-            <div class="s-bar"><i style="width:5%"></i></div>
-          </div>
-
-          <div class="s-card gold">
-            <div style="font-size:7px;line-height:1.7;">
-              💡 <b>التوصية:</b> ابدأ بجرعة «تفسير النصوص» — هي مصدر 40% من أخطائك.
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>القانون الجنائي</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b class="orange">🔍 بحث</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">📌 الأمثلة القضائية <span class="back">🏠 العودة</span></div>
+                        <div class="p-box">
+                            <h5>الكباشي (1985) — حظر القياس</h5>
+                            <p>ألغت المحكمة العليا عقوبة القطع المقاسة على الاختلاس، وأكدت أن صيانة الحرية تقتضي القصر على النص الصريح.</p>
+                        </div>
+                        <div class="p-box">
+                            <h5>رمضان (1972) — بقاء السببية</h5>
+                            <p>قررت المحكمة بقاء السببية عند الجلطة الرئوية الناتجة عن رقاد السرير بعد الطعن، كمضاعفة طبيعية.</p>
+                        </div>
+                        <div class="p-box gold">
+                            <h5>سلوى كوال أباي ميور — انقطاع السببية</h5>
+                            <p>قطعت المحكمة السببية بين العصا والوفاة بسبب الجراحة البدائية الشاذة، وعدلت التهمة للأذى الجسيم.</p>
+                        </div>
+                        <div class="p-box">
+                            <h5>صلاح سعيد — تجاوز الدفاع بحسن نية</h5>
+                            <p>قررت المحكمة أن تجاوز حدود الدفاع الشرعي بحسن نية عذر مخفف يعدل التهمة لشبه العمد.</p>
+                        </div>
+                        <div class="p-box orange">
+                            <h5>ميجي مابيل — الغلط في الوقائع</h5>
+                            <p>برأت المحكمة المتهم لاعتقاده بحسن نية أن الحركة في الظلام لحيوان متوحش، مما نفى القصد الجنائي.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            <div class="mock-caption">شاشة الأمثلة — سوابق قضائية حقيقية</div>
         </div>
-      </div>
-    </div>
 
-    <div class="notes">
-      <div class="note"><span class="n-badge">1</span><b>لوحة تصنيف الأخطاء:</b> لا تُعرض الأخطاء كرقم مجرد، بل تُوزّع على أسبابها الحقيقية في خمسة مسارات.</div>
-      <div class="note"><span class="n-badge">2</span><b>ترتيب تنازلي بصري:</b> أطول شريط = أكبر مشكلة، فيعرف المتعلم من أين يبدأ دون تفكير طويل.</div>
-      <div class="note"><span class="n-badge">3</span><b>التوصية التلقائية:</b> النظام يربط التصنيف الأكبر بجرعة محددة، فيتحول التحليل إلى فعل مباشر.</div>
-      <div class="note"><span class="n-badge">4</span><b>الربط ببنك الأسئلة:</b> يمكن الانتقال من التصنيف إلى أسئلة الوحدة المعنية لتدريب فوري.</div>
-      <div class="insight">
-        <b>الفرق الجوهري:</b> معظم التطبيقات تخبرك أنك أخطأت، وهيرو يخبرك <b>لماذا</b> أخطأت، وهو ما يختصر زمن التحسّن إلى النصف.
-      </div>
-    </div>
-  </div>
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>سوابق قضائية سودانية حقيقية</b>
+                        <p>كل مثال يستند إلى حكم فعلي من المحكمة العليا السودانية مع اسم السابقة ومبدأها.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>الإحالة إلى المبادئ القانونية</b>
+                        <p>يُذكر المبدأ المستخلص (حظر القياس، انقطاع السببية، حسن النية) داخل النص.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>تمييز السوابق الحاسمة</b>
+                        <p>سوابق السببية وتجاوز الدفاع في صندوق ذهبي/برتقالي لتثبيتها في الذاكرة.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>تغطية الفئات الخاصة</b>
+                        <p>أمثلة تعالج فئات تحتاج معالجة إجرائية خاصة (الغلط في الوقائع، المضاعفات الطبية).</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">5</span>
+                    <div class="txt">
+                        <b>ربط الوقائع بالنتائج</b>
+                        <p>كل مثال يوضّح الأثر القانوني المترتب على تطبيق القاعدة في الواقعة.</p>
+                    </div>
+                </li>
+            </ol>
 
-  <div class="p-foot">
-    <span><span class="dot">●</span> القسم 07 من 10 — تحليل الأخطاء</span>
-    <span>كتالوج مرئي 2026-2027 · هيرو أكاديمي</span>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     صفحة 08 — المحاكاة
-============================================================ -->
-<section class="page">
-  <div class="p-head">
-    <div class="p-num">08</div>
-    <div class="p-title">المحاكاة<span>امتحان تجريبي بتصحيح فوري</span></div>
-    <div class="p-brand">هيرو أكاديمي</div>
-  </div>
-
-  <div class="kpis">
-    <div class="kpi"><div class="k-val">40</div><div class="k-lab">سؤالاً للمحاكاة</div></div>
-    <div class="kpi"><div class="k-val">60</div><div class="k-lab">دقيقة زمن</div></div>
-    <div class="kpi"><div class="k-val">فوري</div><div class="k-lab">تصحيح وإحصاء</div></div>
-    <div class="kpi"><div class="k-val">غير محدود</div><div class="k-lab">عدد المحاولات</div></div>
-  </div>
-
-  <div class="p-grid">
-    <div class="phone">
-      <div class="screen">
-        <div class="s-status"><span>9:41</span><span>◗◗ ◗ ▮</span></div>
-        <div class="s-app">
-          <div>🎯 محاكاة الامتحان<small>السؤال 12 من 40</small></div>
-          <div class="s-ico">⏱️ 38:12</div>
-        </div>
-        <div class="s-body">
-          <div class="s-bar" style="height:7px;"><i style="width:30%"></i></div>
-
-          <div class="s-card">
-            <div class="s-q">ما هو أثر تجاوز حدود الدفاع الشرعي بحسن نية؟</div>
-            <div class="s-opt">أ) يُعفى الجاني إعفاءً تاماً من العقوبة</div>
-            <div class="s-opt on">ب) عذر مخفف يعدل التهمة إلى شبه العمد ✓</div>
-            <div class="s-opt">ج) تتحول الجريمة إلى جنحة بسيطة</div>
-            <div class="s-opt">د) لا أثر قانوني على المسؤولية</div>
-          </div>
-
-          <div style="display:flex;gap:5px;">
-            <div class="s-btn" style="flex:1;background:#eef2f7;color:#334155;">◂ السابق</div>
-            <div class="s-btn" style="flex:1;">التالي ▸</div>
-          </div>
-
-          <div class="s-card gold">
-            <div style="font-size:7px;">⏳ يتبقى 38 دقيقة · الأسئلة غير المُجابة تُحسب خاطئة تلقائياً.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="notes">
-      <div class="note"><span class="n-badge">1</span><b>شريط تقدم السؤال:</b> يوضح موقعك من الامتحان (12/40) مع مؤقّت تنازلي ظاهر في الشريط العلوي.</div>
-      <div class="note"><span class="n-badge">2</span><b>خيارات واضحة:</b> أربعة خيارات بحجم لمس مريح، مع تمييز ذهبي للخيار المختار لمنع الخطأ غير المقصود.</div>
-      <div class="note"><span class="n-badge">3</span><b>تنقل حر:</b> أزرار السابق/التالي تسمح بالمراجعة قبل التسليم، تماماً كتجربة الامتحان الحقيقي.</div>
-      <div class="note"><span class="n-badge">4</span><b>محاكاة الضغط الزمني:</b> المؤقّت يدرّب المتعلم على إدارة الوقت، وهو عامل حاسم في الامتحانات الرسمية.</div>
-      <div class="insight">
-        <b>مؤشر الثقة:</b> المتعلم الذي يخوض <b>3 محاكاة</b> كاملة تقلّ احتمالية تعثره في الامتحان الرسمي بنسبة تصل إلى <b>35%</b>.
-      </div>
-    </div>
-  </div>
-
-  <div class="p-foot">
-    <span><span class="dot">●</span> القسم 08 من 10 — المحاكاة</span>
-    <span>كتالوج مرئي 2026-2027 · هيرو أكاديمي</span>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     صفحة 09 — الموارد
-============================================================ -->
-<section class="page">
-  <div class="p-head">
-    <div class="p-num">09</div>
-    <div class="p-title">الموارد<span>فيديو · خرائط ذهنية · نماذج امتحانات</span></div>
-    <div class="p-brand">هيرو أكاديمي</div>
-  </div>
-
-  <div class="kpis">
-    <div class="kpi"><div class="k-val">3</div><div class="k-lab">دروس فيديو</div></div>
-    <div class="kpi"><div class="k-val">8</div><div class="k-lab">خرائط ذهنية</div></div>
-    <div class="kpi"><div class="k-val">10</div><div class="k-lab">نماذج امتحانات</div></div>
-    <div class="kpi"><div class="k-val">تكبير</div><div class="k-lab">عرض الخرائط</div></div>
-  </div>
-
-  <div class="p-grid">
-    <div class="phone">
-      <div class="screen">
-        <div class="s-status"><span>9:41</span><span>◗◗ ◗ ▮</span></div>
-        <div class="s-app">
-          <div>🎥 الموارد<small>مكتبة مساندة شاملة</small></div>
-          <div class="s-ico">📂</div>
-        </div>
-        <div class="s-body">
-          <div class="s-card" style="border-right:3px solid #1a4b6d;">
-            <div style="font-size:7.5px;font-weight:700;color:#1a4b6d;">🎬 فلسفة القانون الجنائي — الجزء 1</div>
-          </div>
-          <div class="s-card" style="border-right:3px solid #1a4b6d;">
-            <div style="font-size:7.5px;font-weight:700;color:#1a4b6d;">🎬 فلسفة القانون الجنائي — الجزء 2</div>
-          </div>
-
-          <div class="s-card">
-            <div class="s-h">🗺️ الخرائط الذهنية</div>
-            <div class="s-grid" style="grid-template-columns:repeat(4,1fr);">
-              <div style="height:26px;border-radius:6px;background:linear-gradient(145deg,#0b2b44,#1a4b6d);"></div>
-              <div style="height:26px;border-radius:6px;background:linear-gradient(145deg,#1a4b6d,#c9a227);"></div>
-              <div style="height:26px;border-radius:6px;background:linear-gradient(145deg,#c9a227,#f0c85a);"></div>
-              <div style="height:26px;border-radius:6px;background:linear-gradient(145deg,#123a5a,#1a4b6d);"></div>
+            <div class="chips">
+                <span class="chip">5 سوابق</span>
+                <span class="chip gold">سودانية حقيقية</span>
+                <span class="chip">ربط بالمبادئ</span>
             </div>
-            <div style="font-size:6.5px;color:#94a3b8;margin-top:4px;">اضغط أي خريطة لعرضها بالحجم الكامل</div>
-          </div>
 
-          <div class="s-card">
-            <div class="s-h">📄 نماذج الامتحانات السابقة</div>
-            <div class="s-t">10 نماذج جاهزة للاطلاع والتحميل</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="notes">
-      <div class="note"><span class="n-badge">1</span><b>روابط الفيديو:</b> تفتح مباشرة على يوتيوب في تبويب جديد، مع تسمية واضحة لكل جزء لتفادي الالتباس.</div>
-      <div class="note"><span class="n-badge">2</span><b>معرض الخرائط الذهنية:</b> ثماني خرائط مصغّرة داخل شبكة، تُعرض بالحجم الكامل في عارض مكبّر (Lightbox) بضغطة واحدة.</div>
-      <div class="note"><span class="n-badge">3</span><b>نماذج الامتحانات:</b> ملفات مرتبطة بمجلد سحابي، تشمل نموذجاً للدليل المرئي لقانون الإجراءات الجنائية.</div>
-      <div class="note"><span class="n-badge">4</span><b>تجربة نظيفة:</b> لا مشغلات مدمجة ولا تحميل ثقيل — مجرد روابط خفيفة تحافظ على سرعة التطبيق.</div>
-      <div class="insight">
-        <b>التكامل:</b> الشاشة النصية تُفهم، والفيديو يشرح، والخريطة تُرسّخ، والنموذج يختبر — أربع طبقات لذات المعرفة.
-      </div>
-    </div>
-  </div>
-
-  <div class="p-foot">
-    <span><span class="dot">●</span> القسم 09 من 10 — الموارد</span>
-    <span>كتالوج مرئي 2026-2027 · هيرو أكاديمي</span>
-  </div>
-</section>
-
-
-<!-- ============================================================
-     صفحة 10 — خطة العلاج
-============================================================ -->
-<section class="page">
-  <div class="p-head">
-    <div class="p-num">10</div>
-    <div class="p-title">خطة العلاج<span>برنامج 7 أيام لسد الفجوات</span></div>
-    <div class="p-brand">هيرو أكاديمي</div>
-  </div>
-
-  <div class="kpis">
-    <div class="kpi"><div class="k-val">7</div><div class="k-lab">أيام البرنامج</div></div>
-    <div class="kpi"><div class="k-val">2</div><div class="k-lab">فجوات مستهدفة</div></div>
-    <div class="kpi"><div class="k-val">6</div><div class="k-lab">جرعات علاجية</div></div>
-    <div class="kpi"><div class="k-val">43%</div><div class="k-lab">نسبة التنفيذ</div></div>
-  </div>
-
-  <div class="p-grid">
-    <div class="phone">
-      <div class="screen">
-        <div class="s-status"><span>9:41</span><span>◗◗ ◗ ▮</span></div>
-        <div class="s-app">
-          <div>🩺 خطة العلاج<small>مبنية على تحليل أخطائك</small></div>
-          <div class="s-ico">📅</div>
-        </div>
-        <div class="s-body">
-          <div class="s-card navy">
-            <div style="font-size:8px;font-weight:800;">هدفك: سد فجوتَي «الركن المعنوي» و«الشروع»</div>
-            <div class="s-bar" style="margin-top:6px;background:rgba(255,255,255,.2);">
-              <i style="width:43%"></i>
+            <div class="quote">
+                الأمثلة تُدرّب الطالب على <b>التحليل</b> لا الاستظهار — وهي مهارة أساسية في أسئلة المعادلة.
             </div>
-          </div>
-
-          <div class="s-card" style="border-right:3px solid #1e7e34;">
-            <div style="font-size:8px;font-weight:700;color:#0b2b44;">اليوم 1 · مبدأ الشرعية</div>
-            <div style="font-size:6.5px;color:#1e7e34;margin-top:2px;">✅ مكتمل</div>
-          </div>
-
-          <div class="s-card" style="border-right:3px solid #1e7e34;">
-            <div style="font-size:8px;font-weight:700;color:#0b2b44;">اليوم 2 · تفسير النصوص</div>
-            <div style="font-size:6.5px;color:#1e7e34;margin-top:2px;">✅ مكتمل</div>
-          </div>
-
-          <div class="s-card" style="border-right:3px solid #1e7e34;">
-            <div style="font-size:8px;font-weight:700;color:#0b2b44;">اليوم 3 · نظرية الجريمة</div>
-            <div style="font-size:6.5px;color:#1e7e34;margin-top:2px;">✅ مكتمل</div>
-          </div>
-
-          <div class="s-card" style="border-right:3px solid #c9a227;">
-            <div style="font-size:8px;font-weight:700;color:#0b2b44;">اليوم 4 · الركن المعنوي</div>
-            <div style="font-size:6.5px;color:#8a6d1a;margin-top:2px;">⏳ قيد التنفيذ</div>
-          </div>
-
-          <div class="s-card">
-            <div style="font-size:8px;font-weight:700;color:#94a3b8;">اليوم 5 · الشروع</div>
-            <div style="font-size:6.5px;color:#94a3b8;margin-top:2px;">🔒 لم يبدأ</div>
-          </div>
-
-          <div class="s-card">
-            <div style="font-size:8px;font-weight:700;color:#94a3b8;">اليوم 6 · محاكاة كاملة</div>
-            <div style="font-size:6.5px;color:#94a3b8;margin-top:2px;">🔒 لم يبدأ</div>
-          </div>
         </div>
-      </div>
     </div>
 
-    <div class="notes">
-      <div class="note"><span class="n-badge">1</span><b>هدف واضح معلن:</b> الخطة تبدأ بتحديد الفجوتين المستهدفتين، فلا يتوه المتعلم في محتوى عام.</div>
-      <div class="note"><span class="n-badge">2</span><b>تقسيم يومي:</b> سبعة أيام، كل يوم مهمة واحدة محددة، بما يناسب الالتزام الواقعي للطالب العامل.</div>
-      <div class="note"><span class="n-badge">3</span><b>حالة كل يوم:</b> مكتمل (أخضر) · قيد التنفيذ (ذهبي) · لم يبدأ (رمادي) — متابعة بصرية سريعة بلا أرقام مربكة.</div>
-      <div class="note"><span class="n-badge">4</span><b>ختام بالمحاكاة:</b> اليوم السادس مخصص لامتحان تجريبي كامل، لقياس أثر العلاج قبل الامتحان الرسمي.</div>
-      <div class="insight">
-        <b>إغلاق الدائرة:</b> تشخيص ← تقرير ← جرعات ← تحليل أخطاء ← خطة علاج ← محاكاة ← إعادة تشخيص. دورة تعلّم كاملة داخل تطبيق واحد.
-      </div>
+    <div class="page-foot">
+        <span>مذكرة النجاح · القانون الجنائي السوداني 1991</span>
+        <span class="pnum">08</span>
     </div>
-  </div>
-
-  <div class="p-foot">
-    <span><span class="dot">●</span> القسم 10 من 10 — خطة العلاج</span>
-    <span>كتالوج مرئي 2026-2027 · هيرو أكاديمي</span>
-  </div>
 </section>
 
+<!-- ============================================================
+     PAGE 9 — EXAMS
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">07</span> الامتحانات والاختبارات</div>
+    </div>
+
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>القانون الجنائي</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b class="orange">🔍 بحث</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">📋 الامتحانات <span class="back">🏠 العودة</span></div>
+                        <div class="p-exam">
+                            <h5>اختبارات قصيرة</h5>
+                            <ul>
+                                <li>اختبار المصطلحات والمبادئ (10 أسئلة).</li>
+                                <li>اختبار الأركان والمسؤولية (10 أسئلة).</li>
+                            </ul>
+                        </div>
+                        <div class="p-exam">
+                            <h5>اختبارات الوحدات (5 × 15)</h5>
+                            <ul>
+                                <li>الوحدة الأولى: المبادئ التمهيدية.</li>
+                                <li>الوحدة الثانية: نظرية الجريمة.</li>
+                                <li>الوحدة الثالثة: المسؤولية الجنائية.</li>
+                                <li>الوحدة الرابعة: أسباب الإباحة.</li>
+                                <li>الوحدة الخامسة: الشروع والاشتراك.</li>
+                            </ul>
+                        </div>
+                        <div class="p-exam">
+                            <h5>اختبار منتصف الفصل (30 سؤالاً)</h5>
+                            <ul>
+                                <li>شامل للوحدتين 1 و 2.</li>
+                            </ul>
+                        </div>
+                        <div class="p-exam">
+                            <h5>الاختبار النهائي الشامل (40 سؤالاً)</h5>
+                            <ul>
+                                <li>يغطي كامل المنهج.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">شاشة الامتحانات — اختبارات متكاملة</div>
+        </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>أربعة مستويات امتحانية</b>
+                        <p>اختبارات قصيرة، اختبارات وحدات، اختبار منتصف، واختبار نهائي شامل.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>روابط نماذج سابقة</b>
+                        <p>11 نموذج امتحان سابق على Google Drive، جاهزة للتحميل والاطلاع.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>تغطية موزّعة</b>
+                        <p>كل وحدة بـ 15 سؤالاً، مع 30 سؤالاً لمنتصف الفصل و40 للنهائي.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>ملف الدليل المرئي مرفق</b>
+                        <p>ملف «الدليل المرئي لقانون الإجراءات الجنائية السوداني 1991» مرفق بالنماذج.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">5</span>
+                    <div class="txt">
+                        <b>أنماط أسئلة متنوعة</b>
+                        <p>أسئلة من نوع «ما»، «اذكر»، «وضح»، «قارن» — تحاكي نمط الأسئلة المقالية الرسمية.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">4 مستويات</span>
+                <span class="chip gold">11 نموذج Drive</span>
+                <span class="chip">125+ سؤال</span>
+            </div>
+
+            <div class="quote">
+                مبدأ التصميم هنا: <b>تدرّج من السهل للشامل</b> — كل مستوى يبني على سابقه.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · القانون الجنائي السوداني 1991</span>
+        <span class="pnum">09</span>
+    </div>
+</section>
 
 <!-- ============================================================
-     صفحة الختام — CTA
-============================================================ -->
-<section class="page cta-page">
-  <div class="cta-box">
-    <div class="cta-emoji">🚀</div>
-    <h2>أعجبتك طريقة <em>Hero</em>؟</h2>
-    <p>
-      هذه ليست مجرد مذكرة… إنها منظومة تعلّم كاملة:
-      تشخيص، وجرعات، وبنك أسئلة، وتحليل أخطاء، وخطة علاج.
-      <br>اكتشف باقي المساقات والكتالوجات المرئية على منصتنا.
-    </p>
-
-    <div class="cta-stats">
-      <div><b>200</b><span>سؤال شامل</span></div>
-      <div><b>24</b><span>جرعة تعلمية</span></div>
-      <div><b>5</b><span>وحدات علمية</span></div>
+     PAGE 10 — QUESTION BANK
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">08</span> بنك الأسئلة الشامل</div>
     </div>
 
-    <a class="cta-link" href="https://app.hero1.vip/#about" target="_blank" rel="noopener">
-      اكتشف المزيد الآن ▸
-    </a>
-    <div class="cta-url">https://app.hero1.vip/#about</div>
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>القانون الجنائي</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b class="orange">🔍 بحث</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">📚 بنك الأسئلة (200 سؤال) <span class="back">🏠 العودة</span></div>
+                        <div class="p-filters">
+                            <div>جميع الوحدات ▾</div>
+                            <div>بحث في الأسئلة...</div>
+                        </div>
+                        <div class="p-qitem">
+                            <div class="q">1. ما هو تاريخ دخول القانون الجنائي السوداني 1991 حيز النفاذ؟</div>
+                            <div class="a">📌 21 مارس 1991م.</div>
+                            <div class="u">الوحدة 1</div>
+                        </div>
+                        <div class="p-qitem">
+                            <div class="q">2. ما هو النموذج القانوني لأول قانون عقوبات سوداني 1899؟</div>
+                            <div class="a">📌 قانون العقوبات الهندي.</div>
+                            <div class="u">الوحدة 1</div>
+                        </div>
+                        <div class="p-qitem">
+                            <div class="q">3. ما هي السمة المميزة لقانون العقوبات السوداني 1983؟</div>
+                            <div class="a">📌 أدخل أحكاماً مستندة للشريعة الإسلامية، بما فيها الحدود والقصاص.</div>
+                            <div class="u">الوحدة 1</div>
+                        </div>
+                        <div class="p-qitem">
+                            <div class="q">4. كيف اختلف قانون 1991 عن قانون 1974 من حيث عدد المواد؟</div>
+                            <div class="a">📌 خفض عدد المواد من 451 إلى 188 مادة.</div>
+                            <div class="u">الوحدة 1</div>
+                        </div>
+                        <div class="p-qitem">
+                            <div class="q">5. وفقاً للمادة 3، ما هي المدة الدنيا للألم الجسدي للأذى الجسيم؟</div>
+                            <div class="a">📌 عشرون يوماً.</div>
+                            <div class="u">الوحدة 1</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">بنك الأسئلة — فلترة وبحث فوري</div>
+        </div>
 
-    <div class="cta-foot">
-      © 2026-2027 — جميع الحقوق محفوظة &nbsp;·&nbsp; <b>هيرو أكاديمي</b>
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>200 سؤال متكامل</b>
+                        <p>موزّعة على خمس وحدات، تغطي كافة مواد قانون العقوبات السوداني 1991م.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>شريط فلترة وبحث</b>
+                        <p>قائمة منسدلة للوحدات + حقل بحث نصي، يتيحان الوصول لسؤال بعينه في ثوانٍ.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>زر «إظهار الإجابة»</b>
+                        <p>الإجابة مخفية افتراضياً، وتظهر عند الضغط — تعلّم نشط لا قراءة سلبية.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>وسم الوحدة أسفل كل سؤال</b>
+                        <p>سطر صغير يوضّح الوحدة الدراسية، ما يساعد على المراجعة الموضوعية المنظمة.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">5</span>
+                    <div class="txt">
+                        <b>إجابات مفصّلة ومركّزة</b>
+                        <p>الإجابات بلون أزرق أهدأ مع أيقونة 📌، وتتضمن الإشارات للمواد والمفاهيم.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">200 سؤال</span>
+                <span class="chip gold">فلترة بالوحدات</span>
+                <span class="chip">بحث نصي</span>
+                <span class="chip">إجابات مطويّة</span>
+            </div>
+
+            <div class="quote">
+                بنك الأسئلة هو <b>محرّك التدريب</b> في التطبيق — تغطية شاملة بلا تشتيت بصري.
+            </div>
+        </div>
     </div>
-  </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · القانون الجنائي السوداني 1991</span>
+        <span class="pnum">10</span>
+    </div>
+</section>
+
+<!-- ============================================================
+     PAGE 11 — REVIEWS
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">09</span> المراجعات وبطاقات المراجعة</div>
+    </div>
+
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>القانون الجنائي</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b class="orange">🔍 بحث</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">🔄 المراجعات <span class="back">🏠 العودة</span></div>
+                        <div class="p-note">
+                            <b>📝 مبدأ الشرعية</b>
+                            لا جريمة ولا عقوبة إلا بنص سابق · التفسير الضيق للنصوص العقابية لمصلحة المتهم.
+                        </div>
+                        <div class="p-note">
+                            <b>📝 الركن المادي</b>
+                            السلوك · النتيجة · رابطة السببية. تنقطع بالعوامل الشاذة وغير المتوقعة.
+                        </div>
+                        <div class="p-note">
+                            <b>📝 المسؤولية</b>
+                            صغر السن (دون 7) · الجنون · السكر القسري · الإكراه الملجئ · حالة الضرورة.
+                        </div>
+                        <div class="p-flip">
+                            <div class="f">❓ ما هو مبدأ الشرعية الجنائية؟</div>
+                            <div class="b">✅ لا جريمة ولا عقوبة إلا بنص قانوني سابق وقت ارتكاب الفعل.</div>
+                        </div>
+                        <div class="p-flip">
+                            <div class="f">❓ ما هو معيار انقطاع رابطة السببية؟</div>
+                            <div class="b">✅ تنقطع بتدخل عامل أجنبي مستقل وشاذ وغير متوقع تماماً.</div>
+                        </div>
+                        <div class="p-flip">
+                            <div class="f">❓ ما هي شروط الدفاع الشرعي؟</div>
+                            <div class="b">✅ خطر حال وغير مشروع · تعذر الاستعانة بالسلطات · تناسب القوة.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">مراجعات قصيرة + بطاقات قابلة للكشف</div>
+        </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>مراجعات قصيرة مركّزة</b>
+                        <p>ثلاث مراجعات تغطي: مبدأ الشرعية، الركن المادي، والمسؤولية الجنائية.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>بطاقات مراجعة تفاعلية</b>
+                        <p>الضغط على البطاقة يكشف الإجابة، بلون أخضر يميّز «الإجابة الصحيحة» عن السؤال.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>50+ بطاقة مراجعة</b>
+                        <p>مستخلصة من المنهج — تغطي كل التعاريف والأحكام المفتاحية من الوحدات الخمس.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>تكرار متباعد</b>
+                        <p>البنية تسمح بتدوير البطاقات عشوائياً لتطبيق أسلوب المراجعة المتباعدة (Spaced Repetition).</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">5</span>
+                    <div class="txt">
+                        <b>تغطية موضوعية شاملة</b>
+                        <p>من تعريف القاصر حتى الفاعل المعنوي — لا تترك البطاقات ثغرة في المنهج.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">50+ بطاقة</span>
+                <span class="chip gold">قابلة للكشف</span>
+                <span class="chip">مراجعة متباعدة</span>
+            </div>
+
+            <div class="quote">
+                المراجعة الفعّالة ليست قراءة ثانية، بل <b>اختبار ذاتي</b> — وهذا ما تصمّمه هذه الشاشة.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · القانون الجنائي السوداني 1991</span>
+        <span class="pnum">11</span>
+    </div>
+</section>
+
+<!-- ============================================================
+     PAGE 12 — KNOWLEDGE TREE
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">10</span> شجرة المعرفة</div>
+    </div>
+
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>القانون الجنائي</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b class="orange">🔍 بحث</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">🌳 شجرة المعرفة <span class="back">🏠 العودة</span></div>
+                        <div class="p-tree">
+                            <div class="p-node">
+                                📘 القانون الجنائي السوداني 1991 (القسم العام)
+                                <div class="kids">
+                                    <div class="p-node">
+                                        📌 المبادئ التمهيدية
+                                        <div class="kids">
+                                            <div class="kid">مبدأ الشرعية<div class="det">لا جريمة ولا عقوبة إلا بنص · تفسير ضيق · حظر القياس.</div></div>
+                                            <div class="kid">سريان القانون<div class="det">عدم الرجعية · الإقليمية · العيني · الشخصي.</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="p-node">
+                                        📌 نظرية الجريمة
+                                        <div class="kids">
+                                            <div class="kid">الركن المادي<div class="det">السلوك · النتيجة · رابطة السببية.</div></div>
+                                            <div class="kid">الركن المعنوي<div class="det">العمد · شبه العمد · الخطأ غير العمدي.</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="p-node">
+                                        📌 المسؤولية الجنائية
+                                        <div class="kids">
+                                            <div class="kid">الأهلية<div class="det">التمييز والاختيار · التدرج العمري.</div></div>
+                                            <div class="kid">موانع المسؤولية<div class="det">صغر السن · الجنون · السكر · الإكراه.</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="p-node">
+                                        📌 أسباب الإباحة
+                                        <div class="kids">
+                                            <div class="kid">الدفاع الشرعي<div class="det">خطر حال · تعذر الاستعانة · تناسب.</div></div>
+                                            <div class="kid">أداء الواجب · رضا المجني<div class="det">الموظف العام · العمليات الجراحية · الرياضة.</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="p-node">
+                                        📌 الشروع والاشتراك
+                                        <div class="kids">
+                                            <div class="kid">الشروع<div class="det">البدء في التنفيذ · العدول الاختياري · نصف الحد.</div></div>
+                                            <div class="kid">الاشتراك<div class="det">الاتفاق · التحريض · المساعدة · الفاعل المعنوي.</div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">الشجرة التفاعلية — خمسة فروع رئيسية</div>
+        </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>بنية هرمية ثلاثية المستويات</b>
+                        <p>جذر واحد ← خمسة فروع ← عقد فرعية، ما يعكس التقسيم المنطقي للقانون.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>عقد قابلة للفتح والطي</b>
+                        <p>الضغط على أي عقدة يفتح أبناءها، فيتحكم الطالب بمستوى التفصيل الذي يريده.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>إزاحة بصرية متدرّجة</b>
+                        <p>كل مستوى أعمق يُزاح نحو الداخل قليلاً، فيتضح التسلسل دون الحاجة إلى خطوط وصل.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>تفاصيل مختصرة أسفل العقدة</b>
+                        <p>سطر توضيحي صغير أسفل كل عقدة يمنح سياقاً سريعاً دون فتح المستوى التالي.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">5</span>
+                    <div class="txt">
+                        <b>تسلسل قانوني دقيق</b>
+                        <p>المبادئ ← الجريمة ← المسؤولية ← الإباحة ← الشروع — تدرّج منطقي للتذكر.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">5 فروع</span>
+                <span class="chip gold">تفاعل بالفتح</span>
+                <span class="chip">خريطة هيكلية</span>
+            </div>
+
+            <div class="quote">
+                الشجرة تجيب على سؤال الطالب الأول: <b>«كيف يترابط هذا القانون؟»</b> — قبل الدخول في التفاصيل.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · القانون الجنائي السوداني 1991</span>
+        <span class="pnum">12</span>
+    </div>
+</section>
+
+<!-- ============================================================
+     PAGE 13 — VIDEOS
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">11</span> الفيديوهات التعليمية</div>
+    </div>
+
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>القانون الجنائي</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b class="orange">🔍 بحث</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">🎥 الفيديوهات التعليمية <span class="back">🏠 العودة</span></div>
+                        <div class="p-video">
+                            <span class="ico">🎬</span>
+                            <span class="t">فلسفة القانون الجنائي السوداني 1991 — الجزء 1</span>
+                        </div>
+                        <div class="p-video">
+                            <span class="ico">🎬</span>
+                            <span class="t">فلسفة القانون الجنائي السوداني 1991 — الجزء 2</span>
+                        </div>
+                        <div class="p-video">
+                            <span class="ico">🎬</span>
+                            <span class="t">فلسفة القانون الجنائي السوداني 1991 — الجزء 1 (مكرر)</span>
+                        </div>
+                        <div class="p-box">
+                            <h5>📌 محتوى الفيديوهات</h5>
+                            <p>شرح تطبيقي لفلسفة القانون الجنائي السوداني 1991م ومناهج استنباط الأحكام.</p>
+                        </div>
+                        <div class="p-warn">
+                            ⚠️ <b>تنبيه:</b> إذا وصلك التطبيق دون شراء، تواصل معنا.
+                        </div>
+                        <div class="p-note">
+                            <b>📞 للتواصل</b>
+                            واتساب: +249915886600
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">شاشة الفيديوهات التعليمية</div>
+        </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>ثلاثة روابط فيديو</b>
+                        <p>سلسلة «فلسفة القانون الجنائي السوداني 1991» بجزأين، مع رابط مكرر للجزء الأول.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>نمط بطاقة موحّد</b>
+                        <p>كل فيديو في بطاقة بحدّ أيمن كحلي، مع أيقونة 🎬 وعنوان الفيديو بخط بارز.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>روابط مباشرة لـ YouTube</b>
+                        <p>النقر على أي بطاقة يفتح الرابط في تبويب جديد — تجربة سلسة.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>بطاقة محتوى الفيديو</b>
+                        <p>تُلخّص محتوى الفيديوهات في سطرين، لتحديد ما إذا كانت تناسب احتياج الطالب.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">5</span>
+                    <div class="txt">
+                        <b>تنبيه حقوق الاستخدام</b>
+                        <p>صندوق أصفر بحدّ أيمن ذهبي أسفل المحتوى، دون أن يزاحم العنصر الرئيسي.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">3 فيديوهات</span>
+                <span class="chip gold">روابط YouTube</span>
+                <span class="chip">تنبيه حقوق</span>
+                <span class="chip">واتساب تواصل</span>
+            </div>
+
+            <div class="quote">
+                الشاشة الأخيرة في المسار التعليمي — <b>الوسائط المتعددة</b> بعد النص والخرائط والاختبارات.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · القانون الجنائي السوداني 1991</span>
+        <span class="pnum">13</span>
+    </div>
+</section>
+
+<!-- ============================================================
+     PAGE 14 — CTA
+     ============================================================ -->
+<section class="page cta">
+    <div class="cta-inner">
+        <div class="cover-badge">هيرو أكاديمي · Hero Academic</div>
+        <div style="font-size:52px;line-height:1;">✨</div>
+        <div class="big">أعجبتك طريقة <span>Hero</span>؟</div>
+        <p class="sub">
+            نفس الأسلوب في التصميم، ونفس الجودة في المحتوى — يمكننا بناء تطبيقك
+            التعليمي بكتالوج مرئي كهذا، جاهز للطباعة والنشر الرقمي.
+        </p>
+
+        <div class="divider"></div>
+
+        <a href="https://app.hero1.vip/#about"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="
+                display:inline-block;
+                background:#f5c542;
+                color:#0b2b44;
+                text-decoration:none;
+                font-size:16px;
+                font-weight:800;
+                padding:14px 42px;
+                border-radius:50px;
+                box-shadow:0 8px 24px rgba(245,197,66,.38);
+                letter-spacing:.4px;
+                transition:.2s;
+                border:1px solid rgba(255,255,255,.25);
+           ">
+            🛒 شراء الآن
+        </a>
+
+        <div style="
+                direction:ltr;
+                font-family:monospace;
+                font-size:13px;
+                color:#b9cfe3;
+                margin-top:10px;
+                letter-spacing:.3px;
+             ">
+            https://app.hero1.vip/#about
+        </div>
+
+        <div class="pillars">
+            <div class="pillar"><span>📱</span> واجهات عربية RTL</div>
+            <div class="pillar"><span>🖨️</span> كتالوجات A4 جاهزة للطباعة</div>
+            <div class="pillar"><span>🔐</span> حماية وترخيص ذكي</div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        © 2026-2027 — جميع الحقوق محفوظة
+    </div>
 </section>
 
 </body>
