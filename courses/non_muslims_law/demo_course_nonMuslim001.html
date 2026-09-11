@@ -1,1574 +1,1938 @@
-<!--
-=========================================================
-HERO_PROTECTED_APP v2 (Shared) – معدّل
-Course: 17
-Subject: 0
-=========================================================
--->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<!-- Hero Protection v4.0 | Course: nonMuslim001 | Public Key: MvyQmsKLBby2j37aczPd... -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-    <title>مذكرة النجاح – قانون الأحوال الشخصية لغير المسلمين</title>
-    <style>
-        /* ===== RESET & BASE ===== */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', 'Tahoma', Arial, sans-serif;
-            background: #f2f6fc;
-            color: #1a2634;
-            line-height: 1.7;
-            padding: 0 0 20px;
-            direction: rtl;
-        }
-        a { text-decoration: none; color: inherit; }
-        button { cursor: pointer; font-family: inherit; }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كتالوج مرئي – مذكرة النجاح | هيرو أكاديمي 2026-2027</title>
+<style>
+/* ============================================================
+   BASE
+   ============================================================ */
+:root{
+    --navy:#0b2a47;
+    --navy-2:#123a5f;
+    --navy-3:#1a4a76;
+    --gold:#f5c542;
+    --gold-2:#ffd966;
+    --gold-d:#c99a10;
+    --bg:#f2f6fc;
+    --ink:#1a2634;
+    --muted:#3d5a78;
+    --soft:#6a7f9a;
+    --line:#e6edf6;
+    --white:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+}
+body{
+    font-family:"Segoe UI","Tahoma","Noto Naskh Arabic","Arial",sans-serif;
+    background:#dfe6ef;
+    color:var(--ink);
+    direction:rtl;
+    padding:24px 0;
+    line-height:1.7;
+}
 
-        /* ===== HEADER ===== */
-        .app-header {
-            background: #0b2a47;
-            color: #fff;
-            padding: 16px 0;
-            border-radius: 0 0 28px 28px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .app-header .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .app-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .app-title small {
-            font-size: 0.75rem;
-            font-weight: 400;
-            opacity: 0.8;
-            margin-right: 8px;
-        }
-        .header-actions {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-        .header-actions button {
-            background: rgba(255,255,255,0.12);
-            color: #fff;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: 0.2s;
-        }
-        .header-actions button:hover {
-            background: rgba(255,255,255,0.25);
-        }
-        .header-actions .btn-home { background: #f5c542; color: #0b2a47; }
-        .header-actions .btn-home:hover { background: #ffd966; }
+/* ============================================================
+   PAGE (A4)
+   ============================================================ */
+.page{
+    width:210mm;
+    min-height:297mm;
+    background:var(--white);
+    margin:0 auto 14px;
+    padding:12mm 12mm 8mm;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    box-sizing:border-box;
+    overflow:hidden;
+    box-shadow:0 10px 34px rgba(11,42,71,.16);
+    border-radius:2px;
+}
 
-        /* ===== MAIN SCREEN ===== */
-        .main-screen {
-            padding: 30px 0 20px;
-        }
-        .main-screen h1 {
-            font-size: 1.9rem;
-            color: #0b2a47;
-            border-right: 6px solid #f5c542;
-            padding-right: 16px;
-            margin-bottom: 16px;
-        }
-        .main-screen .sub {
-            color: #3d5a78;
-            font-size: 1.05rem;
-            margin-bottom: 28px;
-        }
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 16px;
-            margin: 20px 0;
-        }
-        .category-card {
-            background: #fff;
-            border-radius: 18px;
-            padding: 22px 12px;
-            text-align: center;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.05);
-            border: 1px solid #e6edf6;
-            transition: 0.25s;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-        }
-        .category-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
-            border-color: #b3c9e0;
-        }
-        .category-card .icon { font-size: 2.2rem; }
-        .category-card .badge-count {
-            background: #f5c542;
-            color: #0b2a47;
-            border-radius: 30px;
-            padding: 0 10px;
-            font-size: 0.7rem;
-            font-weight: 700;
-        }
+/* ============================================================
+   PAGE HEADER / FOOTER
+   ============================================================ */
+.page-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding-bottom:6px;
+    border-bottom:2px solid var(--line);
+    margin-bottom:7mm;
+}
+.page-head .kicker{
+    display:flex;align-items:center;gap:7px;
+    font-size:11px;font-weight:700;color:var(--soft);
+    letter-spacing:.4px;
+}
+.page-head .kicker .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--gold);display:inline-block;
+    box-shadow:0 0 0 3px rgba(245,197,66,.25);
+}
+.page-head .sec-title{
+    font-size:15px;font-weight:800;color:var(--navy);
+}
+.page-head .sec-title .num{
+    color:var(--gold-d);
+    font-family:monospace;
+    font-size:13px;
+    margin-left:6px;
+}
+.page-foot{
+    margin-top:auto;
+    padding-top:6px;
+    border-top:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
+    font-size:10px;color:var(--soft);
+}
+.page-foot .pnum{
+    background:var(--navy);color:#fff;
+    min-width:22px;height:22px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:10px;
+}
 
-        /* ===== SECTIONS (hidden by default) ===== */
-        .section-content {
-            display: none;
-            animation: fadeIn 0.3s ease;
-        }
-        .section-content.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+/* ============================================================
+   BODY LAYOUT (phone + notes)
+   ============================================================ */
+.page-body{
+    display:flex;
+    gap:9mm;
+    align-items:flex-start;
+    flex:1;
+}
+.mock-col{
+    flex:0 0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+}
+.mock-caption{
+    font-size:10px;
+    color:var(--soft);
+    font-weight:600;
+    text-align:center;
+}
+.notes-col{
+    flex:1;
+    min-width:0;
+}
 
-        .section-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 20px 0 16px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #dce4ec;
-        }
-        .section-header h2 {
-            font-size: 1.6rem;
-            color: #0b2a47;
-        }
-        .btn-back {
-            background: #eaf0f8;
-            border: none;
-            padding: 6px 18px;
-            border-radius: 30px;
-            font-weight: 600;
-            color: #1a3a5e;
-            transition: 0.2s;
-        }
-        .btn-back:hover { background: #d0def0; }
+/* ============================================================
+   PHONE FRAME
+   ============================================================ */
+.phone{
+    width:78mm;
+    height:158mm;
+    background:linear-gradient(160deg,#0b2a47,#173e63);
+    border-radius:26px;
+    padding:6px;
+    position:relative;
+    box-shadow:0 16px 34px rgba(11,42,71,.30), inset 0 0 0 1px rgba(255,255,255,.08);
+}
+.phone::before{
+    content:"";
+    position:absolute;
+    top:11px;left:50%;transform:translateX(-50%);
+    width:44px;height:6px;border-radius:8px;
+    background:rgba(255,255,255,.30);
+    z-index:5;
+}
+.phone-screen{
+    background:var(--bg);
+    border-radius:21px;
+    height:100%;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    font-size:8.5px;
+    line-height:1.55;
+    color:var(--ink);
+}
 
-        /* ===== CARDS & BOXES ===== */
-        .card {
-            background: #fff;
-            border-radius: 18px;
-            padding: 20px 22px;
-            margin: 16px 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-            border: 1px solid #eaf0f6;
-        }
-        .def-box, .note-box, .warn-box {
-            border-radius: 14px;
-            padding: 16px 20px;
-            margin: 18px 0;
-            border-right: 5px solid;
-        }
-        .def-box { border-color: #2b6f9e; background: #edf4fc; }
-        .note-box { border-color: #f3b33d; background: #fef9ef; }
-        .warn-box { border-color: #c0392b; background: #fdeaea; }
-        .box-title { font-weight: 700; font-size: 1.05rem; margin-bottom: 4px; }
+/* --- status bar --- */
+.p-status{
+    background:#fff;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:7px 12px 3px;
+    font-size:7px;font-weight:700;color:var(--navy);
+}
+.p-status .r{letter-spacing:1px;color:var(--soft);}
 
-        /* ===== TREE ===== */
-        .tree-node {
-            margin: 6px 0;
-        }
-        .tree-node .node-label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 14px;
-            background: #f4f8fe;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-        .tree-node .node-label:hover { background: #e6edf6; }
-        .tree-node .node-children {
-            padding-right: 28px;
-            display: none;
-        }
-        .tree-node.open .node-children { display: block; }
-        .tree-node .node-detail {
-            padding: 6px 14px;
-            margin: 4px 0;
-            border-right: 3px solid #b3c9e0;
-            font-size: 0.95rem;
-        }
+/* --- app nav --- */
+.p-nav{
+    background:var(--navy);
+    color:#fff;
+    padding:7px 9px;
+    border-radius:0 0 14px 14px;
+    box-shadow:0 3px 10px rgba(11,42,71,.28);
+}
+.p-brand{font-size:8.5px;font-weight:800;display:flex;align-items:center;gap:4px;}
+.p-brand small{font-size:6px;font-weight:400;opacity:.75;margin-right:4px;}
+.p-actions{display:flex;gap:4px;margin-top:6px;}
+.p-actions b{
+    background:rgba(255,255,255,.14);
+    border-radius:20px;
+    padding:3px 7px;
+    font-size:6px;font-weight:600;
+}
+.p-actions b.gold{background:var(--gold);color:var(--navy);}
 
-        /* ===== MAPS GALLERY ===== */
-        .maps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-        .map-item {
-            background: #fff;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            border: 1px solid #e6edf6;
-            transition: 0.2s;
-        }
-        .map-item:hover { transform: scale(1.02); }
-        .map-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            background: #fafcfd;
-            padding: 6px;
-        }
-        .map-item .map-label {
-            padding: 10px 14px;
-            background: #f7faff;
-            border-top: 1px solid #e6edf6;
-            font-weight: 600;
-            text-align: center;
-            font-size: 0.9rem;
-        }
+/* --- content --- */
+.p-content{
+    flex:1;
+    padding:9px 9px 12px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+.p-h1{
+    font-size:10px;
+    font-weight:800;
+    color:var(--navy);
+    border-right:4px solid var(--gold);
+    padding-right:7px;
+    line-height:1.45;
+}
+.p-sub{font-size:7px;color:var(--muted);}
+.p-sec{
+    font-size:8px;font-weight:800;color:var(--navy);
+    padding-bottom:3px;border-bottom:1px solid var(--line);
+    display:flex;align-items:center;justify-content:space-between;
+}
+.p-sec .back{
+    background:#eaf0f8;color:var(--navy-3);
+    font-size:6px;font-weight:700;padding:2px 8px;border-radius:20px;
+}
 
-        /* ===== QUIZ ===== */
-        .quiz-container {
-            background: #fff;
-            border-radius: 18px;
-            padding: 22px;
-            border: 1px solid #e6edf6;
-            margin: 16px 0;
-        }
-        .quiz-question { font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; }
-        .quiz-options { display: flex; flex-direction: column; gap: 8px; }
-        .quiz-options button {
-            background: #f4f8fe;
-            border: 1px solid #dce4ec;
-            border-radius: 12px;
-            padding: 10px 16px;
-            text-align: right;
-            transition: 0.2s;
-            font-size: 1rem;
-        }
-        .quiz-options button:hover { background: #e6edf6; }
-        .quiz-options button.selected { background: #c5d9f0; border-color: #2b6f9e; }
-        .quiz-options button.correct { background: #c8e6c9; border-color: #2e7d32; }
-        .quiz-options button.wrong { background: #ffcdd2; border-color: #c62828; }
-        .quiz-result { margin-top: 16px; font-weight: 600; }
-        .quiz-nav { display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap; }
-        .quiz-nav button {
-            padding: 8px 20px;
-            border: none;
-            border-radius: 30px;
-            background: #eaf0f8;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-        .quiz-nav button:hover { background: #d0def0; }
-        .quiz-nav button.primary { background: #0b2a47; color: #fff; }
-        .quiz-nav button.primary:hover { background: #1a3a5e; }
+/* --- category grid --- */
+.p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;}
+.p-tile{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:8px 3px 6px;
+    text-align:center;
+    font-size:6.4px;
+    font-weight:700;
+    color:var(--navy);
+    box-shadow:0 2px 6px rgba(11,42,71,.05);
+    position:relative;
+}
+.p-tile span{display:block;font-size:13px;line-height:1.2;margin-bottom:2px;}
+.p-tile i{
+    position:absolute;top:-3px;left:4px;
+    background:var(--gold);color:var(--navy);
+    font-style:normal;font-size:5.4px;font-weight:800;
+    border-radius:20px;padding:0 4px;
+}
+.p-note{
+    background:#eaf0f8;
+    border-radius:10px;
+    padding:7px 9px;
+    font-size:6.4px;
+    color:var(--navy-2);
+    line-height:1.7;
+}
+.p-note b{display:block;color:var(--navy);font-size:7px;margin-bottom:2px;}
 
-        /* ===== QUESTION BANK ===== */
-        .qbank-filters {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin: 12px 0;
-        }
-        .qbank-filters select, .qbank-filters input {
-            padding: 8px 14px;
-            border-radius: 30px;
-            border: 1px solid #dce4ec;
-            background: #fff;
-            font-size: 0.95rem;
-            flex: 1 1 150px;
-        }
-        .qbank-item {
-            background: #f9fbfe;
-            border-radius: 14px;
-            padding: 14px 18px;
-            margin: 10px 0;
-            border-right: 4px solid #2b6f9e;
-        }
-        .qbank-item .q { font-weight: 600; }
-        .qbank-item .a { padding-right: 20px; color: #1f4a7a; margin-top: 6px; }
+/* --- def / info boxes --- */
+.p-box{
+    border-radius:9px;
+    padding:6px 8px;
+    border-right:3px solid var(--navy-3);
+    background:#edf4fc;
+}
+.p-box.gold{border-color:var(--gold);background:#fef9ef;}
+.p-box.red{border-color:#c0392b;background:#fdeaea;}
+.p-box h5{font-size:6.8px;font-weight:800;color:var(--navy);margin-bottom:1px;}
+.p-box p{font-size:6.2px;color:var(--muted);line-height:1.65;}
 
-        /* ===== REVIEW CARDS ===== */
-        .review-card {
-            background: #fff;
-            border-radius: 16px;
-            padding: 16px 20px;
-            margin: 12px 0;
-            border: 1px solid #e6edf6;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .review-card .front { font-weight: 600; }
-        .review-card .back { display: none; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #dce4ec; }
-        .review-card.open .back { display: block; }
+/* --- list cards --- */
+.p-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:9px;
+    padding:7px 9px;
+    box-shadow:0 2px 6px rgba(11,42,71,.04);
+}
+.p-card h5{font-size:7px;font-weight:800;color:var(--navy);margin-bottom:3px;}
+.p-card ul{list-style:none;}
+.p-card li{
+    font-size:6.2px;color:var(--muted);
+    padding-right:9px;position:relative;line-height:1.7;
+}
+.p-card li::before{
+    content:"◆";position:absolute;right:0;top:0;
+    color:var(--gold-d);font-size:5px;
+}
 
-        /* ===== SEARCH RESULTS ===== */
-        .search-results {
-            background: #fff;
-            border-radius: 16px;
-            padding: 16px;
-            margin: 16px 0;
-            border: 1px solid #dce4ec;
-            display: none;
-        }
-        .search-results.active { display: block; }
-        .search-results li { padding: 6px 0; border-bottom: 1px solid #eef3f8; }
+/* --- maps grid --- */
+.p-maps{display:grid;grid-template-columns:repeat(2,1fr);gap:5px;}
+.p-map{
+    border-radius:9px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:#fff;
+}
+.p-map .thumb{
+    height:34px;
+    background:
+        radial-gradient(circle at 25% 30%, rgba(245,197,66,.55), transparent 55%),
+        radial-gradient(circle at 75% 70%, rgba(43,111,158,.55), transparent 55%),
+        linear-gradient(135deg,#dbe7f5,#eef4fb);
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:800;color:var(--navy);
+}
+.p-map .lbl{
+    font-size:5.6px;text-align:center;padding:3px 2px;
+    background:#f7faff;border-top:1px solid var(--line);
+    color:var(--navy-2);font-weight:700;
+}
 
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 600px) {
-            .app-title { font-size: 1.1rem; }
-            .category-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
-            .category-card { padding: 14px 8px; font-size: 0.85rem; }
-            .category-card .icon { font-size: 1.6rem; }
-            .section-header h2 { font-size: 1.3rem; }
-            .maps-grid { grid-template-columns: 1fr; }
-            .container { padding: 0 10px; }
-        }
-        @media (min-width: 601px) and (max-width: 900px) {
-            .category-grid { grid-template-columns: repeat(4, 1fr); }
-        }
+/* --- tree --- */
+.p-tree{display:flex;flex-direction:column;gap:4px;}
+.p-node{
+    background:#f4f8fe;
+    border-radius:8px;
+    padding:5px 8px;
+    font-size:6.6px;
+    font-weight:800;
+    color:var(--navy);
+}
+.p-node .kids{
+    margin-top:4px;
+    padding-right:10px;
+    display:flex;flex-direction:column;gap:3px;
+}
+.p-node .kid{
+    background:#fff;
+    border-right:2px solid #b3c9e0;
+    border-radius:6px;
+    padding:3px 6px;
+    font-size:6px;font-weight:600;color:var(--navy-2);
+}
+.p-node .det{
+    font-size:5.6px;font-weight:400;color:var(--muted);
+    padding-right:6px;margin-top:1px;
+}
 
-        /* ===== UTILITY ===== */
-        .mt-2 { margin-top: 20px; }
-        .mb-1 { margin-bottom: 10px; }
-        .text-center { text-align: center; }
-        .flex { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
-        .hidden { display: none; }
-        .badge { background: #f5c542; color: #0b2a47; padding: 0 10px; border-radius: 30px; font-size: 0.7rem; font-weight: 700; }
-        .highlight { background: #fcee8f; padding: 0 4px; border-radius: 4px; }
+/* --- qbank --- */
+.p-filters{display:flex;gap:4px;}
+.p-filters div{
+    flex:1;background:#fff;border:1px solid var(--line);
+    border-radius:20px;padding:4px 7px;font-size:5.8px;color:var(--soft);
+}
+.p-qitem{
+    background:#f9fbfe;
+    border-right:3px solid var(--navy-3);
+    border-radius:8px;
+    padding:6px 8px;
+}
+.p-qitem .q{font-size:6.4px;font-weight:700;color:var(--navy);}
+.p-qitem .a{font-size:5.9px;color:var(--navy-3);margin-top:2px;padding-right:8px;}
+.p-qitem .u{font-size:5.2px;color:var(--soft);margin-top:2px;}
 
-        /* ===== SCROLLBAR ===== */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #f0f3f8; }
-        ::-webkit-scrollbar-thumb { background: #b3c9e0; border-radius: 10px; }
-    </style>
+/* --- review flip --- */
+.p-flip{
+    background:#fff;border:1px solid var(--line);
+    border-radius:9px;padding:6px 8px;
+}
+.p-flip .f{font-size:6.3px;font-weight:700;color:var(--navy);}
+.p-flip .b{
+    font-size:5.8px;color:#2e7d32;margin-top:3px;
+    padding-top:3px;border-top:1px dashed var(--line);
+}
 
+/* --- video --- */
+.p-video{
+    background:#fff;border:1px solid var(--line);
+    border-radius:10px;padding:14px 10px;text-align:center;
+}
+.p-video .ico{font-size:22px;}
+.p-video h5{font-size:7.5px;color:var(--navy);margin:4px 0 3px;}
+.p-video p{font-size:5.8px;color:var(--muted);margin-bottom:7px;}
+.p-video .btn{
+    display:inline-block;background:#ff0000;color:#fff;
+    border-radius:20px;padding:4px 12px;font-size:6px;font-weight:800;
+}
+
+/* --- license overlay --- */
+.p-overlay{
+    position:relative;
+    flex:1;
+    background:rgba(11,42,71,.72);
+    border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    padding:9px;
+}
+.p-dialog{
+    background:#fff;border-radius:12px;padding:11px 10px;
+    text-align:center;width:100%;
+}
+.p-dialog h5{font-size:8px;color:var(--navy);margin-bottom:3px;}
+.p-dialog .sub{font-size:5.8px;color:var(--soft);margin-bottom:6px;}
+.p-fp{
+    background:#f1f5f9;border:1px solid #d1d9e6;border-radius:6px;
+    padding:5px;font-family:monospace;font-size:5px;
+    direction:ltr;word-break:break-all;color:#334155;
+}
+.p-contact{display:flex;gap:4px;margin:6px 0;}
+.p-contact b{
+    flex:1;border-radius:20px;padding:4px 0;
+    color:#fff;font-size:5.6px;font-weight:700;
+}
+.p-contact b.wa{background:#25D366;}
+.p-contact b.tg{background:#0088cc;}
+.p-input{
+    border:2px solid #d1d9e6;border-radius:8px;
+    padding:4px;font-size:5.4px;color:#94a3b8;
+    direction:ltr;text-align:center;
+}
+.p-cta{
+    background:var(--gold);color:var(--navy);
+    border-radius:20px;padding:5px 0;margin-top:6px;
+    font-size:6.4px;font-weight:800;
+}
+.p-warn{
+    background:#fef9ef;border-right:3px solid var(--gold);
+    border-radius:8px;padding:6px 8px;font-size:5.8px;color:#856404;
+}
+
+/* ============================================================
+   NOTES COLUMN
+   ============================================================ */
+.notes-title{
+    font-size:12px;font-weight:800;color:var(--navy);
+    display:flex;align-items:center;gap:6px;
+    margin-bottom:8px;
+}
+.notes-list{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.notes-list li{
+    display:flex;gap:8px;align-items:flex-start;
+}
+.notes-list .n{
+    flex:0 0 auto;
+    width:19px;height:19px;border-radius:50%;
+    background:var(--gold);color:var(--navy);
+    font-size:10px;font-weight:800;
+    display:flex;align-items:center;justify-content:center;
+    margin-top:2px;
+    box-shadow:0 2px 6px rgba(245,197,66,.45);
+}
+.notes-list .txt b{
+    display:block;font-size:11.5px;color:var(--navy);
+    font-weight:800;margin-bottom:1px;
+}
+.notes-list .txt p{
+    font-size:10px;color:var(--muted);line-height:1.65;
+}
+
+.chips{
+    display:flex;flex-wrap:wrap;gap:5px;
+    margin-top:9px;
+}
+.chip{
+    background:#eaf0f8;color:var(--navy-2);
+    border-radius:20px;padding:3px 10px;
+    font-size:9.5px;font-weight:700;
+    border:1px solid #d7e3f1;
+}
+.chip.gold{background:#fef4d8;border-color:#f0dda1;color:#8a6a06;}
+
+.quote{
+    margin-top:10px;
+    background:linear-gradient(135deg,#0b2a47,#1a4a76);
+    color:#fff;border-radius:12px;
+    padding:11px 13px;
+    font-size:10px;line-height:1.8;
+    position:relative;
+    overflow:hidden;
+}
+.quote::before{
+    content:"❝";
+    position:absolute;top:-6px;left:10px;
+    font-size:34px;color:rgba(245,197,66,.28);
+}
+.quote b{color:var(--gold);}
+
+/* ============================================================
+   COVER
+   ============================================================ */
+.cover{
+    padding:0;
+    background:
+        radial-gradient(circle at 85% 12%, rgba(245,197,66,.20), transparent 42%),
+        radial-gradient(circle at 12% 88%, rgba(245,197,66,.14), transparent 40%),
+        linear-gradient(160deg,#08203a 0%, #0b2a47 45%, #123a5f 100%);
+    color:#fff;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+.cover-inner{
+    padding:22mm 18mm;
+    display:flex;flex-direction:column;align-items:center;
+    gap:5mm;
+    width:100%;
+}
+.cover-badge{
+    background:rgba(245,197,66,.14);
+    border:1px solid rgba(245,197,66,.55);
+    color:var(--gold);
+    border-radius:40px;
+    padding:6px 20px;
+    font-size:12px;font-weight:800;
+    letter-spacing:.6px;
+}
+.cover-icon{
+    font-size:64px;
+    filter:drop-shadow(0 10px 24px rgba(0,0,0,.35));
+    line-height:1;
+}
+.cover h1{
+    font-size:44px;font-weight:900;letter-spacing:-.5px;
+    line-height:1.25;
+    color:#fff;
+}
+.cover h1 span{color:var(--gold);}
+.cover h2{
+    font-size:19px;font-weight:600;color:#cfe0f0;
+    max-width:150mm;line-height:1.7;
+}
+.cover-sub{
+    font-size:12.5px;color:#9fbbd4;max-width:140mm;line-height:1.9;
+}
+.cover-line{
+    width:70mm;height:3px;border-radius:4px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    margin:2mm 0;
+}
+.cover-meta{
+    display:flex;flex-direction:column;gap:5px;
+    font-size:13px;color:#e3edf7;font-weight:600;
+}
+.cover-meta .ed{
+    font-size:16px;font-weight:800;color:var(--gold);
+    letter-spacing:.5px;
+}
+.cover-foot{
+    position:absolute;bottom:14mm;left:0;right:0;
+    font-size:10.5px;color:#7f9cb6;letter-spacing:.4px;
+}
+
+/* ============================================================
+   TOC
+   ============================================================ */
+.toc-hero{
+    background:linear-gradient(135deg,#0b2a47,#1a4a76);
+    color:#fff;border-radius:16px;
+    padding:16px 20px;margin-bottom:9mm;
+    display:flex;align-items:center;gap:14px;
+}
+.toc-hero .ic{font-size:30px;}
+.toc-hero h2{font-size:19px;font-weight:800;}
+.toc-hero p{font-size:11px;color:#a9c4dc;}
+
+.toc-list{display:flex;flex-direction:column;gap:6px;}
+.toc-row{
+    display:flex;align-items:center;gap:10px;
+    background:#f7faff;
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:9px 13px;
+}
+.toc-row .ic{font-size:16px;width:22px;text-align:center;}
+.toc-row .nm{flex:1;font-size:12px;font-weight:700;color:var(--navy);}
+.toc-row .pg{
+    background:var(--navy);color:#fff;
+    font-size:10px;font-weight:800;
+    border-radius:20px;padding:2px 11px;
+    font-family:monospace;
+}
+.toc-row:nth-child(even){background:#fdfbf4;border-color:#f0e6c8;}
+.toc-row:nth-child(even) .pg{background:var(--gold-d);}
+
+.toc-note{
+    margin-top:8mm;
+    background:#eaf0f8;border-radius:14px;
+    padding:13px 16px;
+    font-size:10.5px;color:var(--navy-2);line-height:1.9;
+    border-right:5px solid var(--navy-3);
+}
+
+/* ============================================================
+   CTA PAGE
+   ============================================================ */
+.cta{
+    justify-content:center;align-items:center;text-align:center;
+    background:
+        radial-gradient(circle at 20% 15%, rgba(245,197,66,.18), transparent 45%),
+        radial-gradient(circle at 80% 85%, rgba(245,197,66,.12), transparent 45%),
+        linear-gradient(160deg,#0b2a47,#123a5f 60%,#1a4a76);
+    color:#fff;
+}
+.cta-inner{
+    display:flex;flex-direction:column;align-items:center;gap:6mm;
+    padding:16mm 16mm;
+    width:100%;
+}
+.cta .big{
+    font-size:38px;font-weight:900;line-height:1.35;
+}
+.cta .big span{color:var(--gold);}
+.cta .sub{
+    font-size:13.5px;color:#b9cfe3;max-width:135mm;line-height:2;
+}
+.cta .linkbox{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(245,197,66,.5);
+    border-radius:40px;
+    padding:11px 30px;
+    direction:ltr;
+    font-family:monospace;
+    font-size:14px;
+    color:var(--gold);
+    letter-spacing:.5px;
+}
+.cta .pillars{
+    display:flex;gap:10px;flex-wrap:wrap;justify-content:center;
+    margin-top:2mm;
+}
+.cta .pillar{
+    background:rgba(255,255,255,.08);
+    border-radius:14px;
+    padding:10px 16px;
+    font-size:11px;font-weight:700;
+    color:#dbe8f5;
+    min-width:44mm;
+}
+.cta .pillar span{display:block;font-size:19px;margin-bottom:3px;}
+.cta .copyright{
+    position:absolute;bottom:14mm;left:0;right:0;
+    font-size:11px;color:#8aa6c0;
+}
+.cta .divider{
+    width:60mm;height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+@page{ size:A4; margin:0; }
+
+@media print{
+    body{background:#fff;padding:0;}
+    .page{
+        margin:0;
+        box-shadow:none;
+        border-radius:0;
+        break-after:page;
+        page-break-after:always;
+    }
+    .page:last-of-type{break-after:auto;page-break-after:auto;}
+}
+</style>
 </head>
 <body>
 
-    <!-- ===== HEADER ===== -->
-    <header class="app-header">
-        <div class="container">
-            <div class="app-title">
-                📘 مذكرة النجاح
-                <small>قانون الأحوال الشخصية لغير المسلمين</small>
-            </div>
-            <div class="header-actions">
-                <button class="btn-home" id="btnHome">🏠 الرئيسية</button>
-                <button id="btnSearchToggle">🔍 بحث</button>
-                <button id="btnFavToggle">⭐ المفضلة</button>
-            </div>
-        </div>
-    </header>
-
-    <!-- ===== MAIN CONTAINER ===== -->
-    <div class="container">
-
-        <!-- ===== SEARCH BAR ===== -->
-        <div id="searchArea" style="display:none; margin: 16px 0;">
-            <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                <input type="text" id="searchInput" placeholder="ابحث في المذكرة..." style="flex:1; padding:10px 16px; border-radius:30px; border:1px solid #dce4ec; font-size:1rem;">
-                <button id="searchBtn" style="padding:10px 24px; background:#0b2a47; color:#fff; border:none; border-radius:30px; font-weight:600;">بحث</button>
-                <button id="clearSearchBtn" style="padding:10px 18px; background:#8a9aa8; color:#fff; border:none; border-radius:30px;">إلغاء</button>
-            </div>
-            <div id="searchResults" class="search-results"></div>
-        </div>
-
-        <!-- ===== FAVORITES PANEL ===== -->
-        <div id="favPanel" style="display:none; background:#fefbf0; border-radius:16px; padding:16px; margin:12px 0; border:1px solid #f1dba8;">
-            <h4 style="margin-bottom:8px;">⭐ أقسامي المفضلة</h4>
-            <ul id="favList" style="list-style:none; padding:0;"></ul>
-        </div>
-
-        <!-- ============================================================== -->
-        <!-- ===== MAIN SCREEN ===== -->
-        <!-- ============================================================== -->
-        <div id="mainScreen" class="main-screen">
-            <h1>⚖️ قانون الأحوال الشخصية لغير المسلمين (1926)</h1>
-            <p class="sub">دليل مرئي شامل – دراسة قانونية تطبيقية لزواج غير المسلمين في السودان</p>
-
-            <div class="category-grid">
-                <div class="category-card" data-section="explain"><span class="icon">📖</span> شرح <span class="badge-count">7</span></div>
-                <div class="category-card" data-section="summaries"><span class="icon">📋</span> ملخصات <span class="badge-count">6</span></div>
-                <div class="category-card" data-section="questions"><span class="icon">❓</span> أسئلة <span class="badge-count">15+</span></div>
-                <div class="category-card" data-section="maps"><span class="icon">🗺️</span> خرائط <span class="badge-count">15</span></div>
-                <div class="category-card" data-section="examples"><span class="icon">📌</span> أمثلة <span class="badge-count">8</span></div>
-                <div class="category-card" data-section="exams"><span class="icon">📝</span> امتحانات <span class="badge-count">3</span></div>
-                <div class="category-card" data-section="tree"><span class="icon">🌳</span> شجرة المعرفة</div>
-                <div class="category-card" data-section="qbank"><span class="icon">📚</span> بنك الأسئلة <span class="badge-count">200</span></div>
-                <div class="category-card" data-section="reviews"><span class="icon">🔄</span> مراجعات <span class="badge-count">12</span></div>
-                <div class="category-card" data-section="videos"><span class="icon">🎬</span> فيديوهات</div>
-            </div>
-
-            <div style="margin-top:20px; background:#eaf0f8; border-radius:18px; padding:16px 20px;">
-                <p style="font-weight:600; color:#0b2a47;">📌 سلسلة مذكرات النجاح – مخصصة لطلاب القانون والمعادلة</p>
-                <p style="font-size:0.95rem; color:#2c4a6e;">المحتوى مستخلص بالكامل من النصوص الرسمية لقانون زواج غير المسلمين 1926 والملاحق المرافقة.</p>
-            </div>
-        </div>
-
-        <!-- ============================================================== -->
-        <!-- ===== SECTIONS (hidden by default) ===== -->
-        <!-- ============================================================== -->
-
-        <!-- ===== EXPLANATION ===== -->
-        <div id="section-explain" class="section-content">
-            <div class="section-header">
-                <h2>📖 الشرح والتعاريف الفقهية</h2>
-                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
-            </div>
-            <div class="card">
-                <h3>التعاريف القانونية الكبرى</h3>
-                <div class="def-box"><div class="box-title">المسجل</div><p>مسجل الزواج المعين لمركز معين، وتشمل الصفة نائب المسجل عند قيامه بمهام المسجل الأصلي.</p></div>
-                <div class="def-box"><div class="box-title">المسجل العام</div><p>موظف يعينه رئيس القضاء للإشراف على السجلات وأعمال التوثيق وتصحيح الأخطاء المادية بموافقة رئيس القضاء.</p></div>
-                <div class="def-box"><div class="box-title">المركز</div><p>أي من مراكز الزواج المنشأة بموجب القانون، وتعتبر كل ولاية مركزاً للزواج كأصل عام ما لم يصدر قرار مغاير.</p></div>
-                <div class="def-box"><div class="box-title">الطائفة المستثناة</div><p>طائفة دينية معترف بها رسمياً يصدر بشأنها أمر من رئيس القضاء، أو مبينة في الجدول الثاني، فتطبق طقوسها وقوانين أحوالها الشخصية الخاصة وتستثنى جزئياً من الإجراءات المدنية التمهيدية.</p></div>
-                <div class="def-box"><div class="box-title">الزواج المدني</div><p>الزواج الذي يبرم رسمياً وعلناً أمام المسجل أو نائبه في مكتب الزواج بعد استيفاء الإجراءات التمهيدية وشهادة عدم الاعتراض.</p></div>
-                <div class="def-box"><div class="box-title">الإقرار المشفوع باليمين</div><p>تعهد شرعي وقانوني يؤديه طالب الزواج أمام القاضي أو المسجل، يثبت فيه تحت القسم خلو الطرفين من الموانع واستيفاء الموافقات والسن المطلوبة.</p></div>
-                <div class="def-box"><div class="box-title">الرخصة الخاصة</div><p>قرار استثنائي مكتوب يصدر عن رئيس القضاء للتغاضي عن تقديم الإعلان وإصدار شهادة المسجل للمصلحة والضرورة، ويكون صالحاً لمدة 60 يوماً.</p></div>
-            </div>
-            <div class="card">
-                <h3>نطاق التطبيق وعدم السريان</h3>
-                <p>ينظم القانون حصراً زيجات غير المسلمين، ولا يسري بأي حال من الأحوال على الزواج الذي يعقد بموجب أحكام الشريعة الإسلامية، أو أي شريعة وثنية سائدة، أو عرف محلي سائد.</p>
-            </div>
-            <div class="card">
-                <h3>أحكام بطلان الزواج المطلق</h3>
-                <ul>
-                    <li><strong>وجود زواج قائم:</strong> إذا كان أحد الطرفين وقت العقد متزوجاً زواجاً صحيحاً لآخر.</li>
-                    <li><strong>موانع القرابة:</strong> التزوج بين الأصول والفروع، والإخوة والأخوات، والذكور وبنات أخواتهم أو إخوانهم.</li>
-                    <li><strong>موانع المصاهرة:</strong> التزوج بين الرجل وإحدى أصول زوجته السابقة أو فروعها، أو زوجات الأب والأعمام والأخوال السابقات.</li>
-                    <li><strong>بطلان إجراءات الانعقاد:</strong> إبرام العقد في مكان غير مرخص، أو دون شهادة إعلان من المسجل، أو أمام شخص غير معتمد وغير مفوض قانوناً.</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>حالات قابلية الزواج للإبطال</h3>
-                <p>الإكراه، انعدام الرضا المعرفي، الغلط في شخص الطرف الآخر، أو العجز العقلي المؤقت أو الدائم عن إدراك ماهية العقد ونتائجه.</p>
-            </div>
-            <div class="card">
-                <h3>شرعية البنوة بالزواج اللاحق</h3>
-                <p>الطفل المولود من زواج غير شرعي يصبح ابناً شرعياً حكماً بمجرد زواج أبويه اللاحق بموجب القانون، شريطة عدم وجود مانع شرعي يمنع زواجهما وقت ولادة الطفل.</p>
-            </div>
-            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
-        </div>
-
-        <!-- ===== SUMMARIES ===== -->
-        <div id="section-summaries" class="section-content">
-            <div class="section-header">
-                <h2>📋 الملخصات التنظيمية</h2>
-                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
-            </div>
-            <div class="card">
-                <h3>ملخص جدول الطوائف المستثناة (الجدول الثاني)</h3>
-                <p>الطوائف التي تطبق أحكامها الخاصة وتستثنى من الإجراءات التمهيدية: الروم الأرثوذكس، الأقباط الأرثوذكس، الكنيسة الرومانية، المارونية، الروم الكاثوليك، السريان الكاثوليك، الأرمن الكاثوليك، الأقباط الكاثوليك، الكلدان الكاثوليك، والطائفة اليهودية.</p>
-            </div>
-            <div class="card">
-                <h3>ملخص شروط سن الزواج الأدنى</h3>
-                <p>15 عاماً للذكور و13 عاماً للإناث، مع سقوط حق دعوى الإبطال بمجرد حمل الزوجة أو مرور ستة أشهر على بلوغ السن المطلوبة.</p>
-            </div>
-            <div class="card">
-                <h3>ملخص مواقيت إبرام العقود</h3>
-                <p>الزواج الديني: بين السادسة صباحاً والسادسة مساءً. الزواج المدني: بين التاسعة صباحاً والخامسة مساءً.</p>
-            </div>
-            <div class="card">
-                <h3>ملخص الإجراءات التمهيدية</h3>
-                <ul>
-                    <li>تقديم الإعلان (نموذج أ) – إقامة 15 يوماً.</li>
-                    <li>النشر في دفتر الإعلانات لمدة 21 يوماً.</li>
-                    <li>الإقرار المشفوع باليمين (نموذج د).</li>
-                    <li>إصدار شهادة المسجل (نموذج ج) – صلاحية 3 أشهر.</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>ملخص عوائق الزواج والاعتراضات</h3>
-                <ul>
-                    <li>الاعتراض بكتابة "ممنوع" في الدفتر.</li>
-                    <li>التحقيق والإحالة لرئيس القضاء.</li>
-                    <li>الشطب وكتابة "شطب بأمري" أو "شطب بأمر المحكمة".</li>
-                    <li>التعويض عن الاعتراض الكيدي.</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3>ملخص العقوبات الجنائية</h3>
-                <ul>
-                    <li>الاعتراض الكاذب: السجن حتى سنتين.</li>
-                    <li>إبرام زواج معيب: السجن حتى 5 سنوات.</li>
-                    <li>إهمال التوثيق: السجن حتى 3 أشهر.</li>
-                    <li>انتحال الشخصية: السجن حتى 5 سنوات والغرامة.</li>
-                </ul>
-            </div>
-            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
-        </div>
-
-        <!-- ===== QUESTIONS (selected Q&A) ===== -->
-        <div id="section-questions" class="section-content">
-            <div class="section-header">
-                <h2>❓ أسئلة ومنازعات</h2>
-                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
-            </div>
-            <div class="card">
-                <h3>نزاع اعتراضات الزواج (كتابة كلمة ممنوع)</h3>
-                <p>كيف يعترض أصحاب الشأن؟ بكتابة كلمة "ممنوع" أمام تدوين الإعلان في دفتر إعلانات الزواج، مقرونة باسم المعترض ومحل إقامته وسببه الشرعي.</p>
-            </div>
-            <div class="card">
-                <h3>نزاع رفض موافقة الولي للقاصر</h3>
-                <p>إذا كان سن أحد الطرفين دون الحادية والعشرين وتعذر الحصول على موافقة الأب أو الأم أو الوصي، يُحال الأمر لقاضي المحكمة العامة، ويجوز له الموافقة كتابة بعد التحقيق.</p>
-            </div>
-            <div class="card">
-                <h3>تداخل القوانين عند اعتناق الزوج الإسلام</h3>
-                <p>يستمر الزواج المدني قائماً ويجوز فسخه وفق الشريعة الإسلامية، ويجوز للزوج التزوج بأخرى، ولكن يحق للمحكمة العامة فسخ الزواج بطلب الزوجة طالما لم تعتنق هي الإسلام.</p>
-            </div>
-            <div class="card">
-                <h3>أثر اعتناق الزوج الإسلام وتزوجه بأخرى</h3>
-                <p>إذا اعتنق الزوج الإسلام ولم تعتنق الزوجة وتزوج بأخرى، يحق للمحكمة العامة فسخ الزواج المدني بناءً على طلب الزوجة الأولى (المادة 69).</p>
-            </div>
-            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
-        </div>
-
-        <!-- ===== MAPS ===== -->
-        <div id="section-maps" class="section-content">
-            <div class="section-header">
-                <h2>🗺️ الخرائط الذهنية (15 خريطة)</h2>
-                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
-            </div>
-            <p style="margin-bottom:16px;">خرائط ذهنية مصورة تغطي جميع جوانب القانون.</p>
-            <div class="maps-grid" id="mapsGallery">
-                <!-- سيتم إنشاؤها بواسطة JS -->
-            </div>
-            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
-        </div>
-
-        <!-- ===== EXAMPLES ===== -->
-        <div id="section-examples" class="section-content">
-            <div class="section-header">
-                <h2>📌 الأمثلة والتطبيقات</h2>
-                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
-            </div>
-            <div class="card">
-                <h3>مثال الموافقات الخاصة لزواج القاصر (تحت سن 21)</h3>
-                <p><strong>الحالة العادية:</strong> موافقة مكتوبة من الأب (نموذج ح) مرفقة بالإقرار المشفوع باليمين.</p>
-                <p><strong>الحالة الاستثنائية:</strong> عند وفاة الأب أو جنونه، تؤخذ موافقة الأم؛ وعند وفاتها أو جنونها، موافقة الوصي. وعند انعدام الأولياء، ترفع عريضة لقاضي المحكمة العامة، ويجوز له منح الموافقة بعد التحقق.</p>
-            </div>
-            <div class="card">
-                <h3>مثال تمليك التوقيع بالعلامة للشخص الأمي</h3>
-                <p>يوقع بوضع علامة أو خطين متقاطعين بحضور وبشهادة أحد الأشخاص المعتمدين: (المسجل العام، المسجل، قاضي المحاكم المدنية، طبيب حكومي، أو قس معتمد)، مع ترجمة الوثيقة وتوضيح آثارها له بلغة يفهمها.</p>
-            </div>
-            <div class="card">
-                <h3>مثال الرخصة الخاصة للتغاضي عن الإجراءات التمهيدية</h3>
-                <p>رغبة شخصين في الزواج بصورة عاجلة لظروف طارئة، فيقدمان طلباً لرئيس القضاء مصحوباً بدليل مؤيد باليمين، فيصدر رخصة خاصة (نموذج هـ) تتجاوز الإعلان وشهادة المسجل، وتكون صالحة لمدة 60 يوماً.</p>
-            </div>
-            <div class="card">
-                <h3>مثال صياغة الإقرار المشفوع باليمين</h3>
-                <p>يؤدي طالب الزواج إقراراً أمام المسجل أو القاضي يثبت فيه: الأهلية، السن، الموافقات، وخلو الطرفين من موانع القرابة والمصاهرة.</p>
-            </div>
-            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
-        </div>
-
-        <!-- ===== EXAMS ===== -->
-        <div id="section-exams" class="section-content">
-            <div class="section-header">
-                <h2>📝 الامتحانات الشاملة</h2>
-                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
-            </div>
-            <div id="examsContainer">
-                <!-- يتم إنشاؤها بواسطة JS -->
-            </div>
-            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
-        </div>
-
-        <!-- ===== TREE ===== -->
-        <div id="section-tree" class="section-content">
-            <div class="section-header">
-                <h2>🌳 شجرة المعرفة</h2>
-                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
-            </div>
-            <div id="treeContainer" class="card">
-                <!-- يتم إنشاؤها بواسطة JS -->
-            </div>
-            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
-        </div>
-
-        <!-- ===== QUESTION BANK ===== -->
-        <div id="section-qbank" class="section-content">
-            <div class="section-header">
-                <h2>📚 بنك الأسئلة الشامل (200 سؤال)</h2>
-                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
-            </div>
-            <div class="qbank-filters">
-                <select id="qbankUnitFilter"><option value="all">جميع الوحدات</option></select>
-                <input type="text" id="qbankSearchInput" placeholder="بحث في الأسئلة...">
-                <button id="qbankSearchBtn" style="padding:8px 18px; background:#0b2a47; color:#fff; border:none; border-radius:30px;">بحث</button>
-            </div>
-            <div id="qbankContainer"></div>
-            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
-        </div>
-
-        <!-- ===== REVIEWS ===== -->
-        <div id="section-reviews" class="section-content">
-            <div class="section-header">
-                <h2>🔄 المراجعات وبطاقات المراجعة</h2>
-                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
-            </div>
-            <div id="reviewsContainer">
-                <!-- يتم إنشاؤها بواسطة JS -->
-            </div>
-            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
-        </div>
-
-        <!-- ===== VIDEOS ===== -->
-        <div id="section-videos" class="section-content">
-            <div class="section-header">
-                <h2>🎬 الفيديوهات التعليمية</h2>
-                <button class="btn-back" onclick="goHome()">🏠 العودة</button>
-            </div>
-            <div class="card" style="text-align:center; padding:30px 20px;">
-                <div style="font-size:48px; margin-bottom:12px;">▶️</div>
-                <h3 style="margin-bottom:8px;">فيديو الدرس</h3>
-                <p style="margin-bottom:18px; color:#3d5a78;">اضغط على الزر لمشاهدة الفيديو على YouTube.</p>
-                <a href="https://youtu.be/8GgxRID1a0s" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:12px 28px; background:#ff0000; color:#fff; border-radius:30px; font-weight:700; text-decoration:none;">▶ مشاهدة الفيديو على YouTube</a>
-                <p style="font-size:0.8rem; color:#6a7f9a; margin-top:12px;">(يتطلب اتصالاً بالإنترنت)</p>
-            </div>
-            <button class="btn-back" onclick="goHome()" style="margin-top:12px;">🏠 العودة للرئيسية</button>
-        </div>
-
-    </div> <!-- end container -->
-        <!-- ================================================================
-     تنبيه مهم – حقوق الاستخدام والنسخة التجريبية
-     ================================================================ -->
-    <div style="
-        background: #fff3cd;
-        border-right: 6px solid #ffc107;
-        border-radius: 16px;
-        padding: 20px 24px;
-        margin: 30px 0 20px;
-        font-size: 0.95rem;
-        color: #856404;
-    ">
-        <p style="font-weight: 700; font-size: 1.05rem; margin-bottom: 8px;">
-            ⚠️ تنبيه مهم
+<!-- ============================================================
+     PAGE 1 — COVER
+     ============================================================ -->
+<section class="page cover">
+    <div class="cover-inner">
+        <div class="cover-badge">هيرو أكاديمي · Hero Academic</div>
+        <div class="cover-icon">⚖️</div>
+        <h1>مذكرة <span>النجاح</span></h1>
+        <h2>قانون الأحوال الشخصية لغير المسلمين (1926)</h2>
+        <p class="cover-sub">
+            دليل مرئي شامل – دراسة قانونية تطبيقية لزواج غير المسلمين في السودان،
+            مع الخرائط الذهنية وبنك الأسئلة وبطاقات المراجعة.
         </p>
-        <p style="margin-bottom: 8px;">
-            إذا وصلك هذا التطبيق أو تمكنت من استخدامه دون إتمام عملية الشراء،
-            <strong>نرجو التواصل معنا عبر البريد الإلكتروني</strong> في أقرب وقت لتصحيح الوضع وتسوية أي مستحقات مالية.
-        </p>
-        <p style="margin-bottom: 4px;">
-            نشكركم على الأمانة والتعاون.
-        </p>
-        <p style="direction: ltr; text-align: left; font-family: monospace; font-size: 0.9rem; margin-top: 6px;">
-            📧 info@hero1.vip.com
-        </p>
-
+        <div class="cover-line"></div>
+        <div class="cover-meta">
+            <span class="ed">إصدار كتالوج مرئي 2026-2027</span>
+            <span>إعداد: هيرو أكاديمي</span>
+        </div>
     </div>
-    <script>
-    (function() {
-        'use strict';
+    <div class="cover-foot">
+        كتالوج الشاشات · تطبيق تعليمي تفاعلي · نسخة العرض المرئي
+    </div>
+</section>
 
-        // ================================================================
-        // 1. DATA – مستخلص من المحتوى المرفق
-        // ================================================================
+<!-- ============================================================
+     PAGE 2 — TABLE OF CONTENTS
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title">فهرس المحتويات</div>
+    </div>
 
-        // ===== MAPS (15 images) =====
-        const mapImages = [
-            { id: 1, url: 'https://lh3.googleusercontent.com/d/1OyJaTvW4keIF7MwLxyMnWf0MGGp4dhkx', label: 'الخريطة الذهنية 1' },
-            { id: 2, url: 'https://lh3.googleusercontent.com/d/1EEReBK5savoG4DFMqSjStheupXbmpiok', label: 'الخريطة الذهنية 2' },
-            { id: 3, url: 'https://lh3.googleusercontent.com/d/1kfR30L_Qpr3dFjZrBdwCfislFO1hwvC3', label: 'الخريطة الذهنية 3' },
-            { id: 4, url: 'https://lh3.googleusercontent.com/d/1GVXlQaUJrwqwyLWgspWtA_4Pei7upS8C', label: 'الخريطة الذهنية 4' },
-            { id: 5, url: 'https://lh3.googleusercontent.com/d/1obSgnfsCFRyP-wFtKc6YvNHFWuN37ZxJ', label: 'الخريطة الذهنية 5' },
-            { id: 6, url: 'https://lh3.googleusercontent.com/d/15ogXVwVcPogsY7D8Kw3U0V0cKciroGAK', label: 'الخريطة الذهنية 6' },
-            { id: 7, url: 'https://lh3.googleusercontent.com/d/1hlAOAiQK7QJ0rtPPgJ8rzMdDZ7U1TuAn', label: 'الخريطة الذهنية 7' },
-            { id: 8, url: 'https://lh3.googleusercontent.com/d/1WXLwtNPSxj4ZJVVLPhKjjdWg99dPn5UN', label: 'الخريطة الذهنية 8' },
-            { id: 9, url: 'https://lh3.googleusercontent.com/d/1JJJMC7mFdkSkEjjZLJ1rSnFzKeT8FcBK', label: 'الخريطة الذهنية 9' },
-            { id: 10, url: 'https://lh3.googleusercontent.com/d/10fLxM_QSXoZdMAXETGpFhuEUfPFkDUan', label: 'الخريطة الذهنية 10' },
-            { id: 11, url: 'https://lh3.googleusercontent.com/d/1CrVyrmG3fq3gY73ZRntvIuCHzDT_waNC', label: 'الخريطة الذهنية 11' },
-            { id: 12, url: 'https://lh3.googleusercontent.com/d/1cHyuTuJckWHrt_QGSszZro4LwemmjfpW', label: 'الخريطة الذهنية 12' },
-            { id: 13, url: 'https://lh3.googleusercontent.com/d/1Auzj_HrNL2ObUntUFkWZxOhmPSXAcv_S', label: 'الخريطة الذهنية 13' },
-            { id: 14, url: 'https://lh3.googleusercontent.com/d/1OgCBvwZr3Ya-KBXLMH_iMTn54snl78Vr', label: 'الخريطة الذهنية 14' },
-            { id: 15, url: 'https://lh3.googleusercontent.com/d/1MCpft9J6VC0m_R5aCOfghLgg_BvGCSg1', label: 'الخريطة الذهنية 15' }
-        ];
+    <div class="toc-hero">
+        <div class="ic">🗂️</div>
+        <div>
+            <h2>محتويات الكتالوج</h2>
+            <p>اثنتا عشرة شاشة من تطبيق «مذكرة النجاح» موثّقة بالشرح البصري</p>
+        </div>
+    </div>
 
-        // ===== EXAMS =====
-        const examsData = [
-            {
-                title: 'الامتحان الأول: التنظيم الإداري، الإجراءات، وموافقات القصر',
-                questions: [
-                    { q: 'عرّف: (أ) المسجل العام، (ب) الطائفة المستثناة، (ج) مركز الزواج.', answer: 'راجع التعريفات في قسم الشرح.' },
-                    { q: 'اشرح شروط تقديم إعلان الزواج وطريقة نشره.', answer: 'إقامة 15 يوماً في المركز، تقديم النموذج أ، نشره 21 يوماً في دفتر الإعلانات.' },
-                    { q: 'كيف يعالج القانون توقيع الشخص الأمي؟ ومن هي الجهات المصرح لها بالشهادة؟', answer: 'يوقع بعلامة أو خطين متقاطعين بحضور المسجل العام، المسجل، قاضي المحاكم المدنية، طبيب حكومي، أو قس معتمد.' }
-                ]
-            },
-            {
-                title: 'الامتحان الثاني: موانع الزواج، البطلان، والإبطال',
-                questions: [
-                    { q: 'ما الفرق بين البطلان المطلق والقابلية للإبطال؟', answer: 'البطلان المطلق: عقد معدوم الأثر. القابلية للإبطال: عقد صحيح ولكنه معيب (إكراه، غلط، عجز عقلي، نقص السن).' },
-                    { q: 'حدد موانع المصاهرة المؤبدة.', answer: 'الرجل وأصول/فروع زوجته السابقة، المرأة وأصول/فروع زوجها السابق، وزوجات الآباء والأعمام والأخوال السابقات، والزوج السابق للأم والعمة والخالة.' },
-                    { q: 'ما شروط تمليك الولد النسب الشرعي بالزواج اللاحق؟', answer: 'بزواج أبويه اللاحق بشرط خلوهما من الموانع وقت الولادة.' }
-                ]
-            },
-            {
-                title: 'الامتحان الثالث: التوثيق، السجلات، والجرائم',
-                questions: [
-                    { q: 'قارن بين الزواج الديني والمدني من حيث المكان والزمان والشخص المنوط به.', answer: 'الديني: كنيسة مسجلة، 6ص-6م، قس معتمد. المدني: مكتب المسجل، 9ص-5م، مسجل.' },
-                    { q: 'اشرح آلية توثيق شهادة الزواج الثلاثية والتقارير الشهرية.', answer: 'ثلاث نسخ أصلية، نسخة للزوجين، ونسخة للمركز خلال 7 أيام، ونسخة في الدفتر. تقرير شهري خلال أول 10 أيام.' },
-                    { q: 'ما ضوابط تصحيح الأخطاء المادية في السجلات؟', answer: 'بموافقة المسجل العام وتوقيعه المؤرخ.' }
-                ]
-            }
-        ];
+    <div class="toc-list">
+        <div class="toc-row"><span class="ic">🏠</span><span class="nm">الشاشة الرئيسية وشبكة الأقسام</span><span class="pg">03</span></div>
+        <div class="toc-row"><span class="ic">📖</span><span class="nm">الشرح والتعاريف الفقهية</span><span class="pg">04</span></div>
+        <div class="toc-row"><span class="ic">📋</span><span class="nm">الملخصات التنظيمية</span><span class="pg">05</span></div>
+        <div class="toc-row"><span class="ic">❓</span><span class="nm">الأسئلة والمنازعات</span><span class="pg">06</span></div>
+        <div class="toc-row"><span class="ic">🗺️</span><span class="nm">الخرائط الذهنية (15 خريطة)</span><span class="pg">07</span></div>
+        <div class="toc-row"><span class="ic">📌</span><span class="nm">الأمثلة والتطبيقات</span><span class="pg">08</span></div>
+        <div class="toc-row"><span class="ic">📝</span><span class="nm">الامتحانات الشاملة</span><span class="pg">09</span></div>
+        <div class="toc-row"><span class="ic">🌳</span><span class="nm">شجرة المعرفة</span><span class="pg">10</span></div>
+        <div class="toc-row"><span class="ic">📚</span><span class="nm">بنك الأسئلة الشامل</span><span class="pg">11</span></div>
+        <div class="toc-row"><span class="ic">🔄</span><span class="nm">المراجعات وبطاقات المراجعة</span><span class="pg">12</span></div>
+        <div class="toc-row"><span class="ic">🎬</span><span class="nm">الفيديوهات التعليمية</span><span class="pg">13</span></div>
+        <div class="toc-row"><span class="ic">🔐</span><span class="nm">شاشة التفعيل والترخيص</span><span class="pg">14</span></div>
+    </div>
 
-        // ===== QUESTION BANK (first 15 for demo, but full 200 available in structure) =====
-        const qbankData = [
-            { unit: 'الأحكام التمهيدية', q: 'ما هو نطاق سريان قانون زواج غير المسلمين 1926؟', a: 'يسري على زواج الطوائف والأقليات غير المسلمة في السودان، ولا يسري على الزواج الإسلامي أو الوثني أو العرفي.' },
-            { unit: 'الإجراءات التمهيدية', q: 'ما هي مدة الإقامة المطلوبة في المركز لتقديم إعلان الزواج؟', a: '15 يوماً على الأقل مباشرة قبل تقديم الإعلان.' },
-            { unit: 'الإجراءات التمهيدية', q: 'كم يوماً يجب أن يظل إعلان الزواج معروضاً للجمهور؟', a: '21 يوماً كاملة.' },
-            { unit: 'الإجراءات التمهيدية', q: 'ما هي شهادة المسجل ومدة صلاحيتها؟', a: 'شهادة تصدر بعد 21 يوماً من الإعلان، وتكون صالحة لإبرام الزواج خلال 3 أشهر، وإلا بطلت.' },
-            { unit: 'موافقات القصر', q: 'من هو الولي الشرعي لزواج القاصر (دون 21 سنة)؟', a: 'الأب، ثم الأم، ثم الوصي، وفي حال انعدامهم يقضي قاضي المحكمة العامة.' },
-            { unit: 'الاعتراضات', q: 'ما هو إجراء الاعتراض على الزواج؟', a: 'كتابة كلمة "ممنوع" في دفتر الإعلانات مع الاسم والسبب، ويوقف صدور الشهادة.' },
-            { unit: 'الرخص', q: 'من يملك سلطة إصدار الرخصة الخاصة للتجاوز عن الإجراءات؟', a: 'رئيس القضاء، وتكون صالحة لمدة 60 يوماً.' },
-            { unit: 'البطلان', q: 'عدد حالات البطلان المطلق للزواج؟', a: 'أربع حالات: وجود زوجية، قرابة، مصاهرة، وخلل إجرائي جسيم.' },
-            { unit: 'المصاهرة', q: 'ما هي موانع المصاهرة المؤبدة؟', a: 'الرجل وأصول/فروع زوجته السابقة، المرأة وأصول/فروع زوجها السابق، وزوجات الآباء والأعمام والأخوال السابقات، والزوج السابق للأم والعمة والخالة.' },
-            { unit: 'الإبطال', q: 'متى تسقط دعوى الإبطال لنقص السن؟', a: 'بحدوث حمل الزوجة، أو مضي 6 أشهر على بلوغ السن المطلوبة، أو إذا كان المدعي يعلم بنقص السن وقت العقد.' },
-            { unit: 'تغير الديانة', q: 'ما هو أثر اعتناق الزوج الإسلام على الزواج المدني؟', a: 'يستمر الزواج قائماً، ويجوز للزوج التعدد، ولكن للزوجة غير المسلمة طلب الفسخ من المحكمة العامة.' },
-            { unit: 'الطوائف المستثناة', q: 'كم عدد الطوائف المستثناة في الجدول الثاني؟', a: '10 طوائف (تشمل الروم الأرثوذكس، الأقباط الأرثوذكس، الكاثوليك، المارونية، السريان، الأرمن، الأقباط الكاثوليك، الكلدان، واليهود).' },
-            { unit: 'العقوبات', q: 'ما هي عقوبة الاعتراض الكاذب؟', a: 'السجن حتى سنتين أو الغرامة أو بهما معاً.' },
-            { unit: 'العقوبات', q: 'ما هي عقوبة إبرام زواج مع العلم بوجود مانع؟', a: 'السجن حتى 5 سنوات أو الغرامة أو بهما معاً.' },
-            { unit: 'العقوبات', q: 'ما هي عقوبة انتحال الشخصية بقصد الغش؟', a: 'السجن حتى 5 سنوات ويجوز الغرامة أيضاً.' }
-        ];
+    <div class="toc-note">
+        📌 <b>ملاحظة:</b> جميع الشاشات معروضة بإطار هاتف مبسّط، ومرفقة بتعليقات جانبية توضّح
+        العناصر البصرية ووظيفة كل جزء داخل التطبيق. المحتوى مستخلص من النصوص الرسمية
+        لقانون زواج غير المسلمين 1926 والملاحق المرافقة.
+    </div>
 
-        // ===== REVIEW CARDS =====
-        const reviewCards = [
-            { front: 'ما هو السن الأدنى للزواج؟ ومتى تسقط دعوى الإبطال؟', back: '15 للذكر، 13 للأنثى. تسقط بالحمل، أو مضي 6 أشهر بعد البلوغ، أو إذا كان المدعي يعلم بنقص السن.' },
-            { front: 'اذكر فئات المحارم التي توجب البطلان.', back: 'القرابة: الأصول والفروع، الإخوة، بنات/أبناء الإخوة. المصاهرة: أصول/فروع الزوجة السابقة، وزوجات الآباء والأعمام والأخوال.' },
-            { front: 'كيف يتم الاعتراض وما صيغة الشطب؟', back: 'كتابة "ممنوع" في الدفتر. عند الشطب يكتب "شطب بأمري" أو "شطب بأمر المحكمة"، ولا تحسب مدة الخصومة.' },
-            { front: 'ما مصير الزواج المدني إذا اعتنق الزوج الإسلام وتزوج بأخرى؟', back: 'يستمر العقد، ويجوز التعدد، ولكن للزوجة غير المسلمة طلب الفسخ من المحكمة العامة.' },
-            { front: 'ما هي النسخ الثلاث لشهادة الزواج وأين ترسل؟', back: 'نسخة للزوجين، ونسخة للمركز خلال 7 أيام، ونسخة في الدفتر.' },
-            { front: 'ما عقوبة الاعتراض الكاذب، والزواج المعيب، وانتحال الشخصية؟', back: 'الاعتراض الكاذب: سنتان. الزواج المعيب: 5 سنوات. انتحال الشخصية: 5 سنوات والغرامة.' }
-        ];
+    <div class="page-foot">
+        <span>مذكرة النجاح · قانون الأحوال الشخصية لغير المسلمين</span>
+        <span class="pnum">02</span>
+    </div>
+</section>
 
-        // ===== TREE DATA =====
-        const treeData = {
-            label: 'قانون زواج غير المسلمين 1926',
-            children: [
-                {
-                    label: 'بنية الجهاز الإداري',
-                    children: [
-                        { label: 'المسجل العام', detail: 'يعينه رئيس القضاء للإشراف على السجلات.' },
-                        { label: 'مسجلو المراكز ونوابهم', detail: 'يديرون المعاملات ويوثقون العقود.' },
-                        { label: 'رئيس القضاء', detail: 'سلطة التعيين، اللوائح، الرخص الاستثنائية.' }
-                    ]
-                },
-                {
-                    label: 'مسار تسيير عقد الزواج',
-                    children: [
-                        { label: 'الإجراءات التمهيدية', detail: 'إعلان (15 يوماً)، نشر (21 يوماً)، يمين، شهادة مسجل (صلاحية 3 أشهر).' },
-                        { label: 'حسم العوائق والنزاعات', detail: 'كتابة "ممنوع"، تحقيق، إحالة لرئيس القضاء، شطب، تعويض.' },
-                        { label: 'الرخص الاستثنائية', detail: 'رخصة رئيس القضاء (60 يوماً)، موافقة قاضي القصر.' },
-                        { label: 'التوثيق والإبرام', detail: 'خطاب مدني علني، توزيع النسخ الثلاث.' }
-                    ]
-                },
-                {
-                    label: 'الأحكام الموضوعية والقضائية',
-                    children: [
-                        { label: 'بطلان الزواج المطلق', detail: 'وجود زوجية، موانع القرابة، موانع المصاهرة، خلل إجرائي.' },
-                        { label: 'قابلية إبطال الزواج', detail: 'عيوب الرضا (إكراه، غلط)، نقص السن، موانع سقوط الدعوى.' },
-                        { label: 'الطوائف المستثناة', detail: 'الجدول الثاني (10 طوائف)، تطبق طقوسها وقوانينها.' },
-                        { label: 'الاختصاص والعقوبات', detail: 'المحاكم المدنية العامة، جرائم انتحال الصفة والغش.' }
-                    ]
-                }
-            ]
-        };
+<!-- ============================================================
+     PAGE 3 — HOME SCREEN
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">01</span> الشاشة الرئيسية</div>
+    </div>
 
-        // ================================================================
-        // 2. FUNCTIONS – RENDER / NAVIGATION / SEARCH / FAVORITES
-        // ================================================================
-
-        // ---- Navigation ----
-        function showSection(id) {
-            document.querySelectorAll('.section-content').forEach(el => el.classList.remove('active'));
-            const target = document.getElementById('section-' + id);
-            if (target) target.classList.add('active');
-            document.getElementById('mainScreen').style.display = (id === 'main') ? 'block' : 'none';
-            // close search results
-            document.getElementById('searchResults').classList.remove('active');
-            document.getElementById('searchArea').style.display = 'none';
-        }
-
-        function goHome() {
-            showSection('main');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // ---- Render Maps ----
-        function renderMaps() {
-            const container = document.getElementById('mapsGallery');
-            container.innerHTML = mapImages.map(m => `
-                <div class="map-item">
-                    <img src="${m.url}" alt="${m.label}" loading="lazy" onerror="this.style.display='none'">
-                    <div class="map-label">🗺️ ${m.label}</div>
-                </div>
-            `).join('');
-        }
-
-        // ---- Render Exams ----
-        function renderExams() {
-            const container = document.getElementById('examsContainer');
-            container.innerHTML = examsData.map((exam, idx) => `
-                <div class="card">
-                    <h3>${exam.title}</h3>
-                    ${exam.questions.map((q, qi) => `
-                        <div style="margin:12px 0; padding:10px 14px; background:#f6f9ff; border-radius:12px;">
-                            <p><strong>س${qi+1}:</strong> ${q.q}</p>
-                            <details style="margin-top:6px;">
-                                <summary style="cursor:pointer; color:#1f4a7a; font-weight:600;">🔽 عرض الإجابة</summary>
-                                <div style="padding:8px 12px; background:#eaf0f8; border-radius:8px; margin-top:6px;">${q.answer}</div>
-                            </details>
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>قانون الأحوال الشخصية</small></div>
+                        <div class="p-actions">
+                            <b class="gold">🏠 الرئيسية</b>
+                            <b>🔍 بحث</b>
+                            <b>⭐ المفضلة</b>
                         </div>
-                    `).join('')}
-                </div>
-            `).join('');
-        }
-
-        // ---- Render Question Bank ----
-        function renderQBank(filterUnit = 'all', searchText = '') {
-            const container = document.getElementById('qbankContainer');
-            let filtered = qbankData;
-            if (filterUnit !== 'all') filtered = filtered.filter(item => item.unit === filterUnit);
-            if (searchText.trim()) {
-                const s = searchText.trim().toLowerCase();
-                filtered = filtered.filter(item => item.q.toLowerCase().includes(s) || item.a.toLowerCase().includes(s));
-            }
-            if (filtered.length === 0) {
-                container.innerHTML = '<p style="color:#6a7f9a;">لا توجد أسئلة تطابق المعايير.</p>';
-                return;
-            }
-            container.innerHTML = filtered.map((item, idx) => `
-                <div class="qbank-item">
-                    <div class="q">${idx+1}. ${item.q}</div>
-                    <div class="a">📌 ${item.a}</div>
-                    <div style="font-size:0.8rem; color:#6a7f9a; margin-top:4px;">الوحدة: ${item.unit}</div>
-                </div>
-            `).join('');
-        }
-
-        // ---- Render Reviews ----
-        function renderReviews() {
-            const container = document.getElementById('reviewsContainer');
-            // Short reviews
-            const shortReviews = [
-                { title: 'مراجعة 1: نطاق التطبيق والتنظيم الإداري', items: ['مسمى القانون: "قانون زواج غير المسلمين لسنة 1926م".', 'حدود السريان: لا يسري على الزواج الإسلامي، الوثني، أو العرفي.', 'الهيكل: مسجل عام، مسجلو مراكز، نواب، ورئيس القضاء.'] },
-                { title: 'مراجعة 2: الإجراءات التمهيدية وموافقات القصر', items: ['الإقامة: 15 يوماً في المركز.', 'نشر الإعلان: 21 يوماً.', 'الإقرار باليمين: أمام قاضٍ أو مسجل.', 'موافقة القاصر: الأب، ثم الأم، ثم الوصي، ثم قاضي المحكمة العامة.'] },
-                { title: 'مراجعة 3: موانع البطلان المطلق', items: ['وجود زوجية قائمة.', 'القرابة: الأصول والفروع، الإخوة، بنات/أبناء الإخوة.', 'المصاهرة: أصول/فروع الزوجة السابقة، وزوجات الآباء والأعمام والأخوال.', 'الخلل الإجرائي: مكان غير مرخص، دون شهادة، أمام غير مفوض.'] },
-                { title: 'مراجعة 4: قابلية الإبطال وسقوط الدعوى', items: ['أسباب الإبطال: إكراه، غلط، عجز عقلي، نقص السن (ذكر دون 15، أنثى دون 13).', 'سقوط الدعوى: معاشرة 6 أشهر بعد زوال العيب، حمل الزوجة، مضي 6 أشهر بعد بلوغ السن.'] }
-            ];
-            let html = `<h3>📘 مراجعات قصيرة</h3>`;
-            shortReviews.forEach(r => {
-                html += `<div class="card"><h4>${r.title}</h4><ul>${r.items.map(i => `<li>${i}</li>`).join('')}</ul></div>`;
-            });
-
-            // Review cards (interactive)
-            html += `<h3 style="margin-top:24px;">🔄 بطاقات المراجعة (اضغط للكشف)</h3>`;
-            reviewCards.forEach((card, idx) => {
-                html += `
-                    <div class="review-card" data-idx="${idx}" onclick="toggleCard(this)">
-                        <div class="front">❓ ${card.front}</div>
-                        <div class="back">✅ ${card.back}</div>
                     </div>
-                `;
-            });
-            container.innerHTML = html;
-        }
-
-        // Card toggle function (global)
-        window.toggleCard = function(el) {
-            el.classList.toggle('open');
-        };
-
-        // ---- Render Tree ----
-        function renderTree() {
-            const container = document.getElementById('treeContainer');
-            function buildTree(node, level = 0) {
-                let html = `<div class="tree-node" style="margin-right:${level*12}px;">`;
-                html += `<div class="node-label" onclick="toggleTreeNode(this)">📂 ${node.label}</div>`;
-                if (node.detail) {
-                    html += `<div class="node-detail">${node.detail}</div>`;
-                }
-                if (node.children && node.children.length) {
-                    html += `<div class="node-children">`;
-                    node.children.forEach(child => { html += buildTree(child, level + 1); });
-                    html += `</div>`;
-                }
-                html += `</div>`;
-                return html;
-            }
-            container.innerHTML = buildTree(treeData);
-        }
-
-        window.toggleTreeNode = function(el) {
-            const node = el.closest('.tree-node');
-            if (node) node.classList.toggle('open');
-        };
-
-        // ---- Search ----
-        function performSearch() {
-            const query = document.getElementById('searchInput').value.trim();
-            const resultsDiv = document.getElementById('searchResults');
-            if (!query) { resultsDiv.classList.remove('active'); resultsDiv.innerHTML = ''; return; }
-
-            const allText = document.body.textContent || '';
-            const lines = allText.split('\n').filter(line => line.trim().length > 5);
-            const matches = lines.filter(line => line.includes(query)).slice(0, 15);
-
-            if (matches.length === 0) {
-                resultsDiv.innerHTML = '<p style="padding:10px;">❌ لا توجد نتائج مطابقة.</p>';
-                resultsDiv.classList.add('active');
-                return;
-            }
-            let html = '<ul style="list-style:none; padding:0;">';
-            matches.forEach(line => {
-                const highlighted = line.replace(new RegExp(query, 'gi'), match => `<span class="highlight">${match}</span>`);
-                html += `<li style="padding:6px 0; border-bottom:1px solid #eef3f8;">${highlighted}</li>`;
-            });
-            html += '</ul>';
-            resultsDiv.innerHTML = html;
-            resultsDiv.classList.add('active');
-        }
-
-        // ---- Favorites ----
-        const favKey = 'lawFavs';
-        let favorites = JSON.parse(localStorage.getItem(favKey)) || [];
-
-        function saveFav() {
-            localStorage.setItem(favKey, JSON.stringify(favorites));
-            renderFavList();
-        }
-
-        function renderFavList() {
-            const list = document.getElementById('favList');
-            if (!list) return;
-            if (favorites.length === 0) {
-                list.innerHTML = '<li style="color:#6a7f9a;">لا توجد مفضلات حالياً.</li>';
-                return;
-            }
-            list.innerHTML = favorites.map(id => {
-                const el = document.getElementById(id);
-                const title = el ? (el.querySelector('h2, h3')?.textContent || id) : id;
-                return `<li><a href="#" onclick="showSection('${id.replace('section-','')}'); return false;">${title}</a> <button onclick="removeFav('${id}')" style="background:none;border:none;color:#b03a2e;cursor:pointer;">✖</button></li>`;
-            }).join('');
-        }
-
-        function removeFav(id) {
-            favorites = favorites.filter(f => f !== id);
-            saveFav();
-        }
-
-        function toggleFav(id) {
-            if (favorites.includes(id)) {
-                favorites = favorites.filter(f => f !== id);
-            } else {
-                favorites.push(id);
-            }
-            saveFav();
-        }
-
-        // ---- Init QBank filters ----
-        function initQBankFilters() {
-            const select = document.getElementById('qbankUnitFilter');
-            const units = [...new Set(qbankData.map(item => item.unit))];
-            units.forEach(u => {
-                const opt = document.createElement('option');
-                opt.value = u;
-                opt.textContent = u;
-                select.appendChild(opt);
-            });
-            select.addEventListener('change', function() {
-                renderQBank(this.value, document.getElementById('qbankSearchInput').value);
-            });
-            document.getElementById('qbankSearchBtn').addEventListener('click', function() {
-                renderQBank(document.getElementById('qbankUnitFilter').value, document.getElementById('qbankSearchInput').value);
-            });
-            document.getElementById('qbankSearchInput').addEventListener('keyup', function(e) {
-                if (e.key === 'Enter') {
-                    renderQBank(document.getElementById('qbankUnitFilter').value, this.value);
-                }
-            });
-            renderQBank('all', '');
-        }
-
-        // ================================================================
-        // 3. INIT & EVENT BINDING
-        // ================================================================
-
-        document.addEventListener('DOMContentLoaded', function() {
-            // Render all dynamic content
-            renderMaps();
-            renderExams();
-            renderTree();
-            renderReviews();
-            initQBankFilters();
-
-            // Category cards click
-            document.querySelectorAll('.category-card').forEach(card => {
-                card.addEventListener('click', function() {
-                    const section = this.dataset.section;
-                    if (section) {
-                        showSection(section);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }
-                });
-            });
-
-            // Home button
-            document.getElementById('btnHome').addEventListener('click', goHome);
-
-            // Search toggle
-            document.getElementById('btnSearchToggle').addEventListener('click', function() {
-                const area = document.getElementById('searchArea');
-                area.style.display = area.style.display === 'none' ? 'block' : 'none';
-                if (area.style.display === 'block') {
-                    document.getElementById('searchInput').focus();
-                }
-            });
-
-            // Search actions
-            document.getElementById('searchBtn').addEventListener('click', performSearch);
-            document.getElementById('searchInput').addEventListener('keyup', function(e) {
-                if (e.key === 'Enter') performSearch();
-            });
-            document.getElementById('clearSearchBtn').addEventListener('click', function() {
-                document.getElementById('searchInput').value = '';
-                document.getElementById('searchResults').classList.remove('active');
-                document.getElementById('searchResults').innerHTML = '';
-            });
-
-            // Favorites toggle
-            document.getElementById('btnFavToggle').addEventListener('click', function() {
-                const panel = document.getElementById('favPanel');
-                panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
-                renderFavList();
-            });
-
-            // Add favorite buttons to each section header (optional)
-            document.querySelectorAll('.section-content').forEach(section => {
-                const header = section.querySelector('.section-header h2');
-                if (header) {
-                    const id = section.id;
-                    const btn = document.createElement('button');
-                    btn.textContent = '⭐';
-                    btn.style.cssText = 'background:none; border:none; font-size:1.4rem; cursor:pointer; color:#b0c4d9; margin-right:8px;';
-                    btn.title = 'إضافة إلى المفضلة';
-                    btn.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        toggleFav(id);
-                        this.style.color = favorites.includes(id) ? '#f1c40f' : '#b0c4d9';
-                    });
-                    header.prepend(btn);
-                    // Set initial color
-                    if (favorites.includes(id)) btn.style.color = '#f1c40f';
-                }
-            });
-
-            // Restore scroll position
-            const scrollPos = localStorage.getItem('lawScrollPos');
-            if (scrollPos) window.scrollTo(0, parseInt(scrollPos, 10));
-            window.addEventListener('beforeunload', function() {
-                localStorage.setItem('lawScrollPos', window.scrollY);
-            });
-
-            console.log('✅ مذكرة النجاح – قانون الأحوال الشخصية لغير المسلمين جاهزة.');
-        });
-
-    })();
-
-    // ================================================================
-    // FIX: make goHome globally accessible for onclick attributes
-    // ================================================================
-    window.goHome = function() {
-        // find the goHome function inside the IIFE
-        var scripts = document.getElementsByTagName('script');
-        for (var i = 0; i < scripts.length; i++) {
-            if (scripts[i].textContent && scripts[i].textContent.indexOf('function goHome()') > -1) {
-                // execute the function from the IIFE context (it's already defined)
-                // we can't directly call it because it's scoped, but we can re-implement it
-                // or trigger the showSection('main')
-                // since showSection is also scoped, we need to access it via the window if we exposed it
-                // We didn't expose showSection, but we can re-implement the logic:
-                document.querySelectorAll('.section-content').forEach(function(el) {
-                    el.classList.remove('active');
-                });
-                document.getElementById('mainScreen').style.display = 'block';
-                document.getElementById('searchResults').classList.remove('active');
-                document.getElementById('searchArea').style.display = 'none';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                break;
-            }
-        }
-    };
-    </script>
-
-
-            <script src="https://cdn.jsdelivr.net/npm/tweetnacl@1.0.3/nacl.min.js"></script>
-            <script>
-            (function() {
-                "use strict";
-
-                const COURSE_ID = "nonMuslim001";
-                const PUBLIC_KEY_B64 = "MvyQmsKLBby2j37aczPdW5rM7p8Yo73CAxYiD1kdqX4=";
-                const TRIAL_DAYS = 3;
-                const WHATSAPP_NUMBER = "249915886600";
-                const TELEGRAM_LINK = "@heroapp1";
-
-                // دوال الترميز (base64ToBytes, bytesToBase64)
-                function base64ToBytes(b64) {
-                    const bin = atob(b64);
-                    const bytes = new Uint8Array(bin.length);
-                    for (let i=0; i<bin.length; i++) bytes[i] = bin.charCodeAt(i);
-                    return bytes;
-                }
-
-                function bytesToBase64(bytes) {
-                    let binary = '';
-                    for (let i=0; i<bytes.length; i++) binary += String.fromCharCode(bytes[i]);
-                    return btoa(binary);
-                }
-
-                // 📱 البصمة الثابتة
-                async function generateStableFingerprint() {
-                    const data = [
-                        navigator.userAgent || '',
-                        navigator.platform || '',
-                        navigator.language || '',
-                        screen.width || 0,
-                        screen.height || 0,
-                        screen.colorDepth || 0,
-                        new Date().getTimezoneOffset() || 0,
-                        !!navigator.hardwareConcurrency,
-                        navigator.deviceMemory || 0,
-                        navigator.hardwareConcurrency || 0
-                    ].join('|');
-
-                    let canvasFP = '';
-                    try {
-                        const canvas = document.createElement('canvas');
-                        canvas.width = 200;
-                        canvas.height = 50;
-                        const ctx = canvas.getContext('2d');
-                        ctx.textBaseline = 'top';
-                        ctx.font = '14px Arial';
-                        ctx.fillStyle = '#f60';
-                        ctx.fillRect(125, 1, 62, 20);
-                        ctx.fillStyle = '#069';
-                        ctx.fillText('Cwm fjordbank glyphs vext quiz, 😃', 2, 15);
-                        ctx.fillStyle = 'rgba(102,204,0,0.7)';
-                        ctx.fillText('Cwm fjordbank glyphs vext quiz, 😃', 4, 17);
-                        canvasFP = canvas.toDataURL();
-                    } catch (e) {
-                        canvasFP = 'error';
-                    }
-
-                    const finalData = data + '|' + canvasFP;
-                    const msgBuffer = new TextEncoder().encode(finalData);
-                    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-                    const hashArray = Array.from(new Uint8Array(hashBuffer));
-                    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-                }
-
-                // ⏳ إدارة التجربة
-                const TRIAL_STATE_KEY = "hero_trial_" + COURSE_ID;
-
-                async function getTrialState() {
-                    let state = JSON.parse(localStorage.getItem(TRIAL_STATE_KEY));
-                    const now = Date.now();
-                    if (!state) {
-                        state = {
-                            startedAt: now,
-                            expiresAt: now + TRIAL_DAYS * 24 * 60 * 60 * 1000,
-                            tampered: false
-                        };
-                        localStorage.setItem(TRIAL_STATE_KEY, JSON.stringify(state));
-                        return state;
-                    }
-                    return state;
-                }
-
-                // 🔑 التحقق من كود التفعيل
-                async function verifyLicense(code) {
-                    try {
-                        const parts = code.split('.');
-                        if (parts.length !== 2) return null;
-                        const [payloadB64, sigB64] = parts;
-                        const payloadBytes = base64ToBytes(payloadB64);
-                        const signature = base64ToBytes(sigB64);
-                        const publicKey = base64ToBytes(PUBLIC_KEY_B64);
-
-                        const valid = nacl.sign.detached.verify(payloadBytes, signature, publicKey);
-                        if (!valid) return null;
-
-                        const payloadJson = new TextDecoder().decode(payloadBytes);
-                        const payload = JSON.parse(payloadJson);
-
-                        if (payload.course_id !== COURSE_ID) return null;
-                        if (payload.expires_at && Date.now() > new Date(payload.expires_at).getTime()) return null;
-
-                        const currentFP = await generateStableFingerprint();
-                        if (payload.device_binding !== currentFP) return null;
-
-                        return payload;
-                    } catch (e) {
-                        console.error('خطأ في التحقق:', e);
-                        return null;
-                    }
-                }
-
-                // 🖼️ العلامة المائية
-                function showWatermark(data) {
-                    const old = document.getElementById('hero-watermark');
-                    if (old) old.remove();
-                    if (!data) return;
-                    const name = data.customer_name || 'عميل';
-                    const number = data.customer_number || '';
-                    const div = document.createElement('div');
-                    div.id = 'hero-watermark';
-                    div.style.cssText = `
-                        position: fixed;
-                        bottom: 10px;
-                        right: 20px;
-                        z-index: 9999;
-                        background: rgba(0,0,0,0.5);
-                        color: #facc15;
-                        padding: 6px 14px;
-                        border-radius: 20px;
-                        font-size: 13px;
-                        font-weight: 600;
-                        font-family: Arial, sans-serif;
-                        direction: rtl;
-                        backdrop-filter: blur(4px);
-                        border: 1px solid rgba(255,255,255,0.1);
-                        pointer-events: none;
-                        opacity: 0.7;
-                    `;
-                    div.textContent = `🔐 مرخص لـ: ${name} | ${number}`;
-                    document.body.appendChild(div);
-                }
-
-                // 🖥️ نافذة التفعيل (مع أزرار التواصل)
-                async function showActivationOverlay() {
-                    const old = document.getElementById('hero-activation-overlay');
-                    if (old) old.remove();
-
-                    const fp = await generateStableFingerprint();
-
-                    const overlay = document.createElement('div');
-                    overlay.id = 'hero-activation-overlay';
-                    Object.assign(overlay.style, {
-                        position: 'fixed',
-                        inset: '0',
-                        zIndex: '999999',
-                        background: 'rgba(0,0,0,0.75)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontFamily: "'Segoe UI', Tahoma, sans-serif",
-                        padding: '16px',
-                        direction: 'rtl'
-                    });
-
-                    const box = document.createElement('div');
-                    Object.assign(box.style, {
-                        background: '#fff',
-                        borderRadius: '24px',
-                        padding: '28px 24px',
-                        maxWidth: '520px',
-                        width: '100%',
-                        textAlign: 'center',
-                        boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
-                        direction: 'rtl'
-                    });
-
-                    const title = document.createElement('h2');
-                    title.textContent = '🔐 تفعيل الدورة';
-                    Object.assign(title.style, { margin: '0 0 8px', fontSize: '26px', color: '#1a2634' });
-                    box.appendChild(title);
-
-                    const sub = document.createElement('p');
-                    sub.textContent = 'انسخ المفتاح أدناه وأرسله للبائع لتحصل على كود التفعيل.';
-                    Object.assign(sub.style, { color: '#475569', fontSize: '15px', marginBottom: '16px' });
-                    box.appendChild(sub);
-
-                    // عرض البصمة
-                    const fpDiv = document.createElement('div');
-                    fpDiv.textContent = fp;
-                    Object.assign(fpDiv.style, {
-                        background: '#f1f5f9',
-                        padding: '10px 14px',
-                        borderRadius: '8px',
-                        fontFamily: 'monospace',
-                        fontSize: '14px',
-                        wordBreak: 'break-all',
-                        border: '1px solid #d1d9e6',
-                        margin: '6px 0 12px 0'
-                    });
-                    box.appendChild(fpDiv);
-
-                    // أزرار التواصل (واتساب + تيليجرام)
-                    const contactDiv = document.createElement('div');
-                    contactDiv.className = 'contact-buttons';
-                    contactDiv.style.cssText = 'display:flex; gap:10px; flex-wrap:wrap; margin:12px 0; justify-content:center;';
-
-                    // زر واتساب
-                    const waBtn = document.createElement('a');
-                    waBtn.href = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=مرحباً، أريد تفعيل الدورة. المفتاح هو: ' + encodeURIComponent(fp);
-                    waBtn.target = '_blank';
-                    waBtn.textContent = '📱 واتساب';
-                    waBtn.className = 'btn-whatsapp';
-                    Object.assign(waBtn.style, {
-                        background: '#25D366',
-                        color: 'white',
-                        padding: '10px 18px',
-                        borderRadius: '30px',
-                        textDecoration: 'none',
-                        fontWeight: '600',
-                        fontSize: '15px'
-                    });
-                    contactDiv.appendChild(waBtn);
-
-                    // زر تيليجرام (إذا كان الرابط موجوداً)
-                    if (TELEGRAM_LINK && TELEGRAM_LINK.trim() !== '') {
-                        const tgBtn = document.createElement('a');
-                        tgBtn.href = 'https://t.me/' + '?text=' + encodeURIComponent('مرحباً، أريد تفعيل الدورة. المفتاح هو: ' + fp);
-                        tgBtn.target = '_blank';
-                        tgBtn.textContent = '💬 تيليجرام';
-                        tgBtn.className = 'btn-telegram';
-                        Object.assign(tgBtn.style, {
-                            background: '#0088cc',
-                            color: 'white',
-                            padding: '10px 18px',
-                            borderRadius: '30px',
-                            textDecoration: 'none',
-                            fontWeight: '600',
-                            fontSize: '15px'
-                        });
-                        contactDiv.appendChild(tgBtn);
-                    }
-
-                    box.appendChild(contactDiv);
-
-                    // حقل إدخال كود التفعيل
-                    const inputLabel = document.createElement('p');
-                    inputLabel.textContent = 'ثم الصق كود التفعيل الذي ستحصل عليه:';
-                    Object.assign(inputLabel.style, { marginTop: '20px', fontWeight: '600', color: '#1e293b' });
-                    box.appendChild(inputLabel);
-
-                    const input = document.createElement('input');
-                    input.type = 'text';
-                    input.placeholder = 'ألصق كود التفعيل هنا...';
-                    input.id = 'license-input';
-                    Object.assign(input.style, {
-                        width: '100%',
-                        padding: '12px 16px',
-                        border: '2px solid #d1d9e6',
-                        borderRadius: '12px',
-                        fontSize: '16px',
-                        fontFamily: 'monospace',
-                        textAlign: 'center',
-                        direction: 'ltr',
-                        boxSizing: 'border-box'
-                    });
-                    box.appendChild(input);
-
-                    const activateBtn = document.createElement('button');
-                    activateBtn.textContent = '🔑 تفعيل';
-                    activateBtn.id = 'activate-btn';
-                    Object.assign(activateBtn.style, {
-                        width: '100%',
-                        padding: '14px',
-                        marginTop: '16px',
-                        background: '#facc15',
-                        border: 'none',
-                        borderRadius: '30px',
-                        fontWeight: '700',
-                        fontSize: '18px',
-                        cursor: 'pointer'
-                    });
-                    box.appendChild(activateBtn);
-
-                    const msgDiv = document.createElement('div');
-                    msgDiv.id = 'activation-msg';
-                    Object.assign(msgDiv.style, {
-                        marginTop: '10px',
-                        fontSize: '14px',
-                        fontWeight: '500',
-                        minHeight: '24px',
-                        color: '#b00020'
-                    });
-                    box.appendChild(msgDiv);
-
-                    overlay.appendChild(box);
-                    document.body.appendChild(overlay);
-
-                    activateBtn.addEventListener('click', async function() {
-                        const code = input.value.trim();
-                        if (!code) {
-                            msgDiv.textContent = '⚠️ الرجاء إدخال كود التفعيل.';
-                            msgDiv.style.color = '#b00020';
-                            return;
-                        }
-                        msgDiv.textContent = '⏳ جاري التحقق...';
-                        msgDiv.style.color = '#3b82f6';
-
-                        const payload = await verifyLicense(code);
-                        if (!payload) {
-                            msgDiv.textContent = '❌ كود غير صحيح أو منتهي الصلاحية أو جهاز مختلف.';
-                            msgDiv.style.color = '#b00020';
-                            return;
-                        }
-                        localStorage.setItem('hero_license_activated_' + COURSE_ID, 'activated');
-                        localStorage.setItem('hero_license_data_' + COURSE_ID, JSON.stringify(payload));
-                        overlay.remove();
-                        location.reload();
-                    });
-
-                    input.addEventListener('keydown', function(e) {
-                        if (e.key === 'Enter') activateBtn.click();
-                    });
-                }
-
-                // ⏱️ عداد التجربة
-                function updateTrialCounter(expiresAt) {
-                    let counter = document.getElementById('hero-trial-counter');
-                    if (!counter) {
-                        counter = document.createElement('div');
-                        counter.id = 'hero-trial-counter';
-                        Object.assign(counter.style, {
-                            position: 'fixed',
-                            bottom: '80px',
-                            left: '20px',
-                            zIndex: '99999',
-                            background: '#1e293b',
-                            color: '#f1f5f9',
-                            padding: '10px 16px',
-                            borderRadius: '12px',
-                            fontSize: '14px',
-                            fontFamily: 'Arial, sans-serif',
-                            boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
-                            direction: 'ltr'
-                        });
-                        document.body.appendChild(counter);
-                    }
-                    const now = Date.now();
-                    const remaining = Math.max(0, (expiresAt - now) / 1000);
-                    if (remaining <= 0) {
-                        counter.textContent = '⏰ انتهت التجربة';
-                        counter.style.background = '#b00020';
-                        return;
-                    }
-                    const days = Math.floor(remaining / 86400);
-                    const hours = Math.floor((remaining % 86400) / 3600);
-                    const minutes = Math.floor((remaining % 3600) / 60);
-                    const seconds = Math.floor(remaining % 60);
-                    counter.textContent = `⏳ التجربة المتبقية: ${days}يوم ${hours}س ${minutes}د ${seconds}ث`;
-                }
-
-                // 🚀 التهيئة
-                async function init() {
-                    if (typeof nacl === 'undefined') {
-                        document.documentElement.style.visibility = 'hidden';
-                        const errOverlay = document.createElement('div');
-                        Object.assign(errOverlay.style, {
-                            position: 'fixed',
-                            inset: '0',
-                            zIndex: '999999',
-                            background: 'rgba(0,0,0,0.8)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            color: '#fff',
-                            fontFamily: 'Arial, sans-serif',
-                            fontSize: '18px',
-                            textAlign: 'center',
-                            padding: '20px'
-                        });
-                        errOverlay.innerHTML = '❌ مكتبة التشفير غير محملة. تأكد من اتصال الإنترنت.';
-                        document.body.appendChild(errOverlay);
-                        return;
-                    }
-
-                    if (localStorage.getItem('hero_license_activated_' + COURSE_ID) === 'activated') {
-                        const data = JSON.parse(localStorage.getItem('hero_license_data_' + COURSE_ID) || 'null');
-                        if (data && data.course_id === COURSE_ID) {
-                            document.documentElement.style.visibility = 'visible';
-                            showWatermark(data);
-                            return;
-                        } else {
-                            localStorage.removeItem('hero_license_activated_' + COURSE_ID);
-                            localStorage.removeItem('hero_license_data_' + COURSE_ID);
-                        }
-                    }
-
-                    const trial = await getTrialState();
-                    if (trial.tampered || Date.now() >= trial.expiresAt) {
-                        document.documentElement.style.visibility = 'hidden';
-                        await showActivationOverlay();
-                        return;
-                    }
-
-                    document.documentElement.style.visibility = 'visible';
-
-                    const floatBtn = document.createElement('button');
-                    floatBtn.textContent = '🔑 تفعيل / شراء';
-                    Object.assign(floatBtn.style, {
-                        position: 'fixed',
-                        bottom: '20px',
-                        right: '20px',
-                        zIndex: '99999',
-                        background: '#facc15',
-                        color: '#0f172a',
-                        border: 'none',
-                        padding: '12px 24px',
-                        borderRadius: '40px',
-                        fontWeight: '700',
-                        fontSize: '16px',
-                        boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
-                        cursor: 'pointer'
-                    });
-                    floatBtn.addEventListener('click', async function() {
-                        if (localStorage.getItem('hero_license_activated_' + COURSE_ID) === 'activated') return;
-                        await showActivationOverlay();
-                    });
-                    document.body.appendChild(floatBtn);
-
-                    updateTrialCounter(trial.expiresAt);
-                    setInterval(function() {
-                        updateTrialCounter(trial.expiresAt);
-                        if (Date.now() >= trial.expiresAt) location.reload();
-                    }, 1000);
-                }
-
-                if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-                else init();
-            })();
-            </script>
-            
+                    <div class="p-content">
+                        <div class="p-h1">⚖️ قانون الأحوال الشخصية لغير المسلمين (1926)</div>
+                        <div class="p-sub">دليل مرئي شامل – دراسة قانونية تطبيقية لزواج غير المسلمين في السودان</div>
+
+                        <div class="p-grid">
+                            <div class="p-tile"><span>📖</span>شرح<i>7</i></div>
+                            <div class="p-tile"><span>📋</span>ملخصات<i>6</i></div>
+                            <div class="p-tile"><span>❓</span>أسئلة<i>15+</i></div>
+                            <div class="p-tile"><span>🗺️</span>خرائط<i>15</i></div>
+                            <div class="p-tile"><span>📌</span>أمثلة<i>8</i></div>
+                            <div class="p-tile"><span>📝</span>امتحانات<i>3</i></div>
+                            <div class="p-tile"><span>🌳</span>شجرة</div>
+                            <div class="p-tile"><span>📚</span>بنك الأسئلة<i>200</i></div>
+                            <div class="p-tile"><span>🔄</span>مراجعات<i>12</i></div>
+                            <div class="p-tile"><span>🎬</span>فيديوهات</div>
+                        </div>
+
+                        <div class="p-note">
+                            <b>📌 سلسلة مذكرات النجاح</b>
+                            مخصصة لطلاب القانون والمعادلة — المحتوى مستخلص من النصوص الرسمية.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">شاشة البداية — شبكة الأقسام العشرة</div>
+        </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>شريط علوي ثابت (Sticky)</b>
+                        <p>يحمل اسم السلسلة واسم المقرر، ويبقى ظاهراً أثناء التمرير ليمنح المستخدم نقطة ارتكاز دائمة.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>ثلاثة أزرار وصول سريع</b>
+                        <p>الرئيسية بلون ذهبي مميّز، وبحث والمفضلة بلون شفاف فاتح — تدرّج بصري يوضّح الإجراء الأساسي.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>عنوان المقرر بشريط ذهبي</b>
+                        <p>الحد الأيمن الذهبي يعمل كعلامة بصرية (Accent) تفصل العنوان عن باقي المحتوى.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>شبكة الأقسام العشرة</b>
+                        <p>ثلاثة أعمدة على الجوال، كل بطاقة تحمل أيقونة إيموجي وعدّاد محتوى ذهبي يوضّح حجم المادة.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">5</span>
+                    <div class="txt">
+                        <b>بطاقة تعريفية ختامية</b>
+                        <p>توضّح مصدر المحتوى وطبيعته الأكاديمية، وتبني الثقة لدى الطالب.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">تنقل أحادي الشاشة</span>
+                <span class="chip">أيقونات إيموجي</span>
+                <span class="chip gold">عدّادات محتوى</span>
+                <span class="chip">تصميم متجاوب</span>
+            </div>
+
+            <div class="quote">
+                الشاشة الرئيسية تعمل كـ<b>لوحة قيادة</b> — كل قسم مرئي من النظرة الأولى دون قوائم منسدلة.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · قانون الأحوال الشخصية لغير المسلمين</span>
+        <span class="pnum">03</span>
+    </div>
+</section>
+
+<!-- ============================================================
+     PAGE 4 — EXPLANATION
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">02</span> الشرح والتعاريف الفقهية</div>
+    </div>
+
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>قانون الأحوال الشخصية</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b>🔍 بحث</b><b>⭐ المفضلة</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">📖 الشرح والتعاريف الفقهية <span class="back">🏠 العودة</span></div>
+                        <div class="p-box">
+                            <h5>المسجل</h5>
+                            <p>مسجل الزواج المعين لمركز معين، وتشمل الصفة نائب المسجل عند قيامه بمهام المسجل الأصلي.</p>
+                        </div>
+                        <div class="p-box">
+                            <h5>المسجل العام</h5>
+                            <p>موظف يعينه رئيس القضاء للإشراف على السجلات وأعمال التوثيق وتصحيح الأخطاء المادية.</p>
+                        </div>
+                        <div class="p-box">
+                            <h5>المركز</h5>
+                            <p>أي من مراكز الزواج المنشأة بموجب القانون، وتعتبر كل ولاية مركزاً للزواج كأصل عام.</p>
+                        </div>
+                        <div class="p-box">
+                            <h5>الطائفة المستثناة</h5>
+                            <p>طائفة دينية معترف بها رسمياً يصدر بشأنها أمر من رئيس القضاء، فتطبق طقوسها وقوانين أحوالها الشخصية.</p>
+                        </div>
+                        <div class="p-box">
+                            <h5>الزواج المدني</h5>
+                            <p>الزواج الذي يبرم رسمياً وعلناً أمام المسجل أو نائبه بعد استيفاء الإجراءات التمهيدية.</p>
+                        </div>
+                        <div class="p-box gold">
+                            <h5>الرخصة الخاصة</h5>
+                            <p>قرار استثنائي مكتوب من رئيس القضاء للتغاضي عن الإعلان، صالح لمدة 60 يوماً.</p>
+                        </div>
+                        <div class="p-card">
+                            <h5>نطاق التطبيق وعدم السريان</h5>
+                            <ul>
+                                <li>لا يسري على الزواج الإسلامي.</li>
+                                <li>لا يسري على أي شريعة وثنية سائدة.</li>
+                                <li>لا يسري على العرف المحلي السائد.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">شاشة التعاريف القانونية الكبرى</div>
+        </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>صناديق تعريفية ملوّنة</b>
+                        <p>كل مصطلح في صندوق مستقل بحدّ أيمن كحلي، مع عنوان بارز ونص توضيحي بلون أهدأ.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>تمييز الرخصة الخاصة بالذهبي</b>
+                        <p>المصطلحات الاستثنائية تُلوّن بالذهبي لتمييزها بصرياً عن التعاريف العادية.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>رأس قسم مع زر عودة</b>
+                        <p>يظهر اسم القسم الحالي وزر «🏠 العودة» في سطر واحد، لتقليل عدد النقرات.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>قائمة نطاق التطبيق</b>
+                        <p>قائمة نقطية داخل بطاقة بيضاء توضّح الحالات الثلاث لعدم السريان.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">7 تعاريف</span>
+                <span class="chip gold">صناديق ملوّنة</span>
+                <span class="chip">قوائم نقطية</span>
+                <span class="chip">قراءة متسلسلة</span>
+            </div>
+
+            <div class="quote">
+                كل تعريف مبني على نمط بصري واحد: <b>عنوان + نص</b> — فيسهل الحفظ البصري قبل الحفظ النصي.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · قانون الأحوال الشخصية لغير المسلمين</span>
+        <span class="pnum">04</span>
+    </div>
+</section>
+
+<!-- ============================================================
+     PAGE 5 — SUMMARIES
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">03</span> الملخصات التنظيمية</div>
+    </div>
+
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>قانون الأحوال الشخصية</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b>🔍 بحث</b><b>⭐ المفضلة</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">📋 الملخصات التنظيمية <span class="back">🏠 العودة</span></div>
+                        <div class="p-card">
+                            <h5>جدول الطوائف المستثناة (الجدول الثاني)</h5>
+                            <ul>
+                                <li>الروم الأرثوذكس · الأقباط الأرثوذكس</li>
+                                <li>الكنيسة الرومانية · المارونية</li>
+                                <li>الروم الكاثوليك · السريان الكاثوليك</li>
+                                <li>الأرمن الكاثوليك · الأقباط الكاثوليك</li>
+                                <li>الكلدان الكاثوليك · الطائفة اليهودية</li>
+                            </ul>
+                        </div>
+                        <div class="p-card">
+                            <h5>شروط سن الزواج الأدنى</h5>
+                            <ul>
+                                <li>15 عاماً للذكور.</li>
+                                <li>13 عاماً للإناث.</li>
+                                <li>تسقط دعوى الإبطال بالحمل أو بمرور 6 أشهر على بلوغ السن.</li>
+                            </ul>
+                        </div>
+                        <div class="p-card">
+                            <h5>مواقيت إبرام العقود</h5>
+                            <ul>
+                                <li>الزواج الديني: 6 صباحاً – 6 مساءً.</li>
+                                <li>الزواج المدني: 9 صباحاً – 5 مساءً.</li>
+                            </ul>
+                        </div>
+                        <div class="p-card">
+                            <h5>الإجراءات التمهيدية</h5>
+                            <ul>
+                                <li>تقديم الإعلان (نموذج أ) – إقامة 15 يوماً.</li>
+                                <li>النشر في دفتر الإعلانات 21 يوماً.</li>
+                                <li>الإقرار المشفوع باليمين (نموذج د).</li>
+                                <li>شهادة المسجل (نموذج ج) – صلاحية 3 أشهر.</li>
+                            </ul>
+                        </div>
+                        <div class="p-card">
+                            <h5>العقوبات الجنائية</h5>
+                            <ul>
+                                <li>الاعتراض الكاذب: السجن حتى سنتين.</li>
+                                <li>إبرام زواج معيب: السجن حتى 5 سنوات.</li>
+                                <li>إهمال التوثيق: السجن حتى 3 أشهر.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">شاشة الملخصات — ستة ملخصات مكثّفة</div>
+        </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>بطاقات بيضاء متساوية</b>
+                        <p>كل ملخص في بطاقة مستقلة بظل ناعم وحدود فاتحة، ما يسهّل الفصل البصري بين الموضوعات.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>قوائم نقطية معيّنة الشكل</b>
+                        <p>النقطة المستخدمة معيّن ذهبي صغير «◆» يمنح إيقاعاً بصرياً منظّماً عبر الشاشة.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>معلومات قابلة للمقارنة</b>
+                        <p>المواقيت والسن والعقوبات معروضة كأرقام صريحة — تصميم موجّه للحفظ السريع.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>ترتيب تصاعدي للأهمية</b>
+                        <p>يبدأ بالطوائف ثم السن ثم المواقيت ثم الإجراءات وينتهي بالعقوبات — تدرّج منطقي.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">6 ملخصات</span>
+                <span class="chip">أرقام صريحة</span>
+                <span class="chip gold">جداول مبسّطة</span>
+                <span class="chip">مراجعة سريعة</span>
+            </div>
+
+            <div class="quote">
+                الملخصات مصمّمة لـ<b>المراجعة الليلية</b> — كل بطاقة تُقرأ في أقل من ثلاثين ثانية.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · قانون الأحوال الشخصية لغير المسلمين</span>
+        <span class="pnum">05</span>
+    </div>
+</section>
+
+<!-- ============================================================
+     PAGE 6 — QUESTIONS
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">04</span> الأسئلة والمنازعات</div>
+    </div>
+
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>قانون الأحوال الشخصية</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b>🔍 بحث</b><b>⭐ المفضلة</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">❓ أسئلة ومنازعات <span class="back">🏠 العودة</span></div>
+                        <div class="p-card">
+                            <h5>نزاع اعتراضات الزواج (كتابة كلمة ممنوع)</h5>
+                            <ul>
+                                <li>تُكتب كلمة «ممنوع» أمام الإعلان في دفتر الإعلانات.</li>
+                                <li>تُقرن باسم المعترض ومحل إقامته وسببه الشرعي.</li>
+                            </ul>
+                        </div>
+                        <div class="p-card">
+                            <h5>نزاع رفض موافقة الولي للقاصر</h5>
+                            <ul>
+                                <li>إذا كان السن دون الحادية والعشرين وتعذّرت الموافقة.</li>
+                                <li>يُحال الأمر لقاضي المحكمة العامة للتحقيق.</li>
+                                <li>يجوز له الموافقة كتابةً بعد التحقق.</li>
+                            </ul>
+                        </div>
+                        <div class="p-card">
+                            <h5>تداخل القوانين عند اعتناق الزوج الإسلام</h5>
+                            <ul>
+                                <li>يستمر الزواج المدني قائماً.</li>
+                                <li>يجوز للزوج التزوج بأخرى.</li>
+                                <li>للزوجة طلب الفسخ ما لم تعتنق هي الإسلام.</li>
+                            </ul>
+                        </div>
+                        <div class="p-card">
+                            <h5>أثر اعتناق الزوج الإسلام وتزوجه بأخرى</h5>
+                            <ul>
+                                <li>حق الزوجة الأولى في طلب الفسخ (المادة 69).</li>
+                                <li>الاختصاص للمحكمة العامة.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">شاشة النزاعات التطبيقية</div>
+        </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>صياغة سيناريو-سؤال</b>
+                        <p>كل بطاقة تبدأ بعنوان يشبه وقائع قضية، ثم قائمة حلول عملية — أسلوب قريب من الامتحان.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>الربط بالمواد القانونية</b>
+                        <p>يُذكر رقم المادة (مثل المادة 69) داخل النص لتدريب الطالب على الاستدلال القانوني.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>نمط بطاقة موحّد</b>
+                        <p>العنوان بكحلي داكن والنقاط بلون أهدأ — يوجّه العين إلى ترتيب القراءة.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>قابلية التوسّع</b>
+                        <p>البنية تسمح بإضافة عشرات الحالات دون تغيير في نمط العرض.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">منازعات واقعية</span>
+                <span class="chip">إحالة للمواد</span>
+                <span class="chip gold">تدريب امتحاني</span>
+            </div>
+
+            <div class="quote">
+                هذا القسم هو <b>الجسر</b> بين النص القانوني الجامد والتطبيق العملي في قاعة الامتحان.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · قانون الأحوال الشخصية لغير المسلمين</span>
+        <span class="pnum">06</span>
+    </div>
+</section>
+
+<!-- ============================================================
+     PAGE 7 — MAPS
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">05</span> الخرائط الذهنية</div>
+    </div>
+
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>قانون الأحوال الشخصية</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b>🔍 بحث</b><b>⭐ المفضلة</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">🗺️ الخرائط الذهنية (15 خريطة) <span class="back">🏠 العودة</span></div>
+                        <div class="p-sub">خرائط ذهنية مصوّرة تغطي جميع جوانب القانون.</div>
+                        <div class="p-maps">
+                            <div class="p-map"><div class="thumb">01</div><div class="lbl">🗺️ الخريطة الذهنية 1</div></div>
+                            <div class="p-map"><div class="thumb">02</div><div class="lbl">🗺️ الخريطة الذهنية 2</div></div>
+                            <div class="p-map"><div class="thumb">03</div><div class="lbl">🗺️ الخريطة الذهنية 3</div></div>
+                            <div class="p-map"><div class="thumb">04</div><div class="lbl">🗺️ الخريطة الذهنية 4</div></div>
+                            <div class="p-map"><div class="thumb">05</div><div class="lbl">🗺️ الخريطة الذهنية 5</div></div>
+                            <div class="p-map"><div class="thumb">06</div><div class="lbl">🗺️ الخريطة الذهنية 6</div></div>
+                            <div class="p-map"><div class="thumb">07</div><div class="lbl">🗺️ الخريطة الذهنية 7</div></div>
+                            <div class="p-map"><div class="thumb">08</div><div class="lbl">🗺️ الخريطة الذهنية 8</div></div>
+                            <div class="p-map"><div class="thumb">09</div><div class="lbl">🗺️ الخريطة الذهنية 9</div></div>
+                            <div class="p-map"><div class="thumb">10</div><div class="lbl">🗺️ الخريطة الذهنية 10</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">معرض الخرائط — عرض شبكي بعمودين</div>
+        </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>شبكة بعمودين</b>
+                        <p>على شاشات الجوال تُعرض الخرائط في عمودين لتبقى قابلة للتمييز دون تمرير أفقي.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>مصغّرات بترقيم ذهبي</b>
+                        <p>كل خريطة تحمل رقمها في وسط المصغّرة مع تدرّج لوني كحلي/ذهبي يميّزها عن الخلفية.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>تسمية سفلية موحّدة</b>
+                        <p>شريط رمادي فاتح أسفل كل خريطة يحمل التسمية، لتثبيت التسلسل البصري.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>تحميل تدريجي (Lazy Load)</b>
+                        <p>الخرائط تُحمّل عند الحاجة، ما يحافظ على سرعة فتح القسم حتى مع 15 صورة.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">15 خريطة</span>
+                <span class="chip gold">عرض شبكي</span>
+                <span class="chip">تكبير عند التمرير</span>
+                <span class="chip">تحميل ذكي</span>
+            </div>
+
+            <div class="quote">
+                الخريطة الذهنية الواحدة تختصر <b>صفحات كاملة</b> — وهي أسرع وسيلة لتثبيت البنية القانونية.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · قانون الأحوال الشخصية لغير المسلمين</span>
+        <span class="pnum">07</span>
+    </div>
+</section>
+
+<!-- ============================================================
+     PAGE 8 — EXAMPLES
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">06</span> الأمثلة والتطبيقات</div>
+    </div>
+
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>قانون الأحوال الشخصية</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b>🔍 بحث</b><b>⭐ المفضلة</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">📌 الأمثلة والتطبيقات <span class="back">🏠 العودة</span></div>
+                        <div class="p-card">
+                            <h5>مثال الموافقات الخاصة لزواج القاصر</h5>
+                            <ul>
+                                <li><b>الحالة العادية:</b> موافقة مكتوبة من الأب (نموذج ح).</li>
+                                <li><b>الحالة الاستثنائية:</b> عند وفاة الأب أو جنونه تؤخذ موافقة الأم.</li>
+                                <li>عند انعدام الأولياء ترفع عريضة لقاضي المحكمة العامة.</li>
+                            </ul>
+                        </div>
+                        <div class="p-card">
+                            <h5>مثال تمليك التوقيع بالعلامة للأمي</h5>
+                            <ul>
+                                <li>يوقّع بعلامة أو خطين متقاطعين.</li>
+                                <li>بحضور المسجل العام أو المسجل أو قاضي المحاكم المدنية.</li>
+                                <li>مع ترجمة الوثيقة وتوضيح آثارها بلغة يفهمها.</li>
+                            </ul>
+                        </div>
+                        <div class="p-card">
+                            <h5>مثال الرخصة الخاصة</h5>
+                            <ul>
+                                <li>طلب لرئيس القضاء مصحوب بدليل مؤيد باليمين.</li>
+                                <li>يصدر نموذج هـ متجاوزاً الإعلان وشهادة المسجل.</li>
+                                <li>صالحة لمدة 60 يوماً.</li>
+                            </ul>
+                        </div>
+                        <div class="p-card">
+                            <h5>مثال صياغة الإقرار المشفوع باليمين</h5>
+                            <ul>
+                                <li>الأهلية والسن والموافقات.</li>
+                                <li>خلو الطرفين من موانع القرابة والمصاهرة.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">شاشة الأمثلة العملية المصاغة</div>
+        </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>نمط الحالة / الحل</b>
+                        <p>كل مثال يعرض الحالة العادية أولاً ثم الاستثنائية، فيتعلّم الطالب التفريعات لا القاعدة فقط.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>الإحالة إلى النماذج الرسمية</b>
+                        <p>يُشار إلى أسماء النماذج (أ، ج، د، هـ، ح) لأنها مطلوبة حرفياً في الإجابة الامتحانية.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>تمييز الحالات بخط عريض</b>
+                        <p>كلمات مثل «الحالة العادية» تأتي بخط أثقل داخل النقطة لتنظيم القراءة السريعة.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>تغطية الفئات الخاصة</b>
+                        <p>مثال الشخص الأمي يعالج فئة تحتاج معالجة إجرائية خاصة في التوثيق.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">8 أمثلة</span>
+                <span class="chip gold">نماذج رسمية</span>
+                <span class="chip">حالات استثنائية</span>
+            </div>
+
+            <div class="quote">
+                الأمثلة تُدرّب الطالب على <b>التحليل</b> لا الاستظهار — وهي مهارة أساسية في أسئلة المعادلة.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · قانون الأحوال الشخصية لغير المسلمين</span>
+        <span class="pnum">08</span>
+    </div>
+</section>
+
+<!-- ============================================================
+     PAGE 9 — EXAMS
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">07</span> الامتحانات الشاملة</div>
+    </div>
+
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>قانون الأحوال الشخصية</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b>🔍 بحث</b><b>⭐ المفضلة</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">📝 الامتحانات الشاملة <span class="back">🏠 العودة</span></div>
+                        <div class="p-card">
+                            <h5>الامتحان الأول: التنظيم الإداري والإجراءات</h5>
+                            <ul>
+                                <li>عرّف: المسجل العام، الطائفة المستثناة، مركز الزواج.</li>
+                                <li>اشرح شروط تقديم إعلان الزواج وطريقة نشره.</li>
+                                <li>كيف يعالج القانون توقيع الشخص الأمي؟</li>
+                            </ul>
+                        </div>
+                        <div class="p-box">
+                            <h5>🔽 عرض الإجابة</h5>
+                            <p>الإقامة 15 يوماً · النشر 21 يوماً · التوقيع بالعلامة بحضور جهة معتمدة.</p>
+                        </div>
+                        <div class="p-card">
+                            <h5>الامتحان الثاني: الموانع والبطلان</h5>
+                            <ul>
+                                <li>ما الفرق بين البطلان المطلق والقابلية للإبطال؟</li>
+                                <li>حدّد موانع المصاهرة المؤبدة.</li>
+                                <li>ما شروط تمليك الولد النسب الشرعي؟</li>
+                            </ul>
+                        </div>
+                        <div class="p-card">
+                            <h5>الامتحان الثالث: التوثيق والسجلات والجرائم</h5>
+                            <ul>
+                                <li>قارن بين الزواج الديني والمدني.</li>
+                                <li>اشرح آلية توثيق الشهادة الثلاثية.</li>
+                                <li>ما ضوابط تصحيح الأخطاء المادية؟</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">شاشة الامتحانات — إجابات قابلة للفتح</div>
+        </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>ثلاثة امتحانات متكاملة</b>
+                        <p>تقسيم موضوعي: التنظيم الإداري، الموانع والبطلان، ثم التوثيق والجرائم.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>إجابات قابلة للفتح والطي</b>
+                        <p>آلية «🔽 عرض الإجابة» تتيح للطالب محاولة الحل أولاً ثم التحقق — تعلّم نشط.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>صناديق إجابة مميّزة</b>
+                        <p>صندوق الإجابة بخلفية فاتحة وحدّ أيمن كحلي، ليفصلها عن نص السؤال بوضوح.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>صياغة أسئلة مركّبة</b>
+                        <p>أسئلة من نوع «قارن» و«حدّد» و«اشرح» — تحاكي نمط الأسئلة المقالية الرسمية.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">3 امتحانات</span>
+                <span class="chip gold">إجابات مطويّة</span>
+                <span class="chip">أسئلة مقالية</span>
+                <span class="chip">تقييم ذاتي</span>
+            </div>
+
+            <div class="quote">
+                مبدأ التصميم هنا: <b>اسأل أولاً، ثم اكشف</b> — لأن المحاولة قبل الإجابة تضاعف التذكّر.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · قانون الأحوال الشخصية لغير المسلمين</span>
+        <span class="pnum">09</span>
+    </div>
+</section>
+
+<!-- ============================================================
+     PAGE 10 — KNOWLEDGE TREE
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">08</span> شجرة المعرفة</div>
+    </div>
+
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>قانون الأحوال الشخصية</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b>🔍 بحث</b><b>⭐ المفضلة</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">🌳 شجرة المعرفة <span class="back">🏠 العودة</span></div>
+                        <div class="p-tree">
+                            <div class="p-node">
+                                📂 قانون زواج غير المسلمين 1926
+                                <div class="kids">
+                                    <div class="p-node">
+                                        📂 بنية الجهاز الإداري
+                                        <div class="kids">
+                                            <div class="kid">المسجل العام<div class="det">يعينه رئيس القضاء للإشراف على السجلات.</div></div>
+                                            <div class="kid">مسجلو المراكز ونوابهم<div class="det">يديرون المعاملات ويوثقون العقود.</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="p-node">
+                                        📂 مسار تسيير عقد الزواج
+                                        <div class="kids">
+                                            <div class="kid">الإجراءات التمهيدية<div class="det">إعلان 15 يوماً · نشر 21 يوماً · شهادة صالحة 3 أشهر.</div></div>
+                                            <div class="kid">حسم العوائق والنزاعات<div class="det">كتابة «ممنوع» · تحقيق · إحالة لرئيس القضاء.</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="p-node">
+                                        📂 الأحكام الموضوعية والقضائية
+                                        <div class="kids">
+                                            <div class="kid">بطلان الزواج المطلق<div class="det">وجود زوجية · قرابة · مصاهرة · خلل إجرائي.</div></div>
+                                            <div class="kid">الطوائف المستثناة<div class="det">الجدول الثاني — 10 طوائف.</div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">الشجرة التفاعلية — ثلاث فروع رئيسية</div>
+        </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>بنية هرمية ثلاثية المستويات</b>
+                        <p>جذر واحد ← ثلاثة فروع ← عقد فرعية، ما يعكس التقسيم المنطقي للقانون.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>عقد قابلة للفتح والطي</b>
+                        <p>الضغط على أي عقدة يفتح أبناءها، فيتحكم الطالب بمستوى التفصيل الذي يريده.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>إزاحة بصرية متدرّجة</b>
+                        <p>كل مستوى أعمق يُزاح نحو الداخل قليلاً، فيتضح التسلسل دون الحاجة إلى خطوط وصل.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>تفاصيل مختصرة أسفل العقدة</b>
+                        <p>سطر توضيحي صغير أسفل كل عقدة يمنح سياقاً سريعاً دون فتح المستوى التالي.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">3 فروع</span>
+                <span class="chip gold">تفاعل بالفتح</span>
+                <span class="chip">خريطة هيكلية</span>
+            </div>
+
+            <div class="quote">
+                الشجرة تجيب على سؤال الطالب الأول: <b>«كيف يترابط هذا القانون؟»</b> — قبل الدخول في التفاصيل.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · قانون الأحوال الشخصية لغير المسلمين</span>
+        <span class="pnum">10</span>
+    </div>
+</section>
+
+<!-- ============================================================
+     PAGE 11 — QUESTION BANK
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">09</span> بنك الأسئلة الشامل</div>
+    </div>
+
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>قانون الأحوال الشخصية</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b>🔍 بحث</b><b>⭐ المفضلة</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">📚 بنك الأسئلة (200 سؤال) <span class="back">🏠 العودة</span></div>
+                        <div class="p-filters">
+                            <div>جميع الوحدات ▾</div>
+                            <div>بحث في الأسئلة...</div>
+                        </div>
+                        <div class="p-qitem">
+                            <div class="q">1. ما هو نطاق سريان قانون زواج غير المسلمين 1926؟</div>
+                            <div class="a">📌 يسري على زواج الطوائف والأقليات غير المسلمة، ولا يسري على الزواج الإسلامي أو الوثني أو العرفي.</div>
+                            <div class="u">الوحدة: الأحكام التمهيدية</div>
+                        </div>
+                        <div class="p-qitem">
+                            <div class="q">2. ما هي مدة الإقامة المطلوبة في المركز؟</div>
+                            <div class="a">📌 15 يوماً على الأقل مباشرة قبل تقديم الإعلان.</div>
+                            <div class="u">الوحدة: الإجراءات التمهيدية</div>
+                        </div>
+                        <div class="p-qitem">
+                            <div class="q">3. كم يوماً يظل إعلان الزواج معروضاً للجمهور؟</div>
+                            <div class="a">📌 21 يوماً كاملة.</div>
+                            <div class="u">الوحدة: الإجراءات التمهيدية</div>
+                        </div>
+                        <div class="p-qitem">
+                            <div class="q">4. ما هي شهادة المسجل ومدة صلاحيتها؟</div>
+                            <div class="a">📌 تصدر بعد 21 يوماً، وصالحة لإبرام الزواج خلال 3 أشهر وإلا بطلت.</div>
+                            <div class="u">الوحدة: الإجراءات التمهيدية</div>
+                        </div>
+                        <div class="p-qitem">
+                            <div class="q">5. من هو الولي الشرعي لزواج القاصر؟</div>
+                            <div class="a">📌 الأب، ثم الأم، ثم الوصي، وفي حال انعدامهم يقضي قاضي المحكمة العامة.</div>
+                            <div class="u">الوحدة: موافقات القصر</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">بنك الأسئلة — فلترة وبحث فوري</div>
+        </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>شريط فلترة وبحث</b>
+                        <p>قائمة منسدلة للوحدات + حقل بحث نصي، يتيحان الوصول لسؤال بعينه في ثوانٍ.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>بطاقة سؤال بإطار أيمن كحلي</b>
+                        <p>الحد الأيمن الكحلي يميّز كل سؤال، ويجعل التمرير البصري أسرع بين العناصر.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>إجابة مطوية داخل البطاقة</b>
+                        <p>السؤال بخط عريض، والإجابة بلون أزرق أهدأ مع أيقونة 📌 لتسهيل التمييز.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>وسم الوحدة أسفل كل سؤال</b>
+                        <p>سطر صغير يوضّح الوحدة الدراسية، ما يساعد على المراجعة الموضوعية المنظمة.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">200 سؤال</span>
+                <span class="chip gold">فلترة بالوحدات</span>
+                <span class="chip">بحث نصي</span>
+                <span class="chip">إجابات فورية</span>
+            </div>
+
+            <div class="quote">
+                بنك الأسئلة هو <b>محرّك التدريب</b> في التطبيق — تغطية شاملة بلا تشتيت بصري.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · قانون الأحوال الشخصية لغير المسلمين</span>
+        <span class="pnum">11</span>
+    </div>
+</section>
+
+<!-- ============================================================
+     PAGE 12 — REVIEWS
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">10</span> المراجعات وبطاقات المراجعة</div>
+    </div>
+
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>قانون الأحوال الشخصية</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b>🔍 بحث</b><b>⭐ المفضلة</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">🔄 المراجعات <span class="back">🏠 العودة</span></div>
+                        <div class="p-card">
+                            <h5>مراجعة 1: نطاق التطبيق والتنظيم الإداري</h5>
+                            <ul>
+                                <li>مسمى القانون: قانون زواج غير المسلمين 1926.</li>
+                                <li>لا يسري على الزواج الإسلامي أو الوثني أو العرفي.</li>
+                                <li>الهيكل: مسجل عام · مسجلو مراكز · رئيس القضاء.</li>
+                            </ul>
+                        </div>
+                        <div class="p-card">
+                            <h5>مراجعة 2: الإجراءات التمهيدية</h5>
+                            <ul>
+                                <li>الإقامة 15 يوماً · النشر 21 يوماً.</li>
+                                <li>الإقرار باليمين أمام قاضٍ أو مسجل.</li>
+                                <li>موافقة القاصر: الأب ثم الأم ثم الوصي ثم القاضي.</li>
+                            </ul>
+                        </div>
+                        <div class="p-flip">
+                            <div class="f">❓ ما هو السن الأدنى للزواج ومتى تسقط دعوى الإبطال؟</div>
+                            <div class="b">✅ 15 للذكر و13 للأنثى — تسقط بالحمل أو بمضي 6 أشهر بعد البلوغ.</div>
+                        </div>
+                        <div class="p-flip">
+                            <div class="f">❓ ما مصير الزواج المدني إذا اعتنق الزوج الإسلام؟</div>
+                            <div class="b">✅ يستمر العقد ويجوز التعدد، وللزوجة غير المسلمة طلب الفسخ.</div>
+                        </div>
+                        <div class="p-flip">
+                            <div class="f">❓ ما هي النسخ الثلاث لشهادة الزواج؟</div>
+                            <div class="b">✅ نسخة للزوجين · نسخة للمركز خلال 7 أيام · نسخة في الدفتر.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">مراجعات قصيرة + بطاقات قابلة للكشف</div>
+        </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>مراجعات قصيرة مركّزة</b>
+                        <p>أربع مراجعات تغطي: النطاق، الإجراءات، الموانع، وسقوط الدعوى — بصيغة نقاط مكثّفة.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>بطاقات مراجعة تفاعلية</b>
+                        <p>الضغط على البطاقة يكشف الإجابة، بلون أخضر يميّز «الإجابة الصحيحة» عن السؤال.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>خط فاصل منقّط</b>
+                        <p>يفصل السؤال عن الجواب داخل البطاقة، ويُبقي الاثنين في كتلة بصرية واحدة.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>تكرار متباعد</b>
+                        <p>البنية تسمح بتدوير البطاقات عشوائياً لتطبيق أسلوب المراجعة المتباعدة (Spaced Repetition).</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">12 مراجعة</span>
+                <span class="chip gold">بطاقات قابلة للكشف</span>
+                <span class="chip">مراجعة متباعدة</span>
+            </div>
+
+            <div class="quote">
+                المراجعة الفعّالة ليست قراءة ثانية، بل <b>اختبار ذاتي</b> — وهذا ما تصمّمه هذه الشاشة.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · قانون الأحوال الشخصية لغير المسلمين</span>
+        <span class="pnum">12</span>
+    </div>
+</section>
+
+<!-- ============================================================
+     PAGE 13 — VIDEOS
+     ============================================================ -->
+<section class="page">
+    <div class="page-head">
+        <div class="kicker"><span class="dot"></span> كتالوج مرئي · 2026-2027</div>
+        <div class="sec-title"><span class="num">11</span> الفيديوهات التعليمية</div>
+    </div>
+
+    <div class="page-body">
+        <div class="mock-col">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="p-status"><span>9:41</span><span class="r">●●● ▮</span></div>
+                    <div class="p-nav">
+                        <div class="p-brand">📘 مذكرة النجاح <small>قانون الأحوال الشخصية</small></div>
+                        <div class="p-actions"><b class="gold">🏠 الرئيسية</b><b>🔍 بحث</b><b>⭐ المفضلة</b></div>
+                    </div>
+                    <div class="p-content">
+                        <div class="p-sec">🎬 الفيديوهات التعليمية <span class="back">🏠 العودة</span></div>
+                        <div class="p-video">
+                            <div class="ico">▶️</div>
+                            <h5>فيديو الدرس</h5>
+                            <p>اضغط على الزر لمشاهدة الفيديو على YouTube.</p>
+                            <span class="btn">▶ مشاهدة الفيديو على YouTube</span>
+                            <p style="margin-top:6px;font-size:5.4px;color:#6a7f9a;">(يتطلب اتصالاً بالإنترنت)</p>
+                        </div>
+                        <div class="p-warn">
+                            ⚠️ <b>تنبيه مهم:</b> إذا وصلك هذا التطبيق دون إتمام عملية الشراء، نرجو التواصل معنا لتصحيح الوضع.
+                        </div>
+                        <div class="p-note">
+                            <b>📧 للتواصل</b>
+                            info@hero1.vip.com
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mock-caption">شاشة الفيديو التعليمي</div>
+        </div>
+
+        <div class="notes-col">
+            <h3 class="notes-title">🔎 تفاصيل الشاشة</h3>
+            <ol class="notes-list">
+                <li>
+                    <span class="n">1</span>
+                    <div class="txt">
+                        <b>بطاقة فيديو مركزية</b>
+                        <p>أيقونة تشغيل كبيرة في الوسط تلفت النظر مباشرة إلى الإجراء الأساسي.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">2</span>
+                    <div class="txt">
+                        <b>زر أحمر بهوية YouTube</b>
+                        <p>استخدام اللون الأحمر يربط ذهنياً بمنصة الفيديو، ويجعل الزر واضحاً كإجراء خارجي.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">3</span>
+                    <div class="txt">
+                        <b>تنبيه حقوق الاستخدام</b>
+                        <p>صندوق ذهبي فاتح بحدّ أيمن ذهبي، يوضع أسفل المحتوى دون أن يزاحم العنصر الرئيسي.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="n">4</span>
+                    <div class="txt">
+                        <b>ملاحظة الاتصال بالإنترنت</b>
+                        <p>تنبيه صغير بلون رمادي يوضّح أن الفيديو خارجي، لتفادي التوقع الخاطئ.</p>
+                    </div>
+                </li>
+            </ol>
+
+            <div class="chips">
+                <span class="chip">فيديو واحد</span>
+                <span class="chip gold">رابط خارجي</span>
+                <span class="chip">تنبيه حقوق</span>
+                <span class="chip">بريد تواصل</span>
+            </div>
+
+            <div class="quote">
+                الشاشة الأخيرة في المسار التعليمي — <b>الوسائط المتعددة</b> بعد النص والخرائط والاختبارات.
+            </div>
+        </div>
+    </div>
+
+    <div class="page-foot">
+        <span>مذكرة النجاح · قانون الأحوال الشخصية لغير المسلمين</span>
+        <span class="pnum">13</span>
+    </div>
+</section>
+
+
+<!-- ============================================================
+     PAGE 15 — CTA (معدّلة: زر شراء يوجّه إلى about)
+     ============================================================ -->
+<section class="page cta">
+    <div class="cta-inner">
+        <div class="cover-badge">هيرو أكاديمي · Hero Academic</div>
+        <div style="font-size:52px;line-height:1;">✨</div>
+        <div class="big">أعجبتك طريقة <span>Hero</span>؟</div>
+        <p class="sub">
+            نفس الأسلوب في التصميم، ونفس الجودة في المحتوى — يمكننا بناء تطبيقك التعليمي
+            بكتالوج مرئي كهذا، جاهز للطباعة والنشر الرقمي.
+        </p>
+
+        <div class="divider"></div>
+
+        <!-- زر الشراء الرئيسي -->
+        <a href="https://app.hero1.vip/#about"
+           target="_blank"
+           rel="noopener noreferrer"
+           style="
+                display:inline-block;
+                background:#f5c542;
+                color:#0b2a47;
+                text-decoration:none;
+                font-size:16px;
+                font-weight:800;
+                padding:14px 42px;
+                border-radius:50px;
+                box-shadow:0 8px 24px rgba(245,197,66,.38);
+                letter-spacing:.4px;
+                transition:.2s;
+                border:1px solid rgba(255,255,255,.25);
+           ">
+            🛒 شراء الآن
+        </a>
+
+        <!-- الرابط النصي أسفل الزر -->
+        <div style="
+                direction:ltr;
+                font-family:monospace;
+                font-size:13px;
+                color:#b9cfe3;
+                margin-top:10px;
+                letter-spacing:.3px;
+             ">
+            https://app.hero1.vip/#about
+        </div>
+
+        <div class="pillars">
+            <div class="pillar"><span>📱</span> واجهات عربية RTL</div>
+            <div class="pillar"><span>🖨️</span> كتالوجات A4 جاهزة للطباعة</div>
+            <div class="pillar"><span>🔐</span> حماية وترخيص ذكي</div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        © 2026-2027 — جميع الحقوق محفوظة
+    </div>
+</section>
+
 </body>
 </html>
