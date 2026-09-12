@@ -126,6 +126,16 @@
       "visible": true
     },
     {
+      "id": 14,
+      "category": "test-tahsili",
+      "title": "تطبيق الأحياء التحصيلي المتقدم",
+      "description": "قيّم مستواك واختبر نفسك قبل الاختبار.",
+      "icon": "📚",
+      "drive_url": "http://saat_gat.hero1.vip/bio_sa_01.html",
+      "features": ["تطبيق عملي تفاعلي مهمته تجهيز الطالب للامتحان والتفوق فيه"],
+      "visible": true
+    },
+    {
       "id": 5,
       "category": "law",
       "title": "الميراث",
