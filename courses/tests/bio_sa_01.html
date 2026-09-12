@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كتالوج مرئي — الأحياء التحصيلي المتقدم | Hero Academy</title>
+<style>
+/* ============================================================
+   الأساسيات
+   ============================================================ */
+*{margin:0;padding:0;box-sizing:border-box;}
+
+:root{
+  --navy:#0b2b4a;
+  --navy2:#1a4a6e;
+  --teal:#0d9488;
+  --teal2:#14b8a6;
+  --gold:#f5c542;
+  --gold2:#ffd966;
+  --success:#16a34a;
+  --danger:#dc2626;
+  --warning:#f59e0b;
+  --bg:#f0f4f8;
+  --ink:#1e293b;
+  --muted:#475569;
+  --line:#e9edf2;
+}
+
+html{-webkit-text-size-adjust:100%;}
+
+body{
+  font-family:'Segoe UI','Tahoma','Arial',sans-serif;
+  background:#dbe3ee;color:var(--ink);direction:rtl;
+  -webkit-print-color-adjust:exact;print-color-adjust:exact;line-height:1.7;
+}
+
+/* ============================================================
+   صفحة A4
+   ============================================================ */
+.page{
+  width:210mm;height:297mm;background:#fff;margin:10mm auto;
+  padding:11mm 11mm 8mm;position:relative;box-shadow:0 10px 34px rgba(11,43,74,.20);
+  overflow:hidden;display:flex;flex-direction:column;
+  page-break-after:always;break-after:page;
+}
+.page:last-child{page-break-after:auto;break-after:auto;}
+@page{size:A4;margin:0;}
+@media print{body{background:#fff;}.page{margin:0;box-shadow:none;}}
+
+/* ============================================================
+   رأس وتذييل الصفحة
+   ============================================================ */
+.page-head{
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:2px solid var(--line);padding-bottom:6px;margin-bottom:9px;
+  font-size:10.5px;color:var(--muted);flex:0 0 auto;
+}
+.page-head .ph-right{display:flex;align-items:center;gap:8px;}
+.page-head .ph-title{font-weight:700;color:var(--navy);font-size:13px;}
+.page-head .ph-num{
+  background:var(--navy);color:#fff;min-width:24px;height:24px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;padding:0 6px;
+}
+.page-head .ph-brand{
+  background:var(--gold);color:var(--navy);padding:2px 11px;border-radius:20px;
+  font-weight:700;font-size:10px;
+}
+.page-foot{
+  flex:0 0 auto;margin-top:7px;padding-top:6px;
+  border-top:1px dashed #dce4ec;font-size:8.5px;color:#8a9aa8;
+  display:flex;justify-content:space-between;align-items:center;
+}
+
+/* ============================================================
+   جسم الصفحة: هاتف + تعليقات
+   ============================================================ */
+.page-body{flex:1 1 auto;display:flex;gap:9mm;align-items:flex-start;min-height:0;}
+
+/* ---------- الهاتف ---------- */
+.phone{
+  width:60mm;flex:0 0 60mm;
+  background:linear-gradient(160deg,#123456,#0b2b4a);
+  border-radius:26px;padding:6px;
+  box-shadow:0 16px 34px rgba(11,43,74,.30),inset 0 0 0 2px rgba(255,255,255,.08);
+  position:relative;
+}
+.phone::before{
+  content:'';position:absolute;top:11px;left:50%;transform:translateX(-50%);
+  width:36px;height:5px;border-radius:10px;background:rgba(255,255,255,.35);z-index:9;
+}
+.phone::after{
+  content:'';position:absolute;bottom:9px;left:50%;transform:translateX(-50%);
+  width:52px;height:4px;border-radius:10px;background:rgba(255,255,255,.25);z-index:9;
+}
+.phone-screen{
+  background:var(--bg);border-radius:21px;height:145mm;overflow:hidden;
+  display:flex;flex-direction:column;font-size:8px;line-height:1.5;
+}
+
+/* ---------- شريط التطبيق داخل الهاتف ---------- */
+.ms-head{
+  background:var(--navy);color:#fff;padding:11px 9px 8px;
+  display:flex;justify-content:space-between;align-items:center;
+  border-radius:0 0 14px 14px;font-size:8px;flex:0 0 auto;
+}
+.ms-head b{font-size:8.5px;font-weight:700;}
+.ms-head small{display:block;font-size:6px;opacity:.75;font-weight:400;}
+.ms-actions{display:flex;gap:3px;}
+.ms-actions span{background:rgba(255,255,255,.16);padding:2px 5px;border-radius:20px;font-size:6.5px;}
+.ms-actions .gold{background:var(--gold);color:var(--navy);}
+
+.ms-pad{padding:8px 8px 10px;flex:1 1 auto;overflow:hidden;}
+
+.ms-h1{font-size:9px;font-weight:700;color:var(--navy);border-right:3px solid var(--gold);padding-right:6px;margin-bottom:4px;}
+.ms-sub{font-size:6.5px;color:var(--muted);margin-bottom:8px;}
+
+/* ---------- بطاقات عامة ---------- */
+.ms-card{
+  background:#fff;border:1px solid var(--line);border-radius:10px;
+  padding:7px 8px;margin-bottom:6px;box-shadow:0 2px 7px rgba(11,43,74,.05);
+}
+.ms-card h4{font-size:7px;color:var(--navy);margin-bottom:3px;}
+.ms-card p{font-size:6px;color:#44586e;line-height:1.65;}
+.ms-card ul{padding-right:10px;}
+.ms-card li{font-size:6px;color:#44586e;line-height:1.7;}
+
+.ms-box{background:#eaf0f8;border-radius:9px;padding:7px 8px;font-size:6px;color:#2c4a6e;margin-top:7px;}
+.ms-box b{display:block;color:var(--navy);font-size:6.5px;margin-bottom:2px;}
+
+.ms-note{
+  border-radius:8px;padding:6px 8px;margin:6px 0;
+  border-right:3px solid var(--teal);background:#effdfb;color:#0f766e;
+  font-size:6px;
+}
+.ms-note.gold{border-right-color:var(--warning);background:#fef9ef;color:#7a5a12;}
+.ms-note.red{border-right-color:var(--danger);background:#fdeaea;color:#8a2a20;}
+
+.ms-sec{
+  display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1.5px solid #dce4ec;padding-bottom:4px;margin-bottom:6px;
+}
+.ms-sec h3{font-size:8px;color:var(--navy);}
+.ms-sec span{
+  font-size:5.5px;background:#fff;border:1px solid #dce4ec;
+  padding:2px 6px;border-radius:20px;color:var(--navy2);
+}
+
+/* ---------- شبكة الأزرار ---------- */
+.ms-grid2{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:6px 0;}
+.ms-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:6px 0;}
+
+/* ---------- بطاقات الإحصاء ---------- */
+.ms-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin:6px 0;}
+.ms-stat{background:#fff;border-radius:7px;border:1px solid var(--line);padding:5px 3px;text-align:center;}
+.ms-stat .n{font-size:9px;font-weight:800;color:var(--navy);line-height:1.1;}
+.ms-stat .n.green{color:var(--success);}
+.ms-stat .n.gold{color:var(--warning);}
+.ms-stat .l{font-size:5px;color:#94a3b8;margin-top:1px;}
+
+/* ---------- بطاقات الجرعات ---------- */
+.ms-dose{background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 8px;margin-bottom:5px;box-shadow:0 2px 6px rgba(11,43,74,.04);}
+.ms-dose .num{font-size:5.5px;color:#94a3b8;font-weight:600;}
+.ms-dose .ttl{font-size:7px;font-weight:700;color:var(--navy);margin:2px 0;}
+.ms-dose .mt{font-size:5.5px;color:var(--muted);}
+.ms-dose .pct{font-size:7px;font-weight:700;color:var(--navy);margin-top:3px;}
+.ms-dose .bar{height:3px;background:#e9edf2;border-radius:10px;margin-top:3px;overflow:hidden;}
+.ms-dose .bar .fill{height:100%;border-radius:10px;}
+
+/* ---------- بنك الأسئلة ---------- */
+.ms-chiprow{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:6px;}
+.ms-chip{background:#fff;border:1px solid #dce4ec;border-radius:20px;padding:2px 7px;font-size:5.5px;color:var(--navy2);}
+.ms-chip.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+.ms-q{background:#fff;border:1px solid var(--line);border-right:3px solid var(--teal);border-radius:8px;padding:6px 8px;margin-bottom:5px;}
+.ms-q .qh{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:3px;}
+.ms-q .qh span{background:#f1f5f9;border-radius:20px;padding:1px 6px;font-size:5px;color:#475569;}
+.ms-q .qh span.teal{background:#ccfbf1;color:#0d9488;}
+.ms-q b{font-size:6px;color:var(--navy);display:block;line-height:1.6;}
+.ms-q span.opt{font-size:5.5px;color:#44586e;display:block;padding:2px 5px;border-radius:5px;margin-top:2px;}
+.ms-q span.opt.correct{background:#dcfce7;color:#166534;border:1px solid #16a34a;}
+
+/* ---------- الأخطاء ---------- */
+.ms-mist{background:#fff;border:1px solid var(--line);border-right:3px solid var(--danger);border-radius:8px;padding:6px 8px;margin-bottom:5px;}
+.ms-mist b{font-size:6px;color:var(--navy);display:block;line-height:1.55;}
+.ms-mist .de{font-size:5.5px;margin-top:3px;}
+.ms-mist .wr{color:var(--danger);font-weight:600;}
+.ms-mist .co{color:var(--success);font-weight:600;}
+
+/* ---------- التحليلات ---------- */
+.ms-acc{font-size:16px;font-weight:800;color:var(--navy);line-height:1;}
+.ms-acc span{font-size:6px;color:#94a3b8;font-weight:400;display:block;margin-top:2px;}
+.ms-ad{display:flex;align-items:center;gap:5px;padding:3px 0;font-size:5.5px;border-bottom:1px solid #f1f5f9;}
+.ms-ad .nm{min-width:38px;color:var(--muted);}
+.ms-ad .br{flex:1;height:4px;background:#e9edf2;border-radius:10px;overflow:hidden;}
+.ms-ad .br .fl{height:100%;border-radius:10px;}
+.ms-ad .pc{min-width:22px;font-weight:700;color:var(--navy);}
+.ms-tagrow{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px;}
+.ms-tag{background:#fee2e2;color:var(--danger);padding:2px 8px;border-radius:20px;font-size:5.5px;font-weight:600;}
+.ms-tag.gr{background:#dcfce7;color:var(--success);}
+.ms-tag.gd{background:#fef9c3;color:#854d0e;}
+
+/* ---------- التشخيصي ---------- */
+.ms-dr{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #f1f5f9;font-size:5.5px;color:var(--muted);}
+.ms-dr b{color:var(--navy);}
+
+/* ---------- الموارد ---------- */
+.ms-res{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 4px;text-align:center;}
+.ms-res .ic{font-size:12px;}
+.ms-res .tt{font-size:5.5px;font-weight:600;color:var(--navy);margin-top:2px;}
+
+/* ---------- الشريط السفلي داخل الهاتف ---------- */
+.ms-nav{
+  background:#fff;border-top:1px solid var(--line);
+  display:flex;justify-content:space-around;padding:4px 2px;flex:0 0 auto;
+  border-radius:0 0 21px 21px;
+}
+.ms-nav div{text-align:center;font-size:4.5px;color:#94a3b8;font-weight:600;}
+.ms-nav div span{display:block;font-size:9px;line-height:1;}
+.ms-nav div.on{color:var(--navy);}
+
+/* ============================================================
+   عمود التعليقات
+   ============================================================ */
+.notes{flex:1 1 auto;min-width:0;}
+
+.notes h2{font-size:15px;color:var(--navy);border-right:5px solid var(--gold);padding-right:10px;margin-bottom:4px;}
+.notes .lead{font-size:9.5px;color:var(--muted);margin-bottom:10px;}
+
+.note-item{
+  display:flex;gap:8px;align-items:flex-start;
+  background:#f8fbff;border:1px solid var(--line);border-radius:12px;
+  padding:8px 10px;margin-bottom:7px;box-shadow:0 2px 8px rgba(11,43,74,.04);
+}
+.note-item .ni-ico{
+  flex:0 0 24px;height:24px;border-radius:8px;background:var(--navy);
+  color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:12px;
+}
+.note-item .ni-ico.teal{background:var(--teal);color:#fff;}
+.note-item .ni-ico.gold{background:var(--gold);color:var(--navy);}
+.note-item .ni-body b{display:block;font-size:9.5px;color:var(--navy);margin-bottom:1px;}
+.note-item .ni-body p{font-size:8.5px;color:#44586e;line-height:1.65;}
+
+.tag-list{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.tag{background:#eaf0f8;color:var(--navy2);border-radius:20px;padding:3px 10px;font-size:8px;font-weight:600;}
+.tag.teal{background:#ccfbf1;color:#0f766e;}
+.tag.gold{background:#fef3d4;color:#8a6a10;}
+
+.spec-box{
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  border-radius:14px;padding:12px 14px;color:#fff;margin-top:10px;
+}
+.spec-box b{color:var(--gold);font-size:10px;display:block;margin-bottom:4px;}
+.spec-box p{font-size:8.5px;opacity:.9;line-height:1.7;}
+
+/* ============================================================
+   الغلاف
+   ============================================================ */
+.cover{
+  background:radial-gradient(circle at 78% 12%,#1a4a6e 0%,#0b2b4a 45%,#051a2e 100%);
+  color:#fff;padding:0;justify-content:space-between;
+}
+.cover-inner{flex:1;display:flex;flex-direction:column;padding:20mm 16mm 14mm;position:relative;z-index:2;}
+.cover::before{
+  content:'';position:absolute;left:-70mm;bottom:-70mm;
+  width:150mm;height:150mm;border-radius:50%;
+  background:radial-gradient(circle,rgba(245,197,66,.20),transparent 68%);
+}
+.cover::after{
+  content:'';position:absolute;right:-40mm;top:-40mm;
+  width:110mm;height:110mm;border-radius:50%;
+  border:1.5px dashed rgba(245,197,66,.28);
+}
+.cover-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,197,66,.14);border:1px solid rgba(245,197,66,.45);
+  color:var(--gold);border-radius:30px;padding:5px 16px;
+  font-size:10px;font-weight:700;align-self:flex-start;letter-spacing:.3px;
+}
+.cover h1{font-size:37px;line-height:1.35;font-weight:800;margin-top:14px;letter-spacing:-.5px;}
+.cover h1 em{font-style:normal;color:var(--gold);}
+.cover .cover-line{width:70px;height:5px;border-radius:10px;background:linear-gradient(90deg,var(--gold),rgba(245,197,66,.1));margin:16px 0;}
+.cover .cover-sub{font-size:13px;opacity:.9;max-width:130mm;line-height:1.9;}
+.cover .cover-year{margin-top:auto;display:flex;flex-direction:column;gap:6px;font-size:11px;opacity:.92;}
+.cover .cover-year strong{color:var(--gold);font-weight:700;}
+.cover .cover-emoji{font-size:52px;letter-spacing:8px;margin:10px 0 2px;}
+.cover-cta{
+  margin-top:16px;display:inline-block;align-self:flex-start;
+  background:var(--gold);color:var(--navy);font-weight:800;font-size:13px;
+  padding:11px 34px;border-radius:30px;text-decoration:none;
+  box-shadow:0 10px 24px rgba(245,197,66,.32);
+}
+.cover-foot{
+  background:rgba(0,0,0,.25);padding:9px 16mm;font-size:9px;opacity:.8;
+  display:flex;justify-content:space-between;position:relative;z-index:2;
+}
+
+/* ============================================================
+   صفحة الفهرس
+   ============================================================ */
+.toc-title{font-size:26px;color:var(--navy);margin-bottom:4px;}
+.toc-sub{font-size:10px;color:var(--muted);margin-bottom:14px;}
+.toc-list{display:flex;flex-direction:column;gap:6px;}
+.toc-row{display:flex;align-items:center;gap:11px;background:#f8fbff;border:1px solid var(--line);border-radius:12px;padding:8px 12px;}
+.toc-row .toc-ico{flex:0 0 28px;height:28px;border-radius:9px;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:14px;}
+.toc-row .toc-ico.teal{background:var(--teal);color:#fff;}
+.toc-row .toc-txt{flex:1;}
+.toc-row .toc-txt b{font-size:11px;color:var(--navy);display:block;}
+.toc-row .toc-txt span{font-size:8.5px;color:var(--muted);}
+.toc-row .toc-page{font-size:10px;font-weight:800;color:var(--navy);background:var(--gold);border-radius:20px;padding:1px 11px;}
+.toc-dots{flex:1;border-bottom:1.5px dotted #c8d6e6;margin:0 4px;height:1px;}
+
+/* ============================================================
+   صفحة الخاتمة CTA
+   ============================================================ */
+.cta-page{
+  background:radial-gradient(circle at 50% 30%,#1a4a6e 0%,#0b2b4a 50%,#051a2e 100%);
+  color:#fff;justify-content:center;align-items:center;text-align:center;padding:24mm 20mm;
+}
+.cta-page::before{content:'';position:absolute;inset:14mm;border:1.5px dashed rgba(245,197,66,.30);border-radius:22px;}
+.cta-inner{position:relative;z-index:3;max-width:150mm;}
+.cta-emoji{font-size:46px;letter-spacing:6px;margin-bottom:10px;}
+.cta-page h2{font-size:34px;font-weight:800;margin-bottom:12px;}
+.cta-page h2 em{font-style:normal;color:var(--gold);}
+.cta-page p{font-size:12.5px;opacity:.9;line-height:2;margin-bottom:8px;}
+.cta-features{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:18px 0 22px;}
+.cta-features span{background:rgba(245,197,66,.14);border:1px solid rgba(245,197,66,.40);color:var(--gold);border-radius:30px;padding:6px 15px;font-size:10px;font-weight:700;}
+.cta-btn{
+  display:inline-block;background:var(--gold);color:var(--navy);font-weight:800;font-size:15px;
+  padding:14px 46px;border-radius:34px;text-decoration:none;
+  box-shadow:0 14px 32px rgba(245,197,66,.35);margin-bottom:14px;
+}
+.cta-link{display:block;font-size:10.5px;color:#bcd0e6;direction:ltr;letter-spacing:.4px;margin-bottom:20px;text-decoration:none;}
+.cta-rule{width:60px;height:3px;background:rgba(245,197,66,.5);border-radius:10px;margin:0 auto 14px;}
+.cta-copy{font-size:9.5px;opacity:.7;}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     صفحة 1 — الغلاف
+     ============================================================ -->
+<section class="page cover">
+  <div class="cover-inner">
+    <span class="cover-badge">🧬 إصدار كتالوج مرئي 2026-2027</span>
+
+    <h1>الأحياء التحصيلي<br><em>المتقدّم — المستوى الاحترافي</em></h1>
+    <div class="cover-line"></div>
+    <p class="cover-sub">
+      تطبيق تدريب ذكي مبني على نظام «الجرعات المركزة» الست، يغطي المنهجية العلمية،
+      تصنيف الحياة، الأجهزة الحيوية، الوراثة، وحتى هندسة اللافقاريات — مع بنك أسئلة
+      موسّع، تشخيصي شامل، وتحليلات أداء تفصيلية.
+    </p>
+
+    <div class="cover-emoji">🧬 🧪 📊 🔬</div>
+
+    <div class="cover-year">
+      <div>إعداد المحتوى: <strong>إبراهيم الدسوقي</strong></div>
+      <div>الفئة المستهدفة: <strong>طلاب التحصيلي — المسار العلمي</strong></div>
+      <div>اللغة: <strong>العربية — تنسيق RTL</strong></div>
+      <div>عدد الأسئلة: <strong>54 سؤالاً أصلياً</strong></div>
+    </div>
+
+    <a class="cover-cta" href="https://app.hero1.vip/#about" target="_blank" rel="noopener">🛒 اشترِ الآن</a>
+  </div>
+
+  <div class="cover-foot">
+    <span>Hero Academy — Visual Catalog</span>
+    <span>© 2026-2027 — جميع الحقوق محفوظة</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 2 — الفهرس
+     ============================================================ -->
+<section class="page">
+  <div class="page-head">
+    <div class="ph-right">
+      <span class="ph-num">02</span>
+      <span class="ph-title">فهرس المحتويات</span>
+    </div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body" style="flex-direction:column;">
+    <div>
+      <h2 class="toc-title">📑 فهرس الأقسام</h2>
+      <p class="toc-sub">جولة بصرية داخل شاشات التطبيق — من الشاشة الرئيسية إلى الموارد والمراجعة النهائية.</p>
+    </div>
+
+    <div class="toc-list">
+      <div class="toc-row">
+        <div class="toc-ico">🏠</div>
+        <div class="toc-txt"><b>الشاشة الرئيسية</b><span>مستواك، آخر اختبار، واختصارات التشخيصي والجرعات</span></div>
+        <div class="toc-dots"></div><div class="toc-page">03</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico teal">⚡</div>
+        <div class="toc-txt"><b>الجرعات المركزة الست</b><span>شبكة التدريب مع نسبة التقدم لكل جرعة</span></div>
+        <div class="toc-dots"></div><div class="toc-page">04</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico teal">🧪</div>
+        <div class="toc-txt"><b>تفصيل الجرعة والأسئلة</b><span>المفاهيم الرئيسية وأسئلة الجرعة التفاعلية</span></div>
+        <div class="toc-dots"></div><div class="toc-page">05</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico">🧠</div>
+        <div class="toc-txt"><b>بنك الأسئلة الشامل</b><span>54 سؤالاً مع فلترة متقدمة وبحث فوري</span></div>
+        <div class="toc-dots"></div><div class="toc-page">06</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico">🔥</div>
+        <div class="toc-txt"><b>أخطائي</b><span>مراجعة كل سؤال خاطئ مع تفسيره</span></div>
+        <div class="toc-dots"></div><div class="toc-page">07</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico">📊</div>
+        <div class="toc-txt"><b>تحليلي</b><span>الدقة، نقاط القوة، نقاط الضعف، والإنجازات</span></div>
+        <div class="toc-dots"></div><div class="toc-page">08</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico teal">🎯</div>
+        <div class="toc-txt"><b>التشخيصي الشامل</b><span>تحليل ذكي لنقاط الضعف مع توصيات</span></div>
+        <div class="toc-dots"></div><div class="toc-page">09</div>
+      </div>
+      <div class="toc-row">
+        <div class="toc-ico">📚</div>
+        <div class="toc-txt"><b>الموارد وورقة الإنقاذ</b><span>مراجعة صفحة واحدة + مصفوفة التشخيص</span></div>
+        <div class="toc-dots"></div><div class="toc-page">10</div>
+      </div>
+      <div class="toc-row" style="background:#fef9ef;border-color:#f1dba8;">
+        <div class="toc-ico gold" style="background:var(--gold);color:var(--navy);">⭐</div>
+        <div class="toc-txt"><b>أعجبتك طريقة Hero؟</b><span>احصل على النسخة الكاملة الآن</span></div>
+        <div class="toc-dots"></div><div class="toc-page">11</div>
+      </div>
+    </div>
+
+    <div class="spec-box">
+      <b>💡 ملاحظة للقارئ</b>
+      <p>
+        كل صفحة في هذا الكتالوج تعرض لقطة مبسّطة من شاشة التطبيق الفعلية، مع تعليقات جانبية
+        توضّح وظيفة كل عنصر وكيف يساعدك أثناء التدريب والمراجعة قبل الاختبار التحصيلي.
+      </p>
+    </div>
+  </div>
+
+  <div class="page-foot">
+    <span>الأحياء التحصيلي المتقدم — إعداد: إبراهيم الدسوقي</span>
+    <span>صفحة 2 من 11</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 3 — الشاشة الرئيسية
+     ============================================================ -->
+<section class="page">
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">03</span><span class="ph-title">الشاشة الرئيسية</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>🧬 الأحياء التحصيلي<small>المتقدّم</small></b>
+          <div class="ms-actions"><span class="gold">📘</span></div>
+        </div>
+        <div class="ms-pad">
+          <div class="ms-note">📢 مرحباً! أكمل مراجعة الجرعات الست لتعزيز مستواك في التحصيلي.</div>
+
+          <div style="background:linear-gradient(135deg,#0b2b4a,#1a4a6e);border-radius:9px;padding:7px 8px;color:#fff;margin-bottom:6px;">
+            <div style="font-size:5.5px;opacity:.8;">▶ تابع من حيث توقفت</div>
+            <div style="font-size:7px;font-weight:700;">الجرعة الأولى — خريطة تصنيف الحياة</div>
+          </div>
+
+          <div class="ms-stats">
+            <div class="ms-stat"><div class="n">0%</div><div class="l">📊 مستواك</div></div>
+            <div class="ms-stat"><div class="n gold">—</div><div class="l">📝 آخر اختبار</div></div>
+            <div class="ms-stat"><div class="n">0</div><div class="l">✅ محلولة</div></div>
+            <div class="ms-stat"><div class="n green">0</div><div class="l">🎯 صحيحة</div></div>
+          </div>
+
+          <div class="ms-grid2">
+            <div class="ms-card" style="margin-bottom:0;">
+              <h4>🎯 التشخيصي</h4>
+              <p>تحديد نقاط الضعف</p>
+              <div style="background:#0d9488;color:#fff;border-radius:20px;padding:3px 8px;font-size:5.5px;font-weight:600;text-align:center;margin-top:4px;">ابدأ التشخيص</div>
+            </div>
+            <div class="ms-card" style="margin-bottom:0;">
+              <h4>⚡ الجرعات</h4>
+              <p>6 جرعات مركزة</p>
+              <div style="background:#0b2b4a;color:#fff;border-radius:20px;padding:3px 8px;font-size:5.5px;font-weight:600;text-align:center;margin-top:4px;">استعراض الجرعات</div>
+            </div>
+          </div>
+
+          <div class="ms-card" style="margin-top:6px;">
+            <h4>📈 تقدمك في الجرعات</h4>
+            <div style="display:flex;gap:3px;margin-top:4px;">
+              <span style="width:14px;height:14px;border-radius:50%;background:#e9edf2;color:#94a3b8;text-align:center;line-height:14px;font-size:5px;font-weight:700;">1</span>
+              <span style="width:14px;height:14px;border-radius:50%;background:#e9edf2;color:#94a3b8;text-align:center;line-height:14px;font-size:5px;font-weight:700;">2</span>
+              <span style="width:14px;height:14px;border-radius:50%;background:#e9edf2;color:#94a3b8;text-align:center;line-height:14px;font-size:5px;font-weight:700;">3</span>
+              <span style="width:14px;height:14px;border-radius:50%;background:#e9edf2;color:#94a3b8;text-align:center;line-height:14px;font-size:5px;font-weight:700;">4</span>
+              <span style="width:14px;height:14px;border-radius:50%;background:#e9edf2;color:#94a3b8;text-align:center;line-height:14px;font-size:5px;font-weight:700;">5</span>
+              <span style="width:14px;height:14px;border-radius:50%;background:#e9edf2;color:#94a3b8;text-align:center;line-height:14px;font-size:5px;font-weight:700;">6</span>
+            </div>
+            <div style="font-size:5.5px;color:#94a3b8;margin-top:3px;">0/6 مكتملة</div>
+          </div>
+        </div>
+        <div class="ms-nav">
+          <div class="on"><span>🏠</span>الرئيسية</div>
+          <div><span>⚡</span>التدريب</div>
+          <div><span>🧠</span>الأسئلة</div>
+          <div><span>🔥</span>أخطائي</div>
+          <div><span>📊</span>تحليلي</div>
+          <div><span>🎯</span>تشخيصي</div>
+          <div><span>📚</span>الموارد</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h2>🏠 لوحة القيادة</h2>
+      <p class="lead">الشاشة الرئيسية تلخّص مستواك في لمحة، وتوجّهك مباشرة إلى الخطوة التالية.</p>
+
+      <div class="note-item">
+        <div class="ni-ico">▶</div>
+        <div class="ni-body">
+          <b>بطاقة «تابع من حيث توقفت»</b>
+          <p>تحفظ آخر جرعة درستها، وتعيدك إليها بضغطة واحدة — دون الحاجة للبحث اليدوي عن موضع التوقف.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico teal">📊</div>
+        <div class="ni-body">
+          <b>أربع بطاقات إحصائية</b>
+          <p>مستواك الحالي، آخر اختبار، عدد الأسئلة المحلولة، وعدد الإجابات الصحيحة — كلها في أعلى الشاشة.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico gold">🎯</div>
+        <div class="ni-body">
+          <b>اختصاران سريعان</b>
+          <p>زر «التشخيصي» للكشف الفوري عن نقاط الضعف، وزر «الجرعات» للانتقال المباشر إلى التدريب المركز.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico teal">📈</div>
+        <div class="ni-body">
+          <b>شريط تقدم الجرعات</b>
+          <p>دوائر مرقّمة (1 إلى 6) تتحول للأخضر عند اكتمال كل جرعة، فترى تقدمك البصري في لحظة.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">7 أقسام</span>
+        <span class="tag teal">6 جرعات</span>
+        <span class="tag gold">54 سؤالاً</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-foot">
+    <span>الأحياء التحصيلي المتقدم — إعداد: إبراهيم الدسوقي</span>
+    <span>صفحة 3 من 11</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 4 — الجرعات المركزة
+     ============================================================ -->
+<section class="page">
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">04</span><span class="ph-title">الجرعات المركزة الست</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>🧬 الأحياء التحصيلي<small>المتقدّم</small></b>
+          <div class="ms-actions"><span class="gold">📘</span></div>
+        </div>
+        <div class="ms-pad">
+          <div class="ms-sec"><h3>⚡ الجرعات المركزة</h3><span>0/6</span></div>
+
+          <div class="ms-dose">
+            <div class="num">الجرعة 1 / 6</div>
+            <div class="ttl">الجرعة الأولى: خريطة تصنيف الحياة والمنهجية العلمية</div>
+            <div class="mt">الطريقة العلمية، التصنيف، الجدار الخلوي</div>
+            <div class="pct">0%</div>
+            <div class="bar"><div class="fill" style="width:0%;background:#cbd5e1;"></div></div>
+          </div>
+
+          <div class="ms-dose">
+            <div class="num">الجرعة 2 / 6</div>
+            <div class="ttl">الجرعة الثانية: الديناميكية الحركية والتنسيق العصبي</div>
+            <div class="mt">الهيكل، العضلات، الجهاز العصبي، المفاصل</div>
+            <div class="pct">0%</div>
+            <div class="bar"><div class="fill" style="width:0%;background:#cbd5e1;"></div></div>
+          </div>
+
+          <div class="ms-dose">
+            <div class="num">الجرعة 3 / 6</div>
+            <div class="ttl">الجرعة الثالثة: الإمداد، النقل، والترشيح الأيضي</div>
+            <div class="mt">الدم، القلب، الهضم، الإخراج، الإنزيمات</div>
+            <div class="pct">0%</div>
+            <div class="bar"><div class="fill" style="width:0%;background:#cbd5e1;"></div></div>
+          </div>
+
+          <div class="ms-dose">
+            <div class="num">الجرعة 4 / 6</div>
+            <div class="ttl">الجرعة الرابعة: الاتزان الهرموني وبقاء النوع والدفاع</div>
+            <div class="mt">الغدد الصم، التكاثر، المناعة</div>
+            <div class="pct">0%</div>
+            <div class="bar"><div class="fill" style="width:0%;background:#cbd5e1;"></div></div>
+          </div>
+
+          <div class="ms-dose">
+            <div class="num">الجرعة 5 / 6</div>
+            <div class="ttl">الجرعة الخامسة: شفرة الحياة والوراثة الخلوية</div>
+            <div class="mt">DNA، الانقسام، الوراثة، الاختلالات</div>
+            <div class="pct">0%</div>
+            <div class="bar"><div class="fill" style="width:0%;background:#cbd5e1;"></div></div>
+          </div>
+
+          <div class="ms-dose">
+            <div class="num">الجرعة 6 / 6</div>
+            <div class="ttl">الجرعة السادسة: هندسة وتنوع اللافقاريات</div>
+            <div class="mt">التناظر، التجاويف، الرخويات، المفصليات</div>
+            <div class="pct">0%</div>
+            <div class="bar"><div class="fill" style="width:0%;background:#cbd5e1;"></div></div>
+          </div>
+        </div>
+        <div class="ms-nav">
+          <div><span>🏠</span>الرئيسية</div>
+          <div class="on"><span>⚡</span>التدريب</div>
+          <div><span>🧠</span>الأسئلة</div>
+          <div><span>🔥</span>أخطائي</div>
+          <div><span>📊</span>تحليلي</div>
+          <div><span>🎯</span>تشخيصي</div>
+          <div><span>📚</span>الموارد</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h2>⚡ نظام الجرعات</h2>
+      <p class="lead">المنهج مقسّم إلى ست جرعات متسلسلة، كل واحدة تبني على ما قبلها وتغطي وحدة كاملة.</p>
+
+      <div class="note-item">
+        <div class="ni-ico teal">1</div>
+        <div class="ni-body">
+          <b>الجرعة الأولى</b>
+          <p>المنهجية العلمية، تصنيف الكائنات، الجدار الخلوي، والتسمية الثنائية — أساس كل ما يليها.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico teal">2</div>
+        <div class="ni-body">
+          <b>الجرعة الثانية</b>
+          <p>الهيكل العظمي، المفاصل، الألياف العضلية، والجهاز العصبي — ديناميكية الحركة والتنسيق.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico teal">3</div>
+        <div class="ni-body">
+          <b>الجرعة الثالثة</b>
+          <p>الدم والقلب، القناة الهضمية، الإنزيمات، والترشيح الكلوي — منظومة الإمداد والتخليص.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico teal">4</div>
+        <div class="ni-body">
+          <b>الجرعة الرابعة</b>
+          <p>الغدد الصم وهرموناتها، التكاثر والنمو الجنيني، والمناعة بفرعيها — الاتزان والدفاع.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico teal">5</div>
+        <div class="ni-body">
+          <b>الجرعة الخامسة</b>
+          <p>DNA، قوانين تشارجاف، الانقسام المنصف والعبور الجيني، والاختلالات الكروموسومية.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico teal">6</div>
+        <div class="ni-body">
+          <b>الجرعة السادسة</b>
+          <p>تصنيف اللافقاريات، الرخويات، المفصليات، وأجهزة الإخراج المتخصصة كأنابيب ملبيجي.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag teal">6 جرعات</span>
+        <span class="tag">تسلسل منطقي</span>
+        <span class="tag gold">شريط تقدم مرئي</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-foot">
+    <span>الأحياء التحصيلي المتقدم — إعداد: إبراهيم الدسوقي</span>
+    <span>صفحة 4 من 11</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 5 — تفصيل الجرعة والأسئلة
+     ============================================================ -->
+<section class="page">
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">05</span><span class="ph-title">تفصيل الجرعة والأسئلة</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>🧬 الأحياء التحصيلي<small>المتقدّم</small></b>
+          <div class="ms-actions"><span class="gold">📘</span></div>
+        </div>
+        <div class="ms-pad">
+          <div class="ms-card">
+            <h4>↩ رجوع إلى الجرعات</h4>
+          </div>
+
+          <div class="ms-sec"><h3>الجرعة الأولى: خريطة تصنيف الحياة</h3></div>
+          <div style="font-size:5.5px;color:#94a3b8;margin-bottom:5px;">📊 التقدم: 0% · ✅ 0/3 صحيحة · 📝 0/3 محلولة</div>
+
+          <div class="ms-card">
+            <h4>📖 المفاهيم الرئيسية</h4>
+            <div style="font-size:5.5px;color:#44586e;line-height:1.7;">
+              • عناصر التجربة المنضبطة<br>
+              • التركيب الكيميائي للجدار الخلوي<br>
+              • قواعد التسمية الثنائية لينيوس
+            </div>
+          </div>
+
+          <div class="ms-card">
+            <h4>🧪 أسئلة الجرعة (3)</h4>
+            <div class="ms-q" style="margin-bottom:4px;">
+              <b>1. أجرى باحث تجربة لمعرفة أثر تركيزات مختلفة من مادة مضادة للبكتيريا على قطر التثبيط. ما المتغير المستقل؟</b>
+              <span class="opt">A. نوع البكتيريا ونوع الوسط</span>
+              <span class="opt">B. قطر منطقة التثبيط</span>
+              <span class="opt correct">C. تركيز المادة الكيميائية</span>
+              <span class="opt">D. الطبق الرابع الخالي</span>
+            </div>
+            <div class="ms-note">✅ صحيح — المتغير المستقل هو ما يغيره الباحث عمداً.</div>
+          </div>
+        </div>
+        <div class="ms-nav">
+          <div><span>🏠</span>الرئيسية</div>
+          <div class="on"><span>⚡</span>التدريب</div>
+          <div><span>🧠</span>الأسئلة</div>
+          <div><span>🔥</span>أخطائي</div>
+          <div><span>📊</span>تحليلي</div>
+          <div><span>🎯</span>تشخيصي</div>
+          <div><span>📚</span>الموارد</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h2>🧪 داخل الجرعة</h2>
+      <p class="lead">عند فتح أي جرعة، تظهر شاشة تفصيلية تجمع المفاهيم وأسئلتها في صفحة واحدة.</p>
+
+      <div class="note-item">
+        <div class="ni-ico teal">📖</div>
+        <div class="ni-body">
+          <b>صندوق المفاهيم الرئيسية</b>
+          <p>يعرض المفاهيم التي تغطيها الجرعة، قبل الانطلاق في حل الأسئلة — لتهيئة ذهنك للموضوع.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico">📊</div>
+        <div class="ni-body">
+          <b>ملخّص التقدم</b>
+          <p>يعرض نسبة إتمام الجرعة، عدد الإجابات الصحيحة، وعدد الأسئلة المحلولة — قبل الدخول للأسئلة.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico gold">🧪</div>
+        <div class="ni-body">
+          <b>أسئلة الجرعة التفاعلية</b>
+          <p>بعد اختيار الإجابة، تُلوّن باللون الأخضر إن كانت صحيحة، وتظهر معها التوضيح المرتبط بالمعيار.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico teal">💬</div>
+        <div class="ni-body">
+          <b>التفسير العلمي بعد كل سؤال</b>
+          <p>لا يُكتفى بالإجابة، بل يشرح سبب صحتها ويربطها بالمفهوم الأساسي، لتثبيت المعلومة.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag teal">مفاهيم مركزة</span>
+        <span class="tag">تفسير فوري</span>
+        <span class="tag gold">تتبع تلقائي للتقدم</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-foot">
+    <span>الأحياء التحصيلي المتقدم — إعداد: إبراهيم الدسوقي</span>
+    <span>صفحة 5 من 11</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 6 — بنك الأسئلة
+     ============================================================ -->
+<section class="page">
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">06</span><span class="ph-title">بنك الأسئلة الشامل</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>🧬 الأحياء التحصيلي<small>المتقدّم</small></b>
+          <div class="ms-actions"><span class="gold">📘</span></div>
+        </div>
+        <div class="ms-pad">
+          <div class="ms-sec"><h3>🧠 بنك الأسئلة</h3><span>54 سؤالاً</span></div>
+
+          <div class="ms-chiprow">
+            <span class="ms-chip active">جميع الموضوعات</span>
+            <span class="ms-chip">الوراثة</span>
+            <span class="ms-chip">الجهاز العصبي</span>
+            <span class="ms-chip">المفصليات</span>
+          </div>
+          <div class="ms-chiprow">
+            <span class="ms-chip">جميع الجرعات</span>
+            <span class="ms-chip">جميع المستويات</span>
+            <span class="ms-chip">الكل</span>
+            <span class="ms-chip">↺</span>
+          </div>
+
+          <div class="ms-q">
+            <div class="qh"><span>Q01</span><span>المنهجية العلمية</span><span class="teal">الجرعة الأولى</span><span>متوسط</span></div>
+            <b>أجرى باحث تجربة لمعرفة أثر تركيزات مختلفة من مادة مضادة للبكتيريا على قطر التثبيط. ما المتغير المستقل؟</b>
+            <span class="opt">A. نوع البكتيريا والوسط</span>
+            <span class="opt correct">C. تركيز المادة الكيميائية</span>
+          </div>
+
+          <div class="ms-q">
+            <div class="qh"><span>Q02</span><span>تصنيف الأحياء</span><span class="teal">الجرعة الأولى</span><span>صعب</span></div>
+            <b>عينة X جدارها ببتيدوجلايكان، وعينة Y جدارها كايتين، وعينة Z جدارها سيليكا. ما التصنيف؟</b>
+            <span class="opt correct">A. X: بكتيريا حقيقية، Y: فطريات، Z: دياتومات</span>
+          </div>
+
+          <div class="ms-q">
+            <div class="qh"><span>Q13</span><span>الوراثة الجزيئية</span><span class="teal">الجرعة الخامسة</span><span>متوسط</span></div>
+            <b>إذا كانت نسبة الجوانين 22%، فما نسبة الثايمين؟</b>
+            <span class="opt">A. 22%</span>
+            <span class="opt correct">B. 28%</span>
+          </div>
+        </div>
+        <div class="ms-nav">
+          <div><span>🏠</span>الرئيسية</div>
+          <div><span>⚡</span>التدريب</div>
+          <div class="on"><span>🧠</span>الأسئلة</div>
+          <div><span>🔥</span>أخطائي</div>
+          <div><span>📊</span>تحليلي</div>
+          <div><span>🎯</span>تشخيصي</div>
+          <div><span>📚</span>الموارد</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h2>🧠 كل الأسئلة في مكان واحد</h2>
+      <p class="lead">بنك الأسئلة يجمع 54 سؤالاً أصلياً موزّعة على الجرعات الست، مع أدوات فلترة دقيقة.</p>
+
+      <div class="note-item">
+        <div class="ni-ico">🎛️</div>
+        <div class="ni-body">
+          <b>فلترة متعددة المستويات</b>
+          <p>يمكنك التصفية حسب: الموضوع، الجرعة، مستوى الصعوبة (سهل/متوسط/صعب)، وحالة الإجابة (صحيحة/خاطئة/لم تُجب).</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico teal">🏷️</div>
+        <div class="ni-body">
+          <b>وسوم توضيحية على كل سؤال</b>
+          <p>كل بطاقة سؤال تحمل رقمه، موضوعه، الجرعة التي ينتمي إليها، ومستوى الصعوبة — في نظرة واحدة.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico gold">✅</div>
+        <div class="ni-body">
+          <b>الاختيار والتفسير الفوري</b>
+          <p>بعد الاختيار، يتلوّن الخيار الصحيح بالأخضر، ويُظهر صندوق التفسير سبب الإجابة بالتفصيل.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico teal">📄</div>
+        <div class="ni-body">
+          <b>ترقيم الصفحات</b>
+          <p>الأسئلة مقسّمة على صفحات (6 في كل صفحة)، مع أزرار التالي/السابق وعدّاد الصفحة الحالية.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">54 سؤالاً</span>
+        <span class="tag teal">فلترة متقدمة</span>
+        <span class="tag gold">تفسير مرتبط بالمعيار</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-foot">
+    <span>الأحياء التحصيلي المتقدم — إعداد: إبراهيم الدسوقي</span>
+    <span>صفحة 6 من 11</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 7 — أخطائي
+     ============================================================ -->
+<section class="page">
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">07</span><span class="ph-title">أخطائي</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>🧬 الأحياء التحصيلي<small>المتقدّم</small></b>
+          <div class="ms-actions"><span class="gold">📘</span></div>
+        </div>
+        <div class="ms-pad">
+          <div class="ms-sec"><h3>🔥 أخطائي</h3><span>3 أسئلة خاطئة</span></div>
+
+          <div class="ms-mist">
+            <b>Q06: قانون الكل أو العدم في السيال العصبي</b>
+            <div class="de">
+              <span class="wr">✘ إجابتك: A</span> · <span class="co">✔ الصحيحة: C</span>
+              <br><span style="color:#94a3b8;">الجرعة الثانية · الجهاز العصبي</span>
+            </div>
+          </div>
+
+          <div class="ms-mist">
+            <b>Q08: هضم البروتينات بالببسين وأثر pH</b>
+            <div class="de">
+              <span class="wr">✘ إجابتك: A</span> · <span class="co">✔ الصحيحة: B</span>
+              <br><span style="color:#94a3b8;">الجرعة الثالثة · القناة الهضمية</span>
+            </div>
+          </div>
+
+          <div class="ms-mist">
+            <b>Q14: حساب عدد الأمشاج 2^n</b>
+            <div class="de">
+              <span class="wr">✘ إجابتك: B</span> · <span class="co">✔ الصحيحة: C</span>
+              <br><span style="color:#94a3b8;">الجرعة الخامسة · الوراثة المندلية</span>
+            </div>
+          </div>
+
+          <div class="ms-note red">🎯 راجع أخطاءك دورياً — التكرار يثبّت المفهوم.</div>
+        </div>
+        <div class="ms-nav">
+          <div><span>🏠</span>الرئيسية</div>
+          <div><span>⚡</span>التدريب</div>
+          <div><span>🧠</span>الأسئلة</div>
+          <div class="on"><span>🔥</span>أخطائي</div>
+          <div><span>📊</span>تحليلي</div>
+          <div><span>🎯</span>تشخيصي</div>
+          <div><span>📚</span>الموارد</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h2>🔥 صندوق الأخطاء الذكي</h2>
+      <p class="lead">يُجمّع كل سؤال أخطأت فيه تلقائياً، ويُظهر إجابتك والصحيحة في بطاقة واحدة.</p>
+
+      <div class="note-item">
+        <div class="ni-ico">📋</div>
+        <div class="ni-body">
+          <b>تفاصيل الخطأ كاملة</b>
+          <p>لكل سؤال خاطئ: نصّه، إجابتك الخاطئة بالأحمر، الإجابة الصحيحة بالأخضر، وبيانات الجرعة والموضوع.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico teal">🔁</div>
+        <div class="ni-body">
+          <b>زر «مراجعة»</b>
+          <p>ينقلك مباشرة إلى السؤال في بنك الأسئلة مع إعادة عرض التفسير العلمي الكامل.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico gold">🔢</div>
+        <div class="ni-body">
+          <b>عدّاد الأخطاء في الشريط السفلي</b>
+          <p>يعرض الشريط السفلي شارة حمراء بعدد الأخطاء الحالية، لتعرف دائمًا حجم ما يحتاج مراجعة.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico teal">📈</div>
+        <div class="ni-body">
+          <b>يتراجع تلقائياً</b>
+          <p>عند إعادة حل السؤال بنجاح من بنك الأسئلة، يُزال من قائمة الأخطاء فوراً، لتتابع تحسّنك.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">مراجعة مركزة</span>
+        <span class="tag teal">إزالة تلقائية</span>
+        <span class="tag gold">شارة حمراء</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-foot">
+    <span>الأحياء التحصيلي المتقدم — إعداد: إبراهيم الدسوقي</span>
+    <span>صفحة 7 من 11</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 8 — تحليلي
+     ============================================================ -->
+<section class="page">
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">08</span><span class="ph-title">تحليلي</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>🧬 الأحياء التحصيلي<small>المتقدّم</small></b>
+          <div class="ms-actions"><span class="gold">📘</span></div>
+        </div>
+        <div class="ms-pad">
+          <div class="ms-sec"><h3>📊 تحليلي</h3><span>الدقة</span></div>
+
+          <div style="background:#fff;border:1px solid var(--line);border-radius:9px;padding:8px;margin-bottom:6px;text-align:center;">
+            <div class="ms-acc">0%<span>الدقة الإجمالية</span></div>
+            <div style="font-size:5.5px;color:#94a3b8;margin-top:3px;">متوسط تقدم الجرعات: 0%</div>
+          </div>
+
+          <div class="ms-card">
+            <h4>📈 تقدم الجرعات</h4>
+            <div class="ms-ad"><span class="nm">الجرعة 1</span><div class="br"><div class="fl" style="width:0%;background:#0b2b4a;"></div></div><span class="pc">0%</span></div>
+            <div class="ms-ad"><span class="nm">الجرعة 2</span><div class="br"><div class="fl" style="width:0%;background:#1a4a6e;"></div></div><span class="pc">0%</span></div>
+            <div class="ms-ad"><span class="nm">الجرعة 3</span><div class="br"><div class="fl" style="width:0%;background:#0d9488;"></div></div><span class="pc">0%</span></div>
+            <div class="ms-ad"><span class="nm">الجرعة 4</span><div class="br"><div class="fl" style="width:0%;background:#14b8a6;"></div></div><span class="pc">0%</span></div>
+            <div class="ms-ad"><span class="nm">الجرعة 5</span><div class="br"><div class="fl" style="width:0%;background:#5eead4;"></div></div><span class="pc">0%</span></div>
+            <div class="ms-ad"><span class="nm">الجرعة 6</span><div class="br"><div class="fl" style="width:0%;background:#99f6e4;"></div></div><span class="pc">0%</span></div>
+          </div>
+
+          <div class="ms-card">
+            <h4>💪 نقاط القوة</h4>
+            <div class="ms-tagrow"><span class="ms-tag gr">✅ أكمل المزيد لظهورها</span></div>
+          </div>
+
+          <div class="ms-card">
+            <h4>⚠️ تحتاج إلى مراجعة</h4>
+            <div class="ms-tagrow"><span class="ms-tag">🔥 لا توجد بيانات</span></div>
+          </div>
+
+          <div class="ms-card">
+            <h4>🏆 الإنجازات</h4>
+            <div class="ms-tagrow"><span class="ms-tag gd">ابدأ التدريب لفتحها</span></div>
+          </div>
+        </div>
+        <div class="ms-nav">
+          <div><span>🏠</span>الرئيسية</div>
+          <div><span>⚡</span>التدريب</div>
+          <div><span>🧠</span>الأسئلة</div>
+          <div><span>🔥</span>أخطائي</div>
+          <div class="on"><span>📊</span>تحليلي</div>
+          <div><span>🎯</span>تشخيصي</div>
+          <div><span>📚</span>الموارد</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h2>📊 تشريح أدائك</h2>
+      <p class="lead">لوحة تحليلات كاملة تعرض الدقة الإجمالية، التقدم في كل جرعة، ونقاط القوة والضعف.</p>
+
+      <div class="note-item">
+        <div class="ni-ico">🎯</div>
+        <div class="ni-body">
+          <b>الدقة الإجمالية</b>
+          <p>النسبة المئوية للإجابات الصحيحة من إجمالي الأسئلة، مع متوسط تقدم الجرعات في سطر واحد.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico teal">📈</div>
+        <div class="ni-body">
+          <b>أشرطة الجرعات</b>
+          <p>شريط لكل جرعة بتدرّج لوني مختلف (من الأزرق الداكن إلى التركواز) يعرض نسبة إتمامها.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico gold">💪</div>
+        <div class="ni-body">
+          <b>نقاط القوة</b>
+          <p>المواضيع التي حققت فيها دقة 70% أو أكثر تظهر تلقائياً في وسوم خضراء.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico">🔥</div>
+        <div class="ni-body">
+          <b>نقاط الضعف</b>
+          <p>المواضيع التي تقل دقتها عن 50% تظهر في وسوم حمراء، لتركّز عليها في المراجعة القادمة.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico gold">🏆</div>
+        <div class="ni-body">
+          <b>الإنجازات</b>
+          <p>شارات تُفتح تلقائياً: 30+ سؤالاً، 50+ سؤالاً، دقة 70%+، دقة 90%+، و3 جرعات مكتملة.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">دقة إجمالية</span>
+        <span class="tag teal">أشرطة الجرعات</span>
+        <span class="tag gold">إنجازات تلقائية</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-foot">
+    <span>الأحياء التحصيلي المتقدم — إعداد: إبراهيم الدسوقي</span>
+    <span>صفحة 8 من 11</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 9 — التشخيصي
+     ============================================================ -->
+<section class="page">
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">09</span><span class="ph-title">التشخيصي الشامل</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>🧬 الأحياء التحصيلي<small>المتقدّم</small></b>
+          <div class="ms-actions"><span class="gold">📘</span></div>
+        </div>
+        <div class="ms-pad">
+          <div class="ms-sec"><h3>🎯 التشخيصي الشامل</h3><span>تحليل</span></div>
+
+          <div class="ms-card">
+            <p style="font-size:6px;color:#44586e;">سيقوم التشخيص بتحليل أدائك في جميع الأسئلة وتحديد نقاط القوة والضعف لديك.</p>
+            <div style="background:#0d9488;color:#fff;border-radius:20px;padding:4px 10px;font-size:6px;font-weight:700;text-align:center;margin-top:6px;">🔄 تشغيل التشخيص</div>
+          </div>
+
+          <div class="ms-card">
+            <h4>📊 الأداء حسب الجرعة</h4>
+            <div class="ms-dr"><span>الجرعة الأولى</span><b>⬜ 0/3 (0%)</b></div>
+            <div class="ms-dr"><span>الجرعة الثانية</span><b>⬜ 0/3 (0%)</b></div>
+            <div class="ms-dr"><span>الجرعة الثالثة</span><b>⬜ 0/3 (0%)</b></div>
+            <div class="ms-dr"><span>الجرعة الرابعة</span><b>⬜ 0/3 (0%)</b></div>
+            <div class="ms-dr"><span>الجرعة الخامسة</span><b>⬜ 0/3 (0%)</b></div>
+            <div class="ms-dr"><span>الجرعة السادسة</span><b>⬜ 0/3 (0%)</b></div>
+          </div>
+
+          <div class="ms-card">
+            <h4>💪 نقاط القوة</h4>
+            <div style="font-size:5.5px;color:#94a3b8;">لا توجد بيانات كافية بعد.</div>
+          </div>
+
+          <div class="ms-card">
+            <h4>⚠️ نقاط الضعف</h4>
+            <div style="font-size:5.5px;color:#94a3b8;">ابدأ التشخيص لعرض النتائج.</div>
+          </div>
+        </div>
+        <div class="ms-nav">
+          <div><span>🏠</span>الرئيسية</div>
+          <div><span>⚡</span>التدريب</div>
+          <div><span>🧠</span>الأسئلة</div>
+          <div><span>🔥</span>أخطائي</div>
+          <div><span>📊</span>تحليلي</div>
+          <div class="on"><span>🎯</span>تشخيصي</div>
+          <div><span>📚</span>الموارد</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h2>🎯 تشخيص ذكي بنقرة</h2>
+      <p class="lead">أداة تحليلية تحوّل أرقامك إلى خطة مراجعة واضحة، وتوصيات مخصصة.</p>
+
+      <div class="note-item">
+        <div class="ni-ico teal">🔄</div>
+        <div class="ni-body">
+          <b>زر «تشغيل التشخيص»</b>
+          <p>بضغطة واحدة، يحلّل التطبيق كل إجاباتك السابقة ويستخرج الخلاصة في ثوانٍ.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico">📊</div>
+        <div class="ni-body">
+          <b>الأداء حسب الجرعة</b>
+          <p>جدول يعرض كل جرعة مع نسبة إتمامها وعدد الصحيح من الإجمالي، لترى أين تركّز جهدك.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico gold">💪</div>
+        <div class="ni-body">
+          <b>نقاط القوة والضعف</b>
+          <p>يُظهر تلقائياً المواضيع التي تتقنها (دقة 70%+) والمواضيع التي تحتاج مراجعة (دقة أقل من 50%).</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico teal">📝</div>
+        <div class="ni-body">
+          <b>توصيات مخصّصة</b>
+          <p>في نهاية التحليل، يعرض التطبيق توصيات مباشرة: راجع هذه المواضيع، لديك أسئلة لم تُجب عليها، إلخ.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag teal">تحليل فوري</span>
+        <span class="tag">توصيات مباشرة</span>
+        <span class="tag gold">كشف نقاط الضعف</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-foot">
+    <span>الأحياء التحصيلي المتقدم — إعداد: إبراهيم الدسوقي</span>
+    <span>صفحة 9 من 11</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 10 — الموارد وورقة الإنقاذ
+     ============================================================ -->
+<section class="page">
+  <div class="page-head">
+    <div class="ph-right"><span class="ph-num">10</span><span class="ph-title">الموارد وورقة الإنقاذ</span></div>
+    <span class="ph-brand">هيرو أكاديمي</span>
+  </div>
+
+  <div class="page-body">
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="ms-head">
+          <b>🧬 الأحياء التحصيلي<small>المتقدّم</small></b>
+          <div class="ms-actions"><span class="gold">📘</span></div>
+        </div>
+        <div class="ms-pad">
+          <div class="ms-sec"><h3>📚 الموارد</h3><span>مراجعة نهائية</span></div>
+
+          <div class="ms-grid3">
+            <div class="ms-res"><div class="ic">📄</div><div class="tt">ورقة الإنقاذ</div></div>
+            <div class="ms-res"><div class="ic">⚡</div><div class="tt">ليلة الاختبار</div></div>
+            <div class="ms-res"><div class="ic">🎯</div><div class="tt">مصفوفة</div></div>
+            <div class="ms-res"><div class="ic">🧪</div><div class="tt">المحاكاة</div></div>
+            <div class="ms-res"><div class="ic">📊</div><div class="tt">التحليل</div></div>
+            <div class="ms-res"><div class="ic">📚</div><div class="tt">البنك</div></div>
+          </div>
+
+          <div class="ms-card">
+            <h4>📄 ورقة الإنقاذ — مراجعة صفحة واحدة</h4>
+            <p><b>القوانين:</b> تشارجاف، 2^n للأمشاج، الكل أو العدم، تحويل السعرات.</p>
+            <p style="margin-top:3px;"><b>الفروق:</b> أربطة/أوتار، أنسولين/جلوكاجون، سمبثاوي/جار سمبثاوي.</p>
+            <p style="margin-top:3px;"><b>الأخطاء الشائعة:</b> كتابة النوع بحرف كبير، مضاعفة السيال.</p>
+          </div>
+
+          <div class="ms-note gold">🎯 راجع ورقة الإنقاذ ليلة الاختبار — صفحة واحدة تغنيك.</div>
+        </div>
+        <div class="ms-nav">
+          <div><span>🏠</span>الرئيسية</div>
+          <div><span>⚡</span>التدريب</div>
+          <div><span>🧠</span>الأسئلة</div>
+          <div><span>🔥</span>أخطائي</div>
+          <div><span>📊</span>تحليلي</div>
+          <div><span>🎯</span>تشخيصي</div>
+          <div class="on"><span>📚</span>الموارد</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <h2>📚 غرفة الإنقاذ</h2>
+      <p class="lead">قسم الموارد يجمع أقوى أدوات المراجعة السريعة، وخاصة قبل الاختبار بيوم واحد.</p>
+
+      <div class="note-item">
+        <div class="ni-ico">📄</div>
+        <div class="ni-body">
+          <b>ورقة الإنقاذ</b>
+          <p>صفحة واحدة مختصرة تجمع القوانين والعلاقات الحسابية، والفروق الحاسمة، والأخطاء الشائعة.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico gold">⚡</div>
+        <div class="ni-body">
+          <b>مراجعة ليلة الاختبار</b>
+          <p>أهم المفاهيم والقوانين المكثفة التي يحتاجها الطالب في الساعات الأخيرة قبل الاختبار.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico teal">🎯</div>
+        <div class="ni-body">
+          <b>مصفوفة التشخيص</b>
+          <p>ربط مباشر بين الأسئلة والجرعات، لترى توزيع الأسئلة على المحاور قبل البدء بالمراجعة.</p>
+        </div>
+      </div>
+
+      <div class="note-item">
+        <div class="ni-ico">🧪</div>
+        <div class="ni-body">
+          <b>نموذجا المحاكاة</b>
+          <p>36 سؤالاً أصلياً إضافياً (محاكاة 1 ومحاكاة 2) مطابقة لنمط أسئلة الاختبار الحقيقي.</p>
+        </div>
+      </div>
+
+      <div class="tag-list">
+        <span class="tag">6 موارد</span>
+        <span class="tag teal">ورقة الإنقاذ</span>
+        <span class="tag gold">مراجعة مكثفة</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-foot">
+    <span>الأحياء التحصيلي المتقدم — إعداد: إبراهيم الدسوقي</span>
+    <span>صفحة 10 من 11</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     صفحة 11 — الخاتمة CTA
+     ============================================================ -->
+<section class="page cta-page">
+  <div class="cta-inner">
+    <div class="cta-emoji">🎓 🧬 🏆</div>
+
+    <h2>أعجبتك طريقة <em>Hero</em>؟</h2>
+
+    <p>
+      انضم إلى آلاف طلاب التحصيلي الذين راجعوا الأحياء بطريقة منظمة، تفاعلية،
+      ومبنية على التحليل الذكي لأدائهم.
+    </p>
+
+    <div class="cta-features">
+      <span>⚡ 6 جرعات مركزة</span>
+      <span>🧠 54 سؤالاً</span>
+      <span>🎯 تشخيصي ذكي</span>
+      <span>📊 تحليلات</span>
+      <span>📄 ورقة إنقاذ</span>
+    </div>
+
+    <a class="cta-btn" href="https://app.hero1.vip/#about" target="_blank" rel="noopener">🛒 اشترِ الآن</a>
+
+    <a class="cta-link" href="https://app.hero1.vip/#about" target="_blank" rel="noopener">https://app.hero1.vip/#about</a>
+
+    <div class="cta-rule"></div>
+
+    <p class="cta-copy">© 2026-2027 — جميع الحقوق محفوظة · هيرو أكاديمي</p>
+  </div>
+</section>
+
+</body>
+</html>
