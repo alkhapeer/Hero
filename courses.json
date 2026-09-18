@@ -136,6 +136,16 @@
       "visible": true
     },
     {
+      "id": 15,
+      "category": "test-tahsili",
+      "title": "تطبيق الرياضيات التحصيلي المتقدم",
+      "description": "قيّم مستواك واختبر نفسك قبل الاختبار.",
+      "icon": "📚",
+      "drive_url": "courses/math/math-review.html",
+      "features": ["تطبيق عملي تفاعلي مهمته تجهيز الطالب للامتحان والتفوق فيه"],
+      "visible": true
+    },
+    {
       "id": 5,
       "category": "law",
       "title": "الميراث",
