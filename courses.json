@@ -12,7 +12,7 @@
       "title": "مادة الأحوال الشخصية لغير المسلمين",
       "description": "دورة تعليمية شاملة لمادة الأحوال الشخصية لغير المسلمين.",
       "icon": "⚖️",
-      "drive_url": "courses/non_muslims_law/demo_course_nonMuslim001.html",
+      "drive_url": "courses/non_muslims_law/non_muslims_law1.html",
       "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true
     },
@@ -31,7 +31,7 @@
       "title": "النجاح في مادة الإثبات",
       "description": "دورة تعليمية شاملة لمادة الإثبات.",
       "icon": "⚖️",
-      "drive_url": "courses/evedense_law/demo_course_evidence001.html",
+      "drive_url": "courses/evedense_law/evedense_law3.html",
       "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true
     },
@@ -41,7 +41,7 @@
       "title": "مادة الأحوال الشخصية للمسلمين",
       "description": "دورة تعليمية شاملة لمادة الأحوال الشخصية للمسلمين.",
       "icon": "⚖️",
-      "drive_url": "courses/A7wal/demo_course_pers001.html",
+      "drive_url": "courses/A7wal/A7wal_4.html",
       "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true
     },
@@ -51,7 +51,7 @@
       "title": "مادة العقود",
       "description": "دورة تعليمية شاملة لمادة العقود.",
       "icon": "⚖️",
-      "drive_url": "courses/contracts/demo_course_contracts001.html",
+      "drive_url": "courses/contracts/contracts_6.html",
       "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true
     },
@@ -61,7 +61,7 @@
       "title": "مادة القانون الجنائي",
       "description": "دورة تعليمية شاملة لمادة القانون الجنائي.",
       "icon": "⚖️",
-      "drive_url": "courses/Criminal_law",
+      "drive_url": "courses/Criminal_law/Criminal_law_7.html",
       "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true
     },
@@ -71,7 +71,7 @@
       "title": "مادة الإجراءات الجنائية",
       "description": "دورة تعليمية شاملة لمادة الإجراءات الجنائية.",
       "icon": "⚖️",
-      "drive_url": "courses/criminal_procedures/demo_course_criminal_procedures001.html",
+      "drive_url": "courses/criminal_procedures/criminal_procedures_8.html",
       "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true
     },
@@ -81,7 +81,7 @@
       "title": "مادة أصول الفقه",
       "description": "دورة تعليمية شاملة لمادة أصول الفقه.",
       "icon": "⚖️",
-      "drive_url": "courses/Osol/demo_course_osol001.html",
+      "drive_url": "courses/Osol/Osol_11.html",
       "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true
     },
@@ -91,7 +91,7 @@
       "title": "مادة الإجراءات المدنية",
       "description": "دورة تعليمية شاملة لمادة الإجراءات المدنية.",
       "icon": "⚖️",
-      "drive_url": "courses/Civil/demo_course_civilProcedures001.html",
+      "drive_url": "courses/Civil/civilProcedures_20.html",
       "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true
     },
@@ -101,7 +101,7 @@
       "title": "اختبار القدرات التشخيصي",
       "description": "اختبر مستواك واكتشف نقاط القوة والضعف قبل بدء الاستعداد.",
       "icon": "🎯",
-      "url": "courses/qudratpdf.html",
+      "url": "http://saatgat.hero1.vip",
       "features": ["تطبيق عملي تفاعلي مهمته تجهيز الطالب للامتحان والتفوق فيه"],
       "visible": true
     },
@@ -151,7 +151,7 @@
       "title": "الميراث",
       "description": "مادة الميراث ضمن دورة الأحوال الشخصية للمسلمين.",
       "icon": "🧮",
-      "drive_url": "courses/A7wal/merath/demo_course_merath001.html",
+      "drive_url": "courses/A7wal/merath/merath_5.html",
       "features": ["شرح مبسط", "أمثلة تطبيقية", "ملخصات جاهزة"],
       "visible": true,
       "parentCourse": 4
