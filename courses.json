@@ -111,7 +111,7 @@
       "title": "تطبيق الفيزياء التحصيلي المتقدم",
       "description": "قيّم مستواك واختبر نفسك قبل الاختبار.",
       "icon": "📚",
-      "drive_url": "http://saat_gat.hero1.vip/demo_course_phys001.html",
+      "drive_url": "http://saatgat.hero1.vip",
       "features": ["تطبيق عملي تفاعلي مهمته تجهيز الطالب للامتحان والتفوق فيه"],
       "visible": true
     },
@@ -121,7 +121,7 @@
       "title": "تطبيق الكيمياء التحصيلي المتقدم",
       "description": "قيّم مستواك واختبر نفسك قبل الاختبار.",
       "icon": "📚",
-      "drive_url": "http://saat_gat.hero1.vip/demo_course_chem001.html",
+      "drive_url": "http://saatgat.hero1.vip",
       "features": ["تطبيق عملي تفاعلي مهمته تجهيز الطالب للامتحان والتفوق فيه"],
       "visible": true
     },
@@ -131,7 +131,7 @@
       "title": "تطبيق الأحياء التحصيلي المتقدم",
       "description": "قيّم مستواك واختبر نفسك قبل الاختبار.",
       "icon": "📚",
-      "drive_url": "http://saat_gat.hero1.vip/bio_sa_01.html",
+      "drive_url": "http://saatgat.hero1.vip",
       "features": ["تطبيق عملي تفاعلي مهمته تجهيز الطالب للامتحان والتفوق فيه"],
       "visible": true
     },
@@ -141,7 +141,7 @@
       "title": "تطبيق الرياضيات التحصيلي المتقدم",
       "description": "قيّم مستواك واختبر نفسك قبل الاختبار.",
       "icon": "📚",
-      "drive_url": "courses/math/math-review.html",
+      "drive_url": "http://saatgat.hero1.vip",
       "features": ["تطبيق عملي تفاعلي مهمته تجهيز الطالب للامتحان والتفوق فيه"],
       "visible": true
     },
