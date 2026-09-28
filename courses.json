@@ -1,7 +1,7 @@
 {
   "categories": [
     { "id": "law", "title": "مواد القانون", "icon": "⚖️" },
-    { "id": "Thanawy", "title": "الثانوية", "icon": "🔬" },
+    { "id": "Thanawy", "title": " الثانوية المصرية", "icon": "🔬" },
     { "id": "test-qudurat", "title": "اختبارات القدرات", "icon": "🎯" },
     { "id": "test-tahsili", "title": "اختبارات التحصيلي", "icon": "📚" }
   ],
