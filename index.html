@@ -43,42 +43,6 @@
     <div id="app"></div>
 
     <script src="/js/app.js"></script>
-
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-
-                navigator.serviceWorker.register('/sw.js')
-
-                    .then(registration => {
-                        console.log(
-                            '✅ Hero Service Worker registered:',
-                            registration.scope
-                        );
-                    })
-
-                    .catch(error => {
-                        console.error(
-                            '❌ Hero Service Worker registration failed:',
-                            error
-                        );
-                    });
-
-            });
-        }
-    </script>
-    <!-- الملف الجديد الذي يعيد تعريف الواجهات (ضع المسار الصحيح) -->
-    <script src="/js/hero-ui.js"></script>
-
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => console.log('✅ Service Worker registered:', registration.scope))
-                    .catch(error => console.error('❌ Service Worker registration failed:', error));
-            });
-        }
-    </script>
-
+   
 </body>
 </html>
