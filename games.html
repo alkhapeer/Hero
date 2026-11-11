@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>بث الألعاب — الهاتف</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Tajawal:wght@700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--primary:#8b5cf6;--secondary:#ec4899;--accent:#f59e0b;--text:#f1f5f9;--muted:#94a3b8;--font:'Cairo',sans-serif;}
+
+html,body{height:100%;width:100%;overflow:hidden;background:#000;touch-action:manipulation;overscroll-behavior:none;margin:0}
+body{font-family:var(--font);color:var(--text);user-select:none;-webkit-user-select:none}
+input,textarea,select{font-family:inherit;user-select:text;-webkit-user-select:text}
+
+/* ========== VIEWPORT FRAME (letterbox) ========== */
+#viewportFrame{
+  position:fixed;inset:0;background:#000;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;z-index:0;
+}
+
+/* ========== STAGE 405×720 (9:16) ========== */
+#stage{
+  position:relative;
+  width:405px;height:720px;
+  flex-shrink:0;
+  background:#0f172a;
+  transform-origin:center center;
+  overflow:hidden;
+}
+
+/* ========== BACKGROUND ========== */
+#bg{position:absolute;inset:0;background:linear-gradient(135deg,#0f172a,#1e1b4b,#0f172a);background-size:400% 400%;animation:bgmove 20s ease infinite;z-index:0}
+@keyframes bgmove{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+#bg.custom{background-size:cover;background-position:center;animation:none}
+
+#confetti{position:absolute;inset:0;z-index:100;pointer-events:none}
+#flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:99;pointer-events:none}
+#flash.go{animation:flash .5s}
+@keyframes flash{0%,100%{opacity:0}50%{opacity:.6}}
+
+/* ========== SAFE AREA (72px top, 216px bottom = 10%/30%) ========== */
+#safeArea{
+  position:absolute;
+  top:72px;bottom:216px;left:0;right:0;
+  display:flex;flex-direction:column;
+  gap:4px;padding:0 8px;
+  z-index:10;
+}
+
+#titleBar{flex-shrink:0;text-align:center;padding:2px 0}
+#titleText{
+  font-size:24px;font-weight:900;line-height:1.15;
+  text-shadow:0 2px 20px rgba(0,0,0,.7);
+  display:inline-block;max-width:100%;
+  word-wrap:break-word;
+}
+#titleText.pulse{animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+
+#timerBar{flex-shrink:0;display:none;justify-content:center;padding:2px 0}
+#timerInner{
+  background:linear-gradient(135deg,#10b981,#059669);
+  color:#fff;padding:4px 20px;border-radius:24px;
+  font-size:20px;font-weight:900;font-family:'Courier New',monospace;
+  box-shadow:0 0 24px rgba(16,185,129,.6);
+  display:flex;align-items:center;gap:6px;letter-spacing:1px;
+}
+#timerBar.warning #timerInner{background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 0 24px rgba(245,158,11,.7);animation:pulse .6s ease infinite}
+#timerBar.danger #timerInner{background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 0 24px rgba(239,68,68,.8);animation:pulse .35s ease infinite}
+#timerBar.ended #timerInner{background:linear-gradient(135deg,#64748b,#475569);box-shadow:0 0 24px rgba(100,116,139,.5);animation:none}
+
+#gameCard{
+  flex:1;min-height:0;
+  background:rgba(15,23,42,.9);backdrop-filter:blur(16px);
+  border:2px solid rgba(139,92,246,.35);border-radius:16px;
+  padding:10px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;overflow:hidden;
+  box-shadow:0 8px 30px rgba(0,0,0,.4);
+}
+.game-label{font-size:11px;color:var(--accent);font-weight:800;margin-bottom:4px;letter-spacing:1.5px}
+.guess-range{font-size:15px;font-weight:900;color:var(--primary);margin:4px 0}
+.guess-range b{color:var(--accent);font-size:22px}
+.guess-hint{font-size:28px;font-weight:900;margin:6px 0;min-height:36px}
+.guess-hint.higher{color:#10b981}
+.guess-hint.lower{color:#ef4444}
+.guess-recent{display:flex;justify-content:center;gap:4px;flex-wrap:wrap;margin-top:4px;max-height:50px;overflow:hidden}
+.guess-chip{padding:3px 8px;background:rgba(139,92,246,.2);border:1px solid var(--primary);border-radius:14px;font-size:11px;font-weight:700}
+.word-slots{display:flex;justify-content:center;gap:4px;flex-wrap:wrap;margin:8px 0}
+.word-slot{width:32px;height:40px;background:rgba(139,92,246,.15);border:2px solid var(--primary);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:var(--accent)}
+.word-slot.revealed{background:rgba(245,158,11,.2);border-color:var(--accent)}
+.spy-boxes{display:flex;gap:8px;justify-content:center;margin:8px 0;flex-wrap:wrap;width:100%}
+.spy-box{flex:1;min-width:90px;padding:8px;border-radius:10px;background:rgba(139,92,246,.15);border:2px solid var(--primary)}
+.spy-box .lbl{font-size:10px;color:var(--muted);margin-bottom:3px;font-weight:700}
+.spy-box .val{font-size:15px;font-weight:900;color:var(--accent);filter:blur(6px);transition:filter .5s}
+.spy-box.revealed .val{filter:blur(0)}
+.bomb-timer{font-size:52px;font-weight:900;color:#ef4444;text-shadow:0 0 24px rgba(239,68,68,.8);margin:4px 0;font-family:'Courier New',monospace;animation:bombpulse 1s ease infinite}
+@keyframes bombpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.bomb-explode{font-size:44px;font-weight:900;color:#ef4444;animation:explode .8s}
+@keyframes explode{0%{transform:scale(0)}50%{transform:scale(1.3)}100%{transform:scale(1)}}
+
+/* ========== ACTION BAR ========== */
+#actionBar{flex-shrink:0;display:flex;justify-content:center;align-items:center;gap:8px;padding:3px 0}
+.action-btn{
+  min-width:42px;height:42px;padding:0 10px;
+  border-radius:21px;background:rgba(15,23,42,.95);
+  border:2px solid var(--primary);color:#fff;
+  font-size:18px;font-family:inherit;font-weight:800;
+  display:flex;align-items:center;justify-content:center;gap:4px;
+  cursor:pointer;transition:all .2s;backdrop-filter:blur(8px);
+}
+.action-btn:active{transform:scale(.9)}
+.action-btn.winner{border-color:var(--accent);color:var(--accent)}
+.action-btn.supporter{border-color:var(--secondary);color:var(--secondary)}
+.action-btn.start{border-color:#10b981;color:#10b981}
+.action-btn.settings{border-color:var(--muted);color:var(--muted);font-size:16px}
+.action-btn.expanded{
+  width:auto;min-width:auto;padding:0 5px;
+  background:rgba(15,23,42,.98);border-width:2px;
+}
+.action-btn input{
+  width:80px;padding:5px 6px;
+  background:transparent;border:none;outline:none;
+  color:#fff;font-size:12px;text-align:center;font-family:inherit;
+}
+.action-btn input::placeholder{color:#64748b;font-size:11px}
+.action-btn .mini-ok{background:#10b981;color:#fff;border:none;border-radius:50%;width:26px;height:26px;font-size:14px;cursor:pointer;font-weight:900}
+.action-btn .mini-cancel{background:#475569;color:#fff;border:none;border-radius:50%;width:22px;height:22px;font-size:11px;cursor:pointer}
+
+/* ========== LOGO ========== */
+#logoImg{position:absolute;top:72px;right:8px;max-height:50px;max-width:70px;object-fit:contain;z-index:11;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5))}
+
+/* ========== ANNOUNCEMENT OVERLAY ========== */
+#announcement{
+  position:absolute;inset:0;z-index:200;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  background:rgba(0,0,0,.88);backdrop-filter:blur(6px);
+  opacity:0;pointer-events:none;transition:opacity .35s;
+  text-align:center;padding:20px;
+}
+#announcement.show{opacity:1;pointer-events:auto}
+#announcement.winner{background:radial-gradient(circle at center,rgba(245,158,11,.3),rgba(0,0,0,.94))}
+#announcement.supporter{background:radial-gradient(circle at center,rgba(236,72,153,.3),rgba(0,0,0,.94))}
+.ann-icon{font-size:60px;animation:iconPop .6s;margin-bottom:8px}
+@keyframes iconPop{0%{transform:scale(0) rotate(-30deg)}60%{transform:scale(1.3) rotate(10deg)}100%{transform:scale(1) rotate(0)}}
+.ann-label{font-size:16px;font-weight:800;letter-spacing:5px;margin-bottom:10px;text-transform:uppercase}
+#announcement.winner .ann-label{color:var(--accent)}
+#announcement.supporter .ann-label{color:var(--secondary)}
+.ann-name{font-size:44px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:12px;word-break:break-word;max-width:100%;padding:0 10px}
+#announcement.winner .ann-name{text-shadow:0 0 60px var(--accent),0 0 30px rgba(245,158,11,.8)}
+#announcement.supporter .ann-name{text-shadow:0 0 60px var(--secondary),0 0 30px rgba(236,72,153,.8)}
+.ann-sub{font-size:16px;color:#cbd5e1;font-weight:700}
+
+/* ========== BUBBLE ========== */
+#bubbles{position:absolute;inset:0;pointer-events:none;z-index:150;overflow:hidden}
+.bubble{position:absolute;background:rgba(255,255,255,.95);color:#0f172a;padding:8px 14px;border-radius:20px;font-weight:800;font-size:12px;box-shadow:0 6px 24px rgba(0,0,0,.4);animation:bubbleIn .4s ease, bubbleOut .4s ease 2.6s forwards;max-width:70%}
+@keyframes bubbleIn{from{opacity:0;transform:scale(0.5) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes bubbleOut{to{opacity:0;transform:scale(0.9) translateY(-20px)}}
+
+/* ========== SETTINGS SHEET ========== */
+#backdrop{position:absolute;inset:0;background:rgba(0,0,0,.5);z-index:290;opacity:0;pointer-events:none;transition:opacity .2s}
+#backdrop.open{opacity:1;pointer-events:auto}
+#sheet{
+  position:absolute;bottom:0;left:0;right:0;max-height:520px;
+  background:#1e293b;border-radius:18px 18px 0 0;z-index:291;
+  transform:translateY(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+#sheet.open{transform:translateY(0)}
+.sheet-header{padding:9px 14px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--primary),var(--secondary));font-weight:900;font-size:13px;flex-shrink:0}
+.sheet-header button{background:rgba(255,255,255,.25);color:#fff;border:none;padding:5px 11px;border-radius:7px;font-weight:800;font-size:11px;cursor:pointer;font-family:inherit}
+.sheet-body{overflow-y:auto;padding:8px;flex:1;padding-bottom:16px;-webkit-overflow-scrolling:touch}
+.block{background:#0f172a;border-radius:9px;padding:8px;margin-bottom:6px}
+.block h3{font-size:11px;color:var(--accent);margin-bottom:6px;font-weight:800;display:flex;justify-content:space-between;align-items:center}
+.block h3 .badge{background:var(--primary);color:#fff;padding:1px 5px;border-radius:4px;font-size:9px}
+.row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:5px}
+.row>*{flex:1;min-width:55px}
+label{display:block;font-size:10px;color:var(--muted);margin-bottom:2px;font-weight:600}
+input[type=text],input[type=number],select{width:100%;padding:6px 8px;background:#1e293b;border:1px solid #334155;border-radius:6px;color:var(--text);font-size:12px}
+input:focus{border-color:var(--primary);outline:none}
+.btn{padding:7px 10px;border-radius:6px;font-weight:700;font-size:11px;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:4px;font-family:inherit}
+.btn-primary{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff}
+.btn-secondary{background:#334155;color:#fff}
+.btn-danger{background:#ef4444;color:#fff}
+.btn-warning{background:var(--accent);color:#0f172a}
+.btn:active{transform:scale(.97)}
+.games{display:grid;grid-template-columns:repeat(2,1fr);gap:4px}
+.game-btn{padding:7px;background:#1e293b;border:2px solid #334155;border-radius:6px;color:#fff;font-weight:700;font-size:10px;font-family:inherit;cursor:pointer}
+.game-btn.active{border-color:var(--primary);background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(236,72,153,.2))}
+.switch{position:relative;display:inline-block;width:32px;height:17px;flex-shrink:0}
+.switch input{opacity:0;width:0;height:0}
+.switch .slider{position:absolute;cursor:pointer;inset:0;background:#334155;transition:.3s;border-radius:17px}
+.switch .slider:before{position:absolute;content:"";height:11px;width:11px;left:3px;top:3px;background:#fff;transition:.3s;border-radius:50%}
+.switch input:checked+.slider{background:var(--primary)}
+.switch input:checked+.slider:before{transform:translateX(15px)}
+details{margin-top:5px}
+details summary{cursor:pointer;font-size:11px;font-weight:700;padding:5px;background:#1e293b;border-radius:5px;color:var(--muted);list-style:none;text-align:center}
+details summary::-webkit-details-marker{display:none}
+details summary:before{content:"▸ "}
+details[open] summary:before{content:"▾ "}
+details[open] summary{color:var(--accent);margin-bottom:5px}
+.list{max-height:90px;overflow-y:auto;font-size:10px}
+.list-item{padding:4px 0;border-bottom:1px solid #334155;display:flex;justify-content:space-between}
+.list-item:last-child{border-bottom:none}
+.list-item .name{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.list-item .time{color:var(--muted);font-size:9px;margin-right:6px}
+.empty{color:#64748b;text-align:center;padding:5px;font-size:10px}
+.file-label{display:inline-block;padding:6px 10px;background:#334155;border-radius:5px;cursor:pointer;font-size:10px;font-weight:700}
+
+/* ========== AUDIO UNLOCK ========== */
+#audioUnlock{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:#fff;padding:16px 24px;border-radius:20px;font-weight:900;font-size:15px;
+  z-index:500;cursor:pointer;box-shadow:0 0 60px rgba(139,92,246,.8);
+  border:3px solid #fff;text-align:center;line-height:1.4;animation:pulse 1.5s ease infinite;
+  max-width:90%;
+}
+#audioUnlock .sub{font-size:11px;font-weight:600;margin-top:3px;opacity:.9}
+
+/* ========== TOAST ========== */
+#toast{position:absolute;bottom:8px;left:50%;transform:translateX(-50%) translateY(80px);background:#10b981;color:#fff;padding:8px 14px;border-radius:8px;font-weight:700;font-size:11px;z-index:600;transition:transform .3s;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:85%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#toast.show{transform:translateX(-50%) translateY(0)}
+#toast.error{background:#ef4444}
+#toast.info{background:var(--primary)}
+</style>
+</head>
+<body>
+
+<!-- Viewport (black letterbox container) -->
+<div id="viewportFrame">
+  <!-- Stage: fixed 405×720, scaled to fit -->
+  <div id="stage">
+    <div id="bg"></div>
+    <canvas id="confetti"></canvas>
+    <div id="flash"></div>
+
+    <img id="logoImg" style="display:none">
+
+    <div id="safeArea">
+      <div id="titleBar"><span id="titleText"></span></div>
+      <div id="timerBar"><div id="timerInner"><span>⏱️</span><span id="timerVal">60</span></div></div>
+      <div id="gameCard"></div>
+      <div id="actionBar">
+        <button class="action-btn start" id="startBtn" onclick="quickStartRound()" title="بدء جولة">▶️</button>
+        <button class="action-btn winner" id="winnerBtn" onclick="expandActionBtn('winner')">🏆</button>
+        <button class="action-btn supporter" id="supporterBtn" onclick="expandActionBtn('supporter')">💝</button>
+        <button class="action-btn settings" onclick="openSheet()">⚙️</button>
+      </div>
+    </div>
+
+    <div id="announcement"></div>
+    <div id="bubbles"></div>
+
+    <div id="backdrop" onclick="closeSheet()"></div>
+    <div id="sheet">
+      <div class="sheet-header">
+        <span>⚙️ الإعدادات</span>
+        <button onclick="closeSheet()">✕ إغلاق</button>
+      </div>
+      <div class="sheet-body" id="sheetBody"></div>
+    </div>
+
+    <div id="audioUnlock" style="display:none">🔊<br>اضغط لتفعيل الصوت<div class="sub">(موسيقى + إعلان صوتي)</div></div>
+    <div id="toast"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   STAGE FIT (scale 405×720 to fill viewport, no letterbox bars in 9:16)
+============================================================ */
+function fitStage(){
+  const stage = document.getElementById('stage');
+  if(!stage) return;
+  const scale = Math.min(innerWidth/405, innerHeight/720);
+  stage.style.transform = `scale(${scale})`;
+}
+window.addEventListener('resize', fitStage);
+window.addEventListener('orientationchange', ()=>setTimeout(fitStage,150));
+
+/* ============================================================
+   STATE
+============================================================ */
+const DEFAULT_STATE = {
+  topic:'بث الألعاب التفاعلي',
+  game:'guess',
+  roundDuration:60,
+  gameSettings:{
+    guess:{min:1,max:100,secret:null,guesses:[],hint:'',roundEndTime:null},
+    word:{secret:'مرحبا',revealed:[],roundEndTime:null},
+    spy:{majorityWord:'تفاحة',spyWord:'كمثرى',revealed:false,roundEndTime:null},
+    bomb:{min:1,max:100,secret:null,guesses:[],timer:60,endTime:null,exploded:false,hint:''}
+  },
+  winners:[], supporters:[],
+  filter:{enabled:true,keywords:'جاهز, رقم'},
+  style:{titleSize:24,primary:'#8b5cf6',secondary:'#ec4899',accent:'#f59e0b',logo:'',bgImage:''},
+  audio:{voiceEnabled:true,voiceRate:1,voicePitch:1,bgVolume:0.4,hasMusic:false,muted:false}
+};
+let state = loadState();
+let audioCtx=null, bgAudio=null, pendingMusic=null, audioUnlocked=false, idb=null;
+let arabicVoice=null;
+let announcementTimer=null;
+let lastTimerState='hidden';
+
+function loadState(){
+  try{
+    const saved = JSON.parse(localStorage.getItem('ig_mobile_v4')) || {};
+    const d = JSON.parse(JSON.stringify(DEFAULT_STATE));
+    return {
+      ...d, ...saved,
+      gameSettings:{...d.gameSettings,...saved.gameSettings},
+      style:{...d.style,...saved.style},
+      audio:{...d.audio,...saved.audio},
+      filter:{...d.filter,...saved.filter}
+    };
+  }catch(e){ return JSON.parse(JSON.stringify(DEFAULT_STATE)); }
+}
+function save(){ try{ localStorage.setItem('ig_mobile_v4', JSON.stringify(state)); }catch(e){} }
+function uid(){ return Math.random().toString(36).slice(2,9); }
+function esc(s){ return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function toast(msg,type='info'){
+  const el=document.getElementById('toast');
+  el.textContent=msg; el.className='show '+type;
+  clearTimeout(el._t); el._t=setTimeout(()=>el.className='',2400);
+}
+
+/* ============================================================
+   IDB
+============================================================ */
+function openIDB(){ return new Promise(res=>{ if(idb) return res(idb); const r=indexedDB.open('ig_music_v4',1); r.onupgradeneeded=e=>e.target.result.createObjectStore('music'); r.onsuccess=e=>{idb=e.target.result;res(idb);}; r.onerror=()=>res(null); }); }
+async function saveMusicData(d){ const db=await openIDB(); if(!db) return; return new Promise(res=>{ const tx=db.transaction('music','readwrite'); tx.objectStore('music').put(d,'bg'); tx.oncomplete=()=>res(true); tx.onerror=()=>res(false); }); }
+async function loadMusicData(){ const db=await openIDB(); if(!db) return null; return new Promise(res=>{ const tx=db.transaction('music','readonly'); const g=tx.objectStore('music').get('bg'); g.onsuccess=()=>res(g.result||null); g.onerror=()=>res(null); }); }
+
+/* ============================================================
+   AUDIO
+============================================================ */
+const AudioEngine = {
+  init(){ if(!audioCtx){ try{audioCtx=new (window.AudioContext||window.webkitAudioContext)();}catch(e){} } if(audioCtx && audioCtx.state==='suspended') audioCtx.resume(); },
+  tone(freq,dur,type,vol,delay){
+    if(!audioCtx || state.audio.muted) return;
+    const t=audioCtx.currentTime+(delay||0);
+    const osc=audioCtx.createOscillator(), g=audioCtx.createGain();
+    osc.type=type||'sine'; osc.frequency.value=freq;
+    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol,t+0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
+    osc.connect(g); g.connect(audioCtx.destination);
+    osc.start(t); osc.stop(t+dur+0.05);
+  },
+  play(name){
+    if(state.audio.muted) return; this.init();
+    const v=0.7;
+    if(name==='win'){ this.tone(523,.15,'sine',v); this.tone(659,.15,'sine',v,.1); this.tone(784,.2,'sine',v,.2); this.tone(1047,.4,'sine',v,.3); }
+    else if(name==='lose'){ this.tone(200,.25,'sawtooth',v); this.tone(150,.35,'sawtooth',v,.12); this.tone(90,.6,'sawtooth',v,.25); }
+    else if(name==='honor'){ this.tone(880,.1,'triangle',v); this.tone(1175,.15,'triangle',v,.08); this.tone(1568,.3,'triangle',v,.15); }
+    else if(name==='tick'){ this.tone(600,.06,'square',.3); }
+    else if(name==='close'){ this.tone(700,.06,'sine',.4); }
+  },
+  async setBgMusic(src){ if(!src){ if(bgAudio){bgAudio.pause();bgAudio=null;} pendingMusic=null; return; } pendingMusic=src; if(audioUnlocked) await this.tryPlay(); },
+  async tryPlay(){ if(!pendingMusic) return; this.init(); try{ if(bgAudio){bgAudio.pause();bgAudio=null;} bgAudio=new Audio(pendingMusic); bgAudio.loop=true; bgAudio.volume=state.audio.bgVolume; await bgAudio.play(); }catch(e){} }
+};
+
+/* ============================================================
+   VOICE (TTS)
+============================================================ */
+function initVoices(){
+  if(!('speechSynthesis' in window)) return;
+  const load=()=>{ const voices=speechSynthesis.getVoices(); arabicVoice = voices.find(v=>v.lang.startsWith('ar')) || voices[0] || null; };
+  load(); speechSynthesis.onvoiceschanged = load; setTimeout(load,500);
+}
+function speak(text){
+  if(!state.audio.voiceEnabled || state.audio.muted) return;
+  if(!('speechSynthesis' in window)) return;
+  try{
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang='ar-SA'; u.rate=state.audio.voiceRate; u.pitch=state.audio.voicePitch;
+    if(arabicVoice) u.voice=arabicVoice;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+/* ============================================================
+   CONFETTI (canvas sized to stage 405×720)
+============================================================ */
+const Confetti = {
+  canvas:null, ctx:null, particles:[], running:false, colors:['#8b5cf6','#ec4899','#f59e0b','#10b981','#fbbf24','#60a5fa'],
+  init(c){ this.canvas=c; this.ctx=c.getContext('2d'); this.canvas.width=405; this.canvas.height=720; },
+  burst(n,colors){
+    if(!this.ctx) return;
+    const cols=colors||this.colors;
+    for(let i=0;i<n;i++){
+      this.particles.push({
+        x:202+(Math.random()-.5)*100,
+        y:360+(Math.random()-.5)*80,
+        vx:(Math.random()-.5)*12, vy:(Math.random()-.5)*12-3,
+        g:.3, size:2.5+Math.random()*5,
+        color:cols[Math.floor(Math.random()*cols.length)],
+        life:1, decay:.008+Math.random()*.012,
+        rot:Math.random()*Math.PI*2, rotSpeed:(Math.random()-.5)*.3
+      });
+    }
+    this.start();
+  },
+  start(){ if(this.running) return; this.running=true; this.loop(); },
+  loop(){
+    if(!this.ctx) return;
+    this.ctx.clearRect(0,0,405,720);
+    this.particles=this.particles.filter(p=>p.life>0);
+    if(this.particles.length===0){ this.running=false; return; }
+    for(const p of this.particles){
+      p.x+=p.vx; p.y+=p.vy; p.vy+=p.g; p.vx*=.99; p.life-=p.decay; p.rot+=p.rotSpeed;
+      this.ctx.save(); this.ctx.globalAlpha=Math.max(0,p.life);
+      this.ctx.translate(p.x,p.y); this.ctx.rotate(p.rot);
+      this.ctx.fillStyle=p.color;
+      this.ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*.6);
+      this.ctx.restore();
+    }
+    requestAnimationFrame(()=>this.loop());
+  }
+};
+
+/* ============================================================
+   RENDER
+============================================================ */
+function applyColors(){
+  document.documentElement.style.setProperty('--primary',state.style.primary);
+  document.documentElement.style.setProperty('--secondary',state.style.secondary);
+  document.documentElement.style.setProperty('--accent',state.style.accent);
+}
+
+function renderGameView(){
+  const s=state, g=s.game, gs=s.gameSettings[g];
+
+  const bgEl=document.getElementById('bg');
+  if(s.style.bgImage){ bgEl.classList.add('custom'); bgEl.style.backgroundImage=`url('${s.style.bgImage}')`; }
+  else { bgEl.classList.remove('custom'); bgEl.style.backgroundImage=''; }
+
+  const logoEl=document.getElementById('logoImg');
+  if(s.style.logo){ logoEl.src=s.style.logo; logoEl.style.display='block'; }
+  else logoEl.style.display='none';
+
+  const titleEl=document.getElementById('titleText');
+  if(titleEl.textContent !== s.topic) titleEl.textContent = s.topic;
+  titleEl.style.fontSize = s.style.titleSize+'px';
+  titleEl.className = 'pulse';
+
+  let html='';
+  if(g==='guess'){
+    const min=gs.guesses.length&&gs.secret!==null?Math.max(gs.min,...gs.guesses.filter(x=>x.n<gs.secret).map(x=>x.n)):gs.min;
+    const max=gs.guesses.length&&gs.secret!==null?Math.min(gs.max,...gs.guesses.filter(x=>x.n>gs.secret).map(x=>x.n)):gs.max;
+    html=`<div class="game-label">🎲 خمن الرقم</div>
+      <div class="guess-range">بين <b>${min}</b> و <b>${max}</b></div>
+      ${gs.hint==='higher'?`<div class="guess-hint higher">⬆️ أعلى</div>`:''}
+      ${gs.hint==='lower'?`<div class="guess-hint lower">⬇️ أقل</div>`:''}
+      ${gs.hint==='correct'?`<div class="guess-hint higher">🎉 صحيح!</div>`:''}
+      <div class="guess-recent">${gs.guesses.slice(-6).map(x=>`<span class="guess-chip">${x.n}</span>`).join('')}</div>`;
+  } else if(g==='word'){
+    const secret=gs.secret||'', rev=gs.revealed||[];
+    html=`<div class="game-label">🔤 ابحث عن الكلمة</div>
+      <div class="word-slots">${secret.split('').map(ch=>`<div class="word-slot ${rev.includes(ch)||rev.length===secret.length?'revealed':''}">${rev.includes(ch)||rev.length===secret.length?ch:''}</div>`).join('')}</div>
+      <div style="font-size:10px;color:#94a3b8">${rev.length===secret.length?'🎉 تم الحل!':'اكتبوا الحروف'}</div>`;
+  } else if(g==='spy'){
+    html=`<div class="game-label">🕵️ من هو الجاسوس؟</div>
+      <div class="spy-boxes">
+        <div class="spy-box ${gs.revealed?'revealed':''}"><div class="lbl">الأغلبية</div><div class="val">${esc(gs.majorityWord)}</div></div>
+        <div class="spy-box ${gs.revealed?'revealed':''}"><div class="lbl">الجاسوس</div><div class="val">${esc(gs.spyWord)}</div></div>
+      </div>
+      <div style="font-size:10px;color:#94a3b8">${gs.revealed?'💡 تم الكشف':'صوّتوا'}</div>`;
+  } else if(g==='bomb'){
+    const rem=gs.endTime?Math.max(0,Math.ceil((gs.endTime-Date.now())/1000)):gs.timer;
+    const min=gs.guesses.length&&gs.secret!==null?Math.max(gs.min,...gs.guesses.filter(x=>x.n<gs.secret).map(x=>x.n)):gs.min;
+    const max=gs.guesses.length&&gs.secret!==null?Math.min(gs.max,...gs.guesses.filter(x=>x.n>gs.secret).map(x=>x.n)):gs.max;
+    html=`<div class="game-label">💣 قنبلة الأرقام</div>
+      ${gs.exploded?`<div class="bomb-explode">💥 انفجرت!</div>`:
+        `<div class="bomb-timer">${rem}</div>
+         <div class="guess-range">بين <b>${min}</b> و <b>${max}</b></div>
+         ${gs.hint==='higher'?`<div class="guess-hint higher">⬆️ أعلى</div>`:''}
+         ${gs.hint==='lower'?`<div class="guess-hint lower">⬇️ أقل</div>`:''}`}
+      <div class="guess-recent">${gs.guesses.slice(-5).map(x=>`<span class="guess-chip">${x.n}</span>`).join('')}</div>`;
+  }
+  document.getElementById('gameCard').innerHTML = html;
+
+  const startBtn=document.getElementById('startBtn');
+  const isRunning=(g==='bomb'&&gs.endTime)||((g==='guess'||g==='word'||g==='spy')&&gs.roundEndTime);
+  startBtn.textContent=isRunning?'🔄':'▶️';
+
+  applyColors();
+}
+
+/* ============================================================
+   TIMER TICK
+============================================================ */
+function tickTimer(){
+  const s=state, g=s.game, gs=s.gameSettings[g];
+  const bar=document.getElementById('timerBar');
+  const val=document.getElementById('timerVal');
+
+  let endTime=null;
+  if(g==='guess'||g==='word'||g==='spy') endTime=gs.roundEndTime;
+  else if(g==='bomb') endTime=gs.endTime;
+
+  if(!endTime){ bar.style.display='none'; bar.className=''; lastTimerState='hidden'; return; }
+
+  const rem = Math.max(0, Math.ceil((endTime-Date.now())/1000));
+
+  if(rem>0){
+    bar.style.display='flex';
+    bar.className = rem<=10 ? 'danger' : rem<=30 ? 'warning' : '';
+    val.textContent = rem;
+    if(rem<=5 && lastTimerState!==rem) AudioEngine.play('tick');
+    lastTimerState = rem;
+  } else {
+    if(lastTimerState !== 'ended'){
+      bar.style.display='flex';
+      bar.className='ended';
+      val.textContent='انتهى!';
+      AudioEngine.play('lose');
+      lastTimerState='ended';
+      setTimeout(()=>{ if(lastTimerState==='ended'){ bar.style.display='none'; bar.className=''; } }, 2000);
+    }
+  }
+}
+
+/* ============================================================
+   ACTION BAR (inline expand)
+============================================================ */
+function expandActionBtn(type){
+  const btn=document.getElementById(type+'Btn');
+  if(btn.classList.contains('expanded')) return;
+  btn.classList.add('expanded');
+  btn.innerHTML = `
+    <input type="text" id="inline-${type}-input" placeholder="الاسم..." autocomplete="off" autocorrect="off" autocapitalize="off" enterkeyhint="done">
+    <button class="mini-ok" onclick="confirmAction(event,'${type}')">✓</button>
+    <button class="mini-cancel" onclick="cancelAction(event,'${type}')">✕</button>
+  `;
+  const inp=document.getElementById(`inline-${type}-input`);
+  inp.focus();
+  inp.onkeydown=(e)=>{
+    if(e.key==='Enter'){ e.preventDefault(); confirmAction(e,type); }
+    if(e.key==='Escape'){ e.preventDefault(); cancelAction(e,type); }
+  };
+}
+function confirmAction(e,type){
+  if(e) e.stopPropagation();
+  const inp=document.getElementById(`inline-${type}-input`);
+  const name=(inp?.value||'').trim();
+  if(!name) return;
+  if(type==='winner') honorWinner(name); else honorSupporter(name);
+  collapseActionBtn(type);
+}
+function cancelAction(e,type){ if(e) e.stopPropagation(); collapseActionBtn(type); }
+function collapseActionBtn(type){
+  const btn=document.getElementById(type+'Btn');
+  btn.classList.remove('expanded');
+  btn.innerHTML = type==='winner' ? '🏆' : '💝';
+}
+
+/* ============================================================
+   HONOR
+============================================================ */
+function honorWinner(name){
+  state.winners.push({ name, time:Date.now(), game:state.game });
+  if(state.winners.length>200) state.winners.shift();
+  save();
+  showAnnouncement('winner', name);
+  AudioEngine.play('win');
+  Confetti.burst(160);
+  flashScreen();
+  speak('ألف مبروك يا ' + name);
+}
+function honorSupporter(name){
+  state.supporters.push({ name, time:Date.now() });
+  if(state.supporters.length>200) state.supporters.shift();
+  save();
+  showAnnouncement('supporter', name);
+  AudioEngine.play('honor');
+  Confetti.burst(90, ['#ec4899','#f472b6','#fbcfe8']);
+  speak('شكراً لك يا ' + name);
+}
+
+function showAnnouncement(type, name){
+  const ann=document.getElementById('announcement');
+  const icon = type==='winner' ? '🏆' : '💝';
+  const label = type==='winner' ? 'فائز' : 'داعم';
+  const sub = type==='winner' ? 'أحسنت!' : 'شكراً لدعمك!';
+  ann.innerHTML = `
+    <div class="ann-icon">${icon}</div>
+    <div class="ann-label">${label}</div>
+    <div class="ann-name">${esc(name)}</div>
+    <div class="ann-sub">${sub}</div>
+  `;
+  ann.className = 'show ' + type;
+  if(announcementTimer) clearTimeout(announcementTimer);
+  announcementTimer = setTimeout(()=>{
+    ann.classList.remove('show');
+    setTimeout(()=>{ ann.innerHTML=''; }, 400);
+  }, 5000);
+}
+
+function flashScreen(){
+  const f=document.getElementById('flash');
+  f.classList.remove('go'); void f.offsetWidth; f.classList.add('go');
+}
+function showBubble(text){
+  const c=document.getElementById('bubbles');
+  const b=document.createElement('div');
+  b.className='bubble'; b.textContent=text;
+  b.style.left=(8+Math.random()*50)+'%';
+  b.style.top=(25+Math.random()*20)+'%';
+  c.appendChild(b);
+  setTimeout(()=>b.remove(),3200);
+}
+
+/* ============================================================
+   QUICK START
+============================================================ */
+function quickStartRound(){
+  const g=state.game, gs=state.gameSettings[g];
+  if(g==='guess'){
+    if(gs.secret===null) gs.secret=Math.floor(Math.random()*(gs.max-gs.min+1))+gs.min;
+    gs.guesses=[]; gs.hint='';
+    gs.roundEndTime=Date.now()+state.roundDuration*1000;
+  } else if(g==='word'){
+    gs.revealed=[];
+    gs.roundEndTime=Date.now()+state.roundDuration*1000;
+  } else if(g==='spy'){
+    gs.revealed=false;
+    gs.roundEndTime=Date.now()+state.roundDuration*1000;
+  } else if(g==='bomb'){
+    if(gs.secret===null) gs.secret=Math.floor(Math.random()*(gs.max-gs.min+1))+gs.min;
+    gs.guesses=[]; gs.hint=''; gs.exploded=false;
+    gs.endTime=Date.now()+gs.timer*1000;
+  }
+  lastTimerState='hidden';
+  save(); renderGameView();
+  AudioEngine.play('honor');
+  toast('▶️ جولة جديدة!','info');
+}
+
+/* ============================================================
+   SETTINGS SHEET
+============================================================ */
+function openSheet(){ document.getElementById('backdrop').classList.add('open'); document.getElementById('sheet').classList.add('open'); renderSheet(); }
+function closeSheet(){ document.getElementById('backdrop').classList.remove('open'); document.getElementById('sheet').classList.remove('open'); }
+
+function renderSheet(){
+  const s=state, g=s.game, gs=s.gameSettings[g];
+
+  let gameSettingsHtml='';
+  if(g==='guess' || g==='bomb'){
+    gameSettingsHtml=`
+      <div class="row">
+        <div><label>النطاق</label><select onchange="setRange('${g}',this.value)">
+          <option value="1-100" ${gs.min===1&&gs.max===100?'selected':''}>1-100</option>
+          <option value="100-1000" ${gs.min===100&&gs.max===1000?'selected':''}>100-1000</option>
+        </select></div>
+        <div><label>الرقم السري</label><input type="number" value="${gs.secret??''}" placeholder="عشوائي" onchange="state.gameSettings.${g}.secret=this.value===''?null:+this.value;save()"></div>
+        ${g==='bomb'?`<div><label>مدة القنبلة</label><input type="number" value="${gs.timer}" onchange="state.gameSettings.bomb.timer=+this.value;save()"></div>`:''}
+      </div>
+      <div class="row">
+        <button class="btn btn-warning" onclick="quickStartRound();closeSheet()" style="flex:2">▶️ بدء (${s.roundDuration}ث)</button>
+        <button class="btn btn-secondary" onclick="randomSecret('${g}')">🎲</button>
+      </div>
+      <div class="row" style="margin-top:4px">
+        <input type="number" id="guessInput" placeholder="تخمين..." onkeydown="if(event.key==='Enter')submitGuess('${g}')" style="flex:2">
+        <button class="btn btn-primary" onclick="submitGuess('${g}')" style="flex:1">إرسال</button>
+      </div>`;
+  } else if(g==='word'){
+    gameSettingsHtml=`
+      <div class="row"><div><label>الكلمة</label><input type="text" value="${esc(gs.secret)}" onchange="state.gameSettings.word.secret=this.value;state.gameSettings.word.revealed=[];save()"></div></div>
+      <div class="row">
+        <button class="btn btn-warning" onclick="quickStartRound();closeSheet()" style="flex:2">▶️ بدء (${s.roundDuration}ث)</button>
+        <button class="btn btn-secondary" onclick="state.gameSettings.word.revealed=[];save()">🔄</button>
+      </div>
+      <div class="row" style="margin-top:4px">
+        <input type="text" id="letterInput" placeholder="حرف أو كلمة..." onkeydown="if(event.key==='Enter')submitWordGuess()" style="flex:2">
+        <button class="btn btn-primary" onclick="submitWordGuess()" style="flex:1">إرسال</button>
+      </div>`;
+  } else if(g==='spy'){
+    gameSettingsHtml=`
+      <div class="row">
+        <div><label>الأغلبية</label><input type="text" value="${esc(gs.majorityWord)}" onchange="state.gameSettings.spy.majorityWord=this.value;save()"></div>
+        <div><label>الجاسوس</label><input type="text" value="${esc(gs.spyWord)}" onchange="state.gameSettings.spy.spyWord=this.value;save()"></div>
+      </div>
+      <div class="row">
+        <button class="btn btn-warning" onclick="quickStartRound();closeSheet()" style="flex:2">▶️ تصويت (${s.roundDuration}ث)</button>
+        <button class="btn btn-primary" onclick="state.gameSettings.spy.revealed=!state.gameSettings.spy.revealed;save();renderGameView()">${gs.revealed?'🙈':'👁️'}</button>
+      </div>`;
+  }
+
+  document.getElementById('sheetBody').innerHTML=`
+    <div class="block"><h3>📝 الموضوع</h3><input type="text" value="${esc(s.topic)}" onchange="state.topic=this.value;save();renderGameView()"></div>
+    <div class="block"><h3>🎯 اللعبة</h3>
+      <div class="games">${['guess','word','spy','bomb'].map(id=>{const labels={guess:'🎲 خمن الرقم',word:'🔤 الكلمة',spy:'🕵️ الجاسوس',bomb:'💣 قنبلة'};return `<button class="game-btn ${g===id?'active':''}" onclick="switchGame('${id}')">${labels[id]}</button>`;}).join('')}</div>
+    </div>
+    <div class="block"><h3>⏱️ مدة الجولة: ${s.roundDuration}ث</h3><input type="range" min="10" max="300" step="5" value="${s.roundDuration}" oninput="state.roundDuration=+this.value;save()" onchange="renderSheet()" style="width:100%"></div>
+    <div class="block"><h3>⚙️ إعدادات اللعبة</h3>${gameSettingsHtml}</div>
+    <div class="block"><h3>🔍 فلترة التعليقات</h3>
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+        <label class="switch"><input type="checkbox" ${s.filter.enabled?'checked':''} onchange="state.filter.enabled=this.checked;save()"><span class="slider"></span></label>
+        <span style="font-size:10px;font-weight:700">تفعيل</span>
+      </div>
+      <input type="text" value="${esc(s.filter.keywords)}" placeholder="كلمات مفصولة بفاصلة" onchange="state.filter.keywords=this.value;save()">
+    </div>
+    <div class="block"><h3>🏆 الفائزون <span class="badge">${s.winners.length}</span></h3>
+      <div class="list">${s.winners.slice().reverse().slice(0,10).map(w=>`<div class="list-item"><span class="name">${esc(w.name)}</span><span class="time">${new Date(w.time).toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})}</span></div>`).join('')||'<div class="empty">لا يوجد</div>'}</div>
+      ${s.winners.length>0?`<button class="btn btn-danger" style="width:100%;margin-top:5px" onclick="if(confirm('مسح؟')){state.winners=[];save();renderSheet()}">🗑️ مسح</button>`:''}
+    </div>
+    <div class="block"><h3>💝 الداعمون <span class="badge">${s.supporters.length}</span></h3>
+      <div class="list">${s.supporters.slice().reverse().slice(0,10).map(w=>`<div class="list-item"><span class="name">${esc(w.name)}</span><span class="time">${new Date(w.time).toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})}</span></div>`).join('')||'<div class="empty">لا يوجد</div>'}</div>
+      ${s.supporters.length>0?`<button class="btn btn-danger" style="width:100%;margin-top:5px" onclick="if(confirm('مسح؟')){state.supporters=[];save();renderSheet()}">🗑️ مسح</button>`:''}
+    </div>
+    <div class="block"><h3>🔊 الإعلان الصوتي</h3>
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
+        <label class="switch"><input type="checkbox" ${s.audio.voiceEnabled?'checked':''} onchange="state.audio.voiceEnabled=this.checked;save()"><span class="slider"></span></label>
+        <span style="font-size:10px;font-weight:700">TTS للفائز</span>
+      </div>
+      <button class="btn btn-secondary" style="width:100%" onclick="speak('اختبار. ألف مبروك يا أحمد!')">🔊 اختبار</button>
+    </div>
+    <details>
+      <summary>🎨 التخصيص المتقدم</summary>
+      <div class="block"><h3>حجم العنوان: ${s.style.titleSize}px</h3><input type="range" min="16" max="40" value="${s.style.titleSize}" oninput="state.style.titleSize=+this.value;save();renderGameView()" style="width:100%"></div>
+      <div class="block"><h3>الألوان</h3>
+        <div class="row">
+          <div><label>أساسي</label><input type="color" value="${s.style.primary}" oninput="state.style.primary=this.value;save();applyColors()" style="width:100%;height:28px;border:none;border-radius:5px;cursor:pointer"></div>
+          <div><label>ثانوي</label><input type="color" value="${s.style.secondary}" oninput="state.style.secondary=this.value;save();applyColors()" style="width:100%;height:28px;border:none;border-radius:5px;cursor:pointer"></div>
+          <div><label>تمييز</label><input type="color" value="${s.style.accent}" oninput="state.style.accent=this.value;save();applyColors()" style="width:100%;height:28px;border:none;border-radius:5px;cursor:pointer"></div>
+        </div>
+      </div>
+      <div class="block"><h3>الملفات</h3>
+        <div style="display:flex;gap:5px;flex-wrap:wrap">
+          <label class="file-label">📤 شعار<input type="file" accept="image/*" onchange="uploadLogo(event)" style="display:none"></label>
+          <label class="file-label">🖼️ خلفية<input type="file" accept="image/*" onchange="uploadBg(event)" style="display:none"></label>
+          <label class="file-label">🎵 موسيقى<input type="file" accept="audio/*" onchange="uploadMusic(event)" style="display:none"></label>
+          ${s.style.logo?'<button class="btn btn-danger" onclick="state.style.logo=\'\';save();renderGameView()" style="padding:5px 8px;font-size:10px">❌ شعار</button>':''}
+          ${s.style.bgImage?'<button class="btn btn-danger" onclick="state.style.bgImage=\'\';save();renderGameView()" style="padding:5px 8px;font-size:10px">❌ خلفية</button>':''}
+          ${s.audio.hasMusic?'<button class="btn btn-danger" onclick="removeMusic()" style="padding:5px 8px;font-size:10px">❌ موسيقى</button>':''}
+        </div>
+      </div>
+    </details>
+  `;
+}
+
+function switchGame(id){ state.game=id; save(); renderGameView(); renderSheet(); }
+function setRange(g,val){ const gs=state.gameSettings[g]; if(val==='1-100'){gs.min=1;gs.max=100;} else if(val==='100-1000'){gs.min=100;gs.max=1000;} save(); renderGameView(); renderSheet(); }
+function randomSecret(g){ const gs=state.gameSettings[g]; gs.secret=Math.floor(Math.random()*(gs.max-gs.min+1))+gs.min; gs.guesses=[]; gs.hint=''; save(); renderGameView(); toast('الرقم: '+gs.secret); }
+
+function submitGuess(g){
+  const inp=document.getElementById('guessInput'); if(!inp) return;
+  const n=parseInt(inp.value,10); if(isNaN(n)) return;
+  const gs=state.gameSettings[g];
+  if(gs.secret===null){ toast('اختر رقمًا أولًا','error'); return; }
+  gs.guesses.push({n,time:Date.now()});
+  if(n===gs.secret){ gs.hint='correct'; honorWinner('تخمين '+n); }
+  else { gs.hint = n<gs.secret?'higher':'lower'; AudioEngine.play('close'); }
+  inp.value=''; save(); renderGameView(); renderSheet();
+}
+function submitWordGuess(){
+  const inp=document.getElementById('letterInput'); if(!inp) return;
+  const val=(inp.value||'').trim(); if(!val) return;
+  const gs=state.gameSettings.word;
+  if(val===gs.secret){ gs.revealed=gs.secret.split(''); honorWinner(val); }
+  else if(val.length===1 && gs.secret.includes(val) && !gs.revealed.includes(val)){ gs.revealed.push(val); AudioEngine.play('close'); }
+  else AudioEngine.play('lose');
+  inp.value=''; save(); renderGameView(); renderSheet();
+}
+
+/* ============================================================
+   UPLOADS
+============================================================ */
+async function uploadLogo(e){ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=ev=>{ state.style.logo=ev.target.result; save(); renderGameView(); toast('✓ الشعار','success'); }; r.readAsDataURL(f); }
+async function uploadBg(e){ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=ev=>{ state.style.bgImage=ev.target.result; save(); renderGameView(); toast('✓ الخلفية','success'); }; r.readAsDataURL(f); }
+async function uploadMusic(e){
+  const f=e.target.files[0]; if(!f) return;
+  if(f.size>30*1024*1024){ toast('الحد 30MB','error'); return; }
+  const r=new FileReader();
+  r.onload=async ev=>{ try{ await saveMusicData(ev.target.result); state.audio.hasMusic=true; save(); renderSheet(); toast('✓ الموسيقى','success'); pendingMusic=ev.target.result; if(audioUnlocked) await AudioEngine.tryPlay(); }catch(err){ toast('فشل الحفظ','error'); } };
+  r.readAsDataURL(f);
+}
+async function removeMusic(){ const db=await openIDB(); if(db){ const tx=db.transaction('music','readwrite'); tx.objectStore('music').delete('bg'); } state.audio.hasMusic=false; pendingMusic=null; if(bgAudio){bgAudio.pause();bgAudio=null;} save(); renderSheet(); toast('تم الحذف','success'); }
+
+/* ============================================================
+   AUDIO UNLOCK
+============================================================ */
+async function unlockAudio(){
+  AudioEngine.init();
+  await new Promise(r=>setTimeout(r,150));
+  audioUnlocked=true;
+  if(pendingMusic) await AudioEngine.tryPlay();
+  else if(state.audio.hasMusic){ const d=await loadMusicData(); if(d){ pendingMusic=d; await AudioEngine.tryPlay(); } }
+  initVoices();
+  document.getElementById('audioUnlock').style.display='none';
+}
+
+/* ============================================================
+   INIT
+============================================================ */
+async function init(){
+  fitStage();
+  applyColors();
+  renderGameView();
+  Confetti.init(document.getElementById('confetti'));
+
+  const unlock=document.getElementById('audioUnlock');
+  unlock.style.display='block';
+  unlock.onclick=unlockAudio;
+
+  if(state.audio.hasMusic){ const d=await loadMusicData(); if(d) pendingMusic=d; }
+
+  setInterval(tickTimer, 500);
+  setInterval(()=>{
+    const gs=state.gameSettings.bomb;
+    if(state.game==='bomb' && gs.endTime && Date.now()>=gs.endTime && !gs.exploded){
+      gs.exploded=true; gs.endTime=null; save(); renderGameView();
+    }
+    const gg=state.gameSettings[state.game];
+    if((state.game==='guess'||state.game==='word'||state.game==='spy') && gg.roundEndTime && Date.now()>=gg.roundEndTime){
+      gg.roundEndTime=null; save();
+    }
+  }, 500);
+
+  document.addEventListener('gesturestart', e=>e.preventDefault());
+}
+init();
+</script>
+</body>
+</html>
