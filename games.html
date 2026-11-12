@@ -2,227 +2,156 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#000000">
-<title>بث الألعاب — الهاتف</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Tajawal:wght@700;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>بث الألعاب — v7</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{--primary:#8b5cf6;--secondary:#ec4899;--accent:#f59e0b;--text:#f1f5f9;--muted:#94a3b8;--font:'Cairo',sans-serif;}
-
-html,body{height:100%;width:100%;overflow:hidden;background:#000;touch-action:manipulation;overscroll-behavior:none;margin:0}
+:root{--primary:#8b5cf6;--secondary:#ec4899;--accent:#f59e0b;--text:#f1f5f9;--muted:#94a3b8;--font:'Cairo',sans-serif}
+html,body{height:100%;width:100%;overflow:hidden;background:#000;touch-action:manipulation;overscroll-behavior:none}
 body{font-family:var(--font);color:var(--text);user-select:none;-webkit-user-select:none}
 input,textarea,select{font-family:inherit;user-select:text;-webkit-user-select:text}
-
-/* ========== VIEWPORT FRAME (letterbox) ========== */
-#viewportFrame{
-  position:fixed;inset:0;background:#000;
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;z-index:0;
-}
-
-/* ========== STAGE 405×720 (9:16) ========== */
-#stage{
-  position:relative;
-  width:405px;height:720px;
-  flex-shrink:0;
-  background:#0f172a;
-  transform-origin:center center;
-  overflow:hidden;
-}
-
-/* ========== BACKGROUND ========== */
+#viewportFrame{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;overflow:hidden;z-index:0}
+#stage{position:relative;width:405px;height:720px;flex-shrink:0;background:#0f172a;transform-origin:center center;overflow:hidden}
 #bg{position:absolute;inset:0;background:linear-gradient(135deg,#0f172a,#1e1b4b,#0f172a);background-size:400% 400%;animation:bgmove 20s ease infinite;z-index:0}
 @keyframes bgmove{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 #bg.custom{background-size:cover;background-position:center;animation:none}
-
 #confetti{position:absolute;inset:0;z-index:100;pointer-events:none}
 #flash{position:absolute;inset:0;background:#fff;opacity:0;z-index:99;pointer-events:none}
 #flash.go{animation:flash .5s}
 @keyframes flash{0%,100%{opacity:0}50%{opacity:.6}}
-
-/* ========== SAFE AREA (72px top, 216px bottom = 10%/30%) ========== */
-#safeArea{
-  position:absolute;
-  top:72px;bottom:216px;left:0;right:0;
-  display:flex;flex-direction:column;
-  gap:4px;padding:0 8px;
-  z-index:10;
-}
-
+#safeArea{position:absolute;top:72px;bottom:216px;left:0;right:0;display:flex;flex-direction:column;gap:4px;padding:0 8px;z-index:10}
 #titleBar{flex-shrink:0;text-align:center;padding:2px 0}
-#titleText{
-  font-size:24px;font-weight:900;line-height:1.15;
-  text-shadow:0 2px 20px rgba(0,0,0,.7);
-  display:inline-block;max-width:100%;
-  word-wrap:break-word;
-}
+#titleText{font-size:22px;font-weight:900;line-height:1.15;text-shadow:0 2px 20px rgba(0,0,0,.7);display:inline-block;max-width:100%;word-wrap:break-word}
 #titleText.pulse{animation:pulse 2s ease infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
-
-#timerBar{flex-shrink:0;display:none;justify-content:center;padding:2px 0}
-#timerInner{
-  background:linear-gradient(135deg,#10b981,#059669);
-  color:#fff;padding:4px 20px;border-radius:24px;
-  font-size:20px;font-weight:900;font-family:'Courier New',monospace;
-  box-shadow:0 0 24px rgba(16,185,129,.6);
-  display:flex;align-items:center;gap:6px;letter-spacing:1px;
-}
-#timerBar.warning #timerInner{background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 0 24px rgba(245,158,11,.7);animation:pulse .6s ease infinite}
-#timerBar.danger #timerInner{background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 0 24px rgba(239,68,68,.8);animation:pulse .35s ease infinite}
-#timerBar.ended #timerInner{background:linear-gradient(135deg,#64748b,#475569);box-shadow:0 0 24px rgba(100,116,139,.5);animation:none}
-
-#gameCard{
-  flex:1;min-height:0;
-  background:rgba(15,23,42,.9);backdrop-filter:blur(16px);
-  border:2px solid rgba(139,92,246,.35);border-radius:16px;
-  padding:10px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;overflow:hidden;
-  box-shadow:0 8px 30px rgba(0,0,0,.4);
-}
-.game-label{font-size:11px;color:var(--accent);font-weight:800;margin-bottom:4px;letter-spacing:1.5px}
-.guess-range{font-size:15px;font-weight:900;color:var(--primary);margin:4px 0}
-.guess-range b{color:var(--accent);font-size:22px}
-.guess-hint{font-size:28px;font-weight:900;margin:6px 0;min-height:36px}
+#timerBar{flex-shrink:0;display:none;justify-content:center;padding:1px 0}
+#timerInner{background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:3px 18px;border-radius:24px;font-size:18px;font-weight:900;font-family:'Courier New',monospace;box-shadow:0 0 20px rgba(16,185,129,.6);display:flex;align-items:center;gap:5px;letter-spacing:1px}
+#timerBar.warning #timerInner{background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 0 20px rgba(245,158,11,.7);animation:pulse .6s ease infinite}
+#timerBar.danger #timerInner{background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 0 20px rgba(239,68,68,.8);animation:pulse .35s ease infinite}
+#timerBar.ended #timerInner{background:linear-gradient(135deg,#64748b,#475569);box-shadow:0 0 20px rgba(100,116,139,.5);animation:none;font-family:var(--font);font-size:14px}
+#quizCategoryBar{flex-shrink:0;display:none;gap:4px;padding:2px 0;overflow-x:auto;overflow-y:hidden;white-space:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+#quizCategoryBar::-webkit-scrollbar{display:none}
+.cat-pill{display:inline-flex;align-items:center;gap:3px;padding:4px 10px;border-radius:14px;background:rgba(15,23,42,.9);border:1px solid #334155;color:#cbd5e1;font-size:11px;font-weight:700;font-family:inherit;cursor:pointer;flex-shrink:0}
+.cat-pill.active{background:linear-gradient(135deg,var(--primary),var(--secondary));border-color:transparent;color:#fff}
+#gameCard{flex:1;min-height:0;background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(236,72,153,.15)),radial-gradient(circle at 20% 20%,rgba(139,92,246,.3),transparent 60%),radial-gradient(circle at 80% 80%,rgba(236,72,153,.3),transparent 60%),rgba(15,23,42,.94);backdrop-filter:blur(16px);border:2px solid rgba(139,92,246,.4);border-radius:18px;padding:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.08);position:relative;transition:all .3s}
+#gameCard.reveal{background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(245,158,11,.2)),radial-gradient(circle at 50% 50%,rgba(245,158,11,.4),transparent 70%),rgba(15,23,42,.96);border-color:var(--accent);box-shadow:0 0 60px rgba(245,158,11,.5),0 8px 30px rgba(0,0,0,.5);animation:revealPop .6s}
+@keyframes revealPop{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+.game-label{font-size:11px;color:var(--accent);font-weight:800;margin-bottom:2px;letter-spacing:1.5px}
+.game-instruction{font-size:9px;color:#cbd5e1;margin-bottom:6px;padding:3px 8px;background:rgba(139,92,246,.15);border-radius:8px;font-weight:600;line-height:1.3;max-width:95%}
+.guess-range{font-size:14px;font-weight:900;color:var(--primary);margin:4px 0}
+.guess-range b{color:var(--accent);font-size:20px}
+.guess-hint{font-size:26px;font-weight:900;margin:4px 0;min-height:32px}
 .guess-hint.higher{color:#10b981}
 .guess-hint.lower{color:#ef4444}
-.guess-recent{display:flex;justify-content:center;gap:4px;flex-wrap:wrap;margin-top:4px;max-height:50px;overflow:hidden}
-.guess-chip{padding:3px 8px;background:rgba(139,92,246,.2);border:1px solid var(--primary);border-radius:14px;font-size:11px;font-weight:700}
-.word-slots{display:flex;justify-content:center;gap:4px;flex-wrap:wrap;margin:8px 0}
-.word-slot{width:32px;height:40px;background:rgba(139,92,246,.15);border:2px solid var(--primary);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:var(--accent)}
-.word-slot.revealed{background:rgba(245,158,11,.2);border-color:var(--accent)}
-.spy-boxes{display:flex;gap:8px;justify-content:center;margin:8px 0;flex-wrap:wrap;width:100%}
-.spy-box{flex:1;min-width:90px;padding:8px;border-radius:10px;background:rgba(139,92,246,.15);border:2px solid var(--primary)}
-.spy-box .lbl{font-size:10px;color:var(--muted);margin-bottom:3px;font-weight:700}
-.spy-box .val{font-size:15px;font-weight:900;color:var(--accent);filter:blur(6px);transition:filter .5s}
-.spy-box.revealed .val{filter:blur(0)}
-.bomb-timer{font-size:52px;font-weight:900;color:#ef4444;text-shadow:0 0 24px rgba(239,68,68,.8);margin:4px 0;font-family:'Courier New',monospace;animation:bombpulse 1s ease infinite}
+.guess-recent{display:flex;justify-content:center;gap:3px;flex-wrap:wrap;margin-top:4px;max-height:44px;overflow:hidden}
+.guess-chip{padding:2px 7px;background:rgba(139,92,246,.2);border:1px solid var(--primary);border-radius:12px;font-size:10px;font-weight:700}
+.reveal-content{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;animation:revealIn .5s;max-width:100%}
+@keyframes revealIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+.reveal-label{font-size:13px;color:var(--accent);font-weight:800;letter-spacing:3px}
+.reveal-answer{font-size:44px;font-weight:900;color:#fff;text-shadow:0 0 40px var(--accent),0 0 20px rgba(245,158,11,.8);line-height:1.1;word-break:break-word;max-width:100%}
+.reveal-hint{font-size:11px;color:#cbd5e1;margin-top:2px;font-weight:600}
+.word-slots{display:flex;justify-content:center;gap:4px;flex-wrap:wrap;margin:6px 0;max-width:340px}
+.word-slot{width:34px;height:42px;background:rgba(139,92,246,.15);border:2px solid var(--primary);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;color:var(--accent);transition:all .4s}
+.word-slot.revealed{background:rgba(245,158,11,.2);border-color:var(--accent);animation:flip .5s}
+@keyframes flip{0%{transform:rotateY(0)}50%{transform:rotateY(90deg)}100%{transform:rotateY(0)}}
+.synonym-word{font-size:44px;font-weight:900;color:var(--accent);text-shadow:0 0 30px rgba(245,158,11,.6);margin:8px 0;line-height:1.1;word-break:break-word;max-width:100%}
+.synonym-chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:6px;max-width:100%}
+.synonym-chip{padding:6px 14px;background:rgba(245,158,11,.2);border:2px solid var(--accent);border-radius:16px;font-size:16px;font-weight:700;color:#fff}
+.bomb-timer{font-size:48px;font-weight:900;color:#ef4444;text-shadow:0 0 24px rgba(239,68,68,.8);margin:2px 0;font-family:'Courier New',monospace;animation:bombpulse 1s ease infinite}
 @keyframes bombpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
-.bomb-explode{font-size:44px;font-weight:900;color:#ef4444;animation:explode .8s}
-@keyframes explode{0%{transform:scale(0)}50%{transform:scale(1.3)}100%{transform:scale(1)}}
-
-/* ========== ACTION BAR ========== */
-#actionBar{flex-shrink:0;display:flex;justify-content:center;align-items:center;gap:8px;padding:3px 0}
-.action-btn{
-  min-width:42px;height:42px;padding:0 10px;
-  border-radius:21px;background:rgba(15,23,42,.95);
-  border:2px solid var(--primary);color:#fff;
-  font-size:18px;font-family:inherit;font-weight:800;
-  display:flex;align-items:center;justify-content:center;gap:4px;
-  cursor:pointer;transition:all .2s;backdrop-filter:blur(8px);
-}
+.quiz-question{font-size:15px;font-weight:900;line-height:1.3;margin-bottom:8px;color:#fff;max-width:100%;word-break:break-word}
+.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:5px;width:100%;max-width:340px}
+.quiz-option{padding:8px 6px;background:rgba(15,23,42,.85);border:2px solid #334155;border-radius:10px;font-size:12px;font-weight:700;color:#e2e8f0;display:flex;align-items:center;gap:5px;text-align:right;transition:all .3s;overflow:hidden}
+.quiz-option .lbl{background:var(--primary);color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0}
+.quiz-option .txt{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#gameSwitcher{flex-shrink:0;display:flex;justify-content:center;align-items:center;gap:5px;padding:2px 0}
+.gs-btn{width:30px;height:30px;border-radius:50%;background:rgba(15,23,42,.9);border:1.5px solid #334155;color:#94a3b8;font-size:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-family:inherit;transition:all .2s;flex-shrink:0}
+.gs-btn:active{transform:scale(.9)}
+.gs-btn.active{background:linear-gradient(135deg,var(--primary),var(--secondary));border-color:transparent;color:#fff;box-shadow:0 0 12px rgba(139,92,246,.6)}
+#actionBar{flex-shrink:0;display:flex;justify-content:center;align-items:center;gap:6px;padding:2px 0}
+.action-btn{min-width:38px;height:38px;padding:0 8px;border-radius:19px;background:rgba(15,23,42,.95);border:2px solid var(--primary);color:#fff;font-size:16px;font-family:inherit;font-weight:800;display:flex;align-items:center;justify-content:center;gap:4px;cursor:pointer;transition:all .2s;backdrop-filter:blur(8px)}
 .action-btn:active{transform:scale(.9)}
 .action-btn.winner{border-color:var(--accent);color:var(--accent)}
 .action-btn.supporter{border-color:var(--secondary);color:var(--secondary)}
 .action-btn.start{border-color:#10b981;color:#10b981}
-.action-btn.settings{border-color:var(--muted);color:var(--muted);font-size:16px}
-.action-btn.expanded{
-  width:auto;min-width:auto;padding:0 5px;
-  background:rgba(15,23,42,.98);border-width:2px;
-}
-.action-btn input{
-  width:80px;padding:5px 6px;
-  background:transparent;border:none;outline:none;
-  color:#fff;font-size:12px;text-align:center;font-family:inherit;
-}
-.action-btn input::placeholder{color:#64748b;font-size:11px}
-.action-btn .mini-ok{background:#10b981;color:#fff;border:none;border-radius:50%;width:26px;height:26px;font-size:14px;cursor:pointer;font-weight:900}
-.action-btn .mini-cancel{background:#475569;color:#fff;border:none;border-radius:50%;width:22px;height:22px;font-size:11px;cursor:pointer}
-
-/* ========== LOGO ========== */
-#logoImg{position:absolute;top:72px;right:8px;max-height:50px;max-width:70px;object-fit:contain;z-index:11;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5))}
-
-/* ========== ANNOUNCEMENT OVERLAY ========== */
-#announcement{
-  position:absolute;inset:0;z-index:200;
-  display:flex;align-items:center;justify-content:center;flex-direction:column;
-  background:rgba(0,0,0,.88);backdrop-filter:blur(6px);
-  opacity:0;pointer-events:none;transition:opacity .35s;
-  text-align:center;padding:20px;
-}
+.action-btn.settings{border-color:var(--muted);color:var(--muted);font-size:14px}
+.action-btn.expanded{width:auto;min-width:auto;padding:0 4px;background:rgba(15,23,42,.98)}
+.action-btn input{width:70px;padding:4px 5px;background:transparent;border:none;outline:none;color:#fff;font-size:11px;text-align:center;font-family:inherit}
+.action-btn input::placeholder{color:#64748b;font-size:10px}
+.action-btn .mini-ok{background:#10b981;color:#fff;border:none;border-radius:50%;width:24px;height:24px;font-size:12px;cursor:pointer;font-weight:900}
+.action-btn .mini-cancel{background:#475569;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:10px;cursor:pointer}
+#logoImg{position:absolute;top:72px;right:8px;max-height:44px;max-width:60px;object-fit:contain;z-index:11;filter:drop-shadow(0 4px 12px rgba(0,0,0,.5))}
+#announcement{position:absolute;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;flex-direction:column;background:rgba(0,0,0,.88);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:opacity .35s;text-align:center;padding:20px}
 #announcement.show{opacity:1;pointer-events:auto}
 #announcement.winner{background:radial-gradient(circle at center,rgba(245,158,11,.3),rgba(0,0,0,.94))}
 #announcement.supporter{background:radial-gradient(circle at center,rgba(236,72,153,.3),rgba(0,0,0,.94))}
-.ann-icon{font-size:60px;animation:iconPop .6s;margin-bottom:8px}
+.ann-icon{font-size:56px;animation:iconPop .6s;margin-bottom:6px}
 @keyframes iconPop{0%{transform:scale(0) rotate(-30deg)}60%{transform:scale(1.3) rotate(10deg)}100%{transform:scale(1) rotate(0)}}
-.ann-label{font-size:16px;font-weight:800;letter-spacing:5px;margin-bottom:10px;text-transform:uppercase}
+.ann-label{font-size:14px;font-weight:800;letter-spacing:5px;margin-bottom:8px;text-transform:uppercase}
 #announcement.winner .ann-label{color:var(--accent)}
 #announcement.supporter .ann-label{color:var(--secondary)}
-.ann-name{font-size:44px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:12px;word-break:break-word;max-width:100%;padding:0 10px}
+.ann-name{font-size:40px;font-weight:900;color:#fff;line-height:1.1;margin-bottom:10px;word-break:break-word;max-width:100%;padding:0 8px}
 #announcement.winner .ann-name{text-shadow:0 0 60px var(--accent),0 0 30px rgba(245,158,11,.8)}
 #announcement.supporter .ann-name{text-shadow:0 0 60px var(--secondary),0 0 30px rgba(236,72,153,.8)}
-.ann-sub{font-size:16px;color:#cbd5e1;font-weight:700}
-
-/* ========== BUBBLE ========== */
+.ann-sub{font-size:14px;color:#cbd5e1;font-weight:700}
 #bubbles{position:absolute;inset:0;pointer-events:none;z-index:150;overflow:hidden}
-.bubble{position:absolute;background:rgba(255,255,255,.95);color:#0f172a;padding:8px 14px;border-radius:20px;font-weight:800;font-size:12px;box-shadow:0 6px 24px rgba(0,0,0,.4);animation:bubbleIn .4s ease, bubbleOut .4s ease 2.6s forwards;max-width:70%}
+.bubble{position:absolute;background:rgba(255,255,255,.95);color:#0f172a;padding:6px 12px;border-radius:18px;font-weight:800;font-size:11px;box-shadow:0 6px 24px rgba(0,0,0,.4);animation:bubbleIn .4s ease,bubbleOut .4s ease 2.6s forwards;max-width:70%}
 @keyframes bubbleIn{from{opacity:0;transform:scale(0.5) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
 @keyframes bubbleOut{to{opacity:0;transform:scale(0.9) translateY(-20px)}}
-
-/* ========== SETTINGS SHEET ========== */
 #backdrop{position:absolute;inset:0;background:rgba(0,0,0,.5);z-index:290;opacity:0;pointer-events:none;transition:opacity .2s}
 #backdrop.open{opacity:1;pointer-events:auto}
-#sheet{
-  position:absolute;bottom:0;left:0;right:0;max-height:520px;
-  background:#1e293b;border-radius:18px 18px 0 0;z-index:291;
-  transform:translateY(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);
-  display:flex;flex-direction:column;overflow:hidden;
-}
+#sheet{position:absolute;bottom:0;left:0;right:0;max-height:560px;background:#1e293b;border-radius:18px 18px 0 0;z-index:291;transform:translateY(100%);transition:transform .28s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;overflow:hidden}
 #sheet.open{transform:translateY(0)}
-.sheet-header{padding:9px 14px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--primary),var(--secondary));font-weight:900;font-size:13px;flex-shrink:0}
-.sheet-header button{background:rgba(255,255,255,.25);color:#fff;border:none;padding:5px 11px;border-radius:7px;font-weight:800;font-size:11px;cursor:pointer;font-family:inherit}
-.sheet-body{overflow-y:auto;padding:8px;flex:1;padding-bottom:16px;-webkit-overflow-scrolling:touch}
-.block{background:#0f172a;border-radius:9px;padding:8px;margin-bottom:6px}
-.block h3{font-size:11px;color:var(--accent);margin-bottom:6px;font-weight:800;display:flex;justify-content:space-between;align-items:center}
+.sheet-header{padding:8px 12px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,var(--primary),var(--secondary));font-weight:900;font-size:12px;flex-shrink:0}
+.sheet-header button{background:rgba(255,255,255,.25);color:#fff;border:none;padding:4px 10px;border-radius:6px;font-weight:800;font-size:11px;cursor:pointer;font-family:inherit}
+.sheet-tabs{display:flex;gap:2px;background:#0f172a;padding:4px;flex-shrink:0}
+.sheet-tab{flex:1;padding:6px;background:transparent;border:none;color:#94a3b8;font-size:10px;font-weight:700;cursor:pointer;border-radius:5px;font-family:inherit}
+.sheet-tab.active{background:var(--primary);color:#fff}
+.sheet-body{overflow-y:auto;padding:8px;flex:1;-webkit-overflow-scrolling:touch}
+.block{background:#0f172a;border-radius:8px;padding:7px;margin-bottom:5px}
+.block h3{font-size:10px;color:var(--accent);margin-bottom:5px;font-weight:800;display:flex;justify-content:space-between;align-items:center}
 .block h3 .badge{background:var(--primary);color:#fff;padding:1px 5px;border-radius:4px;font-size:9px}
-.row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:5px}
-.row>*{flex:1;min-width:55px}
-label{display:block;font-size:10px;color:var(--muted);margin-bottom:2px;font-weight:600}
-input[type=text],input[type=number],select{width:100%;padding:6px 8px;background:#1e293b;border:1px solid #334155;border-radius:6px;color:var(--text);font-size:12px}
-input:focus{border-color:var(--primary);outline:none}
-.btn{padding:7px 10px;border-radius:6px;font-weight:700;font-size:11px;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:4px;font-family:inherit}
+.row{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:4px}
+.row>*{flex:1;min-width:50px}
+label{display:block;font-size:9px;color:var(--muted);margin-bottom:2px;font-weight:600}
+input[type=text],input[type=number],select,textarea{width:100%;padding:5px 7px;background:#1e293b;border:1px solid #334155;border-radius:5px;color:var(--text);font-size:11px}
+textarea{resize:vertical;min-height:50px;font-family:'Courier New',monospace}
+input:focus,select:focus,textarea:focus{border-color:var(--primary);outline:none}
+.btn{padding:6px 9px;border-radius:5px;font-weight:700;font-size:10px;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:3px;font-family:inherit}
 .btn-primary{background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff}
 .btn-secondary{background:#334155;color:#fff}
 .btn-danger{background:#ef4444;color:#fff}
 .btn-warning{background:var(--accent);color:#0f172a}
+.btn-success{background:#10b981;color:#fff}
 .btn:active{transform:scale(.97)}
-.games{display:grid;grid-template-columns:repeat(2,1fr);gap:4px}
+.games{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
 .game-btn{padding:7px;background:#1e293b;border:2px solid #334155;border-radius:6px;color:#fff;font-weight:700;font-size:10px;font-family:inherit;cursor:pointer}
 .game-btn.active{border-color:var(--primary);background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(236,72,153,.2))}
-.switch{position:relative;display:inline-block;width:32px;height:17px;flex-shrink:0}
+.switch{position:relative;display:inline-block;width:30px;height:16px;flex-shrink:0}
 .switch input{opacity:0;width:0;height:0}
-.switch .slider{position:absolute;cursor:pointer;inset:0;background:#334155;transition:.3s;border-radius:17px}
-.switch .slider:before{position:absolute;content:"";height:11px;width:11px;left:3px;top:3px;background:#fff;transition:.3s;border-radius:50%}
+.switch .slider{position:absolute;cursor:pointer;inset:0;background:#334155;transition:.3s;border-radius:16px}
+.switch .slider:before{position:absolute;content:"";height:10px;width:10px;left:3px;top:3px;background:#fff;transition:.3s;border-radius:50%}
 .switch input:checked+.slider{background:var(--primary)}
-.switch input:checked+.slider:before{transform:translateX(15px)}
-details{margin-top:5px}
-details summary{cursor:pointer;font-size:11px;font-weight:700;padding:5px;background:#1e293b;border-radius:5px;color:var(--muted);list-style:none;text-align:center}
-details summary::-webkit-details-marker{display:none}
-details summary:before{content:"▸ "}
-details[open] summary:before{content:"▾ "}
-details[open] summary{color:var(--accent);margin-bottom:5px}
-.list{max-height:90px;overflow-y:auto;font-size:10px}
-.list-item{padding:4px 0;border-bottom:1px solid #334155;display:flex;justify-content:space-between}
+.switch input:checked+.slider:before{transform:translateX(14px)}
+.list{max-height:120px;overflow-y:auto;font-size:10px}
+.list-item{padding:4px 6px;border-bottom:1px solid #334155;display:flex;justify-content:space-between;align-items:center;gap:4px}
 .list-item:last-child{border-bottom:none}
-.list-item .name{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
-.list-item .time{color:var(--muted);font-size:9px;margin-right:6px}
+.list-item .name{font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;cursor:pointer}
+.list-item .time{color:var(--muted);font-size:9px;margin-right:4px}
+.list-item .del{background:#ef4444;color:#fff;border:none;width:18px;height:18px;border-radius:50%;font-size:10px;cursor:pointer;flex-shrink:0}
 .empty{color:#64748b;text-align:center;padding:5px;font-size:10px}
-.file-label{display:inline-block;padding:6px 10px;background:#334155;border-radius:5px;cursor:pointer;font-size:10px;font-weight:700}
-
-/* ========== AUDIO UNLOCK ========== */
-#audioUnlock{
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
-  color:#fff;padding:16px 24px;border-radius:20px;font-weight:900;font-size:15px;
-  z-index:500;cursor:pointer;box-shadow:0 0 60px rgba(139,92,246,.8);
-  border:3px solid #fff;text-align:center;line-height:1.4;animation:pulse 1.5s ease infinite;
-  max-width:90%;
-}
-#audioUnlock .sub{font-size:11px;font-weight:600;margin-top:3px;opacity:.9}
-
-/* ========== TOAST ========== */
-#toast{position:absolute;bottom:8px;left:50%;transform:translateX(-50%) translateY(80px);background:#10b981;color:#fff;padding:8px 14px;border-radius:8px;font-weight:700;font-size:11px;z-index:600;transition:transform .3s;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:85%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.file-label{display:inline-block;padding:5px 9px;background:#334155;border-radius:5px;cursor:pointer;font-size:10px;font-weight:700}
+.q-item{background:#1e293b;border-radius:5px;padding:5px;margin-bottom:3px;font-size:10px}
+.q-item .q-txt{font-weight:700;margin-bottom:2px;color:#e2e8f0}
+.q-item .q-opts{color:#94a3b8;font-size:9px}
+.q-item .q-ans{color:#10b981;font-size:9px;font-weight:700}
+.w-item{background:#1e293b;border-radius:5px;padding:5px;margin-bottom:3px;font-size:10px;display:flex;justify-content:space-between;align-items:center;gap:4px}
+.w-item .w-txt{font-weight:700;color:#e2e8f0;flex:1}
+.w-item .w-len{color:var(--muted);font-size:9px}
+#audioUnlock{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:linear-gradient(135deg,var(--primary),var(--secondary));color:#fff;padding:14px 22px;border-radius:18px;font-weight:900;font-size:14px;z-index:500;cursor:pointer;box-shadow:0 0 60px rgba(139,92,246,.8);border:3px solid #fff;text-align:center;line-height:1.4;animation:pulse 1.5s ease infinite;max-width:90%}
+#audioUnlock .sub{font-size:10px;font-weight:600;margin-top:3px;opacity:.9}
+#toast{position:absolute;bottom:8px;left:50%;transform:translateX(-50%) translateY(80px);background:#10b981;color:#fff;padding:7px 12px;border-radius:7px;font-weight:700;font-size:10px;z-index:600;transition:transform .3s;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:85%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #toast.show{transform:translateX(-50%) translateY(0)}
 #toast.error{background:#ef4444}
 #toast.info{background:var(--primary)}
@@ -230,22 +159,21 @@ details[open] summary{color:var(--accent);margin-bottom:5px}
 </head>
 <body>
 
-<!-- Viewport (black letterbox container) -->
 <div id="viewportFrame">
-  <!-- Stage: fixed 405×720, scaled to fit -->
   <div id="stage">
     <div id="bg"></div>
     <canvas id="confetti"></canvas>
     <div id="flash"></div>
-
     <img id="logoImg" style="display:none">
 
     <div id="safeArea">
       <div id="titleBar"><span id="titleText"></span></div>
       <div id="timerBar"><div id="timerInner"><span>⏱️</span><span id="timerVal">60</span></div></div>
+      <div id="quizCategoryBar"></div>
       <div id="gameCard"></div>
+      <div id="gameSwitcher"></div>
       <div id="actionBar">
-        <button class="action-btn start" id="startBtn" onclick="quickStartRound()" title="بدء جولة">▶️</button>
+        <button class="action-btn start" id="startBtn" onclick="quickStartRound()">▶️</button>
         <button class="action-btn winner" id="winnerBtn" onclick="expandActionBtn('winner')">🏆</button>
         <button class="action-btn supporter" id="supporterBtn" onclick="expandActionBtn('supporter')">💝</button>
         <button class="action-btn settings" onclick="openSheet()">⚙️</button>
@@ -257,10 +185,8 @@ details[open] summary{color:var(--accent);margin-bottom:5px}
 
     <div id="backdrop" onclick="closeSheet()"></div>
     <div id="sheet">
-      <div class="sheet-header">
-        <span>⚙️ الإعدادات</span>
-        <button onclick="closeSheet()">✕ إغلاق</button>
-      </div>
+      <div class="sheet-header"><span>⚙️ الإعدادات</span><button onclick="closeSheet()">✕</button></div>
+      <div class="sheet-tabs" id="sheetTabs"></div>
       <div class="sheet-body" id="sheetBody"></div>
     </div>
 
@@ -270,560 +196,833 @@ details[open] summary{color:var(--accent);margin-bottom:5px}
 </div>
 
 <script>
-/* ============================================================
-   STAGE FIT (scale 405×720 to fill viewport, no letterbox bars in 9:16)
-============================================================ */
-function fitStage(){
-  const stage = document.getElementById('stage');
-  if(!stage) return;
-  const scale = Math.min(innerWidth/405, innerHeight/720);
-  stage.style.transform = `scale(${scale})`;
-}
-window.addEventListener('resize', fitStage);
-window.addEventListener('orientationchange', ()=>setTimeout(fitStage,150));
+function fitStage(){const stage=document.getElementById('stage');if(!stage)return;const scale=Math.min(innerWidth/405,innerHeight/720);stage.style.transform=`scale(${scale})`;}
+window.addEventListener('resize',fitStage);
+window.addEventListener('orientationchange',()=>setTimeout(fitStage,150));
 
-/* ============================================================
-   STATE
-============================================================ */
+/* ============ SAMPLE DATA ============ */
+const SAMPLE_WORDS = [
+  'قلم','باب','شمس','قمر','ماء','نور','عين','قلب','ورد','بحر','جبل','نار',
+  'سماء','أرض','بيت','كتاب','ورقة','قصة','شعر','أدب','رسم','لون',
+  'أخضر','أحمر','أزرق','أصفر','أبيض','أسود','ذهب','فضة','حديد','خشب','حجر',
+  'رمل','تراب','زرع','شجر','ثمر','لحم','سمك','دجاج','حليب','عسل','سكر','ملح',
+  'خبز','أرز','شاي','قهوة','عصير','فطور','غداء','عشاء','نجم','ليل','نهار',
+  'صباح','مساء','يوم','ساعة','شهر','سنة','مدرسة','جامعة','طالب','معلم','طبيب',
+  'مهندس','سيارة','طائرة','قطار','حاسوب','هاتف','تلفاز','فاكهة','خضار'
+];
+
+const SAMPLE_SYNONYMS = [
+  {word:'سعيد',synonyms:['فرحان','مسرور','مبتهج']},
+  {word:'حزين',synonyms:['كئيب','مهموم','مغموم']},
+  {word:'كبير',synonyms:['ضخم','عظيم','هائل']},
+  {word:'صغير',synonyms:['ضئيل','حقير','وضيع']},
+  {word:'جميل',synonyms:['حسن','بديع','رائع']},
+  {word:'قبيح',synonyms:['بشع','شنيع','دميم']},
+  {word:'سريع',synonyms:['عاجل','خاطف','مسرع']},
+  {word:'بطيء',synonyms:['متأني','متمهل','متباطئ']},
+  {word:'قوي',synonyms:['صلب','متين','شديد']},
+  {word:'ضعيف',synonyms:['واهن','هزيل','وضيع']},
+  {word:'ذكي',synonyms:['فطن','لبيب','نبيه']},
+  {word:'غبي',synonyms:['أحمق','بليد','جاهل']},
+  {word:'شجاع',synonyms:['جسور','مقدام','باسل']},
+  {word:'خائف',synonyms:['وجل','راهب','مذعور']},
+  {word:'كريم',synonyms:['سخي','جواد','معطاء']},
+  {word:'بخيل',synonyms:['شحيح','ضنين','ممسك']},
+  {word:'صادق',synonyms:['أمين','صديق','مخلص']},
+  {word:'كاذب',synonyms:['مخادع','أفاك','دجال']},
+  {word:'نظيف',synonyms:['نقي','طاهر','زكي']},
+  {word:'وسخ',synonyms:['قذر','دنس','ملوث']},
+  {word:'ساخن',synonyms:['حار','ملتهب','محترق']},
+  {word:'بارد',synonyms:['صقيع','متجمد','قارس']},
+  {word:'جديد',synonyms:['حديث','طري','طرير']},
+  {word:'قديم',synonyms:['عتيق','عريق','أثري']},
+  {word:'قريب',synonyms:['داني','مجاور','جار']},
+  {word:'بعيد',synonyms:['نائي','قصي','سحيق']},
+  {word:'كثير',synonyms:['وفير','غزير','جم']},
+  {word:'قليل',synonyms:['نزر','نادر','شحيح']},
+  {word:'سهل',synonyms:['يسير','هين','ميسور']},
+  {word:'صعب',synonyms:['عسير','شاق','مستصعب']},
+  {word:'واضح',synonyms:['جلي','بين','ظاهر']},
+  {word:'غامض',synonyms:['مبهم','ملتبس','معتم']},
+  {word:'غني',synonyms:['ثري','موسر','مترف']},
+  {word:'فقير',synonyms:['معوز','محتاج','بائس']},
+  {word:'جبان',synonyms:['خائف','هياب','خور']}
+];
+
+const SAMPLE_LIBRARY = {
+  categories:[
+    {id:'arab',name:'الدول العربية',icon:'🌍',questions:[
+      {q:'ما عاصمة السعودية؟',options:['الرياض','جدة','مكة','الدمام'],a:0,hint:'أكبر مدن السعودية'},
+      {q:'ما عاصمة مصر؟',options:['القاهرة','الإسكندرية','الجيزة','أسوان'],a:0,hint:'مدينة الألف مئذنة'},
+      {q:'ما عاصمة المغرب؟',options:['الرباط','الدار البيضاء','مراكش','فاس'],a:0,hint:'وليست الدار البيضاء'},
+      {q:'ما عاصمة الإمارات؟',options:['أبوظبي','دبي','الشارقة','عجمان'],a:0,hint:'أكبر إمارة مساحة'},
+      {q:'ما عاصمة الأردن؟',options:['عمّان','إربد','الزرقاء','العقبة'],a:0,hint:'مدينة التلال السبعة'},
+      {q:'ما عاصمة لبنان؟',options:['بيروت','طرابلس','صيدا','صور'],a:0,hint:'عاصمة الثقافة'},
+      {q:'ما عاصمة سوريا؟',options:['دمشق','حلب','حمص','اللاذقية'],a:0,hint:'أقدم عاصمة مأهولة'},
+      {q:'ما عاصمة العراق؟',options:['بغداد','البصرة','الموصل','أربيل'],a:0,hint:'مدينة السلام'},
+      {q:'ما عاصمة الجزائر؟',options:['الجزائر','وهران','قسنطينة','عنابة'],a:0,hint:'تحمل نفس اسم الدولة'},
+      {q:'ما عاصمة تونس؟',options:['تونس','صفاقس','سوسة','المنستير'],a:0,hint:'تحمل نفس اسم الدولة'}
+    ]},
+    {id:'gulf',name:'دول الخليج',icon:'🏜️',questions:[
+      {q:'كم عدد دول مجلس التعاون الخليجي؟',options:['6','5','7','8'],a:0,hint:'أصغر من 7'},
+      {q:'ما هي أصغر دولة خليجية مساحة؟',options:['البحرين','قطر','الكويت','عمان'],a:0,hint:'جزيرة'},
+      {q:'ما عملة الكويت؟',options:['الدينار','الريال','الدرهم','الجنيه'],a:0,hint:'أغلى عملة في العالم'},
+      {q:'في أي دولة يقع جبل شمس؟',options:['عمان','السعودية','الإمارات','قطر'],a:0,hint:'أعلى قمة في الخليج'},
+      {q:'ما هي عاصمة قطر؟',options:['الدوحة','الوكرة','الريان','الخور'],a:0,hint:'مدينة ساحلية'},
+      {q:'ما هي عاصمة البحرين؟',options:['المنامة','المحرق','الرفاع','سترة'],a:0,hint:'أكبر مدن البحرين'}
+    ]},
+    {id:'africa',name:'أفريقية',icon:'🌍',questions:[
+      {q:'ما عاصمة نيجيريا؟',options:['أبوجا','لاغوس','كانو','إبادان'],a:0,hint:'ليست لاغوس'},
+      {q:'ما عاصمة كينيا؟',options:['نيروبي','مومباسا','كيسومو','ناكورو'],a:0,hint:'مدينة الشمس الخضراء'},
+      {q:'ما عاصمة إثيوبيا؟',options:['أديس أبابا','دير داوا','ميكيلي','غوندر'],a:0,hint:'تعني الزهرة الجديدة'},
+      {q:'ما عاصمة جنوب أفريقيا التشريعية؟',options:['كيب تاون','بريتوريا','جوهانسبرغ','ديربان'],a:0,hint:'مدينة الأعشاب'},
+      {q:'ما عاصمة السنغال؟',options:['داكار','تييس','سانت لويس','زيغينشور'],a:0,hint:'أقصى غرب أفريقيا'}
+    ]},
+    {id:'asia',name:'آسيوية',icon:'🏯',questions:[
+      {q:'ما عاصمة اليابان؟',options:['طوكيو','أوساكا','كيوتو','ناغويا'],a:0,hint:'أكبر تجمع حضري'},
+      {q:'ما عاصمة الصين؟',options:['بكين','شنغهاي','قوانغتشو','شنتشن'],a:0,hint:'العاصمة الشمالية'},
+      {q:'ما عاصمة الهند؟',options:['نيودلهي','مومباي','بنغالورو','كولكاتا'],a:0,hint:'العاصمة الجديدة'},
+      {q:'ما عاصمة كوريا الجنوبية؟',options:['سيول','بوسان','إنتشون','دايغو'],a:0,hint:'نهر الهان'},
+      {q:'ما عاصمة تايلاند؟',options:['بانكوك','شيانغ ماي','فوكيت','باتايا'],a:0,hint:'مدينة الملائكة'}
+    ]},
+    {id:'general',name:'أسئلة عامة',icon:'🧠',questions:[
+      {q:'ما أكبر كوكب في المجموعة الشمسية؟',options:['المشتري','زحل','الأرض','نبتون'],a:0,hint:'كوكب الغاز العظيم'},
+      {q:'كم عدد أيام السنة الميلادية؟',options:['365','360','366','370'],a:0,hint:'دورة الأرض حول الشمس'},
+      {q:'ما هو أطول نهر في العالم؟',options:['النيل','الأمازون','المسيسيبي','اليانغتسي'],a:0,hint:'نهر مصر'},
+      {q:'ما هي أصغر قارة؟',options:['أستراليا','أوروبا','أنتاركتيكا','أمريكا الجنوبية'],a:0,hint:'قارة الكانغارو'},
+      {q:'من مؤلف كتاب مقدمة ابن خلدون؟',options:['ابن خلدون','ابن بطوطة','ابن سينا','الفارابي'],a:0,hint:'الاسم في العنوان'}
+    ]},
+    {id:'custom',name:'مخصصة',icon:'✏️',questions:[]}
+  ],
+  words: JSON.parse(JSON.stringify(SAMPLE_WORDS)),
+  synonyms: JSON.parse(JSON.stringify(SAMPLE_SYNONYMS))
+};
+
 const DEFAULT_STATE = {
-  topic:'بث الألعاب التفاعلي',
-  game:'guess',
-  roundDuration:60,
+  topic:'بث الألعاب التفاعلي',game:'guess',roundDuration:60,
+  currentCategory:'arab',currentQuestion:null,questionRevealed:false,
+  library:JSON.parse(JSON.stringify(SAMPLE_LIBRARY)),
   gameSettings:{
     guess:{min:1,max:100,secret:null,guesses:[],hint:'',roundEndTime:null},
-    word:{secret:'مرحبا',revealed:[],roundEndTime:null},
-    spy:{majorityWord:'تفاحة',spyWord:'كمثرى',revealed:false,roundEndTime:null},
-    bomb:{min:1,max:100,secret:null,guesses:[],timer:60,endTime:null,exploded:false,hint:''}
+    quiz:{roundEndTime:null},
+    word:{currentWord:null,revealed:[],roundEndTime:null},
+    synonym:{currentEntry:null,revealed:false,roundEndTime:null},
+    bomb:{min:1,max:100,secret:null,guesses:[],endTime:null,exploded:false,hint:''}
   },
-  winners:[], supporters:[],
+  winners:[],supporters:[],
   filter:{enabled:true,keywords:'جاهز, رقم'},
-  style:{titleSize:24,primary:'#8b5cf6',secondary:'#ec4899',accent:'#f59e0b',logo:'',bgImage:''},
-  audio:{voiceEnabled:true,voiceRate:1,voicePitch:1,bgVolume:0.4,hasMusic:false,muted:false}
+  style:{titleSize:22,primary:'#8b5cf6',secondary:'#ec4899',accent:'#f59e0b',logo:'',bgImage:''},
+  audio:{voiceEnabled:true,voiceRate:1,voicePitch:1,bgVolume:0.4,hasMusic:false,muted:false},
+  sheetTab:'basic',libSubTab:'quiz'
 };
+
 let state = loadState();
-let audioCtx=null, bgAudio=null, pendingMusic=null, audioUnlocked=false, idb=null;
-let arabicVoice=null;
-let announcementTimer=null;
-let lastTimerState='hidden';
+let audioCtx=null,bgAudio=null,pendingMusic=null,audioUnlocked=false,idb=null;
+let arabicVoice=null,announcementTimer=null,lastTimerState='hidden';
 
 function loadState(){
   try{
-    const saved = JSON.parse(localStorage.getItem('ig_mobile_v4')) || {};
+    const saved = JSON.parse(localStorage.getItem('ig_mobile_v7')) || {};
     const d = JSON.parse(JSON.stringify(DEFAULT_STATE));
-    return {
-      ...d, ...saved,
-      gameSettings:{...d.gameSettings,...saved.gameSettings},
-      style:{...d.style,...saved.style},
-      audio:{...d.audio,...saved.audio},
-      filter:{...d.filter,...saved.filter}
-    };
+    const merged = {...d,...saved,gameSettings:{...d.gameSettings,...saved.gameSettings},style:{...d.style,...saved.style},audio:{...d.audio,...saved.audio},filter:{...d.filter,...saved.filter}};
+    if(!merged.library || !merged.library.categories) merged.library = JSON.parse(JSON.stringify(SAMPLE_LIBRARY));
+    if(!merged.library.words) merged.library.words = JSON.parse(JSON.stringify(SAMPLE_WORDS));
+    if(!merged.library.synonyms) merged.library.synonyms = JSON.parse(JSON.stringify(SAMPLE_SYNONYMS));
+    return merged;
   }catch(e){ return JSON.parse(JSON.stringify(DEFAULT_STATE)); }
 }
-function save(){ try{ localStorage.setItem('ig_mobile_v4', JSON.stringify(state)); }catch(e){} }
+function save(){ try{ localStorage.setItem('ig_mobile_v7', JSON.stringify(state)); }catch(e){} }
 function uid(){ return Math.random().toString(36).slice(2,9); }
 function esc(s){ return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function normalizeAr(s){ return String(s||'').replace(/[أإآ]/g,'ا').replace(/[ىي]/g,'ي').replace(/ة/g,'ه').replace(/[\u064B-\u065F]/g,'').trim(); }
+function toast(msg,type='info'){const el=document.getElementById('toast');el.textContent=msg;el.className='show '+type;clearTimeout(el._t);el._t=setTimeout(()=>el.className='',2400);}
 
-function toast(msg,type='info'){
-  const el=document.getElementById('toast');
-  el.textContent=msg; el.className='show '+type;
-  clearTimeout(el._t); el._t=setTimeout(()=>el.className='',2400);
-}
-
-/* ============================================================
-   IDB
-============================================================ */
-function openIDB(){ return new Promise(res=>{ if(idb) return res(idb); const r=indexedDB.open('ig_music_v4',1); r.onupgradeneeded=e=>e.target.result.createObjectStore('music'); r.onsuccess=e=>{idb=e.target.result;res(idb);}; r.onerror=()=>res(null); }); }
+function openIDB(){ return new Promise(res=>{ if(idb) return res(idb); const r=indexedDB.open('ig_music_v7',1); r.onupgradeneeded=e=>e.target.result.createObjectStore('music'); r.onsuccess=e=>{idb=e.target.result;res(idb);}; r.onerror=()=>res(null); }); }
 async function saveMusicData(d){ const db=await openIDB(); if(!db) return; return new Promise(res=>{ const tx=db.transaction('music','readwrite'); tx.objectStore('music').put(d,'bg'); tx.oncomplete=()=>res(true); tx.onerror=()=>res(false); }); }
 async function loadMusicData(){ const db=await openIDB(); if(!db) return null; return new Promise(res=>{ const tx=db.transaction('music','readonly'); const g=tx.objectStore('music').get('bg'); g.onsuccess=()=>res(g.result||null); g.onerror=()=>res(null); }); }
 
-/* ============================================================
-   AUDIO
-============================================================ */
 const AudioEngine = {
   init(){ if(!audioCtx){ try{audioCtx=new (window.AudioContext||window.webkitAudioContext)();}catch(e){} } if(audioCtx && audioCtx.state==='suspended') audioCtx.resume(); },
-  tone(freq,dur,type,vol,delay){
-    if(!audioCtx || state.audio.muted) return;
-    const t=audioCtx.currentTime+(delay||0);
-    const osc=audioCtx.createOscillator(), g=audioCtx.createGain();
-    osc.type=type||'sine'; osc.frequency.value=freq;
-    g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol,t+0.01);
-    g.gain.exponentialRampToValueAtTime(0.0001,t+dur);
-    osc.connect(g); g.connect(audioCtx.destination);
-    osc.start(t); osc.stop(t+dur+0.05);
-  },
+  tone(freq,dur,type,vol,delay){ if(!audioCtx || state.audio.muted) return; const t=audioCtx.currentTime+(delay||0); const osc=audioCtx.createOscillator(),g=audioCtx.createGain(); osc.type=type||'sine'; osc.frequency.value=freq; g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol,t+0.01); g.gain.exponentialRampToValueAtTime(0.0001,t+dur); osc.connect(g); g.connect(audioCtx.destination); osc.start(t); osc.stop(t+dur+0.05); },
   play(name){
-    if(state.audio.muted) return; this.init();
-    const v=0.7;
+    if(state.audio.muted) return; this.init(); const v=0.7;
     if(name==='win'){ this.tone(523,.15,'sine',v); this.tone(659,.15,'sine',v,.1); this.tone(784,.2,'sine',v,.2); this.tone(1047,.4,'sine',v,.3); }
     else if(name==='lose'){ this.tone(200,.25,'sawtooth',v); this.tone(150,.35,'sawtooth',v,.12); this.tone(90,.6,'sawtooth',v,.25); }
     else if(name==='honor'){ this.tone(880,.1,'triangle',v); this.tone(1175,.15,'triangle',v,.08); this.tone(1568,.3,'triangle',v,.15); }
     else if(name==='tick'){ this.tone(600,.06,'square',.3); }
+    else if(name==='reveal'){ this.tone(523,.1,'sine',v); this.tone(659,.1,'sine',v,.08); this.tone(784,.15,'sine',v,.16); this.tone(1047,.3,'sine',v,.24); }
+    else if(name==='explode'){ this.tone(80,.8,'sawtooth',v); this.tone(60,.9,'sawtooth',v,.1); this.tone(40,1,'sawtooth',v,.2); }
     else if(name==='close'){ this.tone(700,.06,'sine',.4); }
   },
   async setBgMusic(src){ if(!src){ if(bgAudio){bgAudio.pause();bgAudio=null;} pendingMusic=null; return; } pendingMusic=src; if(audioUnlocked) await this.tryPlay(); },
   async tryPlay(){ if(!pendingMusic) return; this.init(); try{ if(bgAudio){bgAudio.pause();bgAudio=null;} bgAudio=new Audio(pendingMusic); bgAudio.loop=true; bgAudio.volume=state.audio.bgVolume; await bgAudio.play(); }catch(e){} }
 };
 
-/* ============================================================
-   VOICE (TTS)
-============================================================ */
-function initVoices(){
-  if(!('speechSynthesis' in window)) return;
-  const load=()=>{ const voices=speechSynthesis.getVoices(); arabicVoice = voices.find(v=>v.lang.startsWith('ar')) || voices[0] || null; };
-  load(); speechSynthesis.onvoiceschanged = load; setTimeout(load,500);
-}
-function speak(text){
-  if(!state.audio.voiceEnabled || state.audio.muted) return;
-  if(!('speechSynthesis' in window)) return;
-  try{
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang='ar-SA'; u.rate=state.audio.voiceRate; u.pitch=state.audio.voicePitch;
-    if(arabicVoice) u.voice=arabicVoice;
-    speechSynthesis.speak(u);
-  }catch(e){}
-}
+function initVoices(){ if(!('speechSynthesis' in window)) return; const load=()=>{ const voices=speechSynthesis.getVoices(); arabicVoice=voices.find(v=>v.lang.startsWith('ar'))||voices[0]||null; }; load(); speechSynthesis.onvoiceschanged=load; setTimeout(load,500); }
+function speak(text){ if(!state.audio.voiceEnabled || state.audio.muted) return; if(!('speechSynthesis' in window)) return; try{ speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang='ar-SA'; u.rate=state.audio.voiceRate; u.pitch=state.audio.voicePitch; if(arabicVoice) u.voice=arabicVoice; speechSynthesis.speak(u); }catch(e){} }
 
-/* ============================================================
-   CONFETTI (canvas sized to stage 405×720)
-============================================================ */
 const Confetti = {
-  canvas:null, ctx:null, particles:[], running:false, colors:['#8b5cf6','#ec4899','#f59e0b','#10b981','#fbbf24','#60a5fa'],
+  canvas:null,ctx:null,particles:[],running:false,colors:['#8b5cf6','#ec4899','#f59e0b','#10b981','#fbbf24','#60a5fa'],
   init(c){ this.canvas=c; this.ctx=c.getContext('2d'); this.canvas.width=405; this.canvas.height=720; },
-  burst(n,colors){
-    if(!this.ctx) return;
-    const cols=colors||this.colors;
-    for(let i=0;i<n;i++){
-      this.particles.push({
-        x:202+(Math.random()-.5)*100,
-        y:360+(Math.random()-.5)*80,
-        vx:(Math.random()-.5)*12, vy:(Math.random()-.5)*12-3,
-        g:.3, size:2.5+Math.random()*5,
-        color:cols[Math.floor(Math.random()*cols.length)],
-        life:1, decay:.008+Math.random()*.012,
-        rot:Math.random()*Math.PI*2, rotSpeed:(Math.random()-.5)*.3
-      });
-    }
-    this.start();
-  },
+  burst(n,colors){ if(!this.ctx) return; const cols=colors||this.colors; for(let i=0;i<n;i++) this.particles.push({x:202+(Math.random()-.5)*100,y:360+(Math.random()-.5)*80,vx:(Math.random()-.5)*12,vy:(Math.random()-.5)*12-3,g:.3,size:2.5+Math.random()*5,color:cols[Math.floor(Math.random()*cols.length)],life:1,decay:.008+Math.random()*.012,rot:Math.random()*Math.PI*2,rotSpeed:(Math.random()-.5)*.3}); this.start(); },
   start(){ if(this.running) return; this.running=true; this.loop(); },
-  loop(){
-    if(!this.ctx) return;
-    this.ctx.clearRect(0,0,405,720);
-    this.particles=this.particles.filter(p=>p.life>0);
-    if(this.particles.length===0){ this.running=false; return; }
-    for(const p of this.particles){
-      p.x+=p.vx; p.y+=p.vy; p.vy+=p.g; p.vx*=.99; p.life-=p.decay; p.rot+=p.rotSpeed;
-      this.ctx.save(); this.ctx.globalAlpha=Math.max(0,p.life);
-      this.ctx.translate(p.x,p.y); this.ctx.rotate(p.rot);
-      this.ctx.fillStyle=p.color;
-      this.ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*.6);
-      this.ctx.restore();
-    }
-    requestAnimationFrame(()=>this.loop());
-  }
+  loop(){ if(!this.ctx) return; this.ctx.clearRect(0,0,405,720); this.particles=this.particles.filter(p=>p.life>0); if(this.particles.length===0){ this.running=false; return; } for(const p of this.particles){ p.x+=p.vx; p.y+=p.vy; p.vy+=p.g; p.vx*=.99; p.life-=p.decay; p.rot+=p.rotSpeed; this.ctx.save(); this.ctx.globalAlpha=Math.max(0,p.life); this.ctx.translate(p.x,p.y); this.ctx.rotate(p.rot); this.ctx.fillStyle=p.color; this.ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size*.6); this.ctx.restore(); } requestAnimationFrame(()=>this.loop()); }
 };
 
-/* ============================================================
-   RENDER
-============================================================ */
-function applyColors(){
-  document.documentElement.style.setProperty('--primary',state.style.primary);
-  document.documentElement.style.setProperty('--secondary',state.style.secondary);
-  document.documentElement.style.setProperty('--accent',state.style.accent);
+function applyColors(){ document.documentElement.style.setProperty('--primary',state.style.primary); document.documentElement.style.setProperty('--secondary',state.style.secondary); document.documentElement.style.setProperty('--accent',state.style.accent); }
+
+/* ============ GAME SWITCHER ============ */
+function renderGameSwitcher(){
+  const games = [{id:'guess',icon:'🎲',label:'خمن الرقم'},{id:'quiz',icon:'❓',label:'أسئلة'},{id:'word',icon:'🔤',label:'كلمة'},{id:'synonym',icon:'💡',label:'مترادفات'},{id:'bomb',icon:'💣',label:'قنبلة'}];
+  document.getElementById('gameSwitcher').innerHTML = games.map(g=>`<button class="gs-btn ${state.game===g.id?'active':''}" onclick="switchGame('${g.id}')" title="${g.label}">${g.icon}</button>`).join('');
 }
 
-function renderGameView(){
-  const s=state, g=s.game, gs=s.gameSettings[g];
+function renderCategoryBar(){
+  const bar = document.getElementById('quizCategoryBar');
+  if(state.game !== 'quiz'){ bar.style.display='none'; return; }
+  bar.style.display='flex';
+  bar.innerHTML = state.library.categories.map(c=>`<button class="cat-pill ${state.currentCategory===c.id?'active':''}" onclick="setCategory('${c.id}')">${c.icon} ${esc(c.name)}</button>`).join('');
+}
 
+/* ============ GAME CARD ============ */
+function renderGameCard(){
+  const s=state,g=s.game,gs=s.gameSettings[g];
+  const card=document.getElementById('gameCard');
+  let html='';
+
+  if(g==='guess'){
+    if(s.questionRevealed && gs.secret!==null){
+      card.classList.add('reveal');
+      html=`<div class="reveal-content"><div class="reveal-label">🎯 الرقم الصحيح</div><div class="reveal-answer">${gs.secret}</div>${gs.guesses.length>0?`<div class="reveal-hint">آخر تخمين: ${gs.guesses[gs.guesses.length-1].n}</div>`:''}</div>`;
+    } else {
+      card.classList.remove('reveal');
+      const min=gs.guesses.length&&gs.secret!==null?Math.max(gs.min,...gs.guesses.filter(x=>x.n<gs.secret).map(x=>x.n)):gs.min;
+      const max=gs.guesses.length&&gs.secret!==null?Math.min(gs.max,...gs.guesses.filter(x=>x.n>gs.secret).map(x=>x.n)):gs.max;
+      html=`<div class="game-label">🎲 خمن الرقم</div>
+        <div class="game-instruction">💬 اكتبوا تخمينكم — الرقم يظهر عند انتهاء الوقت</div>
+        <div class="guess-range">بين <b>${min}</b> و <b>${max}</b></div>
+        ${gs.hint==='higher'?`<div class="guess-hint higher">⬆️ أعلى</div>`:''}
+        ${gs.hint==='lower'?`<div class="guess-hint lower">⬇️ أقل</div>`:''}
+        <div class="guess-recent">${gs.guesses.slice(-6).map(x=>`<span class="guess-chip">${x.n}</span>`).join('')}</div>`;
+    }
+  } else if(g==='quiz'){
+    if(!s.currentQuestion){
+      card.classList.remove('reveal');
+      html=`<div class="game-label">❓ أسئلة</div><div class="game-instruction">💬 اختاروا الإجابة الصحيحة عبر التعليقات</div><div style="font-size:11px;color:#94a3b8;padding:8px">اختر الفئة ثم اضغط ▶️</div>`;
+    } else if(s.questionRevealed){
+      card.classList.add('reveal');
+      const q=s.currentQuestion;
+      html=`<div class="reveal-content"><div class="reveal-label">✅ الإجابة الصحيحة</div><div class="reveal-answer" style="font-size:28px">${esc(q.options[q.a])}</div>${q.hint?`<div class="reveal-hint">💡 ${esc(q.hint)}</div>`:''}</div>`;
+    } else {
+      card.classList.remove('reveal');
+      const q=s.currentQuestion;
+      const labels=['أ','ب','ج','د'];
+      html=`<div class="game-label">❓ ${esc(state.library.categories.find(c=>c.id===state.currentCategory)?.name||'أسئلة')}</div>
+        <div class="game-instruction">💬 اكتبوا الإجابة الصحيحة (أ/ب/ج/د) في التعليقات</div>
+        <div class="quiz-question">${esc(q.q)}</div>
+        <div class="quiz-options">${q.options.map((opt,i)=>`<div class="quiz-option"><span class="lbl">${labels[i]}</span><span class="txt">${esc(opt)}</span></div>`).join('')}</div>`;
+    }
+  } else if(g==='word'){
+    if(!gs.currentWord){
+      card.classList.remove('reveal');
+      html=`<div class="game-label">🔤 ابحث عن الكلمة</div><div class="game-instruction">💬 يظهر الحرف الأول والأخير — خمنوا الكلمة كاملة</div><div style="font-size:11px;color:#94a3b8;padding:8px">اضغط ▶️ لاختيار كلمة عشوائية</div>`;
+    } else if(s.questionRevealed){
+      card.classList.add('reveal');
+      html=`<div class="reveal-content">
+        <div class="reveal-label">🔤 الكلمة كانت</div>
+        <div class="reveal-answer">${esc(gs.currentWord)}</div>
+        <div class="reveal-hint">${gs.currentWord.length} حروف</div>
+      </div>`;
+    } else {
+      card.classList.remove('reveal');
+      html=`<div class="game-label">🔤 ابحث عن الكلمة</div>
+        <div class="game-instruction">💬 الحرف الأول والأخير ظاهران — اكتبوا الكلمة كاملة</div>
+        <div class="word-slots">
+          ${gs.currentWord.split('').map((ch,i)=>{
+            const rev = gs.revealed.includes(i);
+            return `<div class="word-slot ${rev?'revealed':''}">${rev?ch:''}</div>`;
+          }).join('')}
+        </div>
+        <div style="font-size:10px;color:#94a3b8">${gs.currentWord.length} حروف</div>`;
+    }
+  } else if(g==='synonym'){
+    if(!gs.currentEntry){
+      card.classList.remove('reveal');
+      html=`<div class="game-label">💡 المترادفات</div><div class="game-instruction">💬 تظهر كلمة والمطلوب مرادفها — اكتبوا في التعليقات</div><div style="font-size:11px;color:#94a3b8;padding:8px">اضغط ▶️ لاختيار كلمة عشوائية</div>`;
+    } else if(s.questionRevealed){
+      card.classList.add('reveal');
+      html=`<div class="reveal-content">
+        <div class="reveal-label">💡 مرادفات "${esc(gs.currentEntry.word)}"</div>
+        <div class="synonym-chips">
+          ${gs.currentEntry.synonyms.map(s=>`<span class="synonym-chip">${esc(s)}</span>`).join('')}
+        </div>
+      </div>`;
+    } else {
+      card.classList.remove('reveal');
+      html=`<div class="game-label">💡 المترادفات</div>
+        <div class="game-instruction">💬 اكتبوا مرادف الكلمة في التعليقات</div>
+        <div class="synonym-word">${esc(gs.currentEntry.word)}</div>
+        <div style="font-size:10px;color:#94a3b8">ما هو المرادف؟</div>`;
+    }
+  } else if(g==='bomb'){
+    card.classList.remove('reveal');
+    const rem=gs.endTime?Math.max(0,Math.ceil((gs.endTime-Date.now())/1000)):state.roundDuration;
+    const min=gs.guesses.length&&gs.secret!==null?Math.max(gs.min,...gs.guesses.filter(x=>x.n<gs.secret).map(x=>x.n)):gs.min;
+    const max=gs.guesses.length&&gs.secret!==null?Math.min(gs.max,...gs.guesses.filter(x=>x.n>gs.secret).map(x=>x.n)):gs.max;
+    if(gs.exploded){
+      card.classList.add('reveal');
+      html=`<div class="reveal-content">
+        <div class="reveal-label" style="color:#ef4444">💥 انفجرت القنبلة!</div>
+        <div class="reveal-answer">${gs.secret}</div>
+        <div class="reveal-hint">لم يخمن أحد الرقم في الوقت المحدد</div>
+      </div>`;
+    } else {
+      html=`<div class="game-label">💣 قنبلة الأرقام</div>
+        <div class="game-instruction">⏰ أسرعوا! خمّنوا الرقم قبل أن ينتهي الوقت وتنفجر</div>
+        <div class="bomb-timer">${rem}</div>
+        <div class="guess-range">بين <b>${min}</b> و <b>${max}</b></div>
+        ${gs.hint==='higher'?`<div class="guess-hint higher">⬆️ أعلى</div>`:''}
+        ${gs.hint==='lower'?`<div class="guess-hint lower">⬇️ أقل</div>`:''}
+        <div class="guess-recent">${gs.guesses.slice(-5).map(x=>`<span class="guess-chip">${x.n}</span>`).join('')}</div>`;
+    }
+  }
+  card.innerHTML=html;
+  const startBtn=document.getElementById('startBtn');
+  const running = (g==='bomb'&&gs.endTime)||(g==='quiz'&&gs.roundEndTime)||((g==='guess'||g==='word'||g==='synonym')&&gs.roundEndTime);
+  startBtn.textContent = running?'🔄':'▶️';
+}
+
+function renderAll(){
+  const s=state;
   const bgEl=document.getElementById('bg');
   if(s.style.bgImage){ bgEl.classList.add('custom'); bgEl.style.backgroundImage=`url('${s.style.bgImage}')`; }
   else { bgEl.classList.remove('custom'); bgEl.style.backgroundImage=''; }
-
   const logoEl=document.getElementById('logoImg');
-  if(s.style.logo){ logoEl.src=s.style.logo; logoEl.style.display='block'; }
-  else logoEl.style.display='none';
-
+  if(s.style.logo){ logoEl.src=s.style.logo; logoEl.style.display='block'; } else logoEl.style.display='none';
   const titleEl=document.getElementById('titleText');
-  if(titleEl.textContent !== s.topic) titleEl.textContent = s.topic;
-  titleEl.style.fontSize = s.style.titleSize+'px';
-  titleEl.className = 'pulse';
-
-  let html='';
-  if(g==='guess'){
-    const min=gs.guesses.length&&gs.secret!==null?Math.max(gs.min,...gs.guesses.filter(x=>x.n<gs.secret).map(x=>x.n)):gs.min;
-    const max=gs.guesses.length&&gs.secret!==null?Math.min(gs.max,...gs.guesses.filter(x=>x.n>gs.secret).map(x=>x.n)):gs.max;
-    html=`<div class="game-label">🎲 خمن الرقم</div>
-      <div class="guess-range">بين <b>${min}</b> و <b>${max}</b></div>
-      ${gs.hint==='higher'?`<div class="guess-hint higher">⬆️ أعلى</div>`:''}
-      ${gs.hint==='lower'?`<div class="guess-hint lower">⬇️ أقل</div>`:''}
-      ${gs.hint==='correct'?`<div class="guess-hint higher">🎉 صحيح!</div>`:''}
-      <div class="guess-recent">${gs.guesses.slice(-6).map(x=>`<span class="guess-chip">${x.n}</span>`).join('')}</div>`;
-  } else if(g==='word'){
-    const secret=gs.secret||'', rev=gs.revealed||[];
-    html=`<div class="game-label">🔤 ابحث عن الكلمة</div>
-      <div class="word-slots">${secret.split('').map(ch=>`<div class="word-slot ${rev.includes(ch)||rev.length===secret.length?'revealed':''}">${rev.includes(ch)||rev.length===secret.length?ch:''}</div>`).join('')}</div>
-      <div style="font-size:10px;color:#94a3b8">${rev.length===secret.length?'🎉 تم الحل!':'اكتبوا الحروف'}</div>`;
-  } else if(g==='spy'){
-    html=`<div class="game-label">🕵️ من هو الجاسوس؟</div>
-      <div class="spy-boxes">
-        <div class="spy-box ${gs.revealed?'revealed':''}"><div class="lbl">الأغلبية</div><div class="val">${esc(gs.majorityWord)}</div></div>
-        <div class="spy-box ${gs.revealed?'revealed':''}"><div class="lbl">الجاسوس</div><div class="val">${esc(gs.spyWord)}</div></div>
-      </div>
-      <div style="font-size:10px;color:#94a3b8">${gs.revealed?'💡 تم الكشف':'صوّتوا'}</div>`;
-  } else if(g==='bomb'){
-    const rem=gs.endTime?Math.max(0,Math.ceil((gs.endTime-Date.now())/1000)):gs.timer;
-    const min=gs.guesses.length&&gs.secret!==null?Math.max(gs.min,...gs.guesses.filter(x=>x.n<gs.secret).map(x=>x.n)):gs.min;
-    const max=gs.guesses.length&&gs.secret!==null?Math.min(gs.max,...gs.guesses.filter(x=>x.n>gs.secret).map(x=>x.n)):gs.max;
-    html=`<div class="game-label">💣 قنبلة الأرقام</div>
-      ${gs.exploded?`<div class="bomb-explode">💥 انفجرت!</div>`:
-        `<div class="bomb-timer">${rem}</div>
-         <div class="guess-range">بين <b>${min}</b> و <b>${max}</b></div>
-         ${gs.hint==='higher'?`<div class="guess-hint higher">⬆️ أعلى</div>`:''}
-         ${gs.hint==='lower'?`<div class="guess-hint lower">⬇️ أقل</div>`:''}`}
-      <div class="guess-recent">${gs.guesses.slice(-5).map(x=>`<span class="guess-chip">${x.n}</span>`).join('')}</div>`;
-  }
-  document.getElementById('gameCard').innerHTML = html;
-
-  const startBtn=document.getElementById('startBtn');
-  const isRunning=(g==='bomb'&&gs.endTime)||((g==='guess'||g==='word'||g==='spy')&&gs.roundEndTime);
-  startBtn.textContent=isRunning?'🔄':'▶️';
-
+  if(titleEl.textContent!==s.topic) titleEl.textContent=s.topic;
+  titleEl.style.fontSize=s.style.titleSize+'px';
+  titleEl.className='pulse';
+  renderGameSwitcher();
+  renderCategoryBar();
+  renderGameCard();
   applyColors();
 }
 
-/* ============================================================
-   TIMER TICK
-============================================================ */
+/* ============ TIMER TICK with REVEALS ============ */
 function tickTimer(){
-  const s=state, g=s.game, gs=s.gameSettings[g];
+  const s=state,g=s.game,gs=s.gameSettings[g];
   const bar=document.getElementById('timerBar');
   const val=document.getElementById('timerVal');
 
   let endTime=null;
-  if(g==='guess'||g==='word'||g==='spy') endTime=gs.roundEndTime;
+  if(g==='guess'||g==='word'||g==='synonym'||g==='quiz') endTime=gs.roundEndTime;
   else if(g==='bomb') endTime=gs.endTime;
 
-  if(!endTime){ bar.style.display='none'; bar.className=''; lastTimerState='hidden'; return; }
+  if(!endTime){ bar.style.display='none'; bar.className=''; if(lastTimerState!=='hidden'&&lastTimerState!=='ended') lastTimerState='hidden'; return; }
 
-  const rem = Math.max(0, Math.ceil((endTime-Date.now())/1000));
+  const rem=Math.max(0,Math.ceil((endTime-Date.now())/1000));
 
   if(rem>0){
     bar.style.display='flex';
-    bar.className = rem<=10 ? 'danger' : rem<=30 ? 'warning' : '';
-    val.textContent = rem;
+    bar.className = rem<=10?'danger':rem<=30?'warning':'';
+    val.textContent=rem;
     if(rem<=5 && lastTimerState!==rem) AudioEngine.play('tick');
-    lastTimerState = rem;
+    lastTimerState=rem;
   } else {
-    if(lastTimerState !== 'ended'){
+    if(lastTimerState!=='ended'){
       bar.style.display='flex';
       bar.className='ended';
-      val.textContent='انتهى!';
+      val.textContent='⏰ انتهى الوقت';
+
+      if(g==='guess' && !s.questionRevealed){
+        s.questionRevealed=true;
+        AudioEngine.play('reveal'); Confetti.burst(120); renderGameCard();
+        if(gs.secret!==null) speak('الرقم الصحيح كان ' + gs.secret);
+      } else if(g==='quiz' && !s.questionRevealed && s.currentQuestion){
+        s.questionRevealed=true;
+        AudioEngine.play('reveal'); Confetti.burst(120); renderGameCard();
+        speak('الإجابة الصحيحة هي ' + s.currentQuestion.options[s.currentQuestion.a]);
+      } else if(g==='word' && gs.currentWord){
+        gs.revealed = gs.currentWord.split('').map((_,i)=>i);
+        s.questionRevealed=true;
+        AudioEngine.play('reveal'); Confetti.burst(80); renderGameCard();
+        speak('الكلمة كانت ' + gs.currentWord);
+      } else if(g==='synonym' && gs.currentEntry){
+        gs.revealed = true;
+        s.questionRevealed=true;
+        AudioEngine.play('reveal'); Confetti.burst(100); renderGameCard();
+        speak('مرادفات ' + gs.currentEntry.word + ' هي: ' + gs.currentEntry.synonyms.join('، '));
+      } else if(g==='bomb' && !gs.exploded){
+        gs.exploded=true;
+        AudioEngine.play('explode'); Confetti.burst(200,['#ef4444','#f97316','#fbbf24']); renderGameCard();
+        if(gs.secret!==null) speak('انفجرت القنبلة! الرقم كان ' + gs.secret);
+      }
+
       AudioEngine.play('lose');
       lastTimerState='ended';
-      setTimeout(()=>{ if(lastTimerState==='ended'){ bar.style.display='none'; bar.className=''; } }, 2000);
+      setTimeout(()=>{ if(lastTimerState==='ended'){ bar.style.display='none'; bar.className=''; lastTimerState='hidden'; } }, 4000);
     }
   }
 }
 
-/* ============================================================
-   ACTION BAR (inline expand)
-============================================================ */
-function expandActionBtn(type){
-  const btn=document.getElementById(type+'Btn');
-  if(btn.classList.contains('expanded')) return;
-  btn.classList.add('expanded');
-  btn.innerHTML = `
-    <input type="text" id="inline-${type}-input" placeholder="الاسم..." autocomplete="off" autocorrect="off" autocapitalize="off" enterkeyhint="done">
-    <button class="mini-ok" onclick="confirmAction(event,'${type}')">✓</button>
-    <button class="mini-cancel" onclick="cancelAction(event,'${type}')">✕</button>
-  `;
-  const inp=document.getElementById(`inline-${type}-input`);
-  inp.focus();
-  inp.onkeydown=(e)=>{
-    if(e.key==='Enter'){ e.preventDefault(); confirmAction(e,type); }
-    if(e.key==='Escape'){ e.preventDefault(); cancelAction(e,type); }
-  };
-}
-function confirmAction(e,type){
-  if(e) e.stopPropagation();
-  const inp=document.getElementById(`inline-${type}-input`);
-  const name=(inp?.value||'').trim();
-  if(!name) return;
-  if(type==='winner') honorWinner(name); else honorSupporter(name);
-  collapseActionBtn(type);
-}
-function cancelAction(e,type){ if(e) e.stopPropagation(); collapseActionBtn(type); }
-function collapseActionBtn(type){
-  const btn=document.getElementById(type+'Btn');
-  btn.classList.remove('expanded');
-  btn.innerHTML = type==='winner' ? '🏆' : '💝';
+function switchGame(id){
+  state.game=id;
+  state.questionRevealed=false;
+  state.currentQuestion=null;
+  ['quiz','guess','word','synonym'].forEach(g=>{ if(state.gameSettings[g] && 'roundEndTime' in state.gameSettings[g]) state.gameSettings[g].roundEndTime=null; });
+  if(state.gameSettings.word){ state.gameSettings.word.currentWord=null; state.gameSettings.word.revealed=[]; }
+  if(state.gameSettings.synonym){ state.gameSettings.synonym.currentEntry=null; state.gameSettings.synonym.revealed=false; }
+  if(state.gameSettings.bomb){ state.gameSettings.bomb.endTime=null; state.gameSettings.bomb.exploded=false; }
+  lastTimerState='hidden';
+  save(); renderAll();
+  AudioEngine.play('close');
 }
 
-/* ============================================================
-   HONOR
-============================================================ */
-function honorWinner(name){
-  state.winners.push({ name, time:Date.now(), game:state.game });
-  if(state.winners.length>200) state.winners.shift();
-  save();
-  showAnnouncement('winner', name);
-  AudioEngine.play('win');
-  Confetti.burst(160);
-  flashScreen();
-  speak('ألف مبروك يا ' + name);
-}
-function honorSupporter(name){
-  state.supporters.push({ name, time:Date.now() });
-  if(state.supporters.length>200) state.supporters.shift();
-  save();
-  showAnnouncement('supporter', name);
-  AudioEngine.play('honor');
-  Confetti.burst(90, ['#ec4899','#f472b6','#fbcfe8']);
-  speak('شكراً لك يا ' + name);
+function setCategory(id){
+  state.currentCategory=id;
+  state.currentQuestion=null;
+  state.questionRevealed=false;
+  if(state.gameSettings.quiz) state.gameSettings.quiz.roundEndTime=null;
+  save(); renderAll();
 }
 
-function showAnnouncement(type, name){
-  const ann=document.getElementById('announcement');
-  const icon = type==='winner' ? '🏆' : '💝';
-  const label = type==='winner' ? 'فائز' : 'داعم';
-  const sub = type==='winner' ? 'أحسنت!' : 'شكراً لدعمك!';
-  ann.innerHTML = `
-    <div class="ann-icon">${icon}</div>
-    <div class="ann-label">${label}</div>
-    <div class="ann-name">${esc(name)}</div>
-    <div class="ann-sub">${sub}</div>
-  `;
-  ann.className = 'show ' + type;
-  if(announcementTimer) clearTimeout(announcementTimer);
-  announcementTimer = setTimeout(()=>{
-    ann.classList.remove('show');
-    setTimeout(()=>{ ann.innerHTML=''; }, 400);
-  }, 5000);
-}
-
-function flashScreen(){
-  const f=document.getElementById('flash');
-  f.classList.remove('go'); void f.offsetWidth; f.classList.add('go');
-}
-function showBubble(text){
-  const c=document.getElementById('bubbles');
-  const b=document.createElement('div');
-  b.className='bubble'; b.textContent=text;
-  b.style.left=(8+Math.random()*50)+'%';
-  b.style.top=(25+Math.random()*20)+'%';
-  c.appendChild(b);
-  setTimeout(()=>b.remove(),3200);
-}
-
-/* ============================================================
-   QUICK START
-============================================================ */
 function quickStartRound(){
-  const g=state.game, gs=state.gameSettings[g];
+  const g=state.game,gs=state.gameSettings[g];
+  state.questionRevealed=false;
+
   if(g==='guess'){
     if(gs.secret===null) gs.secret=Math.floor(Math.random()*(gs.max-gs.min+1))+gs.min;
     gs.guesses=[]; gs.hint='';
     gs.roundEndTime=Date.now()+state.roundDuration*1000;
-  } else if(g==='word'){
-    gs.revealed=[];
+  } else if(g==='quiz'){
+    const cat=state.library.categories.find(c=>c.id===state.currentCategory);
+    if(!cat || !cat.questions || cat.questions.length===0){ toast('لا توجد أسئلة','error'); return; }
+    const q=cat.questions[Math.floor(Math.random()*cat.questions.length)];
+    state.currentQuestion=JSON.parse(JSON.stringify(q));
     gs.roundEndTime=Date.now()+state.roundDuration*1000;
-  } else if(g==='spy'){
-    gs.revealed=false;
+  } else if(g==='word'){
+    if(!state.library.words || state.library.words.length===0){ toast('مكتبة الكلمات فارغة','error'); return; }
+    const w = state.library.words[Math.floor(Math.random()*state.library.words.length)];
+    gs.currentWord = w;
+    // reveal first and last letters
+    const positions=[];
+    if(w.length>0) positions.push(0);
+    if(w.length>1) positions.push(w.length-1);
+    gs.revealed = positions;
+    gs.roundEndTime=Date.now()+state.roundDuration*1000;
+  } else if(g==='synonym'){
+    if(!state.library.synonyms || state.library.synonyms.length===0){ toast('مكتبة المترادفات فارغة','error'); return; }
+    const entry = state.library.synonyms[Math.floor(Math.random()*state.library.synonyms.length)];
+    gs.currentEntry = JSON.parse(JSON.stringify(entry));
+    gs.revealed = false;
     gs.roundEndTime=Date.now()+state.roundDuration*1000;
   } else if(g==='bomb'){
-    if(gs.secret===null) gs.secret=Math.floor(Math.random()*(gs.max-gs.min+1))+gs.min;
+    // ALWAYS randomize
+    gs.secret=Math.floor(Math.random()*(gs.max-gs.min+1))+gs.min;
     gs.guesses=[]; gs.hint=''; gs.exploded=false;
-    gs.endTime=Date.now()+gs.timer*1000;
+    gs.endTime=Date.now()+state.roundDuration*1000;
   }
   lastTimerState='hidden';
-  save(); renderGameView();
+  save(); renderAll();
   AudioEngine.play('honor');
   toast('▶️ جولة جديدة!','info');
 }
 
-/* ============================================================
-   SETTINGS SHEET
-============================================================ */
+/* ============ ACTION BAR ============ */
+function expandActionBtn(type){
+  const btn=document.getElementById(type+'Btn');
+  if(btn.classList.contains('expanded')) return;
+  btn.classList.add('expanded');
+  btn.innerHTML=`<input type="text" id="inline-${type}-input" placeholder="الاسم..." autocomplete="off" autocorrect="off" autocapitalize="off" enterkeyhint="done"><button class="mini-ok" onclick="confirmAction(event,'${type}')">✓</button><button class="mini-cancel" onclick="cancelAction(event,'${type}')">✕</button>`;
+  const inp=document.getElementById(`inline-${type}-input`);
+  inp.focus();
+  inp.onkeydown=(e)=>{ if(e.key==='Enter'){e.preventDefault();confirmAction(e,type);} if(e.key==='Escape'){e.preventDefault();cancelAction(e,type);} };
+}
+function confirmAction(e,type){ if(e) e.stopPropagation(); const inp=document.getElementById(`inline-${type}-input`); const name=(inp?.value||'').trim(); if(!name) return; if(type==='winner') honorWinner(name); else honorSupporter(name); collapseActionBtn(type); }
+function cancelAction(e,type){ if(e) e.stopPropagation(); collapseActionBtn(type); }
+function collapseActionBtn(type){ const btn=document.getElementById(type+'Btn'); btn.classList.remove('expanded'); btn.innerHTML = type==='winner'?'🏆':'💝'; }
+
+function honorWinner(name){ state.winners.push({name,time:Date.now(),game:state.game}); if(state.winners.length>200) state.winners.shift(); save(); showAnnouncement('winner',name); AudioEngine.play('win'); Confetti.burst(160); flashScreen(); speak('ألف مبروك يا '+name); }
+function honorSupporter(name){ state.supporters.push({name,time:Date.now()}); if(state.supporters.length>200) state.supporters.shift(); save(); showAnnouncement('supporter',name); AudioEngine.play('honor'); Confetti.burst(90,['#ec4899','#f472b6','#fbcfe8']); speak('شكراً لك يا '+name); }
+function showAnnouncement(type,name){ const ann=document.getElementById('announcement'); const icon=type==='winner'?'🏆':'💝'; const label=type==='winner'?'فائز':'داعم'; const sub=type==='winner'?'أحسنت!':'شكراً لدعمك!'; ann.innerHTML=`<div class="ann-icon">${icon}</div><div class="ann-label">${label}</div><div class="ann-name">${esc(name)}</div><div class="ann-sub">${sub}</div>`; ann.className='show '+type; if(announcementTimer) clearTimeout(announcementTimer); announcementTimer=setTimeout(()=>{ ann.classList.remove('show'); setTimeout(()=>{ ann.innerHTML=''; },400); },5000); }
+function flashScreen(){ const f=document.getElementById('flash'); f.classList.remove('go'); void f.offsetWidth; f.classList.add('go'); }
+
+/* ============ SETTINGS SHEET ============ */
 function openSheet(){ document.getElementById('backdrop').classList.add('open'); document.getElementById('sheet').classList.add('open'); renderSheet(); }
 function closeSheet(){ document.getElementById('backdrop').classList.remove('open'); document.getElementById('sheet').classList.remove('open'); }
 
 function renderSheet(){
-  const s=state, g=s.game, gs=s.gameSettings[g];
-
-  let gameSettingsHtml='';
-  if(g==='guess' || g==='bomb'){
-    gameSettingsHtml=`
-      <div class="row">
-        <div><label>النطاق</label><select onchange="setRange('${g}',this.value)">
-          <option value="1-100" ${gs.min===1&&gs.max===100?'selected':''}>1-100</option>
-          <option value="100-1000" ${gs.min===100&&gs.max===1000?'selected':''}>100-1000</option>
-        </select></div>
-        <div><label>الرقم السري</label><input type="number" value="${gs.secret??''}" placeholder="عشوائي" onchange="state.gameSettings.${g}.secret=this.value===''?null:+this.value;save()"></div>
-        ${g==='bomb'?`<div><label>مدة القنبلة</label><input type="number" value="${gs.timer}" onchange="state.gameSettings.bomb.timer=+this.value;save()"></div>`:''}
-      </div>
-      <div class="row">
-        <button class="btn btn-warning" onclick="quickStartRound();closeSheet()" style="flex:2">▶️ بدء (${s.roundDuration}ث)</button>
-        <button class="btn btn-secondary" onclick="randomSecret('${g}')">🎲</button>
-      </div>
-      <div class="row" style="margin-top:4px">
-        <input type="number" id="guessInput" placeholder="تخمين..." onkeydown="if(event.key==='Enter')submitGuess('${g}')" style="flex:2">
-        <button class="btn btn-primary" onclick="submitGuess('${g}')" style="flex:1">إرسال</button>
-      </div>`;
-  } else if(g==='word'){
-    gameSettingsHtml=`
-      <div class="row"><div><label>الكلمة</label><input type="text" value="${esc(gs.secret)}" onchange="state.gameSettings.word.secret=this.value;state.gameSettings.word.revealed=[];save()"></div></div>
-      <div class="row">
-        <button class="btn btn-warning" onclick="quickStartRound();closeSheet()" style="flex:2">▶️ بدء (${s.roundDuration}ث)</button>
-        <button class="btn btn-secondary" onclick="state.gameSettings.word.revealed=[];save()">🔄</button>
-      </div>
-      <div class="row" style="margin-top:4px">
-        <input type="text" id="letterInput" placeholder="حرف أو كلمة..." onkeydown="if(event.key==='Enter')submitWordGuess()" style="flex:2">
-        <button class="btn btn-primary" onclick="submitWordGuess()" style="flex:1">إرسال</button>
-      </div>`;
-  } else if(g==='spy'){
-    gameSettingsHtml=`
-      <div class="row">
-        <div><label>الأغلبية</label><input type="text" value="${esc(gs.majorityWord)}" onchange="state.gameSettings.spy.majorityWord=this.value;save()"></div>
-        <div><label>الجاسوس</label><input type="text" value="${esc(gs.spyWord)}" onchange="state.gameSettings.spy.spyWord=this.value;save()"></div>
-      </div>
-      <div class="row">
-        <button class="btn btn-warning" onclick="quickStartRound();closeSheet()" style="flex:2">▶️ تصويت (${s.roundDuration}ث)</button>
-        <button class="btn btn-primary" onclick="state.gameSettings.spy.revealed=!state.gameSettings.spy.revealed;save();renderGameView()">${gs.revealed?'🙈':'👁️'}</button>
-      </div>`;
-  }
-
-  document.getElementById('sheetBody').innerHTML=`
-    <div class="block"><h3>📝 الموضوع</h3><input type="text" value="${esc(s.topic)}" onchange="state.topic=this.value;save();renderGameView()"></div>
-    <div class="block"><h3>🎯 اللعبة</h3>
-      <div class="games">${['guess','word','spy','bomb'].map(id=>{const labels={guess:'🎲 خمن الرقم',word:'🔤 الكلمة',spy:'🕵️ الجاسوس',bomb:'💣 قنبلة'};return `<button class="game-btn ${g===id?'active':''}" onclick="switchGame('${id}')">${labels[id]}</button>`;}).join('')}</div>
-    </div>
-    <div class="block"><h3>⏱️ مدة الجولة: ${s.roundDuration}ث</h3><input type="range" min="10" max="300" step="5" value="${s.roundDuration}" oninput="state.roundDuration=+this.value;save()" onchange="renderSheet()" style="width:100%"></div>
-    <div class="block"><h3>⚙️ إعدادات اللعبة</h3>${gameSettingsHtml}</div>
-    <div class="block"><h3>🔍 فلترة التعليقات</h3>
-      <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
-        <label class="switch"><input type="checkbox" ${s.filter.enabled?'checked':''} onchange="state.filter.enabled=this.checked;save()"><span class="slider"></span></label>
-        <span style="font-size:10px;font-weight:700">تفعيل</span>
-      </div>
-      <input type="text" value="${esc(s.filter.keywords)}" placeholder="كلمات مفصولة بفاصلة" onchange="state.filter.keywords=this.value;save()">
-    </div>
-    <div class="block"><h3>🏆 الفائزون <span class="badge">${s.winners.length}</span></h3>
-      <div class="list">${s.winners.slice().reverse().slice(0,10).map(w=>`<div class="list-item"><span class="name">${esc(w.name)}</span><span class="time">${new Date(w.time).toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})}</span></div>`).join('')||'<div class="empty">لا يوجد</div>'}</div>
-      ${s.winners.length>0?`<button class="btn btn-danger" style="width:100%;margin-top:5px" onclick="if(confirm('مسح؟')){state.winners=[];save();renderSheet()}">🗑️ مسح</button>`:''}
-    </div>
-    <div class="block"><h3>💝 الداعمون <span class="badge">${s.supporters.length}</span></h3>
-      <div class="list">${s.supporters.slice().reverse().slice(0,10).map(w=>`<div class="list-item"><span class="name">${esc(w.name)}</span><span class="time">${new Date(w.time).toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})}</span></div>`).join('')||'<div class="empty">لا يوجد</div>'}</div>
-      ${s.supporters.length>0?`<button class="btn btn-danger" style="width:100%;margin-top:5px" onclick="if(confirm('مسح؟')){state.supporters=[];save();renderSheet()}">🗑️ مسح</button>`:''}
-    </div>
-    <div class="block"><h3>🔊 الإعلان الصوتي</h3>
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px">
-        <label class="switch"><input type="checkbox" ${s.audio.voiceEnabled?'checked':''} onchange="state.audio.voiceEnabled=this.checked;save()"><span class="slider"></span></label>
-        <span style="font-size:10px;font-weight:700">TTS للفائز</span>
-      </div>
-      <button class="btn btn-secondary" style="width:100%" onclick="speak('اختبار. ألف مبروك يا أحمد!')">🔊 اختبار</button>
-    </div>
-    <details>
-      <summary>🎨 التخصيص المتقدم</summary>
-      <div class="block"><h3>حجم العنوان: ${s.style.titleSize}px</h3><input type="range" min="16" max="40" value="${s.style.titleSize}" oninput="state.style.titleSize=+this.value;save();renderGameView()" style="width:100%"></div>
-      <div class="block"><h3>الألوان</h3>
-        <div class="row">
-          <div><label>أساسي</label><input type="color" value="${s.style.primary}" oninput="state.style.primary=this.value;save();applyColors()" style="width:100%;height:28px;border:none;border-radius:5px;cursor:pointer"></div>
-          <div><label>ثانوي</label><input type="color" value="${s.style.secondary}" oninput="state.style.secondary=this.value;save();applyColors()" style="width:100%;height:28px;border:none;border-radius:5px;cursor:pointer"></div>
-          <div><label>تمييز</label><input type="color" value="${s.style.accent}" oninput="state.style.accent=this.value;save();applyColors()" style="width:100%;height:28px;border:none;border-radius:5px;cursor:pointer"></div>
-        </div>
-      </div>
-      <div class="block"><h3>الملفات</h3>
-        <div style="display:flex;gap:5px;flex-wrap:wrap">
-          <label class="file-label">📤 شعار<input type="file" accept="image/*" onchange="uploadLogo(event)" style="display:none"></label>
-          <label class="file-label">🖼️ خلفية<input type="file" accept="image/*" onchange="uploadBg(event)" style="display:none"></label>
-          <label class="file-label">🎵 موسيقى<input type="file" accept="audio/*" onchange="uploadMusic(event)" style="display:none"></label>
-          ${s.style.logo?'<button class="btn btn-danger" onclick="state.style.logo=\'\';save();renderGameView()" style="padding:5px 8px;font-size:10px">❌ شعار</button>':''}
-          ${s.style.bgImage?'<button class="btn btn-danger" onclick="state.style.bgImage=\'\';save();renderGameView()" style="padding:5px 8px;font-size:10px">❌ خلفية</button>':''}
-          ${s.audio.hasMusic?'<button class="btn btn-danger" onclick="removeMusic()" style="padding:5px 8px;font-size:10px">❌ موسيقى</button>':''}
-        </div>
-      </div>
-    </details>
-  `;
+  const tabs=[{id:'basic',label:'⚙️ أساسي'},{id:'library',label:'📚 المكتبة'},{id:'winners',label:'🏆 سجل'},{id:'style',label:'🎨 تخصيص'}];
+  document.getElementById('sheetTabs').innerHTML = tabs.map(t=>`<button class="sheet-tab ${state.sheetTab===t.id?'active':''}" onclick="state.sheetTab='${t.id}';renderSheet()">${t.label}</button>`).join('');
+  const body=document.getElementById('sheetBody');
+  if(state.sheetTab==='basic') body.innerHTML=renderBasicTab();
+  else if(state.sheetTab==='library') body.innerHTML=renderLibraryTab();
+  else if(state.sheetTab==='winners') body.innerHTML=renderWinnersTab();
+  else if(state.sheetTab==='style') body.innerHTML=renderStyleTab();
 }
 
-function switchGame(id){ state.game=id; save(); renderGameView(); renderSheet(); }
-function setRange(g,val){ const gs=state.gameSettings[g]; if(val==='1-100'){gs.min=1;gs.max=100;} else if(val==='100-1000'){gs.min=100;gs.max=1000;} save(); renderGameView(); renderSheet(); }
-function randomSecret(g){ const gs=state.gameSettings[g]; gs.secret=Math.floor(Math.random()*(gs.max-gs.min+1))+gs.min; gs.guesses=[]; gs.hint=''; save(); renderGameView(); toast('الرقم: '+gs.secret); }
+function renderBasicTab(){
+  const s=state,g=s.game,gs=s.gameSettings[g];
+  let gameHtml='';
+  if(g==='guess'){
+    gameHtml=`<div class="row">
+      <div><label>النطاق</label><select onchange="setRange('guess',this.value)">
+        <option value="1-100" ${gs.min===1&&gs.max===100?'selected':''}>1-100</option>
+        <option value="100-1000" ${gs.min===100&&gs.max===1000?'selected':''}>100-1000</option>
+      </select></div>
+      <div><label>الرقم السري</label><input type="number" value="${gs.secret??''}" placeholder="عشوائي" onchange="state.gameSettings.guess.secret=this.value===''?null:+this.value;save()"></div>
+    </div>
+    <div class="row">
+      <button class="btn btn-warning" onclick="quickStartRound();closeSheet()" style="flex:2">▶️ بدء (${s.roundDuration}ث)</button>
+      <button class="btn btn-secondary" onclick="randomSecret('guess')">🎲</button>
+    </div>
+    <div class="row" style="margin-top:3px">
+      <input type="number" id="guessInput" placeholder="تخمين..." onkeydown="if(event.key==='Enter')submitGuess('guess')" style="flex:2">
+      <button class="btn btn-primary" onclick="submitGuess('guess')" style="flex:1">إرسال</button>
+    </div>`;
+  } else if(g==='quiz'){
+    gameHtml=`<div class="row">
+      <div><label>الفئة</label><select onchange="setCategory(this.value)">
+        ${s.library.categories.map(c=>`<option value="${c.id}" ${s.currentCategory===c.id?'selected':''}>${c.icon} ${esc(c.name)} (${c.questions.length})</option>`).join('')}
+      </select></div>
+    </div>
+    <div class="row"><button class="btn btn-warning" onclick="quickStartRound();closeSheet()" style="flex:1">▶️ سؤال عشوائي (${s.roundDuration}ث)</button></div>
+    ${s.currentQuestion?`<div class="block" style="margin-top:4px"><h3>السؤال الحالي</h3><div style="font-size:10px;color:#cbd5e1">${esc(s.currentQuestion.q)}</div><div style="font-size:9px;color:#10b981;margin-top:2px">✅ ${esc(s.currentQuestion.options[s.currentQuestion.a])}</div></div>`:''}`;
+  } else if(g==='word'){
+    gameHtml=`<div class="row"><button class="btn btn-warning" onclick="quickStartRound();closeSheet()" style="flex:1">▶️ كلمة عشوائية (${s.roundDuration}ث)</button></div>
+    ${gs.currentWord?`<div class="block" style="margin-top:4px"><h3>الكلمة الحالية: ${esc(gs.currentWord)} (${gs.currentWord.length} حروف)</h3><div style="font-size:9px;color:#94a3b8">المكشوف: ${gs.revealed.map(i=>gs.currentWord[i]).join(', ')||'لا شيء'}</div></div>`:''}
+    <div class="row" style="margin-top:4px">
+      <input type="text" id="wordInput" placeholder="اكتب الكلمة أو حرفًا..." onkeydown="if(event.key==='Enter')submitWordGuess()" style="flex:2">
+      <button class="btn btn-primary" onclick="submitWordGuess()" style="flex:1">إرسال</button>
+    </div>
+    <div style="font-size:9px;color:#94a3b8;margin-top:4px">📚 المكتبة: ${s.library.words.length} كلمة</div>`;
+  } else if(g==='synonym'){
+    gameHtml=`<div class="row"><button class="btn btn-warning" onclick="quickStartRound();closeSheet()" style="flex:1">▶️ كلمة عشوائية (${s.roundDuration}ث)</button></div>
+    ${gs.currentEntry?`<div class="block" style="margin-top:4px"><h3>الكلمة: ${esc(gs.currentEntry.word)}</h3><div style="font-size:9px;color:#10b981">المرادفات المقبولة: ${gs.currentEntry.synonyms.map(s=>esc(s)).join(', ')}</div></div>`:''}
+    <div class="row" style="margin-top:4px">
+      <input type="text" id="synonymInput" placeholder="اكتب مرادفًا..." onkeydown="if(event.key==='Enter')submitSynonymGuess()" style="flex:2">
+      <button class="btn btn-primary" onclick="submitSynonymGuess()" style="flex:1">إرسال</button>
+    </div>
+    <div style="font-size:9px;color:#94a3b8;margin-top:4px">📚 المكتبة: ${s.library.synonyms.length} مدخل</div>`;
+  } else if(g==='bomb'){
+    gameHtml=`<div class="row">
+      <div><label>النطاق</label><select onchange="setRange('bomb',this.value)">
+        <option value="1-100" ${gs.min===1&&gs.max===100?'selected':''}>1-100</option>
+        <option value="100-1000" ${gs.min===100&&gs.max===1000?'selected':''}>100-1000</option>
+      </select></div>
+    </div>
+    <div class="row"><button class="btn btn-warning" onclick="quickStartRound();closeSheet()" style="flex:1">▶️ بدء (${s.roundDuration}ث) — رقم عشوائي</button></div>
+    <div style="font-size:9px;color:#94a3b8;margin-top:4px">⚡ الرقم يُختار عشوائيًا من النطاق عند كل جولة</div>
+    <div class="row" style="margin-top:4px">
+      <input type="number" id="guessInput" placeholder="تخمين..." onkeydown="if(event.key==='Enter')submitGuess('bomb')" style="flex:2">
+      <button class="btn btn-primary" onclick="submitGuess('bomb')" style="flex:1">إرسال</button>
+    </div>`;
+  }
 
+  return `
+    <div class="block"><h3>📝 الموضوع</h3><input type="text" value="${esc(s.topic)}" onchange="state.topic=this.value;save();renderAll()"></div>
+    <div class="block"><h3>🎯 اللعبة</h3><div class="games">
+      ${[['guess','🎲 الرقم'],['quiz','❓ أسئلة'],['word','🔤 كلمة'],['synonym','💡 مترادفات'],['bomb','💣 قنبلة'],['','']].slice(0,5).map(([id,l])=>`<button class="game-btn ${g===id?'active':''}" onclick="switchGame('${id}');renderSheet()">${l}</button>`).join('')}
+    </div></div>
+    <div class="block"><h3>⏱️ مدة الجولة: ${s.roundDuration}ث</h3><input type="range" min="10" max="300" step="5" value="${s.roundDuration}" oninput="state.roundDuration=+this.value;save()" onchange="renderSheet()" style="width:100%"></div>
+    <div class="block"><h3>⚙️ إعدادات اللعبة</h3>${gameHtml}</div>
+    <div class="block"><h3>🔍 فلترة التعليقات</h3>
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><label class="switch"><input type="checkbox" ${s.filter.enabled?'checked':''} onchange="state.filter.enabled=this.checked;save()"><span class="slider"></span></label><span style="font-size:10px;font-weight:700">تفعيل</span></div>
+      <input type="text" value="${esc(s.filter.keywords)}" placeholder="كلمات مفصولة بفاصلة" onchange="state.filter.keywords=this.value;save()">
+    </div>
+    <div class="block"><h3>🔊 الإعلان الصوتي</h3>
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><label class="switch"><input type="checkbox" ${s.audio.voiceEnabled?'checked':''} onchange="state.audio.voiceEnabled=this.checked;save()"><span class="slider"></span></label><span style="font-size:10px;font-weight:700">TTS</span></div>
+      <button class="btn btn-secondary" style="width:100%" onclick="speak('اختبار. ألف مبروك يا أحمد!')">🔊 اختبار</button>
+    </div>`;
+}
+
+function renderLibraryTab(){
+  const subtabs = [
+    {id:'quiz', label:'❓ الأسئلة'},
+    {id:'words', label:'📝 الكلمات'},
+    {id:'synonyms', label:'🔗 المترادفات'}
+  ];
+  const subtabHtml = subtabs.map(t=>`<button class="sheet-tab ${state.libSubTab===t.id?'active':''}" onclick="state.libSubTab='${t.id}';renderSheet()" style="font-size:9px;padding:5px">${t.label}</button>`).join('');
+  let content='';
+  if(state.libSubTab==='quiz') content = renderQuizLibrary();
+  else if(state.libSubTab==='words') content = renderWordsLibrary();
+  else if(state.libSubTab==='synonyms') content = renderSynonymsLibrary();
+  return `<div class="sheet-tabs" style="background:transparent;padding:2px 0;margin-bottom:5px">${subtabHtml}</div>${content}`;
+}
+
+function renderQuizLibrary(){
+  const s=state;
+  const currentCat=s.library.categories.find(c=>c.id===s.currentCategory)||s.library.categories[0];
+  return `
+    <div class="block"><h3>📚 الفئات <span class="badge">${s.library.categories.length}</span></h3>
+      <div style="max-height:100px;overflow-y:auto;margin-bottom:5px">
+        ${s.library.categories.map(c=>`<div class="list-item"><span class="name" onclick="setCategory('${c.id}');renderSheet()">${c.icon} ${esc(c.name)} (${c.questions.length})</span>${c.questions.length===0?`<button class="del" onclick="deleteCategory('${c.id}')">✕</button>`:''}</div>`).join('')}
+      </div>
+      <div class="row" style="margin-top:4px"><input type="text" id="newCatName" placeholder="اسم فئة جديدة" style="flex:2"><input type="text" id="newCatIcon" placeholder="🌐" style="flex:1;max-width:50px"><button class="btn btn-success" onclick="addCategory()">+</button></div>
+    </div>
+    <div class="block"><h3>✏️ إضافة سؤال إلى: ${esc(currentCat?.name||'')}</h3>
+      <label>السؤال</label><input type="text" id="newQ" placeholder="مثال: ما عاصمة مصر؟" style="margin-bottom:3px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:3px">
+        <input type="text" id="newO0" placeholder="الخيار أ"><input type="text" id="newO1" placeholder="الخيار ب">
+        <input type="text" id="newO2" placeholder="الخيار ج"><input type="text" id="newO3" placeholder="الخيار د">
+      </div>
+      <div class="row"><div><label>الإجابة</label><select id="newA"><option value="0">أ</option><option value="1">ب</option><option value="2">ج</option><option value="3">د</option></select></div><div><label>تلميح</label><input type="text" id="newHint" placeholder="اختياري"></div></div>
+      <button class="btn btn-primary" style="width:100%;margin-top:3px" onclick="addQuestion()">+ إضافة</button>
+    </div>
+    <div class="block"><h3>📥 استيراد الأسئلة</h3>
+      <div style="font-size:9px;color:#94a3b8;margin-bottom:3px">صيغة: السؤال|أ|ب|ج|د|رقم_الإجابة_0-3|تلميح</div>
+      <textarea id="importText" placeholder="ما عاصمة فرنسا؟|باريس|لندن|روما|مدريد|0|مدينة النور"></textarea>
+      <button class="btn btn-warning" style="width:100%;margin-top:3px" onclick="importQuestions()">📥 استيراد</button>
+    </div>
+    <div class="block"><h3>📤 تصدير</h3><button class="btn btn-secondary" style="width:100%" onclick="exportLibrary()">💾 تنزيل المكتبة كـ JSON</button></div>
+    <div class="block"><h3>📋 أسئلة ${esc(currentCat?.name||'')}</h3>
+      <div class="list" style="max-height:200px">
+        ${(currentCat?.questions||[]).map((q,i)=>`<div class="q-item"><div class="q-txt">${i+1}. ${esc(q.q)}</div><div class="q-opts">${q.options.map((o,j)=>`${['أ','ب','ج','د'][j]}) ${esc(o)}`).join(' • ')}</div><div class="q-ans">✅ ${esc(q.options[q.a])}</div><button class="del" style="margin-top:2px" onclick="deleteQuestion('${currentCat.id}',${i})">حذف</button></div>`).join('')||'<div class="empty">لا توجد أسئلة بعد</div>'}
+      </div>
+    </div>`;
+}
+
+function renderWordsLibrary(){
+  const s=state;
+  return `
+    <div class="block"><h3>📝 مكتبة الكلمات <span class="badge">${s.library.words.length}</span></h3>
+      <div style="font-size:9px;color:#94a3b8;margin-bottom:4px">كلمات من 1-7 حروف — تُختار عشوائيًا في لعبة "ابحث عن الكلمة"</div>
+      <div class="row">
+        <input type="text" id="newWordInput" placeholder="كلمة جديدة (1-7 حروف)" style="flex:2">
+        <button class="btn btn-success" onclick="addWord()">+ إضافة</button>
+      </div>
+      <div class="list" style="max-height:200px;margin-top:4px">
+        ${s.library.words.map((w,i)=>`<div class="w-item"><span class="w-txt">${esc(w)}</span><span class="w-len">${w.length}</span><button class="del" onclick="deleteWord(${i})">✕</button></div>`).join('')||'<div class="empty">المكتبة فارغة</div>'}
+      </div>
+    </div>
+    <div class="block"><h3>📥 استيراد الكلمات</h3>
+      <div style="font-size:9px;color:#94a3b8;margin-bottom:3px">سطر لكل كلمة (1-7 حروف)</div>
+      <textarea id="importWordsText" placeholder="كتاب&#10;قلم&#10;شمس&#10;قمر"></textarea>
+      <button class="btn btn-warning" style="width:100%;margin-top:3px" onclick="importWords()">📥 استيراد</button>
+    </div>
+    <div class="block"><h3>🔧 أدوات</h3>
+      <div class="row">
+        <button class="btn btn-secondary" onclick="resetWords()" style="flex:1">🔄 استعادة الافتراضي</button>
+        <button class="btn btn-danger" onclick="if(confirm('مسح كل الكلمات؟')){state.library.words=[];save();renderSheet();renderAll()}" style="flex:1">🗑️ مسح الكل</button>
+      </div>
+    </div>`;
+}
+
+function renderSynonymsLibrary(){
+  const s=state;
+  return `
+    <div class="block"><h3>🔗 مكتبة المترادفات <span class="badge">${s.library.synonyms.length}</span></h3>
+      <div style="font-size:9px;color:#94a3b8;margin-bottom:4px">كلمة + مرادفاتها — تُختار عشوائيًا في لعبة "المترادفات"</div>
+      <div style="margin-bottom:4px">
+        <input type="text" id="newSynWord" placeholder="الكلمة" style="margin-bottom:3px">
+        <input type="text" id="newSynList" placeholder="المرادفات (مفصولة بفاصلة): فرحان, مسرور" style="margin-bottom:3px">
+        <button class="btn btn-success" style="width:100%" onclick="addSynonym()">+ إضافة</button>
+      </div>
+      <div class="list" style="max-height:200px">
+        ${s.library.synonyms.map((e,i)=>`<div class="w-item"><div style="flex:1"><div class="w-txt">${esc(e.word)}</div><div style="font-size:9px;color:#94a3b8">${e.synonyms.map(s=>esc(s)).join(', ')}</div></div><button class="del" onclick="deleteSynonym(${i})">✕</button></div>`).join('')||'<div class="empty">المكتبة فارغة</div>'}
+      </div>
+    </div>
+    <div class="block"><h3>📥 استيراد المترادفات</h3>
+      <div style="font-size:9px;color:#94a3b8;margin-bottom:3px">صيغة: كلمة|مرادف1|مرادف2|مرادف3</div>
+      <textarea id="importSynText" placeholder="سعيد|فرحان|مسرور|مبتهج&#10;حزين|كئيب|مهموم|مغموم"></textarea>
+      <button class="btn btn-warning" style="width:100%;margin-top:3px" onclick="importSynonyms()">📥 استيراد</button>
+    </div>
+    <div class="block"><h3>🔧 أدوات</h3>
+      <div class="row">
+        <button class="btn btn-secondary" onclick="resetSynonyms()" style="flex:1">🔄 استعادة الافتراضي</button>
+        <button class="btn btn-danger" onclick="if(confirm('مسح الكل؟')){state.library.synonyms=[];save();renderSheet();renderAll()}" style="flex:1">🗑️ مسح الكل</button>
+      </div>
+    </div>`;
+}
+
+function renderWinnersTab(){
+  const s=state;
+  return `
+    <div class="block"><h3>🏆 الفائزون <span class="badge">${s.winners.length}</span></h3>
+      <div class="list">${s.winners.slice().reverse().slice(0,20).map(w=>`<div class="list-item"><span class="name">${esc(w.name)}</span><span class="time">${new Date(w.time).toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})}</span></div>`).join('')||'<div class="empty">لا يوجد</div>'}</div>
+      ${s.winners.length>0?`<button class="btn btn-danger" style="width:100%;margin-top:4px" onclick="if(confirm('مسح؟')){state.winners=[];save();renderSheet()}">🗑️ مسح</button>`:''}
+    </div>
+    <div class="block"><h3>💝 الداعمون <span class="badge">${s.supporters.length}</span></h3>
+      <div class="list">${s.supporters.slice().reverse().slice(0,20).map(w=>`<div class="list-item"><span class="name">${esc(w.name)}</span><span class="time">${new Date(w.time).toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'})}</span></div>`).join('')||'<div class="empty">لا يوجد</div>'}</div>
+      ${s.supporters.length>0?`<button class="btn btn-danger" style="width:100%;margin-top:4px" onclick="if(confirm('مسح؟')){state.supporters=[];save();renderSheet()}">🗑️ مسح</button>`:''}
+    </div>`;
+}
+
+function renderStyleTab(){
+  const s=state;
+  return `
+    <div class="block"><h3>حجم العنوان: ${s.style.titleSize}px</h3><input type="range" min="16" max="40" value="${s.style.titleSize}" oninput="state.style.titleSize=+this.value;save();renderAll()" style="width:100%"></div>
+    <div class="block"><h3>الألوان</h3><div class="row">
+      <div><label>أساسي</label><input type="color" value="${s.style.primary}" oninput="state.style.primary=this.value;save();applyColors()" style="width:100%;height:28px;border:none;border-radius:5px;cursor:pointer"></div>
+      <div><label>ثانوي</label><input type="color" value="${s.style.secondary}" oninput="state.style.secondary=this.value;save();applyColors()" style="width:100%;height:28px;border:none;border-radius:5px;cursor:pointer"></div>
+      <div><label>تمييز</label><input type="color" value="${s.style.accent}" oninput="state.style.accent=this.value;save();applyColors()" style="width:100%;height:28px;border:none;border-radius:5px;cursor:pointer"></div>
+    </div></div>
+    <div class="block"><h3>الملفات</h3><div style="display:flex;gap:4px;flex-wrap:wrap">
+      <label class="file-label">📤 شعار<input type="file" accept="image/*" onchange="uploadLogo(event)" style="display:none"></label>
+      <label class="file-label">🖼️ خلفية<input type="file" accept="image/*" onchange="uploadBg(event)" style="display:none"></label>
+      <label class="file-label">🎵 موسيقى<input type="file" accept="audio/*" onchange="uploadMusic(event)" style="display:none"></label>
+      ${s.style.logo?'<button class="btn btn-danger" onclick="state.style.logo=\'\';save();renderAll()" style="padding:4px 7px;font-size:9px">❌ شعار</button>':''}
+      ${s.style.bgImage?'<button class="btn btn-danger" onclick="state.style.bgImage=\'\';save();renderAll()" style="padding:4px 7px;font-size:9px">❌ خلفية</button>':''}
+      ${s.audio.hasMusic?'<button class="btn btn-danger" onclick="removeMusic()" style="padding:4px 7px;font-size:9px">❌ موسيقى</button>':''}
+    </div></div>`;
+}
+
+/* ============ LIBRARY ACTIONS ============ */
+function addCategory(){ const name=document.getElementById('newCatName').value.trim(); const icon=document.getElementById('newCatIcon').value.trim()||'🌐'; if(!name){toast('أدخل اسمًا','error');return;} const id='cat_'+uid(); state.library.categories.push({id,name,icon,questions:[]}); state.currentCategory=id; save(); renderSheet(); renderAll(); toast('✓','success'); }
+function deleteCategory(id){ if(!confirm('حذف؟')) return; state.library.categories=state.library.categories.filter(c=>c.id!==id); if(state.currentCategory===id) state.currentCategory=state.library.categories[0]?.id||'arab'; save(); renderSheet(); renderAll(); }
+function addQuestion(){ const cat=state.library.categories.find(c=>c.id===state.currentCategory); if(!cat){toast('اختر فئة','error');return;} const q=document.getElementById('newQ').value.trim(); const o0=document.getElementById('newO0').value.trim(),o1=document.getElementById('newO1').value.trim(),o2=document.getElementById('newO2').value.trim(),o3=document.getElementById('newO3').value.trim(); const a=+document.getElementById('newA').value; const hint=document.getElementById('newHint').value.trim(); if(!q||!o0||!o1||!o2||!o3){toast('املأ البيانات','error');return;} cat.questions.push({q,options:[o0,o1,o2,o3],a,hint}); save(); renderSheet(); toast('✓','success'); }
+function deleteQuestion(catId,idx){ const cat=state.library.categories.find(c=>c.id===catId); if(!cat) return; cat.questions.splice(idx,1); save(); renderSheet(); renderAll(); }
+function importQuestions(){ const cat=state.library.categories.find(c=>c.id===state.currentCategory); if(!cat){toast('اختر فئة','error');return;} const text=document.getElementById('importText').value.trim(); if(!text){toast('الصق','error');return;} const lines=text.split('\n').filter(l=>l.trim()); let added=0; for(const line of lines){ const parts=line.split('|').map(p=>p.trim()); if(parts.length<5) continue; const q=parts[0],opts=parts.slice(1,5),a=parseInt(parts[5])||0,hint=parts[6]||''; if(!q||opts.some(o=>!o)) continue; cat.questions.push({q,options:opts,a:Math.min(3,Math.max(0,a)),hint}); added++; } save(); renderSheet(); renderAll(); toast('✓ '+added,'success'); }
+function exportLibrary(){ const blob=new Blob([JSON.stringify(state.library,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download='library.json'; a.click(); URL.revokeObjectURL(url); toast('✓','success'); }
+
+function addWord(){
+  const inp=document.getElementById('newWordInput');
+  const word=(inp?.value||'').trim();
+  if(!word){ toast('أدخل كلمة','error'); return; }
+  if(word.length<1 || word.length>7){ toast('الطول يجب أن يكون 1-7 حروف','error'); return; }
+  if(state.library.words.includes(word)){ toast('الكلمة موجودة','error'); return; }
+  state.library.words.push(word);
+  save(); renderSheet(); renderAll(); inp.value='';
+  toast('✓ أضيفت','success');
+}
+function deleteWord(idx){ state.library.words.splice(idx,1); save(); renderSheet(); renderAll(); }
+function importWords(){
+  const text=document.getElementById('importWordsText')?.value.trim();
+  if(!text){ toast('الصق الكلمات','error'); return; }
+  const lines=text.split('\n').map(l=>l.trim()).filter(Boolean);
+  let added=0, skipped=0;
+  for(const w of lines){
+    if(w.length>=1 && w.length<=7 && !state.library.words.includes(w)){ state.library.words.push(w); added++; }
+    else skipped++;
+  }
+  save(); renderSheet(); renderAll();
+  toast('✓ '+added+' أضيفت ('+skipped+' متجاوزة)','success');
+}
+function resetWords(){ if(!confirm('استعادة الكلمات الافتراضية؟')) return; state.library.words=JSON.parse(JSON.stringify(SAMPLE_WORDS)); save(); renderSheet(); renderAll(); }
+
+function addSynonym(){
+  const word=(document.getElementById('newSynWord')?.value||'').trim();
+  const synsText=(document.getElementById('newSynList')?.value||'').trim();
+  if(!word){ toast('أدخل الكلمة','error'); return; }
+  if(!synsText){ toast('أدخل المرادفات','error'); return; }
+  const syns=synsText.split(/[,،]/).map(s=>s.trim()).filter(Boolean);
+  if(syns.length===0){ toast('أدخل مرادفًا واحدًا','error'); return; }
+  if(state.library.synonyms.some(e=>e.word===word)){ toast('الكلمة موجودة','error'); return; }
+  state.library.synonyms.push({word,synonyms:syns});
+  save(); renderSheet(); renderAll();
+  toast('✓ أضيفت','success');
+}
+function deleteSynonym(idx){ state.library.synonyms.splice(idx,1); save(); renderSheet(); renderAll(); }
+function importSynonyms(){
+  const text=document.getElementById('importSynText')?.value.trim();
+  if(!text){ toast('الصق المترادفات','error'); return; }
+  const lines=text.split('\n').map(l=>l.trim()).filter(Boolean);
+  let added=0, skipped=0;
+  for(const line of lines){
+    const parts=line.split('|').map(p=>p.trim()).filter(Boolean);
+    if(parts.length<2) { skipped++; continue; }
+    const word=parts[0];
+    const syns=parts.slice(1);
+    if(!word||syns.length===0){ skipped++; continue; }
+    if(state.library.synonyms.some(e=>e.word===word)){ skipped++; continue; }
+    state.library.synonyms.push({word,synonyms:syns});
+    added++;
+  }
+  save(); renderSheet(); renderAll();
+  toast('✓ '+added+' أضيفت ('+skipped+' متجاوزة)','success');
+}
+function resetSynonyms(){ if(!confirm('استعادة المترادفات الافتراضية؟')) return; state.library.synonyms=JSON.parse(JSON.stringify(SAMPLE_SYNONYMS)); save(); renderSheet(); renderAll(); }
+
+/* ============ RANGE / SECRET ============ */
+function setRange(g,val){
+  const gs=state.gameSettings[g];
+  if(val==='1-100'){gs.min=1;gs.max=100;}
+  else if(val==='100-1000'){gs.min=100;gs.max=1000;}
+  save(); renderAll(); renderSheet();
+}
+function randomSecret(g){
+  const gs=state.gameSettings[g];
+  gs.secret=Math.floor(Math.random()*(gs.max-gs.min+1))+gs.min;
+  gs.guesses=[]; gs.hint='';
+  save(); renderAll(); renderSheet();
+  toast('الرقم: '+gs.secret,'info');
+}
+
+/* ============ GAME SUBMIT ============ */
 function submitGuess(g){
   const inp=document.getElementById('guessInput'); if(!inp) return;
   const n=parseInt(inp.value,10); if(isNaN(n)) return;
   const gs=state.gameSettings[g];
-  if(gs.secret===null){ toast('اختر رقمًا أولًا','error'); return; }
+  if(gs.secret===null){ toast('اختر رقمًا','error'); return; }
   gs.guesses.push({n,time:Date.now()});
-  if(n===gs.secret){ gs.hint='correct'; honorWinner('تخمين '+n); }
-  else { gs.hint = n<gs.secret?'higher':'lower'; AudioEngine.play('close'); }
-  inp.value=''; save(); renderGameView(); renderSheet();
+  if(n===gs.secret){
+    gs.hint='correct';
+    state.questionRevealed=true;
+    honorWinner('تخمين '+n);
+  } else {
+    gs.hint = n<gs.secret?'higher':'lower';
+    AudioEngine.play('close');
+  }
+  inp.value=''; save(); renderAll(); renderSheet();
 }
+
 function submitWordGuess(){
-  const inp=document.getElementById('letterInput'); if(!inp) return;
+  const inp=document.getElementById('wordInput'); if(!inp) return;
   const val=(inp.value||'').trim(); if(!val) return;
   const gs=state.gameSettings.word;
-  if(val===gs.secret){ gs.revealed=gs.secret.split(''); honorWinner(val); }
-  else if(val.length===1 && gs.secret.includes(val) && !gs.revealed.includes(val)){ gs.revealed.push(val); AudioEngine.play('close'); }
-  else AudioEngine.play('lose');
-  inp.value=''; save(); renderGameView(); renderSheet();
+  if(!gs.currentWord){ toast('لا توجد كلمة','error'); return; }
+  if(normalizeAr(val) === normalizeAr(gs.currentWord)){
+    gs.revealed = gs.currentWord.split('').map((_,i)=>i);
+    state.questionRevealed = true;
+    honorWinner(val);
+  } else if(val.length===1){
+    const positions=[];
+    gs.currentWord.split('').forEach((ch,i)=>{ if(ch===val && !gs.revealed.includes(i)) positions.push(i); });
+    if(positions.length>0){ gs.revealed.push(...positions); AudioEngine.play('close'); }
+    else AudioEngine.play('lose');
+  } else {
+    AudioEngine.play('lose');
+  }
+  inp.value=''; save(); renderAll(); renderSheet();
 }
 
-/* ============================================================
-   UPLOADS
-============================================================ */
-async function uploadLogo(e){ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=ev=>{ state.style.logo=ev.target.result; save(); renderGameView(); toast('✓ الشعار','success'); }; r.readAsDataURL(f); }
-async function uploadBg(e){ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=ev=>{ state.style.bgImage=ev.target.result; save(); renderGameView(); toast('✓ الخلفية','success'); }; r.readAsDataURL(f); }
-async function uploadMusic(e){
-  const f=e.target.files[0]; if(!f) return;
-  if(f.size>30*1024*1024){ toast('الحد 30MB','error'); return; }
-  const r=new FileReader();
-  r.onload=async ev=>{ try{ await saveMusicData(ev.target.result); state.audio.hasMusic=true; save(); renderSheet(); toast('✓ الموسيقى','success'); pendingMusic=ev.target.result; if(audioUnlocked) await AudioEngine.tryPlay(); }catch(err){ toast('فشل الحفظ','error'); } };
-  r.readAsDataURL(f);
-}
-async function removeMusic(){ const db=await openIDB(); if(db){ const tx=db.transaction('music','readwrite'); tx.objectStore('music').delete('bg'); } state.audio.hasMusic=false; pendingMusic=null; if(bgAudio){bgAudio.pause();bgAudio=null;} save(); renderSheet(); toast('تم الحذف','success'); }
-
-/* ============================================================
-   AUDIO UNLOCK
-============================================================ */
-async function unlockAudio(){
-  AudioEngine.init();
-  await new Promise(r=>setTimeout(r,150));
-  audioUnlocked=true;
-  if(pendingMusic) await AudioEngine.tryPlay();
-  else if(state.audio.hasMusic){ const d=await loadMusicData(); if(d){ pendingMusic=d; await AudioEngine.tryPlay(); } }
-  initVoices();
-  document.getElementById('audioUnlock').style.display='none';
+function submitSynonymGuess(){
+  const inp=document.getElementById('synonymInput'); if(!inp) return;
+  const val=(inp.value||'').trim(); if(!val) return;
+  const gs=state.gameSettings.synonym;
+  if(!gs.currentEntry){ toast('لا توجد كلمة','error'); return; }
+  const normalized = normalizeAr(val);
+  const match = gs.currentEntry.synonyms.some(s=>normalizeAr(s)===normalized);
+  if(match){
+    gs.revealed = true;
+    state.questionRevealed = true;
+    honorWinner(val);
+  } else {
+    AudioEngine.play('lose');
+    toast('ليس مرادفًا صحيحًا','error');
+  }
+  inp.value=''; save(); renderAll(); renderSheet();
 }
 
-/* ============================================================
-   INIT
-============================================================ */
+/* ============ UPLOADS ============ */
+async function uploadLogo(e){ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=ev=>{ state.style.logo=ev.target.result; save(); renderAll(); renderSheet(); toast('✓','success'); }; r.readAsDataURL(f); }
+async function uploadBg(e){ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=ev=>{ state.style.bgImage=ev.target.result; save(); renderAll(); renderSheet(); toast('✓','success'); }; r.readAsDataURL(f); }
+async function uploadMusic(e){ const f=e.target.files[0]; if(!f) return; if(f.size>30*1024*1024){toast('الحد 30MB','error');return;} const r=new FileReader(); r.onload=async ev=>{ try{ await saveMusicData(ev.target.result); state.audio.hasMusic=true; save(); renderSheet(); toast('✓','success'); pendingMusic=ev.target.result; if(audioUnlocked) await AudioEngine.tryPlay(); }catch(err){ toast('فشل','error'); } }; r.readAsDataURL(f); }
+async function removeMusic(){ const db=await openIDB(); if(db){ const tx=db.transaction('music','readwrite'); tx.objectStore('music').delete('bg'); } state.audio.hasMusic=false; pendingMusic=null; if(bgAudio){bgAudio.pause();bgAudio=null;} save(); renderSheet(); toast('✓','success'); }
+
+async function unlockAudio(){ AudioEngine.init(); await new Promise(r=>setTimeout(r,150)); audioUnlocked=true; if(pendingMusic) await AudioEngine.tryPlay(); else if(state.audio.hasMusic){ const d=await loadMusicData(); if(d){ pendingMusic=d; await AudioEngine.tryPlay(); } } initVoices(); document.getElementById('audioUnlock').style.display='none'; }
+
 async function init(){
   fitStage();
   applyColors();
-  renderGameView();
+  renderAll();
   Confetti.init(document.getElementById('confetti'));
-
   const unlock=document.getElementById('audioUnlock');
   unlock.style.display='block';
   unlock.onclick=unlockAudio;
-
   if(state.audio.hasMusic){ const d=await loadMusicData(); if(d) pendingMusic=d; }
-
   setInterval(tickTimer, 500);
-  setInterval(()=>{
-    const gs=state.gameSettings.bomb;
-    if(state.game==='bomb' && gs.endTime && Date.now()>=gs.endTime && !gs.exploded){
-      gs.exploded=true; gs.endTime=null; save(); renderGameView();
-    }
-    const gg=state.gameSettings[state.game];
-    if((state.game==='guess'||state.game==='word'||state.game==='spy') && gg.roundEndTime && Date.now()>=gg.roundEndTime){
-      gg.roundEndTime=null; save();
-    }
-  }, 500);
-
   document.addEventListener('gesturestart', e=>e.preventDefault());
 }
 init();
